@@ -44,19 +44,18 @@ public class UseCase1 {
         System.out.printf("%s: %s%n",bundle.getString("picked"), bundle.getString("language"));
         
         System.out.println(bundle.getString("newGame"));
-        String nieuwSpel = scan.next();
+        String nieuwSpel = scan.next().toLowerCase();
         
         boolean startUp = false;
-        if (nieuwSpel.toLowerCase().charAt(0)=='j' || nieuwSpel.toLowerCase().charAt(0)=='y' || nieuwSpel.toLowerCase().charAt(0)=='o') {
+        if(nieuwSpel.equals(bundle.getString("yes"))){
             startUp = true;
         }
         
+        
+        
         if (startUp) {
-            int aantalSpelers = 0;
-            do {
-                System.out.println("Hoveel spelers doen er mee met het spel?");
-                aantalSpelers = scan.nextInt();
-            } while (aantalSpelers < 3 || aantalSpelers >7);
+            System.out.println(bundle.getString("amountOfPlayers"));
+            int aantalSpelers = scan.nextInt();
             Spel huidigSpel = startSpel(aantalSpelers);
         }     
     }
