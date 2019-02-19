@@ -32,7 +32,7 @@ public class Speler {
         setNaam(naam);
         this.choice = choice;
         kaarten = new ArrayList<>();
-        bundle = ResourceBundle.getBundle("domein/i18n", this.choice);
+        this.bundle = ResourceBundle.getBundle("domein/i18n", this.choice);
     }
 
     public final void setLeeftijd(int leeftijd) {
@@ -40,7 +40,7 @@ public class Speler {
             this.leeftijd = leeftijd;
         } 
         else {
-            throw new IllegalArgumentException(bundle.getString("exception.age")); // VRAGEN
+            throw new IllegalArgumentException(ResourceBundle.getBundle("domein/i18n",this.choice).getString("exception.players")); // VRAGEN
         }
     }
 
@@ -53,7 +53,7 @@ public class Speler {
             this.geslacht = geslacht;
         }
         else {
-            throw new IllegalArgumentException(bundle.getString("exception.sex")); // VRAGEN
+            throw new IllegalArgumentException(ResourceBundle.getBundle("domein/i18n",this.choice).getString("exception.players")); // VRAGEN
         }
     }
 
@@ -69,7 +69,7 @@ public class Speler {
             }
         }
         else
-            throw new IllegalArgumentException(bundle.getString("exception.name")); // VRAGEN
+            throw new IllegalArgumentException(ResourceBundle.getBundle("domein/i18n",this.choice).getString("exception.players")); // VRAGEN
     }
 
     public String getNaam() {
