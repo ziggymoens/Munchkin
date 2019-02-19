@@ -56,12 +56,16 @@ public class UseCase1 {
         if (startUp) {
             System.out.println(bundle.getString("amountOfPlayers"));
             int aantalSpelers = scan.nextInt();
-            Spel huidigSpel = startSpel(aantalSpelers);
+            while(aantalSpelers<3 || aantalSpelers >6){
+                System.out.println(bundle.getString("exception.players"));
+                aantalSpelers = scan.nextInt();
+            }
+            Spel huidigSpel = startSpel(aantalSpelers, choice);
         }     
     }
     
-    private static Spel startSpel(int aantalSpelers){
-        Spel huidigSpel = new Spel(aantalSpelers);
+    private static Spel startSpel(int aantalSpelers, Locale choice){
+        Spel huidigSpel = new Spel(aantalSpelers, choice);
         return huidigSpel;
     }
     
