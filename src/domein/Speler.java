@@ -12,6 +12,7 @@ public class Speler {
     private String naam;
     private int level;
     private Locale choice;
+    private Kaart[] kaarten;
     
     public Speler(){
         setNaam("onbekend");
@@ -75,6 +76,18 @@ public class Speler {
 
     public int getLevel() {
         return level;
+    }
+    
+    public void voegKaartToe(Kaart kaart, int i){
+        kaarten[i] = kaart;
+    }
+
+    public void setKaarten(Kaart[] kaarten) {
+        this.kaarten = kaarten;
+    }
+    
+    public Kaart[] getKaarten() {
+        return kaarten;
     }
     
     

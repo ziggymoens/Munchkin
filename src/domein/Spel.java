@@ -46,4 +46,7 @@ public class Spel {
     public void voegSpelerToe(int i, Speler speler) {
         spelers[i] = speler;
     }
+    public void voegKaartToe(Kaart kaart, int i, int spelernr){
+        spelers[spelernr].voegKaartToe(kaart, i);
+    }
 }
