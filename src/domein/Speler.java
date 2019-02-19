@@ -10,13 +10,20 @@ public class Speler {
     private int leeftijd;
     private String geslacht;
     private String naam;
+    private int level;
     private Locale choice;
-
-    public Speler(int leeftijd, String geslacht, String naam) {
-        this(leeftijd, geslacht, naam, new Locale("en"));
+    
+    public Speler(){
+        setNaam("onbekend");
+        setLeeftijd(99);
+        setGeslacht("onbekend");
     }
 
-    public Speler(int leeftijd, String geslacht, String naam, Locale choice) {
+    public Speler(String naam, String geslacht, int leeftijd) {
+        this(naam, geslacht, leeftijd, new Locale("en"));
+    }
+
+    public Speler(String naam, String geslacht, int leeftijd, Locale choice) {
         setLeeftijd(leeftijd);
         setGeslacht(geslacht);
         setNaam(naam);
@@ -61,4 +68,14 @@ public class Speler {
     public String getNaam() {
         return naam;
     }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+    
+    
 }

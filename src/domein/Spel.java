@@ -6,7 +6,6 @@
 package domein;
 
 import java.util.*;
-import ui.*;
 
 /**
  *
@@ -15,6 +14,11 @@ import ui.*;
 public class Spel {
     private Locale choice;
     private int aantalSpelers;
+    private Speler[] spelers;
+    
+    public Spel(int aantalSpelers){
+        this(aantalSpelers, new Locale("en"));
+    }
 
     public Spel(int aantalSpelers, Locale choice) {
         setAantalSpelers(aantalSpelers);
@@ -27,14 +31,19 @@ public class Spel {
         }else{
             throw new IllegalArgumentException(ResourceBundle.getBundle("/domein/i18n",this.choice).getString("exception.players")); // VRAGEN
         }
-        Speler[] spelers = new Speler[aantalSpelers];
+        spelers = new Speler[aantalSpelers];
     }
 
+    
     public int getAantalSpelers() {
         return aantalSpelers;
     }
 
     public String geefInfo() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void voegSpelerToe(int i, Speler speler) {
+        spelers[i] = speler;
     }
 }
