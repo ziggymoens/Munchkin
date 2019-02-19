@@ -81,7 +81,7 @@ public class UseCase1 {
     
     
     private static void voegSpelersToe(int aantalSpelers, Spel spel){
-        ResourceBundle bundle = ResourceBundle.getBundle("ui/i18n", choice);
+        bundle = ResourceBundle.getBundle("ui/i18n", choice);
         for (int i = 0; i < aantalSpelers; i++) {
             System.out.println(bundle.getString("ask.name"));
             String naam = scan.next();
