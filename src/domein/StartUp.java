@@ -10,5 +10,7 @@ package domein;
  * @author ziggy
  */
 public class StartUp {
-    
+    public static void main(String[] args) {
+        
+    }
 }
