@@ -14,6 +14,7 @@ public class Spel {
     private int aantalSpelers;
     private int leeftijd;
     private String geslacht;
+    private String naam;
 
     public Spel(int aantalSpelers) {
         setAantalSpelers(aantalSpelers);
@@ -50,6 +51,17 @@ public class Spel {
     public String getGeslacht() {
         return geslacht;
     }
+
+    public void setNaam(String naam) {
+        
+        
+    }
+
+    public String getNaam() {
+        return naam;
+    }
+    
+    
 
     public String geefInfo() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
