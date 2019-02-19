@@ -12,7 +12,9 @@ public class Speler {
     private String naam;
     private int level;
     private Locale choice;
-    private Kaart[] kaarten;
+    private ArrayList<Kaart> kaarten;
+    private ResourceBundle bundle;
+    
     
     public Speler(){
         setNaam("onbekend");
@@ -29,13 +31,16 @@ public class Speler {
         setGeslacht(geslacht);
         setNaam(naam);
         this.choice = choice;
+        kaarten = new ArrayList<>();
+        bundle = ResourceBundle.getBundle("domein/i18n", this.choice);
     }
 
     public final void setLeeftijd(int leeftijd) {
         if (leeftijd > 0) {
             this.leeftijd = leeftijd;
-        } else {
-            throw new IllegalArgumentException(ResourceBundle.getBundle("/domein/i18n",this.choice).getString("exception.age")); // VRAGEN
+        } 
+        else {
+            throw new IllegalArgumentException(bundle.getString("exception.age")); // VRAGEN
         }
     }
 
@@ -46,8 +51,9 @@ public class Speler {
     public final void setGeslacht(String geslacht) {
         if (geslacht.toLowerCase().equals("man") || geslacht.toLowerCase().equals("vrouw")) {
             this.geslacht = geslacht;
-        } else {
-            throw new IllegalArgumentException(ResourceBundle.getBundle("/domein/i18n",this.choice).getString("exception.sex")); // VRAGEN
+        }
+        else {
+            throw new IllegalArgumentException(bundle.getString("exception.sex")); // VRAGEN
         }
     }
 
@@ -61,9 +67,9 @@ public class Speler {
                 if(naam.charAt(i) >= 'a' || naam.charAt(i) <= 'z' || naam.charAt(i) >= 'A' || naam.charAt(i) <= 'Z' || naam.charAt(i) == '_' || naam.charAt(i) == '-')
                     this.naam = naam;
             }
-        }else
-            throw new IllegalArgumentException(ResourceBundle.getBundle("/domein/i18n",this.choice).getString("exception.name")); // VRAGEN
-        
+        }
+        else
+            throw new IllegalArgumentException(bundle.getString("exception.name")); // VRAGEN
     }
 
     public String getNaam() {
@@ -78,16 +84,37 @@ public class Speler {
         return level;
     }
     
-    public void voegKaartToe(Kaart kaart, int i){
-        kaarten[i] = kaart;
+    public void voegKaartToe(Kaart kaart){
+        this.kaarten.add(kaart);
     }
 
-    public void setKaarten(Kaart[] kaarten) {
-        this.kaarten = kaarten;
+    public ArrayList getKaarten(){
+        return kaarten;
+    }
+
+    
+    public int geefAantalKaarten(){
+        int aantalKaarten = 0;
+        for (Kaart kaarten1 : kaarten) {
+            if (kaarten1 != null) {
+                aantalKaarten++;
+            }
+        }
+        return aantalKaarten;
     }
     
-    public Kaart[] getKaarten() {
-        return kaarten;
+    public String kaartenNaarString(){
+        String ret = "";
+        for (int i = 0; i < geefAantalKaarten(); i++) {
+            ret+= String.format("%s (type: %s, subtype: %s) ", kaarten.get(i).getNaam(), kaarten.get(i).getType(),kaarten.get(i).getSubtype());
+        }
+        return ret;
+    }
+    
+
+    @Override
+    public String toString() {
+        return String.format("naam = %s, geslacht = %s, leeftijd = %d, level = %d, aantalKaarten = %d, kaarten = %s", naam, geslacht, leeftijd, level, geefAantalKaarten(), kaartenNaarString());
     }
     
     
