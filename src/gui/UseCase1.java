@@ -1,4 +1,4 @@
-package ui;
+package gui;
 
 import domein.*;
 import java.security.SecureRandom;

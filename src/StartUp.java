@@ -1,4 +1,4 @@
-import ui.UseCase1;
+import gui.UseCase1;
 
 /**
  *
