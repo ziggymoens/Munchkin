@@ -12,7 +12,6 @@ public class Speler {
     private String geslacht;
     private String naam;
     private int level;
-    private Locale choice;
     private ArrayList<Kaart> kaarten;
     private static LanguageResource bundle = new LanguageResource();
     
@@ -30,7 +29,6 @@ public class Speler {
         setLeeftijd(leeftijd);
         setGeslacht(geslacht);
         setNaam(naam);
-        this.choice = choice;
         kaarten = new ArrayList<>();
         
     }
@@ -40,7 +38,7 @@ public class Speler {
             this.leeftijd = leeftijd;
         } 
         else {
-            throw new IllegalArgumentException(bundle.getString("exception.age")); // VRAGEN
+            throw new IllegalArgumentException(bundle.getString("exception.age"));
         }
     }
 
@@ -53,7 +51,7 @@ public class Speler {
             this.geslacht = geslacht;
         }
         else {
-            throw new IllegalArgumentException(bundle.getString("exception.sex")); // VRAGEN
+            throw new IllegalArgumentException(bundle.getString("exception.sex"));
         }
     }
 
@@ -69,7 +67,7 @@ public class Speler {
             }
         }
         else
-            throw new IllegalArgumentException(bundle.getString("exception.name")); // VRAGEN
+            throw new IllegalArgumentException(bundle.getString("exception.name"));
     }
 
     public String getNaam() {
