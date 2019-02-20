@@ -12,13 +12,13 @@ import language.LanguageResource;
 public class UseCase1 {
 
     private static Locale choice;
-    private static Scanner scan = new Scanner(System.in);
-    private static LanguageResource bundle;
+    private static final Scanner SCAN = new Scanner(System.in);
+    private static LanguageResource bundle = new LanguageResource();
 
     public UseCase1() {
         Welcome();
         System.out.println(bundle.getString("newGame"));
-        String nieuwSpel = scan.next().toLowerCase();
+        String nieuwSpel = SCAN.next().toLowerCase();
 
         boolean startUp = false;
         if (nieuwSpel.equals(bundle.getString("yes"))) {
@@ -29,9 +29,9 @@ public class UseCase1 {
             int aantalSpelers = kiesAantalSpelers();
             Spel spel = startSpel(aantalSpelers);
             voegSpelersToe(aantalSpelers, spel);
-            Kaart[] kerkerkaarten = maakKerkerkaarten();
-            Kaart[] schatkaarten = maakSchatkaarten();
-            verdeelKaarten(kerkerkaarten, schatkaarten, aantalSpelers, spel);
+//            Kaart[] kerkerkaarten = maakKerkerkaarten();
+//            Kaart[] schatkaarten = maakSchatkaarten();
+//            verdeelKaarten(kerkerkaarten, schatkaarten, aantalSpelers, spel);
             spel.startLevels();
             System.out.println(geefInformatie(spel));
         }
@@ -44,13 +44,13 @@ public class UseCase1 {
         System.out.printf("%s %s%n", bundle.getStringLanguage("startUp", nl), bundle.getStringLanguage("languageC", nl));
         System.out.printf("%s %s%n", bundle.getStringLanguage("startUp", en), bundle.getStringLanguage("languageC", en));
         System.out.printf("%s %s%n", bundle.getStringLanguage("startUp", fr), bundle.getStringLanguage("languageC", fr));
-        char gekozenTaal = scan.next().toLowerCase().charAt(0);
+        char gekozenTaal = SCAN.next().toLowerCase().charAt(0);
 
         while (gekozenTaal != 'n' && gekozenTaal != 'f' && gekozenTaal != 'e') {
             System.out.printf("%s%n", ResourceBundle.getBundle("ui/i18n", nl).getString("wrong"));
             System.out.printf("%s%n", ResourceBundle.getBundle("ui/i18n", en).getString("wrong"));
             System.out.printf("%s%n", ResourceBundle.getBundle("ui/i18n", fr).getString("wrong"));
-            gekozenTaal = scan.next().toLowerCase().charAt(0);
+            gekozenTaal = SCAN.next().toLowerCase().charAt(0);
         }
 
         switch (gekozenTaal) {
@@ -76,10 +76,10 @@ public class UseCase1 {
 
     private static int kiesAantalSpelers() {
         System.out.println(bundle.getString("amountOfPlayers"));
-        int aantalSpelers = scan.nextInt();
+        int aantalSpelers = SCAN.nextInt();
         while (aantalSpelers < 3 || aantalSpelers > 6) {
             System.out.println(bundle.getString("exception.players"));
-            aantalSpelers = scan.nextInt();
+            aantalSpelers = SCAN.nextInt();
         }
         return aantalSpelers;
     }
@@ -87,55 +87,15 @@ public class UseCase1 {
     private static void voegSpelersToe(int aantalSpelers, Spel spel) {
         for (int i = 0; i < aantalSpelers; i++) {
             System.out.println(bundle.getString("ask.name"));
-            String naam = scan.next();
+            String naam = SCAN.next();
             System.out.println(bundle.getString("ask.sex"));
-            String geslacht = scan.next();
+            String geslacht = SCAN.next();
             System.out.println(bundle.getString("ask.age"));
-            int leeftijd = scan.nextInt();
+            int leeftijd = SCAN.nextInt();
 
             Speler speler = new Speler(naam, geslacht, leeftijd, choice);
             spel.voegSpelerToe(i, speler);
         }
-    }
-
-    private static Kaart[] maakSchatkaarten() {
-        Kaart[] schatkaarten = new Kaart[15];
-        schatkaarten[0] = new Kaart("kaart1", "schat", "eq");
-        schatkaarten[1] = new Kaart("kaart2", "schat", "eq");
-        schatkaarten[2] = new Kaart("kaart3", "schat", "eq");
-        schatkaarten[3] = new Kaart("kaart4", "schat", "eq");
-        schatkaarten[4] = new Kaart("kaart5", "schat", "co");
-        schatkaarten[5] = new Kaart("kaart6", "schat", "co");
-        schatkaarten[6] = new Kaart("kaart7", "schat", "co");
-        schatkaarten[7] = new Kaart("kaart8", "schat", "eq");
-        schatkaarten[8] = new Kaart("kaart9", "schat", "eq");
-        schatkaarten[9] = new Kaart("kaart10", "schat", "eq");
-        schatkaarten[10] = new Kaart("kaart11", "schat", "eq");
-        schatkaarten[11] = new Kaart("kaart12", "schat", "co");
-        schatkaarten[12] = new Kaart("kaart13", "schat", "co");
-        schatkaarten[13] = new Kaart("kaart14", "schat", "co");
-        schatkaarten[14] = new Kaart("kaart15", "schat", "co");
-        return schatkaarten;
-    }
-
-    private static Kaart[] maakKerkerkaarten() {
-        Kaart[] kerkerkaarten = new Kaart[15];
-        kerkerkaarten[0] = new Kaart("kaart1", "kerker", "monster");
-        kerkerkaarten[1] = new Kaart("kaart2", "kerker", "monster");
-        kerkerkaarten[2] = new Kaart("kaart3", "kerker", "curse");
-        kerkerkaarten[3] = new Kaart("kaart4", "kerker", "curse");
-        kerkerkaarten[4] = new Kaart("kaart5", "kerker", "race");
-        kerkerkaarten[5] = new Kaart("kaart6", "kerker", "race");
-        kerkerkaarten[6] = new Kaart("kaart7", "kerker", "consumables");
-        kerkerkaarten[7] = new Kaart("kaart8", "kerker", "monster");
-        kerkerkaarten[8] = new Kaart("kaart9", "kerker", "monster");
-        kerkerkaarten[9] = new Kaart("kaart10", "kerker", "curse");
-        kerkerkaarten[10] = new Kaart("kaart11", "kerker", "curse");
-        kerkerkaarten[11] = new Kaart("kaart12", "kerker", "race");
-        kerkerkaarten[12] = new Kaart("kaart13", "kerker", "race");
-        kerkerkaarten[13] = new Kaart("kaart14", "kerker", "consumables");
-        kerkerkaarten[14] = new Kaart("kaart15", "kerker", "consumables");
-        return kerkerkaarten;
     }
 
     private static void verdeelKaarten(Kaart[] kerkerkaarten, Kaart[] schatkaarten, int aantalSpelers, Spel spel) {

@@ -1,6 +1,7 @@
 package domein;
 
 import java.util.*;
+import language.LanguageResource;
 
 /**
  *
@@ -13,13 +14,11 @@ public class Speler {
     private int level;
     private Locale choice;
     private ArrayList<Kaart> kaarten;
-    private ResourceBundle bundle;
+    private static LanguageResource bundle = new LanguageResource();
     
     
     public Speler(){
-        setNaam("onbekend");
-        setLeeftijd(99);
-        setGeslacht("onbekend");
+        this("onbekend", "man", 99, new Locale("en"));
     }
 
     public Speler(String naam, String geslacht, int leeftijd) {
@@ -27,12 +26,13 @@ public class Speler {
     }
 
     public Speler(String naam, String geslacht, int leeftijd, Locale choice) {
+        bundle.setLocale(choice);
         setLeeftijd(leeftijd);
         setGeslacht(geslacht);
         setNaam(naam);
         this.choice = choice;
         kaarten = new ArrayList<>();
-        this.bundle = ResourceBundle.getBundle("domein/i18n", this.choice);
+        
     }
 
     public final void setLeeftijd(int leeftijd) {
@@ -40,7 +40,7 @@ public class Speler {
             this.leeftijd = leeftijd;
         } 
         else {
-            throw new IllegalArgumentException(ResourceBundle.getBundle("domein/i18n",this.choice).getString("exception.players")); // VRAGEN
+            throw new IllegalArgumentException(bundle.getString("exception.age")); // VRAGEN
         }
     }
 
@@ -49,11 +49,11 @@ public class Speler {
     }
 
     public final void setGeslacht(String geslacht) {
-        if (geslacht.toLowerCase().equals("man") || geslacht.toLowerCase().equals("vrouw")) {
+        if (geslacht.toLowerCase().equals(bundle.getString("man")) || geslacht.toLowerCase().equals(bundle.getString("woman"))) {
             this.geslacht = geslacht;
         }
         else {
-            throw new IllegalArgumentException(ResourceBundle.getBundle("domein/i18n",this.choice).getString("exception.players")); // VRAGEN
+            throw new IllegalArgumentException(bundle.getString("exception.sex")); // VRAGEN
         }
     }
 
@@ -69,7 +69,7 @@ public class Speler {
             }
         }
         else
-            throw new IllegalArgumentException(ResourceBundle.getBundle("domein/i18n",this.choice).getString("exception.players")); // VRAGEN
+            throw new IllegalArgumentException(bundle.getString("exception.name")); // VRAGEN
     }
 
     public String getNaam() {
@@ -106,7 +106,7 @@ public class Speler {
     public String kaartenNaarString(){
         String ret = "";
         for (int i = 0; i < geefAantalKaarten(); i++) {
-            ret+= String.format("%s (type: %s, subtype: %s) ", kaarten.get(i).getNaam(), kaarten.get(i).getType(),kaarten.get(i).getSubtype());
+            ret+= String.format("%s", kaarten.get(i).getNaam(),kaarten.get(i));
         }
         return ret;
     }

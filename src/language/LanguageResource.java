@@ -11,35 +11,38 @@ import java.util.*;
  *
  * @author ziggy
  */
-public class LanguageResource {
+public final class LanguageResource {
 
     private Locale locale;
     private ResourceBundle bundle;
 
     public LanguageResource() {
-        this(new Locale("en"));
-    }
+        setLocale(new Locale("en"));
+        setBundle();
+}
     
     public LanguageResource(Locale locale) {
+        setLocale(locale);
+        setBundle();
         
-        bundle = ResourceBundle.getBundle("language/i18n", this.locale);
     }
 
     public void setLocale(Locale locale) {
-        if (locale.equals(new Locale("en"))||locale.equals(new Locale("nl"))||locale.equals(new Locale("fr"))) {
+        if (locale.toString().equals("en")||locale.toString().equals("fr")||locale.toString().equals("nl")) {
             this.locale = locale;
+            setBundle();
         }else{
             this.locale = new Locale("en");
         }
         
     }
 
-    public void setBundle(ResourceBundle bundle) {
-        this.bundle = bundle;
+    public final void setBundle() {
+        this.bundle = ResourceBundle.getBundle("language/i18n", getLocale());
     }
 
     public Locale getLocale() {
-        return locale;
+        return this.locale;
     }
 
     public ResourceBundle getBundle() {
@@ -53,6 +56,4 @@ public class LanguageResource {
     public String getString(String string){
         return bundle.getString(string);
     }
-    
-    
 }
