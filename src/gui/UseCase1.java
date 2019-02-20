@@ -3,6 +3,7 @@ package gui;
 import domein.*;
 import java.security.SecureRandom;
 import java.util.*;
+import language.LanguageResource;
 
 /**
  *
@@ -12,7 +13,7 @@ public class UseCase1 {
 
     private static Locale choice;
     private static Scanner scan = new Scanner(System.in);
-    private static ResourceBundle bundle;
+    private static LanguageResource bundle;
 
     public UseCase1() {
         Welcome();
@@ -40,9 +41,9 @@ public class UseCase1 {
         Locale nl = new Locale("nl");
         Locale en = new Locale("en");
         Locale fr = new Locale("fr");
-        System.out.printf("%s %s%n", ResourceBundle.getBundle("ui/i18n", nl).getString("startUp"), ResourceBundle.getBundle("ui/i18n", nl).getString("languageC"));
-        System.out.printf("%s %s%n", ResourceBundle.getBundle("ui/i18n", en).getString("startUp"), ResourceBundle.getBundle("ui/i18n", en).getString("languageC"));
-        System.out.printf("%s %s%n", ResourceBundle.getBundle("ui/i18n", fr).getString("startUp"), ResourceBundle.getBundle("ui/i18n", fr).getString("languageC"));
+        System.out.printf("%s %s%n", bundle.getStringLanguage("startUp", nl), bundle.getStringLanguage("languageC", nl));
+        System.out.printf("%s %s%n", bundle.getStringLanguage("startUp", en), bundle.getStringLanguage("languageC", en));
+        System.out.printf("%s %s%n", bundle.getStringLanguage("startUp", fr), bundle.getStringLanguage("languageC", fr));
         char gekozenTaal = scan.next().toLowerCase().charAt(0);
 
         while (gekozenTaal != 'n' && gekozenTaal != 'f' && gekozenTaal != 'e') {
@@ -64,7 +65,7 @@ public class UseCase1 {
                 choice = new Locale("nl");
                 break;
         }
-        bundle = ResourceBundle.getBundle("ui/i18n", choice);
+        bundle.setLocale(choice);
         System.out.printf("%s: %s%n", bundle.getString("picked"), bundle.getString("language"));
     }
 
@@ -84,7 +85,6 @@ public class UseCase1 {
     }
 
     private static void voegSpelersToe(int aantalSpelers, Spel spel) {
-        bundle = ResourceBundle.getBundle("ui/i18n", choice);
         for (int i = 0; i < aantalSpelers; i++) {
             System.out.println(bundle.getString("ask.name"));
             String naam = scan.next();

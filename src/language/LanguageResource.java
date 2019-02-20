@@ -22,7 +22,7 @@ public class LanguageResource {
     
     public LanguageResource(Locale locale) {
         
-        bundle = ResourceBundle.getBundle("ui/i18n", this.locale);
+        bundle = ResourceBundle.getBundle("language/i18n", this.locale);
     }
 
     public void setLocale(Locale locale) {
@@ -45,4 +45,14 @@ public class LanguageResource {
     public ResourceBundle getBundle() {
         return bundle;
     }
+    
+    public String getStringLanguage(String string, Locale locale){
+        return ResourceBundle.getBundle("language/i18n", locale).getString(string);
+    }
+    
+    public String getString(String string){
+        return bundle.getString(string);
+    }
+    
+    
 }
