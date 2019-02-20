@@ -15,9 +15,9 @@ public class Kaart {
     private  String subtype;
 
     public Kaart(String naam, String type, String subtype) {
-        this.naam = naam;
-        this.type = type;
-        this.subtype = subtype;
+        setNaam(naam);
+        setType(type);
+        setSubtype(subtype);
     }
 
     public final void setNaam(String naam) {
