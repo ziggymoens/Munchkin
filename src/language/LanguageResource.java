@@ -23,18 +23,15 @@ public final class LanguageResource {
     
     public LanguageResource(Locale locale) {
         setLocale(locale);
-        setBundle();
-        
     }
 
     public void setLocale(Locale locale) {
-        if (locale.toString().equals("en")||locale.toString().equals("fr")||locale.toString().equals("nl")) {
+        if(locale.toString().equals("en")||locale.toString().equals("fr")||locale.toString().equals("nl")) {
             this.locale = locale;
-            setBundle();
         }else{
             this.locale = new Locale("en");
         }
-        
+        setBundle();
     }
 
     public final void setBundle() {

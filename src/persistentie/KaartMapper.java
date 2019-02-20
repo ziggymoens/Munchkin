@@ -21,7 +21,7 @@ import java.util.*;
  * @author ziggy
  */
 public class KaartMapper {
-    private List<Kaart> geefKaarten(){
+    public List<Kaart> geefKaarten(){
         List<Kaart> kaarten = new ArrayList<>();
         Kerkerkaart k1,k2,k3,k4,k5,k6,k7,k8,k9,k10,k11,k12;
         Schatkaart s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12;

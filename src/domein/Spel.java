@@ -6,16 +6,21 @@
 package domein;
 
 import java.util.*;
+import language.LanguageResource;
 
 /**
  *
  * @author ziggy
  */
 public class Spel {
-    private Locale choice;
     private int aantalSpelers;
-    private Speler[] spelers;
+    private List<Speler> spelers;
+    private Locale locale;
+    private final LanguageResource bundle;
     
+    public Spel(){
+        this(3,new Locale("en"));
+    }
     
     public Spel(int aantalSpelers){
         this(aantalSpelers, new Locale("en"));
@@ -23,22 +28,20 @@ public class Spel {
 
     public Spel(int aantalSpelers, Locale choice) {
         setAantalSpelers(aantalSpelers);
-        this.choice=choice;
-        
+        bundle = new LanguageResource(locale);
     }
 
     public final void setAantalSpelers(int aantalSpelers) {
         if (aantalSpelers >= 3 && aantalSpelers <= 6) {
             this.aantalSpelers = aantalSpelers;
         }else{
-            throw new IllegalArgumentException(ResourceBundle.getBundle("domein/i18n",this.choice).getString("exception.players")); // VRAGEN
+            throw new IllegalArgumentException(bundle.getString("exception.players"));
         }
-        spelers = new Speler[aantalSpelers];
     }
     
     public void startLevels(){
-        for (int i = 0; i < spelers.length; i++) {
-            spelers[i].setLevel(1);
+        for (int i = 0; i < spelers.size(); i++) {
+            spelers.get(i).setLevel(1);
         }
     }
 
@@ -48,18 +51,21 @@ public class Spel {
     }
 
     public String[] geefInfo() {
-        String[] ret = new String[spelers.length];
-        for (int i = 0; i < spelers.length; i++) {
-            ret[i] = spelers[i].toString();
+        String[] ret = new String[spelers.size()];
+        for (int i = 0; i < spelers.size(); i++) {
+            ret[i] = spelers.get(i).toString();
         }
         return ret;
     }
 
-    public void voegSpelerToe(int i, Speler speler) {
-        spelers[i] = speler;
+    public void voegSpelerToe(String naam, String geslacht, int leeftijd) {
+        for (int i = 0; i < aantalSpelers; i++) {
+            Speler speler = new Speler(naam, geslacht, leeftijd, 1);
+            spelers.add(speler);
+        }
     }
     public void voegKaartToe(Kaart kaart, int spelernr){
-        spelers[spelernr].voegKaartToe(kaart);
+        spelers.get(spelernr).voegKaartToe(kaart);
     }
 }
 

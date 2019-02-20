@@ -11,15 +11,16 @@ import language.LanguageResource;
  */
 public class UseCase1 {
 
-    private static Locale choice;
     private static final Scanner SCAN = new Scanner(System.in);
     private static LanguageResource bundle = new LanguageResource();
+    private static DomeinController dc;
 
     public UseCase1() {
+        dc = new DomeinController();
         Welcome();
         System.out.println(bundle.getString("newGame"));
         String nieuwSpel = SCAN.next().toLowerCase();
-
+        
         boolean startUp = false;
         if (nieuwSpel.equals(bundle.getString("yes"))) {
             startUp = true;
@@ -27,13 +28,13 @@ public class UseCase1 {
 
         if (startUp) {
             int aantalSpelers = kiesAantalSpelers();
-            Spel spel = startSpel(aantalSpelers);
-            voegSpelersToe(aantalSpelers, spel);
+            dc.startSpel(aantalSpelers, bundle.getLocale());
+            voegSpelersToe(aantalSpelers);
 //            Kaart[] kerkerkaarten = maakKerkerkaarten();
 //            Kaart[] schatkaarten = maakSchatkaarten();
 //            verdeelKaarten(kerkerkaarten, schatkaarten, aantalSpelers, spel);
-            spel.startLevels();
-            System.out.println(geefInformatie(spel));
+
+            System.out.println(dc.geefInformatie());
         }
     }
 
@@ -52,7 +53,8 @@ public class UseCase1 {
             System.out.printf("%s%n", ResourceBundle.getBundle("ui/i18n", fr).getString("wrong"));
             gekozenTaal = SCAN.next().toLowerCase().charAt(0);
         }
-
+        
+        Locale choice;
         switch (gekozenTaal) {
             case 'e':
             default:
@@ -69,10 +71,6 @@ public class UseCase1 {
         System.out.printf("%s: %s%n", bundle.getString("picked"), bundle.getString("language"));
     }
 
-    private static Spel startSpel(int aantalSpelers) {
-        Spel spel = new Spel(aantalSpelers, choice);
-        return spel;
-    }
 
     private static int kiesAantalSpelers() {
         System.out.println(bundle.getString("amountOfPlayers"));
@@ -84,7 +82,7 @@ public class UseCase1 {
         return aantalSpelers;
     }
 
-    private static void voegSpelersToe(int aantalSpelers, Spel spel) {
+    private static void voegSpelersToe(int aantalSpelers) {
         for (int i = 0; i < aantalSpelers; i++) {
             System.out.println(bundle.getString("ask.name"));
             String naam = SCAN.next();
@@ -92,9 +90,7 @@ public class UseCase1 {
             String geslacht = SCAN.next();
             System.out.println(bundle.getString("ask.age"));
             int leeftijd = SCAN.nextInt();
-
-            Speler speler = new Speler(naam, geslacht, leeftijd, choice);
-            spel.voegSpelerToe(i, speler);
+            dc.voegSpelerToe(naam, geslacht, leeftijd);
         }
     }
 
