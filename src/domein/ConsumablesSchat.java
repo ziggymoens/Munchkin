@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package domein;
 
 /**
@@ -10,7 +5,12 @@ package domein;
  * @author ziggy
  */
 public class ConsumablesSchat extends Schatkaart{
-    //constructor schatkaarten consumable (die superklasse kaart gebruikt)
+
+    /**
+     * Constructor schatkaarten consumable (die superklasse Schatkaart gebruikt)
+     * @param naam De naam van de kaart
+     * @param waarde De waarde van de kaart in het spel
+     */
     public ConsumablesSchat(String naam, int waarde) {
         super(naam, waarde);
     }

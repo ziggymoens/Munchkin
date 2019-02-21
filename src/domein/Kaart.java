@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package domein;
 
 /**
@@ -10,27 +5,54 @@ package domein;
  * @author ziggy
  */
 //SUPERKLASSE
-public abstract class Kaart { 
-    //declaratie attributen
+public abstract class Kaart {
+
+    //Declaratie attributen
     private String naam;
     private boolean kaartInGebruik;
-    //constructor kaart (superklasse)
+
+    /**
+     * Constructor kaart (superklasse van Schatkaart en Kerkerkaart)
+     *
+     * @param naam
+     */
     public Kaart(String naam) {
         setNaam(naam);
     }
-    //setter
+
+    /**
+     * Setter voor de naam van de kaart
+     *
+     * @param naam de naam van de kaart
+     */
     public final void setNaam(String naam) {
         this.naam = naam;
     }
-    
+
+    /**
+     * Geeft de naam van de kaart terug
+     *
+     * @return de naam van de kaart
+     */
     public String getNaam() {
         return naam;
     }
-    //boolean die waarde true geeft als kaart in gebruik is
+
+    /**
+     * Geeft terug of de kaart in iemand zijn hand is
+     *
+     * @return Boolean true = ingebruik, false = beschikbaar
+     */
     public boolean isKaartInGebruik() {
         return kaartInGebruik;
     }
-    //setter die gebruikt wordt om kaartInGebruik op true of false te setten
+
+    /**
+     * Setter die gebruikt wordt om kaartInGebruik op true of false te setten
+     *
+     * @param kaartInGebruik true = kaart in gebruik, false = kaart is
+     * beschikbaar
+     */
     public final void setKaartInGebruik(boolean kaartInGebruik) {
         this.kaartInGebruik = kaartInGebruik;
     }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package domein;
 
 import java.security.SecureRandom;
@@ -16,7 +11,7 @@ import persistentie.KaartMapper;
  */
 public class DomeinController {
 
-    //declaratie attributen
+    //Declaratie attributen
     private final KaartMapper km;
     private final SpelRepository sr;
     private final List<Kaart> kaarten;
@@ -24,7 +19,9 @@ public class DomeinController {
     private final LanguageResource bundle;
     private Spel spel;
 
-    //constructor DomeinController
+    /**
+     * Constructor DomeinController
+     */
     public DomeinController() {
         km = new KaartMapper();
         kaarten = km.geefKaarten();
@@ -32,59 +29,74 @@ public class DomeinController {
         sr = new SpelRepository();
     }
 
-    //methode om het spel te starten adhv het aantal spelers en de gekozen taal
+    /**
+     * Methode om het spel te starten adhv het aantal spelers en de gekozen taal
+     *
+     * @param aantalSpelers Gekozen aantal spelers (3-6)
+     * @param locale Gekozen taal (nl-en-fr)
+     */
     public void startSpel(int aantalSpelers, Locale locale) {
         spel = new Spel(aantalSpelers, locale);
         bundle.setLocale(locale);
     }
 
-    //methode om een speler toete voegen adhv een naam, geslacht en leeftijd (deze worden verder gecontroleerd volgens de DR)
+    /**
+     * Methode om een speler toete voegen adhv een naam, geslacht en leeftijd
+     * (deze worden verder gecontroleerd volgens de DR)
+     *
+     * @param naam Naam van de speler
+     * @param geslacht Geslacht van de speler
+     * @param leeftijd Leeftijd van de speler
+     */
     public void voegSpelerToe(String naam, String geslacht, int leeftijd) {
         spel.voegSpelerToe(naam, geslacht, leeftijd);
     }
 
-    //methode om elke speler 4 kaarten uit te delen, 2 van elke stapel (dit wordt gedaan adhv een SecureRandom)
-    public void geefStartKaarten() {        
+    /**
+     * Methode om elke speler 4 kaarten uit te delen, 2 van elke stapel
+     */
+    public void geefStartKaarten() {
         SecureRandom random = new SecureRandom();
-        //loop voor elke speler
+        //Loop voor elke speler
         for (int i = 0; i < spel.getAantalSpelers(); i++) {
-            int j = 0;            
-            while (j < 4) {
-                //System.out.println(kaarten.get(1).isKaartInGebruik());
+            int j = 0;
+            for (int k = 0; k < 4; k++) {
                 int rKaart;
                 Kaart randKaart;
+                //Random kaart kiezen en kijken of deze al in iemand zijn hand zit
                 do {
                     rKaart = random.nextInt(kaarten.size());
                     randKaart = kaarten.get(rKaart);
                 } while (randKaart.isKaartInGebruik() == true);
+                //Kijken of kaart een van de schatkaarten is, de speler mag er zo 2 hebben
                 if (randKaart instanceof Equipment || randKaart instanceof ConsumablesSchat) {
-                    if (spel.geefAantalSchatkaartenSpeler(i)<=2) {
+                    if (spel.geefAantalSchatkaartenSpeler(i) <= 2) {
                         spel.voegKaartToe(randKaart, i);
                         randKaart.setKaartInGebruik(true);
                         spel.verhoogSchatkaarten(i);
-                    }else{
-                        continue;
                     }
-                } else if (randKaart instanceof Monster||randKaart instanceof Curse||randKaart instanceof Race||randKaart instanceof ConsumablesKerker){
-                    if (spel.geefAantalkerkerkaartenSpeler(i)<=2) {
+                //Kijken of kaart een van de kerkerkaarten is, de speler mag er zo 2 hebben
+                } else if (randKaart instanceof Monster || randKaart instanceof Curse || randKaart instanceof Race || randKaart instanceof ConsumablesKerker) {
+                    if (spel.geefAantalkerkerkaartenSpeler(i) <= 2) {
                         spel.voegKaartToe(randKaart, i);
                         randKaart.setKaartInGebruik(true);
                         spel.verhoogKerkerkaarten(i);
-                    }else{
-                        continue;
-                    }   
+                    }
                 }
-                j++;
             }
         }
     }
 
-    //String die info geeft over het spel
+    /**
+     * String die info geeft over het spel en de spelers
+     *
+     * @return String met alle informatie
+     */
     public String geefInformatie() {
         String ret = "";
         String[] sInfo = spel.geefInfo();
         for (String lijn : sInfo) {
-            ret+= String.format("%s%n", lijn);
+            ret += String.format("%s%n", lijn);
         }
         return ret;
     }

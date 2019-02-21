@@ -21,10 +21,13 @@ import java.util.*;
  * @author ziggy
  */
 public class KaartMapper {
-    private final List<Kaart> kaarten;
     
-    public KaartMapper(){
-        kaarten = new ArrayList<>();
+    /**
+     * Geef de kaarten in database
+     * @return List van Kaart-objecten
+     */
+    public List<Kaart> geefKaarten(){
+        List<Kaart>kaarten = new ArrayList<>();
         Kerkerkaart k1,k2,k3,k4,k5,k6,k7,k8,k9,k10,k11,k12;
         Schatkaart s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12;
         k1 = new Monster("kerkerkaart1");
@@ -76,9 +79,6 @@ public class KaartMapper {
         kaarten.add(s10);
         kaarten.add(s11);
         kaarten.add(s12);
-    }
-
-    public List<Kaart> geefKaarten(){
         return kaarten;
     }
 }

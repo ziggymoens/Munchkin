@@ -1,20 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package domein;
 
 /**
  *
  * @author ziggy
  */
-public class Race extends Kerkerkaart{
-    //constructor voor kerkerkaart ras (die superklasse kaart gebruikt)
+public class Race extends Kerkerkaart {
+
+    /**
+     * Constructor voor kerkerkaart ras (die superklasse Kerkerkaart gebruikt)
+     *
+     * @param naam
+     */
     public Race(String naam) {
         super(naam);
     }
-    
-    
-    
+
 }
