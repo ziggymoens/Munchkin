@@ -13,36 +13,37 @@ import language.LanguageResource;
  * @author ziggy
  */
 public class Test {
+
     //i18n testen
     private LanguageResource bundle = new LanguageResource();
-    
+
     public static void main(String[] args) {
         Test test = new Test();
         Locale locale = new Locale("fr");
-        
+
         test.makeBundle(locale);
-        
+
         System.out.println(test.stringFromBundle("ask.name"));
         test.changeLanguage(new Locale("nl"));
         System.out.println(test.stringFromBundle("ask.name"));
-        
+
         System.out.println(test.stringFromBundle("ask.name", new Locale("en")));
     }
-    
-    private void makeBundle(Locale locale){
+
+    private void makeBundle(Locale locale) {
         bundle = new LanguageResource();
     }
-    private void changeLanguage(Locale locale){
+
+    private void changeLanguage(Locale locale) {
         bundle.setLocale(locale);
     }
-    
-    private String stringFromBundle(String string){
+
+    private String stringFromBundle(String string) {
         return bundle.getString(string);
     }
-    
-    private String stringFromBundle(String string, Locale locale){
+
+    private String stringFromBundle(String string, Locale locale) {
         return bundle.getStringLanguage(string, locale);
     }
-    
-    
+
 }

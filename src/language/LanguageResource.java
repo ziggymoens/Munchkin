@@ -66,6 +66,7 @@ public final class LanguageResource {
 
     /**
      * De huidige bundle opvragen
+     *
      * @return Bundle met huidige taal
      */
     public ResourceBundle getBundle() {
@@ -74,6 +75,7 @@ public final class LanguageResource {
 
     /**
      * Woord opvragen in een bepaalde taal dat niet de standaard taal is
+     *
      * @param string Key van het opgevraagde woord
      * @param locale Gewenste taal
      * @return String met het woord in de gekozen taal
@@ -84,6 +86,7 @@ public final class LanguageResource {
 
     /**
      * Woord opvragen in de huidige taal
+     *
      * @param string Key van het opgevraagde woord
      * @return String met het woord in de huidige taal
      */

@@ -21,15 +21,16 @@ import java.util.*;
  * @author ziggy
  */
 public class KaartMapper {
-    
+
     /**
      * Geef de kaarten in database
+     *
      * @return List van Kaart-objecten
      */
-    public List<Kaart> geefKaarten(){
-        List<Kaart>kaarten = new ArrayList<>();
-        Kerkerkaart k1,k2,k3,k4,k5,k6,k7,k8,k9,k10,k11,k12;
-        Schatkaart s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12;
+    public List<Kaart> geefKaarten() {
+        List<Kaart> kaarten = new ArrayList<>();
+        Kerkerkaart k1, k2, k3, k4, k5, k6, k7, k8, k9, k10, k11, k12;
+        Schatkaart s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12;
         k1 = new Monster("kerkerkaart1");
         k2 = new Monster("kerkerkaart2");
         k3 = new Monster("kerkerkaart3");
@@ -44,9 +45,9 @@ public class KaartMapper {
         k12 = new ConsumablesKerker("kerkerkaart12");
         s1 = new Equipment("schatkaart1", 200);
         s2 = new Equipment("schatkaart2", 300);
-        s3 = new Equipment("schatkaart3",150);
-        s4 = new Equipment("schatkaart4",250);
-        s5 = new Equipment("schatkaart5",350);
+        s3 = new Equipment("schatkaart3", 150);
+        s4 = new Equipment("schatkaart4", 250);
+        s5 = new Equipment("schatkaart5", 350);
         s6 = new Equipment("schatkaart6", 100);
         s7 = new Equipment("schatkaart7", 150);
         s8 = new ConsumablesSchat("schatkaart8", 200);
@@ -54,7 +55,7 @@ public class KaartMapper {
         s10 = new ConsumablesSchat("schatkaart10", 600);
         s11 = new ConsumablesSchat("schatkaart11", 200);
         s12 = new ConsumablesSchat("schatkaart12", 150);
-        
+
         kaarten.add(k1);
         kaarten.add(k2);
         kaarten.add(k3);

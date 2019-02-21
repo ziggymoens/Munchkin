@@ -13,12 +13,14 @@ import java.util.*;
  * @author ziggy
  */
 public class SpelMapper {
+
     private List<Spel> spellen;
-    
+
     /**
-     * Constructor voor de SpelMapper met daarin de creatie van een test Spel-object
+     * Constructor voor de SpelMapper met daarin de creatie van een test
+     * Spel-object
      */
-    public SpelMapper(){
+    public SpelMapper() {
         spellen = new ArrayList<>();
         Spel s1 = new Spel(4);
         spellen.add(s1);
@@ -26,17 +28,19 @@ public class SpelMapper {
 
     /**
      * Geef de spellen opgeslagen in de database
+     *
      * @return List van Spel-objecten
      */
-    public List<Spel> geefSpellen(){
+    public List<Spel> geefSpellen() {
         return spellen;
     }
-    
+
     /**
      * Voeg een spel toe aan de database
+     *
      * @param spel een Object van het type Spel
      */
-    public void addSpel(Spel spel){
+    public void addSpel(Spel spel) {
         spellen.add(spel);
     }
 }

@@ -9,10 +9,12 @@ import language.LanguageResource;
  * @author g35
  */
 public class UseCase1 {
+
     //declaraties voor gehele usecase
     private static final Scanner SCAN = new Scanner(System.in);
     private static LanguageResource bundle = new LanguageResource();
     private static DomeinController dc;
+
     /**
      * constructor voor UseCase 1
      */
@@ -36,6 +38,7 @@ public class UseCase1 {
             System.out.println(dc.geefInformatie());
         }
     }
+
     /**
      * welcome message in 3 talen
      */
@@ -71,12 +74,13 @@ public class UseCase1 {
         bundle.setLocale(choice);
         System.out.printf("%s: %s%n", bundle.getString("picked"), bundle.getString("language"));
     }
-    
+
     /**
-     * De gebruiker een aantal spelers laten kiezen, dit tussen 3 en 6 (grenzen incl.)
+     * De gebruiker een aantal spelers laten kiezen, dit tussen 3 en 6 (grenzen
+     * incl.)
+     *
      * @return gekozen aantal spelers
      */
-    
     private static int kiesAantalSpelers() {
         System.out.println(bundle.getString("amountOfPlayers"));
         int aantalSpelers = SCAN.nextInt();
@@ -86,12 +90,14 @@ public class UseCase1 {
         }
         return aantalSpelers;
     }
-    
+
     /**
-     * Voeg het aantal gekozen aantal spelers toe aan het spel a.d.h.v. naam, geslacht en leeftijd
-     * @param aantalSpelers het aantal spelers dat de methode zal toevoegen aan het spel
+     * Voeg het aantal gekozen aantal spelers toe aan het spel a.d.h.v. naam,
+     * geslacht en leeftijd
+     *
+     * @param aantalSpelers het aantal spelers dat de methode zal toevoegen aan
+     * het spel
      */
-    
     private static void voegSpelersToe(int aantalSpelers) {
         for (int i = 0; i < aantalSpelers; i++) {
             System.out.println(bundle.getString("ask.name"));
