@@ -13,18 +13,21 @@ public class UseCase1 {
     private static final Scanner SCAN = new Scanner(System.in);
     private static LanguageResource bundle = new LanguageResource();
     private static DomeinController dc;
-
+    /**
+     * constructor voor UseCase 1
+     */
     public UseCase1() {
         dc = new DomeinController();
         Welcome();
+        //gebruiker vragen of hij een nieuw spel wil starten.
         System.out.println(bundle.getString("newGame"));
         String nieuwSpel = SCAN.next().toLowerCase();
-
+        //antwoord omzetten naar true/false
         boolean startUp = false;
         if (nieuwSpel.equals(bundle.getString("yes"))) {
             startUp = true;
         }
-
+        //indien true spel aanmaken en opstarten
         if (startUp) {
             int aantalSpelers = kiesAantalSpelers();
             dc.startSpel(aantalSpelers, bundle.getLocale());
@@ -33,7 +36,9 @@ public class UseCase1 {
             System.out.println(dc.geefInformatie());
         }
     }
-    //welcome message in 3 talen
+    /**
+     * welcome message in 3 talen
+     */
     private static void Welcome() {
         Locale nl = new Locale("nl");
         Locale en = new Locale("en");
@@ -66,7 +71,12 @@ public class UseCase1 {
         bundle.setLocale(choice);
         System.out.printf("%s: %s%n", bundle.getString("picked"), bundle.getString("language"));
     }
-    //aantal spelers kiezen
+    
+    /**
+     * De gebruiker een aantal spelers laten kiezen, dit tussen 3 en 6 (grenzen incl.)
+     * @return gekozen aantal spelers
+     */
+    
     private static int kiesAantalSpelers() {
         System.out.println(bundle.getString("amountOfPlayers"));
         int aantalSpelers = SCAN.nextInt();
@@ -76,7 +86,12 @@ public class UseCase1 {
         }
         return aantalSpelers;
     }
-    //spelers toevoegen (naam, geslacht en leeftijd)
+    
+    /**
+     * Voeg het aantal gekozen aantal spelers toe aan het spel a.d.h.v. naam, geslacht en leeftijd
+     * @param aantalSpelers het aantal spelers dat de methode zal toevoegen aan het spel
+     */
+    
     private static void voegSpelersToe(int aantalSpelers) {
         for (int i = 0; i < aantalSpelers; i++) {
             System.out.println(bundle.getString("ask.name"));
@@ -88,13 +103,19 @@ public class UseCase1 {
             dc.voegSpelerToe(naam, geslacht, leeftijd);
         }
     }
-    //informatie over het spelobject
-    private static String geefInformatie(Spel spel) {
-        String ret = "";
-        String[] info = spel.geefInfo();
-        for (int i = 0; i < info.length; i++) {
-            ret += String.format("%s%n", info[i]);
-        }
-        return ret;
-    }
 }
+//    /**
+//     * geeft informatie over een spelobject
+//     * @param spel
+//     * @return String met informatie over het spel en de spelers
+//     */
+//    
+//    private static String geefInformatie(Spel spel) {
+//        String ret = "";
+//        String[] info = spel.geefInfo();
+//        for (String i : info) {
+//            ret += String.format("%s%n", i);
+//        }
+//        return ret;
+//    }
+//}
