@@ -12,10 +12,11 @@ package domein;
 public abstract class Kaart {
 
     private String naam;
-    private String subtype;
+    private boolean kaartInGebruik;
 
     public Kaart(String naam) {
         setNaam(naam);
+        setKaartInGebruik(false);
     }
 
     public final void setNaam(String naam) {
@@ -24,5 +25,13 @@ public abstract class Kaart {
 
     public String getNaam() {
         return naam;
+    }
+
+    public boolean isKaartInGebruik() {
+        return kaartInGebruik;
+    }
+
+    public final void setKaartInGebruik(boolean kaartInGebruik) {
+        this.kaartInGebruik = kaartInGebruik;
     }
 }

@@ -20,7 +20,7 @@ public class UseCase1 {
         Welcome();
         System.out.println(bundle.getString("newGame"));
         String nieuwSpel = SCAN.next().toLowerCase();
-        
+
         boolean startUp = false;
         if (nieuwSpel.equals(bundle.getString("yes"))) {
             startUp = true;
@@ -30,10 +30,7 @@ public class UseCase1 {
             int aantalSpelers = kiesAantalSpelers();
             dc.startSpel(aantalSpelers, bundle.getLocale());
             voegSpelersToe(aantalSpelers);
-//            Kaart[] kerkerkaarten = maakKerkerkaarten();
-//            Kaart[] schatkaarten = maakSchatkaarten();
-//            verdeelKaarten(kerkerkaarten, schatkaarten, aantalSpelers, spel);
-
+            dc.geefStartKaarten();
             System.out.println(dc.geefInformatie());
         }
     }
@@ -48,12 +45,12 @@ public class UseCase1 {
         char gekozenTaal = SCAN.next().toLowerCase().charAt(0);
 
         while (gekozenTaal != 'n' && gekozenTaal != 'f' && gekozenTaal != 'e') {
-            System.out.printf("%s%n", ResourceBundle.getBundle("ui/i18n", nl).getString("wrong"));
-            System.out.printf("%s%n", ResourceBundle.getBundle("ui/i18n", en).getString("wrong"));
-            System.out.printf("%s%n", ResourceBundle.getBundle("ui/i18n", fr).getString("wrong"));
+            System.out.printf("%s%n", bundle.getStringLanguage("wrong", nl));
+            System.out.printf("%s%n", bundle.getStringLanguage("wrong", en));
+            System.out.printf("%s%n", bundle.getStringLanguage("wrong", fr));
             gekozenTaal = SCAN.next().toLowerCase().charAt(0);
         }
-        
+
         Locale choice;
         switch (gekozenTaal) {
             case 'e':
@@ -70,7 +67,6 @@ public class UseCase1 {
         bundle.setLocale(choice);
         System.out.printf("%s: %s%n", bundle.getString("picked"), bundle.getString("language"));
     }
-
 
     private static int kiesAantalSpelers() {
         System.out.println(bundle.getString("amountOfPlayers"));
@@ -92,40 +88,6 @@ public class UseCase1 {
             int leeftijd = SCAN.nextInt();
             dc.voegSpelerToe(naam, geslacht, leeftijd);
         }
-    }
-
-    private static void verdeelKaarten(Kaart[] kerkerkaarten, Kaart[] schatkaarten, int aantalSpelers, Spel spel) {
-        SecureRandom rand = new SecureRandom();
-        int[] gekozenSchat = new int[schatkaarten.length];
-        int[] gekozenKerker = new int[kerkerkaarten.length];
-        for (int i = 0; i < aantalSpelers; i++) {
-            int teller = 0;
-            while (teller < 2) {
-                int kSchat = rand.nextInt(15);
-                while (controleKaarten(gekozenSchat, kSchat)) {
-                    kSchat = rand.nextInt(15);
-                }
-                int kKerker = rand.nextInt(15);
-                while (controleKaarten(gekozenKerker, kKerker)) {
-                    kKerker = rand.nextInt(15);
-                }
-                spel.voegKaartToe(kerkerkaarten[kKerker], i);
-                spel.voegKaartToe(schatkaarten[kSchat], i);
-                gekozenKerker[i] = kKerker;
-                gekozenSchat[i] = kSchat;
-                teller++;
-            }
-        }
-    }
-
-    private static boolean controleKaarten(int[] alGekozen, int nrKaart) {
-        boolean komtVoor = false;
-        for (int i = 0; i < alGekozen.length; i++) {
-            if (nrKaart == alGekozen[i]) {
-                komtVoor = true;
-            }
-        }
-        return komtVoor;
     }
 
     private static String geefInformatie(Spel spel) {

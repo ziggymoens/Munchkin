@@ -13,39 +13,40 @@ import language.LanguageResource;
  * @author ziggy
  */
 public class Spel {
+
     private int aantalSpelers;
     private List<Speler> spelers;
     private Locale locale;
     private final LanguageResource bundle;
-    
-    public Spel(){
-        this(3,new Locale("en"));
+
+    public Spel() {
+        this(3, new Locale("en"));
     }
-    
-    public Spel(int aantalSpelers){
+
+    public Spel(int aantalSpelers) {
         this(aantalSpelers, new Locale("en"));
     }
 
     public Spel(int aantalSpelers, Locale choice) {
         setAantalSpelers(aantalSpelers);
-        bundle = new LanguageResource(locale);
+        bundle = new LanguageResource(choice);
+        spelers = new ArrayList<>();
     }
 
     public final void setAantalSpelers(int aantalSpelers) {
         if (aantalSpelers >= 3 && aantalSpelers <= 6) {
             this.aantalSpelers = aantalSpelers;
-        }else{
+        } else {
             throw new IllegalArgumentException(bundle.getString("exception.players"));
         }
     }
-    
-    public void startLevels(){
+
+    public void startLevels() {
         for (int i = 0; i < spelers.size(); i++) {
             spelers.get(i).setLevel(1);
         }
     }
 
-    
     public int getAantalSpelers() {
         return aantalSpelers;
     }
@@ -59,13 +60,23 @@ public class Spel {
     }
 
     public void voegSpelerToe(String naam, String geslacht, int leeftijd) {
-        for (int i = 0; i < aantalSpelers; i++) {
-            Speler speler = new Speler(naam, geslacht, leeftijd, 1);
-            spelers.add(speler);
-        }
+        Speler speler = new Speler(naam, geslacht, leeftijd, 1, bundle.getLocale());
+        spelers.add(speler);
     }
-    public void voegKaartToe(Kaart kaart, int spelernr){
+
+    public void voegKaartToe(Kaart kaart, int spelernr) {
         spelers.get(spelernr).voegKaartToe(kaart);
     }
-}
 
+    public List<Speler> getSpelers() {
+        return spelers;
+    }
+
+    public int geefAantalSchatkaartenSpeler(int index) {
+        return spelers.get(index).getAantalSchatkaarten();
+    }
+
+    public int geefAantalkerkerkaartenSpeler(int index) {
+        return spelers.get(index).getAantalKerkerkaarten();
+    }
+}

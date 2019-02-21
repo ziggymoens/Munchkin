@@ -15,4 +15,6 @@ public class ConsumablesKerker extends Kerkerkaart {
         super(naam);
     }
     
+
+    
 }

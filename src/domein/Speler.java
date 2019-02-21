@@ -9,10 +9,9 @@ import language.LanguageResource;
  */
 public class Speler {
 
-    private int leeftijd;
+    private int leeftijd, level, aantalSchatkaarten, aantalKerkerkaarten;
     private String geslacht;
     private String naam;
-    private int level;
     private List<Kaart> kaarten;
     private static LanguageResource bundle = new LanguageResource();
     
@@ -33,9 +32,9 @@ public class Speler {
         setLeeftijd(leeftijd);
         setGeslacht(geslacht);
         setNaam(naam);
-        setLevel(0);
+        setLevel(level);
         kaarten = new ArrayList<>();
-        
+        aantalKerkerkaarten = 0; aantalSchatkaarten = 0;
     }
     
     public final void setLeeftijd(int leeftijd) {
@@ -51,7 +50,9 @@ public class Speler {
     }
     
     public final void setGeslacht(String geslacht) {
-        if (geslacht.toLowerCase().equals(bundle.getString("man")) || geslacht.toLowerCase().equals(bundle.getString("woman"))) {
+        String man = bundle.getString("man");
+        String vrouw = bundle.getString("woman");
+        if (geslacht.toLowerCase().equals(man)|| geslacht.toLowerCase().equals(vrouw)) {
             this.geslacht = geslacht;
         } else {
             throw new IllegalArgumentException(bundle.getString("exception.sex"));
@@ -99,26 +100,27 @@ public class Speler {
     }
     
     public int geefAantalKaarten() {
-        int aantalKaarten = 0;
-        for (Kaart kaarten1 : kaarten) {
-            if (kaarten1 != null) {
-                aantalKaarten++;
-            }
-        }
-        return aantalKaarten;
+        return getAantalKerkerkaarten()+getAantalSchatkaarten();
     }
     
     public String kaartenNaarString() {
         String ret = "";
         for (int i = 0; i < geefAantalKaarten(); i++) {
-            ret += String.format("%s", kaarten.get(i).getNaam(), kaarten.get(i));
+            ret += String.format("%s", kaarten.get(i).getNaam());
         }
         return ret;
     }
     
     @Override
     public String toString() {
-        return String.format("naam = %s, geslacht = %s, leeftijd = %d, level = %d, aantalKaarten = %d, kaarten = %s", naam, geslacht, leeftijd, level, geefAantalKaarten(), kaartenNaarString());
+        return String.format("naam = %s, geslacht = %s, leeftijd = %d, level = %d, aantal schatkaarten = %d, aantal kerkerkaarten = %d, kaarten = %s", naam, geslacht, leeftijd, level, getAantalKerkerkaarten(), getAantalSchatkaarten(), kaartenNaarString());
     }
-    
+
+    public int getAantalSchatkaarten() {
+        return aantalSchatkaarten;
+    }
+
+    public int getAantalKerkerkaarten() {
+        return aantalKerkerkaarten;
+    }    
 }
