@@ -15,4 +15,6 @@ public class Race extends Kerkerkaart{
         super(naam);
     }
     
+    
+    
 }

@@ -11,8 +11,14 @@ package domein;
  */
 public abstract class Kerkerkaart extends Kaart{
     
+
+    
     public Kerkerkaart(String naam) {
         super(naam);
     }
+
+    
+    
+    
     
 }

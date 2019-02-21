@@ -1,7 +1,6 @@
 package gui;
 
 import domein.*;
-import java.security.SecureRandom;
 import java.util.*;
 import language.LanguageResource;
 

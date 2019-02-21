@@ -44,16 +44,18 @@ public class DomeinController {
         for (int i = 0; i < spel.getAantalSpelers(); i++) {
             int j = 0;
             while (j < 4) {
+                //System.out.println(kaarten.get(1).isKaartInGebruik());
                 int rKaart;
                 Kaart randKaart;
                 do {
                     rKaart = random.nextInt(kaarten.size());
                     randKaart = kaarten.get(rKaart);
-                } while (randKaart.isKaartInGebruik() == false);
+                } while (randKaart.isKaartInGebruik() == true);
                 if (randKaart instanceof Equipment || randKaart instanceof ConsumablesSchat) {
                     if (spel.geefAantalSchatkaartenSpeler(i)<=2) {
                         spel.voegKaartToe(randKaart, i);
                         randKaart.setKaartInGebruik(true);
+                        spel.verhoogSchatkaarten(i);
                     }else{
                         continue;
                     }
@@ -61,6 +63,7 @@ public class DomeinController {
                     if (spel.geefAantalkerkerkaartenSpeler(i)<=2) {
                         spel.voegKaartToe(randKaart, i);
                         randKaart.setKaartInGebruik(true);
+                        spel.verhoogKerkerkaarten(i);
                     }else{
                         continue;
                     }   

@@ -79,4 +79,11 @@ public class Spel {
     public int geefAantalkerkerkaartenSpeler(int index) {
         return spelers.get(index).getAantalKerkerkaarten();
     }
+    
+    public void verhoogKerkerkaarten(int i){
+        spelers.get(i).setAantalKerkerkaarten(spelers.get(i).getAantalKerkerkaarten()+1);
+    }
+    public void verhoogSchatkaarten(int i){
+        spelers.get(i).setAantalSchatkaarten(spelers.get(i).getAantalSchatkaarten()+1);
+    }
 }

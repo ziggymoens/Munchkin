@@ -16,7 +16,6 @@ public abstract class Kaart {
 
     public Kaart(String naam) {
         setNaam(naam);
-        setKaartInGebruik(false);
     }
 
     public final void setNaam(String naam) {

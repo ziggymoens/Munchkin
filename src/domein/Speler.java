@@ -106,14 +106,14 @@ public class Speler {
     public String kaartenNaarString() {
         String ret = "";
         for (int i = 0; i < geefAantalKaarten(); i++) {
-            ret += String.format("%s", kaarten.get(i).getNaam());
+            ret += String.format("%s  ", kaarten.get(i).getNaam());
         }
         return ret;
     }
     
     @Override
     public String toString() {
-        return String.format("naam = %s, geslacht = %s, leeftijd = %d, level = %d, aantal schatkaarten = %d, aantal kerkerkaarten = %d, kaarten = %s", naam, geslacht, leeftijd, level, getAantalKerkerkaarten(), getAantalSchatkaarten(), kaartenNaarString());
+        return String.format("naam = %s, geslacht = %s, leeftijd = %d, level = %d, aantal schatkaarten = %d, aantal kerkerkaarten = %d, kaarten = %s", naam, geslacht, leeftijd, level, getAantalSchatkaarten(), getAantalKerkerkaarten(), kaartenNaarString());
     }
 
     public int getAantalSchatkaarten() {
@@ -122,5 +122,14 @@ public class Speler {
 
     public int getAantalKerkerkaarten() {
         return aantalKerkerkaarten;
-    }    
+    }
+
+    public void setAantalSchatkaarten(int aantalSchatkaarten) {
+        this.aantalSchatkaarten = aantalSchatkaarten;
+    }
+
+    public void setAantalKerkerkaarten(int aantalKerkerkaarten) {
+        this.aantalKerkerkaarten = aantalKerkerkaarten;
+    }
+    
 }
