@@ -172,15 +172,29 @@ public class Speler {
         this.kaarten.add(kaart);
     }
 
+    /**
+     * Kaarten van de speler opvragen
+     *
+     * @return List met Kaart-objecten
+     */
     public List<Kaart> getKaarten() {
         return kaarten;
     }
 
+    /**
+     * Het aantal kaarten van de speler opvragen
+     *
+     * @return Aantal kaarten van de speler
+     */
     public int geefAantalKaarten() {
-        return getAantalKerkerkaarten() + getAantalSchatkaarten();
+        return kaarten.size();
     }
 
-    //methode die kaarten omzet naar een string zodat deze gelezen kunnen worden
+    /**
+     * Kaarten omzetten naar String
+     *
+     * @return String met info over de kaart
+     */
     public String kaartenNaarString() {
         String ret = "";
         for (int i = 0; i < geefAantalKaarten(); i++) {
@@ -189,24 +203,48 @@ public class Speler {
         return ret;
     }
 
-    //toString om resultaat van deling te tonen
+    /**
+     * Gegevens van Speler naar String omzetten
+     *
+     * @return String met info over speler
+     */
     @Override
     public String toString() {
         return String.format("naam = %s, geslacht = %s, leeftijd = %d, level = %d, aantal schatkaarten = %d, aantal kerkerkaarten = %d, kaarten = %s", naam, geslacht, leeftijd, level, getAantalSchatkaarten(), getAantalKerkerkaarten(), kaartenNaarString());
     }
 
+    /**
+     * Het aantal schatkaarten van de speler opvragen
+     *
+     * @return Het aantal schatkaarten
+     */
     public int getAantalSchatkaarten() {
         return aantalSchatkaarten;
     }
 
+    /**
+     * Het aantal kerkerkaarten van de speler opvragen
+     *
+     * @return Het aantal kerkerkaarten
+     */
     public int getAantalKerkerkaarten() {
         return aantalKerkerkaarten;
     }
 
+    /**
+     * Het aantal schatkaarten aanpassen
+     *
+     * @param aantalSchatkaarten Nieuw aantal schatkaarten
+     */
     public void setAantalSchatkaarten(int aantalSchatkaarten) {
         this.aantalSchatkaarten = aantalSchatkaarten;
     }
 
+    /**
+     * Het aantal kerkerkaarten aanpassen
+     *
+     * @param aantalKerkerkaarten Nieuw aantal kerkerkaarten
+     */
     public void setAantalKerkerkaarten(int aantalKerkerkaarten) {
         this.aantalKerkerkaarten = aantalKerkerkaarten;
     }
