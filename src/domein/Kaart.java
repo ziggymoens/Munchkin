@@ -9,27 +9,28 @@ package domein;
  *
  * @author ziggy
  */
-public abstract class Kaart {
-
+//SUPERKLASSE
+public abstract class Kaart { 
+    //declaratie attributen
     private String naam;
     private boolean kaartInGebruik;
-
+    //constructor kaart (superklasse)
     public Kaart(String naam) {
         setNaam(naam);
     }
-
+    //setter
     public final void setNaam(String naam) {
         this.naam = naam;
     }
-
+    
     public String getNaam() {
         return naam;
     }
-
+    //boolean die waarde true geeft als kaart in gebruik is
     public boolean isKaartInGebruik() {
         return kaartInGebruik;
     }
-
+    //setter die gebruikt wordt om kaartInGebruik op true of false te setten
     public final void setKaartInGebruik(boolean kaartInGebruik) {
         this.kaartInGebruik = kaartInGebruik;
     }

@@ -8,25 +8,25 @@ import language.LanguageResource;
  * @author G35
  */
 public class Speler {
-
+    //declaratie attributen
     private int leeftijd, level, aantalSchatkaarten, aantalKerkerkaarten;
     private String geslacht;
     private String naam;
     private List<Kaart> kaarten;
     private static LanguageResource bundle = new LanguageResource();
-    
+    //default constructor
     public Speler() {
         this("onbekend", "man", 99, 1, new Locale("en"));
     }
-    
+    //constructor
     public Speler(String naam, String geslacht, int leeftijd) {
         this(naam, geslacht, leeftijd, 1, new Locale("en"));
     }
-    
+    //constructor
     public Speler(String naam, String geslacht, int leeftijd, int level) {
         this(naam, geslacht, leeftijd, level, new Locale("en"));
     }
-    
+    //constructor voor speler die alle attributen initialiseert
     public Speler(String naam, String geslacht, int leeftijd, int level, Locale choice) {
         bundle.setLocale(choice);
         setLeeftijd(leeftijd);
@@ -36,7 +36,7 @@ public class Speler {
         kaarten = new ArrayList<>();
         aantalKerkerkaarten = 0; aantalSchatkaarten = 0;
     }
-    
+    //setter voor de leeftijd waarop ook een controle staat
     public final void setLeeftijd(int leeftijd) {
         if (leeftijd > 0) {
             this.leeftijd = leeftijd;
@@ -48,7 +48,7 @@ public class Speler {
     public int getLeeftijd() {
         return leeftijd;
     }
-    
+    //setter voor het geslacht van de speler die logischerwijze moet voldoen aan 'man' of 'vrouw'
     public final void setGeslacht(String geslacht) {
         String man = bundle.getString("man");
         String vrouw = bundle.getString("woman");
@@ -62,7 +62,7 @@ public class Speler {
     public String getGeslacht() {
         return geslacht;
     }
-    
+    //setter voor de naam van het geslacht met controle volgens DR van naam
     public final void setNaam(String naam) {
         if (naam.length() >= 6 && naam.length() <= 12) {
             for (int i = 0; i < naam.length(); i++) {
@@ -78,9 +78,9 @@ public class Speler {
     public String getNaam() {
         return naam;
     }
-    
-    public final void setLevel(int level) {
-        if (level > 0) {
+    //setter voor het level
+    public final void setLevel(int level) { 
+        if (level >= 1) {
             this.level = level;
         } else {
             throw new IllegalArgumentException(bundle.getString("exception.level"));
@@ -102,7 +102,7 @@ public class Speler {
     public int geefAantalKaarten() {
         return getAantalKerkerkaarten()+getAantalSchatkaarten();
     }
-    
+    //methode die kaarten omzet naar een string zodat deze gelezen kunnen worden
     public String kaartenNaarString() {
         String ret = "";
         for (int i = 0; i < geefAantalKaarten(); i++) {
@@ -110,7 +110,7 @@ public class Speler {
         }
         return ret;
     }
-    
+    //toString om resultaat van deling te tonen
     @Override
     public String toString() {
         return String.format("naam = %s, geslacht = %s, leeftijd = %d, level = %d, aantal schatkaarten = %d, aantal kerkerkaarten = %d, kaarten = %s", naam, geslacht, leeftijd, level, getAantalSchatkaarten(), getAantalKerkerkaarten(), kaartenNaarString());

@@ -10,7 +10,7 @@ package domein;
  * @author ziggy
  */
 public class ConsumablesSchat extends Schatkaart{
-    
+    //constructor schatkaarten consumable (die superklasse kaart gebruikt)
     public ConsumablesSchat(String naam, int waarde) {
         super(naam, waarde);
     }

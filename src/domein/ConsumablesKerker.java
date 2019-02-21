@@ -10,7 +10,7 @@ package domein;
  * @author ziggy
  */
 public class ConsumablesKerker extends Kerkerkaart {
-    
+    //constructor van kerkerkaarten consumables (die superklasse kaart gebruikt)
     public ConsumablesKerker(String naam) {
         super(naam);
     }

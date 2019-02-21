@@ -9,16 +9,10 @@ package domein;
  *
  * @author ziggy
  */
-public abstract class Kerkerkaart extends Kaart{
-    
-
-    
+public abstract class Kerkerkaart extends Kaart {
+    //constructor kerkerkaart (die superklasse kaart gebruikt)
     public Kerkerkaart(String naam) {
         super(naam);
     }
 
-    
-    
-    
-    
 }

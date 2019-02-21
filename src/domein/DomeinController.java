@@ -16,6 +16,7 @@ import persistentie.KaartMapper;
  */
 public class DomeinController {
 
+    //declaratie attributen
     private final KaartMapper km;
     private final SpelRepository sr;
     private final List<Kaart> kaarten;
@@ -23,6 +24,7 @@ public class DomeinController {
     private final LanguageResource bundle;
     private Spel spel;
 
+    //constructor DomeinController
     public DomeinController() {
         km = new KaartMapper();
         kaarten = km.geefKaarten();
@@ -30,19 +32,23 @@ public class DomeinController {
         sr = new SpelRepository();
     }
 
+    //methode om het spel te starten adhv het aantal spelers en de gekozen taal
     public void startSpel(int aantalSpelers, Locale locale) {
         spel = new Spel(aantalSpelers, locale);
         bundle.setLocale(locale);
     }
 
+    //methode om een speler toete voegen adhv een naam, geslacht en leeftijd (deze worden verder gecontroleerd volgens de DR)
     public void voegSpelerToe(String naam, String geslacht, int leeftijd) {
         spel.voegSpelerToe(naam, geslacht, leeftijd);
     }
 
-    public void geefStartKaarten() {
+    //methode om elke speler 4 kaarten uit te delen, 2 van elke stapel (dit wordt gedaan adhv een SecureRandom)
+    public void geefStartKaarten() {        
         SecureRandom random = new SecureRandom();
+        //loop voor elke speler
         for (int i = 0; i < spel.getAantalSpelers(); i++) {
-            int j = 0;
+            int j = 0;            
             while (j < 4) {
                 //System.out.println(kaarten.get(1).isKaartInGebruik());
                 int rKaart;
@@ -73,6 +79,7 @@ public class DomeinController {
         }
     }
 
+    //String die info geeft over het spel
     public String geefInformatie() {
         String ret = "";
         String[] sInfo = spel.geefInfo();

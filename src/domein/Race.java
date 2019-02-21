@@ -10,7 +10,7 @@ package domein;
  * @author ziggy
  */
 public class Race extends Kerkerkaart{
-    
+    //constructor voor kerkerkaart ras (die superklasse kaart gebruikt)
     public Race(String naam) {
         super(naam);
     }

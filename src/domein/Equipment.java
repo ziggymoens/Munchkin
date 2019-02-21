@@ -10,7 +10,7 @@ package domein;
  * @author ziggy
  */
 public class Equipment extends Schatkaart{
-    
+    //constructor schatkaart equipment (die superklasse kaart gebruikt)
     public Equipment( String naam,int waarde) {
         super(naam, waarde);
     }

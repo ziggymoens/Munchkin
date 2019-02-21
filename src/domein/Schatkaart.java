@@ -11,7 +11,7 @@ package domein;
  */
 public abstract class Schatkaart extends Kaart {
     private final int waarde;
-
+    //constructor voor klasse schatkaart
     public Schatkaart(String naam, int waarde) {
         super(naam);
         this.waarde = waarde;
