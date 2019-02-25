@@ -5,6 +5,7 @@
  */
 package persistentie;
 
+import domein.kaarten.BadStuff;
 import domein.kaarten.ConsumablesKerker;
 import domein.kaarten.ConsumablesSchat;
 import domein.kaarten.Curse;
@@ -31,11 +32,11 @@ public class KaartMapper {
         List<Kaart> kaarten = new ArrayList<>();
         Kerkerkaart k1, k2, k3, k4, k5, k6, k7, k8, k9, k10, k11, k12;
         Schatkaart s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12;
-        k1 = new Monster("kerkerkaart1");
-        k2 = new Monster("kerkerkaart2");
-        k3 = new Monster("kerkerkaart3");
-        k4 = new Monster("kerkerkaart4");
-        k5 = new Monster("kerkerkaart5");
+        k1 = new Monster("Wannabee Vampire", 12, 3,1, new BadStuff("wannabe vampire", 3));
+        k2 = new Monster("Crabs", 1, 1, 1, new BadStuff("crabs", "all"));
+        k3 = new Monster("3,872 Orgs", 10, 3, 1, new Race("dwarf"), 6, "due ancient grudges", new BadStuff("orgs"));
+        k4 = new Monster("Shrieking Geek", 6, 2, 1, new Race("dwarf"), 6, "", new BadStuff("geek", false, true));
+        k5 = new Monster("Squidzilla", 18, 4, 2, "Slimy!", 4, new BadStuff("squidzilla", false, false, true));
         k6 = new Monster("kerkerkaart6");
         k7 = new Monster("kerkerkaart7");
         k8 = new Curse("Curse!", "all");
