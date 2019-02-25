@@ -1,6 +1,7 @@
 package domein;
 
 import domein.kaarten.Kaart;
+import exceptions.SpelException;
 import java.util.*;
 import language.LanguageResource;
 
@@ -54,7 +55,7 @@ public class Spel {
         if (aantalSpelers >= 3 && aantalSpelers <= 6) {
             this.aantalSpelers = aantalSpelers;
         } else {
-            throw new IllegalArgumentException(bundle.getString("exception.players"));
+            throw new SpelException(bundle.getString("exception.players"));
         }
     }
 

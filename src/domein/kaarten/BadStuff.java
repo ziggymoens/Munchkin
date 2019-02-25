@@ -53,7 +53,7 @@ public class BadStuff {
         setNaam(naam);
     }
 
-    public BadStuff(String squidzilla, boolean weaponsLost, boolean raceLost, boolean dead) {
+    public BadStuff(String naam, boolean weaponsLost, boolean raceLost, boolean dead) {
         setNaam(naam);
         this.weaponsLost = weaponsLost;
         this.raceLost = raceLost;

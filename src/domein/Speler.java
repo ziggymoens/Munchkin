@@ -1,6 +1,7 @@
 package domein;
 
 import domein.kaarten.Kaart;
+import exceptions.SpelerException;
 import java.util.*;
 import language.LanguageResource;
 
@@ -15,6 +16,7 @@ public class Speler {
     private String geslacht;
     private String naam;
     private List<Kaart> kaarten;
+    private List<Kaart> items;
     private static LanguageResource bundle = new LanguageResource();
 
     /**
@@ -65,6 +67,7 @@ public class Speler {
         setNaam(naam);
         setLevel(level);
         kaarten = new ArrayList<>();
+        items = new ArrayList<>();
         aantalKerkerkaarten = 0;
         aantalSchatkaarten = 0;
     }
@@ -78,7 +81,7 @@ public class Speler {
         if (leeftijd > 0) {
             this.leeftijd = leeftijd;
         } else {
-            throw new IllegalArgumentException(bundle.getString("exception.age"));
+            throw new SpelerException(bundle.getString("exception.age"));
         }
     }
 
@@ -103,7 +106,7 @@ public class Speler {
         if (geslacht.toLowerCase().equals(man) || geslacht.toLowerCase().equals(vrouw)) {
             this.geslacht = geslacht;
         } else {
-            throw new IllegalArgumentException(bundle.getString("exception.sex"));
+            throw new SpelerException(bundle.getString("exception.sex"));
         }
     }
 
@@ -129,7 +132,7 @@ public class Speler {
                 }
             }
         } else {
-            throw new IllegalArgumentException(bundle.getString("exception.name"));
+            throw new SpelerException(bundle.getString("exception.name"));
         }
     }
 
@@ -151,7 +154,7 @@ public class Speler {
         if (level >= 1) {
             this.level = level;
         } else {
-            throw new IllegalArgumentException(bundle.getString("exception.level"));
+            throw new SpelerException(bundle.getString("exception.level"));
         }
     }
 
@@ -211,7 +214,7 @@ public class Speler {
      */
     @Override
     public String toString() {
-        return String.format("naam = %s, geslacht = %s, leeftijd = %d, level = %d, aantal schatkaarten = %d, aantal kerkerkaarten = %d, kaarten = %s", naam, geslacht, leeftijd, level, getAantalSchatkaarten(), getAantalKerkerkaarten(), kaartenNaarString());
+        return String.format("%s = %s, %s = %s, %s = %d, %s = %d, %s = %d, %s = %d, %s = %s", bundle.getString("player.name"),naam,bundle.getString("player.sex") ,geslacht,bundle.getString("player.age") ,leeftijd,bundle.getString("player.level") ,level,bundle.getString("player.treasurecards") ,getAantalSchatkaarten(),bundle.getString("player.dungeoncards") ,getAantalKerkerkaarten(),bundle.getString("player.amountOfCards") ,kaartenNaarString());
     }
 
     /**
@@ -249,5 +252,4 @@ public class Speler {
     public void setAantalKerkerkaarten(int aantalKerkerkaarten) {
         this.aantalKerkerkaarten = aantalKerkerkaarten;
     }
-
 }
