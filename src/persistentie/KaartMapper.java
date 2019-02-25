@@ -5,15 +5,15 @@
  */
 package persistentie;
 
-import domein.ConsumablesKerker;
-import domein.ConsumablesSchat;
-import domein.Curse;
-import domein.Equipment;
-import domein.Kaart;
-import domein.Kerkerkaart;
-import domein.Monster;
-import domein.Race;
-import domein.Schatkaart;
+import domein.kaarten.ConsumablesKerker;
+import domein.kaarten.ConsumablesSchat;
+import domein.kaarten.Curse;
+import domein.kaarten.Equipment;
+import domein.kaarten.Kaart;
+import domein.kaarten.Kerkerkaart;
+import domein.kaarten.Monster;
+import domein.kaarten.Race;
+import domein.kaarten.Schatkaart;
 import java.util.*;
 
 /**
@@ -38,23 +38,23 @@ public class KaartMapper {
         k5 = new Monster("kerkerkaart5");
         k6 = new Monster("kerkerkaart6");
         k7 = new Monster("kerkerkaart7");
-        k8 = new Curse("kerkerkaart8");
-        k9 = new Curse("kerkerkaart9");
-        k10 = new Race("kerkerkaart10");
-        k11 = new Race("kerkerkaart11");
-        k12 = new ConsumablesKerker("kerkerkaart12");
-        s1 = new Equipment("schatkaart1", 200);
-        s2 = new Equipment("schatkaart2", 300);
-        s3 = new Equipment("schatkaart3", 150);
-        s4 = new Equipment("schatkaart4", 250);
-        s5 = new Equipment("schatkaart5", 350);
-        s6 = new Equipment("schatkaart6", 100);
-        s7 = new Equipment("schatkaart7", 150);
-        s8 = new ConsumablesSchat("schatkaart8", 200);
-        s9 = new ConsumablesSchat("schatkaart9", 400);
-        s10 = new ConsumablesSchat("schatkaart10", 600);
-        s11 = new ConsumablesSchat("schatkaart11", 200);
-        s12 = new ConsumablesSchat("schatkaart12", 150);
+        k8 = new Curse("Curse!", "all");
+        k9 = new Curse("Curse!", false, true);
+        k10 = new Race("Dwarf");
+        k11 = new Race("Elf");
+        k12 = new ConsumablesKerker("Enraged", 5);
+        s1 = new Equipment("Helm of Courage", 200, "headgear", 1);
+        s2 = new Equipment("Pointy hat of Power", 400, "headgear", 3);
+        s3 = new Equipment("Bad-Ass Bandana", 400, "headgear", 3, new Race("human"));
+        s4 = new Equipment("Horny Helmet", 600, "headgear", 1, 3, new Race("elf"));
+        s5 = new Equipment("Flaming Armor", 400, "armor", 2);
+        s6 = new Equipment("Boots of Butt-Kicking", 400,"footgear", 2);
+        s7 = new Equipment("Boots of Running Really Fast", 400, "footgear", 2, true);
+        s8 = new ConsumablesSchat("Yuppie Water", 100, "Use during any combat. Usable once only. +2 in the battle", 2);
+        s9 = new ConsumablesSchat("Magic Missle", 300, "Use during any combat. +5 to either side. Usable once only.",5);
+        s10 = new ConsumablesSchat("Pretty Balloons", 0, "Use during any combat, for distraction. +5 to either side. Usable once only.", 5);
+        s11 = new ConsumablesSchat("Convenient Addition Error", 1000);
+        s12 = new ConsumablesSchat("1,000 Gold Pieces", 1000);
 
         kaarten.add(k1);
         kaarten.add(k2);

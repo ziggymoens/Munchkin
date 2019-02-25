@@ -1,5 +1,12 @@
 package domein;
 
+import domein.kaarten.Equipment;
+import domein.kaarten.ConsumablesKerker;
+import domein.kaarten.Race;
+import domein.kaarten.Monster;
+import domein.kaarten.ConsumablesSchat;
+import domein.kaarten.Curse;
+import domein.kaarten.Kaart;
 import java.security.SecureRandom;
 import java.util.*;
 import language.LanguageResource;

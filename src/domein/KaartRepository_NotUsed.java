@@ -1,5 +1,6 @@
 package domein;
 
+import domein.kaarten.Kaart;
 import java.util.*;
 import persistentie.KaartMapper;
 

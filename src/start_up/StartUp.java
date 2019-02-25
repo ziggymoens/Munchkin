@@ -1,3 +1,5 @@
+package start_up;
+
 import gui.UseCase1;
 
 /**
