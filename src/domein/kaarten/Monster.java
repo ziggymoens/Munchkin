@@ -108,4 +108,101 @@ public class Monster extends Kerkerkaart {
         this.notPursue = notPursue;
         this.badStuff = badStuff;
     }
+
+    /**
+     *
+     * @return
+     */
+    public int getLevel() {
+        return level;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public BadStuff getBadStuff() {
+        return badStuff;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public int getWinstTeasures() {
+        return winstTeasures;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public int getWinstLevels() {
+        return winstLevels;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String getText() {
+        return text;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public boolean isOutRun() {
+        return outRun;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public int getRunAway() {
+        return runAway;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public Race getSpecialRace() {
+        return specialRace;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public int getSpecialRaceExtra() {
+        return specialRaceExtra;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String getSpecialRaceReason() {
+        return specialRaceReason;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public int getNotPursue() {
+        return notPursue;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public int getLevelsLostHigherLevel() {
+        return levelsLostHigherLevel;
+    }
+
 }
