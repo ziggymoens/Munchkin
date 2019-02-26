@@ -9,24 +9,25 @@ package exceptions;
  *
  * @author ziggy
  */
-public class KaartException extends RuntimeException{
+public class CurseException extends RuntimeException{
 
-    public KaartException() {
+    public CurseException() {
     }
 
-    public KaartException(String message) {
+    public CurseException(String message) {
         super(message);
     }
 
-    public KaartException(String message, Throwable cause) {
+    public CurseException(String message, Throwable cause) {
         super(message, cause);
     }
 
-    public KaartException(Throwable cause) {
+    public CurseException(Throwable cause) {
         super(cause);
     }
 
-    public KaartException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+    public CurseException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
-    }  
+    }
+    
 }

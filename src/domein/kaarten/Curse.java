@@ -1,5 +1,8 @@
 package domein.kaarten;
 
+import exceptions.CurseException;
+import java.util.Locale;
+
 /**
  *
  * @author ziggy
@@ -87,11 +90,11 @@ public class Curse extends Kerkerkaart {
     public void setTypeLost(String typeLost) {
         if (typeLost.toLowerCase().equals("head") || typeLost.toLowerCase().equals("foot")
                 || typeLost.toLowerCase().equals("race") || typeLost.toLowerCase().equals("sex")
-                || typeLost.toLowerCase().equals("level") || typeLost.toLowerCase().equals("duck") || typeLost.toLowerCase().equals("item")) {
+                || typeLost.toLowerCase().equals("item")) {
             this.typeLost = typeLost;
         }
         else
-            throw new IllegalArgumentException();
+            throw new CurseException(language.LanguageResource.getStringLanguage("curse.typeLost", getLocale()));
 
     }
 

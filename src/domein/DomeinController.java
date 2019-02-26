@@ -45,6 +45,9 @@ public class DomeinController {
     public void startSpel(int aantalSpelers, Locale locale) {
         spel = new Spel(aantalSpelers, locale);
         bundle.setLocale(locale);
+        for (Kaart kaart:kaarten) {
+            kaart.setLocale(locale);
+        }
     }
 
     /**

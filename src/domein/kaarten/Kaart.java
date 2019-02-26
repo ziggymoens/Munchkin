@@ -1,5 +1,7 @@
 package domein.kaarten;
 
+import java.util.Locale;
+
 /**
  *
  * @author ziggy
@@ -10,6 +12,8 @@ public abstract class Kaart {
     //Declaratie attributen
     private String naam;
     private boolean kaartInGebruik;
+    private Locale locale;
+
 
     /**
      * Constructor kaart (superklasse van Schatkaart en Kerkerkaart)
@@ -56,4 +60,21 @@ public abstract class Kaart {
     public final void setKaartInGebruik(boolean kaartInGebruik) {
         this.kaartInGebruik = kaartInGebruik;
     }
+
+    /**
+     *
+     * @param locale
+     */
+    public void setLocale(Locale locale) {
+        this.locale = locale;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public Locale getLocale() {
+        return locale;
+    }
+
 }

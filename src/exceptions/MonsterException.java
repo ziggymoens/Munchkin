@@ -9,24 +9,24 @@ package exceptions;
  *
  * @author ziggy
  */
-public class KaartException extends RuntimeException{
+public class MonsterException extends RuntimeException{
 
-    public KaartException() {
+    public MonsterException() {
     }
 
-    public KaartException(String message) {
+    public MonsterException(String message) {
         super(message);
     }
 
-    public KaartException(String message, Throwable cause) {
+    public MonsterException(String message, Throwable cause) {
         super(message, cause);
     }
 
-    public KaartException(Throwable cause) {
+    public MonsterException(Throwable cause) {
         super(cause);
     }
 
-    public KaartException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+    public MonsterException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
-    }  
+    }
 }
