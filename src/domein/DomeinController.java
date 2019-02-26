@@ -51,15 +51,14 @@ public class DomeinController {
     }
 
     /**
-     * Methode om een speler toete voegen adhv een naam, geslacht en leeftijd
+     * Methode om een speler toete voegen adhv een naam, geslacht
      * (deze worden verder gecontroleerd volgens de DR)
      *
      * @param naam Naam van de speler
-     * @param geslacht Geslacht van de speler
-     * @param leeftijd Leeftijd van de speler
+     * @param geslacht Geslacht van de speler     
      */
-    public void voegSpelerToe(String naam, String geslacht, int leeftijd) {
-        spel.voegSpelerToe(naam, geslacht, leeftijd);
+    public void voegSpelerToe(String naam, String geslacht) {
+        spel.voegSpelerToe(naam, geslacht);
     }
 
     /**

@@ -95,10 +95,10 @@ public class Spel {
      *
      * @param naam De naam van de speler
      * @param geslacht Het geslacht van de speler
-     * @param leeftijd De leeftijd van de speler
+     
      */
-    public void voegSpelerToe(String naam, String geslacht, int leeftijd) {
-        Speler speler = new Speler(naam, geslacht, leeftijd, 1, bundle.getLocale());
+    public void voegSpelerToe(String naam, String geslacht) {
+        Speler speler = new Speler(naam, geslacht, 1, bundle.getLocale());
         spelers.add(speler);
     }
 
