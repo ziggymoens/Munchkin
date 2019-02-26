@@ -6,6 +6,7 @@ import language.LanguageResource;
 
 /**
  * test commit, hallo
+ *
  * @author g35
  */
 public class UseCase1 {
@@ -16,12 +17,17 @@ public class UseCase1 {
 
     /**
      * constructor voor UseCase 1
-     * 
+     *
      * @param dc
      */
     public UseCase1(DomeinController dc) {
         UseCase1.dc = dc;
-        Welcome();
+        try {
+            Welcome();
+        } catch (Exception e) {
+            String error = e.getMessage();
+            System.err.println(error);
+        }
         //gebruiker vragen of hij een nieuw spel wil starten.
         System.out.println(LanguageResource.getString("newGame"));
         String nieuwSpel = SCAN.next().toLowerCase();
@@ -33,9 +39,24 @@ public class UseCase1 {
         //indien true spel aanmaken en opstarten
         if (startUp) {
             int aantalSpelers = kiesAantalSpelers();
-            dc.startSpel(aantalSpelers);
-            voegSpelersToe(aantalSpelers);
-            dc.geefStartKaarten();
+            try {
+                dc.startSpel(aantalSpelers);
+            } catch (Exception e) {
+                String error = e.getMessage();
+                System.err.println(error);
+            }
+            try {
+                voegSpelersToe(aantalSpelers);
+            } catch (Exception e) {
+                String error = e.getMessage();
+                System.err.println(error);
+            }
+            try {
+                dc.geefStartKaarten();
+            } catch (Exception e) {
+                String error = e.getMessage();
+                System.err.println(error);
+            }
             System.out.println(dc.geefInformatie());
         }
     }
@@ -93,14 +114,14 @@ public class UseCase1 {
     }
 
     /**
-     * Voeg het aantal gekozen aantal spelers toe aan het spel a.d.h.v. naam,     
+     * Voeg het aantal gekozen aantal spelers toe aan het spel a.d.h.v. naam,
      *
      * @param aantalSpelers het aantal spelers dat de methode zal toevoegen aan
      * het spel
      */
     private static void voegSpelersToe(int aantalSpelers) {
-        for (int i = 0; i < aantalSpelers; i++) {                     
-            System.out.println(String.format("%s %d", LanguageResource.getString("player"), i+1));
+        for (int i = 0; i < aantalSpelers; i++) {
+            System.out.println(String.format("%s %d", LanguageResource.getString("player"), i + 1));
             System.out.println(LanguageResource.getString("ask.name"));
             String naam = SCAN.next();
             System.out.println(LanguageResource.getString("ask.sex"));

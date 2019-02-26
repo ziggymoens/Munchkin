@@ -1,7 +1,14 @@
 package domein;
 
+import domein.kaarten.ConsumablesKerker;
+import domein.kaarten.ConsumablesSchat;
+import domein.kaarten.Curse;
+import domein.kaarten.Equipment;
 import domein.kaarten.Kaart;
+import domein.kaarten.Monster;
+import domein.kaarten.Race;
 import exceptions.SpelException;
+import java.security.SecureRandom;
 import java.util.*;
 import language.LanguageResource;
 
@@ -156,6 +163,38 @@ public class Spel {
         for (Speler speler: spelers) {
             if (naam.equals(speler.getNaam())) {
                 throw new SpelException();
+            }
+        }
+    }
+
+    void geefStartKaarten() {
+                SecureRandom random = new SecureRandom();
+        //Loop voor elke speler
+        for (int i = 0; i < getAantalSpelers(); i++) {
+            int j = 0;
+            for (int k = 0; k < 4; k++) {
+                int rKaart;
+                Kaart randKaart;
+                //Random kaart kiezen en kijken of deze al in iemand zijn hand zit
+                do {
+                    rKaart = random.nextInt(DomeinController.kaarten.size());
+                    randKaart = DomeinController.kaarten.get(rKaart);
+                } while (randKaart.isKaartInGebruik() == true);
+                //Kijken of kaart een van de schatkaarten is, de speler mag er zo 2 hebben
+                if (randKaart instanceof Equipment || randKaart instanceof ConsumablesSchat) {
+                    if (geefAantalSchatkaartenSpeler(i) <= 2) {
+                        voegKaartToe(randKaart, i);
+                        randKaart.setKaartInGebruik(true);
+                        verhoogSchatkaarten(i);
+                    }
+                //Kijken of kaart een van de kerkerkaarten is, de speler mag er zo 2 hebben
+                } else if (randKaart instanceof Monster || randKaart instanceof Curse || randKaart instanceof Race || randKaart instanceof ConsumablesKerker) {
+                    if (geefAantalkerkerkaartenSpeler(i) <= 2) {
+                        voegKaartToe(randKaart, i);
+                        randKaart.setKaartInGebruik(true);
+                        verhoogKerkerkaarten(i);
+                    }
+                }
             }
         }
     }
