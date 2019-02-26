@@ -9,7 +9,7 @@ public class Equipment extends Schatkaart {
     private final int bonus;
     private Race usableBy;
     private String text;
-    private boolean runAway;
+    private int runAway;
     private final String type;
     private int specialBonus;
     private Race specialRace;
@@ -27,7 +27,7 @@ public class Equipment extends Schatkaart {
      * @param specialBonus
      * @param specialRace
      */
-    public Equipment(String naam, int waarde, String type, int bonus, Race race, String text, boolean runAway, int specialBonus, Race specialRace) {
+    public Equipment(String naam, int waarde, String type, int bonus, Race race, String text, int runAway, int specialBonus, Race specialRace) {
         super(naam, waarde);
         this.bonus = bonus;
         this.type = type;
@@ -91,7 +91,7 @@ public class Equipment extends Schatkaart {
      * @param bonus
      * @param runAway
      */
-    public Equipment(String naam, int waarde, String type, int bonus, boolean runAway) {
+    public Equipment(String naam, int waarde, String type, int bonus, int runAway) {
         super(naam, waarde);
         this.bonus = bonus;
         this.runAway = runAway;
@@ -126,7 +126,7 @@ public class Equipment extends Schatkaart {
      *
      * @return
      */
-    public boolean isRunAway() {
+    public int isRunAway() {
         return runAway;
     }
 

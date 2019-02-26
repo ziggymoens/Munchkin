@@ -50,7 +50,7 @@ public class KaartMapper {
         s4 = new Equipment("Horny Helmet", 600, "headgear", 1, 3, new Race("elf"));
         s5 = new Equipment("Flaming Armor", 400, "armor", 2);
         s6 = new Equipment("Boots of Butt-Kicking", 400,"footgear", 2);
-        s7 = new Equipment("Boots of Running Really Fast", 400, "footgear", 2, true);
+        s7 = new Equipment("Boots of Running Really Fast", 400, "footgear", 2, 2);
         s8 = new ConsumablesSchat("Yuppie Water", 100, "Use during any combat. Usable once only. +2 in the battle", 2);
         s9 = new ConsumablesSchat("Magic Missle", 300, "Use during any combat. +5 to either side. Usable once only.",5);
         s10 = new ConsumablesSchat("Pretty Balloons", 0, "Use during any combat, for distraction. +5 to either side. Usable once only.", 5);
