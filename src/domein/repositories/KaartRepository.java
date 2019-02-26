@@ -1,4 +1,4 @@
-package domein;
+package domein.repositories;
 
 import domein.kaarten.Kaart;
 import java.util.*;
@@ -8,11 +8,11 @@ import persistentie.KaartMapper;
  *
  * @author ziggy
  */
-public class KaartRepository_NotUsed {
+public class KaartRepository {
     private final KaartMapper km;
     private final List<Kaart> kaarten;
     
-    public KaartRepository_NotUsed(){
+    public KaartRepository(){
         km = new KaartMapper();
         kaarten = km.geefKaarten();
     }

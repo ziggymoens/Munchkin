@@ -11,7 +11,7 @@
  * internationalisatie aanvullen, vooral fr, en controleren
  * 
  * 
- * unieke controle toevoegen aan speler, leeftijd verwijderen van lus (want niet gevraagd blijkbaar), ASCII code checken voor naam
+ * unieke controle toevoegen aan speler ==> DONE, leeftijd verwijderen van lus (want niet gevraagd blijkbaar) ==> DONE, ASCII code checken voor naam
  * 
  * Exception opvangen in applicatie en dan dmv .getMessage() de tekst eruit halen --> String toevoegen aan default constructor van exception.
  * 

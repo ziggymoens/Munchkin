@@ -14,34 +14,21 @@ public class Spel {
     //Declaratie attributen
     private int aantalSpelers;
     private List<Speler> spelers;
-    private Locale locale;
-    private final LanguageResource bundle;
 
     /**
      * Constructor van Spel zonder parameters spelers = 3, taal = "en"
      */
     public Spel() {
-        this(3, new Locale("en"));
-    }
-
-    /**
-     * Constuctor van Spel zonder taal, standaardtaal is "en"
-     *
-     * @param aantalSpelers Het gewenste aantal spelers
-     */
-    public Spel(int aantalSpelers) {
-        this(aantalSpelers, new Locale("en"));
+        this(3);
     }
 
     /**
      * Constructor van Spel
      *
      * @param aantalSpelers Het gewenste aantal spelers
-     * @param choice De gekozen taal
      */
-    public Spel(int aantalSpelers, Locale choice) {
+    public Spel(int aantalSpelers) {
         setAantalSpelers(aantalSpelers);
-        bundle = new LanguageResource(choice);
         spelers = new ArrayList<>();
     }
 
@@ -55,7 +42,7 @@ public class Spel {
         if (aantalSpelers >= 3 && aantalSpelers <= 6) {
             this.aantalSpelers = aantalSpelers;
         } else {
-            throw new SpelException(bundle.getString("exception.players"));
+            throw new SpelException(LanguageResource.getString("exception.players"));
         }
     }
 
@@ -97,8 +84,9 @@ public class Spel {
      * @param geslacht Het geslacht van de speler
      
      */
-    public void voegSpelerToe(String naam, String geslacht/*, int leeftijd*/) {
-        Speler speler = new Speler(naam, geslacht/*, leeftijd*/, 1, bundle.getLocale());
+    public void voegSpelerToe(String naam, String geslacht) {
+        controleSpeler(naam);
+        Speler speler = new Speler(naam, geslacht, 1);
         spelers.add(speler);
     }
 
@@ -162,5 +150,13 @@ public class Spel {
      */
     public void verhoogSchatkaarten(int i) {
         spelers.get(i).setAantalSchatkaarten(spelers.get(i).getAantalSchatkaarten() + 1);
+    }
+
+    private void controleSpeler(String naam) {
+        for (Speler speler: spelers) {
+            if (naam.equals(speler.getNaam())) {
+                throw new SpelException();
+            }
+        }
     }
 }

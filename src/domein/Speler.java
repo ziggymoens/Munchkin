@@ -17,14 +17,13 @@ public class Speler {
     private String naam;
     private List<Kaart> kaarten;
     private List<Kaart> items;
-    private static LanguageResource bundle = new LanguageResource();
 
     /**
      * Constructor van Speler zonder parameters naam = "onbekend", geslacht =
      * "man", leeftijd = 99, level = 1, taal = "en"
      */
     public Speler() {
-        this("onbekend", "man"/*, 99*/, 1, new Locale("en"));
+        this("onbekend", "man", 1);
     }
 
     /**
@@ -34,19 +33,8 @@ public class Speler {
      * @param naam De naam van de speler
      * @param geslacht Het geslacht van de speler    
      */
-    public Speler(String naam, String geslacht/*, int leeftijd*/ ) {
-        this(naam, geslacht/*, leeftijd*/, 1, new Locale("en"));
-    }
-
-    /**
-     * Constructor van speler met standaartaal is "en"
-     *
-     * @param naam De naam van de speler
-     * @param geslacht Het geslacht van de speler
-     * @param level Het level van de speler
-     */
-    public Speler(String naam, String geslacht/*, int leeftijd*/, int level) {
-        this(naam, geslacht/*, leeftijd*/, level, new Locale("en"));
+    public Speler(String naam, String geslacht) {
+        this(naam, geslacht, 1);
     }
 
     /**
@@ -54,13 +42,9 @@ public class Speler {
      *
      * @param naam De naam van de speler
      * @param geslacht Het geslacht van de speler
-     * @param leeftijd De leeftijd van de speler
      * @param level Het level van de Speler
-     * @param choice De gekozen taal van de speler
      */
-    public Speler(String naam, String geslacht/*, int leeftijd*/, int level, Locale choice) {
-        bundle.setLocale(choice);
-        /*setLeeftijd(leeftijd);*/
+    public Speler(String naam, String geslacht, int level) {
         setGeslacht(geslacht);
         setNaam(naam);
         setLevel(level);
@@ -71,38 +55,18 @@ public class Speler {
     }
 
     /**
-     * Setter voor leeftijd met controle
-     *
-     * @param leeftijd De leeftijd van de speler
-     */
-    /*
-    public final void setLeeftijd(int leeftijd) {
-        if (leeftijd > 0) {
-            this.leeftijd = leeftijd;
-        } else {
-            throw new SpelerException(bundle.getString("exception.age"));
-        }
-    }
-     */
-    /**
-     * Leeftijd van de speler opvragen
-     *
-     * @return De leeftijd van de speler
-     */    
-
-    /**
      * Setter voor het geslacht van de speler, controle van geslacht in de taal
      * van de speler
      *
      * @param geslacht Het geslacht van de speler in eigen taal
      */
     public final void setGeslacht(String geslacht) {
-        String man = bundle.getString("man");
-        String vrouw = bundle.getString("woman");
+        String man = LanguageResource.getString("man");
+        String vrouw = LanguageResource.getString("woman");
         if (geslacht.toLowerCase().equals(man) || geslacht.toLowerCase().equals(vrouw)) {
             this.geslacht = geslacht;
         } else {
-            throw new SpelerException(bundle.getString("exception.sex"));
+            throw new SpelerException(LanguageResource.getString("exception.sex"));
         }
     }
 
@@ -128,7 +92,7 @@ public class Speler {
                 }
             }
         } else {
-            throw new SpelerException(bundle.getString("exception.name"));
+            throw new SpelerException(LanguageResource.getString("exception.name"));
         }
     }
 
@@ -150,7 +114,7 @@ public class Speler {
         if (level >= 1) {
             this.level = level;
         } else {
-            throw new SpelerException(bundle.getString("exception.level"));
+            throw new SpelerException(LanguageResource.getString("exception.level"));
         }
     }
 
@@ -210,7 +174,7 @@ public class Speler {
      */
     @Override
     public String toString() {
-        return String.format("%s = %s, %s = %s, %s = %d, %s = %d, %s = %d, %s = %s", bundle.getString("player.name"), naam, bundle.getString("player.sex"), geslacht, bundle.getString("player.level"), level, bundle.getString("player.treasurecards"), getAantalSchatkaarten(), bundle.getString("player.dungeoncards"), getAantalKerkerkaarten(), bundle.getString("player.amountOfCards"), kaartenNaarString());
+        return String.format("%s = %s, %s = %s, %s = %d, %s = %d, %s = %d, %s = %s", LanguageResource.getString("player.name"), naam, LanguageResource.getString("player.sex"), geslacht, LanguageResource.getString("player.level"), level, LanguageResource.getString("player.treasurecards"), getAantalSchatkaarten(), LanguageResource.getString("player.dungeoncards"), getAantalKerkerkaarten(), LanguageResource.getString("player.amountOfCards"), kaartenNaarString());
     }
 
     /**

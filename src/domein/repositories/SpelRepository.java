@@ -1,5 +1,6 @@
-package domein;
+package domein.repositories;
 
+import domein.Spel;
 import java.util.*;
 import persistentie.SpelMapper;
 

@@ -1,7 +1,7 @@
 package domein.kaarten;
 
 import exceptions.ConsumablesKerkerException;
-import java.util.Locale;
+import language.LanguageResource;
 
 /**
  *
@@ -42,6 +42,6 @@ public class ConsumablesKerker extends Kerkerkaart {
     
     private void controleBonus(int bonus){
         if(bonus < -5 || bonus > 10)
-            throw new ConsumablesKerkerException(language.LanguageResource.getStringLanguage("consumablesKerker.bonus", getLocale())); 
+            throw new ConsumablesKerkerException(LanguageResource.getString("consumablesKerker.bonus")); 
     }
 }

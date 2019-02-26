@@ -1,5 +1,6 @@
 package domein;
 
+import domein.repositories.SpelRepository;
 import domein.kaarten.Equipment;
 import domein.kaarten.ConsumablesKerker;
 import domein.kaarten.Race;
@@ -22,8 +23,8 @@ public class DomeinController {
     private final KaartMapper km;
     private final SpelRepository sr;
     private final List<Kaart> kaarten;
-    private Locale locale;
-    private final LanguageResource bundle;
+    //private Locale locale;
+    //private final LanguageResource bundle;
     private Spel spel;
 
     /**
@@ -32,7 +33,7 @@ public class DomeinController {
     public DomeinController() {
         km = new KaartMapper();
         kaarten = km.geefKaarten();
-        bundle = new LanguageResource();
+        /*bundle = new LanguageResource();*/
         sr = new SpelRepository();
     }
 
@@ -42,12 +43,12 @@ public class DomeinController {
      * @param aantalSpelers Gekozen aantal spelers (3-6)
      * @param locale Gekozen taal (nl-en-fr)
      */
-    public void startSpel(int aantalSpelers, Locale locale) {
-        spel = new Spel(aantalSpelers, locale);
-        bundle.setLocale(locale);
+    public void startSpel(int aantalSpelers/*, Locale locale*/) {
+        spel = new Spel(aantalSpelers/*, locale*/);
+        /*bundle.setLocale(locale);
         for (Kaart kaart:kaarten) {
             kaart.setLocale(locale);
-        }
+        }*/
     }
 
     /**
@@ -57,8 +58,8 @@ public class DomeinController {
      * @param naam Naam van de speler
      * @param geslacht Geslacht van de speler     
      */
-    public void voegSpelerToe(String naam, String geslacht/*, int leeftijd*/) {
-        spel.voegSpelerToe(naam, geslacht/*, leeftijd*/);
+    public void voegSpelerToe(String naam, String geslacht) {
+        spel.voegSpelerToe(naam, geslacht);
     }
 
     /**

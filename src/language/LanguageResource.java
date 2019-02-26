@@ -13,7 +13,7 @@ import java.util.*;
  */
 public final class LanguageResource {
 
-    private Locale locale;
+    private static Locale locale;
     private static ResourceBundle bundle;
 
     /**
@@ -39,11 +39,11 @@ public final class LanguageResource {
      *
      * @param locale nieuwe gewenste taal
      */
-    public void setLocale(Locale locale) {
+    public static void setLocale(Locale locale) {
         if (locale.toString().equals("en") || locale.toString().equals("fr") || locale.toString().equals("nl")) {
-            this.locale = locale;
+            LanguageResource.locale = locale;
         } else {
-            this.locale = new Locale("en");
+            LanguageResource.locale = new Locale("en");
         }
         setBundle();
     }
@@ -51,8 +51,8 @@ public final class LanguageResource {
     /**
      * Bundle in LanguageResource initialiseren met de gegeven taal
      */
-    public final void setBundle() {
-        this.bundle = ResourceBundle.getBundle("language/i18n", getLocale());
+    public static final void setBundle() {
+        LanguageResource.bundle = ResourceBundle.getBundle("language/i18n", getLocale());
     }
 
     /**
@@ -60,8 +60,8 @@ public final class LanguageResource {
      *
      * @return Locale van de huidige taal
      */
-    public Locale getLocale() {
-        return this.locale;
+    public static Locale getLocale() {
+        return LanguageResource.locale;
     }
 
     /**

@@ -1,7 +1,7 @@
 package domein.kaarten;
 
 import exceptions.CurseException;
-import java.util.Locale;
+import language.LanguageResource;
 
 /**
  *
@@ -94,7 +94,7 @@ public class Curse extends Kerkerkaart {
             this.typeLost = typeLost;
         }
         else
-            throw new CurseException(language.LanguageResource.getStringLanguage("curse.typeLost", getLocale()));
+            throw new CurseException(LanguageResource.getString("curse.typeLost"));
 
     }
 
@@ -102,7 +102,7 @@ public class Curse extends Kerkerkaart {
         if(levelLost >=1 && levelLost <=2)
             this.levelLost = levelLost;
         else
-            throw new CurseException(language.LanguageResource.getStringLanguage("curse.levelLost", getLocale()));
+            throw new CurseException(LanguageResource.getString("curse.levelLost"));
     }
 
     public void setRaceLost(boolean raceLost) {

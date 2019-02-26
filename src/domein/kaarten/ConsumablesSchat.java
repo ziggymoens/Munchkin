@@ -1,6 +1,7 @@
 package domein.kaarten;
 
 import exceptions.ConsumablesSchatException;
+import language.LanguageResource;
 
 /**
  *
@@ -52,7 +53,7 @@ public class ConsumablesSchat extends Schatkaart {
 
     public void setText(String text) {
         if(text == null || text.equals(""))
-           throw new ConsumablesSchatException(language.LanguageResource.getStringLanguage("consumablesSchat.exception", getLocale()));
+           throw new ConsumablesSchatException(LanguageResource.getString("consumablesSchat.exception"));
         else
             this.text = text;
     }

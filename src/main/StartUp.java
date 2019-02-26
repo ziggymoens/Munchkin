@@ -1,4 +1,4 @@
-package start_up;
+package main;
 
 import domein.DomeinController;
 import gui.UseCase1;
