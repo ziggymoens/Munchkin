@@ -127,7 +127,7 @@ public class Speler {
     public final void setNaam(String naam) {
         if (naam.length() >= 6 && naam.length() <= 12) {
             for (int i = 0; i < naam.length(); i++) {
-                if (naam.charAt(i) >= 'a' || naam.charAt(i) <= 'z' || naam.charAt(i) >= 'A' || naam.charAt(i) <= 'Z' || naam.charAt(i) == '_' || naam.charAt(i) == '-') {
+                if (naam.charAt(i) >= 'a' && naam.charAt(i) <= 'z' && naam.charAt(i) >= 'A' && naam.charAt(i) <= 'Z' && naam.charAt(i) == '_' && naam.charAt(i) == '-') {
                     this.naam = naam;
                 }
             }
