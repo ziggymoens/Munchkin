@@ -12,10 +12,10 @@ package domein.kaarten;
 public class BadStuff {
 
     private String naam;
-    private String uitleg;
+    private String text;
     private int levelsLost;
     private String gearLost;
-    private int itemstaken;
+    private int itemsTaken;
     private boolean weaponsLost;
     private boolean raceLost;
     private boolean dead;
@@ -29,7 +29,7 @@ public class BadStuff {
 
     public BadStuff(String naam, String uitleg, int levelsLost) {
         setNaam(naam);
-        this.uitleg = uitleg;
+        this.text = uitleg;
         this.levelsLost = levelsLost;
     }
 
@@ -40,7 +40,7 @@ public class BadStuff {
 
     public BadStuff(String naam, int itemstaken) {
         setNaam(naam);
-        this.itemstaken = itemstaken;
+        this.itemsTaken = itemstaken;
     }
 
     public BadStuff(String naam, boolean weaponsLost, boolean raceLost) {
