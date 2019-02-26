@@ -13,7 +13,7 @@ public class UseCase1 {
     //declaraties voor gehele usecase
     private static final Scanner SCAN = new Scanner(System.in);
     private static LanguageResource bundle = new LanguageResource();
-    private static DomeinController dc;
+    private static DomeinController dc; //static moet weg
 
     /**
      * constructor voor UseCase 1

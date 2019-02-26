@@ -1,5 +1,7 @@
 package domein.kaarten;
 
+import exceptions.ConsumablesSchatException;
+
 /**
  *
  * @author ziggy
@@ -48,4 +50,14 @@ public class ConsumablesSchat extends Schatkaart {
         return battleBonus;
     }
 
+    public void setText(String text) {
+        if(text == null || text.equals(""))
+           throw new ConsumablesSchatException(language.LanguageResource.getStringLanguage("consumablesSchat.exception", getLocale()));
+        else
+            this.text = text;
+    }
+
+    public void setBattleBonus(int battleBonus) {
+        this.battleBonus = battleBonus;
+    }
 }

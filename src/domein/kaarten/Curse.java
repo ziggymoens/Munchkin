@@ -99,7 +99,10 @@ public class Curse extends Kerkerkaart {
     }
 
     public void setLevelLost(int levelLost) {
-        this.levelLost = levelLost;
+        if(levelLost >=1 && levelLost <=2)
+            this.levelLost = levelLost;
+        else
+            throw new CurseException(language.LanguageResource.getStringLanguage("curse.levelLost", getLocale()));
     }
 
     public void setRaceLost(boolean raceLost) {

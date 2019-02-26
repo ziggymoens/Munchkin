@@ -1,11 +1,14 @@
 package domein.kaarten;
 
+import exceptions.ConsumablesKerkerException;
+import java.util.Locale;
+
 /**
  *
  * @author ziggy
  */
 public class ConsumablesKerker extends Kerkerkaart {
-
+    
     private final int bonus;
     private final String text = "Play during combat";
 
@@ -20,7 +23,7 @@ public class ConsumablesKerker extends Kerkerkaart {
         super(naam);
         this.bonus = bonus;
     }
-
+        
     /**
      *
      * @return
@@ -35,5 +38,10 @@ public class ConsumablesKerker extends Kerkerkaart {
      */
     public String getText() {
         return text;
+    }
+    
+    private void controleBonus(int bonus){
+        if(bonus < -5 || bonus > 10)
+            throw new ConsumablesKerkerException(language.LanguageResource.getStringLanguage("consumablesKerker.bonus", getLocale())); 
     }
 }
