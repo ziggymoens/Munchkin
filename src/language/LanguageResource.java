@@ -14,7 +14,7 @@ import java.util.*;
 public final class LanguageResource {
 
     private Locale locale;
-    private ResourceBundle bundle;
+    private static ResourceBundle bundle;
 
     /**
      * Contructor voor LanguageResource zonder parameters, Engels wordt
@@ -80,7 +80,7 @@ public final class LanguageResource {
      * @param locale Gewenste taal
      * @return String met het woord in de gekozen taal
      */
-    public String getStringLanguage(String string, Locale locale) {
+    public static String getStringLanguage(String string, Locale locale) {
         return ResourceBundle.getBundle("language/i18n", locale).getString(string);
     }
 
@@ -90,7 +90,7 @@ public final class LanguageResource {
      * @param string Key van het opgevraagde woord
      * @return String met het woord in de huidige taal
      */
-    public String getString(String string) {
+    public static String getString(String string) {
         return bundle.getString(string);
     }
 }

@@ -1,5 +1,6 @@
 package start_up;
 
+import domein.DomeinController;
 import gui.UseCase1;
 
 /**
@@ -9,6 +10,7 @@ import gui.UseCase1;
 public class StartUp {
     //class die gebruikt wordt om use cases uit te voeren
     public static void main(String[] args) {
-        new UseCase1();
+        DomeinController dc = new DomeinController();
+        new UseCase1(dc);
     }
 }

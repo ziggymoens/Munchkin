@@ -17,9 +17,11 @@ public class UseCase1 {
 
     /**
      * constructor voor UseCase 1
+     * 
+     * @param dc
      */
-    public UseCase1() {
-        dc = new DomeinController();
+    public UseCase1(DomeinController dc) {
+        UseCase1.dc = dc;
         Welcome();
         //gebruiker vragen of hij een nieuw spel wil starten.
         System.out.println(bundle.getString("newGame"));
