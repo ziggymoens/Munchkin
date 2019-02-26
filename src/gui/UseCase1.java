@@ -5,7 +5,7 @@ import java.util.*;
 import language.LanguageResource;
 
 /**
- * test commit, hallo
+ * 
  * @author g35
  */
 public class UseCase1 {
