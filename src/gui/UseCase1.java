@@ -101,12 +101,17 @@ public class UseCase1 {
      */
     private static void voegSpelersToe(int aantalSpelers) {
         for (int i = 0; i < aantalSpelers; i++) {
+            System.out.println(String.format("%s %d", bundle.getString("player"), i+1));
+            SCAN.nextLine();
+            System.out.println(bundle.getString("ask.name"));
             System.out.println(String.format("%s %d", LanguageResource.getString("player"), i+1));
             System.out.println(LanguageResource.getString("ask.name"));
             String naam = SCAN.next();
-            System.out.println(LanguageResource.getString("ask.sex"));
-            String geslacht = SCAN.next();                       
-            dc.voegSpelerToe(naam, geslacht);
+            System.out.println(bundle.getString("ask.sex"));
+            String geslacht = SCAN.next();
+            /*System.out.println(bundle.getString("ask.age"));
+            int leeftijd = SCAN.nextInt();*/
+            dc.voegSpelerToe(naam, geslacht/*, leeftijd*/);
         }
     }
 }

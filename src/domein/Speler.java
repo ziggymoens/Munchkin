@@ -24,7 +24,7 @@ public class Speler {
      * "man", leeftijd = 99, level = 1, taal = "en"
      */
     public Speler() {
-        this("onbekend", "man", 1, new Locale("en"));
+        this("onbekend", "man"/*, 99*/, 1, new Locale("en"));
     }
 
     /**
@@ -34,8 +34,8 @@ public class Speler {
      * @param naam De naam van de speler
      * @param geslacht Het geslacht van de speler    
      */
-    public Speler(String naam, String geslacht) {
-        this(naam, geslacht, 1, new Locale("en"));
+    public Speler(String naam, String geslacht/*, int leeftijd*/ ) {
+        this(naam, geslacht/*, leeftijd*/, 1, new Locale("en"));
     }
 
     /**
@@ -45,8 +45,8 @@ public class Speler {
      * @param geslacht Het geslacht van de speler
      * @param level Het level van de speler
      */
-    public Speler(String naam, String geslacht, int level) {
-        this(naam, geslacht, level, new Locale("en"));
+    public Speler(String naam, String geslacht/*, int leeftijd*/, int level) {
+        this(naam, geslacht/*, leeftijd*/, level, new Locale("en"));
     }
 
     /**
@@ -58,8 +58,9 @@ public class Speler {
      * @param level Het level van de Speler
      * @param choice De gekozen taal van de speler
      */
-    public Speler(String naam, String geslacht, int level, Locale choice) {
-        bundle.setLocale(choice);        
+    public Speler(String naam, String geslacht/*, int leeftijd*/, int level, Locale choice) {
+        bundle.setLocale(choice);
+        /*setLeeftijd(leeftijd);*/
         setGeslacht(geslacht);
         setNaam(naam);
         setLevel(level);
@@ -74,8 +75,15 @@ public class Speler {
      *
      * @param leeftijd De leeftijd van de speler
      */
-        
-
+    /*
+    public final void setLeeftijd(int leeftijd) {
+        if (leeftijd > 0) {
+            this.leeftijd = leeftijd;
+        } else {
+            throw new SpelerException(bundle.getString("exception.age"));
+        }
+    }
+     */
     /**
      * Leeftijd van de speler opvragen
      *
@@ -202,8 +210,7 @@ public class Speler {
      */
     @Override
     public String toString() {
-        return String.format("%s = %s, %s = %s, %s = %d, %s = %d, %s = %d, %s = %s", bundle.getString("player.name"),naam,bundle.getString("player.sex"), geslacht ,bundle.getString("player.level") ,level,bundle.getString("player.treasurecards") ,getAantalSchatkaarten()
-                ,bundle.getString("player.dungeoncards") ,getAantalKerkerkaarten(),bundle.getString("player.amountOfCards") ,kaartenNaarString());
+        return String.format("%s = %s, %s = %s, %s = %d, %s = %d, %s = %d, %s = %s", bundle.getString("player.name"), naam, bundle.getString("player.sex"), geslacht, bundle.getString("player.level"), level, bundle.getString("player.treasurecards"), getAantalSchatkaarten(), bundle.getString("player.dungeoncards"), getAantalKerkerkaarten(), bundle.getString("player.amountOfCards"), kaartenNaarString());
     }
 
     /**

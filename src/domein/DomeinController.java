@@ -57,12 +57,13 @@ public class DomeinController {
      * @param naam Naam van de speler
      * @param geslacht Geslacht van de speler     
      */
-    public void voegSpelerToe(String naam, String geslacht) {
-        spel.voegSpelerToe(naam, geslacht);
+    public void voegSpelerToe(String naam, String geslacht/*, int leeftijd*/) {
+        spel.voegSpelerToe(naam, geslacht/*, leeftijd*/);
     }
 
     /**
      * Methode om elke speler 4 kaarten uit te delen, 2 van elke stapel
+     * NAAR SPEL
      */
     public void geefStartKaarten() {
         SecureRandom random = new SecureRandom();
