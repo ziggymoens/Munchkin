@@ -1,15 +1,8 @@
 package domein;
 
-import domein.kaarten.kerkerkaarten.ConsumablesKerker;
-import domein.kaarten.schatkaarten.ConsumablesSchat;
-import domein.kaarten.kerkerkaarten.Curse;
-import domein.kaarten.schatkaarten.Equipment;
 import domein.kaarten.Kaart;
-import domein.kaarten.kerkerkaarten.Monster;
-import domein.kaarten.kerkerkaarten.Race;
 import domein.repositories.KaartRepository;
 import exceptions.SpelException;
-import java.security.SecureRandom;
 import java.util.*;
 import language.LanguageResource;
 
@@ -41,10 +34,15 @@ public class Spel {
     public Spel(int aantalSpelers) {
         setAantalSpelers(aantalSpelers);
         spelers = new ArrayList<>();
-        this.schatkaarten = kr.getSchatkaarten();
-        this.kerkerkaarten = kr.getKerkerkaarten();
+        initialiseerKaarten();
     }
 
+    private void initialiseerKaarten(){
+        schatkaarten = kr.getSchatkaarten();
+        kerkerkaarten = kr.getKerkerkaarten();
+    }
+    
+    
     /**
      * Setter voor aantal spelers met controle op aantal volgens
      * DR_AANTAL_SPELERS
@@ -95,7 +93,7 @@ public class Spel {
      *
      * @param naam De naam van de speler
      * @param geslacht Het geslacht van de speler
-     
+     *
      */
     public void voegSpelerToe(String naam, String geslacht) {
         controleSpeler(naam);
@@ -167,7 +165,7 @@ public class Spel {
     }
 
     private void controleSpeler(String naam) {
-        for (Speler speler: spelers) {
+        for (Speler speler : spelers) {
             if (naam.equals(speler.getNaam())) {
                 throw new SpelException();
             }
@@ -183,10 +181,7 @@ public class Spel {
         schatkaarten.remove(0);
         speler.voegKaartToe(kerkerkaarten.get(1));
         kerkerkaarten.remove(1);
-        
-        
-        
-        
+
 //        SecureRandom random = new SecureRandom();
 //        //Loop voor elke speler
 //        for (int i = 0; i < getAantalSpelers(); i++) {
