@@ -46,4 +46,7 @@ public class Test {
         return bundle.getStringLanguage(string, locale);
     }
 
+    private void test(){
+        System.out.println("Test.test");
+    }
 }
