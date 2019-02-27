@@ -22,10 +22,10 @@ public class KaartRepository {
     private final List<Kaart> kerkerkaarten;
 
     public KaartRepository() {
-        schatkaarten = new ArrayList<>();
-        kerkerkaarten = new ArrayList<>();
         km = new KaartMapper();
         kaarten = km.geefKaarten();
+        schatkaarten = new ArrayList<>();
+        kerkerkaarten = new ArrayList<>();
         sorteerKaarten();
     }
 
@@ -34,25 +34,22 @@ public class KaartRepository {
     }
 
     private void sorteerKaarten() {
-        kaarten.forEach((kaart) -> {
+        for (Kaart kaart : kaarten) {
             if (kaart instanceof Equipment || kaart instanceof ConsumablesSchat) {
                 schatkaarten.add(kaart);
             } else if (kaart instanceof Monster || kaart instanceof Curse || kaart instanceof Race || kaart instanceof ConsumablesKerker) {
                 kerkerkaarten.add(kaart);
             }
-        });
+        }
         Collections.shuffle(schatkaarten);
         Collections.shuffle(kerkerkaarten);
     }
 
     public List<Kaart> getSchatkaarten() {
-        
         return schatkaarten;
     }
 
     public List<Kaart> getKerkerkaarten() {
         return kerkerkaarten;
     }
-    
-    
 }
