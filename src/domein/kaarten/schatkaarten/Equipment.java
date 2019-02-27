@@ -1,4 +1,7 @@
-package domein.kaarten;
+package domein.kaarten.schatkaarten;
+
+import domein.kaarten.kerkerkaarten.Race;
+import domein.kaarten.Schatkaart;
 
 /**
  *

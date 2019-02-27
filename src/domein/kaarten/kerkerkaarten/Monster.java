@@ -1,4 +1,6 @@
-package domein.kaarten;
+package domein.kaarten.kerkerkaarten;
+
+import domein.kaarten.Kerkerkaart;
 
 /**
  *

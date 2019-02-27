@@ -1,12 +1,12 @@
 package domein.repositories;
 
-import domein.kaarten.ConsumablesKerker;
-import domein.kaarten.ConsumablesSchat;
-import domein.kaarten.Curse;
-import domein.kaarten.Equipment;
+import domein.kaarten.kerkerkaarten.ConsumablesKerker;
+import domein.kaarten.schatkaarten.ConsumablesSchat;
+import domein.kaarten.kerkerkaarten.Curse;
+import domein.kaarten.schatkaarten.Equipment;
 import domein.kaarten.Kaart;
-import domein.kaarten.Monster;
-import domein.kaarten.Race;
+import domein.kaarten.kerkerkaarten.Monster;
+import domein.kaarten.kerkerkaarten.Race;
 import java.util.*;
 import persistentie.KaartMapper;
 
