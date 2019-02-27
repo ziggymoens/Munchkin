@@ -47,6 +47,6 @@ public class Test {
     }
 
     private void test(){
-        System.out.println("Test.test");
+        System.out.println("Netbeans test");
     }
 }
