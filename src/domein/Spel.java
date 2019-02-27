@@ -7,6 +7,7 @@ import domein.kaarten.Equipment;
 import domein.kaarten.Kaart;
 import domein.kaarten.Monster;
 import domein.kaarten.Race;
+import domein.repositories.KaartRepository;
 import exceptions.SpelException;
 import java.security.SecureRandom;
 import java.util.*;
@@ -21,6 +22,9 @@ public class Spel {
     //Declaratie attributen
     private int aantalSpelers;
     private List<Speler> spelers;
+    private List<Kaart> schatkaarten;
+    private List<Kaart> kerkerkaarten;
+    private KaartRepository kr;
 
     /**
      * Constructor van Spel zonder parameters spelers = 3, taal = "en"
@@ -37,6 +41,8 @@ public class Spel {
     public Spel(int aantalSpelers) {
         setAantalSpelers(aantalSpelers);
         spelers = new ArrayList<>();
+        this.schatkaarten = kr.getSchatkaarten();
+        this.kerkerkaarten = kr.getKerkerkaarten();
     }
 
     /**
@@ -94,6 +100,7 @@ public class Spel {
     public void voegSpelerToe(String naam, String geslacht) {
         controleSpeler(naam);
         Speler speler = new Speler(naam, geslacht, 1);
+        geefStartKaarten(speler);
         spelers.add(speler);
     }
 
@@ -167,35 +174,47 @@ public class Spel {
         }
     }
 
-    void geefStartKaarten() {
-                SecureRandom random = new SecureRandom();
-        //Loop voor elke speler
-        for (int i = 0; i < getAantalSpelers(); i++) {
-            int j = 0;
-            for (int k = 0; k < 4; k++) {
-                int rKaart;
-                Kaart randKaart;
-                //Random kaart kiezen en kijken of deze al in iemand zijn hand zit
-                do {
-                    rKaart = random.nextInt(DomeinController.kaarten.size());
-                    randKaart = DomeinController.kaarten.get(rKaart);
-                } while (randKaart.isKaartInGebruik() == true);
-                //Kijken of kaart een van de schatkaarten is, de speler mag er zo 2 hebben
-                if (randKaart instanceof Equipment || randKaart instanceof ConsumablesSchat) {
-                    if (geefAantalSchatkaartenSpeler(i) <= 2) {
-                        voegKaartToe(randKaart, i);
-                        randKaart.setKaartInGebruik(true);
-                        verhoogSchatkaarten(i);
-                    }
-                //Kijken of kaart een van de kerkerkaarten is, de speler mag er zo 2 hebben
-                } else if (randKaart instanceof Monster || randKaart instanceof Curse || randKaart instanceof Race || randKaart instanceof ConsumablesKerker) {
-                    if (geefAantalkerkerkaartenSpeler(i) <= 2) {
-                        voegKaartToe(randKaart, i);
-                        randKaart.setKaartInGebruik(true);
-                        verhoogKerkerkaarten(i);
-                    }
-                }
-            }
-        }
+    private void geefStartKaarten(Speler speler) {
+        speler.voegKaartToe(schatkaarten.get(0));
+        schatkaarten.remove(0);
+        speler.voegKaartToe(kerkerkaarten.get(0));
+        kerkerkaarten.remove(0);
+        speler.voegKaartToe(schatkaarten.get(1));
+        schatkaarten.remove(0);
+        speler.voegKaartToe(kerkerkaarten.get(1));
+        kerkerkaarten.remove(1);
+        
+        
+        
+        
+//        SecureRandom random = new SecureRandom();
+//        //Loop voor elke speler
+//        for (int i = 0; i < getAantalSpelers(); i++) {
+//            int j = 0;
+//            for (int k = 0; k < 4; k++) {
+//                int rKaart;
+//                Kaart randKaart;
+//                //Random kaart kiezen en kijken of deze al in iemand zijn hand zit
+//                do {
+//                    rKaart = random.nextInt(DomeinController.kaarten.size());
+//                    randKaart = DomeinController.kaarten.get(rKaart);
+//                } while (randKaart.isKaartInGebruik() == true);
+//                //Kijken of kaart een van de schatkaarten is, de speler mag er zo 2 hebben
+//                if (randKaart instanceof Equipment || randKaart instanceof ConsumablesSchat) {
+//                    if (geefAantalSchatkaartenSpeler(i) <= 2) {
+//                        voegKaartToe(randKaart, i);
+//                        randKaart.setKaartInGebruik(true);
+//                        verhoogSchatkaarten(i);
+//                    }
+//                //Kijken of kaart een van de kerkerkaarten is, de speler mag er zo 2 hebben
+//                } else if (randKaart instanceof Monster || randKaart instanceof Curse || randKaart instanceof Race || randKaart instanceof ConsumablesKerker) {
+//                    if (geefAantalkerkerkaartenSpeler(i) <= 2) {
+//                        voegKaartToe(randKaart, i);
+//                        randKaart.setKaartInGebruik(true);
+//                        verhoogKerkerkaarten(i);
+//                    }
+//                }
+//            }
+//        }
     }
 }

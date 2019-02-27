@@ -28,6 +28,5 @@ public class BadStuffException extends RuntimeException{
 
     public BadStuffException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
-    }
-    
+    }    
 }

@@ -1,6 +1,12 @@
 package domein;
 
+import domein.kaarten.ConsumablesKerker;
+import domein.kaarten.ConsumablesSchat;
+import domein.kaarten.Curse;
+import domein.kaarten.Equipment;
 import domein.kaarten.Kaart;
+import domein.kaarten.Monster;
+import domein.kaarten.Race;
 import exceptions.SpelerException;
 import java.util.*;
 import language.LanguageResource;
@@ -31,7 +37,7 @@ public class Speler {
      * standaard level is 1
      *
      * @param naam De naam van de speler
-     * @param geslacht Het geslacht van de speler    
+     * @param geslacht Het geslacht van de speler
      */
     public Speler(String naam, String geslacht) {
         this(naam, geslacht, 1);
@@ -134,6 +140,11 @@ public class Speler {
      */
     public void voegKaartToe(Kaart kaart) {
         this.kaarten.add(kaart);
+        if (kaart instanceof Equipment || kaart instanceof ConsumablesSchat) {
+            aantalSchatkaarten++;
+        } else if (kaart instanceof Monster || kaart instanceof Curse || kaart instanceof Race || kaart instanceof ConsumablesKerker) {
+            aantalKerkerkaarten++;
+        }
     }
 
     /**

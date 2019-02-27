@@ -22,12 +22,7 @@ public class UseCase1 {
      */
     public UseCase1(DomeinController dc) {
         UseCase1.dc = dc;
-        try {
-            Welcome();
-        } catch (Exception e) {
-            String error = e.getMessage();
-            System.err.println(error);
-        }
+        welcome();
         //gebruiker vragen of hij een nieuw spel wil starten.
         System.out.println(LanguageResource.getString("newGame"));
         String nieuwSpel = SCAN.next().toLowerCase();
@@ -39,24 +34,8 @@ public class UseCase1 {
         //indien true spel aanmaken en opstarten
         if (startUp) {
             int aantalSpelers = kiesAantalSpelers();
-            try {
-                dc.startSpel(aantalSpelers);
-            } catch (Exception e) {
-                String error = e.getMessage();
-                System.err.println(error);
-            }
-            try {
-                voegSpelersToe(aantalSpelers);
-            } catch (Exception e) {
-                String error = e.getMessage();
-                System.err.println(error);
-            }
-            try {
-                dc.geefStartKaarten();
-            } catch (Exception e) {
-                String error = e.getMessage();
-                System.err.println(error);
-            }
+            dc.startSpel(aantalSpelers);
+            voegSpelersToe(aantalSpelers);
             System.out.println(dc.geefInformatie());
         }
     }
@@ -64,7 +43,7 @@ public class UseCase1 {
     /**
      * welcome message in 3 talen
      */
-    private static void Welcome() {
+    private static void welcome() {
         Locale nl = new Locale("nl");
         Locale en = new Locale("en");
         Locale fr = new Locale("fr");

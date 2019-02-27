@@ -2,8 +2,8 @@ package domein;
 
 import domein.repositories.SpelRepository;
 import domein.kaarten.Kaart;
+import domein.repositories.KaartRepository;
 import java.util.*;
-import persistentie.KaartMapper;
 
 /**
  *
@@ -12,9 +12,9 @@ import persistentie.KaartMapper;
 public class DomeinController {
 
     //Declaratie attributen
-    private final KaartMapper km;
-    private final SpelRepository sr;
-    public static List<Kaart> kaarten;
+    //private final KaartRepository kr;
+    //private final SpelRepository sr;
+    //public static List<Kaart> kaarten;
     //private Locale locale;
     //private final LanguageResource bundle;
     private Spel spel;
@@ -23,10 +23,10 @@ public class DomeinController {
      * Constructor DomeinController
      */
     public DomeinController() {
-        km = new KaartMapper();
-        kaarten = km.geefKaarten();
+        //kr = new KaartRepository();
+        //kaarten = kr.geefKaarten();
         /*bundle = new LanguageResource();*/
-        sr = new SpelRepository();
+//        sr = new SpelRepository();
     }
 
     /**
@@ -34,12 +34,9 @@ public class DomeinController {
      *
      * @param aantalSpelers Gekozen aantal spelers (3-6)
      */
-    public void startSpel(int aantalSpelers/*, Locale locale*/) {
-        spel = new Spel(aantalSpelers/*, locale*/);
-        /*bundle.setLocale(locale);
-        for (Kaart kaart:kaarten) {
-            kaart.setLocale(locale);
-        }*/
+    public void startSpel(int aantalSpelers) {
+        spel = new Spel(aantalSpelers);
+
     }
 
     /**
@@ -53,13 +50,13 @@ public class DomeinController {
         spel.voegSpelerToe(naam, geslacht);
     }
 
-    /**
-     * Methode om elke speler 4 kaarten uit te delen, 2 van elke stapel
-     * NAAR SPEL
-     */
-    public void geefStartKaarten() {
-        spel.geefStartKaarten();
-    }
+//    /**
+//     * Methode om elke speler 4 kaarten uit te delen, 2 van elke stapel
+//     * NAAR SPEL
+//     */
+//    public void geefStartKaarten() {
+//        spel.geefStartKaarten();
+//    }
 
     /**
      * String die info geeft over het spel en de spelers
