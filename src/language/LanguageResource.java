@@ -51,7 +51,7 @@ public final class LanguageResource {
     /**
      * Bundle in LanguageResource initialiseren met de gegeven taal
      */
-    public static final void setBundle() {
+    public static void setBundle() {
         LanguageResource.bundle = ResourceBundle.getBundle("language/i18n", getLocale());
     }
 

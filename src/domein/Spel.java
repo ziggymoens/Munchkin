@@ -14,13 +14,13 @@ public class Spel {
 
     //Declaratie attributen
     private int aantalSpelers;
-    private List<Speler> spelers;
+    private final List<Speler> spelers;
     private List<Kaart> schatkaarten;
     private List<Kaart> kerkerkaarten;
     private KaartRepository kr;
 
     /**
-     * Constructor van Spel zonder parameters spelers = 3, taal = "en"
+     * Constructor van Spel zonder parameters spelers = 3
      */
     public Spel() {
         this(3);
@@ -49,7 +49,7 @@ public class Spel {
      *
      * @param aantalSpelers Het gekozen aantal spelers
      */
-    public final void setAantalSpelers(int aantalSpelers) {
+    private void setAantalSpelers(int aantalSpelers) {
         if (aantalSpelers >= 3 && aantalSpelers <= 6) {
             this.aantalSpelers = aantalSpelers;
         } else {
@@ -66,14 +66,16 @@ public class Spel {
         }
     }
 
-    /**
-     * Geeft het aantal spelers die het spel spelen
-     *
-     * @return Aantal spelers
-     */
-    public int getAantalSpelers() {
-        return aantalSpelers;
-    }
+// --Commented out by Inspection START (2019-02-27 23:49):
+//    /**
+//     * Geeft het aantal spelers die het spel spelen
+//     *
+//     * @return Aantal spelers
+//     */
+//    public int getAantalSpelers() {
+//        return aantalSpelers;
+//    }
+// --Commented out by Inspection STOP (2019-02-27 23:49)
 
     /**
      * Geeft info over het spel en de spelers
@@ -122,47 +124,55 @@ public class Spel {
         return spelers;
     }
 
-    /**
-     * Bekijkt hoeveel schatkaarten een bepaalde speler heeft
-     *
-     * @param index De nummer van de speler in het spel, volgens volgorde van
-     * ingeven
-     * @return Het aantal schatkaarten van de speler
-     */
-    public int geefAantalSchatkaartenSpeler(int index) {
-        return spelers.get(index).getAantalSchatkaarten();
-    }
+// --Commented out by Inspection START (2019-02-27 23:49):
+//    /**
+//     * Bekijkt hoeveel schatkaarten een bepaalde speler heeft
+//     *
+//     * @param index De nummer van de speler in het spel, volgens volgorde van
+//     * ingeven
+//     * @return Het aantal schatkaarten van de speler
+//     */
+//    public int geefAantalSchatkaartenSpeler(int index) {
+//        return spelers.get(index).getAantalSchatkaarten();
+//    }
+// --Commented out by Inspection STOP (2019-02-27 23:49)
 
-    /**
-     * Bekijkt hoeveel kerkerkaarten een bepaalde speler heeft
-     *
-     * @param index De nummer van de speler in het spel, volgens volgorde van
-     * ingeven
-     * @return Het aantal kerkerkaarten van de speler
-     */
-    public int geefAantalkerkerkaartenSpeler(int index) {
-        return spelers.get(index).getAantalKerkerkaarten();
-    }
+// --Commented out by Inspection START (2019-02-27 23:49):
+//    /**
+//     * Bekijkt hoeveel kerkerkaarten een bepaalde speler heeft
+//     *
+//     * @param index De nummer van de speler in het spel, volgens volgorde van
+//     * ingeven
+//     * @return Het aantal kerkerkaarten van de speler
+//     */
+//    public int geefAantalkerkerkaartenSpeler(int index) {
+//        return spelers.get(index).getAantalKerkerkaarten();
+//    }
+// --Commented out by Inspection STOP (2019-02-27 23:49)
 
-    /**
-     * Verhoogt het aantal kerkerkaarten van de speler met 1
-     *
-     * @param i De nummer van de speler in het spel, volgens volgorde van
-     * ingeven
-     */
-    public void verhoogKerkerkaarten(int i) {
-        spelers.get(i).setAantalKerkerkaarten(spelers.get(i).getAantalKerkerkaarten() + 1);
-    }
+// --Commented out by Inspection START (2019-02-27 23:50):
+//    /**
+//     * Verhoogt het aantal kerkerkaarten van de speler met 1
+//     *
+//     * @param i De nummer van de speler in het spel, volgens volgorde van
+//     * ingeven
+//     */
+//    public void verhoogKerkerkaarten(int i) {
+//        spelers.get(i).setAantalKerkerkaarten(spelers.get(i).getAantalKerkerkaarten() + 1);
+//    }
+// --Commented out by Inspection STOP (2019-02-27 23:50)
 
-    /**
-     * Verhoogt het aantal schatkaarten van de speler met 1
-     *
-     * @param i De nummer van de speler in het spel, volgens volgorde van
-     * ingeven
-     */
-    public void verhoogSchatkaarten(int i) {
-        spelers.get(i).setAantalSchatkaarten(spelers.get(i).getAantalSchatkaarten() + 1);
-    }
+// --Commented out by Inspection START (2019-02-27 23:50):
+//    /**
+//     * Verhoogt het aantal schatkaarten van de speler met 1
+//     *
+//     * @param i De nummer van de speler in het spel, volgens volgorde van
+//     * ingeven
+//     */
+//    public void verhoogSchatkaarten(int i) {
+//        spelers.get(i).setAantalSchatkaarten(spelers.get(i).getAantalSchatkaarten() + 1);
+//    }
+// --Commented out by Inspection STOP (2019-02-27 23:50)
 
     private void controleSpeler(String naam) {
         for (Speler speler : spelers) {

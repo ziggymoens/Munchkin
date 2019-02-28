@@ -16,13 +16,12 @@ import persistentie.KaartMapper;
  */
 public class KaartRepository {
 
-    private final KaartMapper km;
     private final List<Kaart> kaarten;
     private final List<Kaart> schatkaarten;
     private final List<Kaart> kerkerkaarten;
 
     public KaartRepository() {
-        km = new KaartMapper();
+        KaartMapper km = new KaartMapper();
         kaarten = km.geefKaarten();
         schatkaarten = new ArrayList<>();
         kerkerkaarten = new ArrayList<>();
