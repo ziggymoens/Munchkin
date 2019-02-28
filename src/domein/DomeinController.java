@@ -53,4 +53,8 @@ public class DomeinController {
     public static int geefAantalSpelers() {
         return Spel.getAantalSpelers();
     }
+    
+    public void speelSpel(){
+        spel.speelSpel();
+    }
 }

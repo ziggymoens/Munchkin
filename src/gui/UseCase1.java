@@ -35,7 +35,7 @@ public class UseCase1 {
         if (startUp) {
             int aantalSpelers = kiesAantalSpelers();
             dc.startSpel(aantalSpelers);
-            voegSpelersToe(aantalSpelers);
+            voegSpelersToe();
             System.out.println(dc.geefInformatie());
         }
     }
@@ -98,7 +98,7 @@ public class UseCase1 {
      * @param aantalSpelers het aantal spelers dat de methode zal toevoegen aan
      * het spel
      */
-    private static void voegSpelersToe(int aantalSpelers) {
+    private static void voegSpelersToe() {
         for (int i = 0; i < DomeinController.geefAantalSpelers(); i++) {
             System.out.println(String.format("%s %d", LanguageResource.getString("player"), i + 1));
             System.out.println(LanguageResource.getString("ask.name"));

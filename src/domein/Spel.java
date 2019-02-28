@@ -143,4 +143,14 @@ public class Spel {
     public static int getAantalSpelers() {
         return aantalSpelers;
     }
+
+    void speelSpel() {
+        for(int i = 0; i<spelers.size(); i++){
+            if (spelers.get(i).getNaam().length()<=spelers.get(0).getNaam().length()) {
+                Speler speler = spelers.get(i);
+                spelers.remove(i);
+                spelers.add(0, speler);
+            }
+        }
+    }
 }

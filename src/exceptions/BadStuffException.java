@@ -12,6 +12,7 @@ package exceptions;
 public class BadStuffException extends RuntimeException{
 
     public BadStuffException() {
+        
     }
 
     public BadStuffException(String message) {
