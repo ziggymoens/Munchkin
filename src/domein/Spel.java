@@ -1,6 +1,12 @@
 package domein;
 
 import domein.kaarten.Kaart;
+import domein.kaarten.kerkerkaarten.ConsumablesKerker;
+import domein.kaarten.kerkerkaarten.Curse;
+import domein.kaarten.kerkerkaarten.Monster;
+import domein.kaarten.kerkerkaarten.Race;
+import domein.kaarten.schatkaarten.ConsumablesSchat;
+import domein.kaarten.schatkaarten.Equipment;
 import domein.repositories.KaartRepository;
 import exceptions.SpelException;
 import java.util.*;
@@ -15,6 +21,7 @@ public class Spel {
     //Declaratie attributen
     private int aantalSpelers;
     private final List<Speler> spelers;
+    private List<Kaart> kaarten;
     private List<Kaart> schatkaarten;
     private List<Kaart> kerkerkaarten;
     private KaartRepository kr;
@@ -34,6 +41,9 @@ public class Spel {
     public Spel(int aantalSpelers) {
         setAantalSpelers(aantalSpelers);
         spelers = new ArrayList<>();
+        kaarten = kr.geefKaarten();
+        schatkaarten = new ArrayList<>();
+        kerkerkaarten = new ArrayList<>();
         initialiseerKaarten();
     }
 
@@ -41,8 +51,7 @@ public class Spel {
         schatkaarten = kr.getSchatkaarten();
         kerkerkaarten = kr.getKerkerkaarten();
     }
-    
-    
+
     /**
      * Setter voor aantal spelers met controle op aantal volgens
      * DR_AANTAL_SPELERS
