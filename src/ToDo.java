@@ -8,7 +8,7 @@
  * 
  * Centraal punt voor exceptions maken in exceptions(Package).
  * 
- * internationalisatie aanvullen, vooral fr, en controleren
+ * internationalisatie aanvullen, vooral fr, en controleren ==> DONE
  * 
  * 
  * unieke controle toevoegen aan speler ==> DONE, leeftijd verwijderen van lus (want niet gevraagd blijkbaar) ==> DONE, ASCII code checken voor naam
