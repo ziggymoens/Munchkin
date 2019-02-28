@@ -35,18 +35,18 @@ public class Test {
     }
 
     private void changeLanguage(Locale locale) {
-        bundle.setLocale(locale);
+        LanguageResource.setLocale(locale);
     }
 
     private String stringFromBundle(String string) {
-        return bundle.getString(string);
+        return LanguageResource.getString(string);
     }
 
     private String stringFromBundle(String string, Locale locale) {
-        return bundle.getStringLanguage(string, locale);
+        return LanguageResource.getStringLanguage(string, locale);
     }
 
-    private void test(){
+    private void test() {
         System.out.println("Netbeans test");
     }
 }

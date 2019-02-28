@@ -1,22 +1,11 @@
 package domein;
 
-import domein.repositories.SpelRepository;
-import domein.kaarten.Kaart;
-import domein.repositories.KaartRepository;
-import java.util.*;
-
 /**
  *
  * @author ziggy
  */
 public class DomeinController {
 
-    //Declaratie attributen
-    //private final KaartRepository kr;
-    //private final SpelRepository sr;
-    //public static List<Kaart> kaarten;
-    //private Locale locale;
-    //private final LanguageResource bundle;
     private Spel spel;
     
 
@@ -24,10 +13,6 @@ public class DomeinController {
      * Constructor DomeinController
      */
     public DomeinController() {
-        //kr = new KaartRepository();
-        //kaarten = kr.geefKaarten();
-        /*bundle = new LanguageResource();*/
-//        sr = new SpelRepository();
     }
 
     /**
@@ -50,14 +35,6 @@ public class DomeinController {
     public void voegSpelerToe(String naam, String geslacht) {
         spel.voegSpelerToe(naam, geslacht);
     }
-
-//    /**
-//     * Methode om elke speler 4 kaarten uit te delen, 2 van elke stapel
-//     * NAAR SPEL
-//     */
-//    public void geefStartKaarten() {
-//        spel.geefStartKaarten();
-//    }
 
     /**
      * String die info geeft over het spel en de spelers

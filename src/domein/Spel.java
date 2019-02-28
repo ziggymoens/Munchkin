@@ -15,7 +15,6 @@ public class Spel {
     //Declaratie attributen
     private static int aantalSpelers;
     private final List<Speler> spelers;
-    //private List<Kaart> kaarten;
     private List<Kaart> schatkaarten;
     private List<Kaart> kerkerkaarten;
     private KaartRepository kr;
@@ -48,7 +47,7 @@ public class Spel {
      */
     private void setAantalSpelers(int aantalSpelers) {
         if (aantalSpelers >= 3 && aantalSpelers <= 6) {
-            this.aantalSpelers = aantalSpelers;
+            Spel.aantalSpelers = aantalSpelers;
         } else {
             throw new SpelException(LanguageResource.getString("exception.players"));
         }
@@ -144,5 +143,4 @@ public class Spel {
     public static int getAantalSpelers() {
         return aantalSpelers;
     }
-
 }
