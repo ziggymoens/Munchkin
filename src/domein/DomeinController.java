@@ -18,6 +18,7 @@ public class DomeinController {
     //private Locale locale;
     //private final LanguageResource bundle;
     private Spel spel;
+    
 
     /**
      * Constructor DomeinController
@@ -70,5 +71,9 @@ public class DomeinController {
             ret += String.format("%s%n", lijn);
         }
         return ret;
+    }
+
+    public static int geefAantalSpelers() {
+        return Spel.getAantalSpelers();
     }
 }
