@@ -35,18 +35,10 @@ public class Spel {
     public Spel(int aantalSpelers) {
         setAantalSpelers(aantalSpelers);
         spelers = new ArrayList<>();
+        kr = new KaartRepository();
         schatkaarten = kr.getSchatkaarten();
         kerkerkaarten = kr.getKerkerkaarten();
-        //initialiseerKaarten();
     }
-
-//    private void initialiseerKaarten(){
-//        for (Kaart kaart: kr.getSchatkaarten()) {
-//            schatkaarten.add(kaart);
-//        }
-//        //schatkaarten = kr.getSchatkaarten();
-//        kerkerkaarten = kr.getKerkerkaarten();
-//    }
 
     /**
      * Setter voor aantal spelers met controle op aantal volgens
@@ -70,17 +62,6 @@ public class Spel {
             spelers.get(i).setLevel(1);
         }
     }
-
-// --Commented out by Inspection START (2019-02-27 23:49):
-//    /**
-//     * Geeft het aantal spelers die het spel spelen
-//     *
-//     * @return Aantal spelers
-//     */
-//    public int getAantalSpelers() {
-//        return aantalSpelers;
-//    }
-// --Commented out by Inspection STOP (2019-02-27 23:49)
 
     /**
      * Geeft info over het spel en de spelers
@@ -129,56 +110,10 @@ public class Spel {
         return spelers;
     }
 
-// --Commented out by Inspection START (2019-02-27 23:49):
-//    /**
-//     * Bekijkt hoeveel schatkaarten een bepaalde speler heeft
-//     *
-//     * @param index De nummer van de speler in het spel, volgens volgorde van
-//     * ingeven
-//     * @return Het aantal schatkaarten van de speler
-//     */
-//    public int geefAantalSchatkaartenSpeler(int index) {
-//        return spelers.get(index).getAantalSchatkaarten();
-//    }
-// --Commented out by Inspection STOP (2019-02-27 23:49)
-
-// --Commented out by Inspection START (2019-02-27 23:49):
-//    /**
-//     * Bekijkt hoeveel kerkerkaarten een bepaalde speler heeft
-//     *
-//     * @param index De nummer van de speler in het spel, volgens volgorde van
-//     * ingeven
-//     * @return Het aantal kerkerkaarten van de speler
-//     */
-//    public int geefAantalkerkerkaartenSpeler(int index) {
-//        return spelers.get(index).getAantalKerkerkaarten();
-//    }
-// --Commented out by Inspection STOP (2019-02-27 23:49)
-
-// --Commented out by Inspection START (2019-02-27 23:50):
-//    /**
-//     * Verhoogt het aantal kerkerkaarten van de speler met 1
-//     *
-//     * @param i De nummer van de speler in het spel, volgens volgorde van
-//     * ingeven
-//     */
-//    public void verhoogKerkerkaarten(int i) {
-//        spelers.get(i).setAantalKerkerkaarten(spelers.get(i).getAantalKerkerkaarten() + 1);
-//    }
-// --Commented out by Inspection STOP (2019-02-27 23:50)
-
-// --Commented out by Inspection START (2019-02-27 23:50):
-//    /**
-//     * Verhoogt het aantal schatkaarten van de speler met 1
-//     *
-//     * @param i De nummer van de speler in het spel, volgens volgorde van
-//     * ingeven
-//     */
-//    public void verhoogSchatkaarten(int i) {
-//        spelers.get(i).setAantalSchatkaarten(spelers.get(i).getAantalSchatkaarten() + 1);
-//    }
-// --Commented out by Inspection STOP (2019-02-27 23:50)
-
+    /**
+     *
+     * @param naam
+     */
     private void controleSpeler(String naam) {
         for (Speler speler : spelers) {
             if (naam.equals(speler.getNaam())) {
@@ -187,6 +122,10 @@ public class Spel {
         }
     }
 
+    /**
+     *
+     * @param speler
+     */
     private void geefStartKaarten(Speler speler) {
         speler.voegKaartToe(schatkaarten.get(0));
         schatkaarten.remove(0);
@@ -196,38 +135,12 @@ public class Spel {
         schatkaarten.remove(0);
         speler.voegKaartToe(kerkerkaarten.get(1));
         kerkerkaarten.remove(1);
-
-//        SecureRandom random = new SecureRandom();
-//        //Loop voor elke speler
-//        for (int i = 0; i < getAantalSpelers(); i++) {
-//            int j = 0;
-//            for (int k = 0; k < 4; k++) {
-//                int rKaart;
-//                Kaart randKaart;
-//                //Random kaart kiezen en kijken of deze al in iemand zijn hand zit
-//                do {
-//                    rKaart = random.nextInt(DomeinController.kaarten.size());
-//                    randKaart = DomeinController.kaarten.get(rKaart);
-//                } while (randKaart.isKaartInGebruik() == true);
-//                //Kijken of kaart een van de schatkaarten is, de speler mag er zo 2 hebben
-//                if (randKaart instanceof Equipment || randKaart instanceof ConsumablesSchat) {
-//                    if (geefAantalSchatkaartenSpeler(i) <= 2) {
-//                        voegKaartToe(randKaart, i);
-//                        randKaart.setKaartInGebruik(true);
-//                        verhoogSchatkaarten(i);
-//                    }
-//                //Kijken of kaart een van de kerkerkaarten is, de speler mag er zo 2 hebben
-//                } else if (randKaart instanceof Monster || randKaart instanceof Curse || randKaart instanceof Race || randKaart instanceof ConsumablesKerker) {
-//                    if (geefAantalkerkerkaartenSpeler(i) <= 2) {
-//                        voegKaartToe(randKaart, i);
-//                        randKaart.setKaartInGebruik(true);
-//                        verhoogKerkerkaarten(i);
-//                    }
-//                }
-//            }
-//        }
     }
 
+    /**
+     *
+     * @return
+     */
     public static int getAantalSpelers() {
         return aantalSpelers;
     }

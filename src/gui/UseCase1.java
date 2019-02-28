@@ -99,7 +99,7 @@ public class UseCase1 {
      * het spel
      */
     private static void voegSpelersToe(int aantalSpelers) {
-        for (int i = 0; i < aantalSpelers; i++) {
+        for (int i = 0; i < DomeinController.geefAantalSpelers(); i++) {
             System.out.println(String.format("%s %d", LanguageResource.getString("player"), i + 1));
             System.out.println(LanguageResource.getString("ask.name"));
             String naam = SCAN.next();

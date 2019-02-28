@@ -90,15 +90,16 @@ public class Curse extends Kerkerkaart {
     }
 
     public void setTypeLost(String typeLost) {
-        if (typeLost.toLowerCase().equals("head") || typeLost.toLowerCase().equals("foot")
-                || typeLost.toLowerCase().equals("race") || typeLost.toLowerCase().equals("sex")
-                || typeLost.toLowerCase().equals("item")) {
+        if (LOSTTYPES.valueOf(typeLost) != null) {
             this.typeLost = typeLost;
         }
         else
             throw new CurseException(LanguageResource.getString("curse.typeLost"));
 
-    }
+    }           
+//                typeLost.toLowerCase().equals("head") || typeLost.toLowerCase().equals("foot")
+//                || typeLost.toLowerCase().equals("race") || typeLost.toLowerCase().equals("sex")
+//                || typeLost.toLowerCase().equals("item")
 
     public void setLevelLost(int levelLost) {
         if(levelLost >=1 && levelLost <=2)
