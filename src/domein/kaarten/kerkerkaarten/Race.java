@@ -23,7 +23,7 @@ public class Race extends Kerkerkaart {
      */
     public Race(String type) {
         super(type);
-        controleerType(type);
+        //controleerType(type);
         this.type = type;
         setExtras(type);
     }

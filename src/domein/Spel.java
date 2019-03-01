@@ -18,6 +18,7 @@ public class Spel {
     private List<Kaart> schatkaarten;
     private List<Kaart> kerkerkaarten;
     private KaartRepository kr;
+    private ComparatorSpeler cs;
 
     /**
      * Constructor van Spel zonder parameters spelers = 3
@@ -148,10 +149,11 @@ public class Spel {
      *
      */
     public void speelSpel() {
+        cs = new ComparatorSpeler();
         Speler speler = spelers.get(0);
         for (int i = 0; i < spelers.size(); i++) {
             if (speler.getNaam().toLowerCase().length() >= spelers.get(i).getNaam().toLowerCase().length()){
-                if (speler.getNaam().toLowerCase().charAt(0)<spelers.get(i).getNaam().toLowerCase().charAt(0)) {
+                if (cs.compare(spelers.get(0), speler)>0) {
                     speler = spelers.get(i);
                 }
                 int index = spelers.indexOf(speler);
