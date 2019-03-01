@@ -23,7 +23,7 @@ public class UseCase2 {
     public UseCase2(DomeinController dc) {
         this.dc = dc;
         speelSpel();
-        System.out.println(dc.geefInformatie());
+        System.out.println(String.format("De volgorde van de spelers is: %n%s", dc.geefInformatie()));
     }
 
     /**

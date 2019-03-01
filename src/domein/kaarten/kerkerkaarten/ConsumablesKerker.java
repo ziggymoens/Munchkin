@@ -22,6 +22,7 @@ public class ConsumablesKerker extends Kerkerkaart {
      */
     public ConsumablesKerker(String naam, int bonus) {
         super(naam);
+        controleBonus(bonus);
         this.bonus = bonus;
     }
         
@@ -40,7 +41,10 @@ public class ConsumablesKerker extends Kerkerkaart {
     public String getText() {
         return text;
     }
-    
+    /**
+     * 
+     * @param bonus 
+     */
     private void controleBonus(int bonus){
         if(bonus < -5 || bonus > 10)
             throw new ConsumablesKerkerException(LanguageResource.getString("consumablesKerker.bonus")); 

@@ -1,5 +1,7 @@
 package domein;
 
+import language.LanguageResource;
+
 /**
  *
  * @author ziggy
@@ -43,8 +45,10 @@ public class DomeinController {
     public String geefInformatie() {
         String ret = "";
         String[] sInfo = spel.geefInfo();
+        int index = 1;
         for (String lijn : sInfo) {
-            ret += String.format("%s%n", lijn);
+            ret += String.format("%s %d: %s%n",LanguageResource.getString("player"),index, lijn);
+            index++;
         }
         return ret;
     }
