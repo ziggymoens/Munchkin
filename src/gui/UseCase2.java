@@ -30,14 +30,14 @@ public class UseCase2 {
      *
      */
     public void startUc2() {
-        dc.speelSpel();
+        speelSpel();
     }
 
     /**
      *
      */
     private void speelSpel() {
-
+        dc.speelSpel();
     }
 
 }

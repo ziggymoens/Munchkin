@@ -9,8 +9,10 @@ import language.LanguageResource;
  * @author ziggy
  */
 public class Curse extends Kerkerkaart {
-    
-    private enum LOSTTYPES {HEAD, FOOT, RACE, SEX, ITEM, ALL};
+
+    private enum LOSTTYPES {
+        head, foot, race, sex, item, all
+    };
     private String typeLost;
     private int levelLost;
     private boolean raceLost;
@@ -32,7 +34,7 @@ public class Curse extends Kerkerkaart {
      */
     public Curse(String naam, String typeLost) {
         super(naam);
-        this.typeLost = typeLost;
+        setTypeLost(typeLost);
     }
 
     /**
@@ -89,23 +91,21 @@ public class Curse extends Kerkerkaart {
         return sexLost;
     }
 
-    public void setTypeLost(String typeLost) {
-        if (LOSTTYPES.valueOf(typeLost) != null) {
+    public final void setTypeLost(String typeLost) {
+        if (LOSTTYPES.valueOf(typeLost)!=null) {
             this.typeLost = typeLost;
-        }
-        else
+        } else {
             throw new CurseException(LanguageResource.getString("curse.typeLost"));
+        }
 
-    }           
-//                typeLost.toLowerCase().equals("head") || typeLost.toLowerCase().equals("foot")
-//                || typeLost.toLowerCase().equals("race") || typeLost.toLowerCase().equals("sex")
-//                || typeLost.toLowerCase().equals("item")
+    }
 
     public void setLevelLost(int levelLost) {
-        if(levelLost >=1 && levelLost <=2)
+        if (levelLost >= 1 && levelLost <= 2) {
             this.levelLost = levelLost;
-        else
+        } else {
             throw new CurseException(LanguageResource.getString("curse.levelLost"));
+        }
     }
 
     public void setRaceLost(boolean raceLost) {
