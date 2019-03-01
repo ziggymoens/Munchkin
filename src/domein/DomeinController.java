@@ -67,4 +67,8 @@ public class DomeinController {
     public void speelSpel() {
         spel.speelSpel();
     }
+    
+    public String geefNaamSpeler(int i){
+        return spel.getSpelers().get(i).getNaam();
+    }
 }

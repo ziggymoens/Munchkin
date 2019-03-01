@@ -6,6 +6,8 @@
 package gui;
 
 import domein.DomeinController;
+import java.util.*;
+import language.LanguageResource;
 
 /**
  *
@@ -15,6 +17,7 @@ public class UseCase2 {
 
     //Declaraties voor gehele usecase.
     private final DomeinController dc;
+    private static Scanner SCAN;
 
     /**
      *Constructor voor Use Case 2.
@@ -22,15 +25,9 @@ public class UseCase2 {
      */
     public UseCase2(DomeinController dc) {
         this.dc = dc;
+        SCAN = new Scanner(System.in);
         speelSpel();
-        System.out.println(String.format("De volgorde van de spelers is: %n%s", dc.geefInformatie()));
-    }
-
-    /**
-     *
-     */
-    public void startUc2() {
-        speelSpel();
+        
     }
 
     /**
@@ -38,6 +35,24 @@ public class UseCase2 {
      */
     private void speelSpel() {
         dc.speelSpel();
+        System.out.println(String.format("De volgorde van de spelers is: %n%s%n", dc.geefInformatie()));
+        for (int i = 0; i < DomeinController.geefAantalSpelers(); i++) {
+            String naam = dc.geefNaamSpeler(i);
+            speelBeurt(naam);
+        }
+    }
+    
+    private void speelBeurt(String naam){
+        System.out.printf("%s: %s%n", LanguageResource.getString("player.turn"), naam);
+        int keuze = 0;
+        do {
+            System.out.printf("%s%n"
+                    + "1) %s%n"
+                    + "2) %s%n"
+                    + "3) %s%n", LanguageResource.getString("turn.choice"), LanguageResource.getString("turn.play"), LanguageResource.getString("turn.save"), LanguageResource.getString("turn.stop"));
+            keuze = SCAN.nextInt();
+        } while (keuze < 1 || keuze > 3);
+        
     }
 
 }
