@@ -7,7 +7,6 @@ package domein;
 public class DomeinController {
 
     private Spel spel;
-    
 
     /**
      * Constructor DomeinController
@@ -26,11 +25,11 @@ public class DomeinController {
     }
 
     /**
-     * Methode om een speler toete voegen adhv een naam, geslacht
-     * (deze worden verder gecontroleerd volgens de DR)
+     * Methode om een speler toete voegen adhv een naam, geslacht (deze worden
+     * verder gecontroleerd volgens de DR)
      *
      * @param naam Naam van de speler
-     * @param geslacht Geslacht van de speler     
+     * @param geslacht Geslacht van de speler
      */
     public void voegSpelerToe(String naam, String geslacht) {
         spel.voegSpelerToe(naam, geslacht);
@@ -50,11 +49,18 @@ public class DomeinController {
         return ret;
     }
 
+    /**
+     *
+     * @return
+     */
     public static int geefAantalSpelers() {
         return Spel.getAantalSpelers();
     }
-    
-    public void speelSpel(){
+
+    /**
+     *
+     */
+    public void speelSpel() {
         spel.speelSpel();
     }
 }

@@ -12,13 +12,25 @@ import domein.DomeinController;
  * @author ziggy
  */
 public class UseCase2 {
+
+    //Declaraties voor gehele usecase.
     private final DomeinController dc;
 
+    /**
+     *
+     * @param dc
+     */
     public UseCase2(DomeinController dc) {
         this.dc = dc;
-        dc.speelSpel();
+        speelSpel();
         System.out.println(dc.geefInformatie());
     }
 
+    /**
+     *
+     */
+    private void speelSpel() {
+        dc.speelSpel();
+    }
 
 }
