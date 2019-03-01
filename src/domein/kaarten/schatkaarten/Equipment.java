@@ -34,11 +34,11 @@ public class Equipment extends Schatkaart {
         super(naam, waarde);
         this.bonus = bonus;
         this.type = type;
-        this.usableBy = race;
-        this.text = text;
-        this.runAway = runAway;
-        this.specialBonus = specialBonus;
-        this.specialRace = specialRace;
+        setUsableBy(usableBy);
+        setText(text);
+        setRunAway(runAway);
+        setSpecialBonus(specialBonus);
+        setSpecialRace(specialRace);
     }
 
     /**
@@ -66,7 +66,7 @@ public class Equipment extends Schatkaart {
         super(naam, waarde);
         this.bonus = bonus;
         this.type = type;
-        this.usableBy = race;
+        setUsableBy(usableBy);
     }
 
     /**
@@ -82,8 +82,8 @@ public class Equipment extends Schatkaart {
         super(naam, waarde);
         this.bonus = bonus;
         this.type = type;
-        this.specialBonus = specialBonus;
-        this.specialRace = specialRace;
+        setSpecialBonus(specialBonus);
+        setSpecialRace(specialRace);
     }
 
     /**
@@ -97,7 +97,7 @@ public class Equipment extends Schatkaart {
     public Equipment(String naam, int waarde, String type, int bonus, int runAway) {
         super(naam, waarde);
         this.bonus = bonus;
-        this.runAway = runAway;
+        setRunAway(runAway);
         this.type = type;
     }
 
@@ -156,4 +156,26 @@ public class Equipment extends Schatkaart {
     public Race getSpecialRace() {
         return specialRace;
     }
+
+    public final void setUsableBy(Race usableBy) {
+        this.usableBy = usableBy;
+    }
+
+    public final void setText(String text) {
+        this.text = text;
+    }
+
+    public final void setRunAway(int runAway) {
+        this.runAway = runAway;
+    }
+
+    public final void setSpecialBonus(int specialBonus) {
+        this.specialBonus = specialBonus;
+    }
+
+    public final void setSpecialRace(Race specialRace) {
+        this.specialRace = specialRace;
+    }
+    
+    
 }

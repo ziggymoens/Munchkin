@@ -23,8 +23,8 @@ public class ConsumablesSchat extends Schatkaart {
      */
     public ConsumablesSchat(String naam, int waarde, String text, int battleBonus) {
         super(naam, waarde);
-        this.text = text;
-        this.battleBonus = battleBonus;
+        setText(text);
+        setBattleBonus(battleBonus);
     }
 
     /**
@@ -52,14 +52,15 @@ public class ConsumablesSchat extends Schatkaart {
         return battleBonus;
     }
 
-    public void setText(String text) {
+    public final void setText(String text) {
         if(text == null || text.equals(""))
            throw new ConsumablesSchatException(LanguageResource.getString("consumablesSchat.exception"));
         else
             this.text = text;
     }
 
-    public void setBattleBonus(int battleBonus) {
+    public final void setBattleBonus(int battleBonus) {
         this.battleBonus = battleBonus;
     }
+    
 }

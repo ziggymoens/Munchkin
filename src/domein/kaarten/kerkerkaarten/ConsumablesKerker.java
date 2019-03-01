@@ -45,4 +45,6 @@ public class ConsumablesKerker extends Kerkerkaart {
         if(bonus < -5 || bonus > 10)
             throw new ConsumablesKerkerException(LanguageResource.getString("consumablesKerker.bonus")); 
     }
+    
+    
 }

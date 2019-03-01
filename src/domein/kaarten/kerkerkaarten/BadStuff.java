@@ -27,26 +27,26 @@ public class BadStuff {
     private boolean snailsOnSpeed;
     private boolean wrightBrothers;
 
-    public BadStuff(String naam, String uitleg, int levelsLost) {
+    public BadStuff(String naam, String text, int levelsLost) {
         setNaam(naam);
-        this.text = uitleg;
-        this.levelsLost = levelsLost;
+        setText(text);
+        setLevelsLost(levelsLost);
     }
 
     public BadStuff(String naam, String gearLost) {
         setNaam(naam);
-        this.gearLost = gearLost;
+        setGearLost(gearLost);
     }
 
     public BadStuff(String naam, int itemstaken) {
         setNaam(naam);
-        this.itemsTaken = itemstaken;
+        setItemsTaken(itemstaken);
     }
 
     public BadStuff(String naam, boolean weaponsLost, boolean raceLost) {
         setNaam(naam);
-        this.weaponsLost = weaponsLost;
-        this.raceLost = raceLost;
+        setWeaponsLost(weaponsLost);
+        setRaceLost(raceLost);
     }
 
     public BadStuff(String naam) {
@@ -55,9 +55,9 @@ public class BadStuff {
 
     public BadStuff(String naam, boolean weaponsLost, boolean raceLost, boolean dead) {
         setNaam(naam);
-        this.weaponsLost = weaponsLost;
-        this.raceLost = raceLost;
-        this.dead = dead;
+        setWeaponsLost(weaponsLost);
+        setRaceLost(raceLost);
+        setDead(dead);
     }
 
     private void setNaam(String naam) {
@@ -83,4 +83,58 @@ public class BadStuff {
         }
         this.naam = naam;
     }
+
+    public final void setText(String text) {
+        this.text = text;
+    }
+
+    public final void setLevelsLost(int levelsLost) {
+        this.levelsLost = levelsLost;
+    }
+
+    public final void setGearLost(String gearLost) {
+        this.gearLost = gearLost;
+    }
+
+    public final void setItemsTaken(int itemsTaken) {
+        this.itemsTaken = itemsTaken;
+    }
+
+    public final void setWeaponsLost(boolean weaponsLost) {
+        this.weaponsLost = weaponsLost;
+    }
+
+    public final void setRaceLost(boolean raceLost) {
+        this.raceLost = raceLost;
+    }
+
+    public final void setDead(boolean dead) {
+        this.dead = dead;
+    }
+
+    public void setCardsLost(String cardsLost) {
+        this.cardsLost = cardsLost;
+    }
+
+    public void setLawyersCard(boolean lawyersCard) {
+        this.lawyersCard = lawyersCard;
+    }
+
+    public void setOrgsCard(boolean orgsCard) {
+        this.orgsCard = orgsCard;
+    }
+
+    public void setGhoulfriends(boolean ghoulfriends) {
+        this.ghoulfriends = ghoulfriends;
+    }
+
+    public void setSnailsOnSpeed(boolean snailsOnSpeed) {
+        this.snailsOnSpeed = snailsOnSpeed;
+    }
+
+    public void setWrightBrothers(boolean wrightBrothers) {
+        this.wrightBrothers = wrightBrothers;
+    }
+    
+    
 }

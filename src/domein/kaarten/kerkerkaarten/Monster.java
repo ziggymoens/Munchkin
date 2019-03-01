@@ -42,14 +42,14 @@ public class Monster extends Kerkerkaart {
         this.level = level;
         this.winstTeasures = winstTeasures;
         this.winstLevels = winstLevels;
-        this.text = text;
-        this.outRun = outRun;
-        this.runAway = runAway;
-        this.specialRace = specialRace;
-        this.specialRaceExtra = specialRaceExtra;
-        this.specialRaceReason = specialRaceReason;
-        this.notPursue = notPursue;
-        this.levelsLostHigherLevel = levelsLostHigherLevel;
+        setText(text);
+        setOutRun(outRun);
+        setRunAway(runAway);
+        setSpecialRace(specialRace);
+        setSpecialRaceExtra(specialRaceExtra);
+        setSpecialRaceReason(specialRaceReason);
+        setNotPursue(notPursue);
+        setLevelsLostHigherLevel(levelsLostHigherLevel);
         this.badStuff = badStuff;
     }
 
@@ -85,9 +85,9 @@ public class Monster extends Kerkerkaart {
         this.level = level;
         this.winstTeasures = winstTeasures;
         this.winstLevels = winstLevels;
-        this.specialRace = specialRace;
-        this.specialRaceExtra = specialRaceExtra;
-        this.specialRaceReason = specialRaceReason;
+        setSpecialRace(specialRace);
+        setSpecialRaceExtra(specialRaceExtra);
+        setSpecialRaceReason(specialRaceReason);
         this.badStuff = badStuff;
     }
 
@@ -106,8 +106,8 @@ public class Monster extends Kerkerkaart {
         this.level = level;
         this.winstTeasures = winstTeasures;
         this.winstLevels = winstLevels;
-        this.text = text;
-        this.notPursue = notPursue;
+        setText(text);
+        setNotPursue(notPursue);
         this.badStuff = badStuff;
     }
 
@@ -207,4 +207,36 @@ public class Monster extends Kerkerkaart {
         return levelsLostHigherLevel;
     }
 
+    public final void setText(String text) {
+        this.text = text;
+    }
+
+    public final void setOutRun(boolean outRun) {
+        this.outRun = outRun;
+    }
+
+    public final void setRunAway(int runAway) {
+        this.runAway = runAway;
+    }
+
+    public final void setSpecialRace(Race specialRace) {
+        this.specialRace = specialRace;
+    }
+
+    public final void setSpecialRaceExtra(int specialRaceExtra) {
+        this.specialRaceExtra = specialRaceExtra;
+    }
+
+    public final void setSpecialRaceReason(String specialRaceReason) {
+        this.specialRaceReason = specialRaceReason;
+    }
+
+    public final void setNotPursue(int notPursue) {
+        this.notPursue = notPursue;
+    }
+
+    public final void setLevelsLostHigherLevel(int levelsLostHigherLevel) {
+        this.levelsLostHigherLevel = levelsLostHigherLevel;
+    }
+    
 }

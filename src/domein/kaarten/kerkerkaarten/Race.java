@@ -67,4 +67,5 @@ public class Race extends Kerkerkaart {
     public boolean isExtraRunAway() {
         return extraRunAway;
     }
+    
 }

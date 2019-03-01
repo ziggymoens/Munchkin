@@ -26,4 +26,5 @@ public abstract class Schatkaart extends Kaart {
     public int getWaarde() {
         return waarde;
     }
+    
 }

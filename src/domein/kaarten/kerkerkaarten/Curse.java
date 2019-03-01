@@ -55,8 +55,8 @@ public class Curse extends Kerkerkaart {
      */
     public Curse(String naam, boolean raceLost, boolean sexLost) {
         super(naam);
-        this.raceLost = raceLost;
-        this.sexLost = sexLost;
+        setRaceLost(raceLost);
+        setSexLost(sexLost);
     }
 
     /**
@@ -108,12 +108,13 @@ public class Curse extends Kerkerkaart {
         }
     }
 
-    public void setRaceLost(boolean raceLost) {
+    public final void setRaceLost(boolean raceLost) {
         this.raceLost = raceLost;
     }
 
-    public void setSexLost(boolean sexLost) {
+    public final void setSexLost(boolean sexLost) {
         this.sexLost = sexLost;
     }
 
+    
 }
