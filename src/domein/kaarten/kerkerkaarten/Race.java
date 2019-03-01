@@ -11,15 +11,19 @@ public class Race extends Kerkerkaart {
     private boolean extraWapen;
     private boolean doublePrice;
     private boolean extraRunAway;
+    private final String type;
+    private enum TYPES{elf, dwarg}; // nog?
 
     /**
      * Constructor voor kerkerkaart ras (die superklasse Kerkerkaart gebruikt)
      *
-     * @param naam
+     * @param type
      */
-    public Race(String naam) {
-        super(naam);
-        setExtras(naam);
+    public Race(String type) {
+        super(type);
+        controleerType(type);
+        this.type = type;
+        setExtras(type);
 
     }
 
