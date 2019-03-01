@@ -10,7 +10,7 @@ import language.LanguageResource;
  */
 public class Curse extends Kerkerkaart {
     
-    private enum LOSTTYPES {HEAD, FOOT, RACE, SEX, ITEM};
+    private enum LOSTTYPES {HEAD, FOOT, RACE, SEX, ITEM, ALL};
     private String typeLost;
     private int levelLost;
     private boolean raceLost;

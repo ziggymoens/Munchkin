@@ -130,10 +130,10 @@ public class Spel {
         schatkaarten.remove(0);
         speler.voegKaartToe(kerkerkaarten.get(0));
         kerkerkaarten.remove(0);
-        speler.voegKaartToe(schatkaarten.get(1));
+        speler.voegKaartToe(schatkaarten.get(0));
         schatkaarten.remove(0);
-        speler.voegKaartToe(kerkerkaarten.get(1));
-        kerkerkaarten.remove(1);
+        speler.voegKaartToe(kerkerkaarten.get(0));
+        kerkerkaarten.remove(0);
     }
 
     /**
@@ -147,15 +147,17 @@ public class Spel {
     /**
      *
      */
-    void speelSpel() {
+    public void speelSpel() {
+        Speler speler = spelers.get(0);
         for (int i = 0; i < spelers.size(); i++) {
-            if (spelers.get(i).getNaam().length() <= spelers.get(0).getNaam().length()) {
-                Speler speler = spelers.get(i);
-                spelers.remove(i);
+            if (speler.getNaam().toLowerCase().length() >= spelers.get(i).getNaam().toLowerCase().length()){
+                if (speler.getNaam().toLowerCase().charAt(0)<spelers.get(i).getNaam().toLowerCase().charAt(0)) {
+                    speler = spelers.get(i);
+                }
+                int index = spelers.indexOf(speler);
+                spelers.remove(index);
                 spelers.add(0, speler);
-                break;
             }
         }
-
     }
 }

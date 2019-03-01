@@ -39,7 +39,7 @@ public class KaartMapper {
         k5 = new Monster("Squidzilla", 18, 4, 2, "Slimy!", 4, new BadStuff("squidzilla", false, false, true));
         k6 = new Monster("Potted Plant", 1,1,1, new BadStuff("potted plant"));
         k7 = new Monster("Lawyers", 6, 2, 1, new BadStuff("lawyers"));
-        k8 = new Curse("Curse!", "all");
+        k8 = new Curse("Curse!", "ally");
         k9 = new Curse("Curse!", false, true);
         k10 = new Race("Dwarf");
         k11 = new Race("Elf");

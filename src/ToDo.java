@@ -17,7 +17,7 @@
  * 
  * SQL exception moet gevangen worden!
  * 
- * 
+ * COMPERATOR TOEVOEGEN
  * 
  * 
  */

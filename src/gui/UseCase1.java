@@ -13,7 +13,8 @@ public class UseCase1 {
 
     //declaraties voor gehele usecase
     private static final Scanner SCAN = new Scanner(System.in);
-    private static DomeinController dc; //static moet weg
+    private final DomeinController dc;
+    private UseCase2 uc2;
 
     /**
      * constructor voor UseCase 1
@@ -21,7 +22,7 @@ public class UseCase1 {
      * @param dc
      */
     public UseCase1(DomeinController dc) {
-        UseCase1.dc = dc;
+        this.dc = dc;
         welcome();
         //gebruiker vragen of hij een nieuw spel wil starten.
         System.out.println(LanguageResource.getString("newGame"));
@@ -37,6 +38,9 @@ public class UseCase1 {
             dc.startSpel(aantalSpelers);
             voegSpelersToe();
             System.out.println(dc.geefInformatie());
+            uc2 = new UseCase2(this.dc);
+            uc2.startUc2();
+            
         }
     }
 
@@ -91,14 +95,13 @@ public class UseCase1 {
         }
         return aantalSpelers;
     }
-
     /**
      * Voeg het aantal gekozen aantal spelers toe aan het spel a.d.h.v. naam,
      *
      * @param aantalSpelers het aantal spelers dat de methode zal toevoegen aan
      * het spel
      */
-    private static void voegSpelersToe() {
+    private void voegSpelersToe() {
         for (int i = 0; i < DomeinController.geefAantalSpelers(); i++) {
             System.out.println(String.format("%s %d", LanguageResource.getString("player"), i + 1));
             System.out.println(LanguageResource.getString("ask.name"));

@@ -17,8 +17,8 @@ public class UseCase2 {
     private final DomeinController dc;
 
     /**
-     *
-     * @param dc
+     *Constructor voor Use Case 2.
+     * @param dc Domeincontroller van het spel aangemaakt in de StartUp
      */
     public UseCase2(DomeinController dc) {
         this.dc = dc;
@@ -29,8 +29,15 @@ public class UseCase2 {
     /**
      *
      */
-    private void speelSpel() {
+    public void startUc2() {
         dc.speelSpel();
+    }
+
+    /**
+     *
+     */
+    private void speelSpel() {
+
     }
 
 }

@@ -45,26 +45,10 @@ public class KaartRepository {
     }
 
     public List<Kaart> getSchatkaarten() {
-//        List<Kaart> sk = new ArrayList<>();
-//        for(Kaart kaart: kaarten){
-//            if (kaart instanceof Equipment || kaart instanceof ConsumablesSchat) {
-//                sk.add(kaart);
-//            }
-//        }
-//        Collections.shuffle(sk);
-//        return sk;
         return schatkaarten;
     }
 
     public List<Kaart> getKerkerkaarten() {
-//        List<Kaart> kk = new ArrayList<>();
-//        for (Kaart kaart: kaarten) {
-//            if (kaart instanceof Monster || kaart instanceof Curse || kaart instanceof Race || kaart instanceof ConsumablesKerker) {
-//                kk.add(kaart);
-//            }
-//        }
-//        Collections.shuffle(kk);
-//        return kk;
         return kerkerkaarten;
     }
 }
