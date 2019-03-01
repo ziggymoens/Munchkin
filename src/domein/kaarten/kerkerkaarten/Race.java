@@ -12,6 +12,8 @@ public class Race extends Kerkerkaart {
     private boolean doublePrice;
     private boolean extraRunAway;
     private final String type;
+
+   
     private enum TYPES{elf, dwarg}; // nog?
 
     /**
@@ -24,7 +26,6 @@ public class Race extends Kerkerkaart {
         controleerType(type);
         this.type = type;
         setExtras(type);
-
     }
 
     /**
@@ -72,4 +73,7 @@ public class Race extends Kerkerkaart {
         return extraRunAway;
     }
     
+     private void controleerType(String type) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
