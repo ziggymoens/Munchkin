@@ -20,14 +20,14 @@ public class UseCase2 {
     private static Scanner SCAN;
 
     /**
-     *Constructor voor Use Case 2.
+     * Constructor voor Use Case 2.
+     *
      * @param dc Domeincontroller van het spel aangemaakt in de StartUp
      */
     public UseCase2(DomeinController dc) {
         this.dc = dc;
         SCAN = new Scanner(System.in);
         speelSpel();
-        
     }
 
     /**
@@ -37,12 +37,15 @@ public class UseCase2 {
         dc.speelSpel();
         System.out.println(String.format("De volgorde van de spelers is: %n%s%n", dc.geefInformatie()));
         for (int i = 0; i < DomeinController.geefAantalSpelers(); i++) {
-            String naam = dc.geefNaamSpeler(i);
-            speelBeurt(naam);
+            if (niemandGewonnen()) {
+                String naam = dc.geefNaamSpeler(i);
+                speelBeurt(naam);
+            }
         }
+        System.out.printf("%s: %s", LanguageResource.getString("end.winner"), geefNaamWinnaar());
     }
-    
-    private void speelBeurt(String naam){
+
+    private void speelBeurt(String naam) {
         System.out.printf("%s: %s%n", LanguageResource.getString("player.turn"), naam);
         int keuze = 0;
         do {
@@ -52,7 +55,19 @@ public class UseCase2 {
                     + "3) %s%n", LanguageResource.getString("turn.choice"), LanguageResource.getString("turn.play"), LanguageResource.getString("turn.save"), LanguageResource.getString("turn.stop"));
             keuze = SCAN.nextInt();
         } while (keuze < 1 || keuze > 3);
-        
     }
 
+    private boolean niemandGewonnen() {
+        boolean ret = true;
+        for (int i = 0; i < DomeinController.geefAantalSpelers(); i++) {
+            if (dc.geefLevel(i) == 10) {
+                return false;
+            }
+        }
+        return ret;
+    }
+    
+    private String geefNaamWinnaar(){
+        return dc.geefNaamWinnaar();
+    }
 }

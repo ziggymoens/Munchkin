@@ -38,9 +38,7 @@ public class UseCase1 {
             dc.startSpel(aantalSpelers);
             voegSpelersToe();
             System.out.println(dc.geefInformatie());
-            uc2 = new UseCase2(this.dc);
-            uc2.startUc2();
-            
+            uc2 = new UseCase2(this.dc);            
         }
     }
 
