@@ -12,6 +12,7 @@ package exceptions;
 public class KaartException extends RuntimeException{
 
     public KaartException() {
+        super("Algemene Kaart Exception");
     }
 
     public KaartException(String message) {

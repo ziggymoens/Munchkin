@@ -12,6 +12,7 @@ package exceptions;
 public class MonsterException extends RuntimeException{
 
     public MonsterException() {
+        super("Monster Exception, domein.kaarten.kerkerkaarten");
     }
 
     public MonsterException(String message) {

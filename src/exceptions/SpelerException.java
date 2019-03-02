@@ -12,6 +12,7 @@ package exceptions;
 public class SpelerException extends RuntimeException{
 
     public SpelerException() {
+        super("Algemene Speler Exception");
     }
 
     public SpelerException(String message) {

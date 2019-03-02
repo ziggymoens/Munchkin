@@ -12,6 +12,7 @@ package exceptions;
 public class CurseException extends RuntimeException{
 
     public CurseException() {
+        super("Curse Exception, domein.kaarten.kerkerkaarten");
     }
 
     public CurseException(String message) {

@@ -12,6 +12,7 @@ package exceptions;
 public class SpelException extends RuntimeException{
 
     public SpelException() {
+        super("Algemene Spel Exception");
     }
 
     public SpelException(String message) {

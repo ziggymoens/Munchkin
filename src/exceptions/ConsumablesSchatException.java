@@ -12,6 +12,7 @@ package exceptions;
 public class ConsumablesSchatException extends RuntimeException {
 
     public ConsumablesSchatException() {
+        super("Consumables Schat Exception, domein.kaarten.schatkaarten");
     }
     
     public ConsumablesSchatException(String message){

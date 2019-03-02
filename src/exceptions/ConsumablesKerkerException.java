@@ -12,6 +12,7 @@ package exceptions;
 public class ConsumablesKerkerException extends RuntimeException{
 
     public ConsumablesKerkerException() {
+        super("Consumables Kerker Exception, domein.kaarten.kerkerkaarten");
     }
 
     public ConsumablesKerkerException(String message) {

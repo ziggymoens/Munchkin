@@ -160,4 +160,14 @@ public class Spel {
         spelers.remove(index);
         spelers.add(0, speler);
     }
+    
+    public String geefWinnaar(){
+        String naam = "";
+        for (Speler speler: spelers) {
+            if (speler.getLevel() == 10) {
+                naam = speler.getNaam();
+            }
+        }
+        return naam;
+    }
 }

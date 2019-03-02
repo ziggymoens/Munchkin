@@ -77,12 +77,6 @@ public class DomeinController {
     }
 
     public String geefNaamWinnaar() {
-        String naam = "";
-        for (Speler speler: spel.getSpelers()) {
-            if (speler.getLevel() == 10) {
-                naam = speler.getNaam();
-            }
-        }
-        return naam;
+        return spel.geefWinnaar();
     }
 }

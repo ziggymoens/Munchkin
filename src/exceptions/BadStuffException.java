@@ -12,7 +12,7 @@ package exceptions;
 public class BadStuffException extends RuntimeException{
 
     public BadStuffException() {
-        
+        this("BadStuff Exception, domein.kaarten.kerkerkaarten");
     }
 
     public BadStuffException(String message) {

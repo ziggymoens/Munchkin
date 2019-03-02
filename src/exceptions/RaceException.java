@@ -12,6 +12,7 @@ package exceptions;
 public class RaceException extends RuntimeException{
 
     public RaceException() {
+        super("Race Exception, domein.kaarten.kerkerkaarten");
     }
 
     public RaceException(String message) {
