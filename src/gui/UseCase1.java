@@ -38,6 +38,7 @@ public class UseCase1 {
             dc.startSpel(aantalSpelers);
             voegSpelersToe();
             System.out.println(dc.geefInformatie());
+            //verdergaan naar UC2
             uc2 = new UseCase2(this.dc);            
         }
     }

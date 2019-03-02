@@ -44,7 +44,10 @@ public class UseCase2 {
         }
         System.out.printf("%s: %s", LanguageResource.getString("end.winner"), geefNaamWinnaar());
     }
-
+/**
+ * 
+ * @param naam 
+ */
     private void speelBeurt(String naam) {
         System.out.printf("%s: %s%n", LanguageResource.getString("player.turn"), naam);
         int keuze = 0;
@@ -55,8 +58,22 @@ public class UseCase2 {
                     + "3) %s%n", LanguageResource.getString("turn.choice"), LanguageResource.getString("turn.play"), LanguageResource.getString("turn.save"), LanguageResource.getString("turn.stop"));
             keuze = SCAN.nextInt();
         } while (keuze < 1 || keuze > 3);
+        
+        switch(keuze){
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            default:
+                break;
+        }
     }
-
+/**
+ * 
+ * @return 
+ */
     private boolean niemandGewonnen() {
         boolean ret = true;
         for (int i = 0; i < DomeinController.geefAantalSpelers(); i++) {
@@ -66,7 +83,10 @@ public class UseCase2 {
         }
         return ret;
     }
-    
+    /**
+     * 
+     * @return 
+     */
     private String geefNaamWinnaar(){
         return dc.geefNaamWinnaar();
     }
