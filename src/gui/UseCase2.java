@@ -44,7 +44,7 @@ public class UseCase2 {
                 }
             }
         }
-        System.out.printf("%s: %s", LanguageResource.getString("end.winner"), geefNaamWinnaar());
+        System.out.printf("%s: %s", LanguageResource.getString("end.won"), geefNaamWinnaar());
     }
 
     /**
