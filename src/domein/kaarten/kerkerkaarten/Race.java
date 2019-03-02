@@ -26,18 +26,17 @@ public class Race extends Kerkerkaart {
      */
     public Race(String type) {
         super(type);
-        //controleerType(type);
+        controleerType(type);
         this.type = type;
-        setExtras(type);
+        setExtras();
     }
 
     /**
      * switch om te rassen te setten
      * @param naam
      */
-    private void setExtras(String naam) {
-        char n = naam.toLowerCase().charAt(0);
-        switch (naam) {
+    private void setExtras() {
+        switch (type.toLowerCase()) {
             case "dwarf":
                 extraWapen = true;
                 break;
@@ -76,7 +75,10 @@ public class Race extends Kerkerkaart {
         return extraRunAway;
     }
     
-    
+    /**
+     * 
+     * @param type 
+     */
     private void controleerType(String type){
         if(TYPES.valueOf(type) == null)
             throw new RaceException(LanguageResource.getString("Race.exception"));
