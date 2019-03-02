@@ -1,6 +1,8 @@
 package domein.kaarten.kerkerkaarten;
 
 import domein.kaarten.Kerkerkaart;
+import exceptions.MonsterException;
+import language.LanguageResource;
 
 /**
  *
@@ -207,16 +209,24 @@ public class Monster extends Kerkerkaart {
         return levelsLostHigherLevel;
     }
 
+    
     public final void setText(String text) {
-        this.text = text;
+        if(text != null || text.toLowerCase().equals(""))
+            throw new MonsterException(LanguageResource.getString("Monster.exception"));
+        else
+            this.text = text;
     }
 
+    
     public final void setOutRun(boolean outRun) {
         this.outRun = outRun;
     }
 
     public final void setRunAway(int runAway) {
-        this.runAway = runAway;
+        if(runAway > 0)
+            this.runAway = runAway;
+        else
+            throw new MonsterException(LanguageResource.getString("Monster"));
     }
 
     public final void setSpecialRace(Race specialRace) {

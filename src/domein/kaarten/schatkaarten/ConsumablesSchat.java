@@ -60,7 +60,10 @@ public class ConsumablesSchat extends Schatkaart {
     }
 
     public final void setBattleBonus(int battleBonus) {
-        this.battleBonus = battleBonus;
+        if(battleBonus >= 0)
+            this.battleBonus = battleBonus;
+        else
+            throw new ConsumablesSchatException(LanguageResource.getString("consumablesSchat.exception"));
     }
     
 }

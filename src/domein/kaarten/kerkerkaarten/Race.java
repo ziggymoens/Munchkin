@@ -1,6 +1,8 @@
 package domein.kaarten.kerkerkaarten;
 
 import domein.kaarten.Kerkerkaart;
+import exceptions.RaceException;
+import language.LanguageResource;
 
 /**
  *
@@ -13,8 +15,9 @@ public class Race extends Kerkerkaart {
     private boolean extraRunAway;
     private final String type;
 
-   
-    private enum TYPES{elf, dwarg}; // nog?
+    private enum TYPES {
+        elf, dwarf, halfling
+    }; // nog?
 
     /**
      * Constructor voor kerkerkaart ras (die superklasse Kerkerkaart gebruikt)
@@ -29,7 +32,7 @@ public class Race extends Kerkerkaart {
     }
 
     /**
-     *
+     * switch om te rassen te setten
      * @param naam
      */
     private void setExtras(String naam) {
@@ -73,7 +76,9 @@ public class Race extends Kerkerkaart {
         return extraRunAway;
     }
     
-     private void controleerType(String type) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    private void controleerType(String type){
+        if(TYPES.valueOf(type) == null)
+            throw new RaceException(LanguageResource.getString("Race.exception"));
     }
 }

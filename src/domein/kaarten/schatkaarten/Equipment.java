@@ -2,6 +2,8 @@ package domein.kaarten.schatkaarten;
 
 import domein.kaarten.kerkerkaarten.Race;
 import domein.kaarten.Schatkaart;
+import exceptions.EquipmentSchatException;
+import language.LanguageResource;
 
 /**
  *
@@ -170,7 +172,10 @@ public class Equipment extends Schatkaart {
     }
 
     public final void setSpecialBonus(int specialBonus) {
-        this.specialBonus = specialBonus;
+        if(specialBonus < 0)
+            throw new EquipmentSchatException(LanguageResource.getString("EquipmentSchat.exception"));
+        else
+            this.specialBonus = specialBonus;
     }
 
     public final void setSpecialRace(Race specialRace) {
