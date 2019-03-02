@@ -36,18 +36,21 @@ public class UseCase2 {
     private void speelSpel() {
         dc.speelSpel();
         System.out.println(String.format("De volgorde van de spelers is: %n%s%n", dc.geefInformatie()));
-        for (int i = 0; i < DomeinController.geefAantalSpelers(); i++) {
-            if (niemandGewonnen()) {
-                String naam = dc.geefNaamSpeler(i);
-                speelBeurt(naam);
+        while (niemandGewonnen()) {
+            for (int i = 0; i < DomeinController.geefAantalSpelers(); i++) {
+                if (niemandGewonnen()) {
+                    String naam = dc.geefNaamSpeler(i);
+                    speelBeurt(naam);
+                }
             }
         }
         System.out.printf("%s: %s", LanguageResource.getString("end.winner"), geefNaamWinnaar());
     }
-/**
- * 
- * @param naam 
- */
+
+    /**
+     *
+     * @param naam
+     */
     private void speelBeurt(String naam) {
         System.out.printf("%s: %s%n", LanguageResource.getString("player.turn"), naam);
         int keuze = 0;
@@ -58,8 +61,8 @@ public class UseCase2 {
                     + "3) %s%n", LanguageResource.getString("turn.choice"), LanguageResource.getString("turn.play"), LanguageResource.getString("turn.save"), LanguageResource.getString("turn.stop"));
             keuze = SCAN.nextInt();
         } while (keuze < 1 || keuze > 3);
-        
-        switch(keuze){
+
+        switch (keuze) {
             case 1:
                 break;
             case 2:
@@ -70,10 +73,11 @@ public class UseCase2 {
                 break;
         }
     }
-/**
- * 
- * @return 
- */
+
+    /**
+     *
+     * @return
+     */
     private boolean niemandGewonnen() {
         boolean ret = true;
         for (int i = 0; i < DomeinController.geefAantalSpelers(); i++) {
@@ -83,11 +87,12 @@ public class UseCase2 {
         }
         return ret;
     }
+
     /**
-     * 
-     * @return 
+     *
+     * @return
      */
-    private String geefNaamWinnaar(){
+    private String geefNaamWinnaar() {
         return dc.geefNaamWinnaar();
     }
 }
