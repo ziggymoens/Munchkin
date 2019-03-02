@@ -64,10 +64,17 @@ public class UseCase2 {
 
         switch (keuze) {
             case 1:
+                try {
+                    dc.speelBeurt(naam);
+                } catch (Exception e) {
+                    System.err.println(e.getMessage());
+                }
                 break;
             case 2:
+                dc.spelOpslaan();
                 break;
             case 3:
+                System.exit(0);
                 break;
             default:
                 break;

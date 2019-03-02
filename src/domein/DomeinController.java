@@ -1,5 +1,7 @@
 package domein;
 
+import domein.repositories.SpelRepository;
+import java.util.List;
 import language.LanguageResource;
 
 /**
@@ -9,11 +11,13 @@ import language.LanguageResource;
 public class DomeinController {
 
     private Spel spel;
+    private SpelRepository sr;
 
     /**
      * Constructor DomeinController
      */
     public DomeinController() {
+        sr = new SpelRepository();
     }
 
     /**
@@ -47,7 +51,7 @@ public class DomeinController {
         String[] sInfo = spel.geefInfo();
         int index = 1;
         for (String lijn : sInfo) {
-            ret += String.format("%s %d: %s%n",LanguageResource.getString("player"),index, lijn);
+            ret += String.format("%s %d: %s%n", LanguageResource.getString("player"), index, lijn);
             index++;
         }
         return ret;
@@ -67,16 +71,64 @@ public class DomeinController {
     public void speelSpel() {
         spel.speelSpel();
     }
-    
-    public String geefNaamSpeler(int i){
+
+    /**
+     *
+     * @param i
+     * @return
+     */
+    public String geefNaamSpeler(int i) {
         return spel.getSpelers().get(i).getNaam();
     }
 
+    /**
+     *
+     * @param i
+     * @return
+     */
     public int geefLevel(int i) {
         return spel.getSpelers().get(i).getLevel();
     }
 
+    /**
+     *
+     * @return
+     */
     public String geefNaamWinnaar() {
         return spel.geefWinnaar();
+    }
+
+    /**
+     *
+     * @param naam naam van de speler die de beurt gaat spelen
+     */
+    public void speelBeurt(String naam) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /**
+     *Spel opslaan
+     */
+    public void spelOpslaan() {
+        sr.spelOpslaan(this.spel);
+    }
+
+    
+    public String geefOpgeslagenSpellen(){
+        List<Spel> spellen = sr.getSpellen();
+        String ret = "";
+        int index = 1;
+        for (Spel spel: spellen) {
+            ret += String.format("Spel %d%n%s", index,spel.toString());
+        }
+        return ret;
+    }
+    
+    /**
+     *Spel laden
+     * @param index
+     */
+    public void spelLaden(int index) {
+        this.spel = sr.getSpellen().get(index-1);
     }
 }

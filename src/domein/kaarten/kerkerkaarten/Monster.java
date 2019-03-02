@@ -209,24 +209,20 @@ public class Monster extends Kerkerkaart {
         return levelsLostHigherLevel;
     }
 
-    
     public final void setText(String text) {
-        if(text != null || text.toLowerCase().equals(""))
-            throw new MonsterException(LanguageResource.getString("Monster.exception"));
-        else
-            this.text = text;
+        this.text = text;
     }
 
-    
     public final void setOutRun(boolean outRun) {
         this.outRun = outRun;
     }
 
     public final void setRunAway(int runAway) {
-        if(runAway > 0)
+        if (runAway > 0) {
             this.runAway = runAway;
-        else
+        } else {
             throw new MonsterException(LanguageResource.getString("Monster"));
+        }
     }
 
     public final void setSpecialRace(Race specialRace) {
@@ -248,5 +244,5 @@ public class Monster extends Kerkerkaart {
     public final void setLevelsLostHigherLevel(int levelsLostHigherLevel) {
         this.levelsLostHigherLevel = levelsLostHigherLevel;
     }
-    
+
 }

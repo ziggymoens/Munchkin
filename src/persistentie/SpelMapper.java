@@ -14,7 +14,7 @@ import java.util.*;
  */
 public class SpelMapper {
 
-    private List<Spel> spellen;
+    private final List<Spel> spellen;
 
     /**
      * Constructor voor de SpelMapper met daarin de creatie van een test

@@ -16,7 +16,7 @@ public class Race extends Kerkerkaart {
     private final String type;
 
     private enum TYPES {
-        elf, dwarf, halfling
+        elf, dwarf, halfling, human
     }; // nog?
 
     /**
@@ -80,7 +80,7 @@ public class Race extends Kerkerkaart {
      * @param type 
      */
     private void controleerType(String type){
-        if(TYPES.valueOf(type) == null)
+        if(TYPES.valueOf(type.toLowerCase()) == null)
             throw new RaceException(LanguageResource.getString("Race.exception"));
     }
 }

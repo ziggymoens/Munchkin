@@ -38,5 +38,4 @@ public class SpelRepository {
     public void spelOpslaan(Spel spel) {
         sm.addSpel(spel);
     }
-
 }
