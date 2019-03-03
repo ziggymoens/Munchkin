@@ -17,9 +17,11 @@
  * 
  * SQL exception moet gevangen worden!
  * 
- * COMPERATOR TOEVOEGEN
+ * COMPERATOR TOEVOEGEN ==> DONE
  * 
+ * UC2 ==> DONE
  * 
+ * UC3 ==> AFWERKEN
  */
 
 public class ToDo {

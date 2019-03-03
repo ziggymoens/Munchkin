@@ -160,14 +160,38 @@ public class Spel {
         spelers.remove(index);
         spelers.add(0, speler);
     }
-    
-    public String geefWinnaar(){
+
+    /**
+     *
+     * @return
+     */
+    public String geefWinnaar() {
         String naam = "";
-        for (Speler speler: spelers) {
+        for (Speler speler : spelers) {
             if (speler.getLevel() == 10) {
                 naam = speler.getNaam();
             }
         }
         return naam;
+    }
+
+    /**
+     *
+     * @param speler
+     */
+    public void geefLevel(Speler speler) {
+        if (speler.getLevel() == 9 && speler.isHeeftMonsterVerslaan()) {
+            speler.setLevel(speler.getLevel() + 1);
+        } else if (speler.getLevel() >= 1 && speler.getLevel() < 9) {
+            speler.setLevel(speler.getLevel() + 1);
+        }
+    }
+
+    public String geefSpelsituatie() {
+        String ret  = "";
+        for (Speler speler : spelers) {
+            ret += String.format("%s: %s, %s: %s, %s: %d, %s: %s", LanguageResource.getString("name"), speler.getNaam(), LanguageResource.getString("sex"), speler.getGeslacht(), LanguageResource.getString("level"), speler.getLevel(), LanguageResource.getString("speler.items"), speler.itemsNaarString());
+        }
+        return ret;
     }
 }

@@ -23,6 +23,7 @@ public class Speler {
     private String naam;
     private List<Kaart> kaarten;
     private List<Kaart> items;
+    private boolean heeftMonsterVerslaan;
 
     /**
      * Constructor van Speler zonder parameters naam = "onbekend", geslacht =
@@ -172,8 +173,16 @@ public class Speler {
      */
     public String kaartenNaarString() {
         String ret = "";
-        for (int i = 0; i < geefAantalKaarten(); i++) {
-            ret += String.format("%s  ", kaarten.get(i).getNaam());
+        for (Kaart kaart: kaarten) {
+            ret += String.format("%s  ", kaart.getNaam());
+        }
+        return ret;
+    }
+    
+    public String itemsNaarString(){
+        String ret = "";
+        for (Kaart item: items) {
+            ret += String.format("%s  ", item.getNaam());
         }
         return ret;
     }
@@ -222,5 +231,21 @@ public class Speler {
      */
     public void setAantalKerkerkaarten(int aantalKerkerkaarten) {
         this.aantalKerkerkaarten = aantalKerkerkaarten;
+    }
+
+    /**
+     *
+     * @param heeftMonsterVerslaan
+     */
+    public void setHeeftMonsterVerslaan(boolean heeftMonsterVerslaan) {
+        this.heeftMonsterVerslaan = heeftMonsterVerslaan;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public boolean isHeeftMonsterVerslaan() {
+        return heeftMonsterVerslaan;
     }
 }

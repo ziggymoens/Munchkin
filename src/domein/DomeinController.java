@@ -103,6 +103,7 @@ public class DomeinController {
      * @param naam naam van de speler die de beurt gaat spelen
      */
     public void speelBeurt(String naam) {
+        //spel.geefLevel(speler);
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -130,5 +131,9 @@ public class DomeinController {
      */
     public void spelLaden(int index) {
         this.spel = sr.getSpellen().get(index-1);
+    }
+
+    public String geefSpelsituatie() {
+        return spel.geefSpelsituatie();
     }
 }

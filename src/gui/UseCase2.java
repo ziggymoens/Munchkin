@@ -65,6 +65,7 @@ public class UseCase2 {
         switch (keuze) {
             case 1:
                 try {
+                    System.out.println(dc.geefSpelsituatie());
                     dc.speelBeurt(naam);
                 } catch (Exception e) {
                     System.err.println(e.getMessage());
