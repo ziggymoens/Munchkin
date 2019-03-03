@@ -1,7 +1,7 @@
 package domein.kaarten.schatkaarten;
 
 import domein.kaarten.Schatkaart;
-import exceptions.ConsumablesSchatException;
+import exceptions.kaarten.ConsumablesSchatException;
 import language.LanguageResource;
 
 /**

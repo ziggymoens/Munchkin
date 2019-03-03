@@ -1,7 +1,7 @@
 package domein.kaarten.kerkerkaarten;
 
 import domein.kaarten.Kerkerkaart;
-import exceptions.CurseException;
+import exceptions.kaarten.CurseException;
 import language.LanguageResource;
 
 /**
