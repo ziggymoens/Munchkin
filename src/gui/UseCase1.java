@@ -12,7 +12,7 @@ import language.LanguageResource;
 public class UseCase1 {
 
     //declaraties voor gehele usecase
-    private static final Scanner SCAN = new Scanner(System.in);
+    private final Scanner SCAN = new Scanner(System.in);
     private final DomeinController dc;
     private UseCase2 uc2;
 
@@ -37,17 +37,17 @@ public class UseCase1 {
         if (startUp) {
             int aantalSpelers = kiesAantalSpelers();
             dc.startSpel(aantalSpelers);
-            voegSpelersToe();
+            voegSpelersToe(aantalSpelers);
             System.out.println(dc.geefInformatie());
             //verdergaan naar UC2
-            uc2.speelSpel();            
+            uc2.speelSpel(aantalSpelers);            
         }
     }
 
     /**
      * welcome message in 3 talen
      */
-    private static void welcome() {
+    private void welcome() {
         Locale nl = new Locale("nl");
         Locale en = new Locale("en");
         Locale fr = new Locale("fr");
@@ -86,7 +86,7 @@ public class UseCase1 {
      *
      * @return gekozen aantal spelers
      */
-    private static int kiesAantalSpelers() {
+    private int kiesAantalSpelers() {
         System.out.println(LanguageResource.getString("amountOfPlayers"));
         int aantalSpelers = SCAN.nextInt();
         while (aantalSpelers < 3 || aantalSpelers > 6) {
@@ -101,8 +101,8 @@ public class UseCase1 {
      * @param aantalSpelers het aantal spelers dat de methode zal toevoegen aan
      * het spel
      */
-    private void voegSpelersToe() {
-        for (int i = 0; i < DomeinController.geefAantalSpelers(); i++) {
+    private void voegSpelersToe(int aantalSpelers) {
+        for (int i = 0; i < aantalSpelers; i++) {
             System.out.println(String.format("%s %d", LanguageResource.getString("player"), i + 1));
             System.out.println(LanguageResource.getString("ask.name"));
             String naam = SCAN.next();

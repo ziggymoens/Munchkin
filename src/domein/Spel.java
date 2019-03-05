@@ -13,7 +13,7 @@ import language.LanguageResource;
 public class Spel {
 
     //Declaratie attributen
-    private static int aantalSpelers;
+    private int aantalSpelers;
     private final List<Speler> spelers;
     private List<Kaart> schatkaarten;
     private List<Kaart> kerkerkaarten;
@@ -47,7 +47,7 @@ public class Spel {
      */
     private void setAantalSpelers(int aantalSpelers) {
         if (aantalSpelers >= 3 && aantalSpelers <= 6) {
-            Spel.aantalSpelers = aantalSpelers;
+            this.aantalSpelers = aantalSpelers;
         } else {
             throw new SpelException(LanguageResource.getString("exception.players"));
         }
@@ -140,7 +140,7 @@ public class Spel {
      *
      * @return
      */
-    public static int getAantalSpelers() {
+    public int getAantalSpelers() {
         return aantalSpelers;
     }
 
@@ -170,6 +170,7 @@ public class Spel {
         for (Speler speler : spelers) {
             if (speler.getLevel() == 10) {
                 naam = speler.getNaam();
+                break;
             }
         }
         return naam;
@@ -191,6 +192,16 @@ public class Spel {
         String ret  = "";
         for (Speler speler : spelers) {
             ret += String.format("%s: %s, %s: %s, %s: %d, %s: %s", LanguageResource.getString("name"), speler.getNaam(), LanguageResource.getString("sex"), speler.getGeslacht(), LanguageResource.getString("level"), speler.getLevel(), LanguageResource.getString("speler.items"), speler.itemsNaarString());
+        }
+        return ret;
+    }
+
+    public boolean niemandGewonnen() {
+        boolean ret = true;
+        for (Speler speler: spelers) {
+            if (speler.getLevel() == 10) {
+                return false;
+            }
         }
         return ret;
     }

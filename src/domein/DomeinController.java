@@ -61,8 +61,8 @@ public class DomeinController {
      *
      * @return
      */
-    public static int geefAantalSpelers() {
-        return Spel.getAantalSpelers();
+    public int geefAantalSpelers() {
+        return spel.getAantalSpelers();
     }
 
     /**
@@ -108,32 +108,36 @@ public class DomeinController {
     }
 
     /**
-     *Spel opslaan
+     * Spel opslaan
      */
     public void spelOpslaan() {
         sr.spelOpslaan(this.spel);
     }
 
-    
-    public String geefOpgeslagenSpellen(){
+    public String geefOpgeslagenSpellen() {
         List<Spel> spellen = sr.getSpellen();
         String ret = "";
         int index = 1;
-        for (Spel spel: spellen) {
-            ret += String.format("Spel %d%n%s", index,spel.toString());
+        for (Spel spel : spellen) {
+            ret += String.format("Spel %d%n%s", index, spel.toString());
         }
         return ret;
     }
-    
+
     /**
-     *Spel laden
+     * Spel laden
+     *
      * @param index
      */
     public void spelLaden(int index) {
-        this.spel = sr.getSpellen().get(index-1);
+        this.spel = sr.getSpellen().get(index - 1);
     }
 
     public String geefSpelsituatie() {
         return spel.geefSpelsituatie();
+    }
+
+    public boolean niemandGewonnen() {
+        return spel.niemandGewonnen();
     }
 }

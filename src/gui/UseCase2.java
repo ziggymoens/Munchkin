@@ -17,7 +17,7 @@ public class UseCase2 {
 
     //Declaraties voor gehele usecase.
     private final DomeinController dc;
-    private static Scanner SCAN;
+    private Scanner SCAN;
     private final UseCase3 uc3;
 
     /**
@@ -33,12 +33,13 @@ public class UseCase2 {
 
     /**
      *
+     * @param aantalSpelers
      */
-    public void speelSpel() {
+    public void speelSpel(int aantalSpelers) {
         dc.speelSpel();
         System.out.println(String.format("De volgorde van de spelers is: %n%s%n", dc.geefInformatie()));
         while (niemandGewonnen()) {
-            for (int i = 0; i < DomeinController.geefAantalSpelers(); i++) {
+            for (int i = 0; i < aantalSpelers; i++) {
                 if (niemandGewonnen()) {
                     String naam = dc.geefNaamSpeler(i);
                     speelBeurt(naam);
@@ -82,13 +83,7 @@ public class UseCase2 {
      * @return
      */
     private boolean niemandGewonnen() {
-        boolean ret = true;
-        for (int i = 0; i < DomeinController.geefAantalSpelers(); i++) {
-            if (dc.geefLevel(i) == 10) {
-                return false;
-            }
-        }
-        return ret;
+        return dc.niemandGewonnen();
     }
 
     /**
