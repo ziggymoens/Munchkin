@@ -23,8 +23,8 @@ public class KaartDbRepository {
         //spelers = new ArrayList<>();
     }
 
-    public List<Kaart> geefSpelers(String type) {
-        return mapper.geefSpelers(type);
+    public List<Kaart> geefKaartenType(String type) {
+        return mapper.geefKaartenType(type);
     }
 
     

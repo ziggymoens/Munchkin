@@ -14,6 +14,9 @@ public class Race extends Kerkerkaart {
     private boolean doublePrice;
     private boolean extraRunAway;
     private final String type;
+    private String description;
+
+    
 
     private enum TYPES {
         elf, dwarf, halfling, human
@@ -28,6 +31,14 @@ public class Race extends Kerkerkaart {
         super(type);
         controleerType(type);
         this.type = type;
+        setExtras();
+    }
+    
+    public Race(String name, String description) {
+        super(name);
+        controleerType(name);
+        this.description = description;
+        this.type = name;
         setExtras();
     }
 
