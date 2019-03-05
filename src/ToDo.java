@@ -22,6 +22,10 @@
  * UC2 ==> DONE
  * 
  * UC3 ==> AFWERKEN
+ * 
+ * ALLES CATCHEN MAAR ECHT AAAAAALLES
+ * 
+ * Niks STATIC tenzij niet anders kan
  */
 
 public class ToDo {
