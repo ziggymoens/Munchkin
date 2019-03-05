@@ -5,7 +5,9 @@
  */
 package gui;
 
-import java.util.*;
+import domein.kaarten.Kaart;
+import domein.repositories.KaartDbRepository;
+import java.util.List;
 import language.LanguageResource;
 
 /**
@@ -15,38 +17,20 @@ import language.LanguageResource;
 public class Test {
 
     //i18n testen
-    private LanguageResource bundle = new LanguageResource();
+    private final LanguageResource bundle = new LanguageResource();
+    private final KaartDbRepository kr = new KaartDbRepository();
 
     public static void main(String[] args) {
         Test test = new Test();
-        Locale locale = new Locale("fr");
-
-        test.makeBundle(locale);
-
-        System.out.println(test.stringFromBundle("ask.name"));
-        test.changeLanguage(new Locale("nl"));
-        System.out.println(test.stringFromBundle("ask.name"));
-
-        System.out.println(test.stringFromBundle("ask.name", new Locale("en")));
+        System.out.println(test.geefKaarten());
     }
-
-    private void makeBundle(Locale locale) {
-        bundle = new LanguageResource();
-    }
-
-    private void changeLanguage(Locale locale) {
-        LanguageResource.setLocale(locale);
-    }
-
-    private String stringFromBundle(String string) {
-        return LanguageResource.getString(string);
-    }
-
-    private String stringFromBundle(String string, Locale locale) {
-        return LanguageResource.getStringLanguage(string, locale);
-    }
-
-    private void test() {
-        System.out.println("Netbeans test");
+    
+    private String geefKaarten(){
+        String out = "";
+        List<Kaart> kaarten = kr.geefSpelers();
+        for (Kaart kaart: kaarten) {
+            out += kaart.getNaam();
+        }
+        return out;
     }
 }
