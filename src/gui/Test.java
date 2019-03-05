@@ -27,7 +27,7 @@ public class Test {
     
     private String geefKaarten(){
         String out = "";
-        List<Kaart> kaarten = kr.geefSpelers();
+        List<Kaart> kaarten = kr.geefSpelers("ConsumablesD");
         for (Kaart kaart: kaarten) {
             out += String.format("%s%n", kaart.getNaam());
         }

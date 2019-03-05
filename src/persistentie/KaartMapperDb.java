@@ -7,6 +7,7 @@ package persistentie;
 
 import domein.Speler;
 import domein.kaarten.Kaart;
+import domein.kaarten.kerkerkaarten.ConsumablesKerker;
 import domein.kaarten.kerkerkaarten.Race;
 import java.math.BigDecimal;
 import java.sql.Connection;
@@ -35,18 +36,21 @@ public class KaartMapperDb {
         }
     }
 
-    public List<Kaart> geefSpelers() {
+    public List<Kaart> geefSpelers(String type) {
         List<Kaart> kaarten = new ArrayList<>();
         try (Connection conn = DriverManager.getConnection(Connectie.JDBC_URL);
-                PreparedStatement query = conn.prepareStatement("SELECT * FROM ID222177_g35.Race");
+                PreparedStatement query = conn.prepareStatement(String.format("SELECT * FROM ID222177_g35.%s", type));
                 ResultSet rs = query.executeQuery()) {
 
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
-                String description = rs.getString("description");
-
-                kaarten.add(new Race(name));
+                //String description = rs.getString("description");
+                if (type.equals("Race")) {
+                    kaarten.add(new Race(name));
+                } else if (type.equals("ConsumablesD")) {
+                    kaarten.add(new ConsumablesKerker(name, 1));
+                }
             }
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
