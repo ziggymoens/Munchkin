@@ -11,7 +11,7 @@ import language.LanguageResource;
 public class DomeinController {
 
     private Spel spel;
-    private SpelRepository sr;
+    private final SpelRepository sr;
 
     /**
      * Constructor DomeinController
