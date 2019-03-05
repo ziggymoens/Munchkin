@@ -25,10 +25,10 @@ public class Monster extends Kerkerkaart {
 
     /**
      *
-     * @param naam
-     * @param level
-     * @param winstTeasures
-     * @param winstLevels
+     * @param naam van de speler
+     * @param level van de speler
+     * @param winstTeasures aantal schatkaarten verkregen door winst
+     * @param winstLevels levels verkregen door 
      * @param text
      * @param outRun
      * @param runAway
@@ -37,7 +37,7 @@ public class Monster extends Kerkerkaart {
      * @param specialRaceReason
      * @param notPursue
      * @param levelsLostHigherLevel
-     * @param badStuff
+     * @param badStuff bijhorende aan de kaart
      */
     public Monster(String naam, int level, int winstTeasures, int winstLevels, String text, boolean outRun, int runAway, Race specialRace, int specialRaceExtra, String specialRaceReason, int notPursue, int levelsLostHigherLevel, BadStuff badStuff) {
         super(naam);
@@ -57,11 +57,11 @@ public class Monster extends Kerkerkaart {
 
     /**
      *
-     * @param naam
-     * @param level
-     * @param winstTeasures
-     * @param winstLevels
-     * @param badStuff
+     * @param naam van de speler
+     * @param level van de speler
+     * @param winstTeasures aantal schatkaarten verkregen door winst
+     * @param winstLevels levels omhoog door winst
+     * @param badStuff bijhorende aan de kaart
      */
     public Monster(String naam, int level, int winstTeasures, int winstLevels, BadStuff badStuff) {
         super(naam);
@@ -73,14 +73,14 @@ public class Monster extends Kerkerkaart {
 
     /**
      *
-     * @param naam
-     * @param level
-     * @param winstTeasures
-     * @param winstLevels
-     * @param specialRace
-     * @param specialRaceExtra
-     * @param specialRaceReason
-     * @param badStuff
+     * @param naam van de speler
+     * @param level van de speler
+     * @param winstTeasures aantal schatkaarten verkregen door winst
+     * @param winstLevels levels omhoog door winst
+     * @param specialRace ras waarvoor andere voorwaarden gelden
+     * @param specialRaceExtra extra effect voor specialRace
+     * @param specialRaceReason reden voor extra effect
+     * @param badStuff bijhorende aan de kaart
      */
     public Monster(String naam, int level, int winstTeasures, int winstLevels, Race specialRace, int specialRaceExtra, String specialRaceReason, BadStuff badStuff) {
         super(naam);
