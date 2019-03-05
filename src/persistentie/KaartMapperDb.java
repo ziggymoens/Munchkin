@@ -23,14 +23,18 @@ import java.util.List;
  */
 public class KaartMapperDb {
 
+    private Connection conn = null;
+    private PreparedStatement ps = null;
+    private ResultSet rs = null;
+
     public void voegToe() {
         try (
-            Connection conn = DriverManager.getConnection(Connectie.JDBC_URL);) {
+                Connection conn = DriverManager.getConnection(Connectie.JDBC_URL);) {
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
     }
-    
+
     public List<Kaart> geefSpelers() {
         List<Kaart> kaarten = new ArrayList<>();
         try (Connection conn = DriverManager.getConnection(Connectie.JDBC_URL);
@@ -46,9 +50,21 @@ public class KaartMapperDb {
             }
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
         }
         return kaarten;
     }
-    
-    
+
 }

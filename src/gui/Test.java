@@ -29,7 +29,7 @@ public class Test {
         String out = "";
         List<Kaart> kaarten = kr.geefSpelers();
         for (Kaart kaart: kaarten) {
-            out += kaart.getNaam();
+            out += String.format("%s%n", kaart.getNaam());
         }
         return out;
     }
