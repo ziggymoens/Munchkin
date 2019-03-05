@@ -14,9 +14,11 @@ import domein.DomeinController;
 public class UseCase3 {
 
     private final DomeinController dc;
+    private final UseCase4 uc4;
 
     UseCase3(DomeinController dc) {
         this.dc = dc;
+        uc4 = new UseCase4(this.dc);
     }
 
     public void speelBeurt(String naam) {

@@ -23,6 +23,7 @@ public class UseCase1 {
      */
     public UseCase1(DomeinController dc) {
         this.dc = dc;
+        uc2 = new UseCase2(this.dc);
         welcome();
         //gebruiker vragen of hij een nieuw spel wil starten.
         System.out.println(LanguageResource.getString("newGame"));
@@ -39,7 +40,7 @@ public class UseCase1 {
             voegSpelersToe();
             System.out.println(dc.geefInformatie());
             //verdergaan naar UC2
-            uc2 = new UseCase2(this.dc);            
+            uc2.speelSpel();            
         }
     }
 

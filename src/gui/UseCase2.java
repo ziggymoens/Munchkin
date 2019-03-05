@@ -18,7 +18,7 @@ public class UseCase2 {
     //Declaraties voor gehele usecase.
     private final DomeinController dc;
     private static Scanner SCAN;
-    private UseCase3 uc3;
+    private final UseCase3 uc3;
 
     /**
      * Constructor voor Use Case 2.
@@ -28,14 +28,13 @@ public class UseCase2 {
     public UseCase2(DomeinController dc) {
         this.dc = dc;
         SCAN = new Scanner(System.in);
-        uc3 = new UseCase3(dc);
-        speelSpel();
+        uc3 = new UseCase3(this.dc);
     }
 
     /**
      *
      */
-    private void speelSpel() {
+    public void speelSpel() {
         dc.speelSpel();
         System.out.println(String.format("De volgorde van de spelers is: %n%s%n", dc.geefInformatie()));
         while (niemandGewonnen()) {
