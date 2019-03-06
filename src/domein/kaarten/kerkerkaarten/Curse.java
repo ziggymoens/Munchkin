@@ -10,9 +10,7 @@ import language.LanguageResource;
  */
 public class Curse extends Kerkerkaart {
 
-    public Curse(String name, String description, int loseLevel, String loseSomething, Boolean changeSex) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 
     private enum LOSTTYPES {
         head, foot, race, sex, item, all
@@ -21,7 +19,11 @@ public class Curse extends Kerkerkaart {
     private int levelLost;
     private boolean raceLost;
     private boolean sexLost;
-
+    
+    public Curse(String name, int loseLevel, String toString, Boolean changeSex, Boolean changeSex0) {
+        super(name);
+    }
+    
     /**
      * Constructor kerkerkaart curse (die superklasse Kerkerkaart gebruikt)
      *

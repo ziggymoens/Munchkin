@@ -126,7 +126,7 @@ public class KaartMapperDb {
                 int loseLevel = rs.getInt("loseLevel");
                 String loseSomething = rs.getString("loseSomething");
                 String description = rs.getString("description");
-                kaarten.add(new Curse(name, description, loseLevel, loseSomething, changeSex));
+                kaarten.add(new Curse(name, loseLevel, loseSomething, changeSex, changeSex));
             }
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
@@ -200,6 +200,29 @@ public class KaartMapperDb {
     }
 
     private BadStuff badStuffKaart() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        BadStuff bs;
+        try (Connection conn = DriverManager.getConnection(Connectie.JDBC_URL);
+                PreparedStatement query = conn.prepareStatement(String.format("SELECT * FROM ID222177_g35.%s", type));
+                ResultSet rs = query.executeQuery()) {
+            while(rs.next())
+           String name = rs.getString("name");
+            }
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return bs;
     }
 }
