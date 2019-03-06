@@ -5,15 +5,14 @@
  */
 package persistentie;
 
-import domein.Speler;
 import domein.kaarten.Kaart;
+import domein.kaarten.kerkerkaarten.BadStuff;
 import domein.kaarten.kerkerkaarten.ConsumablesKerker;
 import domein.kaarten.kerkerkaarten.Curse;
 import domein.kaarten.kerkerkaarten.Monster;
 import domein.kaarten.kerkerkaarten.Race;
 import domein.kaarten.schatkaarten.ConsumablesSchat;
 import domein.kaarten.schatkaarten.Equipment;
-import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -102,28 +101,32 @@ public class KaartMapperDb {
         return kaarten;
     }
 
-    public List<Kaart> consumablesDKaart(ResultSet rs) {
+    private List<Kaart> consumablesDKaart(ResultSet rs) {
         List<Kaart> kaarten = new ArrayList<>();
         try {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
-                String description = rs.getString("description");
-                kaarten.add(new ConsumablesKerker(name, description));
+                int bonus = rs.getInt("bonus");
+                kaarten.add(new ConsumablesKerker(name, bonus));
             }
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
         return kaarten;
     }
+
     private List<Kaart> curseKaart(ResultSet rs) {
         List<Kaart> kaarten = new ArrayList<>();
         try {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
+                Boolean changeSex = rs.getBoolean("changeSex");
+                int loseLevel = rs.getInt("loseLevel");
+                String loseSomething = rs.getString("loseSomething");
                 String description = rs.getString("description");
-                kaarten.add(new Curse(name, description));
+                kaarten.add(new Curse(name, description, loseLevel, loseSomething, changeSex));
             }
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
@@ -137,8 +140,19 @@ public class KaartMapperDb {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
+                int level = rs.getInt("level");
+                int raceBonus = rs.getInt("raceBonus");
+                int escapeBonus = rs.getInt("escapeBonus");
+                int tresures = rs.getInt("treasures");
+                int levelUp = rs.getInt("levelUp");
+                int persueLevel = rs.getInt("persueLevel");
                 String description = rs.getString("description");
-                kaarten.add(new Monster(name, description));
+                String specialRace = rs.getString("specialRace");
+                Boolean outRun = rs.getBoolean("outRun");
+                int levelsLostHigherLevel = rs.getInt("levelsLostHigherLevel");
+                String specialRaceReason = rs.getString("specialRaceReason");
+                BadStuff bs = badStuffKaart();
+                kaarten.add(new Monster(name, level, tresures, levelUp, description, outRun, escapeBonus, new Race(specialRace), raceBonus, specialRaceReason, persueLevel, levelsLostHigherLevel, bs));
             }
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
@@ -152,8 +166,11 @@ public class KaartMapperDb {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
+                int goldPieces = rs.getInt("goldPieces");
+                int bonus = rs.getInt("bonus");
                 String description = rs.getString("description");
-                kaarten.add(new ConsumablesSchat(name, description));
+                boolean killsFloatingNose = rs.getBoolean("killsFloatingNose");
+                kaarten.add(new ConsumablesSchat(name, goldPieces, description, bonus));
             }
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
@@ -167,13 +184,22 @@ public class KaartMapperDb {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
-                String description = rs.getString("description");
-                kaarten.add(new Equipment(name, description));
+                int goldPieces = rs.getInt("goldPieces");
+                int bonus = rs.getInt("bonus");
+                int bonusRace = rs.getInt("bonusRace");
+                int specialBonus = rs.getInt("specialBonus");
+                int escapeBonus = rs.getInt("escapeBonus");
+                String usableBy = rs.getString("usableBy");
+                String specialRace = rs.getString("specialRace");
+                kaarten.add(new Equipment(name, goldPieces, type, bonus, new Race(usableBy), name, bonus, specialBonus, specialRace));
             }
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
         return kaarten;
     }
+
+    private BadStuff badStuffKaart() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -10,6 +10,10 @@ import language.LanguageResource;
  */
 public class Curse extends Kerkerkaart {
 
+    public Curse(String name, String description, int loseLevel, String loseSomething, Boolean changeSex) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     private enum LOSTTYPES {
         head, foot, race, sex, item, all
     };
