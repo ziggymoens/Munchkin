@@ -29,5 +29,4 @@ public class UseCase3 {
             System.err.println(e.getMessage());
         }
     }
-
 }

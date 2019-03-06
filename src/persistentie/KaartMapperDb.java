@@ -115,7 +115,7 @@ public class KaartMapperDb {
             throw new RuntimeException(ex);
         }
         return kaarten;
-
+    }
     private List<Kaart> curseKaart(ResultSet rs) {
         List<Kaart> kaarten = new ArrayList<>();
         try {
