@@ -151,7 +151,7 @@ public class KaartMapperDb {
                 Boolean outRun = rs.getBoolean("outRun");
                 int levelsLostHigherLevel = rs.getInt("levelsLostHigherLevel");
                 String specialRaceReason = rs.getString("specialRaceReason");
-                BadStuff bs = badStuffKaart();
+                BadStuff bs = badStuffKaart(rs.getInt("badStuffId"));
                 kaarten.add(new Monster(name, level, tresures, levelUp, description, outRun, escapeBonus, new Race(specialRace), raceBonus, specialRaceReason, persueLevel, levelsLostHigherLevel, bs));
             }
         } catch (SQLException ex) {
@@ -199,15 +199,16 @@ public class KaartMapperDb {
         return kaarten;
     }
 
-    private BadStuff badStuffKaart() {
+    private BadStuff badStuffKaart(int badStuffId) {
         BadStuff bs;
         try (Connection conn = DriverManager.getConnection(Connectie.JDBC_URL);
-                PreparedStatement query = conn.prepareStatement(String.format("SELECT * FROM ID222177_g35.%s", type));
+                PreparedStatement query = conn.prepareStatement(String.format(String.format("SELECT * FROM ID222177_g35.BadStuff b  WHERE BadStuff.%d = Monster.badStuffId", badStuffId)));
                 ResultSet rs = query.executeQuery()) {
             while(rs.next())
-           String name = rs.getString("name");
+                String name = rs.getString("name");
+                bs = new BadStuff(name);
             }
-        } catch (SQLException ex) {
+         catch (SQLException ex) {
             throw new RuntimeException(ex);
         } finally {
             try {
