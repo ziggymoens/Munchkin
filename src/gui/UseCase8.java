@@ -5,10 +5,21 @@
  */
 package gui;
 
+import domein.DomeinController;
+
 /**
  *
  * @author ziggy
  */
 public class UseCase8 {
-    
+
+    private DomeinController dc;
+
+    public UseCase8(DomeinController dc) {
+        this.dc = dc;
+    }
+
+    public void spelOpslaan(){
+        dc.spelOpslaan();
+    }
 }

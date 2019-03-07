@@ -18,7 +18,8 @@ public class UseCase2 {
     //Declaraties voor gehele usecase.
     private final DomeinController dc;
     private Scanner SCAN;
-    private final UseCase3 uc3;
+    private UseCase3 uc3;
+    private UseCase8 uc8;
 
     /**
      * Constructor voor Use Case 2.
@@ -28,7 +29,7 @@ public class UseCase2 {
     public UseCase2(DomeinController dc) {
         this.dc = dc;
         SCAN = new Scanner(System.in);
-        uc3 = new UseCase3(this.dc);
+
     }
 
     /**
@@ -66,9 +67,11 @@ public class UseCase2 {
 
         switch (keuze) {
             case 1:
+                uc3 = new UseCase3(this.dc);
                 uc3.speelBeurt(naam);
             case 2:
-                dc.spelOpslaan();
+                uc8 = new UseCase8(this.dc);
+                uc8.spelOpslaan();
                 break;
             case 3:
                 System.exit(0);
