@@ -188,7 +188,12 @@ public class KaartMapperDb {
                 ResultSet rs = query.executeQuery()) {
             while (rs.next()) {
                 String name = rs.getString("name");
-                bs = new BadStuff(name);
+                int id = rs.getInt("id");
+                int loseItems=rs.getInt("loseItems");
+                int loseLevels = rs.getInt("loseLevels");
+                String loseSomething = rs.getString("loseSomething");
+                String badStuffDescription = rs.getString("name");
+                bs = new BadStuff(name, id, loseItems, loseLevels, loseSomething, badStuffDescription);
             }
             conn.close();
             query.close();
