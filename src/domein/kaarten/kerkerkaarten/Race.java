@@ -19,6 +19,10 @@ public class Race extends Kerkerkaart {
         elf, dwarf, halfling, human
     }; // nog?// nog?// nog?// nog?
 
+    public Race(String naam){
+        this(naam, 999, "...");
+    }
+    
     /**
      * Constructor voor kerkerkaart ras (die superklasse Kerkerkaart gebruikt)
      *
@@ -115,7 +119,6 @@ public class Race extends Kerkerkaart {
             throw new RaceException("exception.race.type");
         }
     }
-
 }
 //    public Race(String name, String description) {
 //        super(name);

@@ -67,7 +67,7 @@ public class KaartMapperDb {
             conn.close();
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
-        } 
+        }
         return kaarten;
     }
 
@@ -78,7 +78,7 @@ public class KaartMapperDb {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
                 String description = rs.getString("description");
-                kaarten.add(new Race(name, description));
+                kaarten.add(new Race(name, id, description));
             }
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
@@ -93,7 +93,7 @@ public class KaartMapperDb {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
                 int bonus = rs.getInt("bonus");
-                kaarten.add(new ConsumablesKerker(name, bonus));
+                kaarten.add(new ConsumablesKerker(name, id, bonus));
             }
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
@@ -107,11 +107,10 @@ public class KaartMapperDb {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
-                Boolean changeSex = rs.getBoolean("changeSex");
                 int loseLevel = rs.getInt("loseLevel");
                 String loseSomething = rs.getString("loseSomething");
                 String description = rs.getString("description");
-                kaarten.add(new Curse(name, loseLevel, loseSomething, changeSex, changeSex));
+                kaarten.add(new Curse(name, id, loseLevel, loseSomething, description));
             }
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
@@ -155,7 +154,7 @@ public class KaartMapperDb {
                 int bonus = rs.getInt("bonus");
                 String description = rs.getString("description");
                 boolean killsFloatingNose = rs.getBoolean("killsFloatingNose");
-                kaarten.add(new ConsumablesSchat(name, goldPieces, description, bonus));
+                kaarten.add(new ConsumablesSchat(name, id, goldPieces, description, bonus));
             }
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
@@ -170,13 +169,12 @@ public class KaartMapperDb {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
                 int goldPieces = rs.getInt("goldPieces");
+                String type = rs.getString("type");
                 int bonus = rs.getInt("bonus");
-                int bonusRace = rs.getInt("bonusRace");
                 int specialBonus = rs.getInt("specialBonus");
-                int escapeBonus = rs.getInt("escapeBonus");
                 String usableBy = rs.getString("usableBy");
                 String specialRace = rs.getString("specialRace");
-                kaarten.add(new Equipment(name, goldPieces, type, bonus, new Race(usableBy), name, bonus, specialBonus, specialRace));
+                kaarten.add(new Equipment(name, id, goldPieces, type, bonus, new Race(usableBy), bonus, specialBonus, new Race(specialRace)));
             }
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
@@ -189,15 +187,14 @@ public class KaartMapperDb {
         try (Connection conn = DriverManager.getConnection(Connectie.JDBC_URL);
                 PreparedStatement query = conn.prepareStatement(String.format(String.format("SELECT * FROM ID222177_g35.BadStuff b  WHERE BadStuff.%d = Monster.badStuffId", badStuffId)));
                 ResultSet rs = query.executeQuery()) {
-            while(rs.next()){
+            while (rs.next()) {
                 String name = rs.getString("name");
                 bs = new BadStuff(name);
             }
-        conn.close();
-        query.close();
-        rs.close();
-        }
-         catch (SQLException ex) {
+            conn.close();
+            query.close();
+            rs.close();
+        } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
         return bs;
