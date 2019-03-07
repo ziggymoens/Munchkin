@@ -133,7 +133,6 @@ public class KaartMapperDb {
                 String description = rs.getString("description");
                 String specialRace = rs.getString("specialRace");
                 Boolean outRun = rs.getBoolean("outRun");
-                int levelsLostHigherLevel = rs.getInt("levelsLostHigherLevel");
                 String specialRaceReason = rs.getString("specialRaceReason");
                 BadStuff bs = badStuffKaart(rs.getInt("badStuffId"));
                 kaarten.add(new Monster(name,id ,level, tresures, levelUp, description, outRun, escapeBonus, new Race(specialRace), raceBonus, specialRaceReason, persueLevel, bs));

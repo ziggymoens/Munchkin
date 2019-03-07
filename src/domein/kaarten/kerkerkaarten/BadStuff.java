@@ -5,13 +5,16 @@
  */
 package domein.kaarten.kerkerkaarten;
 
+import exceptions.kaarten.BadStuffException;
+
 /**
  * NAKIJKEN
  * @author ziggy
  */
 public class BadStuff {
-
+    
     private String naam;
+    private int id;
     private String text;
     private int levelsLost;
     private String gearLost;
@@ -27,37 +30,13 @@ public class BadStuff {
     private boolean snailsOnSpeed;
     private boolean wrightBrothers;
 
-    public BadStuff(String naam, String text, int levelsLost) {
+    public BadStuff(String naam, int id, int itemsLost, int levelsLost, String gearLost, String text){
         setNaam(naam);
-        setText(text);
+        setId(id);
+        setItemsTaken(itemsLost);
         setLevelsLost(levelsLost);
-    }
-
-    public BadStuff(String naam, String gearLost) {
-        setNaam(naam);
         setGearLost(gearLost);
-    }
-
-    public BadStuff(String naam, int itemstaken) {
-        setNaam(naam);
-        setItemsTaken(itemstaken);
-    }
-
-    public BadStuff(String naam, boolean weaponsLost, boolean raceLost) {
-        setNaam(naam);
-        setWeaponsLost(weaponsLost);
-        setRaceLost(raceLost);
-    }
-
-    public BadStuff(String naam) {
-        setNaam(naam);
-    }
-
-    public BadStuff(String naam, boolean weaponsLost, boolean raceLost, boolean dead) {
-        setNaam(naam);
-        setWeaponsLost(weaponsLost);
-        setRaceLost(raceLost);
-        setDead(dead);
+        setText(text);
     }
 
     private void setNaam(String naam) {
@@ -84,57 +63,97 @@ public class BadStuff {
         this.naam = naam;
     }
 
-    public final void setText(String text) {
+    private void setId(int id) {
+        if(id<0){
+            throw new BadStuffException("exception.badstuff.id");
+        }
+        this.id = id;
+    }
+
+    
+    private void setText(String text) {
         this.text = text;
     }
 
-    public final void setLevelsLost(int levelsLost) {
+    private void setLevelsLost(int levelsLost) {
         this.levelsLost = levelsLost;
     }
 
-    public final void setGearLost(String gearLost) {
+    private void setGearLost(String gearLost) {
         this.gearLost = gearLost;
     }
 
-    public final void setItemsTaken(int itemsTaken) {
+    private void setItemsTaken(int itemsTaken) {
         this.itemsTaken = itemsTaken;
     }
 
-    public final void setWeaponsLost(boolean weaponsLost) {
+    private void setWeaponsLost(boolean weaponsLost) {
         this.weaponsLost = weaponsLost;
     }
 
-    public final void setRaceLost(boolean raceLost) {
+    private void setRaceLost(boolean raceLost) {
         this.raceLost = raceLost;
     }
 
-    public final void setDead(boolean dead) {
+    private void setDead(boolean dead) {
         this.dead = dead;
     }
 
-    public void setCardsLost(String cardsLost) {
+    private void setCardsLost(String cardsLost) {
         this.cardsLost = cardsLost;
     }
 
-    public void setLawyersCard(boolean lawyersCard) {
+    private void setLawyersCard(boolean lawyersCard) {
         this.lawyersCard = lawyersCard;
     }
 
-    public void setOrgsCard(boolean orgsCard) {
+    private void setOrgsCard(boolean orgsCard) {
         this.orgsCard = orgsCard;
     }
 
-    public void setGhoulfriends(boolean ghoulfriends) {
+    private void setGhoulfriends(boolean ghoulfriends) {
         this.ghoulfriends = ghoulfriends;
     }
 
-    public void setSnailsOnSpeed(boolean snailsOnSpeed) {
+    private void setSnailsOnSpeed(boolean snailsOnSpeed) {
         this.snailsOnSpeed = snailsOnSpeed;
     }
 
-    public void setWrightBrothers(boolean wrightBrothers) {
+    private void setWrightBrothers(boolean wrightBrothers) {
         this.wrightBrothers = wrightBrothers;
     }
     
     
 }
+//    public BadStuff(String naam, String text, int levelsLost) {
+//        setNaam(naam);
+//        setText(text);
+//        setLevelsLost(levelsLost);
+//    }
+//
+//    public BadStuff(String naam, String gearLost) {
+//        setNaam(naam);
+//        setGearLost(gearLost);
+//    }
+//
+//    public BadStuff(String naam, int itemstaken) {
+//        setNaam(naam);
+//        setItemsTaken(itemstaken);
+//    }
+//
+//    public BadStuff(String naam, boolean weaponsLost, boolean raceLost) {
+//        setNaam(naam);
+//        setWeaponsLost(weaponsLost);
+//        setRaceLost(raceLost);
+//    }
+//
+//    public BadStuff(String naam) {
+//        setNaam(naam);
+//    }
+//
+//    public BadStuff(String naam, boolean weaponsLost, boolean raceLost, boolean dead) {
+//        setNaam(naam);
+//        setWeaponsLost(weaponsLost);
+//        setRaceLost(raceLost);
+//        setDead(dead);
+//    }
