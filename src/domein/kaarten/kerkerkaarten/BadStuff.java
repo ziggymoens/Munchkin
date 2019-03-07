@@ -26,15 +26,16 @@ public class BadStuff {
     private boolean ghoulfriends = false;
     private boolean snailsOnSpeed = false;
     private boolean wrightBrothers = false;
-/**
- * 
- * @param naam
- * @param id
- * @param itemsLost
- * @param levelsLost
- * @param gearLost
- * @param text 
- */
+
+    /**
+     *
+     * @param naam
+     * @param id
+     * @param itemsLost
+     * @param levelsLost
+     * @param gearLost
+     * @param text
+     */
     public BadStuff(String naam, int id, int itemsLost, int levelsLost, String gearLost, String text) {
         setNaam(naam);
         setId(id);
@@ -44,6 +45,10 @@ public class BadStuff {
         setText(text);
     }
 
+    /**
+     *
+     * @param naam
+     */
     private void setNaam(String naam) {
         String check = naam.toLowerCase();
         switch (check) {
@@ -68,6 +73,10 @@ public class BadStuff {
         this.naam = naam;
     }
 
+    /**
+     *
+     * @param id
+     */
     private void setId(int id) {
         if (id < 0) {
             throw new BadStuffException("exception.badstuff.id");
@@ -75,6 +84,10 @@ public class BadStuff {
         this.id = id;
     }
 
+    /**
+     *
+     * @param text
+     */
     private void setText(String text) {
         if (text == null || text.isBlank()) {
             throw new BadStuffException("exception.badstuff.text");
@@ -82,6 +95,10 @@ public class BadStuff {
         this.text = text;
     }
 
+    /**
+     *
+     * @param levelsLost
+     */
     private void setLevelsLost(int levelsLost) {
         if (levelsLost < 0) {
             throw new BadStuffException("exception.badstuff.levelslost");
@@ -89,6 +106,10 @@ public class BadStuff {
         this.levelsLost = levelsLost;
     }
 
+    /**
+     *
+     * @param gearLost
+     */
     private void setGearLost(String gearLost) {
         if (gearLost == null || gearLost.isBlank()) {
             throw new BadStuffException("exception.badstuff.gearlost");
@@ -96,6 +117,10 @@ public class BadStuff {
         this.gearLost = gearLost;
     }
 
+    /**
+     *
+     * @param itemsTaken
+     */
     private void setItemsTaken(int itemsTaken) {
         if (itemsTaken < 0) {
             throw new BadStuffException("exception.badstuff.itemstaken");
@@ -103,6 +128,93 @@ public class BadStuff {
         this.itemsTaken = itemsTaken;
     }
 
+    /**
+     *
+     * @return
+     */
+    public String getNaam() {
+        return naam;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String getText() {
+        return text;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public int getLevelsLost() {
+        return levelsLost;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String getGearLost() {
+        return gearLost;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public int getItemsTaken() {
+        return itemsTaken;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public boolean isLawyersCard() {
+        return lawyersCard;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public boolean isOrgsCard() {
+        return orgsCard;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public boolean isGhoulfriends() {
+        return ghoulfriends;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public boolean isSnailsOnSpeed() {
+        return snailsOnSpeed;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public boolean isWrightBrothers() {
+        return wrightBrothers;
+    }
 }
 //    public BadStuff(String naam, String text, int levelsLost) {
 //        setNaam(naam);

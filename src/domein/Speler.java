@@ -73,7 +73,7 @@ public class Speler {
         if (geslacht.toLowerCase().equals(man) || geslacht.toLowerCase().equals(vrouw)) {
             this.geslacht = geslacht;
         } else {
-            throw new SpelerException(LanguageResource.getString("exception.sex"));
+            throw new SpelerException(LanguageResource.getString("exception.speler.sex"));
         }
     }
 
@@ -99,7 +99,7 @@ public class Speler {
                 }
             }
         } else {
-            throw new SpelerException(LanguageResource.getString("exception.name"));
+            throw new SpelerException("exception.speler.name");
         }
     }
 
@@ -121,7 +121,7 @@ public class Speler {
         if (level >= 1) {
             this.level = level;
         } else {
-            throw new SpelerException(LanguageResource.getString("exception.level"));
+            throw new SpelerException("exception.speler.level");
         }
     }
 

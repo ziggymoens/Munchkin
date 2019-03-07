@@ -49,7 +49,7 @@ public class Spel {
         if (aantalSpelers >= 3 && aantalSpelers <= 6) {
             this.aantalSpelers = aantalSpelers;
         } else {
-            throw new SpelException(LanguageResource.getString("exception.players"));
+            throw new SpelException("exception.spel.players");
         }
     }
 
