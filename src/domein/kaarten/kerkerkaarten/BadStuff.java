@@ -6,7 +6,7 @@
 package domein.kaarten.kerkerkaarten;
 
 /**
- *
+ * NAKIJKEN
  * @author ziggy
  */
 public class BadStuff {

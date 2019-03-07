@@ -2,7 +2,6 @@ package domein.kaarten.kerkerkaarten;
 
 import domein.kaarten.Kerkerkaart;
 import exceptions.kaarten.ConsumablesKerkerException;
-import language.LanguageResource;
 
 /**
  *
@@ -18,10 +17,11 @@ public class ConsumablesKerker extends Kerkerkaart {
      * gebruikt)
      *
      * @param naam Naam van de kaart
+     * @param id
      * @param bonus
      */
-    public ConsumablesKerker(String naam, int bonus) {
-        super(naam);
+    public ConsumablesKerker(String naam,int id, int bonus) {
+        super(naam, id);
         controleBonus(bonus);
         this.bonus = bonus;
     }
@@ -47,7 +47,7 @@ public class ConsumablesKerker extends Kerkerkaart {
      */
     private void controleBonus(int bonus){
         if(bonus < -5 || bonus > 10)
-            throw new ConsumablesKerkerException(LanguageResource.getString("consumablesKerker.bonus")); 
+            throw new ConsumablesKerkerException("exception.consumablesKerker.bonus"); 
     }
     
     

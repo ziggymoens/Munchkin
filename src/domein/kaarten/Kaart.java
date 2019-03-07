@@ -1,6 +1,6 @@
 package domein.kaarten;
 
-import java.util.Locale;
+import exceptions.kaarten.KaartException;
 
 /**
  *
@@ -11,16 +11,18 @@ public abstract class Kaart {
 
     //Declaratie attributen
     private String naam;
+    private int id;
     private boolean kaartInGebruik;
-
 
     /**
      * Constructor kaart (superklasse van Schatkaart en Kerkerkaart)
      *
      * @param naam
+     * @param id
      */
-    public Kaart(String naam) {
+    public Kaart(String naam, int id) {
         setNaam(naam);
+        setId(id);
     }
 
     /**
@@ -28,7 +30,10 @@ public abstract class Kaart {
      *
      * @param naam de naam van de kaart
      */
-    public final void setNaam(String naam) {
+    private void setNaam(String naam) {
+        if (naam == null || naam.isBlank()) {
+            throw new KaartException("exception.kaart.name");
+        }
         this.naam = naam;
     }
 
@@ -59,4 +64,24 @@ public abstract class Kaart {
     public final void setKaartInGebruik(boolean kaartInGebruik) {
         this.kaartInGebruik = kaartInGebruik;
     }
+
+    /**
+     *
+     * @return
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     *
+     * @param id
+     */
+    private void setId(int id) {
+        if (id < 1 || id > 110) {
+            throw new KaartException("exception.kaart.id");
+        }
+        this.id = id;
+    }
+
 }

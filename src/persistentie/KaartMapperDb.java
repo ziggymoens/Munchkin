@@ -27,10 +27,6 @@ import java.util.List;
  */
 public class KaartMapperDb {
 
-    private Connection conn = null;
-    private PreparedStatement ps = null;
-    private ResultSet rs = null;
-
     public void voegToe() {
         try (
                 Connection conn = DriverManager.getConnection(Connectie.JDBC_URL);) {
@@ -66,23 +62,12 @@ public class KaartMapperDb {
                 default:
                     break;
             }
-
+            rs.close();
+            query.close();
+            conn.close();
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
-        } finally {
-            try {
-                rs.close();
-            } catch (Exception e) {
-                /* ignored */ }
-            try {
-                ps.close();
-            } catch (Exception e) {
-                /* ignored */ }
-            try {
-                conn.close();
-            } catch (Exception e) {
-                /* ignored */ }
-        }
+        } 
         return kaarten;
     }
 
@@ -200,29 +185,20 @@ public class KaartMapperDb {
     }
 
     private BadStuff badStuffKaart(int badStuffId) {
-        BadStuff bs;
+        BadStuff bs = null;
         try (Connection conn = DriverManager.getConnection(Connectie.JDBC_URL);
                 PreparedStatement query = conn.prepareStatement(String.format(String.format("SELECT * FROM ID222177_g35.BadStuff b  WHERE BadStuff.%d = Monster.badStuffId", badStuffId)));
                 ResultSet rs = query.executeQuery()) {
-            while(rs.next())
+            while(rs.next()){
                 String name = rs.getString("name");
                 bs = new BadStuff(name);
             }
+        conn.close();
+        query.close();
+        rs.close();
+        }
          catch (SQLException ex) {
             throw new RuntimeException(ex);
-        } finally {
-            try {
-                rs.close();
-            } catch (Exception e) {
-                /* ignored */ }
-            try {
-                ps.close();
-            } catch (Exception e) {
-                /* ignored */ }
-            try {
-                conn.close();
-            } catch (Exception e) {
-                /* ignored */ }
         }
         return bs;
     }

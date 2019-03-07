@@ -26,9 +26,10 @@ public class Monster extends Kerkerkaart {
     /**
      *
      * @param naam van de speler
+     * @param id
      * @param level van de speler
      * @param winstTeasures aantal schatkaarten verkregen door winst
-     * @param winstLevels levels verkregen door 
+     * @param winstLevels levels verkregen door
      * @param text
      * @param outRun
      * @param runAway
@@ -39,10 +40,13 @@ public class Monster extends Kerkerkaart {
      * @param levelsLostHigherLevel
      * @param badStuff bijhorende aan de kaart
      */
-    public Monster(String naam, int level, int winstTeasures, int winstLevels, String text, boolean outRun, int runAway, Race specialRace, int specialRaceExtra, String specialRaceReason, int notPursue, int levelsLostHigherLevel, BadStuff badStuff) {
-        super(naam);
+    public Monster(String naam, int id, int level, int winstTeasures, int winstLevels, String text, boolean outRun, int runAway, Race specialRace, int specialRaceExtra, String specialRaceReason, int notPursue, int levelsLostHigherLevel, BadStuff badStuff) {
+        super(naam, id);
+        controleerLevel(level);
         this.level = level;
+        controleerTreasures(winstTeasures);
         this.winstTeasures = winstTeasures;
+        controleerLevels(winstLevels);
         this.winstLevels = winstLevels;
         setText(text);
         setOutRun(outRun);
@@ -52,64 +56,6 @@ public class Monster extends Kerkerkaart {
         setSpecialRaceReason(specialRaceReason);
         setNotPursue(notPursue);
         setLevelsLostHigherLevel(levelsLostHigherLevel);
-        this.badStuff = badStuff;
-    }
-
-    /**
-     *
-     * @param naam van de speler
-     * @param level van de speler
-     * @param winstTeasures aantal schatkaarten verkregen door winst
-     * @param winstLevels levels omhoog door winst
-     * @param badStuff bijhorende aan de kaart
-     */
-    public Monster(String naam, int level, int winstTeasures, int winstLevels, BadStuff badStuff) {
-        super(naam);
-        this.level = level;
-        this.winstTeasures = winstTeasures;
-        this.winstLevels = winstLevels;
-        this.badStuff = badStuff;
-    }
-
-    /**
-     *
-     * @param naam van de speler
-     * @param level van de speler
-     * @param winstTeasures aantal schatkaarten verkregen door winst
-     * @param winstLevels levels omhoog door winst
-     * @param specialRace ras waarvoor andere voorwaarden gelden
-     * @param specialRaceExtra extra effect voor specialRace
-     * @param specialRaceReason reden voor extra effect
-     * @param badStuff bijhorende aan de kaart
-     */
-    public Monster(String naam, int level, int winstTeasures, int winstLevels, Race specialRace, int specialRaceExtra, String specialRaceReason, BadStuff badStuff) {
-        super(naam);
-        this.level = level;
-        this.winstTeasures = winstTeasures;
-        this.winstLevels = winstLevels;
-        setSpecialRace(specialRace);
-        setSpecialRaceExtra(specialRaceExtra);
-        setSpecialRaceReason(specialRaceReason);
-        this.badStuff = badStuff;
-    }
-
-    /**
-     *
-     * @param naam
-     * @param level
-     * @param winstTeasures
-     * @param winstLevels
-     * @param text
-     * @param notPursue
-     * @param badStuff
-     */
-    public Monster(String naam, int level, int winstTeasures, int winstLevels, String text, int notPursue, BadStuff badStuff) {
-        super(naam);
-        this.level = level;
-        this.winstTeasures = winstTeasures;
-        this.winstLevels = winstLevels;
-        setText(text);
-        setNotPursue(notPursue);
         this.badStuff = badStuff;
     }
 
@@ -209,40 +155,176 @@ public class Monster extends Kerkerkaart {
         return levelsLostHigherLevel;
     }
 
-    public final void setText(String text) {
+    /**
+     *
+     * @param text
+     */
+    private void setText(String text) {
+        if (text == null || text.isBlank()) {
+            throw new MonsterException("exception.monster.text");
+        }
         this.text = text;
     }
 
-    public final void setOutRun(boolean outRun) {
+    /**
+     *
+     * @param outRun
+     */
+    private void setOutRun(boolean outRun) {
         this.outRun = outRun;
     }
 
-    public final void setRunAway(int runAway) {
-        if (runAway > 0) {
-            this.runAway = runAway;
-        } else {
-            throw new MonsterException(LanguageResource.getString("Monster"));
+    /**
+     *
+     * @param runAway
+     */
+    private void setRunAway(int runAway) {
+        if (runAway < 0) {
+            throw new MonsterException("exception.monster.runawayint");
         }
+        this.runAway = runAway;
     }
 
-    public final void setSpecialRace(Race specialRace) {
+    /**
+     *
+     * @param specialRace
+     */
+    private void setSpecialRace(Race specialRace) {
+        if (specialRace == null) {
+            throw new MonsterException("exception.monster.specialrace");
+        }
         this.specialRace = specialRace;
     }
 
-    public final void setSpecialRaceExtra(int specialRaceExtra) {
+    /**
+     *
+     * @param specialRaceExtra
+     */
+    private void setSpecialRaceExtra(int specialRaceExtra) {
+        if (specialRaceExtra < 0) {
+            throw new MonsterException("exception.monster.specialraceextra");
+        }
         this.specialRaceExtra = specialRaceExtra;
     }
 
-    public final void setSpecialRaceReason(String specialRaceReason) {
+    /**
+     *
+     * @param specialRaceReason
+     */
+    private void setSpecialRaceReason(String specialRaceReason) {
+        if (specialRaceReason == null || specialRaceReason.isBlank()) {
+            throw new MonsterException("exception.monster.specialracereason");
+        }
         this.specialRaceReason = specialRaceReason;
     }
 
-    public final void setNotPursue(int notPursue) {
+    /**
+     *
+     * @param notPursue
+     */
+    private void setNotPursue(int notPursue) {
+        if (notPursue < 0) {
+            throw new MonsterException("exception.monster.notpursue");
+        }
         this.notPursue = notPursue;
     }
 
-    public final void setLevelsLostHigherLevel(int levelsLostHigherLevel) {
+    /**
+     *
+     * @param levelsLostHigherLevel
+     */
+    private void setLevelsLostHigherLevel(int levelsLostHigherLevel) {
+        if (levelsLostHigherLevel < 0) {
+            throw new MonsterException("exception.monster.levelslosthigherlevel");
+        }
         this.levelsLostHigherLevel = levelsLostHigherLevel;
     }
 
+    /**
+     *
+     * @param level
+     */
+    private void controleerLevel(int level) {
+        if (level < 0) {
+            throw new MonsterException("exception.monster.level");
+        }
+    }
+
+    /**
+     *
+     * @param winstTeasures
+     */
+    private void controleerTreasures(int winstTeasures) {
+        if (winstTeasures < 0) {
+            throw new MonsterException("exception.monster.treasures");
+        }
+    }
+
+    /**
+     *
+     * @param winstLevels
+     */
+    private void controleerLevels(int winstLevels) {
+        if (winstLevels < 0) {
+            throw new MonsterException("exception.monster.levelsw");
+        }
+    }
+
 }
+/**
+ * // * // * @param naam van de speler // * @param level van de speler //
+ *
+ *
+ * @param winstTeasures aantal schatkaarten verkregen door winst // * @param
+ * winstLevels levels omhoog door winst // * @param badStuff bijhorende aan de
+ * kaart //
+ */
+//    public Monster(String naam, int level, int winstTeasures, int winstLevels, BadStuff badStuff) {
+//        super(naam);
+//        this.level = level;
+//        this.winstTeasures = winstTeasures;
+//        this.winstLevels = winstLevels;
+//        this.badStuff = badStuff;
+//    }
+//
+//    /**
+//     *
+//     * @param naam van de speler
+//     * @param level van de speler
+//     * @param winstTeasures aantal schatkaarten verkregen door winst
+//     * @param winstLevels levels omhoog door winst
+//     * @param specialRace ras waarvoor andere voorwaarden gelden
+//     * @param specialRaceExtra extra effect voor specialRace
+//     * @param specialRaceReason reden voor extra effect
+//     * @param badStuff bijhorende aan de kaart
+//     */
+//    public Monster(String naam, int level, int winstTeasures, int winstLevels, Race specialRace, int specialRaceExtra, String specialRaceReason, BadStuff badStuff) {
+//        super(naam);
+//        this.level = level;
+//        this.winstTeasures = winstTeasures;
+//        this.winstLevels = winstLevels;
+//        setSpecialRace(specialRace);
+//        setSpecialRaceExtra(specialRaceExtra);
+//        setSpecialRaceReason(specialRaceReason);
+//        this.badStuff = badStuff;
+//    }
+//
+//    /**
+//     *
+//     * @param naam
+//     * @param level
+//     * @param winstTeasures
+//     * @param winstLevels
+//     * @param text
+//     * @param notPursue
+//     * @param badStuff
+//     */
+//    public Monster(String naam, int level, int winstTeasures, int winstLevels, String text, int notPursue, BadStuff badStuff) {
+//        super(naam);
+//        this.level = level;
+//        this.winstTeasures = winstTeasures;
+//        this.winstLevels = winstLevels;
+//        setText(text);
+//        setNotPursue(notPursue);
+//        this.badStuff = badStuff;
+//    }
