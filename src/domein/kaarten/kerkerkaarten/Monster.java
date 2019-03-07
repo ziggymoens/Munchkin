@@ -25,22 +25,21 @@ public class Monster extends Kerkerkaart {
 
     /**
      *
-     * @param naam van de speler
-     * @param id
-     * @param level van de speler
-     * @param winstTeasures aantal schatkaarten verkregen door winst
-     * @param winstLevels levels verkregen door
-     * @param text
-     * @param outRun
-     * @param runAway
-     * @param specialRace
-     * @param specialRaceExtra
-     * @param specialRaceReason
-     * @param notPursue
-     * @param levelsLostHigherLevel
-     * @param badStuff bijhorende aan de kaart
+     * @param naam = name, van de speler
+     * @param id = id, 
+     * @param level = level, van de speler
+     * @param winstTeasures = treasures, aantal schatkaarten verkregen door winst
+     * @param winstLevels = levelUp, levels verkregen door
+     * @param text = description, 
+     * @param outRun = outRun, 
+     * @param runAway = escapeBonus,
+     * @param specialRace = specialRace, 
+     * @param specialRaceExtra = raceBonus, 
+     * @param specialRaceReason = specialRacereason, 
+     * @param notPursue = pursueLevel, 
+     * @param badStuff = badStuffId, bijhorende aan de kaart
      */
-    public Monster(String naam, int id, int level, int winstTeasures, int winstLevels, String text, boolean outRun, int runAway, Race specialRace, int specialRaceExtra, String specialRaceReason, int notPursue, int levelsLostHigherLevel, BadStuff badStuff) {
+    public Monster(String naam, int id, int level, int winstTeasures, int winstLevels, String text, boolean outRun, int runAway, Race specialRace, int specialRaceExtra, String specialRaceReason, int notPursue, BadStuff badStuff) {
         super(naam, id);
         controleerLevel(level);
         this.level = level;
@@ -55,7 +54,7 @@ public class Monster extends Kerkerkaart {
         setSpecialRaceExtra(specialRaceExtra);
         setSpecialRaceReason(specialRaceReason);
         setNotPursue(notPursue);
-        setLevelsLostHigherLevel(levelsLostHigherLevel);
+        controleerBadstuff(badStuff);
         this.badStuff = badStuff;
     }
 
@@ -267,6 +266,12 @@ public class Monster extends Kerkerkaart {
     private void controleerLevels(int winstLevels) {
         if (winstLevels < 0) {
             throw new MonsterException("exception.monster.levelsw");
+        }
+    }
+
+    private void controleerBadstuff(BadStuff badStuff) {
+        if (badStuff == null) {
+            throw new MonsterException("exception.monster.badstuff");
         }
     }
 
