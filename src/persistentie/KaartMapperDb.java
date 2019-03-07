@@ -136,7 +136,7 @@ public class KaartMapperDb {
                 int levelsLostHigherLevel = rs.getInt("levelsLostHigherLevel");
                 String specialRaceReason = rs.getString("specialRaceReason");
                 BadStuff bs = badStuffKaart(rs.getInt("badStuffId"));
-                kaarten.add(new Monster(name, level, tresures, levelUp, description, outRun, escapeBonus, new Race(specialRace), raceBonus, specialRaceReason, persueLevel, levelsLostHigherLevel, bs));
+                kaarten.add(new Monster(name,id ,level, tresures, levelUp, description, outRun, escapeBonus, new Race(specialRace), raceBonus, specialRaceReason, persueLevel, bs));
             }
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
