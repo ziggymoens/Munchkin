@@ -9,28 +9,33 @@ import exceptions.kaarten.BadStuffException;
 
 /**
  * NAKIJKEN
+ *
  * @author ziggy
  */
 public class BadStuff {
-    
+
     private String naam;
     private int id;
     private String text;
     private int levelsLost;
     private String gearLost;
     private int itemsTaken;
-    private boolean weaponsLost;
-    private boolean raceLost;
-    private boolean dead;
-    private String cardsLost;
 
-    private boolean lawyersCard;
-    private boolean orgsCard;
-    private boolean ghoulfriends;
-    private boolean snailsOnSpeed;
-    private boolean wrightBrothers;
-
-    public BadStuff(String naam, int id, int itemsLost, int levelsLost, String gearLost, String text){
+    private boolean lawyersCard = false;
+    private boolean orgsCard = false;
+    private boolean ghoulfriends = false;
+    private boolean snailsOnSpeed = false;
+    private boolean wrightBrothers = false;
+/**
+ * 
+ * @param naam
+ * @param id
+ * @param itemsLost
+ * @param levelsLost
+ * @param gearLost
+ * @param text 
+ */
+    public BadStuff(String naam, int id, int itemsLost, int levelsLost, String gearLost, String text) {
         setNaam(naam);
         setId(id);
         setItemsTaken(itemsLost);
@@ -64,66 +69,40 @@ public class BadStuff {
     }
 
     private void setId(int id) {
-        if(id<0){
+        if (id < 0) {
             throw new BadStuffException("exception.badstuff.id");
         }
         this.id = id;
     }
 
-    
     private void setText(String text) {
+        if (text == null || text.isBlank()) {
+            throw new BadStuffException("exception.badstuff.text");
+        }
         this.text = text;
     }
 
     private void setLevelsLost(int levelsLost) {
+        if (levelsLost < 0) {
+            throw new BadStuffException("exception.badstuff.levelslost");
+        }
         this.levelsLost = levelsLost;
     }
 
     private void setGearLost(String gearLost) {
+        if (gearLost == null || gearLost.isBlank()) {
+            throw new BadStuffException("exception.badstuff.gearlost");
+        }
         this.gearLost = gearLost;
     }
 
     private void setItemsTaken(int itemsTaken) {
+        if (itemsTaken < 0) {
+            throw new BadStuffException("exception.badstuff.itemstaken");
+        }
         this.itemsTaken = itemsTaken;
     }
 
-    private void setWeaponsLost(boolean weaponsLost) {
-        this.weaponsLost = weaponsLost;
-    }
-
-    private void setRaceLost(boolean raceLost) {
-        this.raceLost = raceLost;
-    }
-
-    private void setDead(boolean dead) {
-        this.dead = dead;
-    }
-
-    private void setCardsLost(String cardsLost) {
-        this.cardsLost = cardsLost;
-    }
-
-    private void setLawyersCard(boolean lawyersCard) {
-        this.lawyersCard = lawyersCard;
-    }
-
-    private void setOrgsCard(boolean orgsCard) {
-        this.orgsCard = orgsCard;
-    }
-
-    private void setGhoulfriends(boolean ghoulfriends) {
-        this.ghoulfriends = ghoulfriends;
-    }
-
-    private void setSnailsOnSpeed(boolean snailsOnSpeed) {
-        this.snailsOnSpeed = snailsOnSpeed;
-    }
-
-    private void setWrightBrothers(boolean wrightBrothers) {
-        this.wrightBrothers = wrightBrothers;
-    }
-    
-    
 }
 //    public BadStuff(String naam, String text, int levelsLost) {
 //        setNaam(naam);
@@ -157,3 +136,19 @@ public class BadStuff {
 //        setRaceLost(raceLost);
 //        setDead(dead);
 //    }
+//    private void setWeaponsLost(boolean weaponsLost) {
+//        this.weaponsLost = weaponsLost;
+//    }
+//
+//    private void setRaceLost(boolean raceLost) {
+//        this.raceLost = raceLost;
+//    }
+//
+//    private void setDead(boolean dead) {
+//        this.dead = dead;
+//    }
+//
+//    private void setCardsLost(String cardsLost) {
+//        this.cardsLost = cardsLost;
+//    }
+
