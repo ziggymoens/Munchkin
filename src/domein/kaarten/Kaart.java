@@ -78,7 +78,7 @@ public abstract class Kaart {
      * @param id
      */
     private void setId(int id) {
-        if (id < 1 || id > 110) {
+        if ((id < 1 || id > 110 )&& id != 999) {
             throw new KaartException("exception.kaart.id");
         }
         this.id = id;

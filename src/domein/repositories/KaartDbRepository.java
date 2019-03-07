@@ -6,7 +6,17 @@
 package domein.repositories;
 
 import domein.kaarten.Kaart;
+
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+
+import domein.kaarten.kerkerkaarten.ConsumablesKerker;
+import domein.kaarten.kerkerkaarten.Curse;
+import domein.kaarten.kerkerkaarten.Monster;
+import domein.kaarten.kerkerkaarten.Race;
+import domein.kaarten.schatkaarten.ConsumablesSchat;
+import domein.kaarten.schatkaarten.Equipment;
 import persistentie.KaartMapperDb;
 
 /**
@@ -15,18 +25,47 @@ import persistentie.KaartMapperDb;
  */
 public class KaartDbRepository {
 
+    private String[] kaartTypes = {"ConsumablesD", "ConsumablesT", "Curse", "Equipment", "Monster", "Race"};
     private final KaartMapperDb mapper;
-    //private List<Speler> spelers; //de lijst wordt eigenlijk niet gebruikt 
+    private List<Kaart> kaarten;
+    private final List<Kaart> schatkaarten;
+    private final List<Kaart> kerkerkaarten;
 
     public KaartDbRepository() {
         mapper = new KaartMapperDb();
-        //spelers = new ArrayList<>();
+        kaarten = new ArrayList<>();
+        kaarten = geefKaarten();
+        schatkaarten = new ArrayList<>();
+        kerkerkaarten = new ArrayList<>();
+        sorteerKaarten();
+
     }
 
-    public List<Kaart> geefKaartenType(String type) {
-        return mapper.geefKaartenType(type);
+    public List<Kaart> geefKaarten() {
+        for (String type : kaartTypes){
+            for (Kaart k : mapper.geefKaartenType(type)){
+                kaarten.add(k);
+            }
+        }
+        return kaarten;
+    }
+    private void sorteerKaarten() {
+        for (Kaart kaart : kaarten) {
+            if (kaart instanceof Equipment || kaart instanceof ConsumablesSchat) {
+                schatkaarten.add(kaart);
+            } else if (kaart instanceof Monster || kaart instanceof Curse || kaart instanceof Race || kaart instanceof ConsumablesKerker) {
+                kerkerkaarten.add(kaart);
+            }
+        }
+        Collections.shuffle(schatkaarten);
+        Collections.shuffle(kerkerkaarten);
     }
 
-    
-    
+    public List<Kaart> getSchatkaarten() {
+        return schatkaarten;
+    }
+
+    public List<Kaart> getKerkerkaarten() {
+        return kerkerkaarten;
+    }
 }

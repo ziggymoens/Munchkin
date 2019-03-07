@@ -1,6 +1,7 @@
 package domein;
 
 import domein.kaarten.Kaart;
+import domein.repositories.KaartDbRepository;
 import domein.repositories.KaartRepository;
 import exceptions.SpelException;
 import java.util.*;
@@ -17,7 +18,7 @@ public class Spel {
     private final List<Speler> spelers;
     private List<Kaart> schatkaarten;
     private List<Kaart> kerkerkaarten;
-    private KaartRepository kr;
+    private KaartDbRepository kr;
 
     /**
      * Constructor van Spel zonder parameters spelers = 3
@@ -34,7 +35,7 @@ public class Spel {
     public Spel(int aantalSpelers) {
         setAantalSpelers(aantalSpelers);
         spelers = new ArrayList<>();
-        kr = new KaartRepository();
+        kr = new KaartDbRepository();
         schatkaarten = kr.getSchatkaarten();
         kerkerkaarten = kr.getKerkerkaarten();
     }
@@ -188,6 +189,10 @@ public class Spel {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public String geefSpelsituatie() {
         String ret  = "";
         for (Speler speler : spelers) {
@@ -196,6 +201,10 @@ public class Spel {
         return ret;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean niemandGewonnen() {
         boolean ret = true;
         for (Speler speler: spelers) {
