@@ -27,8 +27,9 @@ public class Test {
     
     private String geefKaarten(){
         String out = "";
-        List<Kaart> kaarten = kr.geefKaartenType("Race");
-        for (Kaart kaart: kaarten) {
+        List<Kaart> kk = kr.getKerkerkaarten();
+        List<Kaart> sk = kr.getSchatkaarten();
+        for (Kaart kaart: sk) {
             out += String.format("%s%n", kaart.getNaam());
         }
         return out;
