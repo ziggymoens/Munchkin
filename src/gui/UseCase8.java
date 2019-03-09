@@ -13,7 +13,7 @@ import domein.DomeinController;
  */
 public class UseCase8 {
 
-    private DomeinController dc;
+    private final DomeinController dc;
 
     public UseCase8(DomeinController dc) {
         this.dc = dc;

@@ -36,9 +36,9 @@ public class Test {
     private String geefKaarten(){
         int k = 0, s=0;
         int ck=0,c=0,m=0,r=0,cs=0,e=0;
-        String out = "";
+        StringBuilder out = new StringBuilder();
         for (Kaart kaart: sk) {
-            out += String.format("%s%n", kaart.getNaam());
+            out.append(String.format("%s%n", kaart.getNaam()));
             if (kaart instanceof ConsumablesSchat){
                 cs++;
             }
@@ -48,7 +48,7 @@ public class Test {
             s++;
         }
         for (Kaart kaart: kk){
-            out += String.format("%s%n", kaart.getNaam());
+            out.append(String.format("%s%n", kaart.getNaam()));
             if (kaart instanceof ConsumablesKerker){
                 ck++;
             }
@@ -64,6 +64,6 @@ public class Test {
             k++;
         }
         System.err.printf("cs = %d, e = %d, ck = %d, c = %d, m = %d, r = %d, schat = %d, kerker = %d%n", cs, e, ck, c, m, r, s, k);
-        return out;
+        return out.toString();
     }
 }

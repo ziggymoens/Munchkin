@@ -17,7 +17,7 @@ public class Race extends Kerkerkaart {
 
     private enum TYPES {
         elf, dwarf, halfling, human, everyone, none, female, male
-    }; //NAKIJKEN
+    } //NAKIJKEN
 
     public Race(String naam){
         this(naam, 999, "...");
@@ -118,10 +118,3 @@ public class Race extends Kerkerkaart {
         }
     }
 }
-//    public Race(String name, String description) {
-//        super(name);
-//        controleerType(name);
-//        this.description = description;
-//        this.type = name;
-//        setExtras();
-//    }

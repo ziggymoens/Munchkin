@@ -20,7 +20,7 @@ public class Equipment extends Schatkaart {
     
     private enum TYPES{
         head, armor, foot, weapon, headgear, footgear //eventueel aanvullen
-    };
+    }
 
     /**
      * Constructor schatkaart equipment (die superklasse Schatkaart gebruikt)
@@ -170,59 +170,3 @@ public class Equipment extends Schatkaart {
     }
 
 }
-/**
- * // * // * @param naam // * @param waarde // * @param type // * @param bonus
- * //
- */
-//    public Equipment(String naam, int waarde, String type, int bonus) {
-//        super(naam, waarde);
-//        this.bonus = bonus;
-//        this.type = type;
-//    }
-//
-//    /**
-//     *
-//     * @param naam
-//     * @param waarde
-//     * @param type
-//     * @param bonus
-//     * @param race
-//     */
-//    public Equipment(String naam, int waarde, String type, int bonus, Race race) {
-//        super(naam, waarde);
-//        this.bonus = bonus;
-//        this.type = type;
-//        setUsableBy(usableBy);
-//    }
-//
-//    /**
-//     *
-//     * @param naam
-//     * @param waarde
-//     * @param type
-//     * @param bonus
-//     * @param specialBonus
-//     * @param specialRace
-//     */
-//    public Equipment(String naam, int waarde, String type, int bonus, int specialBonus, Race specialRace) {
-//        super(naam, waarde);
-//        this.bonus = bonus;
-//        this.type = type;
-//        setSpecialBonus(specialBonus);
-//        setSpecialRace(specialRace);
-//    }
-//
-//    /**
-//     *
-//     * @param naam
-//     * @param waarde
-//     * @param type
-//     * @param bonus
-//     * @param runAway
-//     */
-//    public Equipment(String naam, int waarde, String type, int bonus, int runAway) {
-//        super(naam, waarde);
-//        this.bonus = bonus;
-//        setRunAway(runAway);
-//        this.type = type;
-//    }

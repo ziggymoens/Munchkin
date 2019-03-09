@@ -38,8 +38,7 @@ public class ConsumablesKerker extends Kerkerkaart {
      * @return
      */
     public String getText() {
-        String text = "Play during combat";
-        return text;
+        return "Play during combat";
     }
     /**
      * 

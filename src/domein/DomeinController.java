@@ -30,31 +30,20 @@ public class DomeinController {
 
     }
 
-//    /**
-//     * Methode om een speler toete voegen adhv een naam, geslacht (deze worden
-//     * verder gecontroleerd volgens de DR)
-//     *
-//     * @param naam Naam van de speler
-//     * @param geslacht Geslacht van de speler
-//     */
-//    public void voegSpelerToe(String naam, String geslacht) {
-//        spel.voegSpelerToe(naam, geslacht);
-//    }
-
     /**
      * String die info geeft over het spel en de spelers
      *
      * @return String met alle informatie
      */
     public String geefInformatie() {
-        String ret = "";
+        StringBuilder ret = new StringBuilder();
         String[] sInfo = spel.geefInfo();
         int index = 1;
         for (String lijn : sInfo) {
-            ret += String.format("%s %d: %s%n", LanguageResource.getString("player"), index, lijn);
+            ret.append(String.format("%s %d: %s%n", LanguageResource.getString("player"), index, lijn));
             index++;
         }
-        return ret;
+        return ret.toString();
     }
 
     /**
@@ -116,12 +105,12 @@ public class DomeinController {
 
     public String geefOpgeslagenSpellen() {
         List<Spel> spellen = sr.getSpellen();
-        String ret = "";
+        StringBuilder ret = new StringBuilder();
         int index = 1;
         for (Spel spel : spellen) {
-            ret += String.format("Spel %d%n%s", index, spel.toString());
+            ret.append(String.format("Spel %d%n%s", index, spel.toString()));
         }
-        return ret;
+        return ret.toString();
     }
 
     /**

@@ -8,11 +8,12 @@ import domein.kaarten.Kaart;
 import domein.kaarten.kerkerkaarten.Monster;
 import domein.kaarten.kerkerkaarten.Race;
 import exceptions.SpelerException;
+
 import java.util.*;
+
 import language.LanguageResource;
 
 /**
- *
  * @author G35
  */
 public class Speler {
@@ -21,8 +22,8 @@ public class Speler {
     private int level, aantalSchatkaarten, aantalKerkerkaarten;
     private String geslacht;
     private String naam;
-    private List<Kaart> kaarten;
-    private List<Kaart> items;
+    private final List<Kaart> kaarten;
+    private final List<Kaart> items;
     private boolean heeftMonsterVerslaan;
 
     /**
@@ -41,7 +42,7 @@ public class Speler {
      * Constructor van Speler zonder opgegeven taal, standaardtaal is "en" en
      * standaard level is 1
      *
-     * @param naam De naam van de speler
+     * @param naam     De naam van de speler
      * @param geslacht Het geslacht van de speler
      */
     public Speler(String naam, String geslacht) {
@@ -51,11 +52,11 @@ public class Speler {
     /**
      * Constructor van speler
      *
-     * @param naam De naam van de speler
+     * @param naam     De naam van de speler
      * @param geslacht Het geslacht van de speler
-     * @param level Het level van de Speler
+     * @param level    Het level van de Speler
      */
-    public Speler(String naam, String geslacht, int level) {
+    private Speler(String naam, String geslacht, int level) {
         setGeslacht(geslacht);
         setNaam(naam);
         setLevel(level);
@@ -160,6 +161,14 @@ public class Speler {
     }
 
     /**
+     * Items van speler opvragen
+     * @return List met Kaart-objecten
+     */
+    public List<Kaart> getItems() {
+        return items;
+    }
+
+    /**
      * Het aantal kaarten van de speler opvragen
      *
      * @return Aantal kaarten van de speler
@@ -173,20 +182,12 @@ public class Speler {
      *
      * @return String met info over de kaart
      */
-    public String kaartenNaarString() {
-        String ret = "";
+    public String kaartenNaarString(List<Kaart> kaarten) {
+        StringBuilder ret = new StringBuilder();
         for (Kaart kaart : kaarten) {
-            ret += String.format("%s  ", kaart.getNaam());
+            ret.append(String.format("%s  ", kaart.getNaam()));
         }
-        return ret;
-    }
-
-    public String itemsNaarString() {
-        String ret = "";
-        for (Kaart item : items) {
-            ret += String.format("%s  ", item.getNaam());
-        }
-        return ret;
+        return ret.toString();
     }
 
     /**
@@ -196,7 +197,7 @@ public class Speler {
      */
     @Override
     public String toString() {
-        return String.format("%s = %s, %s = %s, %s = %d, %s = %d, %s = %d, %s = %s", LanguageResource.getString("player.name"), naam, LanguageResource.getString("player.sex"), geslacht, LanguageResource.getString("player.level"), level, LanguageResource.getString("player.treasurecards"), getAantalSchatkaarten(), LanguageResource.getString("player.dungeoncards"), getAantalKerkerkaarten(), LanguageResource.getString("player.amountOfCards"), kaartenNaarString());
+        return String.format("%s = %s, %s = %s, %s = %d, %s = %d, %s = %d, %s = %s", LanguageResource.getString("player.name"), naam, LanguageResource.getString("player.sex"), geslacht, LanguageResource.getString("player.level"), level, LanguageResource.getString("player.treasurecards"), getAantalSchatkaarten(), LanguageResource.getString("player.dungeoncards"), getAantalKerkerkaarten(), LanguageResource.getString("player.amountOfCards"), kaartenNaarString(kaarten));
     }
 
     /**
@@ -204,7 +205,7 @@ public class Speler {
      *
      * @return Het aantal schatkaarten
      */
-    public int getAantalSchatkaarten() {
+    private int getAantalSchatkaarten() {
         return aantalSchatkaarten;
     }
 
@@ -213,7 +214,7 @@ public class Speler {
      *
      * @return Het aantal kerkerkaarten
      */
-    public int getAantalKerkerkaarten() {
+    private int getAantalKerkerkaarten() {
         return aantalKerkerkaarten;
     }
 
@@ -236,7 +237,6 @@ public class Speler {
     }
 
     /**
-     *
      * @param heeftMonsterVerslaan
      */
     public void setHeeftMonsterVerslaan(boolean heeftMonsterVerslaan) {
@@ -244,7 +244,6 @@ public class Speler {
     }
 
     /**
-     *
      * @return
      */
     public boolean isHeeftMonsterVerslaan() {

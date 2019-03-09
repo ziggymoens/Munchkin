@@ -1,4 +1,4 @@
-package domein.repositories;
+package ongebruikt;
 
 import domein.kaarten.kerkerkaarten.ConsumablesKerker;
 import domein.kaarten.schatkaarten.ConsumablesSchat;
@@ -8,7 +8,7 @@ import domein.kaarten.Kaart;
 import domein.kaarten.kerkerkaarten.Monster;
 import domein.kaarten.kerkerkaarten.Race;
 import java.util.*;
-import persistentie.KaartMapper;
+import ongebruikt.KaartMapper;
 
 /**
  *
@@ -25,24 +25,24 @@ public class KaartRepository {
         kaarten = km.geefKaarten();
         schatkaarten = new ArrayList<>();
         kerkerkaarten = new ArrayList<>();
-        sorteerKaarten();
+        //sorteerKaarten();
     }
 
     public List<Kaart> geefKaarten() {
         return kaarten;
     }
 
-    private void sorteerKaarten() {
-        for (Kaart kaart : kaarten) {
-            if (kaart instanceof Equipment || kaart instanceof ConsumablesSchat) {
-                schatkaarten.add(kaart);
-            } else if (kaart instanceof Monster || kaart instanceof Curse || kaart instanceof Race || kaart instanceof ConsumablesKerker) {
-                kerkerkaarten.add(kaart);
-            }
-        }
-        Collections.shuffle(schatkaarten);
-        Collections.shuffle(kerkerkaarten);
-    }
+//    private void sorteerKaarten() {
+//        for (Kaart kaart : kaarten) {
+//            if (kaart instanceof Equipment || kaart instanceof ConsumablesSchat) {
+//                schatkaarten.add(kaart);
+//            } else if (kaart instanceof Monster || kaart instanceof Curse || kaart instanceof Race || kaart instanceof ConsumablesKerker) {
+//                kerkerkaarten.add(kaart);
+//            }
+//        }
+//        Collections.shuffle(schatkaarten);
+//        Collections.shuffle(kerkerkaarten);
+//    }
 
     public List<Kaart> getSchatkaarten() {
         return schatkaarten;

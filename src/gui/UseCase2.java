@@ -9,6 +9,8 @@ import domein.DomeinController;
 
 import java.util.*;
 
+import exceptions.SpelException;
+import exceptions.SpelerException;
 import printer.Printer;
 import printer.ColorsOutput;
 import language.LanguageResource;
@@ -35,6 +37,7 @@ public class UseCase2 {
 
     /**
      * Methode die het spel start en de beurten afloopt
+     *
      * @param aantalSpelers Het aantal spelers die meespelen
      */
     public void speelSpel(int aantalSpelers) {
@@ -42,58 +45,67 @@ public class UseCase2 {
             dc.controleerVolgorde();
             dc.geefStartKaarten();
             System.out.println(String.format("De volgorde van de spelers is: %n%s%n", dc.geefInformatie()));
-        } catch (Exception e) {
-            Printer.exceptionCatch("Exception", e);
+        } catch (SpelException | SpelerException e) {
+            Printer.exceptionCatch("Spel/SpelerException", e);
         }
-        while (niemandGewonnen()) {
-            for (int i = 0; i < aantalSpelers; i++) {
-                if (niemandGewonnen()) {
-                    try {
+        try {
+            while (niemandGewonnen()) {
+                for (int i = 0; i < aantalSpelers; i++) {
+                    if (niemandGewonnen()) {
                         String naam = dc.geefNaamSpeler(i);
                         speelBeurt(naam);
-                    } catch (Exception e) {
-                        Printer.exceptionCatch("Exception", e);
                     }
                 }
             }
+        } catch (SpelException | SpelerException e) {
+            Printer.exceptionCatch("Spel/SpelerException", e);
         }
         try {
             System.out.printf("%s: %s", LanguageResource.getString("end.won"), geefNaamWinnaar());
-        } catch (Exception e) {
-            Printer.exceptionCatch("Exception", e);
+        } catch (SpelException | SpelerException e) {
+            Printer.exceptionCatch("Spel/SpelerException", e);
         }
 
     }
 
     /**
      * Methode die de beurt laat spelen en de keuze laat maken tussen 3 opties
+     *
      * @param naam De naam van de speler die aan beurt is
      */
     private void speelBeurt(String naam) {
         System.out.printf("%s: %s%n", LanguageResource.getString("player.turn"), naam);
-        System.out.printf("%s%n"
-                + "1) %s%n"
-                + "2) %s%n"
-                + "3) %s%n", LanguageResource.getString("turn.choice"), LanguageResource.getString("turn.play"), LanguageResource.getString("turn.save"), LanguageResource.getString("turn.stop"));
+        printKeuze();
         int keuze = SCAN.nextInt();
         while (keuze < 1 || keuze > 3) {
             System.out.println(ColorsOutput.kleur("red") + LanguageResource.getString("usecase2.choiceturn") + ColorsOutput.reset());
-            System.out.printf("%s%n"
-                    + "1) %s%n"
-                    + "2) %s%n"
-                    + "3) %s%n", LanguageResource.getString("turn.choice"), LanguageResource.getString("turn.play"), LanguageResource.getString("turn.save"), LanguageResource.getString("turn.stop"));
+            printKeuze();
             keuze = SCAN.nextInt();
         }
         switch (keuze) {
             case 1:
-                UseCase3 uc3 = new UseCase3(this.dc);
-                uc3.speelBeurt(naam);
+                try {
+                    UseCase3 uc3 = new UseCase3(this.dc);
+                    uc3.speelBeurt(naam);
+                } catch (Exception e) {
+                    Printer.exceptionCatch("Exception", e);
+                }
+                break;
             case 2:
-                UseCase8 uc8 = new UseCase8(this.dc);
-                uc8.spelOpslaan();
+                try {
+                    UseCase8 uc8 = new UseCase8(this.dc);
+                    uc8.spelOpslaan();
+                } catch (Exception e) {
+                    Printer.exceptionCatch("Exception", e);
+                }
                 break;
             case 3:
+                try{
+                Printer.printGreen("usecase2.gamestop");
                 System.exit(0);
+                }catch (Exception e){
+                    Printer.exceptionCatch("Exception", e);
+                }
                 break;
             default:
                 break;
@@ -102,6 +114,7 @@ public class UseCase2 {
 
     /**
      * Methode die vraagt aan het spel of iemand al gewonnen is
+     *
      * @return Boolean als iemand gewonnen heeft = true
      */
     private boolean niemandGewonnen() {
@@ -110,12 +123,18 @@ public class UseCase2 {
 
     /**
      * Methode die de naam van de winnaar terug geeft
+     *
      * @return De naam van de winnaar van het spel
      */
     private String geefNaamWinnaar() {
         return dc.geefNaamWinnaar();
     }
 
-
+    private void printKeuze() {
+        System.out.printf("%s%n"
+                + "1) %s%n"
+                + "2) %s%n"
+                + "3) %s%n", LanguageResource.getString("turn.choice"), LanguageResource.getString("turn.play"), LanguageResource.getString("turn.save"), LanguageResource.getString("turn.stop"));
+    }
 
 }

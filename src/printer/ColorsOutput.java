@@ -13,7 +13,7 @@ import java.util.Map;
  * @author ziggy
  */
 public class ColorsOutput {
-    public static Map<String, String> kleuren;
+    private static final Map<String, String> kleuren;
     static {
         kleuren = new HashMap<>();
         kleuren.put("reset", "\u001B[0m");

@@ -2,7 +2,6 @@ package domein;
 
 import domein.kaarten.Kaart;
 import domein.repositories.KaartDbRepository;
-import domein.repositories.KaartRepository;
 import exceptions.SpelException;
 import java.util.*;
 import language.LanguageResource;
@@ -16,9 +15,8 @@ public class Spel {
     //Declaratie attributen
     private int aantalSpelers;
     private final List<Speler> spelers;
-    private List<Kaart> schatkaarten;
-    private List<Kaart> kerkerkaarten;
-    private KaartDbRepository kr;
+    private final List<Kaart> schatkaarten;
+    private final List<Kaart> kerkerkaarten;
 
     /**
      * Constructor van Spel zonder parameters spelers = 3
@@ -35,7 +33,7 @@ public class Spel {
     public Spel(int aantalSpelers) {
         setAantalSpelers(aantalSpelers);
         spelers = new ArrayList<>();
-        kr = new KaartDbRepository();
+        KaartDbRepository kr = new KaartDbRepository();
         schatkaarten = kr.getSchatkaarten();
         kerkerkaarten = kr.getKerkerkaarten();
     }
@@ -58,8 +56,8 @@ public class Spel {
      * Geeft elke speler het startlevel 1
      */
     public void startLevels() {
-        for (int i = 0; i < spelers.size(); i++) {
-            spelers.get(i).setLevel(1);
+        for (Speler speler : spelers) {
+            speler.setLevel(1);
         }
     }
 
@@ -75,20 +73,6 @@ public class Spel {
         }
         return ret;
     }
-
-//    /**
-//     * Voeg een speler toe aan het spel
-//     *
-//     * @param naam De naam van de speler
-//     * @param geslacht Het geslacht van de speler
-//     *
-//     */
-//    public void voegSpelerToe(String naam, String geslacht) {
-//        controleSpeler(naam);
-//        Speler speler = new Speler(naam, geslacht, 1);
-//        geefStartKaarten(speler);
-//        spelers.add(speler);
-//    }
 
     /**
      * Voeg een kaart toe aan de hand van een speler
@@ -150,15 +134,14 @@ public class Spel {
      */
     public void controleerVolgorde() {
         Speler speler = spelers.get(0);
-        for (int i = 0; i < spelers.size(); i++) {
-            if (speler.getNaam().toLowerCase().length() >= spelers.get(i).getNaam().toLowerCase().length()) {
-                if (speler.getNaam().compareToIgnoreCase(spelers.get(i).getNaam()) <= 0) {
-                    speler = spelers.get(i);
+        for (Speler speler1 : spelers) {
+            if (speler.getNaam().toLowerCase().length() >= speler1.getNaam().toLowerCase().length()) {
+                if (speler.getNaam().compareToIgnoreCase(speler1.getNaam()) <= 0) {
+                    speler = speler1;
                 }
             }
         }
-        int index = spelers.indexOf(speler);
-        spelers.remove(index);
+        spelers.remove(speler);
         spelers.add(0, speler);
     }
 
@@ -194,11 +177,11 @@ public class Spel {
      * @return
      */
     public String geefSpelsituatie() {
-        String ret  = "";
+        StringBuilder ret  = new StringBuilder();
         for (Speler speler : spelers) {
-            ret += String.format("%s: %s, %s: %s, %s: %d, %s: %s", LanguageResource.getString("player.name"), speler.getNaam(), LanguageResource.getString("player.sex"), speler.getGeslacht(), LanguageResource.getString("player.level"), speler.getLevel(), LanguageResource.getString("player.items"), speler.itemsNaarString());
+            ret.append(String.format("%s: %s, %s: %s, %s: %d, %s: %s", LanguageResource.getString("player.name"), speler.getNaam(), LanguageResource.getString("player.sex"), speler.getGeslacht(), LanguageResource.getString("player.level"), speler.getLevel(), LanguageResource.getString("player.items"), speler.kaartenNaarString(speler.getItems())));
         }
-        return ret;
+        return ret.toString();
     }
 
     /**

@@ -29,7 +29,6 @@ public class BadStuff {
 
     /**
      *
-     * @param naam
      * @param id
      * @param itemsLost
      * @param levelsLost
@@ -216,51 +215,4 @@ public class BadStuff {
         return wrightBrothers;
     }
 }
-//    public BadStuff(String naam, String text, int levelsLost) {
-//        setNaam(naam);
-//        setText(text);
-//        setLevelsLost(levelsLost);
-//    }
-//
-//    public BadStuff(String naam, String gearLost) {
-//        setNaam(naam);
-//        setGearLost(gearLost);
-//    }
-//
-//    public BadStuff(String naam, int itemstaken) {
-//        setNaam(naam);
-//        setItemsTaken(itemstaken);
-//    }
-//
-//    public BadStuff(String naam, boolean weaponsLost, boolean raceLost) {
-//        setNaam(naam);
-//        setWeaponsLost(weaponsLost);
-//        setRaceLost(raceLost);
-//    }
-//
-//    public BadStuff(String naam) {
-//        setNaam(naam);
-//    }
-//
-//    public BadStuff(String naam, boolean weaponsLost, boolean raceLost, boolean dead) {
-//        setNaam(naam);
-//        setWeaponsLost(weaponsLost);
-//        setRaceLost(raceLost);
-//        setDead(dead);
-//    }
-//    private void setWeaponsLost(boolean weaponsLost) {
-//        this.weaponsLost = weaponsLost;
-//    }
-//
-//    private void setRaceLost(boolean raceLost) {
-//        this.raceLost = raceLost;
-//    }
-//
-//    private void setDead(boolean dead) {
-//        this.dead = dead;
-//    }
-//
-//    private void setCardsLost(String cardsLost) {
-//        this.cardsLost = cardsLost;
-//    }
 

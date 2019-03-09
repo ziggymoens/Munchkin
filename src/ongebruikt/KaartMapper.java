@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package persistentie;
+package ongebruikt;
 
 import domein.kaarten.kerkerkaarten.BadStuff;
 import domein.kaarten.kerkerkaarten.ConsumablesKerker;

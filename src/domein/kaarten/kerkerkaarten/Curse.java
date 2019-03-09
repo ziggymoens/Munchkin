@@ -11,7 +11,8 @@ public class Curse extends Kerkerkaart {
 
     private enum LOSTTYPES {
         head, foot, item, all, sex, race, none, armor
-    };
+    }
+
     private String typeLost;
     private int levelLost;
     private String text;
@@ -114,44 +115,3 @@ public class Curse extends Kerkerkaart {
         this.text = text;
     }
 }
-
-//    /**
-//     * Constructor kerkerkaart curse (die superklasse Kerkerkaart gebruikt)
-//     *
-//     * @param naam De naam van de kaart
-//     */
-//    public Curse(String naam) {
-//        super(naam);
-//    }
-//
-//    /**
-//     *
-//     * @param naam
-//     * @param typeLost
-//     */
-//    public Curse(String naam, String typeLost) {
-//        super(naam);
-//        setTypeLost(typeLost);
-//    }
-//
-//    /**
-//     *
-//     * @param naam
-//     * @param levelLost
-//     */
-//    public Curse(String naam, int levelLost) {
-//        super(naam);
-//        this.levelLost = levelLost;
-//    }
-//
-//    /**
-//     *
-//     * @param naam
-//     * @param raceLost
-//     * @param sexLost
-//     */
-//    public Curse(String naam, boolean raceLost, boolean sexLost) {
-//        super(naam);
-//        setRaceLost(raceLost);
-//        setSexLost(sexLost);
-//    }

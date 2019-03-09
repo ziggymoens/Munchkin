@@ -25,7 +25,7 @@ import persistentie.KaartMapperDb;
  */
 public class KaartDbRepository {
 
-    private String[] kaartTypes = {"ConsumablesD", "ConsumablesT", "Curse", "Equipment", "Monster", "Race"};
+    private final String[] kaartTypes = {"ConsumablesD", "ConsumablesT", "Curse", "Equipment", "Monster", "Race"};
     private final KaartMapperDb mapper;
     private List<Kaart> kaarten;
     private final List<Kaart> schatkaarten;
@@ -43,9 +43,7 @@ public class KaartDbRepository {
 
     public List<Kaart> geefKaarten() {
         for (String type : kaartTypes){
-            for (Kaart k : mapper.geefKaartenType(type)){
-                kaarten.add(k);
-            }
+            kaarten.addAll(mapper.geefKaartenType(type));
         }
         return kaarten;
     }

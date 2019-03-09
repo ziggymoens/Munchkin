@@ -4,6 +4,7 @@ import domein.*;
 
 import java.util.*;
 
+import exceptions.DatabaseException;
 import printer.Printer;
 import exceptions.SpelException;
 import exceptions.SpelerException;
@@ -111,6 +112,8 @@ public class UseCase1 {
                 this.aantalSpelers = as;
             } catch (SpelException e) {
                 Printer.exceptionCatch("SpelException", e);
+            } catch (DatabaseException e){
+                Printer.exceptionCatch("DatabasException", e);
             }
         }
     }

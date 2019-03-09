@@ -86,9 +86,3 @@ public class ConsumablesSchat extends Schatkaart {
     }
 
 }
-/**
- * // * // * @param naam // * @param waarde //
- */
-//    public ConsumablesSchat(String naam, int waarde) {
-//        super(naam, waarde);
-//    }

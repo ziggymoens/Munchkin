@@ -13,90 +13,75 @@ import domein.kaarten.kerkerkaarten.Monster;
 import domein.kaarten.kerkerkaarten.Race;
 import domein.kaarten.schatkaarten.ConsumablesSchat;
 import domein.kaarten.schatkaarten.Equipment;
+import exceptions.DatabaseException;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
- *
  * @author ziggy
  */
 public class KaartMapperDb {
 
     private ResultSet rs;
-    private PreparedStatement query;
     private Connection conn;
+    private final Map<String, Runnable> soorten;
+    private final List<Kaart> kaarten;
 
     public KaartMapperDb() {
-        voegToe();
+        kaarten = new ArrayList<>();
+        soorten = new HashMap<>();
+        soorten.put("Race", this::raceKaart);
+        soorten.put("ConsumablesD", this::consumablesDKaart);
+        soorten.put("Curse", this::curseKaart);
+        soorten.put("Monster", this::monsterKaart);
+        soorten.put("ConsumablesT", this::consumablesTKaart);
+        soorten.put("Equipment", this::equipmentKaart);
     }
 
-    public void voegToe() {
-        try{
+    private void voegToe() {
+        try {
             this.conn = DriverManager.getConnection(Connectie.JDBC_URL);
-        } catch (SQLException ex) {
-            throw new RuntimeException(ex);
+        } catch (Exception ex) {
+            throw new DatabaseException(ex.getMessage());
         }
     }
 
     public List<Kaart> geefKaartenType(String type) {
-        List<Kaart> kaarten = new ArrayList<>();
-        try
-                {
-                    query = conn.prepareStatement(String.format("SELECT * FROM ID222177_g35.%s", type));
-                    rs = query.executeQuery();
-                    switch (type) {
-                case "Race":
-                    kaarten = raceKaart(rs);
-                    break;
-                case "ConsumablesD":
-                    kaarten = consumablesDKaart(rs);
-                    break;
-                case "Curse":
-                    kaarten = curseKaart(rs);
-                    break;
-                case "Monster":
-                    kaarten = monsterKaart(rs);
-                    break;
-                case "ConsumablesT":
-                    kaarten = consumablesTKaart(rs);
-                    break;
-                case "Equipment":
-                    kaarten = equipmentKaart(rs);
-                    break;
-                default:
-                    break;
-
-            }
+        voegToe();
+        kaarten.clear();
+        try {
+            PreparedStatement query = conn.prepareStatement(String.format("SELECT * FROM ID222177_g35.%s", type));
+            rs = query.executeQuery();
+            soorten.get(type).run();
             rs.close();
-                    query.close();
-        } catch (SQLException ex) {
-            throw new RuntimeException(ex);
+            query.close();
+        } catch (Exception ex) {
+            throw new DatabaseException(ex.getMessage());
         }
         return kaarten;
     }
 
-    private List<Kaart> raceKaart(ResultSet rs) {
-        List<Kaart> kaarten = new ArrayList<>();
+    private void raceKaart() {
         try {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
                 String description = rs.getString("description");
-                kaarten.add(new Race(name, id, description));
+                this.kaarten.add(new Race(name, id, description));
             }
-        } catch (SQLException ex) {
-            throw new RuntimeException(ex);
+        } catch (Exception ex) {
+            throw new DatabaseException(ex.getMessage());
         }
-        return kaarten;
     }
 
-    private List<Kaart> consumablesDKaart(ResultSet rs) {
-        List<Kaart> kaarten = new ArrayList<>();
+    private void consumablesDKaart() {
         try {
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -104,14 +89,12 @@ public class KaartMapperDb {
                 int bonus = rs.getInt("bonus");
                 kaarten.add(new ConsumablesKerker(name, id, bonus));
             }
-        } catch (SQLException ex) {
-            throw new RuntimeException(ex);
+        } catch (Exception ex) {
+            throw new DatabaseException(ex.getMessage());
         }
-        return kaarten;
     }
 
-    private List<Kaart> curseKaart(ResultSet rs) {
-        List<Kaart> kaarten = new ArrayList<>();
+    private void curseKaart() {
         try {
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -121,14 +104,12 @@ public class KaartMapperDb {
                 String description = rs.getString("description");
                 kaarten.add(new Curse(name, id, loseLevel, loseSomething, description));
             }
-        } catch (SQLException ex) {
-            throw new RuntimeException(ex);
+        } catch (Exception ex) {
+            throw new DatabaseException(ex.getMessage());
         }
-        return kaarten;
     }
 
-    private List<Kaart> monsterKaart(ResultSet rs) {
-        List<Kaart> kaarten = new ArrayList<>();
+    private void monsterKaart() {
         try {
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -141,19 +122,17 @@ public class KaartMapperDb {
                 int persueLevel = rs.getInt("pursueLevel");
                 String description = rs.getString("description");
                 String specialRace = rs.getString("specialRace");
-                Boolean outRun = rs.getBoolean("outRun");
+                boolean outRun = rs.getBoolean("outRun");
                 String specialRaceReason = rs.getString("specialRaceReason");
                 BadStuff bs = badStuffKaart(rs.getInt("badStuffid"));
-                kaarten.add(new Monster(name,id ,level, tresures, levelUp, description, outRun, escapeBonus, new Race(specialRace), raceBonus, specialRaceReason, persueLevel, bs));
+                kaarten.add(new Monster(name, id, level, tresures, levelUp, description, outRun, escapeBonus, new Race(specialRace), raceBonus, specialRaceReason, persueLevel, bs));
             }
-        } catch (SQLException ex) {
-            throw new RuntimeException(ex);
+        } catch (Exception ex) {
+            throw new DatabaseException(ex.getMessage());
         }
-        return kaarten;
     }
 
-    private List<Kaart> consumablesTKaart(ResultSet rs) {
-        List<Kaart> kaarten = new ArrayList<>();
+    private void consumablesTKaart() {
         try {
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -161,17 +140,15 @@ public class KaartMapperDb {
                 int goldPieces = rs.getInt("goldPieces");
                 int bonus = rs.getInt("bonus");
                 String description = rs.getString("description");
-                boolean killsFloatingNose = rs.getBoolean("killsFloatingNose");
+                //boolean killsFloatingNose = rs.getBoolean("killsFloatingNose");
                 kaarten.add(new ConsumablesSchat(name, id, goldPieces, description, bonus));
             }
-        } catch (SQLException ex) {
-            throw new RuntimeException(ex);
+        } catch (Exception ex) {
+            throw new DatabaseException(ex.getMessage());
         }
-        return kaarten;
     }
 
-    private List<Kaart> equipmentKaart(ResultSet rs) {
-        List<Kaart> kaarten = new ArrayList<>();
+    private void equipmentKaart() {
         try {
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -184,10 +161,9 @@ public class KaartMapperDb {
                 String specialRace = rs.getString("specialRace");
                 kaarten.add(new Equipment(name, id, goldPieces, type, bonus, new Race(usableBy), bonus, specialBonus, new Race(specialRace)));
             }
-        } catch (SQLException ex) {
-            throw new RuntimeException(ex);
+        } catch (Exception ex) {
+            throw new DatabaseException(ex.getMessage());
         }
-        return kaarten;
     }
 
     private BadStuff badStuffKaart(int badStuffId) {
@@ -198,14 +174,14 @@ public class KaartMapperDb {
             while (rs.next()) {
                 //String name = rs.getString("name");
                 int id = rs.getInt("badStuffid");
-                int loseItems=rs.getInt("loseItems");
+                int loseItems = rs.getInt("loseItems");
                 int loseLevels = rs.getInt("loseLevels");
                 String loseSomething = rs.getString("loseSomething");
                 String badStuffDescription = rs.getString("badStuffDescription");
                 bs = new BadStuff(/*name,*/ id, loseItems, loseLevels, loseSomething, badStuffDescription);
             }
-        } catch (SQLException ex) {
-            throw new RuntimeException(ex);
+        } catch (Exception ex) {
+            throw new DatabaseException(ex.getMessage());
         }
         return bs;
     }

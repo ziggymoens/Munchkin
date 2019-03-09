@@ -8,14 +8,16 @@ package gui;
 import domein.DomeinController;
 
 /**
- *
  * @author ziggy
  */
 public class UseCase4 {
-    private DomeinController dc;
+    private final DomeinController dc;
 
     UseCase4(DomeinController dc) {
         this.dc = dc;
     }
-    
+
+    private void spel(){
+        dc.geefInformatie();
+    }
 }
