@@ -18,14 +18,12 @@ public class UseCase1 {
     //declaraties voor gehele usecase
     private final Scanner SCAN = new Scanner(System.in);
     private final DomeinController dc;
-    private List<Locale> talen;
-    private UseCase2 uc2;
+    private final List<Locale> talen;
     private int aantalSpelers;
 
     /**
      * constructor voor UseCase 1
-     *
-     * @param dc
+     * @param dc Domeincontroller die aangemaakt wordt voor alle use cases in de Main
      */
     public UseCase1(DomeinController dc) {
         this.dc = dc;
@@ -36,35 +34,28 @@ public class UseCase1 {
         try {
             welcome();
         } catch (Exception e) {
-            System.out.printf(ColorsOutput.kleur("red") + "%n%s%n%n", e.toString() + ColorsOutput.reset());
+            exceptionCatch("Exception", e);
         }
         //gebruiker vragen of hij een nieuw spel wil starten.
         System.out.println(LanguageResource.getString("newGame"));
         String nieuwSpel = SCAN.next().toLowerCase();
-        while (!nieuwSpel.toLowerCase().equals(LanguageResource.getString("yes")) && !nieuwSpel.toLowerCase().equals(LanguageResource.getString("no"))) {
+        while (!nieuwSpel.equals(LanguageResource.getString("yes")) && !nieuwSpel.equals(LanguageResource.getString("no"))) {
             System.out.printf(ColorsOutput.kleur("red") + "%s%n%n", LanguageResource.getString("start.yesno") + ColorsOutput.reset());
             System.out.println(LanguageResource.getString("newGame"));
             nieuwSpel = SCAN.next().toLowerCase();
         }
-
-        //indien true spel aanmaken en opstarten
         try {
             if (nieuwSpel.equals(LanguageResource.getString("yes"))) {
                 maakSpel();
-                System.out.printf(ColorsOutput.kleur("green") + "%n%s%n", LanguageResource.getString("spel.made") + ColorsOutput.reset());
+                printGreen("spel.made");
                 voegSpelersToe(aantalSpelers);
-                System.out.printf(ColorsOutput.kleur("green") + "%n%s%n", LanguageResource.getString("spel.playersadded") + ColorsOutput.reset());
-                //System.out.println(dc.geefInformatie());
+                printGreen("spel.playersadded");
                 //verdergaan naar UC2
-                uc2 = new UseCase2(this.dc);
+                UseCase2 uc2 = new UseCase2(this.dc);
                 uc2.speelSpel(aantalSpelers);
             }
         } catch (Exception e) {
-            try {
-                System.out.printf(ColorsOutput.kleur("red") + "Exception: %s%n%n", e.getMessage() + ColorsOutput.reset());
-            } catch (Exception ex) {
-                System.out.printf("\u001B[31m" + "IllegalArgumentException: %s%n%n", LanguageResource.getString(ex.getMessage()) + "\u001B[0m");
-            }
+            exceptionCatch("Exception", e);
         }
     }
 
@@ -116,11 +107,7 @@ public class UseCase1 {
                 tryAgain = false;
                 this.aantalSpelers = as;
             } catch (SpelException e) {
-                try {
-                    System.out.printf(ColorsOutput.kleur("red") + "SpelException: %s%n%n", LanguageResource.getString(e.getMessage()) + ColorsOutput.reset());
-                } catch (Exception ex) {
-                    System.out.printf("\u001B[31m" + "Exception: %s%n%n", LanguageResource.getString(ex.getMessage()) + "\u001B[0m");
-                }
+                exceptionCatch("SpelException", e);
             }
         }
     }
@@ -140,6 +127,10 @@ public class UseCase1 {
         }
     }
 
+    /**
+     * Methode die de gebruiker de naam laat ingeven van de i-de speler
+     * @param i hoeveelste speler van het spel
+     */
     private void kiesNaamSpeler(int i) {
         boolean tryAgain = true;
         while (tryAgain) {
@@ -149,13 +140,17 @@ public class UseCase1 {
                 dc.geefSpelerNaam(i, naam);
                 tryAgain = false;
             } catch (SpelerException e) {
-                exceptioCatch("SpelerException", e);
+                exceptionCatch("SpelerException", e);
             } catch (SpelException e) {
-                exceptioCatch("SpelException)", e);
+                exceptionCatch("SpelException)", e);
             }
         }
     }
 
+    /**
+     * Methode die de gebruiker het geslacht laat ingeven van de i-de speler
+     * @param i hoeveelste speler van het spel
+     */
     private void kiesGeslachtSpeler(int i) {
         boolean tryAgain = true;
         while (tryAgain) {
@@ -165,20 +160,29 @@ public class UseCase1 {
                 dc.geefSpelerGeslacht(i, geslacht);
                 tryAgain = false;
             } catch (SpelerException e) {
-                try {
-                    System.out.printf(ColorsOutput.kleur("red") + "SpelerException: %s%n%n", LanguageResource.getString(e.getMessage()) + ColorsOutput.reset());
-                } catch (Exception ex) {
-                    System.out.printf("\u001B[31m" + "IllegalArgumentException: %s%n%n", LanguageResource.getString(ex.getMessage()) + "\u001B[0m");
-                }
+                exceptionCatch("SpelerException", e);
             }
         }
     }
 
-    public void exceptioCatch(String naam, Exception e){
+    /**
+     * Methode die gevangen exception gooit naar terminal en deze controleert op exceptions.
+     * @param naam Naam van de gevangen exception
+     * @param e De gevangen exception
+     */
+    private void exceptionCatch(String naam, Exception e){
         try {
             System.out.printf(ColorsOutput.kleur("red") + "%s: %s%n%n", naam,LanguageResource.getString(e.getMessage()) + ColorsOutput.reset());
         } catch (Exception ex) {
             System.out.printf("\u001B[31m" + "IllegalArgumentException: %s%n%n", LanguageResource.getString(ex.getMessage()) + "\u001B[0m");
         }
+    }
+
+    /**
+     * Print de meegegeven string in de groene kleur naar de terminal
+     * @param key String die omgezet wordt naar groen
+     */
+    private void printGreen(String key){
+        System.out.printf(ColorsOutput.kleur("green") + "%n%s%n", LanguageResource.getString(String.format("%s", key)) + ColorsOutput.reset());
     }
 }
