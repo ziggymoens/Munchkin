@@ -92,7 +92,7 @@ public class DomeinController {
      * @param naam naam van de speler die de beurt gaat spelen
      */
     public void speelBeurt(String naam) {
-        //spel.geefLevel(speler);
+        //String typeOfCard = getType();
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -144,5 +144,8 @@ public class DomeinController {
 
     public void geefStartKaarten() {
         spel.geefStartKaarten();
+    }
+
+    public String toonBovensteKk() { return String.format("gui/images/%d.png",spel.toonBovensteKk());
     }
 }

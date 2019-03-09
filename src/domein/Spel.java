@@ -3,11 +3,12 @@ package domein;
 import domein.kaarten.Kaart;
 import domein.repositories.KaartDbRepository;
 import exceptions.SpelException;
+
 import java.util.*;
+
 import language.LanguageResource;
 
 /**
- *
  * @author ziggy
  */
 public class Spel {
@@ -77,9 +78,9 @@ public class Spel {
     /**
      * Voeg een kaart toe aan de hand van een speler
      *
-     * @param kaart De kaart voor de speler
+     * @param kaart    De kaart voor de speler
      * @param spelernr De nummer van de speler in het spel, volgens volgorde van
-     * ingeven
+     *                 ingeven
      */
     public void voegKaartToe(Kaart kaart, int spelernr) {
         spelers.get(spelernr).voegKaartToe(kaart);
@@ -95,7 +96,6 @@ public class Spel {
     }
 
     /**
-     *
      * @param naam
      */
     private void controleSpeler(String naam) {
@@ -107,7 +107,6 @@ public class Spel {
     }
 
     /**
-     *
      * @param speler
      */
     private void geefStartKaarten(Speler speler) {
@@ -122,7 +121,6 @@ public class Spel {
     }
 
     /**
-     *
      * @return
      */
     public int getAantalSpelers() {
@@ -146,7 +144,6 @@ public class Spel {
     }
 
     /**
-     *
      * @return
      */
     public String geefWinnaar() {
@@ -161,7 +158,6 @@ public class Spel {
     }
 
     /**
-     *
      * @param speler
      */
     public void geefLevel(Speler speler) {
@@ -173,24 +169,22 @@ public class Spel {
     }
 
     /**
-     *
      * @return
      */
     public String geefSpelsituatie() {
-        StringBuilder ret  = new StringBuilder();
+        StringBuilder ret = new StringBuilder();
         for (Speler speler : spelers) {
-            ret.append(String.format("%s: %s, %s: %s, %s: %d, %s: %s", LanguageResource.getString("player.name"), speler.getNaam(), LanguageResource.getString("player.sex"), speler.getGeslacht(), LanguageResource.getString("player.level"), speler.getLevel(), LanguageResource.getString("player.items"), speler.kaartenNaarString(speler.getItems())));
+            ret.append(String.format("%s: %s, %s: %s, %s: %d, %s: %s%n", LanguageResource.getString("player.name"), speler.getNaam(), LanguageResource.getString("player.sex"), speler.getGeslacht(), LanguageResource.getString("player.level"), speler.getLevel(), LanguageResource.getString("player.items"), speler.kaartenNaarString(speler.getItems())));
         }
         return ret.toString();
     }
 
     /**
-     *
      * @return
      */
     public boolean niemandGewonnen() {
         boolean ret = true;
-        for (Speler speler: spelers) {
+        for (Speler speler : spelers) {
             if (speler.getLevel() == 10) {
                 return false;
             }
@@ -215,5 +209,9 @@ public class Spel {
         for (Speler speler : spelers) {
             geefStartKaarten(speler);
         }
+    }
+
+    public int toonBovensteKk() {
+        return kerkerkaarten.get(0).getId();
     }
 }
