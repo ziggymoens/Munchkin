@@ -6,20 +6,21 @@
 package gui;
 
 import domein.DomeinController;
+
 import java.util.*;
+
+import printer.Printer;
+import printer.ColorsOutput;
 import language.LanguageResource;
 
 /**
- *
  * @author ziggy
  */
 public class UseCase2 {
 
     //Declaraties voor gehele usecase.
     private final DomeinController dc;
-    private Scanner SCAN;
-    private UseCase3 uc3;
-    private UseCase8 uc8;
+    private final Scanner SCAN;
 
     /**
      * Constructor voor Use Case 2.
@@ -33,45 +34,62 @@ public class UseCase2 {
     }
 
     /**
-     *
-     * @param aantalSpelers
+     * Methode die het spel start en de beurten afloopt
+     * @param aantalSpelers Het aantal spelers die meespelen
      */
     public void speelSpel(int aantalSpelers) {
-        dc.controleerVolgorde();
-        dc.geefStartKaarten();
-        System.out.println(String.format("De volgorde van de spelers is: %n%s%n", dc.geefInformatie()));
+        try {
+            dc.controleerVolgorde();
+            dc.geefStartKaarten();
+            System.out.println(String.format("De volgorde van de spelers is: %n%s%n", dc.geefInformatie()));
+        } catch (Exception e) {
+            Printer.exceptionCatch("Exception", e);
+        }
         while (niemandGewonnen()) {
             for (int i = 0; i < aantalSpelers; i++) {
                 if (niemandGewonnen()) {
-                    String naam = dc.geefNaamSpeler(i);
-                    speelBeurt(naam);
+                    try {
+                        String naam = dc.geefNaamSpeler(i);
+                        speelBeurt(naam);
+                    } catch (Exception e) {
+                        Printer.exceptionCatch("Exception", e);
+                    }
                 }
             }
         }
-        System.out.printf("%s: %s", LanguageResource.getString("end.won"), geefNaamWinnaar());
+        try {
+            System.out.printf("%s: %s", LanguageResource.getString("end.won"), geefNaamWinnaar());
+        } catch (Exception e) {
+            Printer.exceptionCatch("Exception", e);
+        }
+
     }
 
     /**
-     *
-     * @param naam
+     * Methode die de beurt laat spelen en de keuze laat maken tussen 3 opties
+     * @param naam De naam van de speler die aan beurt is
      */
     private void speelBeurt(String naam) {
         System.out.printf("%s: %s%n", LanguageResource.getString("player.turn"), naam);
-        int keuze = 0;
-        do {
+        System.out.printf("%s%n"
+                + "1) %s%n"
+                + "2) %s%n"
+                + "3) %s%n", LanguageResource.getString("turn.choice"), LanguageResource.getString("turn.play"), LanguageResource.getString("turn.save"), LanguageResource.getString("turn.stop"));
+        int keuze = SCAN.nextInt();
+        while (keuze < 1 || keuze > 3) {
+            System.out.println(ColorsOutput.kleur("red") + LanguageResource.getString("usecase2.choiceturn") + ColorsOutput.reset());
             System.out.printf("%s%n"
                     + "1) %s%n"
                     + "2) %s%n"
                     + "3) %s%n", LanguageResource.getString("turn.choice"), LanguageResource.getString("turn.play"), LanguageResource.getString("turn.save"), LanguageResource.getString("turn.stop"));
             keuze = SCAN.nextInt();
-        } while (keuze < 1 || keuze > 3);
-
+        }
         switch (keuze) {
             case 1:
-                uc3 = new UseCase3(this.dc);
+                UseCase3 uc3 = new UseCase3(this.dc);
                 uc3.speelBeurt(naam);
             case 2:
-                uc8 = new UseCase8(this.dc);
+                UseCase8 uc8 = new UseCase8(this.dc);
                 uc8.spelOpslaan();
                 break;
             case 3:
@@ -83,18 +101,21 @@ public class UseCase2 {
     }
 
     /**
-     *
-     * @return
+     * Methode die vraagt aan het spel of iemand al gewonnen is
+     * @return Boolean als iemand gewonnen heeft = true
      */
     private boolean niemandGewonnen() {
         return dc.niemandGewonnen();
     }
 
     /**
-     *
-     * @return
+     * Methode die de naam van de winnaar terug geeft
+     * @return De naam van de winnaar van het spel
      */
     private String geefNaamWinnaar() {
         return dc.geefNaamWinnaar();
     }
+
+
+
 }

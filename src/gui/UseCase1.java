@@ -1,11 +1,13 @@
 package gui;
 
 import domein.*;
+
 import java.util.*;
 
+import printer.Printer;
 import exceptions.SpelException;
 import exceptions.SpelerException;
-import gui.colors.ColorsOutput;
+import printer.ColorsOutput;
 import language.LanguageResource;
 
 /**
@@ -23,6 +25,7 @@ public class UseCase1 {
 
     /**
      * constructor voor UseCase 1
+     *
      * @param dc Domeincontroller die aangemaakt wordt voor alle use cases in de Main
      */
     public UseCase1(DomeinController dc) {
@@ -34,7 +37,7 @@ public class UseCase1 {
         try {
             welcome();
         } catch (Exception e) {
-            exceptionCatch("Exception", e);
+            Printer.exceptionCatch("Exception", e);
         }
         //gebruiker vragen of hij een nieuw spel wil starten.
         System.out.println(LanguageResource.getString("newGame"));
@@ -47,15 +50,15 @@ public class UseCase1 {
         try {
             if (nieuwSpel.equals(LanguageResource.getString("yes"))) {
                 maakSpel();
-                printGreen("spel.made");
+                Printer.printGreen("spel.made");
                 voegSpelersToe(aantalSpelers);
-                printGreen("spel.playersadded");
+                Printer.printGreen("spel.playersadded");
                 //verdergaan naar UC2
                 UseCase2 uc2 = new UseCase2(this.dc);
                 uc2.speelSpel(aantalSpelers);
             }
         } catch (Exception e) {
-            exceptionCatch("Exception", e);
+            Printer.exceptionCatch("Exception", e);
         }
     }
 
@@ -107,7 +110,7 @@ public class UseCase1 {
                 tryAgain = false;
                 this.aantalSpelers = as;
             } catch (SpelException e) {
-                exceptionCatch("SpelException", e);
+                Printer.exceptionCatch("SpelException", e);
             }
         }
     }
@@ -116,7 +119,7 @@ public class UseCase1 {
      * Voeg het aantal gekozen aantal spelers toe aan het spel a.d.h.v. naam,
      *
      * @param aantalSpelers het aantal spelers dat de methode zal toevoegen aan
-     * het spel
+     *                      het spel
      */
     private void voegSpelersToe(int aantalSpelers) {
         for (int i = 0; i < aantalSpelers; i++) {
@@ -129,6 +132,7 @@ public class UseCase1 {
 
     /**
      * Methode die de gebruiker de naam laat ingeven van de i-de speler
+     *
      * @param i hoeveelste speler van het spel
      */
     private void kiesNaamSpeler(int i) {
@@ -140,15 +144,16 @@ public class UseCase1 {
                 dc.geefSpelerNaam(i, naam);
                 tryAgain = false;
             } catch (SpelerException e) {
-                exceptionCatch("SpelerException", e);
+                Printer.exceptionCatch("SpelerException", e);
             } catch (SpelException e) {
-                exceptionCatch("SpelException)", e);
+                Printer.exceptionCatch("SpelException)", e);
             }
         }
     }
 
     /**
      * Methode die de gebruiker het geslacht laat ingeven van de i-de speler
+     *
      * @param i hoeveelste speler van het spel
      */
     private void kiesGeslachtSpeler(int i) {
@@ -160,29 +165,8 @@ public class UseCase1 {
                 dc.geefSpelerGeslacht(i, geslacht);
                 tryAgain = false;
             } catch (SpelerException e) {
-                exceptionCatch("SpelerException", e);
+                Printer.exceptionCatch("SpelerException", e);
             }
         }
-    }
-
-    /**
-     * Methode die gevangen exception gooit naar terminal en deze controleert op exceptions.
-     * @param naam Naam van de gevangen exception
-     * @param e De gevangen exception
-     */
-    private void exceptionCatch(String naam, Exception e){
-        try {
-            System.out.printf(ColorsOutput.kleur("red") + "%s: %s%n%n", naam,LanguageResource.getString(e.getMessage()) + ColorsOutput.reset());
-        } catch (Exception ex) {
-            System.out.printf("\u001B[31m" + "IllegalArgumentException: %s%n%n", LanguageResource.getString(ex.getMessage()) + "\u001B[0m");
-        }
-    }
-
-    /**
-     * Print de meegegeven string in de groene kleur naar de terminal
-     * @param key String die omgezet wordt naar groen
-     */
-    private void printGreen(String key){
-        System.out.printf(ColorsOutput.kleur("green") + "%n%s%n", LanguageResource.getString(String.format("%s", key)) + ColorsOutput.reset());
     }
 }
