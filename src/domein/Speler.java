@@ -30,7 +30,11 @@ public class Speler {
      * "man", leeftijd = 99, level = 1, taal = "en"
      */
     public Speler() {
-        this("onbekend", "man", 1);
+        setLevel(1);
+        kaarten = new ArrayList<>();
+        items = new ArrayList<>();
+        aantalKerkerkaarten = 0;
+        aantalSchatkaarten = 0;
     }
 
     /**
@@ -68,13 +72,11 @@ public class Speler {
      * @param geslacht Het geslacht van de speler in eigen taal
      */
     public final void setGeslacht(String geslacht) {
-        String man = LanguageResource.getString("man");
-        String vrouw = LanguageResource.getString("woman");
-        if (geslacht.toLowerCase().equals(man) || geslacht.toLowerCase().equals(vrouw)) {
-            this.geslacht = geslacht;
-        } else {
-            throw new SpelerException(LanguageResource.getString("exception.speler.sex"));
+        if (!geslacht.toLowerCase().equals(LanguageResource.getString("man")) && !geslacht.toLowerCase().equals(LanguageResource.getString("woman"))) {
+            throw new SpelerException("exception.speler.sex");
         }
+        this.geslacht = geslacht;
+
     }
 
     /**
@@ -173,15 +175,15 @@ public class Speler {
      */
     public String kaartenNaarString() {
         String ret = "";
-        for (Kaart kaart: kaarten) {
+        for (Kaart kaart : kaarten) {
             ret += String.format("%s  ", kaart.getNaam());
         }
         return ret;
     }
-    
-    public String itemsNaarString(){
+
+    public String itemsNaarString() {
         String ret = "";
-        for (Kaart item: items) {
+        for (Kaart item : items) {
             ret += String.format("%s  ", item.getNaam());
         }
         return ret;

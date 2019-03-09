@@ -76,19 +76,19 @@ public class Spel {
         return ret;
     }
 
-    /**
-     * Voeg een speler toe aan het spel
-     *
-     * @param naam De naam van de speler
-     * @param geslacht Het geslacht van de speler
-     *
-     */
-    public void voegSpelerToe(String naam, String geslacht) {
-        controleSpeler(naam);
-        Speler speler = new Speler(naam, geslacht, 1);
-        geefStartKaarten(speler);
-        spelers.add(speler);
-    }
+//    /**
+//     * Voeg een speler toe aan het spel
+//     *
+//     * @param naam De naam van de speler
+//     * @param geslacht Het geslacht van de speler
+//     *
+//     */
+//    public void voegSpelerToe(String naam, String geslacht) {
+//        controleSpeler(naam);
+//        Speler speler = new Speler(naam, geslacht, 1);
+//        geefStartKaarten(speler);
+//        spelers.add(speler);
+//    }
 
     /**
      * Voeg een kaart toe aan de hand van een speler
@@ -117,7 +117,7 @@ public class Spel {
     private void controleSpeler(String naam) {
         for (Speler speler : spelers) {
             if (naam.equals(speler.getNaam())) {
-                throw new SpelException();
+                throw new SpelException("exceptions.spel.namenotunique");
             }
         }
     }
@@ -148,7 +148,7 @@ public class Spel {
     /**
      *
      */
-    public void speelSpel() {
+    public void controleerVolgorde() {
         Speler speler = spelers.get(0);
         for (int i = 0; i < spelers.size(); i++) {
             if (speler.getNaam().toLowerCase().length() >= spelers.get(i).getNaam().toLowerCase().length()) {
@@ -213,5 +213,24 @@ public class Spel {
             }
         }
         return ret;
+    }
+
+    public void maakNieuweSpeler() {
+        spelers.add(new Speler());
+    }
+
+    public void geefSpelerNaam(int i, String naam) {
+        controleSpeler(naam);
+        spelers.get(i).setNaam(naam);
+    }
+
+    public void geefSpelerGeslacht(int i, String geslacht) {
+        spelers.get(i).setGeslacht(geslacht);
+    }
+
+    public void geefStartKaarten() {
+        for (Speler speler : spelers) {
+            geefStartKaarten(speler);
+        }
     }
 }

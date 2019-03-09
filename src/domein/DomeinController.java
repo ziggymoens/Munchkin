@@ -30,16 +30,16 @@ public class DomeinController {
 
     }
 
-    /**
-     * Methode om een speler toete voegen adhv een naam, geslacht (deze worden
-     * verder gecontroleerd volgens de DR)
-     *
-     * @param naam Naam van de speler
-     * @param geslacht Geslacht van de speler
-     */
-    public void voegSpelerToe(String naam, String geslacht) {
-        spel.voegSpelerToe(naam, geslacht);
-    }
+//    /**
+//     * Methode om een speler toete voegen adhv een naam, geslacht (deze worden
+//     * verder gecontroleerd volgens de DR)
+//     *
+//     * @param naam Naam van de speler
+//     * @param geslacht Geslacht van de speler
+//     */
+//    public void voegSpelerToe(String naam, String geslacht) {
+//        spel.voegSpelerToe(naam, geslacht);
+//    }
 
     /**
      * String die info geeft over het spel en de spelers
@@ -68,8 +68,8 @@ public class DomeinController {
     /**
      *
      */
-    public void speelSpel() {
-        spel.speelSpel();
+    public void controleerVolgorde() {
+        spel.controleerVolgorde();
     }
 
     /**
@@ -139,5 +139,21 @@ public class DomeinController {
 
     public boolean niemandGewonnen() {
         return spel.niemandGewonnen();
+    }
+
+    public void geefSpelerNaam(int i, String naam) {
+        spel.geefSpelerNaam(i, naam);
+    }
+
+    public void maakSpeler() {
+        spel.maakNieuweSpeler();
+    }
+
+    public void geefSpelerGeslacht(int i, String geslacht) {
+        spel.geefSpelerGeslacht(i, geslacht);
+    }
+
+    public void geefStartKaarten() {
+        spel.geefStartKaarten();
     }
 }

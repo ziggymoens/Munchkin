@@ -11,7 +11,7 @@ import java.util.*;
  *
  * @author ziggy
  */
-public final class LanguageResource {
+public class LanguageResource {
 
     private static Locale locale;
     private static ResourceBundle bundle;

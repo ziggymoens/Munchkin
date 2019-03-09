@@ -37,7 +37,8 @@ public class UseCase2 {
      * @param aantalSpelers
      */
     public void speelSpel(int aantalSpelers) {
-        dc.speelSpel();
+        dc.controleerVolgorde();
+        dc.geefStartKaarten();
         System.out.println(String.format("De volgorde van de spelers is: %n%s%n", dc.geefInformatie()));
         while (niemandGewonnen()) {
             for (int i = 0; i < aantalSpelers; i++) {
