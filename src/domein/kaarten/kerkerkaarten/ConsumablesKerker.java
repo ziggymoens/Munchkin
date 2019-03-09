@@ -10,7 +10,6 @@ import exceptions.kaarten.ConsumablesKerkerException;
 public class ConsumablesKerker extends Kerkerkaart {
     
     private final int bonus;
-    private final String text = "Play during combat";
 
     /**
      * Constructor van kerkerkaarten consumables (die superklasse Kerkerkaart
@@ -39,6 +38,7 @@ public class ConsumablesKerker extends Kerkerkaart {
      * @return
      */
     public String getText() {
+        String text = "Play during combat";
         return text;
     }
     /**

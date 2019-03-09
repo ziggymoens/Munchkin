@@ -2,6 +2,8 @@ package gui;
 
 import domein.*;
 import java.util.*;
+
+import exceptions.SpelException;
 import language.LanguageResource;
 
 /**
@@ -23,23 +25,26 @@ public class UseCase1 {
      */
     public UseCase1(DomeinController dc) {
         this.dc = dc;
-        uc2 = new UseCase2(this.dc);
-        welcome();
+        try {
+            welcome();
+        }catch(Exception e){
+            System.err.println(e.toString());
+        }
         //gebruiker vragen of hij een nieuw spel wil starten.
         System.out.println(LanguageResource.getString("newGame"));
         String nieuwSpel = SCAN.next().toLowerCase();
-        //antwoord omzetten naar true/false
-        boolean startUp = false;
-        if (nieuwSpel.equals(LanguageResource.getString("yes"))) {
-            startUp = true;
-        }
         //indien true spel aanmaken en opstarten
-        if (startUp) {
+        if (nieuwSpel.equals(LanguageResource.getString("yes"))){
             int aantalSpelers = kiesAantalSpelers();
-            dc.startSpel(aantalSpelers);
+            try{
+            dc.startSpel(aantalSpelers);}
+            catch(SpelException se){
+                System.err.printf("SpelException: %s", LanguageResource.getString(se.getMessage()));
+            }
             voegSpelersToe(aantalSpelers);
             System.out.println(dc.geefInformatie());
             //verdergaan naar UC2
+            uc2 = new UseCase2(this.dc);
             uc2.speelSpel(aantalSpelers);            
         }
     }

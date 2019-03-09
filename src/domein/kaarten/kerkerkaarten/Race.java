@@ -40,8 +40,6 @@ public class Race extends Kerkerkaart {
 
     /**
      * switch om te rassen te setten
-     *
-     * @param naam
      */
     private void setExtras() {
         switch (type.toLowerCase()) {
