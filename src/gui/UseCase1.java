@@ -149,17 +149,9 @@ public class UseCase1 {
                 dc.geefSpelerNaam(i, naam);
                 tryAgain = false;
             } catch (SpelerException e) {
-                try {
-                    System.out.printf(ColorsOutput.kleur("red") + "SpelerException: %s%n%n" + LanguageResource.getString(e.getMessage()) + ColorsOutput.reset());
-                } catch (Exception ex) {
-                    System.out.printf("\u001B[31m" + "IllegalArgumentException: %s%n%n", LanguageResource.getString(ex.getMessage()) + "\u001B[0m");
-                }
+                exceptioCatch("SpelerException", e);
             } catch (SpelException e) {
-                try {
-                    System.out.printf(ColorsOutput.kleur("red") + "SpelException: %s%n%n", LanguageResource.getString(e.getMessage()) + ColorsOutput.reset());
-                } catch (Exception ex) {
-                    System.out.printf("\u001B[31m" + "IllegalArgumentException: %s%n%n", LanguageResource.getString(ex.getMessage()) + "\u001B[0m");
-                }
+                exceptioCatch("SpelException)", e);
             }
         }
     }
@@ -179,6 +171,14 @@ public class UseCase1 {
                     System.out.printf("\u001B[31m" + "IllegalArgumentException: %s%n%n", LanguageResource.getString(ex.getMessage()) + "\u001B[0m");
                 }
             }
+        }
+    }
+
+    public void exceptioCatch(String naam, Exception e){
+        try {
+            System.out.printf(ColorsOutput.kleur("red") + "%s: %s%n%n", naam,LanguageResource.getString(e.getMessage()) + ColorsOutput.reset());
+        } catch (Exception ex) {
+            System.out.printf("\u001B[31m" + "IllegalArgumentException: %s%n%n", LanguageResource.getString(ex.getMessage()) + "\u001B[0m");
         }
     }
 }
