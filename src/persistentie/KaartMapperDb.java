@@ -27,9 +27,17 @@ import java.util.List;
  */
 public class KaartMapperDb {
 
+    private ResultSet rs;
+    private PreparedStatement query;
+    private Connection conn;
+
+    public KaartMapperDb() {
+        voegToe();
+    }
+
     public void voegToe() {
-        try (
-                Connection conn = DriverManager.getConnection(Connectie.JDBC_URL);) {
+        try{
+            this.conn = DriverManager.getConnection(Connectie.JDBC_URL);
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
@@ -37,10 +45,11 @@ public class KaartMapperDb {
 
     public List<Kaart> geefKaartenType(String type) {
         List<Kaart> kaarten = new ArrayList<>();
-        try (Connection conn = DriverManager.getConnection(Connectie.JDBC_URL);
-                PreparedStatement query = conn.prepareStatement(String.format("SELECT * FROM ID222177_g35.%s", type));
-                ResultSet rs = query.executeQuery()) {
-            switch (type) {
+        try
+                {
+                    query = conn.prepareStatement(String.format("SELECT * FROM ID222177_g35.%s", type));
+                    rs = query.executeQuery();
+                    switch (type) {
                 case "Race":
                     kaarten = raceKaart(rs);
                     break;
@@ -61,10 +70,10 @@ public class KaartMapperDb {
                     break;
                 default:
                     break;
+
             }
             rs.close();
-            query.close();
-            conn.close();
+                    query.close();
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
@@ -129,12 +138,12 @@ public class KaartMapperDb {
                 int escapeBonus = rs.getInt("escapeBonus");
                 int tresures = rs.getInt("treasures");
                 int levelUp = rs.getInt("levelUp");
-                int persueLevel = rs.getInt("persueLevel");
+                int persueLevel = rs.getInt("pursueLevel");
                 String description = rs.getString("description");
                 String specialRace = rs.getString("specialRace");
                 Boolean outRun = rs.getBoolean("outRun");
                 String specialRaceReason = rs.getString("specialRaceReason");
-                BadStuff bs = badStuffKaart(rs.getInt("badStuffId"));
+                BadStuff bs = badStuffKaart(rs.getInt("badStuffid"));
                 kaarten.add(new Monster(name,id ,level, tresures, levelUp, description, outRun, escapeBonus, new Race(specialRace), raceBonus, specialRaceReason, persueLevel, bs));
             }
         } catch (SQLException ex) {
@@ -170,7 +179,7 @@ public class KaartMapperDb {
                 int goldPieces = rs.getInt("goldPieces");
                 String type = rs.getString("type");
                 int bonus = rs.getInt("bonus");
-                int specialBonus = rs.getInt("specialBonus");
+                int specialBonus = rs.getInt("bonusRace");
                 String usableBy = rs.getString("usableBy");
                 String specialRace = rs.getString("specialRace");
                 kaarten.add(new Equipment(name, id, goldPieces, type, bonus, new Race(usableBy), bonus, specialBonus, new Race(specialRace)));
@@ -183,21 +192,18 @@ public class KaartMapperDb {
 
     private BadStuff badStuffKaart(int badStuffId) {
         BadStuff bs = null;
-        try (Connection conn = DriverManager.getConnection(Connectie.JDBC_URL);
-                PreparedStatement query = conn.prepareStatement(String.format(String.format("SELECT * FROM ID222177_g35.BadStuff b  WHERE BadStuff.%d = Monster.badStuffId", badStuffId)));
+        try (
+                PreparedStatement query = conn.prepareStatement(String.format("SELECT * FROM ID222177_g35.BadStuff WHERE badStuffid = %d", badStuffId));
                 ResultSet rs = query.executeQuery()) {
             while (rs.next()) {
-                String name = rs.getString("name");
-                int id = rs.getInt("id");
+                //String name = rs.getString("name");
+                int id = rs.getInt("badStuffid");
                 int loseItems=rs.getInt("loseItems");
                 int loseLevels = rs.getInt("loseLevels");
                 String loseSomething = rs.getString("loseSomething");
-                String badStuffDescription = rs.getString("name");
-                bs = new BadStuff(name, id, loseItems, loseLevels, loseSomething, badStuffDescription);
+                String badStuffDescription = rs.getString("badStuffDescription");
+                bs = new BadStuff(/*name,*/ id, loseItems, loseLevels, loseSomething, badStuffDescription);
             }
-            conn.close();
-            query.close();
-            rs.close();
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }

@@ -196,7 +196,7 @@ public class Spel {
     public String geefSpelsituatie() {
         String ret  = "";
         for (Speler speler : spelers) {
-            ret += String.format("%s: %s, %s: %s, %s: %d, %s: %s", LanguageResource.getString("name"), speler.getNaam(), LanguageResource.getString("sex"), speler.getGeslacht(), LanguageResource.getString("level"), speler.getLevel(), LanguageResource.getString("speler.items"), speler.itemsNaarString());
+            ret += String.format("%s: %s, %s: %s, %s: %d, %s: %s", LanguageResource.getString("player.name"), speler.getNaam(), LanguageResource.getString("player.sex"), speler.getGeslacht(), LanguageResource.getString("player.level"), speler.getLevel(), LanguageResource.getString("player.items"), speler.itemsNaarString());
         }
         return ret;
     }

@@ -10,7 +10,7 @@ import exceptions.kaarten.CurseException;
 public class Curse extends Kerkerkaart {
 
     private enum LOSTTYPES {
-        head, foot, race, sex, item, all
+        head, foot, item, all, sex, race, none, armor
     };
     private String typeLost;
     private int levelLost;
@@ -62,12 +62,10 @@ public class Curse extends Kerkerkaart {
      * @param typeLost
      */
     private void setTypeLost(String typeLost) {
-        if (LOSTTYPES.valueOf(typeLost) != null) {
-            this.typeLost = typeLost;
-        } else {
+        if (LOSTTYPES.valueOf(typeLost.toLowerCase()) == null) {
             throw new CurseException("exception.curse.typeLost");
         }
-
+        this.typeLost = typeLost;
     }
 
     /**
@@ -75,11 +73,10 @@ public class Curse extends Kerkerkaart {
      * @param levelLost
      */
     private void setLevelLost(int levelLost) {
-        if (levelLost >= 1 && levelLost <= 2) {
-            this.levelLost = levelLost;
-        } else {
+        if (levelLost < 0){
             throw new CurseException("exception.curse.levelLost");
         }
+        this.levelLost = levelLost;
     }
 
     /**
@@ -111,7 +108,7 @@ public class Curse extends Kerkerkaart {
      * @param text
      */
     private void setText(String text) {
-        if (text == null || text.isBlank()) {
+        if (text == null /*|| text.isBlank()*/) {
             throw new CurseException("exception.curse.text");
         }
         this.text = text;

@@ -16,8 +16,8 @@ public class Race extends Kerkerkaart {
     private String text;
 
     private enum TYPES {
-        elf, dwarf, halfling, human
-    }; // nog?// nog?// nog?// nog?
+        elf, dwarf, halfling, human, everyone, none, female, male
+    }; //NAKIJKEN
 
     public Race(String naam){
         this(naam, 999, "...");

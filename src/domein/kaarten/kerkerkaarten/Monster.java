@@ -158,7 +158,7 @@ public class Monster extends Kerkerkaart {
      * @param text
      */
     private void setText(String text) {
-        if (text == null || text.isBlank()) {
+        if (text == null) {
             throw new MonsterException("exception.monster.text");
         }
         this.text = text;
@@ -210,7 +210,7 @@ public class Monster extends Kerkerkaart {
      * @param specialRaceReason
      */
     private void setSpecialRaceReason(String specialRaceReason) {
-        if (specialRaceReason == null || specialRaceReason.isBlank()) {
+        if (specialRaceReason == null) {
             throw new MonsterException("exception.monster.specialracereason");
         }
         this.specialRaceReason = specialRaceReason;

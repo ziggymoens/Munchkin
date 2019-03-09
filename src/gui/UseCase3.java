@@ -26,7 +26,7 @@ public class UseCase3 {
             System.out.println(dc.geefSpelsituatie());
             dc.speelBeurt(naam);
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            System.err.println(e.getMessage()+ e.toString());
         }
     }
 }

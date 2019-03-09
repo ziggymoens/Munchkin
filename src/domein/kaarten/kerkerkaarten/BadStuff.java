@@ -36,8 +36,8 @@ public class BadStuff {
      * @param gearLost
      * @param text
      */
-    public BadStuff(String naam, int id, int itemsLost, int levelsLost, String gearLost, String text) {
-        setNaam(naam);
+    public BadStuff(int id, int itemsLost, int levelsLost, String gearLost, String text) {
+        //setNaam(naam);
         setId(id);
         setItemsTaken(itemsLost);
         setLevelsLost(levelsLost);
