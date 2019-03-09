@@ -5,6 +5,7 @@ import java.util.*;
 
 import exceptions.SpelException;
 import exceptions.SpelerException;
+import gui.colors.ColorsOutput;
 import language.LanguageResource;
 
 /**
