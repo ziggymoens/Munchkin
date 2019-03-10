@@ -20,4 +20,7 @@ public class UseCase4 {
     private void spel(){
         dc.geefInformatie();
     }
+
+    public void bereidSpelVoor() {
+    }
 }

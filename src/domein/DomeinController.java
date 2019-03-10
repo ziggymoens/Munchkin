@@ -152,4 +152,15 @@ public class DomeinController {
     public String geefTypeKaart() {
         return spel.geefTypeKaart();
     }
+
+    public void effectKaart(int id) {
+    }
+
+    public int geefIdBovensteKaart() {
+        return spel.toonBovensteKk();
+    }
+
+    public void nieuweBovensteKaartK() {
+        spel.nieuwBovensteKaartK();
+    }
 }

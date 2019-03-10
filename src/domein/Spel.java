@@ -16,6 +16,7 @@ public class Spel {
     //Declaratie attributen
     private int aantalSpelers;
     private final List<Speler> spelers;
+    private final Map<Integer, Kaart> kaarten;
     private final List<Kaart> schatkaarten;
     private final List<Kaart> kerkerkaarten;
 
@@ -35,8 +36,15 @@ public class Spel {
         setAantalSpelers(aantalSpelers);
         spelers = new ArrayList<>();
         KaartDbRepository kr = new KaartDbRepository();
+        kaarten = new HashMap<>();
         schatkaarten = kr.getSchatkaarten();
+        for (Kaart kaart: kr.getSchatkaarten()){
+            kaarten.put(kaart.getId(), kaart);
+        }
         kerkerkaarten = kr.getKerkerkaarten();
+        for (Kaart kaart: kr.getKerkerkaarten()){
+            kaarten.put(kaart.getId(), kaart);
+        }
     }
 
     /**
@@ -217,5 +225,11 @@ public class Spel {
 
     public String geefTypeKaart() {
         return kerkerkaarten.get(0).getClass().getSimpleName();
+    }
+
+    public void nieuwBovensteKaartK() {
+        Kaart kaart = kerkerkaarten.get(0);
+        kerkerkaarten.remove(0);
+        kerkerkaarten.add(kaart);
     }
 }
