@@ -46,7 +46,7 @@ public class UseCase2 {
             dc.geefStartKaarten();
             System.out.println(String.format("De volgorde van de spelers is: %n%s%n", dc.geefInformatie()));
         } catch (SpelException | SpelerException e) {
-            Printer.exceptionCatch("Spel/SpelerException", e);
+            System.out.print(Printer.exceptionCatch("Spel/SpelerException", e));
         }
         try {
             while (niemandGewonnen()) {
@@ -58,12 +58,12 @@ public class UseCase2 {
                 }
             }
         } catch (SpelException | SpelerException e) {
-            Printer.exceptionCatch("Spel/SpelerException", e);
+            System.out.print(Printer.exceptionCatch("Spel/SpelerException", e));
         }
         try {
             System.out.printf("%s: %s", LanguageResource.getString("end.won"), geefNaamWinnaar());
         } catch (SpelException | SpelerException e) {
-            Printer.exceptionCatch("Spel/SpelerException", e);
+            System.out.print(Printer.exceptionCatch("Spel/SpelerException", e));
         }
 
     }
@@ -88,7 +88,7 @@ public class UseCase2 {
                     UseCase3 uc3 = new UseCase3(this.dc);
                     uc3.speelBeurt(naam);
                 } catch (Exception e) {
-                    Printer.exceptionCatch("Exception", e);
+                    System.out.print(Printer.exceptionCatch("Exception", e));
                 }
                 break;
             case 2:
@@ -96,15 +96,15 @@ public class UseCase2 {
                     UseCase8 uc8 = new UseCase8(this.dc);
                     uc8.spelOpslaan();
                 } catch (Exception e) {
-                    Printer.exceptionCatch("Exception", e);
+                    System.out.print(Printer.exceptionCatch("Exception", e));
                 }
                 break;
             case 3:
                 try{
-                Printer.printGreen("usecase2.gamestop");
+                    System.out.println(Printer.printGreen("gamestop"));
                 System.exit(0);
                 }catch (Exception e){
-                    Printer.exceptionCatch("Exception", e);
+                    System.out.print(Printer.exceptionCatch("Exception", e));
                 }
                 break;
             default:

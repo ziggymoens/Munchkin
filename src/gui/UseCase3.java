@@ -36,7 +36,7 @@ public class UseCase3 {
 
     public void speelBeurt(String naam) {
         try {
-            System.out.println(dc.geefSpelsituatie());
+            System.out.println(ColorsOutput.achtergrond("yellow", true)+dc.geefSpelsituatie()+ColorsOutput.reset());
             System.out.println(dc.toonBovensteKk());
             System.out.println(LanguageResource.getString("usecase3.confirm"));
             String bev = SCAN.next();

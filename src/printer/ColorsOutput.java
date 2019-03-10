@@ -57,24 +57,24 @@ public class ColorsOutput {
     }
 
     public static String achtergrond(String kleur) {
-        if (!kleuren.containsKey(kleur)) {
+        if (!achtergrond.containsKey(kleur)) {
             throw new IllegalArgumentException("exception.achtergrond.key");
         }
         return String.format("\u001B%s", achtergrond.get(kleur.toLowerCase()));
     }
 
     public static String achtergrond(String kleur, boolean bright) {
-        if (!kleuren.containsKey(kleur)) {
+        if (!achtergrond.containsKey(kleur)) {
             throw new IllegalArgumentException("exception.achtergrond.key");
         }
         return String.format("\u001B%s%s", achtergrond.get(kleur.toLowerCase()), bright ? ";1m" : "");
     }
 
-    public static String decoration(String kleur) {
-        if (!kleuren.containsKey(kleur)) {
+    public static String decoration(String type) {
+        if (!decorations.containsKey(type)) {
             throw new IllegalArgumentException("exception.decorations.key");
         }
-        return String.format("\u001B%s", decorations.get(kleur.toLowerCase()));
+        return String.format("\u001B%s", decorations.get(type.toLowerCase()));
     }
 
     public static String reset() {

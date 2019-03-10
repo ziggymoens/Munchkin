@@ -38,28 +38,30 @@ public class UseCase1 {
         try {
             welcome();
         } catch (Exception e) {
-            Printer.exceptionCatch("Exception", e);
+            System.out.print(Printer.exceptionCatch("Exception", e));
         }
         //gebruiker vragen of hij een nieuw spel wil starten.
         System.out.println(LanguageResource.getString("newGame"));
         String nieuwSpel = SCAN.next().toLowerCase();
         while (!nieuwSpel.equals(LanguageResource.getString("yes")) && !nieuwSpel.equals(LanguageResource.getString("no"))) {
-            System.out.printf(ColorsOutput.kleur("red") + "%s%n%n", LanguageResource.getString("start.yesno") + ColorsOutput.reset());
+            System.out.printf(ColorsOutput.decoration("bold")+ColorsOutput.kleur("red") + "%s%n%n", LanguageResource.getString("start.yesno") + ColorsOutput.reset());
             System.out.println(LanguageResource.getString("newGame"));
             nieuwSpel = SCAN.next().toLowerCase();
         }
         try {
             if (nieuwSpel.equals(LanguageResource.getString("yes"))) {
                 maakSpel();
-                Printer.printGreen("spel.made");
+                System.out.println(Printer.printGreen("spel.made"));
                 voegSpelersToe(aantalSpelers);
-                Printer.printGreen("spel.playersadded");
+                System.out.println(Printer.printGreen("spel.playersadded"));
                 //verdergaan naar UC2
                 UseCase2 uc2 = new UseCase2(this.dc);
                 uc2.speelSpel(aantalSpelers);
+            } else if (nieuwSpel.equals(LanguageResource.getString("no"))) {
+                System.out.println(Printer.printGreen("gamestop"));
             }
         } catch (Exception e) {
-            Printer.exceptionCatch("Exception", e);
+            System.out.print(Printer.exceptionCatch("Exception", e));
         }
     }
 
@@ -74,7 +76,7 @@ public class UseCase1 {
         //zolang gekozen taal niet voldoet aan beginletter van frans, nederlands of engels
         while (gekozenTaal != 'n' && gekozenTaal != 'f' && gekozenTaal != 'e') {
             for (Locale l : talen) {
-                System.out.printf(ColorsOutput.kleur("red") + "%s%n", LanguageResource.getStringLanguage("wrong", l) + ColorsOutput.reset());
+                System.out.printf(ColorsOutput.decoration("bold") + ColorsOutput.kleur("red") +"%s%n", LanguageResource.getStringLanguage("wrong", l) + ColorsOutput.reset());
             }
             gekozenTaal = SCAN.next().toLowerCase().charAt(0);
         }
@@ -111,9 +113,9 @@ public class UseCase1 {
                 tryAgain = false;
                 this.aantalSpelers = as;
             } catch (SpelException e) {
-                Printer.exceptionCatch("SpelException", e);
-            } catch (DatabaseException e){
-                Printer.exceptionCatch("DatabasException", e);
+                System.out.print(Printer.exceptionCatch("SpelException", e));
+            } catch (DatabaseException e) {
+                System.out.print(Printer.exceptionCatch("DatabasException", e));
             }
         }
     }
@@ -147,9 +149,9 @@ public class UseCase1 {
                 dc.geefSpelerNaam(i, naam);
                 tryAgain = false;
             } catch (SpelerException e) {
-                Printer.exceptionCatch("SpelerException", e);
+                System.out.print(Printer.exceptionCatch("SpelerException", e));
             } catch (SpelException e) {
-                Printer.exceptionCatch("SpelException)", e);
+                System.out.print(Printer.exceptionCatch("SpelException)", e));
             }
         }
     }
@@ -168,7 +170,7 @@ public class UseCase1 {
                 dc.geefSpelerGeslacht(i, geslacht);
                 tryAgain = false;
             } catch (SpelerException e) {
-                Printer.exceptionCatch("SpelerException", e);
+                System.out.print(Printer.exceptionCatch("SpelerException", e));
             }
         }
     }
