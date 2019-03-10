@@ -23,7 +23,7 @@ public class Printer {
      *
      * @param key String die omgezet wordt naar groen
      */
-    public static void printGreen(String key) {
-        System.out.printf(ColorsOutput.kleur("green") + "%n%s%n", LanguageResource.getString(String.format("%s", key)) + ColorsOutput.reset());
+    public static String printGreen(String key) {
+        return String.format(ColorsOutput.kleur("green") + "%n%s%n", LanguageResource.getString(String.format("%s", key)) + ColorsOutput.reset());
     }
 }

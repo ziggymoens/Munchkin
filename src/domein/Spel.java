@@ -214,4 +214,8 @@ public class Spel {
     public int toonBovensteKk() {
         return kerkerkaarten.get(0).getId();
     }
+
+    public String geefTypeKaart() {
+        return kerkerkaarten.get(0).getClass().getSimpleName();
+    }
 }

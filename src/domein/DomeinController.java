@@ -148,4 +148,8 @@ public class DomeinController {
 
     public String toonBovensteKk() { return String.format("gui/images/%d.png",spel.toonBovensteKk());
     }
+
+    public String geefTypeKaart() {
+        return spel.geefTypeKaart();
+    }
 }

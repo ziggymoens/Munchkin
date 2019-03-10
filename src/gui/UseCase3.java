@@ -8,6 +8,7 @@ package gui;
 import domein.DomeinController;
 import language.LanguageResource;
 import printer.ColorsOutput;
+import printer.Printer;
 
 import javax.swing.*;
 import java.util.*;
@@ -19,10 +20,18 @@ public class UseCase3 {
 
     private final DomeinController dc;
     private final Scanner SCAN = new Scanner(System.in);
+    private Map<String, Runnable> types;
 
     UseCase3(DomeinController dc) {
+        types = new HashMap<>();
+        types.put("ConsumablesKerker", this::consumablesKKaart);
+        types.put("Curse", this::curseKaart);
+        types.put("Monster", this::monsterKaart);
+        types.put("Race", this::raceKaart);
+        types.put("ConsumablesSchat", this::consumablesSKaart);
+        types.put("Equipment", this::equipmentKaart);
         this.dc = dc;
-        UseCase4 uc4 = new UseCase4(this.dc);
+
     }
 
     public void speelBeurt(String naam) {
@@ -37,10 +46,37 @@ public class UseCase3 {
                 bev = SCAN.next().toLowerCase();
             }
             if (bev.equals(LanguageResource.getString("yes"))) {
-                dc.speelBeurt(naam);
+                types.get(dc.geefTypeKaart()).run();
             }
         } catch (Exception e) {
             System.err.println(e.getMessage() + e.toString());
         }
     }
+
+    private void monsterKaart() {
+        UseCase4 uc4 = new UseCase4(this.dc);
+        System.out.println(Printer.printGreen("play.monster"));
+    }
+
+    private void consumablesKKaart() {
+        System.out.println(Printer.printGreen("play.consumablesk"));
+    }
+
+    private void curseKaart() {
+        System.out.println(Printer.printGreen("play.curse"));
+    }
+
+    private void raceKaart() {
+        System.out.println(Printer.printGreen("play.race"));
+    }
+
+    private void consumablesSKaart() {
+        System.out.println(Printer.printGreen("play.consumabless"));
+    }
+
+    private void equipmentKaart() {
+        System.out.println(Printer.printGreen("play.equipment"));
+    }
+
+
 }
