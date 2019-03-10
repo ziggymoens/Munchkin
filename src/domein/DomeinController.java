@@ -146,14 +146,16 @@ public class DomeinController {
         spel.geefStartKaarten();
     }
 
-    public String toonBovensteKk() { return String.format("gui/images/%d.png",spel.toonBovensteKk());
+    public String toonBovensteKk() {
+        return String.format("gui/images/%d.png",spel.toonBovensteKk());
     }
 
     public String geefTypeKaart() {
         return spel.geefTypeKaart();
     }
 
-    public void effectKaart(int id) {
+    public void effectKaart(String naam) {
+        spel.speelKerkerkaart(naam);
     }
 
     public int geefIdBovensteKaart() {
@@ -162,5 +164,9 @@ public class DomeinController {
 
     public void nieuweBovensteKaartK() {
         spel.nieuwBovensteKaartK();
+    }
+
+    public void geefKerkerkaartAanSpeler (String naam){
+        spel.geefKerkerkaartAanSpeler(naam);
     }
 }

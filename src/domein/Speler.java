@@ -149,6 +149,7 @@ public class Speler {
         } else if (kaart instanceof Monster || kaart instanceof Curse || kaart instanceof Race || kaart instanceof ConsumablesKerker) {
             aantalKerkerkaarten++;
         }
+        kaarten.add(kaart);
     }
 
     /**
@@ -162,6 +163,7 @@ public class Speler {
 
     /**
      * Items van speler opvragen
+     *
      * @return List met Kaart-objecten
      */
     public List<Kaart> getItems() {
@@ -184,8 +186,9 @@ public class Speler {
      */
     public String kaartenNaarString(List<Kaart> kaarten) {
         StringBuilder ret = new StringBuilder();
-        for (Kaart kaart : kaarten) {
-            ret.append(String.format("%s  ", kaart.getNaam()));
+        ret.append(kaarten.get(0).getNaam());
+        for (int i = 1; i < kaarten.size(); i++) {
+            ret.append(String.format(", %s", kaarten.get(i).getNaam()));
         }
         return ret.toString();
     }
@@ -248,5 +251,15 @@ public class Speler {
      */
     public boolean isHeeftMonsterVerslaan() {
         return heeftMonsterVerslaan;
+    }
+
+    public void verwijderItems(String typeLost) {
+        for (Kaart kaart:items){
+            if (kaart instanceof Equipment){
+                if (((Equipment) kaart).getType().equals(typeLost)){
+                    items.remove(kaart);
+                }
+            }
+        }
     }
 }

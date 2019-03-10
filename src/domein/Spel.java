@@ -1,6 +1,7 @@
 package domein;
 
 import domein.kaarten.Kaart;
+import domein.kaarten.kerkerkaarten.Curse;
 import domein.repositories.KaartDbRepository;
 import exceptions.SpelException;
 
@@ -231,5 +232,37 @@ public class Spel {
         Kaart kaart = kerkerkaarten.get(0);
         kerkerkaarten.remove(0);
         kerkerkaarten.add(kaart);
+    }
+
+    public Map<Integer, Kaart> getKaarten() {
+        return kaarten;
+    }
+
+    public void geefKerkerkaartAanSpeler(String naam) {
+        for (Speler speler: spelers){
+            if (naam.equals(speler.getNaam())){
+                speler.voegKaartToe(kerkerkaarten.get(0));
+                kerkerkaarten.remove(0);
+            }
+        }
+    }
+
+    public void speelKerkerkaart(String naam) {
+        Kaart kaart = kerkerkaarten.get(0);
+        if(kaart instanceof Curse){
+            if(((Curse) kaart).getTypeLost() != null){
+                for (Speler speler:spelers){
+                    if (naam.equals(speler.getNaam())){
+                        speler.verwijderItems(((Curse) kaart).getTypeLost());
+                    }
+                }
+            }else if(((Curse) kaart).getLevelLost() > 0){
+                for (Speler speler:spelers){
+                    if (naam.equals(speler.getNaam())){
+                        speler.setLevel(speler.getLevel()-((Curse) kaart).getLevelLost());
+                    }
+                }
+            }
+        }
     }
 }

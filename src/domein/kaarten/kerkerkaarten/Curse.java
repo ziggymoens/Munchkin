@@ -16,8 +16,8 @@ public class Curse extends Kerkerkaart {
     private String typeLost;
     private int levelLost;
     private String text;
-    private boolean raceLost;
-    private boolean sexLost;
+    //private boolean raceLost;
+    //private boolean sexLost;
 
     public Curse(String name, int id, int loseLevel, String typeLost, String description) {
         super(name, id);
@@ -42,21 +42,21 @@ public class Curse extends Kerkerkaart {
         return levelLost;
     }
 
-    /**
-     *
-     * @return
-     */
-    public boolean isRaceLost() {
-        return raceLost;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public boolean isSexLost() {
-        return sexLost;
-    }
+//    /**
+//     *
+//     * @return
+//     */
+//    public boolean isRaceLost() {
+//        return raceLost;
+//    }
+//
+//    /**
+//     *
+//     * @return
+//     */
+//    public boolean isSexLost() {
+//        return sexLost;
+//    }
 
     /**
      *
@@ -80,21 +80,21 @@ public class Curse extends Kerkerkaart {
         this.levelLost = levelLost;
     }
 
-    /**
-     *
-     * @param raceLost
-     */
-    private void setRaceLost(boolean raceLost) {
-        this.raceLost = raceLost;
-    }
-
-    /**
-     *
-     * @param sexLost
-     */
-    private void setSexLost(boolean sexLost) {
-        this.sexLost = sexLost;
-    }
+//    /**
+//     *
+//     * @param raceLost
+//     */
+//    private void setRaceLost(boolean raceLost) {
+//        this.raceLost = raceLost;
+//    }
+//
+//    /**
+//     *
+//     * @param sexLost
+//     */
+//    private void setSexLost(boolean sexLost) {
+//        this.sexLost = sexLost;
+//    }
 
     /**
      *

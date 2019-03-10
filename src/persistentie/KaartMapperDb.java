@@ -123,9 +123,8 @@ public class KaartMapperDb {
                 String description = rs.getString("description");
                 String specialRace = rs.getString("specialRace");
                 boolean outRun = rs.getBoolean("outRun");
-                String specialRaceReason = rs.getString("specialRaceReason");
                 BadStuff bs = badStuffKaart(rs.getInt("badStuffid"));
-                kaarten.add(new Monster(name, id, level, tresures, levelUp, description, outRun, escapeBonus, new Race(specialRace), raceBonus, specialRaceReason, persueLevel, bs));
+                kaarten.add(new Monster(name, id, level, tresures, levelUp, description, outRun, escapeBonus, new Race(specialRace), raceBonus, persueLevel, bs));
             }
         } catch (Exception ex) {
             throw new DatabaseException(ex.getMessage());

@@ -22,6 +22,7 @@ public class UseCase3 {
     private final Scanner SCAN = new Scanner(System.in);
     private Map<String, Runnable> types;
     private int huidigeKaart;
+    private String naam;
 
     UseCase3(DomeinController dc) {
         types = new HashMap<>();
@@ -36,13 +37,14 @@ public class UseCase3 {
     }
 
     public void speelBeurt(String naam) {
+        this.naam = naam;
         try {
-            System.out.println(ColorsOutput.achtergrond("yellow", true)+dc.geefSpelsituatie()+ColorsOutput.reset());
+            System.out.println(ColorsOutput.achtergrond("yellow") + dc.geefSpelsituatie() + ColorsOutput.reset());
             System.out.println(dc.toonBovensteKk());
             huidigeKaart = dc.geefIdBovensteKaart();
             System.out.println(LanguageResource.getString("usecase3.confirm"));
             String bev = SCAN.next();
-            while (!bev.equals(LanguageResource.getString("yes")) && !bev.equals(LanguageResource.getString("no"))) {
+            while (!bev.equals(LanguageResource.getString("yes"))) {
                 System.out.printf(ColorsOutput.kleur("red") + "%s%n%n", LanguageResource.getString("usecase3.novalidconfirm") + ColorsOutput.reset());
                 System.out.println(LanguageResource.getString("usecase3.confirm"));
                 bev = SCAN.next().toLowerCase();
@@ -63,27 +65,27 @@ public class UseCase3 {
     }
 
     private void consumablesKKaart() {
-        dc.effectKaart(huidigeKaart);
+        dc.geefKerkerkaartAanSpeler(naam);
         System.out.println(Printer.printGreen("play.consumablesk"));
     }
 
     private void curseKaart() {
-        dc.effectKaart(huidigeKaart);
+        dc.effectKaart(naam);
         System.out.println(Printer.printGreen("play.curse"));
     }
 
     private void raceKaart() {
-        dc.effectKaart(huidigeKaart);
+        dc.geefKerkerkaartAanSpeler(naam);
         System.out.println(Printer.printGreen("play.race"));
     }
 
     private void consumablesSKaart() {
-        dc.effectKaart(huidigeKaart);
+        dc.effectKaart(naam);
         System.out.println(Printer.printGreen("play.consumabless"));
     }
 
     private void equipmentKaart() {
-        dc.effectKaart(huidigeKaart);
+        dc.effectKaart(naam);
         System.out.println(Printer.printGreen("play.equipment"));
     }
 

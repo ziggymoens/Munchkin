@@ -18,7 +18,6 @@ public class Monster extends Kerkerkaart {
     private int runAway;
     private Race specialRace;
     private int specialRaceExtra;
-    private String specialRaceReason;
     private int notPursue;
     private int levelsLostHigherLevel;
 
@@ -34,11 +33,10 @@ public class Monster extends Kerkerkaart {
      * @param runAway = escapeBonus,
      * @param specialRace = specialRace, 
      * @param specialRaceExtra = raceBonus, 
-     * @param specialRaceReason = specialRacereason, 
-     * @param notPursue = pursueLevel, 
+     * @param notPursue = pursueLevel,
      * @param badStuff = badStuffId, bijhorende aan de kaart
      */
-    public Monster(String naam, int id, int level, int winstTeasures, int winstLevels, String text, boolean outRun, int runAway, Race specialRace, int specialRaceExtra, String specialRaceReason, int notPursue, BadStuff badStuff) {
+    public Monster(String naam, int id, int level, int winstTeasures, int winstLevels, String text, boolean outRun, int runAway, Race specialRace, int specialRaceExtra, int notPursue, BadStuff badStuff) {
         super(naam, id);
         controleerLevel(level);
         this.level = level;
@@ -51,7 +49,6 @@ public class Monster extends Kerkerkaart {
         setRunAway(runAway);
         setSpecialRace(specialRace);
         setSpecialRaceExtra(specialRaceExtra);
-        setSpecialRaceReason(specialRaceReason);
         setNotPursue(notPursue);
         controleerBadstuff(badStuff);
         this.badStuff = badStuff;
@@ -129,13 +126,6 @@ public class Monster extends Kerkerkaart {
         return specialRaceExtra;
     }
 
-    /**
-     *
-     * @return
-     */
-    public String getSpecialRaceReason() {
-        return specialRaceReason;
-    }
 
     /**
      *
@@ -177,7 +167,7 @@ public class Monster extends Kerkerkaart {
      * @param runAway
      */
     private void setRunAway(int runAway) {
-        if (runAway < 0) {
+        if (runAway > 10 || runAway<-10) {
             throw new MonsterException("exception.monster.runawayint");
         }
         this.runAway = runAway;
@@ -203,17 +193,6 @@ public class Monster extends Kerkerkaart {
             throw new MonsterException("exception.monster.specialraceextra");
         }
         this.specialRaceExtra = specialRaceExtra;
-    }
-
-    /**
-     *
-     * @param specialRaceReason
-     */
-    private void setSpecialRaceReason(String specialRaceReason) {
-        if (specialRaceReason == null) {
-            throw new MonsterException("exception.monster.specialracereason");
-        }
-        this.specialRaceReason = specialRaceReason;
     }
 
     /**
