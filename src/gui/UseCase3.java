@@ -9,9 +9,6 @@ import domein.DomeinController;
 import language.LanguageResource;
 import printer.ColorsOutput;
 import printer.Printer;
-
-import javax.swing.*;
-import java.sql.SQLOutput;
 import java.util.*;
 
 /**
