@@ -88,7 +88,7 @@ public class BadStuff {
      * @param text
      */
     private void setText(String text) {
-        if (text == null || text.isBlank()) {
+        if (text == null) {
             throw new BadStuffException("exception.badstuff.text");
         }
         this.text = text;
@@ -110,7 +110,7 @@ public class BadStuff {
      * @param gearLost
      */
     private void setGearLost(String gearLost) {
-        if (gearLost == null || gearLost.isBlank()) {
+        if (gearLost == null) {
             throw new BadStuffException("exception.badstuff.gearlost");
         }
         this.gearLost = gearLost;
