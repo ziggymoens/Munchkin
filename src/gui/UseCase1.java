@@ -44,7 +44,7 @@ public class UseCase1 {
         System.out.println(LanguageResource.getString("newGame"));
         String nieuwSpel = SCAN.next().toLowerCase();
         while (!nieuwSpel.equals(LanguageResource.getString("yes")) && !nieuwSpel.equals(LanguageResource.getString("no"))) {
-            System.out.printf(ColorsOutput.decoration("bold")+ColorsOutput.kleur("red", true) + "%s%n%n", LanguageResource.getString("start.yesno") + ColorsOutput.reset());
+            System.out.printf(ColorsOutput.decoration("bold")+ColorsOutput.kleur("red") + "%s%n%n", LanguageResource.getString("start.yesno") + ColorsOutput.reset());
             System.out.println(LanguageResource.getString("newGame"));
             nieuwSpel = SCAN.next().toLowerCase();
         }
