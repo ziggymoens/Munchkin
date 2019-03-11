@@ -88,7 +88,7 @@ public class UseCase2 {
                     UseCase3 uc3 = new UseCase3(this.dc);
                     uc3.speelBeurt(naam);
                 } catch (Exception e) {
-                    System.out.print(Printer.exceptionCatch("Exception", e));
+                    System.out.print(Printer.exceptionCatch("Exception", e, false));
                 }
                 break;
             case 2:
@@ -96,7 +96,7 @@ public class UseCase2 {
                     UseCase8 uc8 = new UseCase8(this.dc);
                     uc8.spelOpslaan();
                 } catch (Exception e) {
-                    System.out.print(Printer.exceptionCatch("Exception", e));
+                    System.out.print(Printer.exceptionCatch("Exception", e, false));
                 }
                 break;
             case 3:
@@ -104,7 +104,7 @@ public class UseCase2 {
                     System.out.println(Printer.printGreen("gamestop"));
                 System.exit(0);
                 }catch (Exception e){
-                    System.out.print(Printer.exceptionCatch("Exception", e));
+                    System.out.print(Printer.exceptionCatch("Exception", e, false));
                 }
                 break;
             default:

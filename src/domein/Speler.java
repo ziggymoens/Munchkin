@@ -31,7 +31,7 @@ public class Speler {
      * "man", leeftijd = 99, level = 1, taal = "en"
      */
     public Speler() {
-        setLevel(1);
+        setLevel(5);
         kaarten = new ArrayList<>();
         items = new ArrayList<>();
         aantalKerkerkaarten = 0;
@@ -186,9 +186,13 @@ public class Speler {
      */
     public String kaartenNaarString(List<Kaart> kaarten) {
         StringBuilder ret = new StringBuilder();
-        ret.append(kaarten.get(0).getNaam());
-        for (int i = 1; i < kaarten.size(); i++) {
-            ret.append(String.format(", %s", kaarten.get(i).getNaam()));
+        if (kaarten.size()==0){
+            ret.append("empty");
+        }else {
+            ret.append(kaarten.get(0).getNaam());
+            for (int i = 1; i < kaarten.size(); i++) {
+                ret.append(String.format(", %s", kaarten.get(i).getNaam()));
+            }
         }
         return ret.toString();
     }
@@ -200,7 +204,7 @@ public class Speler {
      */
     @Override
     public String toString() {
-        return String.format("%s = %s, %s = %s, %s = %d, %s = %d, %s = %d, %s = %s", LanguageResource.getString("player.name"), naam, LanguageResource.getString("player.sex"), geslacht, LanguageResource.getString("player.level"), level, LanguageResource.getString("player.treasurecards"), getAantalSchatkaarten(), LanguageResource.getString("player.dungeoncards"), getAantalKerkerkaarten(), LanguageResource.getString("player.amountOfCards"), kaartenNaarString(kaarten));
+        return String.format("%s = %s, %s = %s, %s = %d, %s = %d, %s = %d", LanguageResource.getString("player.name"), naam, LanguageResource.getString("player.sex"), geslacht, LanguageResource.getString("player.level"), level, LanguageResource.getString("player.treasurecards"), getAantalSchatkaarten(), LanguageResource.getString("player.dungeoncards"), getAantalKerkerkaarten());
     }
 
     /**
@@ -255,11 +259,30 @@ public class Speler {
 
     public void verwijderItems(String typeLost) {
         for (Kaart kaart:items){
-            if (kaart instanceof Equipment){
-                if (((Equipment) kaart).getType().equals(typeLost)){
+            if (kaart instanceof Equipment) {
+                if (((Equipment) kaart).getType().toLowerCase().equals(typeLost.toLowerCase())) {
                     items.remove(kaart);
+                }
+
+            }if (typeLost.toLowerCase().equals("race")){
+                if (kaart instanceof Race){
+                    items.remove(kaart);
+                }
+            }if(typeLost.toLowerCase().equals("sex")){
+                if (geslacht.equals(LanguageResource.getString("man"))){
+                    setGeslacht(LanguageResource.getString("woman"));
+                }else{
+                    setGeslacht(LanguageResource.getString("man"));
                 }
             }
         }
+    }
+
+    public int getAantalItems() {
+        return items.size();
+    }
+
+    public void verwijderItem(int keuze) {
+        items.remove(keuze);
     }
 }

@@ -38,7 +38,7 @@ public class UseCase1 {
         try {
             welcome();
         } catch (Exception e) {
-            System.out.print(Printer.exceptionCatch("Exception", e));
+            System.out.print(Printer.exceptionCatch("Exception", e, false));
         }
         //gebruiker vragen of hij een nieuw spel wil starten.
         System.out.println(LanguageResource.getString("newGame"));
@@ -61,7 +61,7 @@ public class UseCase1 {
                 System.out.println(Printer.printGreen("gamestop"));
             }
         } catch (Exception e) {
-            System.out.print(Printer.exceptionCatch("Exception", e));
+            System.out.print(Printer.exceptionCatch("Exception", e, false));
         }
     }
 
@@ -151,7 +151,7 @@ public class UseCase1 {
             } catch (SpelerException e) {
                 System.out.print(Printer.exceptionCatch("SpelerException", e));
             } catch (SpelException e) {
-                System.out.print(Printer.exceptionCatch("SpelException)", e));
+                System.out.print(Printer.exceptionCatch("SpelException", e));
             }
         }
     }

@@ -183,6 +183,7 @@ public class Spel {
     public String geefSpelsituatie() {
         StringBuilder ret = new StringBuilder();
         for (Speler speler : spelers) {
+            //items naar string weg
             ret.append(String.format("%s: %s, %s: %s, %s: %d, %s: %s%n", LanguageResource.getString("player.name"), speler.getNaam(), LanguageResource.getString("player.sex"), speler.getGeslacht(), LanguageResource.getString("player.level"), speler.getLevel(), LanguageResource.getString("player.items"), speler.kaartenNaarString(speler.getItems())));
         }
         return ret.toString();
@@ -224,8 +225,8 @@ public class Spel {
         return kerkerkaarten.get(0).getId();
     }
 
-    public String geefTypeKaart() {
-        return kerkerkaarten.get(0).getClass().getSimpleName();
+    public String geefTypeKaart(int id) {
+        return kaarten.get(id).getClass().getSimpleName();
     }
 
     public void nieuwBovensteKaartK() {
@@ -253,6 +254,7 @@ public class Spel {
             if(((Curse) kaart).getTypeLost() != null){
                 for (Speler speler:spelers){
                     if (naam.equals(speler.getNaam())){
+                        //als type niet item is.
                         speler.verwijderItems(((Curse) kaart).getTypeLost());
                     }
                 }
@@ -262,6 +264,42 @@ public class Spel {
                         speler.setLevel(speler.getLevel()-((Curse) kaart).getLevelLost());
                     }
                 }
+            }
+        }
+    }
+
+    public String geefTypeLostCurse() {
+        return ((Curse)kerkerkaarten.get(0)).getTypeLost();
+    }
+
+    public String[] geefItemsSpeler(String naam) {
+        int i = 0;
+        String[] ret = new String[0];
+        for (Speler speler : spelers) {
+            if (speler.getNaam().equals(naam)) {
+                ret = new String[speler.getItems().size()];
+                for (Kaart kaart : speler.getItems()) {
+                    ret[i] += kaart.getNaam();
+                    i++;
+                }
+            }
+        }
+        return ret;
+    }
+
+    public int geefAantalItemsSpeler(String naam) {
+        for (Speler speler : spelers){
+            if (naam.equals(speler.getNaam())){
+                return speler.getAantalItems();
+            }
+        }
+        return -99;
+    }
+
+    public void verwijderItemSpeler(String naam, int keuze) {
+        for (Speler speler:spelers){
+            if (speler.getNaam().equals(naam)) {
+                speler.verwijderItem(keuze);
             }
         }
     }

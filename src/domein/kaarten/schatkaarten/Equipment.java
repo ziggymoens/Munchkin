@@ -19,7 +19,7 @@ public class Equipment extends Schatkaart {
     private Race specialRace;
     
     private enum TYPES{
-        head, armor, foot, weapon, headgear, footgear //eventueel aanvullen
+        head, armor, foot, weapon //eventueel aanvullen
     }
 
     /**

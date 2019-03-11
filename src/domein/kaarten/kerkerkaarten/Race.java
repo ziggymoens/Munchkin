@@ -20,7 +20,7 @@ public class Race extends Kerkerkaart {
     } //NAKIJKEN
 
     public Race(String naam){
-        this(naam, 999, "...");
+        this(naam, 999, "+1 to Run Away");
     }
     
     /**

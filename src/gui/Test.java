@@ -5,6 +5,7 @@
  */
 package gui;
 
+import domein.DomeinController;
 import domein.kaarten.Kaart;
 import domein.kaarten.kerkerkaarten.ConsumablesKerker;
 import domein.kaarten.kerkerkaarten.Curse;
@@ -14,6 +15,8 @@ import domein.kaarten.schatkaarten.ConsumablesSchat;
 import domein.kaarten.schatkaarten.Equipment;
 import domein.repositories.KaartDbRepository;
 import java.util.List;
+import java.util.Scanner;
+
 import language.LanguageResource;
 
 /**
@@ -27,6 +30,7 @@ public class Test {
     private final KaartDbRepository kr = new KaartDbRepository();
     private final List<Kaart> sk = kr.getSchatkaarten();
     private final List<Kaart> kk = kr.getKerkerkaarten();
+    private final DomeinController dc = new DomeinController();
 
     public static void main(String[] args) {
         Test test = new Test();
@@ -38,7 +42,7 @@ public class Test {
         int ck=0,c=0,m=0,r=0,cs=0,e=0;
         StringBuilder out = new StringBuilder();
         for (Kaart kaart: sk) {
-            out.append(String.format("%s%n", kaart.getNaam()));
+            out.append(String.format("%5d:%40s -->%20s%n",kaart.getId(), kaart.getNaam(), kaart.getClass().getSimpleName()));
             if (kaart instanceof ConsumablesSchat){
                 cs++;
             }
@@ -48,7 +52,7 @@ public class Test {
             s++;
         }
         for (Kaart kaart: kk){
-            out.append(String.format("%s%n", kaart.getNaam()));
+            out.append(String.format("%5d:%40s -->%20s%n",kaart.getId(), kaart.getNaam(), kaart.getClass().getSimpleName()));
             if (kaart instanceof ConsumablesKerker){
                 ck++;
             }

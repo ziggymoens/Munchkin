@@ -1,11 +1,13 @@
 package domein;
 
 import domein.repositories.SpelRepository;
+
 import java.util.List;
+
+import exceptions.SpelException;
 import language.LanguageResource;
 
 /**
- *
  * @author ziggy
  */
 public class DomeinController {
@@ -47,7 +49,6 @@ public class DomeinController {
     }
 
     /**
-     *
      * @return
      */
     public int geefAantalSpelers() {
@@ -62,7 +63,6 @@ public class DomeinController {
     }
 
     /**
-     *
      * @param i
      * @return
      */
@@ -71,7 +71,6 @@ public class DomeinController {
     }
 
     /**
-     *
      * @param i
      * @return
      */
@@ -80,7 +79,6 @@ public class DomeinController {
     }
 
     /**
-     *
      * @return
      */
     public String geefNaamWinnaar() {
@@ -88,7 +86,6 @@ public class DomeinController {
     }
 
     /**
-     *
      * @param naam naam van de speler die de beurt gaat spelen
      */
     public void speelBeurt(String naam) {
@@ -147,11 +144,11 @@ public class DomeinController {
     }
 
     public String toonBovensteKk() {
-        return String.format("gui/images/%d.png",spel.toonBovensteKk());
+        return String.format("gui/images/%d.png", spel.toonBovensteKk());
     }
 
-    public String geefTypeKaart() {
-        return spel.geefTypeKaart();
+    public String geefTypeKaart(int id) {
+        return spel.geefTypeKaart(id);
     }
 
     public void effectKaart(String naam) {
@@ -166,7 +163,32 @@ public class DomeinController {
         spel.nieuwBovensteKaartK();
     }
 
-    public void geefKerkerkaartAanSpeler (String naam){
+    public void geefKerkerkaartAanSpeler(String naam) {
         spel.geefKerkerkaartAanSpeler(naam);
+    }
+
+    public String geefTypeLostCurse() {
+        return spel.geefTypeLostCurse().toLowerCase();
+    }
+
+    public String toonItemsSpeler(String naam) {
+        int i = 0;
+        String ret = "";
+        for (String line : spel.geefItemsSpeler(naam)){
+            ret += String.format("%d) %s%n", i,line);
+            i++;
+        }
+        return ret;
+    }
+
+    public int geefAantalItemsSpeler(String naam) {
+        if (spel.geefAantalItemsSpeler(naam) == -99){
+            throw new SpelException("exception.spel.itemsspeler");
+        }
+        return spel.geefAantalItemsSpeler(naam);
+    }
+
+    public void verwijderItemSpeler(String naam, int keuze) {
+        spel.verwijderItemSpeler(naam, keuze-1);
     }
 }

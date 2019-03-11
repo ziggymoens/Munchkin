@@ -11,6 +11,7 @@ import printer.ColorsOutput;
 import printer.Printer;
 
 import javax.swing.*;
+import java.sql.SQLOutput;
 import java.util.*;
 
 /**
@@ -50,11 +51,12 @@ public class UseCase3 {
                 bev = SCAN.next().toLowerCase();
             }
             if (bev.equals(LanguageResource.getString("yes"))) {
-                types.get(dc.geefTypeKaart()).run();
+                System.out.println(dc.geefTypeKaart(huidigeKaart));
+                types.get(dc.geefTypeKaart(huidigeKaart)).run();
             }
             dc.nieuweBovensteKaartK();
         } catch (Exception e) {
-            System.err.println(e.getMessage() + e.toString());
+            System.out.println(Printer.exceptionCatch("Exception", e, false));
         }
     }
 
@@ -70,6 +72,18 @@ public class UseCase3 {
     }
 
     private void curseKaart() {
+        if (dc.geefTypeLostCurse().equals("item")) {
+            System.out.println(dc.toonItemsSpeler(naam));
+            if (dc.geefAantalItemsSpeler(naam) > 0) {
+                int keuze;
+                do {
+                    System.out.println(LanguageResource.getString("usecase3.itemlose"));
+                    System.out.printf("(1 - %d)    ", dc.geefAantalItemsSpeler(naam));
+                    keuze = SCAN.nextInt();
+                } while (keuze < 1 || keuze >= dc.geefAantalItemsSpeler(naam));
+                dc.verwijderItemSpeler(naam, keuze);
+            }
+        }
         dc.effectKaart(naam);
         System.out.println(Printer.printGreen("play.curse"));
     }
