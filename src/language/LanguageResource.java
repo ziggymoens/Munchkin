@@ -52,7 +52,7 @@ public class LanguageResource {
      * Bundle in LanguageResource initialiseren met de gegeven taal
      */
     private static void setBundle() {
-        LanguageResource.bundle = ResourceBundle.getBundle("language/language", getLocale());
+        LanguageResource.bundle = ResourceBundle.getBundle("language/i18n", getLocale());
     }
 
     /**
@@ -81,7 +81,7 @@ public class LanguageResource {
      * @return String met het woord in de gekozen taal
      */
     public static String getStringLanguage(String string, Locale locale) {
-        return ResourceBundle.getBundle("language/language", locale).getString(string);
+        return ResourceBundle.getBundle("language/i18n", locale).getString(string);
     }
 
     /**

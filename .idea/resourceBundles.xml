@@ -5,15 +5,15 @@
     <file url="file://$PROJECT_DIR$/src/language/i18n_en.properties" />
     <file url="file://$PROJECT_DIR$/src/language/i18n_fr.properties" />
     <file url="file://$PROJECT_DIR$/src/language/i18n_nl.properties" />
-    <file url="file://$PROJECT_DIR$/src/language/language.properties" />
-    <file url="file://$PROJECT_DIR$/src/language/language_en.properties" />
-    <file url="file://$PROJECT_DIR$/src/language/language_fr.properties" />
-    <file url="file://$PROJECT_DIR$/src/language/language_nl.properties" />
+    <file url="file://$PROJECT_DIR$/src/ongebruikt/language.properties" />
+    <file url="file://$PROJECT_DIR$/src/ongebruikt/language_en.properties" />
+    <file url="file://$PROJECT_DIR$/src/ongebruikt/language_fr.properties" />
+    <file url="file://$PROJECT_DIR$/src/ongebruikt/language_nl.properties" />
     <custom-resource-bundle>
-      <file value="file://$PROJECT_DIR$/src/language/language.properties" />
-      <file value="file://$PROJECT_DIR$/src/language/language_en.properties" />
-      <file value="file://$PROJECT_DIR$/src/language/language_fr.properties" />
-      <file value="file://$PROJECT_DIR$/src/language/language_nl.properties" />
+      <file value="file://$PROJECT_DIR$/src/ongebruikt/language.properties" />
+      <file value="file://$PROJECT_DIR$/src/ongebruikt/language_en.properties" />
+      <file value="file://$PROJECT_DIR$/src/ongebruikt/language_fr.properties" />
+      <file value="file://$PROJECT_DIR$/src/ongebruikt/language_nl.properties" />
       <base-name>language</base-name>
     </custom-resource-bundle>
   </component>
