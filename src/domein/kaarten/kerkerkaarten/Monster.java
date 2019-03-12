@@ -19,7 +19,6 @@ public class Monster extends Kerkerkaart {
     private Race specialRace;
     private int specialRaceExtra;
     private int notPursue;
-    private int levelsLostHigherLevel;
 
     /**
      *
@@ -135,13 +134,6 @@ public class Monster extends Kerkerkaart {
         return notPursue;
     }
 
-    /**
-     *
-     * @return
-     */
-    public int getLevelsLostHigherLevel() {
-        return levelsLostHigherLevel;
-    }
 
     /**
      *
@@ -204,17 +196,6 @@ public class Monster extends Kerkerkaart {
             throw new MonsterException("exception.monster.notpursue");
         }
         this.notPursue = notPursue;
-    }
-
-    /**
-     *
-     * @param levelsLostHigherLevel
-     */
-    private void setLevelsLostHigherLevel(int levelsLostHigherLevel) {
-        if (levelsLostHigherLevel < 0) {
-            throw new MonsterException("exception.monster.levelslosthigherlevel");
-        }
-        this.levelsLostHigherLevel = levelsLostHigherLevel;
     }
 
     /**

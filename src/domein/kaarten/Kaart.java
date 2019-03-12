@@ -31,7 +31,7 @@ public abstract class Kaart {
      * @param naam de naam van de kaart
      */
     private void setNaam(String naam) {
-        if (naam == null) {
+        if (naam == null || naam.isBlank()) {
             throw new KaartException("exception.kaart.name");
         }
         this.naam = naam;

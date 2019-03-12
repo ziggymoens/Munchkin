@@ -102,7 +102,7 @@ public class Race extends Kerkerkaart {
      * @param text
      */
     private void setText(String text) {
-        if (text == null) {
+        if (text == null || text.isBlank()) {
             throw new RaceException("exception.race.text");
         }
         this.text = text;
