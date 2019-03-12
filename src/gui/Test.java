@@ -20,7 +20,7 @@ import java.util.Scanner;
 import language.LanguageResource;
 
 /**
- *
+ * test github intellij kilian
  * @author ziggy
  */
 public class Test {
