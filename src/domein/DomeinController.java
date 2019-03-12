@@ -49,7 +49,9 @@ public class DomeinController {
     }
 
     /**
-     * @return
+     * Getter die het aantal spelers returnt
+     * 
+     * @return aantal spelers
      */
     public int geefAantalSpelers() {
         return spel.getAantalSpelers();
