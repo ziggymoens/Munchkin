@@ -3,15 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="65c6d22f-232f-4b77-bc1e-1f6c0d29be8c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domein/DomeinController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domein/DomeinController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/domein/Spel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domein/Spel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/UseCase1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/UseCase1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/UseCase2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/UseCase2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/UseCase3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/UseCase3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ongebruikt/language.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/ongebruikt/language.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ongebruikt/language_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/ongebruikt/language_en.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ongebruikt/language_fr.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/ongebruikt/language_fr.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ongebruikt/language_nl.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/ongebruikt/language_nl.properties" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -83,8 +75,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/domein/DomeinController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="154" column="22" selection-start-line="154" selection-start-column="22" selection-end-line="154" selection-end-column="22" />
+            <state relative-caret-position="289">
+              <caret line="132" column="25" selection-start-line="132" selection-start-column="25" selection-end-line="132" selection-end-column="25" />
               <folding>
                 <element signature="e#1312#1313#0" expanded="true" />
                 <element signature="e#1353#1354#0" expanded="true" />
@@ -130,7 +122,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/domein/Spel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="522">
+            <state relative-caret-position="598">
               <caret line="118" column="20" lean-forward="true" selection-start-line="118" selection-start-column="20" selection-end-line="118" selection-end-column="20" />
               <folding>
                 <element signature="e#5972#5973#0" expanded="true" />
@@ -163,8 +155,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/gui/UseCase1.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="552">
-              <caret line="57" column="23" lean-forward="true" selection-start-line="57" selection-start-column="23" selection-end-line="57" selection-end-column="23" />
+            <state relative-caret-position="123">
+              <caret line="145" column="26" selection-start-line="145" selection-start-column="26" selection-end-line="145" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -307,7 +299,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552398194068" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552398632421" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -381,7 +373,7 @@
       <option name="presentableId" value="Default" />
       <updated>1551993656744</updated>
       <workItem from="1551993658537" duration="141000" />
-      <workItem from="1552226520023" duration="33187000" />
+      <workItem from="1552226520023" duration="33853000" />
     </task>
     <task id="LOCAL-00001" summary="output">
       <created>1552228440827</created>
@@ -446,18 +438,25 @@
       <option name="project" value="LOCAL" />
       <updated>1552377261261</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="berzirias fixed">
+      <created>1552394885559</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1552394885559</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33328000" />
+    <option name="totallyTimeSpent" value="33994000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1200" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Learn" order="0" weight="0.32897604" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.24813631" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.24813631" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Designer" order="4" />
@@ -468,7 +467,7 @@
       <window_info anchor="bottom" id="Messages" order="1" weight="0.32942238" />
       <window_info anchor="bottom" id="Message" order="2" />
       <window_info anchor="bottom" id="Find" order="3" weight="0.32942238" />
-      <window_info anchor="bottom" id="Run" order="4" weight="0.15884477" />
+      <window_info active="true" anchor="bottom" id="Run" order="4" visible="true" weight="0.30776173" />
       <window_info anchor="bottom" id="Debug" order="5" weight="0.3998195" />
       <window_info anchor="bottom" id="Cvs" order="6" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="7" weight="0.4" />
@@ -812,16 +811,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/UseCase1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="552">
-          <caret line="57" column="23" lean-forward="true" selection-start-line="57" selection-start-column="23" selection-end-line="57" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/UseCase2.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="311">
@@ -886,10 +875,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="das://79f0d59e-e9c8-47b0-95cb-632d85fb8553/schema/ID222177_g35/table/ConsumablesT">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/UseCase1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="123">
+          <caret line="145" column="26" selection-start-line="145" selection-start-column="26" selection-end-line="145" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/domein/DomeinController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="154" column="22" selection-start-line="154" selection-start-column="22" selection-end-line="154" selection-end-column="22" />
+        <state relative-caret-position="289">
+          <caret line="132" column="25" selection-start-line="132" selection-start-column="25" selection-end-line="132" selection-end-column="25" />
           <folding>
             <element signature="e#1312#1313#0" expanded="true" />
             <element signature="e#1353#1354#0" expanded="true" />
@@ -913,16 +919,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://79f0d59e-e9c8-47b0-95cb-632d85fb8553/schema/ID222177_g35/table/ConsumablesT">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/domein/Spel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
+        <state relative-caret-position="598">
           <caret line="118" column="20" lean-forward="true" selection-start-line="118" selection-start-column="20" selection-end-line="118" selection-end-column="20" />
           <folding>
             <element signature="e#5972#5973#0" expanded="true" />

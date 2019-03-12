@@ -109,7 +109,7 @@ public class Spel {
      */
     private void controleSpeler(String naam) {
         for (Speler speler : spelers) {
-            if (naam.toLowerCase().equals(speler.getNaam().toLowerCase())) {
+            if (naam.equals(speler.getNaam())) {
                 throw new SpelException("exception.spel.namenotunique");
             }
         }
