@@ -151,7 +151,7 @@ public class DomeinController {
         return spel.geefTypeKaart(id);
     }
 
-    public void effectKaart(String naam) {
+    public void effectKerkerkaart(String naam) {
         spel.speelKerkerkaart(naam);
     }
 

@@ -12,7 +12,6 @@ import printer.ColorsOutput;
 import language.LanguageResource;
 
 /**
- * test commit, hallo
  *
  * @author g35
  */
@@ -52,7 +51,7 @@ public class UseCase1 {
             if (nieuwSpel.equals(LanguageResource.getString("yes"))) {
                 maakSpel();
                 System.out.println(Printer.printGreen("spel.made"));
-                voegSpelersToe(aantalSpelers);
+                voegSpelersToe();
                 System.out.println(Printer.printGreen("spel.playersadded"));
                 //verdergaan naar UC2
                 UseCase2 uc2 = new UseCase2(this.dc);
@@ -115,7 +114,7 @@ public class UseCase1 {
             } catch (SpelException e) {
                 System.out.print(Printer.exceptionCatch("SpelException", e));
             } catch (DatabaseException e) {
-                System.out.print(Printer.exceptionCatch("DatabasException", e));
+                System.out.print(Printer.exceptionCatch("DatabaseException", e));
             }
         }
     }
@@ -123,10 +122,8 @@ public class UseCase1 {
     /**
      * Voeg het aantal gekozen aantal spelers toe aan het spel a.d.h.v. naam,
      *
-     * @param aantalSpelers het aantal spelers dat de methode zal toevoegen aan
-     *                      het spel
      */
-    private void voegSpelersToe(int aantalSpelers) {
+    private void voegSpelersToe() {
         for (int i = 0; i < aantalSpelers; i++) {
             System.out.println(String.format("%s %d", LanguageResource.getString("player"), i + 1));
             dc.maakSpeler();

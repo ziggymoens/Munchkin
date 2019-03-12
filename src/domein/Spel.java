@@ -109,8 +109,8 @@ public class Spel {
      */
     private void controleSpeler(String naam) {
         for (Speler speler : spelers) {
-            if (naam.equals(speler.getNaam())) {
-                throw new SpelException("exceptions.spel.namenotunique");
+            if (naam.toLowerCase().equals(speler.getNaam().toLowerCase())) {
+                throw new SpelException("exception.spel.namenotunique");
             }
         }
     }
@@ -251,7 +251,7 @@ public class Spel {
     public void speelKerkerkaart(String naam) {
         Kaart kaart = kerkerkaarten.get(0);
         if(kaart instanceof Curse){
-            if(((Curse) kaart).getTypeLost() != null){
+            if(((Curse) kaart).getTypeLost().equals("none")){
                 for (Speler speler:spelers){
                     if (naam.equals(speler.getNaam())){
                         //als type niet item is.
