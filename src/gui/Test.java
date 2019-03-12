@@ -16,7 +16,7 @@ import domein.kaarten.schatkaarten.Equipment;
 import domein.repositories.KaartDbRepository;
 import java.util.List;
 import java.util.Scanner;
-
+import java.lang.Object;
 import language.LanguageResource;
 
 /**
@@ -35,6 +35,8 @@ public class Test {
     public static void main(String[] args) {
         Test test = new Test();
         System.out.println(test.geefKaarten());
+        String naam = "hallo";
+        naam.isBlank();
     }
     
     private String geefKaarten(){
