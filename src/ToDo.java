@@ -29,7 +29,7 @@
  * 
  * 
  * 
- * .isBlank() niet gebruiken in setters, veranderen naar .trim().isEmpty
+ * .isBlank() niet gebruiken in setters, veranderen naar .trim().isEmpty -- moeilijk
  */
 
 public class ToDo {
