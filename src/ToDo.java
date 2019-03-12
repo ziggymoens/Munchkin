@@ -26,6 +26,10 @@
  * ALLES CATCHEN MAAR ECHT AAAAAALLES
  * 
  * Niks STATIC tenzij niet anders kan
+ * 
+ * 
+ * 
+ * .isBlank() niet gebruiken in setters, veranderen naar .trim().isEmpty
  */
 
 public class ToDo {
