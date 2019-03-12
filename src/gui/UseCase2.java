@@ -101,10 +101,10 @@ public class UseCase2 {
                 }
                 break;
             case 3:
-                try{
+                try {
                     System.out.println(Printer.printGreen("gamestop"));
-                System.exit(0);
-                }catch (Exception e){
+                    System.exit(0);
+                } catch (Exception e) {
                     System.out.print(Printer.exceptionCatch("Exception", e, false));
                 }
                 break;

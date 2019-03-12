@@ -9,6 +9,7 @@ import domein.DomeinController;
 import language.LanguageResource;
 import printer.ColorsOutput;
 import printer.Printer;
+
 import java.util.*;
 
 /**
@@ -47,10 +48,8 @@ public class UseCase3 {
                 System.out.println(LanguageResource.getString("usecase3.confirm"));
                 bev = SCAN.next().toLowerCase();
             }
-            if (bev.equals(LanguageResource.getString("yes"))) {
-                System.out.println(dc.geefTypeKaart(huidigeKaart));
-                types.get(dc.geefTypeKaart(huidigeKaart)).run();
-            }
+            System.out.println(dc.geefTypeKaart(huidigeKaart));
+            types.get(dc.geefTypeKaart(huidigeKaart)).run();
             dc.nieuweBovensteKaartK();
         } catch (Exception e) {
             System.out.println(Printer.exceptionCatch("Exception", e, false));
@@ -81,7 +80,7 @@ public class UseCase3 {
                 dc.verwijderItemSpeler(naam, keuze);
             }
         }
-        dc.effectKaart(naam);
+        dc.effectKerkerkaart(naam);
         System.out.println(Printer.printGreen("play.curse"));
     }
 
@@ -91,12 +90,12 @@ public class UseCase3 {
     }
 
     private void consumablesSKaart() {
-        dc.effectKaart(naam);
+        dc.effectKerkerkaart(naam);
         System.out.println(Printer.printGreen("play.consumabless"));
     }
 
     private void equipmentKaart() {
-        dc.effectKaart(naam);
+        dc.effectKerkerkaart(naam);
         System.out.println(Printer.printGreen("play.equipment"));
     }
 
