@@ -19,10 +19,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author ziggy
@@ -74,7 +71,10 @@ public class KaartMapperDb {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
                 String description = rs.getString("description");
-                this.kaarten.add(new Race(name, id, description));
+                boolean inGame = rs.getBoolean("inGame");
+                if (inGame) {
+                    this.kaarten.add(new Race(name, id, description));
+                }
             }
         } catch (Exception ex) {
             throw new DatabaseException(ex.getMessage());
@@ -87,7 +87,10 @@ public class KaartMapperDb {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
                 int bonus = rs.getInt("bonus");
-                kaarten.add(new ConsumablesKerker(name, id, bonus));
+                boolean inGame = rs.getBoolean("inGame");
+                if (inGame) {
+                    kaarten.add(new ConsumablesKerker(name, id, bonus));
+                }
             }
         } catch (Exception ex) {
             throw new DatabaseException(ex.getMessage());
@@ -102,7 +105,10 @@ public class KaartMapperDb {
                 int loseLevel = rs.getInt("loseLevel");
                 String loseSomething = rs.getString("loseSomething");
                 String description = rs.getString("description");
-                kaarten.add(new Curse(name, id, loseLevel, loseSomething, description));
+                boolean inGame = rs.getBoolean("inGame");
+                if (inGame) {
+                    kaarten.add(new Curse(name, id, loseLevel, loseSomething, description));
+                }
             }
         } catch (Exception ex) {
             throw new DatabaseException(ex.getMessage());
@@ -123,8 +129,11 @@ public class KaartMapperDb {
                 String description = rs.getString("description");
                 String specialRace = rs.getString("specialRace");
                 boolean outRun = rs.getBoolean("outRun");
-                BadStuff bs = badStuffKaart(rs.getInt("badStuffid"));
-                kaarten.add(new Monster(name, id, level, tresures, levelUp, description, outRun, escapeBonus, new Race(specialRace), raceBonus, persueLevel, bs));
+                boolean inGame = rs.getBoolean("inGame");
+                if (inGame) {
+                    BadStuff bs = badStuffKaart(rs.getInt("badStuffid"));
+                    kaarten.add(new Monster(name, id, level, tresures, levelUp, description, outRun, escapeBonus, new Race(specialRace), raceBonus, persueLevel, bs));
+                }
             }
         } catch (Exception ex) {
             throw new DatabaseException(ex.getMessage());
@@ -139,8 +148,11 @@ public class KaartMapperDb {
                 int goldPieces = rs.getInt("goldPieces");
                 int bonus = rs.getInt("bonus");
                 String description = rs.getString("description");
+                boolean inGame = rs.getBoolean("inGame");
                 //boolean killsFloatingNose = rs.getBoolean("killsFloatingNose");
-                kaarten.add(new ConsumablesSchat(name, id, goldPieces, description, bonus));
+                if (inGame) {
+                    kaarten.add(new ConsumablesSchat(name, id, goldPieces, description, bonus));
+                }
             }
         } catch (Exception ex) {
             throw new DatabaseException(ex.getMessage());
@@ -158,7 +170,10 @@ public class KaartMapperDb {
                 int specialBonus = rs.getInt("bonusRace");
                 String usableBy = rs.getString("usableBy");
                 String specialRace = rs.getString("specialRace");
-                kaarten.add(new Equipment(name, id, goldPieces, type, bonus, new Race(usableBy), bonus, specialBonus, new Race(specialRace)));
+                boolean inGame = rs.getBoolean("inGame");
+                if (inGame){
+                    kaarten.add(new Equipment(name, id, goldPieces, type, bonus, new Race(usableBy), bonus, specialBonus, new Race(specialRace)));
+                }
             }
         } catch (Exception ex) {
             throw new DatabaseException(ex.getMessage());

@@ -12,7 +12,6 @@ import printer.ColorsOutput;
 import language.LanguageResource;
 
 /**
- *
  * @author g35
  */
 public class UseCase1 {
@@ -22,6 +21,7 @@ public class UseCase1 {
     private final DomeinController dc;
     private final List<Locale> talen;
     private int aantalSpelers;
+    private boolean made = false;
 
     /**
      * constructor voor UseCase 1
@@ -43,12 +43,14 @@ public class UseCase1 {
         System.out.println(LanguageResource.getString("newGame"));
         String nieuwSpel = SCAN.next().toLowerCase();
         while (!nieuwSpel.equals(LanguageResource.getString("yes")) && !nieuwSpel.equals(LanguageResource.getString("no"))) {
-            System.out.printf(ColorsOutput.decoration("bold")+ColorsOutput.kleur("red") + "%s%n%n", LanguageResource.getString("start.yesno") + ColorsOutput.reset());
+            System.out.printf(ColorsOutput.decoration("bold") + ColorsOutput.kleur("red") + "%s%n%n", LanguageResource.getString("start.yesno") + ColorsOutput.reset());
             System.out.println(LanguageResource.getString("newGame"));
             nieuwSpel = SCAN.next().toLowerCase();
         }
         try {
             if (nieuwSpel.equals(LanguageResource.getString("yes"))) {
+                //th1.start();
+
                 maakSpel();
                 System.out.println(Printer.printGreen("spel.made"));
                 voegSpelersToe();
@@ -75,7 +77,7 @@ public class UseCase1 {
         //zolang gekozen taal niet voldoet aan beginletter van frans, nederlands of engels
         while (gekozenTaal != 'n' && gekozenTaal != 'f' && gekozenTaal != 'e') {
             for (Locale l : talen) {
-                System.out.printf(ColorsOutput.decoration("bold") + ColorsOutput.kleur("red") +"%s%n", LanguageResource.getStringLanguage("wrong", l) + ColorsOutput.reset());
+                System.out.printf(ColorsOutput.decoration("bold") + ColorsOutput.kleur("red") + "%s%n", LanguageResource.getStringLanguage("wrong", l) + ColorsOutput.reset());
             }
             gekozenTaal = SCAN.next().toLowerCase().charAt(0);
         }
@@ -109,19 +111,22 @@ public class UseCase1 {
                 System.out.println(LanguageResource.getString("amountOfPlayers"));
                 as = SCAN.nextInt();
                 dc.startSpel(as);
+                System.out.print("Loading ");
+                th1.start();
                 tryAgain = false;
                 this.aantalSpelers = as;
+                made = true;
             } catch (SpelException e) {
                 System.out.print(Printer.exceptionCatch("SpelException", e));
             } catch (DatabaseException e) {
                 System.out.print(Printer.exceptionCatch("DatabaseException", e));
             }
         }
+        System.out.println(Printer.printGreen("spel.made"));
     }
 
     /**
      * Voeg het aantal gekozen aantal spelers toe aan het spel a.d.h.v. naam,
-     *
      */
     private void voegSpelersToe() {
         for (int i = 0; i < aantalSpelers; i++) {
@@ -171,4 +176,21 @@ public class UseCase1 {
             }
         }
     }
+
+    Thread th1 = new Thread(() -> {
+        while (!made) {
+            for (int i = 0; i < 100; i++) {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException ex) {
+                }
+                System.out.print(".");
+            }
+        }
+    });
+
+    Thread th2 = new Thread(() -> {
+        maakSpel();
+        made = true;
+    });
 }
