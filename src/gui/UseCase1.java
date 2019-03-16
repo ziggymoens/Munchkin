@@ -120,6 +120,9 @@ public class UseCase1 {
                 System.out.print(Printer.exceptionCatch("SpelException", e));
             } catch (DatabaseException e) {
                 System.out.print(Printer.exceptionCatch("DatabaseException", e));
+            } catch (Exception e){
+                System.out.println(Printer.exceptionCatch("Exception", e, false ));
+                SCAN.nextLine();
             }
         }
         System.out.println(Printer.printGreen("spel.made"));
