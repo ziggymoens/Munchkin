@@ -2,40 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="65c6d22f-232f-4b77-bc1e-1f6c0d29be8c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/domein/repositories/SpelDbRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/exceptions/database/KaartDatabaseException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/exceptions/database/SpelDatabaseException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domein/DomeinController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domein/DomeinController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domein/kaarten/kerkerkaarten/BadStuff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domein/kaarten/kerkerkaarten/monsterbadstuff/BadStuff.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domein/kaarten/kerkerkaarten/ConsumablesKerker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domein/kaarten/kerkerkaarten/ConsumablesKerker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domein/kaarten/kerkerkaarten/Curse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domein/kaarten/kerkerkaarten/Curse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domein/kaarten/kerkerkaarten/Monster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domein/kaarten/kerkerkaarten/Monster.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domein/kaarten/kerkerkaarten/Race.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domein/kaarten/kerkerkaarten/Race.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domein/kaarten/schatkaarten/ConsumablesSchat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domein/kaarten/schatkaarten/ConsumablesSchat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domein/kaarten/schatkaarten/Equipment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domein/kaarten/schatkaarten/Equipment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domein/repositories/KaartDbRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domein/repositories/KaartDbRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domein/repositories/SpelRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ongebruikt/SpelRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/exceptions/DatabaseException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/exceptions/kaarten/BadStuffException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exceptions/kaarten/kerkerkaarten/monsterbadstuff/BadStuffException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/exceptions/kaarten/ConsumablesKerkerException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exceptions/kaarten/kerkerkaarten/ConsumablesKerkerException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/exceptions/kaarten/ConsumablesSchatException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exceptions/kaarten/schatkaarten/ConsumablesSchatException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/exceptions/kaarten/CurseException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exceptions/kaarten/kerkerkaarten/CurseException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/exceptions/kaarten/EquipmentException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exceptions/kaarten/schatkaarten/EquipmentException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/exceptions/kaarten/MonsterException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exceptions/kaarten/kerkerkaarten/MonsterException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/exceptions/kaarten/RaceException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exceptions/kaarten/kerkerkaarten/RaceException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/test/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/UseCase1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/ucs/UseCase1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/UseCase2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/ucs/UseCase2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/UseCase3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/ucs/UseCase3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/UseCase4.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/ucs/UseCase4.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/UseCase8.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/ucs/UseCase8.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/StartUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/StartUp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ongebruikt/KaartMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ongebruikt/KaartMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/persistentie/Connectie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/persistentie/Connectie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/persistentie/KaartMapperDb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/persistentie/mappers/KaartMapperDb.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/persistentie/SpelMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ongebruikt/SpelMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/language/LanguageResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/language/LanguageResource.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -83,29 +51,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/persistentie/mappers/KaartMapperDb.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="385">
-              <caret line="47" column="66" selection-start-line="47" selection-start-column="66" selection-end-line="47" selection-end-column="66" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/exceptions/kaarten/kerkerkaarten/monsterbadstuff/BadStuffException.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/gui/ucs/UseCase1.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+            <state relative-caret-position="415">
+              <caret line="49" column="61" selection-start-line="49" selection-start-column="61" selection-end-line="49" selection-end-column="61" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -140,11 +87,58 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/persistentie/Connectie.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="150">
-              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+              <caret line="14" selection-start-line="14" selection-end-line="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/domein/Spel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="537">
+              <caret line="328" column="29" selection-start-line="328" selection-start-column="29" selection-end-line="328" selection-end-column="29" />
+              <folding>
+                <element signature="e#659#660#0" expanded="true" />
+                <element signature="e#682#683#0" expanded="true" />
+                <element signature="e#2533#2534#0" expanded="true" />
+                <element signature="e#2590#2591#0" expanded="true" />
+                <element signature="e#2736#2737#0" expanded="true" />
+                <element signature="e#2766#2767#0" expanded="true" />
+                <element signature="e#3536#3537#0" expanded="true" />
+                <element signature="e#3572#3573#0" expanded="true" />
+                <element signature="e#5582#5583#0" expanded="true" />
+                <element signature="e#5623#5624#0" expanded="true" />
+                <element signature="e#5813#5814#0" expanded="true" />
+                <element signature="e#5865#5866#0" expanded="true" />
+                <element signature="e#6032#6033#0" expanded="true" />
+                <element signature="e#6083#6084#0" expanded="true" />
+                <element signature="e#6126#6127#0" expanded="true" />
+                <element signature="e#6191#6192#0" expanded="true" />
+                <element signature="e#6396#6397#0" expanded="true" />
+                <element signature="e#6426#6427#0" expanded="true" />
+                <element signature="e#7519#7520#0" expanded="true" />
+                <element signature="e#7585#7586#0" expanded="true" />
+                <element signature="e#8605#8606#0" expanded="true" />
+                <element signature="e#8605#8606#0" expanded="true" />
+                <element signature="e#8632#8633#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/language/LanguageResource.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="596">
+              <caret line="79" column="33" selection-start-line="78" selection-start-column="50" selection-end-line="79" selection-end-column="34" />
+              <folding>
+                <element signature="e#2419#2420#0" expanded="true" />
+                <element signature="e#2466#2467#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -213,7 +207,6 @@
         <option value="$PROJECT_DIR$/src/language/language_en.properties" />
         <option value="$PROJECT_DIR$/src/language/language_fr.properties" />
         <option value="$PROJECT_DIR$/src/language/language_nl.properties" />
-        <option value="$PROJECT_DIR$/src/language/LanguageResource.java" />
         <option value="$PROJECT_DIR$/src/domein/kaarten/kerkerkaarten/Race.java" />
         <option value="$PROJECT_DIR$/src/domein/kaarten/kerkerkaarten/Monster.java" />
         <option value="$PROJECT_DIR$/src/domein/kaarten/Kaart.java" />
@@ -225,7 +218,6 @@
         <option value="$PROJECT_DIR$/src/persistentie/KaartMapperDb.java" />
         <option value="$PROJECT_DIR$/src/gui/UseCase1.java" />
         <option value="$PROJECT_DIR$/src/domein/Speler.java" />
-        <option value="$PROJECT_DIR$/src/domein/Spel.java" />
         <option value="$PROJECT_DIR$/src/language/i18n.properties" />
         <option value="$PROJECT_DIR$/src/language/i18n_en.properties" />
         <option value="$PROJECT_DIR$/src/language/i18n_fr.properties" />
@@ -233,6 +225,8 @@
         <option value="$PROJECT_DIR$/src/exceptions/SpelDatabaseException.java" />
         <option value="$PROJECT_DIR$/src/exceptions/database/SpelDatabaseException.java" />
         <option value="$PROJECT_DIR$/src/persistentie/Connectie.java" />
+        <option value="$PROJECT_DIR$/src/domein/Spel.java" />
+        <option value="$PROJECT_DIR$/src/language/LanguageResource.java" />
       </list>
     </option>
   </component>
@@ -344,6 +338,13 @@
               <item name="Projecten 1" type="b2602c69:ProjectViewProjectNode" />
               <item name="Projecten 1" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="language" type="462c0819:PsiDirectoryNode" />
+              <item name="resourcebundle" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Projecten 1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Projecten 1" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -374,7 +375,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552763314100" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552764222932" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -385,6 +386,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/language/resourcebundle" />
       <recent name="$PROJECT_DIR$/src/ongebruikt" />
     </key>
   </component>
@@ -448,7 +450,7 @@
       <option name="presentableId" value="Default" />
       <updated>1551993656744</updated>
       <workItem from="1551993658537" duration="141000" />
-      <workItem from="1552226520023" duration="46967000" />
+      <workItem from="1552226520023" duration="47884000" />
     </task>
     <task id="LOCAL-00001" summary="output">
       <created>1552228440827</created>
@@ -562,11 +564,25 @@
       <option name="project" value="LOCAL" />
       <updated>1552762505130</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="hersturcturering">
+      <created>1552763337622</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1552763337622</updated>
+    </task>
+    <task id="LOCAL-00018" summary="uc8">
+      <created>1552764009099</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1552764009099</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="47108000" />
+    <option name="totallyTimeSpent" value="48025000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1200" extended-state="6" />
@@ -583,8 +599,8 @@
       <window_info anchor="bottom" id="Database Console" order="0" weight="0.32942238" />
       <window_info anchor="bottom" id="Messages" order="1" weight="0.32942238" />
       <window_info anchor="bottom" id="Message" order="2" />
-      <window_info anchor="bottom" id="Find" order="3" visible="true" weight="0.32942238" />
-      <window_info anchor="bottom" id="Run" order="4" weight="0.30776173" />
+      <window_info anchor="bottom" id="Find" order="3" weight="0.32942238" />
+      <window_info anchor="bottom" id="Run" order="4" visible="true" weight="0.30776173" />
       <window_info anchor="bottom" id="Debug" order="5" weight="0.3998195" />
       <window_info anchor="bottom" id="Cvs" order="6" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="7" weight="0.4" />
@@ -649,20 +665,11 @@
     <MESSAGE value="fixed null" />
     <MESSAGE value="mapper" />
     <MESSAGE value="aanpassing UC1" />
-    <option name="LAST_COMMIT_MESSAGE" value="aanpassing UC1" />
+    <MESSAGE value="hersturcturering" />
+    <MESSAGE value="uc8" />
+    <option name="LAST_COMMIT_MESSAGE" value="uc8" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/language/LanguageResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="61" column="7" selection-start-line="61" selection-start-column="7" selection-end-line="61" selection-end-column="7" />
-          <folding>
-            <element signature="e#2419#2420#0" expanded="true" />
-            <element signature="e#2466#2467#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/domein/kaarten/kerkerkaarten/Race.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1515">
@@ -852,7 +859,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/language/i18n.properties">
+    <entry file="file://$PROJECT_DIR$/src/language/resourcebundle/i18n.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="506">
           <caret line="82" column="54" lean-forward="true" selection-start-line="82" selection-start-column="54" selection-end-line="82" selection-end-column="54" />
@@ -860,57 +867,24 @@
       </provider>
       <provider editor-type-id="ResourceBundle" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/language/i18n_en.properties">
+    <entry file="file://$PROJECT_DIR$/src/language/resourcebundle/i18n_en.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="364">
           <caret line="73" column="9" selection-start-line="73" selection-start-column="9" selection-end-line="73" selection-end-column="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/language/i18n_fr.properties">
+    <entry file="file://$PROJECT_DIR$/src/language/resourcebundle/i18n_fr.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="559">
           <caret line="85" column="29" selection-start-line="85" selection-start-column="29" selection-end-line="85" selection-end-column="29" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/language/i18n_nl.properties">
+    <entry file="file://$PROJECT_DIR$/src/language/resourcebundle/i18n_nl.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="504">
           <caret line="82" column="41" lean-forward="true" selection-start-line="82" selection-start-column="41" selection-end-line="82" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/domein/Spel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="447">
-          <caret line="323" column="13" lean-forward="true" selection-start-line="323" selection-start-column="13" selection-end-line="323" selection-end-column="13" />
-          <folding>
-            <element signature="e#659#660#0" expanded="true" />
-            <element signature="e#682#683#0" expanded="true" />
-            <element signature="e#2533#2534#0" expanded="true" />
-            <element signature="e#2590#2591#0" expanded="true" />
-            <element signature="e#2736#2737#0" expanded="true" />
-            <element signature="e#2766#2767#0" expanded="true" />
-            <element signature="e#3536#3537#0" expanded="true" />
-            <element signature="e#3572#3573#0" expanded="true" />
-            <element signature="e#5582#5583#0" expanded="true" />
-            <element signature="e#5623#5624#0" expanded="true" />
-            <element signature="e#5813#5814#0" expanded="true" />
-            <element signature="e#5865#5866#0" expanded="true" />
-            <element signature="e#6032#6033#0" expanded="true" />
-            <element signature="e#6083#6084#0" expanded="true" />
-            <element signature="e#6126#6127#0" expanded="true" />
-            <element signature="e#6191#6192#0" expanded="true" />
-            <element signature="e#6396#6397#0" expanded="true" />
-            <element signature="e#6426#6427#0" expanded="true" />
-            <element signature="e#7519#7520#0" expanded="true" />
-            <element signature="e#7585#7586#0" expanded="true" />
-            <element signature="e#8545#8546#0" expanded="true" />
-            <element signature="e#8574#8575#0" expanded="true" />
-            <element signature="e#8605#8606#0" expanded="true" />
-            <element signature="e#8632#8633#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1059,8 +1033,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/persistentie/mappers/KaartMapperDb.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="385">
-          <caret line="47" column="66" selection-start-line="47" selection-start-column="66" selection-end-line="47" selection-end-column="66" />
+        <state relative-caret-position="415">
+          <caret line="49" column="61" selection-start-line="49" selection-start-column="61" selection-end-line="49" selection-end-column="61" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1070,7 +1044,50 @@
     <entry file="file://$PROJECT_DIR$/src/persistentie/Connectie.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/domein/Spel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="537">
+          <caret line="328" column="29" selection-start-line="328" selection-start-column="29" selection-end-line="328" selection-end-column="29" />
+          <folding>
+            <element signature="e#659#660#0" expanded="true" />
+            <element signature="e#682#683#0" expanded="true" />
+            <element signature="e#2533#2534#0" expanded="true" />
+            <element signature="e#2590#2591#0" expanded="true" />
+            <element signature="e#2736#2737#0" expanded="true" />
+            <element signature="e#2766#2767#0" expanded="true" />
+            <element signature="e#3536#3537#0" expanded="true" />
+            <element signature="e#3572#3573#0" expanded="true" />
+            <element signature="e#5582#5583#0" expanded="true" />
+            <element signature="e#5623#5624#0" expanded="true" />
+            <element signature="e#5813#5814#0" expanded="true" />
+            <element signature="e#5865#5866#0" expanded="true" />
+            <element signature="e#6032#6033#0" expanded="true" />
+            <element signature="e#6083#6084#0" expanded="true" />
+            <element signature="e#6126#6127#0" expanded="true" />
+            <element signature="e#6191#6192#0" expanded="true" />
+            <element signature="e#6396#6397#0" expanded="true" />
+            <element signature="e#6426#6427#0" expanded="true" />
+            <element signature="e#7519#7520#0" expanded="true" />
+            <element signature="e#7585#7586#0" expanded="true" />
+            <element signature="e#8605#8606#0" expanded="true" />
+            <element signature="e#8605#8606#0" expanded="true" />
+            <element signature="e#8632#8633#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/language/LanguageResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="596">
+          <caret line="79" column="33" selection-start-line="78" selection-start-column="50" selection-end-line="79" selection-end-column="34" />
+          <folding>
+            <element signature="e#2419#2420#0" expanded="true" />
+            <element signature="e#2466#2467#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
