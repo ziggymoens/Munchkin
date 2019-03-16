@@ -1,8 +1,8 @@
-package domein.repositories;
+package ongebruikt;
 
 import domein.Spel;
 import java.util.*;
-import persistentie.SpelMapper;
+import ongebruikt.SpelMapper;
 
 /**
  *

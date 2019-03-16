@@ -2,7 +2,7 @@ package domein.kaarten.schatkaarten;
 
 import domein.kaarten.kerkerkaarten.Race;
 import domein.kaarten.Schatkaart;
-import exceptions.kaarten.EquipmentException;
+import exceptions.kaarten.schatkaarten.EquipmentException;
 
 /**
  *

@@ -1,6 +1,6 @@
 package domein;
 
-import domein.repositories.SpelRepository;
+import ongebruikt.SpelRepository;
 
 import java.util.List;
 

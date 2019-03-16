@@ -1,10 +1,10 @@
-package gui;
+package gui.ucs;
 
 import domein.*;
 
 import java.util.*;
 
-import exceptions.DatabaseException;
+import exceptions.database.KaartDatabaseException;
 import printer.Printer;
 import exceptions.SpelException;
 import exceptions.SpelerException;
@@ -118,8 +118,8 @@ public class UseCase1 {
                 made = true;
             } catch (SpelException e) {
                 System.out.print(Printer.exceptionCatch("SpelException", e));
-            } catch (DatabaseException e) {
-                System.out.print(Printer.exceptionCatch("DatabaseException", e));
+            } catch (KaartDatabaseException e) {
+                System.out.print(Printer.exceptionCatch("KaartDatabaseException", e));
             } catch (Exception e){
                 System.out.println(Printer.exceptionCatch("Exception", e, false ));
                 SCAN.nextLine();

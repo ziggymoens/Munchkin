@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package domein.kaarten.kerkerkaarten;
+package domein.kaarten.kerkerkaarten.monsterbadstuff;
 
-import exceptions.kaarten.BadStuffException;
+import exceptions.kaarten.kerkerkaarten.monsterbadstuff.BadStuffException;
 
 /**
  * NAKIJKEN

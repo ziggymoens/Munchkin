@@ -1,7 +1,8 @@
 package domein.kaarten.kerkerkaarten;
 
 import domein.kaarten.Kerkerkaart;
-import exceptions.kaarten.MonsterException;
+import domein.kaarten.kerkerkaarten.monsterbadstuff.BadStuff;
+import exceptions.kaarten.kerkerkaarten.MonsterException;
 
 /**
  *

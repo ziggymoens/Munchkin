@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gui;
+package gui.test;
 
 import domein.DomeinController;
 import domein.kaarten.Kaart;
@@ -15,8 +15,7 @@ import domein.kaarten.schatkaarten.ConsumablesSchat;
 import domein.kaarten.schatkaarten.Equipment;
 import domein.repositories.KaartDbRepository;
 import java.util.List;
-import java.util.Scanner;
-import java.lang.Object;
+
 import language.LanguageResource;
 
 /**

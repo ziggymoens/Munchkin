@@ -17,7 +17,7 @@ import domein.kaarten.kerkerkaarten.Monster;
 import domein.kaarten.kerkerkaarten.Race;
 import domein.kaarten.schatkaarten.ConsumablesSchat;
 import domein.kaarten.schatkaarten.Equipment;
-import persistentie.KaartMapperDb;
+import persistentie.mappers.KaartMapperDb;
 
 /**
  *

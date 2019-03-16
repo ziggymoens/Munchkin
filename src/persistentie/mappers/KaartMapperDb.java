@@ -3,17 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package persistentie;
+package persistentie.mappers;
 
 import domein.kaarten.Kaart;
-import domein.kaarten.kerkerkaarten.BadStuff;
+import domein.kaarten.kerkerkaarten.monsterbadstuff.BadStuff;
 import domein.kaarten.kerkerkaarten.ConsumablesKerker;
 import domein.kaarten.kerkerkaarten.Curse;
 import domein.kaarten.kerkerkaarten.Monster;
 import domein.kaarten.kerkerkaarten.Race;
 import domein.kaarten.schatkaarten.ConsumablesSchat;
 import domein.kaarten.schatkaarten.Equipment;
-import exceptions.DatabaseException;
+import exceptions.database.KaartDatabaseException;
+import persistentie.Connectie;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -46,7 +47,7 @@ public class KaartMapperDb {
         try {
             this.conn = DriverManager.getConnection(Connectie.JDBC_URL);
         } catch (Exception ex) {
-            throw new DatabaseException(ex.getMessage());
+            throw new KaartDatabaseException(ex.getMessage());
         }
     }
 
@@ -60,7 +61,7 @@ public class KaartMapperDb {
             rs.close();
             query.close();
         } catch (Exception ex) {
-            throw new DatabaseException(ex.getMessage());
+            throw new KaartDatabaseException(ex.getMessage());
         }
         return kaarten;
     }
@@ -77,7 +78,7 @@ public class KaartMapperDb {
                 }
             }
         } catch (Exception ex) {
-            throw new DatabaseException(ex.getMessage());
+            throw new KaartDatabaseException(ex.getMessage());
         }
     }
 
@@ -93,7 +94,7 @@ public class KaartMapperDb {
                 }
             }
         } catch (Exception ex) {
-            throw new DatabaseException(ex.getMessage());
+            throw new KaartDatabaseException(ex.getMessage());
         }
     }
 
@@ -111,7 +112,7 @@ public class KaartMapperDb {
                 }
             }
         } catch (Exception ex) {
-            throw new DatabaseException(ex.getMessage());
+            throw new KaartDatabaseException(ex.getMessage());
         }
     }
 
@@ -136,7 +137,7 @@ public class KaartMapperDb {
                 }
             }
         } catch (Exception ex) {
-            throw new DatabaseException(ex.getMessage());
+            throw new KaartDatabaseException(ex.getMessage());
         }
     }
 
@@ -155,7 +156,7 @@ public class KaartMapperDb {
                 }
             }
         } catch (Exception ex) {
-            throw new DatabaseException(ex.getMessage());
+            throw new KaartDatabaseException(ex.getMessage());
         }
     }
 
@@ -176,7 +177,7 @@ public class KaartMapperDb {
                 }
             }
         } catch (Exception ex) {
-            throw new DatabaseException(ex.getMessage());
+            throw new KaartDatabaseException(ex.getMessage());
         }
     }
 
@@ -195,7 +196,7 @@ public class KaartMapperDb {
                 bs = new BadStuff(/*name,*/ id, loseItems, loseLevels, loseSomething, badStuffDescription);
             }
         } catch (Exception ex) {
-            throw new DatabaseException(ex.getMessage());
+            throw new KaartDatabaseException(ex.getMessage());
         }
         return bs;
     }

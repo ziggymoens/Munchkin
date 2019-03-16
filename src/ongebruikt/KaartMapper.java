@@ -5,16 +5,8 @@
  */
 package ongebruikt;
 
-import domein.kaarten.kerkerkaarten.BadStuff;
-import domein.kaarten.kerkerkaarten.ConsumablesKerker;
-import domein.kaarten.schatkaarten.ConsumablesSchat;
-import domein.kaarten.kerkerkaarten.Curse;
-import domein.kaarten.schatkaarten.Equipment;
 import domein.kaarten.Kaart;
-import domein.kaarten.Kerkerkaart;
-import domein.kaarten.kerkerkaarten.Monster;
-import domein.kaarten.kerkerkaarten.Race;
-import domein.kaarten.Schatkaart;
+
 import java.util.*;
 
 /**
