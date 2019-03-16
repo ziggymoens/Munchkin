@@ -7,6 +7,7 @@ import exceptions.SpelException;
 
 import java.util.*;
 
+import exceptions.SpelerException;
 import language.LanguageResource;
 
 /**
@@ -20,6 +21,7 @@ public class Spel {
     private final Map<Integer, Kaart> kaarten;
     private final List<Kaart> schatkaarten;
     private final List<Kaart> kerkerkaarten;
+    private String naam;
 
     /**
      * Constructor van Spel zonder parameters spelers = 3
@@ -301,6 +303,35 @@ public class Spel {
             if (speler.getNaam().equals(naam)) {
                 speler.verwijderItem(keuze);
             }
+        }
+    }
+
+    public void geefSpelNaam(String naam){
+        setNaam(naam);
+    }
+
+    public String getNaam() {
+        return naam;
+    }
+
+    public void setNaam(String naam) {
+        int aantal = 0;
+        if (naam.length() >= 6 && naam.length() <= 12) {
+            for(int i = 0; i < naam.length(); i++){
+                if(Character.isDigit(naam.charAt(i))){
+                    aantal++;
+                }
+            }
+            for(int i = 0; i < naam.length(); i++){
+
+                if(((naam.charAt(i) >= 'a' && naam.charAt(i) <= 'z') || (naam.charAt(i) >= 'A' && naam.charAt(i) <= 'Z') || (Character.isDigit(naam.charAt(i)))) && aantal >= 3){
+                    this.naam = naam;
+                }else{
+                    throw new SpelException("exception.spel.name");
+                }
+            }
+        } else {
+            throw new SpelException("exception.spel.name");
         }
     }
 }

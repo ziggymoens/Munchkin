@@ -193,4 +193,8 @@ public class DomeinController {
     public void verwijderItemSpeler(String naam, int keuze) {
         spel.verwijderItemSpeler(naam, keuze-1);
     }
+
+    public void geefSpelNaam(String naam){
+        spel.geefSpelNaam(naam);
+    }
 }
