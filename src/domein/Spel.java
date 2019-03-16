@@ -41,11 +41,11 @@ public class Spel {
         KaartDbRepository kr = new KaartDbRepository();
         kaarten = new HashMap<>();
         schatkaarten = kr.getSchatkaarten();
-        for (Kaart kaart: kr.getSchatkaarten()){
+        for (Kaart kaart : kr.getSchatkaarten()) {
             kaarten.put(kaart.getId(), kaart);
         }
         kerkerkaarten = kr.getKerkerkaarten();
-        for (Kaart kaart: kr.getKerkerkaarten()){
+        for (Kaart kaart : kr.getKerkerkaarten()) {
             kaarten.put(kaart.getId(), kaart);
         }
     }
@@ -242,8 +242,8 @@ public class Spel {
     }
 
     public void geefKerkerkaartAanSpeler(String naam) {
-        for (Speler speler: spelers){
-            if (naam.equals(speler.getNaam())){
+        for (Speler speler : spelers) {
+            if (naam.equals(speler.getNaam())) {
                 speler.voegKaartToe(kerkerkaarten.get(0));
                 kerkerkaarten.remove(0);
             }
@@ -252,18 +252,18 @@ public class Spel {
 
     public void speelKerkerkaart(String naam) {
         Kaart kaart = kerkerkaarten.get(0);
-        if(kaart instanceof Curse){
-            if(((Curse) kaart).getTypeLost().equals("none")){
-                for (Speler speler:spelers){
-                    if (naam.equals(speler.getNaam())){
+        if (kaart instanceof Curse) {
+            if (((Curse) kaart).getTypeLost().equals("none")) {
+                for (Speler speler : spelers) {
+                    if (naam.equals(speler.getNaam())) {
                         //als type niet item is.
                         speler.verwijderItems(((Curse) kaart).getTypeLost());
                     }
                 }
-            }else if(((Curse) kaart).getLevelLost() > 0){
-                for (Speler speler:spelers){
-                    if (naam.equals(speler.getNaam())){
-                        speler.setLevel(speler.getLevel()-((Curse) kaart).getLevelLost());
+            } else if (((Curse) kaart).getLevelLost() > 0) {
+                for (Speler speler : spelers) {
+                    if (naam.equals(speler.getNaam())) {
+                        speler.setLevel(speler.getLevel() - ((Curse) kaart).getLevelLost());
                     }
                 }
             }
@@ -271,7 +271,7 @@ public class Spel {
     }
 
     public String geefTypeLostCurse() {
-        return ((Curse)kerkerkaarten.get(0)).getTypeLost();
+        return ((Curse) kerkerkaarten.get(0)).getTypeLost();
     }
 
     public String[] geefItemsSpeler(String naam) {
@@ -290,8 +290,8 @@ public class Spel {
     }
 
     public int geefAantalItemsSpeler(String naam) {
-        for (Speler speler : spelers){
-            if (naam.equals(speler.getNaam())){
+        for (Speler speler : spelers) {
+            if (naam.equals(speler.getNaam())) {
                 return speler.getAantalItems();
             }
         }
@@ -299,14 +299,14 @@ public class Spel {
     }
 
     public void verwijderItemSpeler(String naam, int keuze) {
-        for (Speler speler:spelers){
+        for (Speler speler : spelers) {
             if (speler.getNaam().equals(naam)) {
                 speler.verwijderItem(keuze);
             }
         }
     }
 
-    public void geefSpelNaam(String naam){
+    public void geefSpelNaam(String naam) {
         setNaam(naam);
     }
 
@@ -317,17 +317,16 @@ public class Spel {
     public void setNaam(String naam) {
         int aantal = 0;
         if (naam.length() >= 6 && naam.length() <= 12 && naam.matches("^[A-Za-z0-9]+$")) {
-            for(int i = 0; i < naam.length(); i++){
-                if(Character.isDigit(naam.charAt(i))){
-                    aantal++;
-                }
+            String numbers = naam.replaceAll("[^\\d]", "");
+//            for(int i = 0; i < naam.length(); i++){
+//                if(Character.isDigit(naam.charAt(i))){
+//                    aantal++;
+//                }
+//            }
+            if (numbers.length() < 3) {
+                throw new SpelException("exception.spel.name");
             }
-                if(aantal >= 3){
-                    this.naam = naam;
-                }else{
-                    throw new SpelException("exception.spel.name");
-                }
-
+            this.naam = naam;
         } else {
             throw new SpelException("exception.spel.name");
         }
