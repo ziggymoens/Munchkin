@@ -316,20 +316,18 @@ public class Spel {
 
     public void setNaam(String naam) {
         int aantal = 0;
-        if (naam.length() >= 6 && naam.length() <= 12) {
+        if (naam.length() >= 6 && naam.length() <= 12 && naam.matches("^[A-Za-z0-9]+$")) {
             for(int i = 0; i < naam.length(); i++){
                 if(Character.isDigit(naam.charAt(i))){
                     aantal++;
                 }
             }
-            for(int i = 0; i < naam.length(); i++){
-
-                if(((naam.charAt(i) >= 'a' && naam.charAt(i) <= 'z') || (naam.charAt(i) >= 'A' && naam.charAt(i) <= 'Z') || (Character.isDigit(naam.charAt(i)))) && aantal >= 3){
+                if(aantal >= 3){
                     this.naam = naam;
                 }else{
                     throw new SpelException("exception.spel.name");
                 }
-            }
+
         } else {
             throw new SpelException("exception.spel.name");
         }
