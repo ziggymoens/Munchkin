@@ -57,11 +57,10 @@ public class Spel {
      * @param aantalSpelers Het gekozen aantal spelers
      */
     private void setAantalSpelers(int aantalSpelers) {
-        if (aantalSpelers >= 3 && aantalSpelers <= 6) {
-            this.aantalSpelers = aantalSpelers;
-        } else {
+        if (aantalSpelers < 3 || aantalSpelers > 6) {
             throw new SpelException("exception.spel.players");
         }
+        this.aantalSpelers = aantalSpelers;
     }
 
     /**
@@ -254,10 +253,10 @@ public class Spel {
         Kaart kaart = kerkerkaarten.get(0);
         int levelsLost = ((Curse) kaart).getLevelLost();
         int i = zoekSpeler(naam);
-        if (spelers.get(i).getLevel()-levelsLost <= 0){
+        if (spelers.get(i).getLevel() - levelsLost <= 0) {
             spelers.get(i).setLevel(1);
-        }else{
-            spelers.get(i).setLevel(spelers.get(i).getLevel()-levelsLost);
+        } else {
+            spelers.get(i).setLevel(spelers.get(i).getLevel() - levelsLost);
         }
 //        if (kaart instanceof Curse) {
 //            if (((Curse) kaart).getTypeLost().equals("none")) {
@@ -331,13 +330,13 @@ public class Spel {
 
     public boolean spelerTeVeelKaarten(String naam) {
         int i = zoekSpeler(naam);
-        return spelers.get(i).getAantalKaarten()>5;
+        return spelers.get(i).getAantalKaarten() > 5;
     }
 
     private int zoekSpeler(String naam) {
         int i = 0;
-        for (Speler speler: spelers){
-            if (speler.getNaam().equals(naam)){
+        for (Speler speler : spelers) {
+            if (speler.getNaam().equals(naam)) {
                 i = spelers.indexOf(speler);
             }
         }

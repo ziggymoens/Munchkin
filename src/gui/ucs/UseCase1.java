@@ -111,13 +111,18 @@ public class UseCase1 {
                 th1.start();
                 dc.startSpel(as);
                 th1.stop();
-                tryAgain = false;
                 this.aantalSpelers = as;
+                tryAgain = false;
             } catch (SpelException e) {
+                th1.stop();
                 System.out.print(Printer.exceptionCatch("SpelException", e));
+                SCAN.nextLine();
             } catch (KaartDatabaseException e) {
+                th1.stop();
                 System.out.print(Printer.exceptionCatch("KaartDatabaseException", e));
+                SCAN.nextLine();
             } catch (Exception e) {
+                th1.stop();
                 System.out.println(Printer.exceptionCatch("Exception", e, false));
                 SCAN.nextLine();
             }

@@ -30,7 +30,7 @@ public class UseCase8 {
         boolean tryAgain = true;
         while (tryAgain) {
             try {
-                System.out.println(LanguageResource.getString("ask.gamename"));
+                System.out.println(LanguageResource.getString("usecase8.ask.gamename"));
                 String naamSpel = SCAN.next();
                 dc.geefSpelNaam(naamSpel);
                 tryAgain = false;
@@ -41,7 +41,7 @@ public class UseCase8 {
 
         try {
             dc.spelOpslaan();
-            System.out.println(Printer.printGreen("game.saved"));
+            System.out.println(Printer.printGreen("usecase8.game.saved"));
             System.exit(0);
         } catch (Exception e) {
             System.out.print(Printer.exceptionCatch("Exception", e, false));

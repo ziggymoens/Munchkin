@@ -15,6 +15,8 @@ import printer.Printer;
 import printer.ColorsOutput;
 import language.LanguageResource;
 
+import javax.swing.text.StyledEditorKit;
+
 /**
  * @author ziggy
  */
@@ -74,41 +76,53 @@ class UseCase2 {
      * @param naam De naam van de speler die aan beurt is
      */
     private void speelBeurt(String naam) {
-        System.out.printf("%s: %s%n", LanguageResource.getString("player.turn"), String.format("%s",ColorsOutput.achtergrond("red")+ naam + ColorsOutput.reset()));
-        printKeuze();
-        int keuze = SCAN.nextInt();
-        while (keuze < 1 || keuze > 3) {
-            System.out.println(ColorsOutput.kleur("red") + LanguageResource.getString("usecase2.choiceturn") + ColorsOutput.reset());
+        int keuze = 0;
+        boolean tryAgain = true;
+        while (tryAgain)
+        try {
+            System.out.printf("%s: %s%n", LanguageResource.getString("player.turn"), String.format("%s", ColorsOutput.achtergrond("red") + naam + ColorsOutput.reset()));
             printKeuze();
             keuze = SCAN.nextInt();
+            if (keuze<1 || keuze>3){
+                throw new Exception();
+            }
+            tryAgain=false;
+        } catch (Exception e) {
+            System.out.println(ColorsOutput.kleur("red")+LanguageResource.getString("usecase2.choiceinput")+ColorsOutput.reset());
+            //System.out.println(Printer.exceptionCatch("Exception", e, false));
+            SCAN.nextLine();
         }
-        switch (keuze) {
-            case 1:
-                try {
-                    UseCase3 uc3 = new UseCase3(this.dc);
-                    uc3.speelBeurt(naam);
-                } catch (Exception e) {
-                    System.out.print(Printer.exceptionCatch("Exception", e, false));
-                }
-                break;
-            case 2:
-                try {
-                    UseCase8 uc8 = new UseCase8(this.dc);
-                    uc8.spelOpslaan();
-                } catch (Exception e) {
-                    System.out.print(Printer.exceptionCatch("Exception", e, false));
-                }
-                break;
-            case 3:
-                try {
-                    System.out.println(Printer.printGreen("gamestop"));
-                    System.exit(0);
-                } catch (Exception e) {
-                    System.out.print(Printer.exceptionCatch("Exception", e, false));
-                }
-                break;
-            default:
-                break;
+        try {
+            switch (keuze) {
+                case 1:
+                    try {
+                        UseCase3 uc3 = new UseCase3(this.dc);
+                        uc3.speelBeurt(naam);
+                    } catch (Exception e) {
+                        System.out.print(Printer.exceptionCatch("Exception", e, false));
+                    }
+                    break;
+                case 2:
+                    try {
+                        UseCase8 uc8 = new UseCase8(this.dc);
+                        uc8.spelOpslaan();
+                    } catch (Exception e) {
+                        System.out.print(Printer.exceptionCatch("Exception", e, false));
+                    }
+                    break;
+                case 3:
+                    try {
+                        System.out.println(Printer.printGreen("gamestop"));
+                        System.exit(0);
+                    } catch (Exception e) {
+                        System.out.print(Printer.exceptionCatch("Exception", e, false));
+                    }
+                    break;
+                default:
+                    throw new IllegalArgumentException("usecase2.choiceerror");
+            }
+        }catch (IllegalArgumentException e){
+            System.out.print(Printer.exceptionCatch("IllegalArgumentException", e));
         }
     }
 
