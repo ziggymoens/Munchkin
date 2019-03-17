@@ -177,7 +177,10 @@ public class UseCase1 {
         }
     }
 
-    Thread th1 = new Thread(() -> {
+    /**
+     * deze werkt niet goed in netbeans
+     */
+    private Thread th1 = new Thread(() -> {
         for (int i = 0; i < 100; i++) {
             try {
                 Thread.sleep(200);
