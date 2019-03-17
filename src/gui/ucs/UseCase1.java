@@ -21,7 +21,6 @@ public class UseCase1 {
     private final DomeinController dc;
     private final List<Locale> talen;
     private int aantalSpelers;
-    private boolean made = false;
 
     /**
      * constructor voor UseCase 1
@@ -50,9 +49,7 @@ public class UseCase1 {
         try {
             if (nieuwSpel.equals(LanguageResource.getString("yes"))) {
                 //th1.start();
-
                 maakSpel();
-                System.out.println(Printer.printGreen("spel.made"));
                 voegSpelersToe();
                 System.out.println(Printer.printGreen("spel.playersadded"));
                 //verdergaan naar UC2
@@ -110,22 +107,22 @@ public class UseCase1 {
             try {
                 System.out.println(LanguageResource.getString("amountOfPlayers"));
                 as = SCAN.nextInt();
-                dc.startSpel(as);
-                System.out.print("Loading ");
+                System.out.print("\nLoading ");
                 th1.start();
+                dc.startSpel(as);
+                th1.stop();
                 tryAgain = false;
                 this.aantalSpelers = as;
-                made = true;
             } catch (SpelException e) {
                 System.out.print(Printer.exceptionCatch("SpelException", e));
             } catch (KaartDatabaseException e) {
                 System.out.print(Printer.exceptionCatch("KaartDatabaseException", e));
-            } catch (Exception e){
-                System.out.println(Printer.exceptionCatch("Exception", e, false ));
+            } catch (Exception e) {
+                System.out.println(Printer.exceptionCatch("Exception", e, false));
                 SCAN.nextLine();
             }
         }
-        System.out.println(Printer.printGreen("spel.made"));
+        System.out.println("\n" + Printer.printGreen("spel.made"));
     }
 
     /**
@@ -181,19 +178,12 @@ public class UseCase1 {
     }
 
     Thread th1 = new Thread(() -> {
-        while (!made) {
-            for (int i = 0; i < 100; i++) {
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException ex) {
-                }
-                System.out.print(".");
+        for (int i = 0; i < 100; i++) {
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException ex) {
             }
+            System.out.print(".");
         }
-    });
-
-    Thread th2 = new Thread(() -> {
-        maakSpel();
-        made = true;
     });
 }

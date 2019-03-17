@@ -315,14 +315,8 @@ public class Spel {
     }
 
     public void setNaam(String naam) {
-        int aantal = 0;
         if (naam.length() >= 6 && naam.length() <= 12 && naam.matches("^[A-Za-z0-9]+$")) {
             String numbers = naam.replaceAll("[^\\d]", "");
-//            for(int i = 0; i < naam.length(); i++){
-//                if(Character.isDigit(naam.charAt(i))){
-//                    aantal++;
-//                }
-//            }
             if (numbers.length() < 3) {
                 throw new SpelException("exception.spel.name");
             }

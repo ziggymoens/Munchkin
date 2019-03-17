@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package gui.ucs;
+import java.sql.SQLOutput;
 import java.util.*;
 import domein.DomeinController;
 import exceptions.SpelException;
@@ -22,8 +23,6 @@ public class UseCase8 {
     public UseCase8(DomeinController dc) {
         this.dc = dc;
         SCAN = new Scanner(System.in);
-
-
     }
 
     public void spelOpslaan(){
@@ -35,8 +34,8 @@ public class UseCase8 {
                 String naamSpel = SCAN.nextLine();
                 dc.geefSpelNaam(naamSpel);
                 tryAgain = false;
-            }catch (Exception e){
-                System.err.println("Dit is nog niet oke!!!");
+            }catch (SpelException e){
+                System.out.println(Printer.exceptionCatch("SpelException", e));
             }
         }
 

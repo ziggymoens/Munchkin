@@ -87,7 +87,6 @@ public class UseCase2 {
                 try {
                     UseCase3 uc3 = new UseCase3(this.dc);
                     uc3.speelBeurt(naam);
-                    //niet meer dan 5 kaarten...
                 } catch (Exception e) {
                     System.out.print(Printer.exceptionCatch("Exception", e, false));
                 }
