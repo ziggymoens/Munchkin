@@ -18,7 +18,7 @@ import language.LanguageResource;
 /**
  * @author ziggy
  */
-public class UseCase2 {
+class UseCase2 {
 
     //Declaraties voor gehele usecase.
     private final DomeinController dc;
@@ -29,7 +29,7 @@ public class UseCase2 {
      *
      * @param dc Domeincontroller van het spel aangemaakt in de StartUp
      */
-    public UseCase2(DomeinController dc) {
+    UseCase2(DomeinController dc) {
         this.dc = dc;
         SCAN = new Scanner(System.in);
 
@@ -40,7 +40,7 @@ public class UseCase2 {
      *
      * @param aantalSpelers Het aantal spelers die meespelen
      */
-    public void speelSpel(int aantalSpelers) {
+    void speelSpel(int aantalSpelers) {
         try {
             dc.controleerVolgorde();
             dc.geefStartKaarten();
@@ -74,7 +74,7 @@ public class UseCase2 {
      * @param naam De naam van de speler die aan beurt is
      */
     private void speelBeurt(String naam) {
-        System.out.printf("%s: %s%n", LanguageResource.getString("player.turn"), naam);
+        System.out.printf("%s: %s%n", LanguageResource.getString("player.turn"), String.format("%s",ColorsOutput.achtergrond("red")+ naam + ColorsOutput.reset()));
         printKeuze();
         int keuze = SCAN.nextInt();
         while (keuze < 1 || keuze > 3) {

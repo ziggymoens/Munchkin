@@ -7,20 +7,20 @@ package gui.ucs;
 
 import domein.DomeinController;
 
+import java.util.Scanner;
+
 /**
  * @author ziggy
  */
-public class UseCase4 {
+class UseCase4 {
     private final DomeinController dc;
+    private final Scanner SCAN= new Scanner(System.in);
 
     UseCase4(DomeinController dc) {
         this.dc = dc;
     }
 
-    private void spel(){
-        dc.geefInformatie();
-    }
-
-    public void bereidSpelVoor() {
+    void bereidSpelVoor() {
+        throw new UnsupportedOperationException("not yet written");
     }
 }
