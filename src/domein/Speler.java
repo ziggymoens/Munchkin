@@ -286,4 +286,8 @@ public class Speler {
     public void verwijderItem(int keuze) {
         items.remove(keuze);
     }
+    
+    public int getAantalKaarten() {
+        return aantalSchatkaarten+aantalKerkerkaarten;
+    }
 }

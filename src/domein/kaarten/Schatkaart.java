@@ -1,3 +1,4 @@
+
 package domein.kaarten;
 
 import exceptions.kaarten.SchatkaartException;

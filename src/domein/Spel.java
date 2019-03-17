@@ -250,24 +250,31 @@ public class Spel {
         }
     }
 
-    public void speelKerkerkaart(String naam) {
+    public void speelCurse(String naam) {
         Kaart kaart = kerkerkaarten.get(0);
-        if (kaart instanceof Curse) {
-            if (((Curse) kaart).getTypeLost().equals("none")) {
-                for (Speler speler : spelers) {
-                    if (naam.equals(speler.getNaam())) {
-                        //als type niet item is.
-                        speler.verwijderItems(((Curse) kaart).getTypeLost());
-                    }
-                }
-            } else if (((Curse) kaart).getLevelLost() > 0) {
-                for (Speler speler : spelers) {
-                    if (naam.equals(speler.getNaam())) {
-                        speler.setLevel(speler.getLevel() - ((Curse) kaart).getLevelLost());
-                    }
-                }
-            }
+        int levelsLost = ((Curse) kaart).getLevelLost();
+        int i = zoekSpeler(naam);
+        if (spelers.get(i).getLevel()-levelsLost <= 0){
+            spelers.get(i).setLevel(1);
+        }else{
+            spelers.get(i).setLevel(spelers.get(i).getLevel()-levelsLost);
         }
+//        if (kaart instanceof Curse) {
+//            if (((Curse) kaart).getTypeLost().equals("none")) {
+//                for (Speler speler : spelers) {
+//                    if (naam.equals(speler.getNaam())) {
+//                        //als type niet item is.
+//                        speler.verwijderItems(((Curse) kaart).getTypeLost());
+//                    }
+//                }
+//            } else if (((Curse) kaart).getLevelLost() > 0) {
+//                for (Speler speler : spelers) {
+//                    if (naam.equals(speler.getNaam())) {
+//                        speler.setLevel(speler.getLevel() - ((Curse) kaart).getLevelLost());
+//                    }
+//                }
+//            }
+//        }
     }
 
     public String geefTypeLostCurse() {
@@ -306,10 +313,6 @@ public class Spel {
         }
     }
 
-    public void geefSpelNaam(String naam) {
-        setNaam(naam);
-    }
-
     public String getNaam() {
         return naam;
     }
@@ -324,5 +327,20 @@ public class Spel {
         } else {
             throw new SpelException("exception.spel.name");
         }
+    }
+
+    public boolean spelerTeVeelKaarten(String naam) {
+        int i = zoekSpeler(naam);
+        return spelers.get(i).getAantalKaarten()>5;
+    }
+
+    private int zoekSpeler(String naam) {
+        int i = 0;
+        for (Speler speler: spelers){
+            if (speler.getNaam().equals(naam)){
+                i = spelers.indexOf(speler);
+            }
+        }
+        return i;
     }
 }

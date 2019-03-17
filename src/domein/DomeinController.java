@@ -1,8 +1,7 @@
 package domein;
 
-import ongebruikt.SpelRepository;
-
-import java.util.List;
+import domein.repositories.SpelDbRepository;
+import java.util.*;
 
 import exceptions.SpelException;
 import language.LanguageResource;
@@ -13,13 +12,13 @@ import language.LanguageResource;
 public class DomeinController {
 
     private Spel spel;
-    private final SpelRepository sr;
+    private final SpelDbRepository sr;
 
     /**
      * Constructor DomeinController
      */
     public DomeinController() {
-        sr = new SpelRepository();
+        sr = new SpelDbRepository();
     }
 
     /**
@@ -46,15 +45,6 @@ public class DomeinController {
             index++;
         }
         return ret.toString();
-    }
-
-    /**
-     * Getter die het aantal spelers returnt
-     * 
-     * @return aantal spelers
-     */
-    public int geefAantalSpelers() {
-        return spel.getAantalSpelers();
     }
 
     /**
@@ -87,13 +77,6 @@ public class DomeinController {
         return spel.geefWinnaar();
     }
 
-    /**
-     * @param naam naam van de speler die de beurt gaat spelen
-     */
-    public void speelBeurt(String naam) {
-        //String typeOfCard = getType();
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     /**
      * Spel opslaan
@@ -102,6 +85,10 @@ public class DomeinController {
         sr.spelOpslaan(this.spel);
     }
 
+    /**
+     *
+     * @return
+     */
     public String geefOpgeslagenSpellen() {
         List<Spel> spellen = sr.getSpellen();
         StringBuilder ret = new StringBuilder();
@@ -121,53 +108,102 @@ public class DomeinController {
         this.spel = sr.getSpellen().get(index - 1);
     }
 
+    /**
+     *
+     * @return
+     */
     public String geefSpelsituatie() {
         return spel.geefSpelsituatie();
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean niemandGewonnen() {
         return spel.niemandGewonnen();
     }
 
+    /**
+     *
+     * @param i
+     * @param naam
+     */
     public void geefSpelerNaam(int i, String naam) {
         spel.geefSpelerNaam(i, naam);
     }
 
+    /**
+     *
+     */
     public void maakSpeler() {
         spel.maakNieuweSpeler();
     }
 
+    /**
+     *
+     * @param i
+     * @param geslacht
+     */
     public void geefSpelerGeslacht(int i, String geslacht) {
         spel.geefSpelerGeslacht(i, geslacht);
     }
 
+    /**
+     *
+     */
     public void geefStartKaarten() {
         spel.geefStartKaarten();
     }
 
+    /**
+     *
+     * @return
+     */
     public String toonBovensteKk() {
         return String.format("gui/images/%d.png", spel.toonBovensteKk());
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public String geefTypeKaart(int id) {
         return spel.geefTypeKaart(id);
     }
 
-    public void effectKerkerkaart(String naam) {
-        spel.speelKerkerkaart(naam);
+    /**
+     *
+     * @param naam
+     */
+    public void curseKaart(String naam) {
+        spel.speelCurse(naam);
     }
 
+    /**
+     *
+     * @return
+     */
     public int geefIdBovensteKaart() {
         return spel.toonBovensteKk();
     }
 
+    /**
+     *
+     */
     public void nieuweBovensteKaartK() {
         spel.nieuwBovensteKaartK();
     }
 
+    /**
+     *
+     * @param naam
+     */
     public void geefKerkerkaartAanSpeler(String naam) {
         spel.geefKerkerkaartAanSpeler(naam);
     }
+/**
 
     public String geefTypeLostCurse() {
         return spel.geefTypeLostCurse().toLowerCase();
@@ -193,8 +229,13 @@ public class DomeinController {
     public void verwijderItemSpeler(String naam, int keuze) {
         spel.verwijderItemSpeler(naam, keuze-1);
     }
+*/
 
     public void geefSpelNaam(String naam){
-        spel.geefSpelNaam(naam);
+        spel.setNaam(naam);
+    }
+
+    public boolean spelerTeVeelKaarten(String naam) {
+        return spel.spelerTeVeelKaarten(naam);
     }
 }
