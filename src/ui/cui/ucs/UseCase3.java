@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gui.ucs;
+package ui.cui.ucs;
 
 import domein.DomeinController;
 import language.LanguageResource;

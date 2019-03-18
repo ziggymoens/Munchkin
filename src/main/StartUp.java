@@ -1,7 +1,7 @@
 package main;
 
 import domein.DomeinController;
-import gui.ucs.UseCase1;
+import ui.cui.ucs.UseCase1;
 
 /**
  *

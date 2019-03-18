@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gui.test;
+package ui.test;
 
 import domein.DomeinController;
 import domein.kaarten.Kaart;

@@ -1,4 +1,4 @@
-package gui.ucs;
+package ui.cui.ucs;
 
 import domein.DomeinController;
 

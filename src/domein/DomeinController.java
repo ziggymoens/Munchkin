@@ -159,7 +159,7 @@ public class DomeinController {
      * @return
      */
     public String toonBovensteKk() {
-        return String.format("gui/images/%d.png", spel.toonBovensteKk());
+        return String.format("ui/images/%d.png", spel.toonBovensteKk());
     }
 
     /**
