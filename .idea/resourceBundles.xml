@@ -16,5 +16,12 @@
       <file value="file://$PROJECT_DIR$/src/ongebruikt/language_nl.properties" />
       <base-name>language</base-name>
     </custom-resource-bundle>
+    <custom-resource-bundle>
+      <file value="file://$PROJECT_DIR$/src/language/resourcebundle/i18n.properties" />
+      <file value="file://$PROJECT_DIR$/src/language/resourcebundle/i18n_en.properties" />
+      <file value="file://$PROJECT_DIR$/src/language/resourcebundle/i18n_fr.properties" />
+      <file value="file://$PROJECT_DIR$/src/language/resourcebundle/i18n_nl.properties" />
+      <base-name>i18n</base-name>
+    </custom-resource-bundle>
   </component>
 </project>
