@@ -48,7 +48,6 @@ public class DomeinController {
     }
 
     /**
-     * controleert de volgorde van de spelers adhv domeinregels
      *
      */
     public void controleerVolgorde() {
@@ -57,8 +56,7 @@ public class DomeinController {
 
     /**
      * @param i
-     * 
-     * @return de naam van de speler
+     * @return
      */
     public String geefNaamSpeler(int i) {
         return spel.getSpelers().get(i).getNaam();
@@ -66,15 +64,14 @@ public class DomeinController {
 
     /**
      * @param i
-     * 
-     * @return level van speler
+     * @return
      */
     public int geefLevel(int i) {
         return spel.getSpelers().get(i).getLevel();
     }
 
     /**
-     * @return naam van de winnaar
+     * @return
      */
     public String geefNaamWinnaar() {
         return spel.geefWinnaar();
@@ -113,7 +110,7 @@ public class DomeinController {
 
     /**
      *
-     * @return de huidige spelsituatie
+     * @return
      */
     public String geefSpelsituatie() {
         return spel.geefSpelsituatie();
@@ -121,35 +118,32 @@ public class DomeinController {
 
     /**
      *
-     * @return gewonnen of niet
+     * @return
      */
     public boolean niemandGewonnen() {
         return spel.niemandGewonnen();
     }
 
     /**
-     * Geeft de naam van de speler op de index van de ArrayList
-     * 
+     *
      * @param i
-     * @param naam 
+     * @param naam
      */
     public void geefSpelerNaam(int i, String naam) {
         spel.geefSpelerNaam(i, naam);
     }
 
     /**
-     * speler wordt aangemaakt
-     * 
+     *
      */
     public void maakSpeler() {
         spel.maakNieuweSpeler();
     }
 
     /**
-     * Geeft de het geslacht van de speler op de index van de Arraylist
-     * 
+     *
      * @param i
-     * @param geslacht     
+     * @param geslacht
      */
     public void geefSpelerGeslacht(int i, String geslacht) {
         spel.geefSpelerGeslacht(i, geslacht);
@@ -157,7 +151,6 @@ public class DomeinController {
 
     /**
      *
-     * geeft de speler zijn startkaarten
      */
     public void geefStartKaarten() {
         spel.geefStartKaarten();
@@ -165,7 +158,7 @@ public class DomeinController {
 
     /**
      *
-     * @return bovenste kerkerkaart
+     * @return
      */
     public String toonBovensteKk() {
         return String.format("gui/images/%d.png", spel.toonBovensteKk());
@@ -174,7 +167,7 @@ public class DomeinController {
     /**
      *
      * @param id
-     * @return type van de kaart met bepaald id
+     * @return
      */
     public String geefTypeKaart(int id) {
         return spel.geefTypeKaart(id);
@@ -182,7 +175,7 @@ public class DomeinController {
 
     /**
      *
-     * @param naam van vloekkaart die gespeeld wordt
+     * @param naam
      */
     public void curseKaart(String naam) {
         spel.speelCurse(naam);
@@ -190,7 +183,7 @@ public class DomeinController {
 
     /**
      *
-     * @return id van de bovenste kaart op de stapel vd kerkerkaarten
+     * @return
      */
     public int geefIdBovensteKaart() {
         return spel.toonBovensteKk();
@@ -198,15 +191,14 @@ public class DomeinController {
 
     /**
      *
-     * plaatst een nieuwe kerkerkaart bovenop de stapel
      */
     public void nieuweBovensteKaartK() {
         spel.nieuwBovensteKaartK();
     }
 
     /**
-     * geeft de kerkerkaart die random geselecteerd wordt (shuffle) aan de speler
-     * @param naam 
+     *
+     * @param naam
      */
     public void geefKerkerkaartAanSpeler(String naam) {
         spel.geefKerkerkaartAanSpeler(naam);
@@ -239,19 +231,10 @@ public class DomeinController {
     }
 */
 
-    /**
-     * Geeft het spel een naam
-     * @param naam 
-     */
     public void geefSpelNaam(String naam){
         spel.setNaam(naam);
     }
 
-    /**
-     * 
-     * @param naam
-     * @return boolean op true wanneer speler te veel kaarten heeft
-     */
     public boolean spelerTeVeelKaarten(String naam) {
         return spel.spelerTeVeelKaarten(naam);
     }
