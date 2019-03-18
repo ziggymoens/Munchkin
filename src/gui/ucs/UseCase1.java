@@ -46,7 +46,7 @@ public class UseCase1 {
             System.out.println(LanguageResource.getString("newGame"));
             nieuwSpel = SCAN.next().toLowerCase();
         }
-        try {
+        //try {
             if (nieuwSpel.equals(LanguageResource.getString("yes"))) {
                 //th1.start();
                 maakSpel();
@@ -58,9 +58,9 @@ public class UseCase1 {
             } else if (nieuwSpel.equals(LanguageResource.getString("no"))) {
                 System.out.println(Printer.printGreen("gamestop"));
             }
-        } catch (Exception e) {
-            System.out.print(Printer.exceptionCatch("Exception", e, false));
-        }
+        //}catch (Exception e) {
+         //   System.out.print(Printer.exceptionCatch("Exception", e, false));
+        //}
     }
 
     /**
@@ -101,28 +101,34 @@ public class UseCase1 {
      * spel aanmaken(grenzen incl.)
      */
     private void maakSpel() {
+        th1.start();
+        th1.suspend();
         int as;
         boolean tryAgain = true;
         while (tryAgain) {
             try {
                 System.out.println(LanguageResource.getString("amountOfPlayers"));
                 as = SCAN.nextInt();
-                System.out.print("\nLoading ");
-                th1.start();
+                th1.resume();
                 dc.startSpel(as);
                 th1.stop();
                 this.aantalSpelers = as;
                 tryAgain = false;
             } catch (SpelException e) {
-                th1.stop();
+                th1.suspend();
+                System.out.println("\r");
                 System.out.print(Printer.exceptionCatch("SpelException", e));
                 SCAN.nextLine();
             } catch (KaartDatabaseException e) {
-                th1.stop();
+                th1.suspend();
                 System.out.print(Printer.exceptionCatch("KaartDatabaseException", e));
                 SCAN.nextLine();
+            }catch (InputMismatchException e){
+                th1.suspend();
+                System.out.println(Printer.exceptionCatch("InputException", e, false));
+                SCAN.nextLine();
             } catch (Exception e) {
-                th1.stop();
+                th1.suspend();
                 System.out.println(Printer.exceptionCatch("Exception", e, false));
                 SCAN.nextLine();
             }
@@ -186,6 +192,7 @@ public class UseCase1 {
      * deze werkt niet goed in netbeans
      */
     private Thread th1 = new Thread(() -> {
+        System.out.print("\nLoading ");
         for (int i = 0; i < 100; i++) {
             try {
                 Thread.sleep(200);

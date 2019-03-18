@@ -21,14 +21,26 @@ public class DomeinController {
         sr = new SpelDbRepository();
     }
 
+
+    /**
+     * Methode om het spel te starten adhv het aantal spelers en de gekozen taal
+     */
+    //public void startSpel() {
+    //    spel = new Spel();
+   // }
+
+
+
     /**
      * Methode om het spel te starten adhv het aantal spelers en de gekozen taal
      *
      * @param aantalSpelers Gekozen aantal spelers (3-6)
      */
     public void startSpel(int aantalSpelers) {
+        if (aantalSpelers<3 || aantalSpelers>6){
+            throw new SpelException("exception.spel.players");
+        }
         spel = new Spel(aantalSpelers);
-
     }
 
     /**
