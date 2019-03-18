@@ -56,7 +56,7 @@ public class Spel {
      *
      * @param aantalSpelers Het gekozen aantal spelers
      */
-    public void setAantalSpelers(int aantalSpelers) {
+    private void setAantalSpelers(int aantalSpelers) {
         if (aantalSpelers < 3 || aantalSpelers > 6) {
             throw new SpelException("exception.spel.players");
         }

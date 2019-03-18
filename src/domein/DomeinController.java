@@ -1,6 +1,7 @@
 package domein;
 
 import domein.repositories.SpelDbRepository;
+
 import java.util.*;
 
 import exceptions.SpelException;
@@ -24,20 +25,11 @@ public class DomeinController {
 
     /**
      * Methode om het spel te starten adhv het aantal spelers en de gekozen taal
-     */
-    //public void startSpel() {
-    //    spel = new Spel();
-   // }
-
-
-
-    /**
-     * Methode om het spel te starten adhv het aantal spelers en de gekozen taal
      *
      * @param aantalSpelers Gekozen aantal spelers (3-6)
      */
     public void startSpel(int aantalSpelers) {
-        if (aantalSpelers<3 || aantalSpelers>6){
+        if (aantalSpelers < 3 || aantalSpelers > 6) {
             throw new SpelException("exception.spel.players");
         }
         spel = new Spel(aantalSpelers);
@@ -98,7 +90,6 @@ public class DomeinController {
     }
 
     /**
-     *
      * @return
      */
     public String geefOpgeslagenSpellen() {
@@ -121,7 +112,6 @@ public class DomeinController {
     }
 
     /**
-     *
      * @return
      */
     public String geefSpelsituatie() {
@@ -129,7 +119,6 @@ public class DomeinController {
     }
 
     /**
-     *
      * @return
      */
     public boolean niemandGewonnen() {
@@ -137,7 +126,6 @@ public class DomeinController {
     }
 
     /**
-     *
      * @param i
      * @param naam
      */
@@ -153,7 +141,6 @@ public class DomeinController {
     }
 
     /**
-     *
      * @param i
      * @param geslacht
      */
@@ -169,7 +156,6 @@ public class DomeinController {
     }
 
     /**
-     *
      * @return
      */
     public String toonBovensteKk() {
@@ -177,7 +163,6 @@ public class DomeinController {
     }
 
     /**
-     *
      * @param id
      * @return
      */
@@ -186,7 +171,6 @@ public class DomeinController {
     }
 
     /**
-     *
      * @param naam
      */
     public void curseKaart(String naam) {
@@ -194,7 +178,6 @@ public class DomeinController {
     }
 
     /**
-     *
      * @return
      */
     public int geefIdBovensteKaart() {
@@ -209,41 +192,40 @@ public class DomeinController {
     }
 
     /**
-     *
      * @param naam
      */
     public void geefKerkerkaartAanSpeler(String naam) {
         spel.geefKerkerkaartAanSpeler(naam);
     }
-/**
 
-    public String geefTypeLostCurse() {
-        return spel.geefTypeLostCurse().toLowerCase();
-    }
+    /**
+     * public String geefTypeLostCurse() {
+     * return spel.geefTypeLostCurse().toLowerCase();
+     * }
+     * <p>
+     * public String toonItemsSpeler(String naam) {
+     * int i = 0;
+     * String ret = "";
+     * for (String line : spel.geefItemsSpeler(naam)){
+     * ret += String.format("%d) %s%n", i,line);
+     * i++;
+     * }
+     * return ret;
+     * }
+     * <p>
+     * public int geefAantalItemsSpeler(String naam) {
+     * if (spel.geefAantalItemsSpeler(naam) == -99){
+     * throw new SpelException("exception.spel.itemsspeler");
+     * }
+     * return spel.geefAantalItemsSpeler(naam);
+     * }
+     * <p>
+     * public void verwijderItemSpeler(String naam, int keuze) {
+     * spel.verwijderItemSpeler(naam, keuze-1);
+     * }
+     */
 
-    public String toonItemsSpeler(String naam) {
-        int i = 0;
-        String ret = "";
-        for (String line : spel.geefItemsSpeler(naam)){
-            ret += String.format("%d) %s%n", i,line);
-            i++;
-        }
-        return ret;
-    }
-
-    public int geefAantalItemsSpeler(String naam) {
-        if (spel.geefAantalItemsSpeler(naam) == -99){
-            throw new SpelException("exception.spel.itemsspeler");
-        }
-        return spel.geefAantalItemsSpeler(naam);
-    }
-
-    public void verwijderItemSpeler(String naam, int keuze) {
-        spel.verwijderItemSpeler(naam, keuze-1);
-    }
-*/
-
-    public void geefSpelNaam(String naam){
+    public void geefSpelNaam(String naam) {
         spel.setNaam(naam);
     }
 
