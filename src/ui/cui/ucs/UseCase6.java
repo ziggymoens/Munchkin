@@ -5,12 +5,13 @@ import domein.DomeinController;
 /**
  * Deze UC nummer is onbekend en zal later worden aangepast
  * deze UC zal "Vecht met monster zijn"
+ * UC6
  */
 
-public class UseCaseX {
+public class UseCase6 {
     private final DomeinController dc;
 
-    public UseCaseX(DomeinController dc) {
+    public UseCase6(DomeinController dc) {
         this.dc = dc;
 
     }

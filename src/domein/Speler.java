@@ -31,7 +31,7 @@ public class Speler {
      * "man", leeftijd = 99, level = 1, taal = "en"
      */
     public Speler() {
-        setLevel(1);
+        setLevel(3);
         kaarten = new ArrayList<>();
         items = new ArrayList<>();
         aantalKerkerkaarten = 0;
@@ -95,7 +95,7 @@ public class Speler {
      * @param naam De naam van de speler
      */
     public final void setNaam(String naam) {
-        if (naam.length() >= 6 && naam.length() <= 12 && naam.matches("^[A-Za-z0-9_-]+$")) {
+        if (naam.length() >= 6 && naam.length() <= 12 && naam.matches("^[A-Za-z_-]+$")) {
             this.naam = naam;
 //            for (int i = 0; i < naam.length(); i++) {
 //                if (naam.charAt(i) >= 'a' || naam.charAt(i) <= 'z' || naam.charAt(i) >= 'A' || naam.charAt(i) <= 'Z' || naam.charAt(i) == '_' || naam.charAt(i) == '-') {

@@ -78,7 +78,7 @@ class UseCase2 {
         boolean tryAgain = true;
         while (tryAgain)
         try {
-            System.out.printf("%s: %s%n", LanguageResource.getString("player.turn"), String.format("%s", ColorsOutput.achtergrond("red") + naam + ColorsOutput.reset()));
+            System.out.printf("%s: %s%n", LanguageResource.getString("player.turn"), String.format("%s", ColorsOutput.achtergrond("red")+ ColorsOutput.decoration("reversed") + naam + ColorsOutput.reset()));
             printKeuze();
             keuze = SCAN.nextInt();
             if (keuze<1 || keuze>3){
