@@ -1,5 +1,6 @@
 package ui.gui;
 
+import domein.DomeinController;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -13,7 +14,8 @@ public class StartUpGui extends Application {
 
     @Override
     public void start(Stage stage) {
-        Scene scene = new Scene(new UseCase1G());
+        DomeinController dc = new DomeinController();
+        Scene scene = new Scene(new UseCase1G(dc));
         stage.setScene(scene);
         stage.setTitle("Munchkin - G35");
         stage.show();

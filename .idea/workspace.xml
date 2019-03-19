@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="65c6d22f-232f-4b77-bc1e-1f6c0d29be8c" name="Default Changelist" comment="">
+    <list default="true" id="65c6d22f-232f-4b77-bc1e-1f6c0d29be8c" name="Default Changelist" comment="start GUI UC1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ToDo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ToDo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/language/resourcebundle/i18n.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/language/resourcebundle/i18n.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/language/resourcebundle/i18n_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/language/resourcebundle/i18n_en.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/language/resourcebundle/i18n_fr.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/language/resourcebundle/i18n_fr.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/language/resourcebundle/i18n_nl.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/language/resourcebundle/i18n_nl.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/gui/StartUpGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/gui/StartUpGui.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/gui/usecase1/UseCase1G.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/gui/usecase1/UseCase1G.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -46,6 +51,41 @@
         <item name="ID222177_g35: schema" type="76f4a085:MysqlImplModel$Schema" />
         <item name="BadStuff: table" type="285a2a93:MysqlImplModel$Table" />
       </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="munchkin_g35" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="ID222177_g35: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="KBadStuff: table" type="285a2a93:MysqlImplModel$Table" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="munchkin_g35" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="ID222177_g35: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="KConsumablesT: table" type="285a2a93:MysqlImplModel$Table" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="munchkin_g35" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="ID222177_g35: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="KCurse: table" type="285a2a93:MysqlImplModel$Table" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="munchkin_g35" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="ID222177_g35: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="KEquipment: table" type="285a2a93:MysqlImplModel$Table" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="munchkin_g35" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="ID222177_g35: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="KMonster: table" type="285a2a93:MysqlImplModel$Table" />
+      </path>
     </expand>
     <select />
   </component>
@@ -54,151 +94,136 @@
     <option name="HIDE_WARNINGS" value="true" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/domein/Spel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2400">
-              <caret line="168" selection-start-line="168" selection-end-line="168" />
-              <folding>
-                <element signature="e#659#660#0" expanded="true" />
-                <element signature="e#682#683#0" expanded="true" />
-                <element signature="e#2514#2515#0" expanded="true" />
-                <element signature="e#2571#2572#0" expanded="true" />
-                <element signature="e#2717#2718#0" expanded="true" />
-                <element signature="e#2747#2748#0" expanded="true" />
-                <element signature="e#3517#3518#0" expanded="true" />
-                <element signature="e#3553#3554#0" expanded="true" />
-                <element signature="e#5563#5564#0" expanded="true" />
-                <element signature="e#5604#5605#0" expanded="true" />
-                <element signature="e#5794#5795#0" expanded="true" />
-                <element signature="e#5846#5847#0" expanded="true" />
-                <element signature="e#6013#6014#0" expanded="true" />
-                <element signature="e#6064#6065#0" expanded="true" />
-                <element signature="e#6107#6108#0" expanded="true" />
-                <element signature="e#6172#6173#0" expanded="true" />
-                <element signature="e#6377#6378#0" expanded="true" />
-                <element signature="e#6407#6408#0" expanded="true" />
-                <element signature="e#7840#7841#0" expanded="true" />
-                <element signature="e#7907#7908#0" expanded="true" />
-                <element signature="e#8859#8860#0" expanded="true" />
-                <element signature="e#8886#8887#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase1.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1586">
-              <caret line="192" lean-forward="true" selection-start-line="192" selection-end-line="192" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/exceptions/kaarten/schatkaarten/EquipmentException.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase2.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="354">
-              <caret line="90" column="24" selection-start-line="90" selection-start-column="24" selection-end-line="90" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/domein/DomeinController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="24" selection-start-line="24" selection-end-line="24" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="docComment;method#geefSpelNaam#0;class#DomeinController#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/exceptions/SpelerException.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/exceptions/kaarten/SchatkaartException.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="33" selection-start-line="33" selection-end-line="33" />
-              <folding>
-                <element signature="e#0#811#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/ToDo.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="600">
-              <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/exceptions/database/SpelDatabaseException.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="23" selection-start-line="23" selection-end-line="23" />
-              <folding>
-                <element signature="e#126#127#0" expanded="true" />
-                <element signature="e#149#150#0" expanded="true" />
-                <element signature="e#184#185#0" expanded="true" />
-                <element signature="e#214#215#0" expanded="true" />
-                <element signature="e#283#284#0" expanded="true" />
-                <element signature="e#320#321#0" expanded="true" />
-                <element signature="e#373#374#0" expanded="true" />
-                <element signature="e#401#402#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ui/gui/MainGUI.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="13" selection-start-line="13" selection-end-line="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/StartUp.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="120">
+                  <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase3.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="197">
+                  <caret line="41" column="99" selection-start-line="41" selection-start-column="99" selection-end-line="41" selection-end-column="99" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/ui/gui/usecase1/UseCase1G.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="334">
+                  <caret line="42" column="24" lean-forward="true" selection-start-line="42" selection-start-column="24" selection-end-line="42" selection-end-column="24" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/language/LanguageResource.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1060">
+                  <caret line="93" column="19" selection-start-line="93" selection-start-column="19" selection-end-line="93" selection-end-column="19" />
+                  <folding>
+                    <element signature="e#2449#2450#0" expanded="true" />
+                    <element signature="e#2496#2497#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/ui/gui/usecase1/UseCase1G.css">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="375">
+                  <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase1.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="702">
+                  <caret line="56" column="31" selection-start-line="56" selection-start-column="31" selection-end-line="56" selection-end-column="31" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/ongebruikt/munchkin-background.jpg">
+              <provider selected="true" editor-type-id="images" />
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/ui/images/munchkin-background.jpg">
+              <provider selected="true" editor-type-id="images" />
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/ui/gui/StartUpGui.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="225">
+                  <caret line="17" column="48" selection-start-line="17" selection-start-column="48" selection-end-line="17" selection-end-column="48" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/domein/DomeinController.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="443">
+                  <caret line="161" column="42" selection-start-line="161" selection-start-column="42" selection-end-line="161" selection-end-column="42" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                    <element signature="e#3205#3206#0" expanded="true" />
+                    <element signature="e#3284#3285#0" expanded="true" />
+                    <element signature="docComment;method#geefSpelNaam#0;class#DomeinController#0" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase1.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-720">
+                  <caret line="11" column="31" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="FxmlFile" />
         <option value="Class" />
+        <option value="CSS File" />
         <option value="JavaFXApplication" />
       </list>
     </option>
@@ -223,13 +248,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/gui/UseCase4.java" />
-        <option value="$PROJECT_DIR$/src/domein/kaarten/kerkerkaarten/Curse.java" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/.datagrid/cell" />
-        <option value="$PROJECT_DIR$/src/printer/Printer.java" />
-        <option value="$PROJECT_DIR$/src/domein/kaarten/schatkaarten/Equipment.java" />
-        <option value="$PROJECT_DIR$/src/language/language.properties" />
-        <option value="$PROJECT_DIR$/src/language/language_en.properties" />
         <option value="$PROJECT_DIR$/src/language/language_fr.properties" />
         <option value="$PROJECT_DIR$/src/language/language_nl.properties" />
         <option value="$PROJECT_DIR$/src/domein/kaarten/kerkerkaarten/Race.java" />
@@ -250,7 +268,6 @@
         <option value="$PROJECT_DIR$/src/language/LanguageResource.java" />
         <option value="$PROJECT_DIR$/src/gui/ucs/UseCaseX.java" />
         <option value="$PROJECT_DIR$/src/gui/ucs/UseCaseY.java" />
-        <option value="$PROJECT_DIR$/src/domein/Speler.java" />
         <option value="$PROJECT_DIR$/src/gui/ucs/UseCase5.java" />
         <option value="$PROJECT_DIR$/src/gui/ucs/UseCase4.java" />
         <option value="$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java" />
@@ -258,21 +275,35 @@
         <option value="$PROJECT_DIR$/src/domein/repositories/SpelDbRepository.java" />
         <option value="$PROJECT_DIR$/src/gui/ucs/UseCase2.java" />
         <option value="$PROJECT_DIR$/src/gui/ucs/UseCase8.java" />
-        <option value="$PROJECT_DIR$/src/language/resourcebundle/i18n.properties" />
         <option value="$PROJECT_DIR$/src/language/resourcebundle/i18n_nl.properties" />
         <option value="$PROJECT_DIR$/src/language/resourcebundle/i18n_en.properties" />
         <option value="$PROJECT_DIR$/src/gui/ucs/UseCase1.java" />
         <option value="$PROJECT_DIR$/src/domein/Spel.java" />
         <option value="$PROJECT_DIR$/src/domein/DomeinController.java" />
         <option value="$PROJECT_DIR$/src/exceptions/database/SpelDatabaseException.java" />
-        <option value="$PROJECT_DIR$/src/ui/cui/ucs/UseCase1.java" />
         <option value="$PROJECT_DIR$/src/ui/gui/UseCase1.java" />
-        <option value="$PROJECT_DIR$/src/ui/gui/MainGUI.java" />
         <option value="$PROJECT_DIR$/src/ToDo.java" />
+        <option value="$PROJECT_DIR$/src/domein/Speler.java" />
+        <option value="$PROJECT_DIR$/src/main/StartUp.java" />
+        <option value="$PROJECT_DIR$/src/language/resourcebundle/i18n.properties" />
+        <option value="$PROJECT_DIR$/src/ui/cui/ucs/UseCase1.java" />
+        <option value="$PROJECT_DIR$/src/ui/cui/ucs/UseCase3.java" />
+        <option value="$PROJECT_DIR$/src/ui/gui/AfbeeldingTonen.java" />
+        <option value="$PROJECT_DIR$/src/ui/gui/UseCase1GUI.java" />
+        <option value="$PROJECT_DIR$/src/ui/gui/UseCase1Pane.java" />
+        <option value="$PROJECT_DIR$/src/ui/gui/MainGUI.java" />
+        <option value="$PROJECT_DIR$/src/ui/gui/usecase1/UseCase1LayOut.fxml" />
+        <option value="$PROJECT_DIR$/src/ui/gui/usecase1/view/UseCase1LayOut.fxml" />
+        <option value="$PROJECT_DIR$/src/ui/gui/usecase1/view/UseCase1GUI.java" />
+        <option value="$PROJECT_DIR$/src/ui/gui/usecase1/view/UseCase1.fxml" />
+        <option value="$PROJECT_DIR$/src/ui/gui/usecase1/UseCase1G.css" />
+        <option value="$PROJECT_DIR$/src/ui/gui/StartUpGui.java" />
+        <option value="$PROJECT_DIR$/src/ui/gui/usecase1/UseCase1G.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="960" />
     <option name="width" value="960" />
     <option name="height" value="1200" />
   </component>
@@ -291,58 +322,18 @@
             <path>
               <item name="Projecten 1" type="b2602c69:ProjectViewProjectNode" />
               <item name="Projecten 1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Projecten 1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Projecten 1" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="production" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Projecten 1" type="b2602c69:ProjectViewProjectNode" />
               <item name="Projecten 1" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="domein" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Projecten 1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Projecten 1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="exceptions" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Projecten 1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Projecten 1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="exceptions" type="462c0819:PsiDirectoryNode" />
-              <item name="database" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Projecten 1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Projecten 1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="exceptions" type="462c0819:PsiDirectoryNode" />
-              <item name="kaarten" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Projecten 1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Projecten 1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="exceptions" type="462c0819:PsiDirectoryNode" />
-              <item name="kaarten" type="462c0819:PsiDirectoryNode" />
-              <item name="kerkerkaarten" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Projecten 1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Projecten 1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="exceptions" type="462c0819:PsiDirectoryNode" />
-              <item name="kaarten" type="462c0819:PsiDirectoryNode" />
-              <item name="kerkerkaarten" type="462c0819:PsiDirectoryNode" />
-              <item name="monsterbadstuff" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Projecten 1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Projecten 1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="exceptions" type="462c0819:PsiDirectoryNode" />
-              <item name="kaarten" type="462c0819:PsiDirectoryNode" />
-              <item name="schatkaarten" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Projecten 1" type="b2602c69:ProjectViewProjectNode" />
@@ -362,25 +353,6 @@
               <item name="Projecten 1" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Projecten 1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Projecten 1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="persistentie" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Projecten 1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Projecten 1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="persistentie" type="462c0819:PsiDirectoryNode" />
-              <item name="mappers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Projecten 1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Projecten 1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="printer" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Projecten 1" type="b2602c69:ProjectViewProjectNode" />
@@ -407,6 +379,14 @@
               <item name="Projecten 1" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="ui" type="462c0819:PsiDirectoryNode" />
+              <item name="gui" type="462c0819:PsiDirectoryNode" />
+              <item name="usecase1" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Projecten 1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Projecten 1" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="ui" type="462c0819:PsiDirectoryNode" />
               <item name="images" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -424,19 +404,32 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552980439266" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553025959856" />
     <property name="database.console.LAST_STATE" value="false" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="Images" />
     <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/src/language/i18n_en.properties" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="ui.gui" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/ui/images" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="ui.gui" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/language/resourcebundle" />
       <recent name="$PROJECT_DIR$/src/ongebruikt" />
+      <recent name="$PROJECT_DIR$/src/ui/images" />
+      <recent name="$PROJECT_DIR$/src/ui/gui/usecase1/view" />
+      <recent name="$PROJECT_DIR$/src/language/resourcebundle" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -451,7 +444,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.MainGUI">
+  <component name="RunManager" selected="Application.StartUpGui">
+    <configuration name="AfbeeldingTonen" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ui.gui.AfbeeldingTonen" />
+      <module name="Projecten 1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ui.gui.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="MainGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ui.gui.MainGUI" />
       <module name="Projecten 1" />
@@ -478,12 +484,25 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ui.test.Test" />
+    <configuration name="StartUpGui" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ui.gui.StartUpGui" />
       <module name="Projecten 1" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ui.cui.ucs.*" />
+          <option name="PATTERN" value="ui.gui.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UseCase1G" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ui.gui.usecase1.UseCase1G" />
+      <module name="Projecten 1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ui.gui.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -493,9 +512,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.MainGUI" />
+        <item itemvalue="Application.StartUpGui" />
+        <item itemvalue="Application.UseCase1G" />
+        <item itemvalue="Application.AfbeeldingTonen" />
         <item itemvalue="Application.StartUp" />
-        <item itemvalue="Application.Test" />
+        <item itemvalue="Application.MainGUI" />
       </list>
     </recent_temporary>
   </component>
@@ -514,7 +535,7 @@
       <updated>1551993656744</updated>
       <workItem from="1551993658537" duration="141000" />
       <workItem from="1552226520023" duration="60340000" />
-      <workItem from="1552904444934" duration="7448000" />
+      <workItem from="1552904444934" duration="30315000" />
     </task>
     <task id="LOCAL-00001" summary="output">
       <created>1552228440827</created>
@@ -733,11 +754,39 @@
       <option name="project" value="LOCAL" />
       <updated>1552938099129</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="to do">
+      <created>1552980453350</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1552980453350</updated>
+    </task>
+    <task id="LOCAL-00033" summary="spelers solved">
+      <created>1552982873139</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1552982873139</updated>
+    </task>
+    <task id="LOCAL-00034" summary="spelers solved">
+      <created>1553003466317</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1553003466317</updated>
+    </task>
+    <task id="LOCAL-00035" summary="start GUI UC1">
+      <created>1553010011018</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1553010011018</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="68285000" />
+    <option name="totallyTimeSpent" value="91152000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1200" extended-state="6" />
@@ -755,7 +804,7 @@
       <window_info anchor="bottom" id="Messages" order="1" sideWeight="0.49891067" weight="0.32942238" />
       <window_info anchor="bottom" id="Message" order="2" />
       <window_info anchor="bottom" id="Find" order="3" weight="0.32942238" />
-      <window_info anchor="bottom" id="Run" order="4" sideWeight="0.49782136" weight="0.30776173" />
+      <window_info anchor="bottom" id="Run" order="4" sideWeight="0.49782136" visible="true" weight="0.31407943" />
       <window_info anchor="bottom" id="Debug" order="5" weight="0.3998195" />
       <window_info anchor="bottom" id="Cvs" order="6" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="7" weight="0.4" />
@@ -773,11 +822,11 @@
       <window_info anchor="right" id="Maven" order="5" />
       <window_info anchor="right" id="Capture Analysis" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
-      <window_info anchor="right" id="Database" order="8" weight="0.25292864" />
+      <window_info anchor="right" id="Database" order="8" weight="0.5087146" />
     </layout>
     <layout-to-restore>
       <window_info id="Learn" order="0" weight="0.32897604" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.24813631" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.12300319" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Designer" order="4" />
@@ -785,10 +834,10 @@
       <window_info id="Capture Tool" order="6" />
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Database Console" order="0" weight="0.32942238" />
-      <window_info anchor="bottom" id="Messages" order="1" weight="0.32942238" />
+      <window_info anchor="bottom" id="Messages" order="1" sideWeight="0.49891067" weight="0.32942238" />
       <window_info anchor="bottom" id="Message" order="2" />
       <window_info anchor="bottom" id="Find" order="3" weight="0.32942238" />
-      <window_info anchor="bottom" id="Run" order="4" visible="true" weight="0.30776173" />
+      <window_info active="true" anchor="bottom" id="Run" order="4" sideWeight="0.49782136" visible="true" weight="0.31407943" />
       <window_info anchor="bottom" id="Debug" order="5" weight="0.3998195" />
       <window_info anchor="bottom" id="Cvs" order="6" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="7" weight="0.4" />
@@ -797,7 +846,7 @@
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.32942238" />
       <window_info anchor="bottom" id="Database Changes" order="11" />
       <window_info anchor="bottom" id="Terminal" order="12" />
-      <window_info anchor="bottom" id="Event Log" order="13" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="13" sideWeight="0.50108933" side_tool="true" weight="0.32942238" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -806,7 +855,7 @@
       <window_info anchor="right" id="Maven" order="5" />
       <window_info anchor="right" id="Capture Analysis" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
-      <window_info anchor="right" id="Database" order="8" visible="true" weight="0.25292864" />
+      <window_info anchor="right" id="Database" order="8" weight="0.5087146" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -835,157 +884,18 @@
     <MESSAGE value="gui" />
     <MESSAGE value="..." />
     <MESSAGE value="rename" />
-    <option name="LAST_COMMIT_MESSAGE" value="rename" />
+    <MESSAGE value="to do" />
+    <MESSAGE value="spelers solved" />
+    <MESSAGE value="start GUI UC1" />
+    <option name="LAST_COMMIT_MESSAGE" value="start GUI UC1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="das://79f0d59e-e9c8-47b0-95cb-632d85fb8553/schema/ID222177_g35/table/BadStuff">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true">
-            <filter text="1" />
-          </filtering>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://79f0d59e-e9c8-47b0-95cb-632d85fb8553/schema/ID222177_g35/table/ConsumablesD">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://79f0d59e-e9c8-47b0-95cb-632d85fb8553/schema/ID222177_g35/table/ConsumablesT">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://79f0d59e-e9c8-47b0-95cb-632d85fb8553/schema/ID222177_g35/table/Monster">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/StartUp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="19" column="8" lean-forward="true" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/printer/ColorsOutput.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-135">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/printer/Printer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="12" column="25" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/domein/kaarten/kerkerkaarten/monsterbadstuff/BadStuff.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/exceptions/database/KaartDatabaseException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/exceptions/kaarten/schatkaarten/ConsumablesSchatException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/exceptions/kaarten/kerkerkaarten/ConsumablesKerkerException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/exceptions/kaarten/kerkerkaarten/CurseException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/exceptions/kaarten/kerkerkaarten/MonsterException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/exceptions/kaarten/kerkerkaarten/RaceException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/test/Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/persistentie/mappers/KaartMapperDb.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="415">
           <caret line="49" column="61" selection-start-line="49" selection-start-column="61" selection-end-line="49" selection-end-column="61" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/language/LanguageResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="611">
-          <caret line="80" column="53" selection-start-line="80" selection-start-column="53" selection-end-line="80" selection-end-column="53" />
-          <folding>
-            <element signature="e#2419#2420#0" expanded="true" />
-            <element signature="e#2466#2467#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCaseX.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="67" selection-start-line="18" selection-start-column="67" selection-end-line="18" selection-end-column="67" />
-          <folding>
-            <element signature="e#331#332#0" expanded="true" />
-            <element signature="e#405#406#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCaseY.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
-          <folding>
-            <element signature="e#241#242#0" expanded="true" />
-            <element signature="e#267#268#0" expanded="true" />
-            <element signature="e#304#305#0" expanded="true" />
-            <element signature="e#378#379#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1058,23 +968,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase3.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1107">
-          <caret line="132" selection-start-line="132" selection-end-line="132" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/domein/Speler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="636">
-          <caret line="293" lean-forward="true" selection-start-line="293" selection-end-line="293" />
         </state>
       </provider>
     </entry>
@@ -1168,21 +1061,6 @@
       </provider>
       <provider editor-type-id="ResourceBundle" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/language/resourcebundle/i18n.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1350">
-          <caret line="90" selection-start-line="90" selection-end-line="90" />
-        </state>
-      </provider>
-      <provider editor-type-id="ResourceBundle" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="90" column="24" selection-start-line="90" selection-start-column="24" selection-end-line="90" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/domein/Spel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2400">
@@ -1210,17 +1088,6 @@
             <element signature="e#7907#7908#0" expanded="true" />
             <element signature="e#8859#8860#0" expanded="true" />
             <element signature="e#8886#8887#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/domein/DomeinController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="docComment;method#geefSpelNaam#0;class#DomeinController#0" />
           </folding>
         </state>
       </provider>
@@ -1259,26 +1126,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/gui/MainGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="13" selection-start-line="13" selection-end-line="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1586">
-          <caret line="192" lean-forward="true" selection-start-line="192" selection-end-line="192" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/exceptions/kaarten/schatkaarten/EquipmentException.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
@@ -1289,7 +1136,202 @@
     <entry file="file://$PROJECT_DIR$/src/ToDo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="600">
-          <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
+          <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCaseX.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="18" column="67" selection-start-line="18" selection-start-column="67" selection-end-line="18" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCaseY.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/domein/Speler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="397">
+          <caret line="67" selection-start-line="67" selection-end-line="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/images/1.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-11.0.2.jdk/Contents/Home/lib/src.zip!/java.desktop/javax/imageio/ImageIO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="1532" column="26" selection-start-line="1532" selection-start-column="26" selection-end-line="1532" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/gui/AfbeeldingTonen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/gui/UseCase1Pane.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#373#374#0" expanded="true" />
+            <element signature="e#400#401#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/gui/MainGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/gui/usecase1/UseCase1LayOut.fxml">
+      <provider selected="true" editor-type-id="text-editor" />
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/gui/usecase1/view/UseCase1GUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/gui/usecase1/view/UseCase1.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="45" column="23" lean-forward="true" selection-start-line="45" selection-start-column="23" selection-end-line="45" selection-end-column="23" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="98">
+          <caret line="90" column="24" selection-start-line="90" selection-start-column="24" selection-end-line="90" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/language/resourcebundle/i18n.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="965">
+          <caret line="100" column="16" selection-start-line="100" selection-start-column="16" selection-end-line="100" selection-end-column="16" />
+        </state>
+      </provider>
+      <provider editor-type-id="ResourceBundle" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase3.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="41" column="99" selection-start-line="41" selection-start-column="99" selection-end-line="41" selection-end-column="99" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-11.0.2.jdk/Contents/Home/lib/src.zip!/java.base/java/net/URL.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="446">
+          <caret line="469" selection-start-line="469" selection-end-line="469" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/domein/DomeinController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="443">
+          <caret line="161" column="42" selection-start-line="161" selection-start-column="42" selection-end-line="161" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3205#3206#0" expanded="true" />
+            <element signature="e#3284#3285#0" expanded="true" />
+            <element signature="docComment;method#geefSpelNaam#0;class#DomeinController#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/StartUp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ongebruikt/munchkin-background.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/images/munchkin-background.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.0.2.jdk/Contents/Home/lib/src.zip!/java.base/java/lang/Exception.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="44" column="13" selection-start-line="44" selection-start-column="13" selection-end-line="44" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="702">
+          <caret line="56" column="31" selection-start-line="56" selection-start-column="31" selection-end-line="56" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/language/LanguageResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1060">
+          <caret line="93" column="19" selection-start-line="93" selection-start-column="19" selection-end-line="93" selection-end-column="19" />
+          <folding>
+            <element signature="e#2449#2450#0" expanded="true" />
+            <element signature="e#2496#2497#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/gui/usecase1/UseCase1G.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/gui/StartUpGui.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="17" column="48" selection-start-line="17" selection-start-column="48" selection-end-line="17" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/gui/usecase1/UseCase1G.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="334">
+          <caret line="42" column="24" lean-forward="true" selection-start-line="42" selection-start-column="24" selection-end-line="42" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1351,6 +1393,7 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>
