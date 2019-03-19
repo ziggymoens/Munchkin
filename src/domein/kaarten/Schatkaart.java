@@ -34,7 +34,8 @@ public abstract class Schatkaart extends Kaart {
     }
 
     /**
-     *
+     * Controle op de waarde van de schatkaart indien onder nul dan exception
+     * 
      * @param waarde
      */
     private void controleerWaarde(int waarde) {

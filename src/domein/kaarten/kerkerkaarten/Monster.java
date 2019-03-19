@@ -22,7 +22,8 @@ public class Monster extends Kerkerkaart {
     private int notPursue;
 
     /**
-     *
+     * Constructor van Monster (die superklasse Kerkerkaart gebruikt)
+     * 
      * @param naam = name, van de speler
      * @param id = id, 
      * @param level = level, van de speler
@@ -55,56 +56,63 @@ public class Monster extends Kerkerkaart {
     }
 
     /**
-     *
-     * @return
+     * Getter die level teruggeeft
+     * 
+     * @return level
      */
     public int getLevel() {
         return level;
     }
 
     /**
-     *
-     * @return
+     * Getter die bijhorende badstuff van een kaart geeft
+     * 
+     * @return badStuff
      */
     public BadStuff getBadStuff() {
         return badStuff;
     }
 
     /**
-     *
-     * @return
+     * Getter die aantal schatkaarten bij winst teruggeeft
+     * 
+     * @return winstTreasures
      */
     public int getWinstTeasures() {
         return winstTeasures;
     }
 
     /**
-     *
-     * @return
+     * Getter die winstLevels van bepaald monster zal weergeven
+     *  
+     * @return winstLevels
      */
     public int getWinstLevels() {
         return winstLevels;
     }
 
     /**
-     *
-     * @return
+     * Getter die tekst zal weergeven
+     * 
+     * @return text
      */
     public String getText() {
         return text;
     }
 
     /**
-     *
-     * @return
+     * Boolean die aanduidt of weglopen succesvol was
+     * 
+     * @return boolean = true: weglopen gelukt, boolean = false: weglopen niet gelukt
      */
     public boolean isOutRun() {
         return outRun;
     }
 
     /**
-     *
-     * @return
+     * 
+     * 
+     * @return runAway
      */
     public int getRunAway() {
         return runAway;
@@ -112,7 +120,7 @@ public class Monster extends Kerkerkaart {
 
     /**
      *
-     * @return
+     * @return specialRace
      */
     public Race getSpecialRace() {
         return specialRace;
@@ -120,7 +128,7 @@ public class Monster extends Kerkerkaart {
 
     /**
      *
-     * @return
+     * @return specialRaceExtra
      */
     public int getSpecialRaceExtra() {
         return specialRaceExtra;
@@ -129,7 +137,7 @@ public class Monster extends Kerkerkaart {
 
     /**
      *
-     * @return
+     * @return notPursue
      */
     public int getNotPursue() {
         return notPursue;
@@ -137,7 +145,8 @@ public class Monster extends Kerkerkaart {
 
 
     /**
-     *
+     * Setter die controleert of tekst niet leeg is
+     * 
      * @param text
      */
     private void setText(String text) {
@@ -148,7 +157,8 @@ public class Monster extends Kerkerkaart {
     }
 
     /**
-     *
+     * Setter die beslist of outRun boolean op true of false wordt gezet
+     * 
      * @param outRun
      */
     private void setOutRun(boolean outRun) {
@@ -156,7 +166,8 @@ public class Monster extends Kerkerkaart {
     }
 
     /**
-     *
+     * Setter die runAway controleert en instelt
+     * 
      * @param runAway
      */
     private void setRunAway(int runAway) {
@@ -167,7 +178,8 @@ public class Monster extends Kerkerkaart {
     }
 
     /**
-     *
+     * Setter die specialRace instelt als deze niet leeg is
+     * 
      * @param specialRace
      */
     private void setSpecialRace(Race specialRace) {
@@ -178,7 +190,8 @@ public class Monster extends Kerkerkaart {
     }
 
     /**
-     *
+     * Setter die specialRaceExtra instelt als deze groter is dan 0
+     * 
      * @param specialRaceExtra
      */
     private void setSpecialRaceExtra(int specialRaceExtra) {
@@ -189,7 +202,8 @@ public class Monster extends Kerkerkaart {
     }
 
     /**
-     *
+     * Setter die notPursue instelt als deze groter is dan 0
+     * 
      * @param notPursue
      */
     private void setNotPursue(int notPursue) {
@@ -200,7 +214,8 @@ public class Monster extends Kerkerkaart {
     }
 
     /**
-     *
+     * Controle op (aantal) level(s) van de speler
+     * 
      * @param level
      */
     private void controleerLevel(int level) {
@@ -210,7 +225,8 @@ public class Monster extends Kerkerkaart {
     }
 
     /**
-     *
+     * Controle op aantal schatten
+     * 
      * @param winstTeasures
      */
     private void controleerTreasures(int winstTeasures) {
@@ -220,7 +236,8 @@ public class Monster extends Kerkerkaart {
     }
 
     /**
-     *
+     * Controle op (aantal) levels die men verkrijgt door te winnen
+     * 
      * @param winstLevels
      */
     private void controleerLevels(int winstLevels) {
@@ -229,6 +246,11 @@ public class Monster extends Kerkerkaart {
         }
     }
 
+    /**
+     *  Controle op badstuff, exception wordt geworpen wanneer deze leeg is
+     * 
+     * @param badStuff 
+     */
     private void controleerBadstuff(BadStuff badStuff) {
         if (badStuff == null) {
             throw new MonsterException("exception.monster.badstuff");

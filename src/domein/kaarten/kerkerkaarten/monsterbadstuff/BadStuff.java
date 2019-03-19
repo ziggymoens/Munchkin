@@ -28,7 +28,8 @@ public class BadStuff {
     private boolean wrightBrothers = false;
 
     /**
-     *
+     * Constructor voor badStuff
+     * 
      * @param id
      * @param itemsLost
      * @param levelsLost
@@ -45,7 +46,8 @@ public class BadStuff {
     }
 
     /**
-     *
+     * Setter voor de naam die gebruik maakt van een switch om de juiste naam kaart te selecteren
+     * 
      * @param naam
      */
     private void setNaam(String naam) {
@@ -73,7 +75,8 @@ public class BadStuff {
     }
 
     /**
-     *
+     * Setter die id initialiseert als deze positief is
+     * 
      * @param id
      */
     private void setId(int id) {
@@ -84,7 +87,8 @@ public class BadStuff {
     }
 
     /**
-     *
+     * Setter die tekst initialiseert als deze niet null is
+     * 
      * @param text
      */
     private void setText(String text) {
@@ -95,7 +99,8 @@ public class BadStuff {
     }
 
     /**
-     *
+     * Setter die aantal levelLost zet als deze positief is
+     * 
      * @param levelsLost
      */
     private void setLevelsLost(int levelsLost) {
@@ -106,7 +111,8 @@ public class BadStuff {
     }
 
     /**
-     *
+     * Setter die gearLost initialiseert wanneer deze niet null is
+     * 
      * @param gearLost
      */
     private void setGearLost(String gearLost) {
@@ -117,7 +123,8 @@ public class BadStuff {
     }
 
     /**
-     *
+     * Setter die aantal itemsTaken initialiseert wanneer deze positief is
+     * 
      * @param itemsTaken
      */
     private void setItemsTaken(int itemsTaken) {
@@ -128,88 +135,99 @@ public class BadStuff {
     }
 
     /**
-     *
-     * @return
+     * Getter die de naam teruggeeft
+     * 
+     * @return String van naam
      */
     public String getNaam() {
         return naam;
     }
 
     /**
-     *
-     * @return
+     * Getter die id teruggeeft
+     * 
+     * @return int van id
      */
     public int getId() {
         return id;
     }
 
     /**
-     *
-     * @return
+     * Getter die text teruggeeft
+     * 
+     * @return String text
      */
     public String getText() {
         return text;
     }
 
     /**
-     *
-     * @return
+     * Getter die aantal levelsLost teruggeeft
+     * 
+     * @return int aantal levelsLost
      */
     public int getLevelsLost() {
         return levelsLost;
     }
 
     /**
-     *
-     * @return
+     * Getter die String van welke gear verloren wordt, teruggeeft
+     * 
+     * @return String gearLost
      */
     public String getGearLost() {
         return gearLost;
     }
 
     /**
-     *
-     * @return
+     * Getter die het aantal itemsTaken teruggeeft
+     * 
+     * @return int van itemsTaken
      */
     public int getItemsTaken() {
         return itemsTaken;
     }
 
     /**
-     *
-     * @return
+     * Boolean die zegt of de kaart een LawyersCard is of niet
+     * 
+     * @return true = isLawyersCard, false = geen LawyersCard
      */
     public boolean isLawyersCard() {
         return lawyersCard;
     }
 
     /**
-     *
-     * @return
+     * Boolean die zegt of de kaart een OrgsCard is of niet
+     * 
+     * @return true = OrgsCard, false = geen OrgsCard
      */
     public boolean isOrgsCard() {
         return orgsCard;
     }
 
     /**
-     *
-     * @return
+     * Boolean die zegt of de kaart een Ghoulfriends is of niet
+     * 
+     * @return true = Ghoulfriends, false = geen Ghoulfriends
      */
     public boolean isGhoulfriends() {
         return ghoulfriends;
     }
 
     /**
-     *
-     * @return
+     * Boolean die zegt of de kaart een isSnailsOnSpeed is of niet
+     * 
+     * @return true = isSnailsOnSpeed, false = geen isSnailsOnSpeed
      */
     public boolean isSnailsOnSpeed() {
         return snailsOnSpeed;
     }
 
     /**
-     *
-     * @return
+     * Boolean die zegt of de kaart een WrightBrothers is of niet
+     * 
+     * @return true = isWrightBrothers, false = geen WrightBrothers
      */
     public boolean isWrightBrothers() {
         return wrightBrothers;

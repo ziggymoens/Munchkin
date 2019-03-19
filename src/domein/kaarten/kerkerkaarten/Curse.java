@@ -19,6 +19,15 @@ public class Curse extends Kerkerkaart {
     //private boolean raceLost;
     //private boolean sexLost;
 
+    /**
+     * Constructor van cursekaart (die superklasse kerkerkaart gebruikt)
+     * 
+     * @param name
+     * @param id
+     * @param loseLevel
+     * @param typeLost
+     * @param description 
+     */
     public Curse(String name, int id, int loseLevel, String typeLost, String description) {
         super(name, id);
         setLevelLost(loseLevel);
@@ -27,16 +36,18 @@ public class Curse extends Kerkerkaart {
     }
 
     /**
-     *
-     * @return
+     * Getter die verloren type teruggeeft
+     * 
+     * @return typeLost
      */
     public String getTypeLost() {
         return typeLost;
     }
 
     /**
-     *
-     * @return
+     * Getter die aantal levels verloren geeft
+     * 
+     * @return levelLost
      */
     public int getLevelLost() {
         return levelLost;
@@ -59,7 +70,8 @@ public class Curse extends Kerkerkaart {
 //    }
 
     /**
-     *
+     * Setter die controleert of typeLost geldig is
+     * 
      * @param typeLost
      */
     private void setTypeLost(String typeLost) {
@@ -70,7 +82,8 @@ public class Curse extends Kerkerkaart {
     }
 
     /**
-     *
+     * Setter die controleert of LevelLost geldig is
+     * 
      * @param levelLost
      */
     private void setLevelLost(int levelLost) {
@@ -97,15 +110,17 @@ public class Curse extends Kerkerkaart {
 //    }
 
     /**
-     *
-     * @return
+     * Getter die tekst terugkrijgt
+     * 
+     * @return text
      */
     public String getText() {
         return text;
     }
 
     /**
-     *
+     * Setter die tekst controleert
+     * 
      * @param text
      */
     private void setText(String text) {
