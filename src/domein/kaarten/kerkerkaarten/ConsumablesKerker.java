@@ -26,21 +26,24 @@ public class ConsumablesKerker extends Kerkerkaart {
     }
         
     /**
-     *
-     * @return
+     * Getter om de bonus te krijgen van de kerkerkaart
+     * 
+     * @return bonus
      */
     public int getBonus() {
         return bonus;
     }
 
     /**
-     *
-     * @return
+     * Getter voor de tekst "play during combat" te tonen
+     * 
+     * @return "play during combat"
      */
     public String getText() {
         return "Play during combat";
     }
     /**
+     * Controle op bonus 
      * 
      * @param bonus 
      */

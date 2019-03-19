@@ -26,7 +26,7 @@ public abstract class Kaart {
     }
 
     /**
-     * Setter voor de naam van de kaart
+     * Setter voor de naam van de kaart met controle
      *
      * @param naam de naam van de kaart
      */
@@ -66,15 +66,17 @@ public abstract class Kaart {
     }
 
     /**
-     *
-     * @return
+     * Geeft het id van de kaart terug
+     * 
+     * @return het id van de kaart
      */
     public int getId() {
         return id;
     }
 
     /**
-     *
+     * Setter die gebruikt wordt om het id van een kaart toe te wijzen via de db
+     * 
      * @param id
      */
     private void setId(int id) {

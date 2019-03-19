@@ -58,47 +58,53 @@ public class Race extends Kerkerkaart {
     }
 
     /**
-     *
-     * @return
+     * Boolean die beslist of het een extra wapen is of niet
+     * 
+     * @return true = extra wapen, false = geen extra wapen
      */
     public boolean isExtraWapen() {
         return extraWapen;
     }
 
     /**
-     *
-     * @return
+     * Boolean die beslist of het dubbele prijs is of niet
+     *  
+     * @return true = doublePrice, false = geen dubblePrice
      */
     public boolean isDoublePrice() {
         return doublePrice;
     }
 
     /**
-     *
-     * @return
+     * Boolean die beslist of het extra runaway is of niet
+     * 
+     * @return true = isExtraRunAway, false = geen isExtraRunAway
      */
     public boolean isExtraRunAway() {
         return extraRunAway;
     }
 
     /**
-     *
-     * @return
+     * Getter die het type teruggeeft
+     * 
+     * @return String van het type
      */
     public String getType() {
         return type;
     }
 
     /**
-     *
-     * @return
+     * Getter die de description teruggeeft
+     * 
+     * @return String van de description
      */
     public String getDescription() {
         return text;
     }
 
     /**
-     *
+     * Setter die text initialiseert wanneer deze niet null of leeg is
+     * 
      * @param text
      */
     private void setText(String text) {
@@ -109,7 +115,8 @@ public class Race extends Kerkerkaart {
     }
 
     /**
-     *
+     * Controle ofdat het type niet null is
+     * 
      * @param type
      */
     private void controleerType(String type) {

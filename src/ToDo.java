@@ -2,7 +2,7 @@
 /**
  * Controle van de namen nog aanpassen ==> DONE
  *
- * Java Doc aanvullen in klassen domein.kaarten.
+ * Java Doc aanvullen in klassen domein.kaarten. -- semi done, domein.kaarten, domein.kaarten.kerkerkaarten en domein.kaarten.kerkerkaarten.monsterbadstuff gedaan
  * 
  * Setters maken in domein.kaarten en toepassen in constructors, illegalargumentexceptions schrijven in meerdere talen.
  * setters maken voor ALLE klassen == SEMI DONE
