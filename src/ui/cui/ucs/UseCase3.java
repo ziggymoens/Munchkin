@@ -39,7 +39,7 @@ class UseCase3 {
         try {
             String huidigeSituatie = dc.geefSpelsituatie();
             System.out.println(ColorsOutput.achtergrond("yellow") + dc.geefSpelsituatie() + ColorsOutput.reset());
-            System.out.println(dc.toonBovensteKk());
+            System.out.println(dc.toonBovensteKk()+ " " + dc.geefTypeKaart(dc.geefIdBovensteKaart()));
             huidigeKaart = dc.geefIdBovensteKaart();
             System.out.println(LanguageResource.getString("usecase3.confirm"));
             String bev = SCAN.next();

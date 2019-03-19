@@ -38,6 +38,17 @@ public class UseCase1 {
         } catch (Exception e) {
             System.out.print(Printer.exceptionCatch("Exception", e, false));
         }
+//        try {
+//            System.out.println(LanguageResource.getString("usecase1.askgui"));
+//            char gui = SCAN.next().toLowerCase().charAt(0);
+//            if (gui == 'g') {
+//                String[] args = {};
+//                MainGUI.main(args);
+//                System.exit(0);
+//            }
+//        }catch (Exception e){
+//            System.out.println(Printer.exceptionCatch("Exception", e, false));
+//        }
         //gebruiker vragen of hij een nieuw spel wil starten.
         System.out.println(LanguageResource.getString("newGame"));
         String nieuwSpel = SCAN.next().toLowerCase();
@@ -46,7 +57,7 @@ public class UseCase1 {
             System.out.println(LanguageResource.getString("newGame"));
             nieuwSpel = SCAN.next().toLowerCase();
         }
-        //try {
+        try {
             if (nieuwSpel.equals(LanguageResource.getString("yes"))) {
                 //th1.start();
                 maakSpel();
@@ -58,9 +69,9 @@ public class UseCase1 {
             } else if (nieuwSpel.equals(LanguageResource.getString("no"))) {
                 System.out.println(Printer.printGreen("gamestop"));
             }
-        //}catch (Exception e) {
-         //   System.out.print(Printer.exceptionCatch("Exception", e, false));
-        //}
+        } catch (Exception e) {
+            System.out.print(Printer.exceptionCatch("Exception", e, false));
+        }
     }
 
     /**
@@ -123,7 +134,7 @@ public class UseCase1 {
                 th1.suspend();
                 System.out.print(Printer.exceptionCatch("KaartDatabaseException", e));
                 SCAN.nextLine();
-            }catch (InputMismatchException e){
+            } catch (InputMismatchException e) {
                 th1.suspend();
                 System.out.println(Printer.exceptionCatch("InputException", e, false));
                 SCAN.nextLine();
@@ -180,7 +191,7 @@ public class UseCase1 {
             try {
                 System.out.println(LanguageResource.getString("ask.sex"));
                 String geslacht = SCAN.next();
-                if (geslacht.equals("x")){
+                if (geslacht.equals("x")) {
                     System.err.print("enkel sociaal aanvaarde geslachten");
                 }
                 dc.geefSpelerGeslacht(i, geslacht);
