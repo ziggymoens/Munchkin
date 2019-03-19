@@ -33,6 +33,8 @@
  * .isBlank() niet gebruiken in setters, veranderen naar .trim().isEmpty -- moeilijk ==> DONE
  *
  * JAVADOCSSSSSSSSS!!!!!!!!!!!!!!
+ *
+ * CarriageReturn?
  */
 
 public class ToDo {

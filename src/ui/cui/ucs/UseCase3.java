@@ -65,7 +65,7 @@ class UseCase3 {
 
     private void beheerKaarten() {
         try{
-            UseCaseY ucY = new UseCaseY(this.dc);
+            UseCase7 ucY = new UseCase7(this.dc);
             ucY.beheerKaarten(naam);
             while (dc.spelerTeVeelKaarten(naam)) {
                 ucY.beheerKaarten(naam);
@@ -85,7 +85,7 @@ class UseCase3 {
         try {
             UseCase4 uc4 = new UseCase4(this.dc);
             uc4.bereidSpelVoor();
-            UseCaseX ucX = new UseCaseX(this.dc);
+            UseCase6 ucX = new UseCase6(this.dc);
             ucX.vechtMetMonster();
         } catch (UnsupportedOperationException e) {
             System.out.print(Printer.exceptionCatch("UnsupportedOperationException", e, false));
