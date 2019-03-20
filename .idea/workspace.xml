@@ -3,8 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="65c6d22f-232f-4b77-bc1e-1f6c0d29be8c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/built-jar.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/built-jar.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/language/resourcebundle/i18n.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/language/resourcebundle/i18n.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/language/resourcebundle/i18n_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/language/resourcebundle/i18n_en.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/language/resourcebundle/i18n_fr.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/language/resourcebundle/i18n_fr.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/language/resourcebundle/i18n_nl.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/language/resourcebundle/i18n_nl.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ui/gui/StartUpGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/gui/StartUpGui.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/gui/usecase1/UseCase1G.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/gui/usecase1/UseCase1G.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -68,7 +72,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/domein/kaarten/Kaart.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
+            <state relative-caret-position="615">
               <caret line="41" column="5" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
             </state>
           </provider>
@@ -83,11 +87,15 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ui/gui/StartUpGui.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="19" column="34" lean-forward="true" selection-start-line="19" selection-start-column="34" selection-end-line="19" selection-end-column="34" />
+            <state relative-caret-position="326">
+              <caret line="41" column="66" selection-start-line="41" selection-start-column="66" selection-end-line="41" selection-end-column="66" />
+              <folding>
+                <element signature="e#706#707#0" expanded="true" />
+                <element signature="e#734#735#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -96,16 +104,21 @@
         <entry file="file://$PROJECT_DIR$/src/ui/gui/usecase1/UseCase1G.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="375">
-              <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+              <caret line="29" selection-start-line="29" selection-end-line="29" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ui/gui/usecase1/UseCase1G.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="38" column="7" selection-start-line="38" selection-start-column="7" selection-end-line="38" selection-end-column="7" />
+            <state relative-caret-position="288">
+              <caret line="70" column="42" selection-start-line="70" selection-start-column="42" selection-end-line="70" selection-end-column="42" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#2000#2001#0" expanded="true" />
+                <element signature="e#2025#2026#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -226,7 +239,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" fullScreen="true">
     <option name="y" value="23" />
     <option name="width" value="1440" />
     <option name="height" value="877" />
@@ -236,6 +249,28 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+          <expand>
+            <path>
+              <item name="munchkin-g35_a" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+            </path>
+            <path>
+              <item name="munchkin-g35_a" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="munchkin-g35_a" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -324,35 +359,13 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope">
-        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
-          <expand>
-            <path>
-              <item name="munchkin-g35_a" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-            </path>
-            <path>
-              <item name="munchkin-g35_a" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="munchkin-g35_a" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553021082118" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553117412808" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -696,18 +709,25 @@
       <option name="project" value="LOCAL" />
       <updated>1553017458304</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="gui">
+      <created>1553113736742</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1553113736742</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="73952000" />
+    <option name="totallyTimeSpent" value="75459000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="877" extended-state="6" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Learn" order="0" weight="0.32897604" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.18168813" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.18383405" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Designer" order="4" />
@@ -718,7 +738,7 @@
       <window_info anchor="bottom" id="Messages" order="1" sideWeight="0.49891067" weight="0.32942238" />
       <window_info anchor="bottom" id="Message" order="2" />
       <window_info anchor="bottom" id="Find" order="3" weight="0.32942238" />
-      <window_info anchor="bottom" id="Run" order="4" sideWeight="0.49782136" weight="0.24713376" />
+      <window_info anchor="bottom" id="Run" order="4" sideWeight="0.49782136" visible="true" weight="0.23373494" />
       <window_info anchor="bottom" id="Debug" order="5" weight="0.3998195" />
       <window_info anchor="bottom" id="Cvs" order="6" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="7" weight="0.4" />
@@ -795,12 +815,12 @@
     <MESSAGE value="kleine aanpassing" />
     <MESSAGE value="herstruct." />
     <MESSAGE value="exception" />
-    <MESSAGE value="gui" />
     <MESSAGE value="..." />
     <MESSAGE value="rename" />
     <MESSAGE value="kleine aanpassingen in uc1 en uc2, hernaming ucX en ucY naar uc6 en uc7" />
     <MESSAGE value="javadocs aangevuld" />
-    <option name="LAST_COMMIT_MESSAGE" value="javadocs aangevuld" />
+    <MESSAGE value="gui" />
+    <option name="LAST_COMMIT_MESSAGE" value="gui" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/printer/ColorsOutput.java">
@@ -1019,28 +1039,28 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/language/resourcebundle/i18n_nl.properties">
-      <provider editor-type-id="ResourceBundle" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="444">
           <caret line="81" column="7" lean-forward="true" selection-start-line="81" selection-start-column="7" selection-end-line="81" selection-end-column="7" />
         </state>
       </provider>
+      <provider editor-type-id="ResourceBundle" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/language/resourcebundle/i18n_en.properties">
-      <provider editor-type-id="ResourceBundle" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="519">
           <caret line="91" column="6" selection-start-line="91" selection-start-column="6" selection-end-line="91" selection-end-column="6" />
         </state>
       </provider>
+      <provider editor-type-id="ResourceBundle" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/language/resourcebundle/i18n_fr.properties">
-      <provider editor-type-id="ResourceBundle" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="429">
           <caret line="85" column="29" selection-start-line="85" selection-start-column="29" selection-end-line="85" selection-end-column="29" />
         </state>
       </provider>
+      <provider editor-type-id="ResourceBundle" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/domein/Spel.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1122,25 +1142,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/language/resourcebundle/i18n.properties">
-      <provider editor-type-id="ResourceBundle" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="747">
           <caret line="90" selection-start-line="90" selection-end-line="90" />
         </state>
       </provider>
+      <provider editor-type-id="ResourceBundle" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/gui/MainGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#171#172#0" expanded="true" />
-            <element signature="e#199#200#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/gui/MainGUI.java" />
     <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase2.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1020">
@@ -1202,7 +1211,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/domein/kaarten/Kaart.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
+        <state relative-caret-position="615">
           <caret line="41" column="5" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
         </state>
       </provider>
@@ -1221,24 +1230,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/gui/StartUpGui.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="19" column="34" lean-forward="true" selection-start-line="19" selection-start-column="34" selection-end-line="19" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ui/gui/usecase1/UseCase1G.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
-          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ui/gui/usecase1/UseCase1G.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="38" column="7" selection-start-line="38" selection-start-column="7" selection-end-line="38" selection-end-column="7" />
+        <state relative-caret-position="288">
+          <caret line="70" column="42" selection-start-line="70" selection-start-column="42" selection-end-line="70" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2000#2001#0" expanded="true" />
+            <element signature="e#2025#2026#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/gui/StartUpGui.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="326">
+          <caret line="41" column="66" selection-start-line="41" selection-start-column="66" selection-end-line="41" selection-end-column="66" />
+          <folding>
+            <element signature="e#706#707#0" expanded="true" />
+            <element signature="e#734#735#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
