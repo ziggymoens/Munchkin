@@ -25,5 +25,6 @@ public class StartUpGui extends Application {
         stage.setScene(scene);
         stage.setTitle("Munchkin - G35");
         stage.show();
+        stage.setResizable(false);
     }
 }
