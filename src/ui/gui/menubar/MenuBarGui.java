@@ -34,7 +34,7 @@ public class MenuBarGui extends MenuBar {
         menuItemsOptions[2].setOnAction(this::buttonNewGameEventHandler);
         menuItemsOptions[3] = new SeparatorMenuItem();
         menuItemsOptions[4] = new MenuItem("Exit Game");
-        menuItemsOptions[4].setAccelerator(KeyCombination.keyCombination("Ctrl+E"));
+        menuItemsOptions[4].setAccelerator(KeyCombination.keyCombination("Ctrl+Q"));
         menuItemsOptions[4].setOnAction(this::buttonNewGameEventHandler);
 
         menus[0].getItems().addAll(menuItemsOptions);
