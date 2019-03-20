@@ -47,11 +47,12 @@ public class UseCase1G extends BorderPane {
     private void layoutUC1(){
         vBox = new VBox();
         hBox = new HBox();
+        HBox top = new HBox();
         Label label = new Label("Munchkin");
         label.setId("titel");
         MenuBarGUI menuBarGUI = new MenuBarGUI();
-        setTop(menuBarGUI);
-        setTop(label);
+        top.getChildren().addAll(label, menuBarGUI);
+        setTop(top);
         setCenter(vBox);
         setBottom(hBox);
     }
@@ -124,7 +125,7 @@ public class UseCase1G extends BorderPane {
                 locale = new Locale("en");
                 break;
         }
-        //LanguageResource.setLocale(locale);
+        LanguageResource.setLocale(locale);
         vBox.getChildren().clear();
         hBox.getChildren().clear();
         Label label = new Label();
@@ -135,7 +136,7 @@ public class UseCase1G extends BorderPane {
     }
 
     private void newGame() {
-        String yes = LanguageResource.getStringLanguage("yes", locale);
+        String yes = LanguageResource.getString("yes");
         String no = LanguageResource.getStringLanguage("no", locale);
 
         hBox.getChildren().clear();
