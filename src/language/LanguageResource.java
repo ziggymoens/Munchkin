@@ -17,6 +17,10 @@ public class LanguageResource {
     private static ResourceBundle bundle;
     private static String location = "language/resourcebundle/i18n";
 
+    static {
+        setLocale(new Locale("en"));
+        setBundle();
+    }
     /**
      * Contructor voor LanguageResource zonder parameters, Engels wordt
      * ingesteld als taal
