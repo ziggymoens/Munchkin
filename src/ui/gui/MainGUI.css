@@ -1,0 +1,25 @@
+BorderPane, UseCase1G {
+    -fx-background-image: url("/../images/munchkin-background.jpg");
+    -fx-background-position: top center;
+    -fx-padding: 10;
+    -fx-pref-width: 1000;
+    -fx-pref-height: 750;
+}
+
+#titel{
+    -fx-font: bold 30 "sans-serif";
+    -fx-alignment: center;
+    -fx-pref-width: 32000; /* groot genoeg */
+}
+VBox {
+    -fx-alignment: center;
+}
+
+VBox Label {
+    -fx-font: bold 15 "system";
+}
+
+HBox {
+    -fx-alignment: center;
+    -fx-spacing: 10;
+}
