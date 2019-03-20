@@ -150,7 +150,7 @@ public class UseCase1G extends BorderPane {
         button.setOnAction(this::ButtonNewGameEventHandler);
 
         vBox.getChildren().add(label);
-        hBox.getChildren().addAll(choiceBoxTaal, button);
+        hBox.getChildren().addAll(choiceBoxNewGame, button);
     }
 
     private void ButtonNewGameEventHandler(ActionEvent event) {
@@ -167,6 +167,8 @@ public class UseCase1G extends BorderPane {
 
     private void askPlayers() {
 
+        vBox.getChildren().clear();
+        hBox.getChildren().clear();
         Label label = new Label(LanguageResource.getStringLanguage("amountOfPlayers", locale));
         as = new ChoiceBox<>();
         for (int i =3; i<=6;i++){
