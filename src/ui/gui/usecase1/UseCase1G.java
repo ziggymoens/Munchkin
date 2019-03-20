@@ -12,6 +12,7 @@ import java.util.*;
 
 public class UseCase1G extends BorderPane {
     private DomeinController dc;
+    private Locale locale = new Locale("en");
     private VBox vBox;
     private HBox hBox;
     private ChoiceBox<String> choiceBoxTaal;
@@ -29,9 +30,11 @@ public class UseCase1G extends BorderPane {
         Label label = new Label("Munchkin");
         label.setId("titel");
 
+
+
         //taal laten kiezen
         welcome();
-
+        //LanguageResource.setLocale(locale);
         //vragen een nieuw spel te starten
         newGame();
 
@@ -44,16 +47,6 @@ public class UseCase1G extends BorderPane {
     }
 
     private void welcome() {
-        MenuBar mb = new MenuBar();
-        Menu m1 = new Menu("Options");
-        MenuItem open = new MenuItem("Open...");
-        MenuItem opslaan = new MenuItem("Save...");
-        MenuItem quit = new MenuItem("Quit");
-        open.setOnAction(this::);
-        opslaan.setOnAction(this::);
-        quit.setOnAction(this::);
-        m1.getItems().addAll(open, opslaan, quit);
-        mb.getMenus().add(m1);
         vBox = new VBox();
         vBox.getChildren().add(new Label("Welkom"));
 
@@ -73,9 +66,18 @@ public class UseCase1G extends BorderPane {
         //button en choiceB toevoegen aan Hbox
         hBox.getChildren().addAll(choiceBoxTaal, button);
     }
+//
+//    private void ButtonOpenEventHandler(ActionEvent event){
+//
+//    }
+//    private void ButtonSaveEventHandler(ActionEvent event){
+//
+//    }
+//    private void ButtonExitEventHandler(ActionEvent event){
+//
+//    }
 
     private void ButtonTaalEventHandler(ActionEvent event) {
-        Locale locale;
         switch (choiceBoxTaal.getValue()) {
             case "Nederlands":
                 locale = new Locale("nl");
@@ -88,7 +90,7 @@ public class UseCase1G extends BorderPane {
                 locale = new Locale("en");
                 break;
         }
-        LanguageResource.setLocale(locale);
+        //LanguageResource.setLocale(locale);
         vBox.getChildren().clear();
         Label label = new Label();
         label.setText(String.format("%s: %s", LanguageResource.getString("picked"), LanguageResource.getString("language")));
@@ -96,39 +98,39 @@ public class UseCase1G extends BorderPane {
     }
 
     private void newGame() {
-        String yes = LanguageResource.getString("yes");
-        String no = LanguageResource.getString("no");
+        String yes = LanguageResource.getStringLanguage("yes", locale);
+        String no = LanguageResource.getStringLanguage("no", locale);
 
         hBox.getChildren().clear();
         vBox.getChildren().clear();
 
         Label label = new Label();
-        label.setText(LanguageResource.getString("newGame"));
+        label.setText(LanguageResource.getStringLanguage("newGame", locale));
         choiceBoxNewGame = new ChoiceBox<>();
         choiceBoxNewGame.getItems().addAll(yes, no);
-        choiceBoxNewGame.setValue(LanguageResource.getString(yes));
-        Button button = new Button(LanguageResource.getString("pick"));
+        choiceBoxNewGame.setValue(yes);
+        Button button = new Button(LanguageResource.getStringLanguage("pick", locale));
         button.setOnAction(this::ButtonNewGameEventHandler);
 
         vBox.getChildren().addAll(label, choiceBoxNewGame, button);
     }
 
     private void ButtonNewGameEventHandler(ActionEvent event) {
-        newGame = choiceBoxNewGame.getValue().equals(LanguageResource.getString("yes"));
+        newGame = choiceBoxNewGame.getValue().equals(LanguageResource.getStringLanguage("yes", locale));
         vBox.getChildren().clear();
         if (newGame) {
             askPlayers();
         } else {
-            Label label = new Label(LanguageResource.getString("gamestop"));
+            Label label = new Label(LanguageResource.getStringLanguage("gamestop", locale));
             vBox.getChildren().add(label);
         }
     }
 
     private void askPlayers() {
 
-        Label label = new Label(LanguageResource.getString("amountOfPlayers"));
+        Label label = new Label(LanguageResource.getStringLanguage("amountOfPlayers", locale));
         TextArea as = new TextArea();
-        Button button = new Button(LanguageResource.getString("pick"));
+        Button button = new Button(LanguageResource.getStringLanguage("pick", locale));
         button.setOnAction(this::ButtonPlayersEventHandler);
         vBox.getChildren().addAll(label, as, button);
     }

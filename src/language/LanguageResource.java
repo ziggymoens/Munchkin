@@ -15,6 +15,7 @@ public class LanguageResource {
 
     private static Locale locale;
     private static ResourceBundle bundle;
+    private static String location = "language/resourcebundle/i18n";
 
     /**
      * Contructor voor LanguageResource zonder parameters, Engels wordt
@@ -52,7 +53,7 @@ public class LanguageResource {
      * Bundle in LanguageResource initialiseren met de gegeven taal
      */
     private static void setBundle() {
-        LanguageResource.bundle = ResourceBundle.getBundle("language/resourcebundle/i18n", getLocale());
+        LanguageResource.bundle = ResourceBundle.getBundle(location, getLocale());
     }
 
     /**
@@ -81,7 +82,7 @@ public class LanguageResource {
      * @return String met het woord in de gekozen taal
      */
     public static String getStringLanguage(String string, Locale locale) {
-        return ResourceBundle.getBundle("language/resourcebundle/i18n", locale).getString(string);
+        return ResourceBundle.getBundle(location, locale).getString(string);
     }
 
     /**
