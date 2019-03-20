@@ -24,7 +24,7 @@ public class UseCase1G extends MainGui {
     private ChoiceBox<String> choiceBoxNewGame;
     private ChoiceBox<Integer> as;
     private int aantalS;
-    private TextArea naamVeld;
+    private TextField naamVeld;
     private ChoiceBox<String> choiceBoxGeslacht;
     private int nr;
 
@@ -194,19 +194,24 @@ public class UseCase1G extends MainGui {
     }
 
     private void spelersToevoegen() {
+
         Label naam = new Label(LanguageResource.getString("player.name"));
-        naamVeld = new TextArea();
+        naamVeld = new TextField();
+
         Label geslacht = new Label(LanguageResource.getString("player.sex"));
         choiceBoxGeslacht = new ChoiceBox<>();
         choiceBoxGeslacht.getItems().addAll(LanguageResource.getString("man"), LanguageResource.getString("woman"));
         Button button = new Button("select");
         button.setOnAction(this::spelerAanmaken);
         for (int i = 0; i < aantalS; i++) {
+            vBox.getChildren().clear();
+            hBox.getChildren().clear();
             nr = i;
-            Label label = new Label(String.format("%s %d", LanguageResource.getString("player"), i+1));
+            Label label = new Label(String.format("%s %d", LanguageResource.getString("player"), i + 1));
             vBox.getChildren().add(label);
             vBox.getChildren().addAll(naam, naamVeld);
             vBox.getChildren().addAll(geslacht, choiceBoxGeslacht);
+            hBox.getChildren().add(button);
         }
     }
 

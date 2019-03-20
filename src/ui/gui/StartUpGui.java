@@ -19,7 +19,6 @@ import ui.gui.usecase1.UseCase1G;
 public class StartUpGui extends Application {
 
     public static DomeinController dc;
-    //public static BorderPane borderPane = new BorderPane();
 
     public static void main(String[] args) {
         launch(args);
@@ -27,7 +26,6 @@ public class StartUpGui extends Application {
 
     @Override
     public void start(Stage stage) {
-        //borderPane.setTop(new MenuBarGui());
         dc = new DomeinController();
         Scene scene = new Scene(new UseCase1G(dc));
         stage.setScene(scene);
@@ -35,22 +33,19 @@ public class StartUpGui extends Application {
         stage.show();
         stage.setResizable(false);
         stage.setOnCloseRequest(
-                new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent event) {
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle(LanguageResource.getString("close"));
-                alert.setHeaderText(LanguageResource.getString("closeconfirm"));
-                alert.setContentText(String.format("%s%n%s", LanguageResource.getString("closetext1"), LanguageResource.getString("closetext2")));
-//                alert.setContentText(LanguageResource.getString("closetext1"));
-//                alert.setContentText(LanguageResource.getString("closetext2"));
-                Optional<ButtonType> antwoord = alert.showAndWait();
-                if (antwoord.get() == ButtonType.CANCEL) {
-                    event.consume();
-                } else {
-                    Platform.exit();
-                }
-            }
-        });
+                event -> {
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle(LanguageResource.getString("close"));
+                    alert.setHeaderText(LanguageResource.getString("closeconfirm"));
+                    alert.setContentText(String.format("%s%n%s", LanguageResource.getString("closetext1"), LanguageResource.getString("closetext2")));
+    //                alert.setContentText(LanguageResource.getString("closetext1"));
+    //                alert.setContentText(LanguageResource.getString("closetext2"));
+                    Optional<ButtonType> antwoord = alert.showAndWait();
+                    if (antwoord.get() == ButtonType.CANCEL) {
+                        event.consume();
+                    } else {
+                        Platform.exit();
+                    }
+                });
     }
 }
