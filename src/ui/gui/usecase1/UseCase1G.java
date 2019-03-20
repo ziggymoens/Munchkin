@@ -59,12 +59,16 @@ public class UseCase1G extends MainGui {
     private void welcome() {
         vBox.getChildren().clear();
         Label label = new Label("Welkom");
+        Label Welcome = new Label("Welcome");
+        Label Bienvenue = new Label("Bienvenue");
 
         //button in Hbox die taal selecteert
         Button button = new Button("next");
         button.setOnAction(this::ButtonWelkomEventHandler);
 
         vBox.getChildren().add(label);
+        vBox.getChildren().add(Welcome);
+        vBox.getChildren().add(Bienvenue);
 
         //button toevoegen aan Hbox
         hBox.getChildren().add(button);
