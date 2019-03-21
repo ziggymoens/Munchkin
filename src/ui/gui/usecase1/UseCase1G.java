@@ -1,7 +1,9 @@
 package ui.gui.usecase1;
 
 import domein.DomeinController;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
@@ -158,6 +160,16 @@ public class UseCase1G extends MainGui {
             askPlayers();
         } else {
             Label label = new Label(LanguageResource.getString("gamestop"));
+            Button button = new Button(LanguageResource.getString("quit"));
+            button.setOnAction(
+                    new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent event) {
+                            Platform.exit();
+                        }
+                    }
+            );
+            hBox.getChildren().add(button);
             vBox.getChildren().add(label);
         }
     }
