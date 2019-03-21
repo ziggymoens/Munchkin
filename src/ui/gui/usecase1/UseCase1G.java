@@ -65,20 +65,22 @@ public class UseCase1G extends MainGui {
             welkom.append(String.format("%s%n", LanguageResource.getStringLanguage("welcome", new Locale(loc))));
         }
         Label welcome = new Label(welkom.toString());
-
+        welcome.setId("welcomeString");
         //button in Hbox die taal selecteert
-        Button button = new Button();
+        Button button = new Button("→");
         button.setOnAction(this::ButtonWelkomEventHandler);
         button.setId("buttonWelkom");
+
 
         vBox.getChildren().add(welcome);
 
         //button toevoegen aan Hbox
-        hBox.getChildren().add(button);
+        hBox.getChildren().addAll(button);
     }
 
     private void ButtonWelkomEventHandler(ActionEvent event) {
         askTaal();
+
     }
 
     private void askTaal() {
@@ -99,7 +101,7 @@ public class UseCase1G extends MainGui {
         choiceBoxTaal.setValue(talen.get(0));
 
         //button in Hbox die taal selecteert
-        Button button = new Button();
+        Button button = new Button("→");
 
         button.setOnAction(this::buttonTaalEventHandler);
 
@@ -125,7 +127,7 @@ public class UseCase1G extends MainGui {
         LanguageResource.setLocale(locale);
         vBox.getChildren().clear();
         hBox.getChildren().clear();
-        Label label = new Label();
+        Label label = new Label("→");
         label.setText(String.format("%s: %s", LanguageResource.getString("picked"), LanguageResource.getString("language")));
         getChildren().add(label);
         updateMenuLang();
@@ -145,7 +147,7 @@ public class UseCase1G extends MainGui {
         choiceBoxNewGame = new ChoiceBox<>();
         choiceBoxNewGame.getItems().addAll(yes, no);
         choiceBoxNewGame.setValue(yes);
-        Button button = new Button(LanguageResource.getString("pick"));
+        Button button = new Button("→");
         button.setOnAction(this::buttonNewGameEventHandler);
 
         vBox.getChildren().add(label);

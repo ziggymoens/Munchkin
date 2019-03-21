@@ -12,10 +12,8 @@ BorderPane, UseCase1G {
     -fx-pref-width: 32000; /* groot genoeg */
 }
 #buttonWelkom{
-    -fx-background-image: url("../../images/right-arrow.png");
-    -fx-background-color: blue;
-    -fx-background-size: 100;
-    -fx-background-position: top center;
+    -fx-font: bold 20 "sans-serif";
+    -fx-text-alignment: center;
 }
 VBox {
     -fx-alignment: center;
@@ -32,4 +30,9 @@ HBox {
 
 Button{
     -fx-spacing: 10;
+}
+
+#welcomeString{
+    -fx-text-alignment: center;
+    -fx-font: bold 15 "sans-serif";
 }
