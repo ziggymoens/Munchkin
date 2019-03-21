@@ -97,6 +97,7 @@ public class MenuBarGui extends MenuBar {
     }
 
     private void buttonExitEventHandler(ActionEvent event) {
+
         Platform.exit();
         System.exit(0);
     }
