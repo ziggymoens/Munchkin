@@ -11,6 +11,12 @@ BorderPane, UseCase1G {
     -fx-alignment: left;
     -fx-pref-width: 32000; /* groot genoeg */
 }
+#buttonWelkom{
+    -fx-background-image: url("../../images/right-arrow.png");
+    -fx-background-color: blue;
+    -fx-background-size: 100;
+    -fx-background-position: top center;
+}
 VBox {
     -fx-alignment: center;
 }

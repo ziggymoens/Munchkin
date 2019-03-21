@@ -10,6 +10,7 @@ import language.LanguageResource;
 import ui.gui.StartUpGui;
 import ui.gui.usecase1.UseCase1G;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -28,7 +29,13 @@ public class MenuBarGui extends MenuBar {
         MenuItem[] menuItemsOptions = new MenuItem[5];
         menuItemsOptions[0] = new MenuItem("New Game");
         menuItemsOptions[0].setAccelerator(KeyCombination.keyCombination("Ctrl+N"));
-        menuItemsOptions[0].setOnAction(this::buttonNewGameEventHandler);
+        menuItemsOptions[0].setOnAction(event -> {
+            try {
+                buttonNewGameEventHandler(event);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
         menuItemsOptions[1] = new MenuItem("Save Game");
         menuItemsOptions[1].setAccelerator(KeyCombination.keyCombination("Ctrl+S"));
         menuItemsOptions[1].setOnAction(this::buttonSaveEventHandler);
@@ -85,7 +92,9 @@ public class MenuBarGui extends MenuBar {
         item.setSelected(true);
     }
 
-    private void buttonNewGameEventHandler(ActionEvent event) {
+    private void buttonNewGameEventHandler(ActionEvent event) throws IOException {
+        //StartUpGui startUpGui = new StartUpGui();
+        //startUpGui.reload();
     }
 
     private void buttonOpenEventHandler(ActionEvent event) {

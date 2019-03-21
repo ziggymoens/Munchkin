@@ -38,6 +38,8 @@ public class StartUpGui extends Application {
                     alert.setTitle(LanguageResource.getString("close"));
                     alert.setHeaderText(LanguageResource.getString("closeconfirm"));
                     alert.setContentText(String.format("%s%n%s", LanguageResource.getString("closetext1"), LanguageResource.getString("closetext2")));
+    //                alert.setContentText(LanguageResource.getString("closetext1"));
+    //                alert.setContentText(LanguageResource.getString("closetext2"));
                     Optional<ButtonType> antwoord = alert.showAndWait();
                     if (antwoord.get() == ButtonType.CANCEL) {
                         event.consume();

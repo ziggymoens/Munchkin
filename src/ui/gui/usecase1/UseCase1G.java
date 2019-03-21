@@ -58,17 +58,18 @@ public class UseCase1G extends MainGui {
 
     private void welcome() {
         vBox.getChildren().clear();
-        Label label = new Label("Welkom");
-        Label Welcome = new Label("Welcome");
-        Label Bienvenue = new Label("Bienvenue");
+        StringBuilder welkom = new StringBuilder();
+        for (String loc: talenLoc){
+            welkom.append(String.format("%s%n", LanguageResource.getStringLanguage("welcome", new Locale(loc))));
+        }
+        Label welcome = new Label(welkom.toString());
 
         //button in Hbox die taal selecteert
-        Button button = new Button("next");
+        Button button = new Button();
         button.setOnAction(this::ButtonWelkomEventHandler);
+        button.setId("buttonWelkom");
 
-        vBox.getChildren().add(label);
-        vBox.getChildren().add(Welcome);
-        vBox.getChildren().add(Bienvenue);
+        vBox.getChildren().add(welcome);
 
         //button toevoegen aan Hbox
         hBox.getChildren().add(button);
@@ -96,7 +97,8 @@ public class UseCase1G extends MainGui {
         choiceBoxTaal.setValue(talen.get(0));
 
         //button in Hbox die taal selecteert
-        Button button = new Button("next");
+        Button button = new Button();
+
         button.setOnAction(this::buttonTaalEventHandler);
 
         vBox.getChildren().add(label);
@@ -212,6 +214,7 @@ public class UseCase1G extends MainGui {
             vBox.getChildren().addAll(naam, naamVeld);
             vBox.getChildren().addAll(geslacht, choiceBoxGeslacht);
             hBox.getChildren().add(button);
+
         }
     }
 
