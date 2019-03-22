@@ -9,6 +9,7 @@ import domein.DomeinController;
 import language.LanguageResource;
 import printer.ColorsOutput;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -44,13 +45,36 @@ class UseCase4 {
         }while(help2.equals(LanguageResource.getString("yes")));
 
         int aantal = UseCase2.beurt + 1;
-        for(int i = 0; i < UseCase1.aantalSpelers; i++){
-            if(aantal < UseCase1.aantalSpelers){
-                System.out.println(dc.geefNaamSpeler(aantal) + LanguageResource.getString("usecase4.Monsterhelp"));
-            }else{
-                aantal = -1;
+        boolean[] bool = new boolean[UseCase1.aantalSpelers];
+        while(!areAllTrue(bool)){
+            for(int i = 0; i < UseCase1.aantalSpelers; i++){
+                if(aantal < UseCase1.aantalSpelers){
+                    System.out.println(dc.geefNaamSpeler(aantal) + LanguageResource.getString("usecase4.Monsterhelp"));
+                    System.out.println(LanguageResource.getString("usecase4.choices"));
+                    int keuze = SCAN.nextInt();
+                    switch(keuze){
+                        case 1:
+                            System.out.println();
+                            break;
+                        case 2:
+                            System.out.println();
+                            break;
+                        case 3:
+                            bool[aantal] = true;
+                    }
+
+                }else{
+                    aantal = -1;
+                }
+                aantal ++;
             }
-            aantal ++;
         }
+
+    }
+
+    public boolean areAllTrue(boolean[] array)
+    {
+        for(boolean b : array) if(!b) return false;
+        return true;
     }
 }
