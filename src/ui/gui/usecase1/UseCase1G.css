@@ -1,15 +1,19 @@
 BorderPane, UseCase1G {
     -fx-background-image: url("../../images/munchkin-background.jpg");
     -fx-background-position: top center;
-    -fx-padding: 10;
+    -fx-padding: 0 0 10 0;
     -fx-pref-width: 1000;
     -fx-pref-height: 750;
 }
 
-#titel{
-    -fx-font: bold 30 "sans-serif";
-    -fx-alignment: center;
+#menubar{
+    -fx-font: bold 15 "sans-serif";
+    -fx-alignment: left;
     -fx-pref-width: 32000; /* groot genoeg */
+}
+#buttonWelkom{
+    -fx-font: bold 20 "sans-serif";
+    -fx-text-alignment: center;
 }
 VBox {
     -fx-alignment: center;
@@ -22,4 +26,13 @@ VBox Label {
 HBox {
     -fx-alignment: center;
     -fx-spacing: 10;
+}
+
+Button{
+    -fx-spacing: 10;
+}
+
+#welcomeString{
+    -fx-text-alignment: center;
+    -fx-font: bold 15 "sans-serif";
 }
