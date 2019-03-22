@@ -23,6 +23,7 @@ class UseCase2 {
     //Declaraties voor gehele usecase.
     private final DomeinController dc;
     private final Scanner SCAN;
+    public static int beurt ;
 
     /**
      * Constructor voor Use Case 2.
@@ -53,6 +54,7 @@ class UseCase2 {
                 for (int i = 0; i < aantalSpelers; i++) {
                     if (niemandGewonnen()) {
                         String naam = dc.geefNaamSpeler(i);
+                        beurt = i;
                         speelBeurt(naam);
                     }
                 }

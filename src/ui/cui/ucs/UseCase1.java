@@ -20,7 +20,7 @@ public class UseCase1 {
     private final Scanner SCAN = new Scanner(System.in);
     private final DomeinController dc;
     private final List<Locale> talen;
-    private int aantalSpelers;
+    public static int aantalSpelers;
 
     /**
      * constructor voor UseCase 1
