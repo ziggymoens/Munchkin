@@ -3,10 +3,13 @@ package ui.gui.menubar;
 import domein.DomeinController;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 import language.LanguageResource;
+import ui.cui.ucs.UseCase1;
 import ui.gui.StartUpGui;
 import ui.gui.usecase1.UseCase1G;
 
@@ -26,7 +29,7 @@ public class MenuBarGui extends MenuBar {
         menus[1] = new Menu("Language");
         menus[2] = new Menu("Help");
 
-        MenuItem[] menuItemsOptions = new MenuItem[5];
+        MenuItem[] menuItemsOptions = new MenuItem[6];
         menuItemsOptions[0] = new MenuItem("New Game");
         menuItemsOptions[0].setAccelerator(KeyCombination.keyCombination("Ctrl+N"));
         menuItemsOptions[0].setOnAction(event -> {
@@ -46,6 +49,9 @@ public class MenuBarGui extends MenuBar {
         menuItemsOptions[4] = new MenuItem("Exit Game");
         menuItemsOptions[4].setAccelerator(KeyCombination.keyCombination("Ctrl+Q"));
         menuItemsOptions[4].setOnAction(this::buttonExitEventHandler);
+        menuItemsOptions[5] = new MenuItem("Reload Game");
+        menuItemsOptions[5].setAccelerator(KeyCombination.keyCombination("Ctrl+R"));
+        menuItemsOptions[5].setOnAction(this::reloadEventHandler);
 
         menus[0].getItems().addAll(menuItemsOptions);
 
@@ -72,6 +78,10 @@ public class MenuBarGui extends MenuBar {
 
         getMenus().addAll(menus);
 
+    }
+
+    private void reloadEventHandler(ActionEvent actionEvent) {
+        System.out.println("Reloading");
     }
 
     public void updateMenuBarLang(){

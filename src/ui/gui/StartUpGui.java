@@ -1,19 +1,14 @@
 package ui.gui;
 
 import domein.DomeinController;
-import java.util.Locale;
 import java.util.Optional;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import language.LanguageResource;
-import ui.gui.menubar.MenuBarGui;
 import ui.gui.usecase1.UseCase1G;
 
 public class StartUpGui extends Application {

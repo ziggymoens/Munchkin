@@ -12,8 +12,10 @@ BorderPane, UseCase1G {
     -fx-pref-width: 32000; /* groot genoeg */
 }
 #buttonWelkom{
-    -fx-font: bold 20 "sans-serif";
+    -fx-font: "sans-serif";
+    -fx-font-style: "bold" 20px "sans-serif";
     -fx-text-alignment: center;
+
 }
 VBox {
     -fx-alignment: center;
