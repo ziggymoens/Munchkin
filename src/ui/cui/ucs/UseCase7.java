@@ -31,7 +31,7 @@ class UseCase7 {
                 System.out.println(String.format("1) %s", LanguageResource.getString("usecase8.action1")));
                 System.out.println(String.format("2) %s", LanguageResource.getString("usecase8.action2")));
                 int keuze = SCAN.nextInt();
-                if (keuze != 1 && keuze != 2) {
+                if (keuze < 1 || keuze > 2) {
                     throw new Exception();
                 }
                 tryAgain = false;
