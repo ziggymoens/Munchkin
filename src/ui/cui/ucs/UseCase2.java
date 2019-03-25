@@ -79,19 +79,20 @@ class UseCase2 {
     private void speelBeurt(String naam) {
         int keuze = 0;
         boolean tryAgain = true;
-        while (tryAgain)
-        try {
-            System.out.printf("%s: %s%n", LanguageResource.getString("player.turn"), String.format("%s", ColorsOutput.kleur("blue") + naam + ColorsOutput.reset()));
-            printKeuze();
-            keuze = SCAN.nextInt();
-            if (keuze<1 || keuze>3){
-                throw new Exception();
+        while (tryAgain) {
+            try {
+                System.out.printf("%s: %s%n", LanguageResource.getString("player.turn"), String.format("%s", ColorsOutput.kleur("blue") + naam + ColorsOutput.reset()));
+                printKeuze();
+                keuze = SCAN.nextInt();
+                if (keuze < 1 || keuze > 3) {
+                    throw new Exception();
+                }
+                tryAgain = false;
+            } catch (Exception e) {
+                System.out.println(ColorsOutput.kleur("red") + ColorsOutput.decoration("bold") + LanguageResource.getString("usecase2.choiceinput") + ColorsOutput.reset());
+                //System.out.println(Printer.exceptionCatch("Exception", e, false));
+                SCAN.nextLine();
             }
-            tryAgain=false;
-        } catch (Exception e) {
-            System.out.println(ColorsOutput.kleur("red")+LanguageResource.getString("usecase2.choiceinput")+ColorsOutput.reset());
-            //System.out.println(Printer.exceptionCatch("Exception", e, false));
-            SCAN.nextLine();
         }
         try {
             switch (keuze) {
@@ -122,7 +123,7 @@ class UseCase2 {
                 default:
                     throw new IllegalArgumentException("usecase2.choiceerror");
             }
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.print(Printer.exceptionCatch("IllegalArgumentException", e));
         }
     }
@@ -138,6 +139,7 @@ class UseCase2 {
 
     /**
      * Methode die de naam van de winnaar terug geeft
+     *
      * @return De naam van de winnaar van het spel
      */
     private String geefNaamWinnaar() {
