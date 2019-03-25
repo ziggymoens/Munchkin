@@ -57,6 +57,7 @@ public class LanguageResource {
      * Bundle in LanguageResource initialiseren met de gegeven taal
      */
     private static void setBundle() {
+
         LanguageResource.bundle = ResourceBundle.getBundle(location, getLocale());
     }
 
@@ -75,6 +76,7 @@ public class LanguageResource {
      * @return Bundle met huidige taal
      */
     public ResourceBundle getBundle() {
+
         return bundle;
     }
 
