@@ -50,15 +50,15 @@ class UseCase7 {
                     try {
                         System.out.println(String.format("%s: %s", LanguageResource.getString("usecase7.toitems"), dc.geefKaartenKunnenNaarItems(naam)));
                     } catch (Exception e) {
-
+                        System.out.println(Printer.exceptionCatch("Exception", e, false));
                     }
                     break;
                 case 2:
                     try {
-                        System.out.println(String.format("%s: %s", LanguageResource.getString("usecase7.salable"), dc.geefVerkoopbareKaarten(naam)));
+                        System.out.println(String.format("%s: %s", LanguageResource.getString("usecase7.sellable"), dc.geefVerkoopbareKaarten(naam)));
                         System.out.println(String.format("%s: %s", LanguageResource.getString("usecase7.throwaway"), dc.geefNietVerkoopbareKaarten(naam)));
                     } catch (Exception e) {
-
+                        System.out.println(Printer.exceptionCatch("Exception", e, false));
                     }
                     break;
             }

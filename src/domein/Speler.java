@@ -297,7 +297,9 @@ public class Speler {
         StringBuilder ret = new StringBuilder();
         for (Kaart kaart: kaarten){
             if (kaart instanceof Race || kaart instanceof Equipment){
-                ret.append(kaart.toString());
+                ret.append(String.format(" %s",kaart.toString()));
+            }else{
+                continue;
             }
         }
         return ret.toString();
@@ -308,7 +310,9 @@ public class Speler {
         StringBuilder ret = new StringBuilder();
         for (Kaart kaart: kaarten){
             if (kaart instanceof Equipment || kaart instanceof ConsumablesSchat){
-                ret.append(kaart.toString());
+                ret.append(String.format(" %s",kaart.toString()));
+            }else{
+                continue;
             }
         }
         return ret.toString();
@@ -318,7 +322,7 @@ public class Speler {
         List<Kaart> kaarten = getKaarten();
         StringBuilder ret = new StringBuilder();
         for (Kaart kaart: kaarten){
-            ret.append(kaart.toString());
+            ret.append(String.format(" %s",kaart.toString()));
         }
         return ret.toString();
     }
