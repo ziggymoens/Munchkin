@@ -144,7 +144,7 @@ public class Speler {
      * @param kaart de toegewezen kaart
      */
     public void voegKaartToe(Kaart kaart) {
-        this.kaarten.add(kaart);
+        //this.kaarten.add(kaart);
         if (kaart instanceof Equipment || kaart instanceof ConsumablesSchat) {
             aantalSchatkaarten++;
         } else if (kaart instanceof Monster || kaart instanceof Curse || kaart instanceof Race || kaart instanceof ConsumablesKerker) {
@@ -187,9 +187,9 @@ public class Speler {
      */
     public String kaartenNaarString(List<Kaart> kaarten) {
         StringBuilder ret = new StringBuilder();
-        if (kaarten.size()==0){
+        if (kaarten.size() == 0) {
             ret.append("empty");
-        }else {
+        } else {
             ret.append(kaarten.get(0).getNaam());
             for (int i = 1; i < kaarten.size(); i++) {
                 ret.append(String.format(", %s", kaarten.get(i).getNaam()));
@@ -259,20 +259,22 @@ public class Speler {
     }
 
     public void verwijderItems(String typeLost) {
-        for (Kaart kaart:items){
+        for (Kaart kaart : items) {
             if (kaart instanceof Equipment) {
                 if (((Equipment) kaart).getType().toLowerCase().equals(typeLost.toLowerCase())) {
                     items.remove(kaart);
                 }
 
-            }if (typeLost.toLowerCase().equals("race")){
-                if (kaart instanceof Race){
+            }
+            if (typeLost.toLowerCase().equals("race")) {
+                if (kaart instanceof Race) {
                     items.remove(kaart);
                 }
-            }if(typeLost.toLowerCase().equals("sex")){
-                if (geslacht.equals(LanguageResource.getString("man"))){
+            }
+            if (typeLost.toLowerCase().equals("sex")) {
+                if (geslacht.equals(LanguageResource.getString("man"))) {
                     setGeslacht(LanguageResource.getString("woman"));
-                }else{
+                } else {
                     setGeslacht(LanguageResource.getString("man"));
                 }
             }
@@ -286,32 +288,39 @@ public class Speler {
     public void verwijderItem(int keuze) {
         items.remove(keuze);
     }
-    
-    public int getAantalKaarten()
-    {
-        return aantalSchatkaarten+aantalKerkerkaarten;
+
+    public int getAantalKaarten() {
+        return aantalSchatkaarten + aantalKerkerkaarten;
     }
 
     public String geefKaartenKunnenNaarItems() {
-        List<Kaart> kaarten = getKaarten();
         StringBuilder ret = new StringBuilder();
-        for (Kaart kaart: kaarten){
-            if (kaart instanceof Race || kaart instanceof Equipment){
-                ret.append(String.format(" %s",kaart.toString()));
-            }else{
-                continue;
+        int j = 0;
+        for (Kaart kaart: kaarten) {
+            if (kaart instanceof Race || kaart instanceof Equipment) {
+                if (j == 0) {
+                    ret.append(kaart.getNaam());
+                }else {
+                    ret.append(String.format(", %s",kaart.getNaam()));
+                }
+                j++;
             }
         }
         return ret.toString();
     }
 
     public String geefVerkoopbareKaarten() {
-        List<Kaart> kaarten = getKaarten();
         StringBuilder ret = new StringBuilder();
-        for (Kaart kaart: kaarten){
-            if (kaart instanceof Equipment || kaart instanceof ConsumablesSchat){
-                ret.append(String.format(" %s",kaart.toString()));
-            }else{
+        int j = 0;
+        for (Kaart kaart : kaarten) {
+            if (kaart instanceof Equipment || kaart instanceof ConsumablesSchat) {
+                if (j == 0) {
+                    ret.append(kaart.getNaam());
+                }else {
+                    ret.append(String.format(", %s",kaart.getNaam()));
+                }
+                j++;
+            } else {
                 continue;
             }
         }
@@ -319,11 +328,18 @@ public class Speler {
     }
 
     public String geefNietVerkoopbareKaarten() {
-        List<Kaart> kaarten = getKaarten();
         StringBuilder ret = new StringBuilder();
-        for (Kaart kaart: kaarten){
-            ret.append(String.format(" %s",kaart.toString()));
+        int j = 0;
+        for (Kaart kaart : kaarten) {
+            if (j == 0) {
+                ret.append(kaart.getNaam());
+            }else {
+                ret.append(String.format(", %s",kaart.getNaam()));
+            }
+            j++;
         }
         return ret.toString();
     }
+
+
 }

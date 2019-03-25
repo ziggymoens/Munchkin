@@ -8,6 +8,7 @@ package ui.cui.ucs;
 import domein.DomeinController;
 import language.LanguageResource;
 import printer.ColorsOutput;
+import printer.Printer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,26 +71,38 @@ class UseCase4 {
         for (int i = 0; i < aantalSpelers; i++) {
             if (aantal < aantalSpelers) {
                 //De spelers blijven vragen welke optie hij of zij wilt nemen, tot de speler optie 3 neemt
-                while (!bool[i]) {
-                    System.out.printf("%s%s%n", String.format("%s", ColorsOutput.kleur("blue") + dc.geefNaamSpeler(aantal) + ColorsOutput.reset()), LanguageResource.getString("usecase4.Monsterhelp"));
-                    System.out.println(LanguageResource.getString("usecase4.choices"));
-                    int keuze = SCAN.nextInt();
-                    switch (keuze) {
-                        case 1:
-                            //Mag alleen gebeuren als de speler die vecht akkoord is gegaan dat hij hulp wilt
-                            if (help.equals(LanguageResource.getString("yes"))) {
-                                helpSpeler();
-                                helptmee[aantal] = true;
-                            }else{
-                                System.err.println(LanguageResource.getString("exception.help"));
+                boolean tryAgain = true;
+                while (tryAgain) {
+                    try {
+                        while (!bool[i]) {
+                            System.out.printf("%s%s%n", String.format("%s", ColorsOutput.kleur("blue") + dc.geefNaamSpeler(aantal) + ColorsOutput.reset()), LanguageResource.getString("usecase4.Monsterhelp"));
+                            System.out.println(LanguageResource.getString("usecase4.choices"));
+                            int keuze = SCAN.nextInt();
+                            if (keuze <1 || keuze > 3){
+                                throw new Exception();
                             }
-                            break;
-                        case 2:
-                            helpMonster();
-                            break;
-                        case 3:
-                            bool[i] = true;
-                            break;
+                            switch (keuze) {
+                                case 1:
+                                    //Mag alleen gebeuren als de speler die vecht akkoord is gegaan dat hij hulp wilt
+                                    if (help.equals(LanguageResource.getString("yes"))) {
+                                        helpSpeler();
+                                        helptmee[aantal] = true;
+                                    } else {
+                                        System.err.println(LanguageResource.getString("exception.help"));
+                                    }
+                                    break;
+                                case 2:
+                                    helpMonster();
+                                    break;
+                                case 3:
+                                    bool[i] = true;
+                                    break;
+                            }
+                        }
+                        tryAgain = false;
+                    }catch (Exception e){
+                        System.out.println(ColorsOutput.kleur("red")+ColorsOutput.decoration("bold")+LanguageResource.getString("usecase2.choiceerror")+ColorsOutput.reset());
+                        SCAN.nextLine();
                     }
                 }
             } else {
@@ -113,8 +126,8 @@ class UseCase4 {
             }
             //Het overzicht tonen voor het gevecht(hetgeen dat nog niet in orde is)
         } while (kaart.equals(LanguageResource.getString("yes")));
-        System.out.println(dc.bovensteKaartToString());
-        System.out.printf("Het monster heeft een sterkte van %d en de speler een sterkte van %d%n", monster, speler);
+        System.out.println("\n" + dc.bovensteKaartToString());
+        System.out.printf("Het monster heeft een sterkte van %d en de speler een sterkte van %d%n%n", monster, speler);
         for (int i = 0; i < aantalSpelers; i++) {
             List<String> ret = dc.geefBeknopteSpelsituatie(helptmee[i]);
             System.out.print(ret.get(i));

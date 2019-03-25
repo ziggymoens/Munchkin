@@ -4,7 +4,6 @@ import domein.kaarten.Kerkerkaart;
 import exceptions.kaarten.kerkerkaarten.RaceException;
 
 /**
- *
  * @author ziggy
  */
 public class Race extends Kerkerkaart {
@@ -23,13 +22,13 @@ public class Race extends Kerkerkaart {
         elf, dwarf, halfling, human, everyone, none, female, male
     } //NAKIJKEN
 
-    public Race(String naam){
+    public Race(String naam) {
         this(naam, 999, "+1 to Run Away");
     }
 
     /**
      * Constructor voor kerkerkaart ras
-     *
+     * <p>
      * KLEINE DB
      *
      * @param type
@@ -40,18 +39,22 @@ public class Race extends Kerkerkaart {
     public Race(String type, int id, int combatBonus, int runaway) {
         super(type, id);
         this.type = type;
-        if (type.toLowerCase().equals("dwarf")){
-            setBonusCombat(combatBonus);
-        }else if(type.toLowerCase().equals("halfing")){
-            setMonsterCombat(combatBonus);
-        }else {
-            setRunAway(runaway);
+        switch (type) {
+            case "dwarf":
+                setBonusCombat(combatBonus);
+                break;
+            case "elf":
+                setRunAway(runaway);
+                break;
+            case "halfling":
+                setMonsterCombat(combatBonus);
+                break;
         }
     }
 
     /**
      * Constructor voor kerkerkaart ras (die superklasse Kerkerkaart gebruikt)
-     *
+     * <p>
      * GROTE DB
      *
      * @param type
@@ -88,7 +91,7 @@ public class Race extends Kerkerkaart {
 
     /**
      * Boolean die beslist of het een extra wapen is of niet
-     * 
+     *
      * @return true = extra wapen, false = geen extra wapen
      */
     public boolean isExtraWapen() {
@@ -97,7 +100,7 @@ public class Race extends Kerkerkaart {
 
     /**
      * Boolean die beslist of het dubbele prijs is of niet
-     *  
+     *
      * @return true = doublePrice, false = geen dubblePrice
      */
     public boolean isDoublePrice() {
@@ -106,7 +109,7 @@ public class Race extends Kerkerkaart {
 
     /**
      * Boolean die beslist of het extra runaway is of niet
-     * 
+     *
      * @return true = isExtraRunAway, false = geen isExtraRunAway
      */
     public boolean isExtraRunAway() {
@@ -115,7 +118,7 @@ public class Race extends Kerkerkaart {
 
     /**
      * Getter die het type teruggeeft
-     * 
+     *
      * @return String van het type
      */
     public String getType() {
@@ -124,7 +127,7 @@ public class Race extends Kerkerkaart {
 
     /**
      * Getter die de description teruggeeft
-     * 
+     *
      * @return String van de description
      */
     public String getDescription() {
@@ -133,7 +136,7 @@ public class Race extends Kerkerkaart {
 
     /**
      * Setter die text initialiseert wanneer deze niet null of leeg is
-     * 
+     *
      * @param text
      */
     private void setText(String text) {
@@ -145,7 +148,7 @@ public class Race extends Kerkerkaart {
 
     /**
      * Controle ofdat het type niet null is
-     * 
+     *
      * @param type
      */
     private void controleerType(String type) {
@@ -155,28 +158,48 @@ public class Race extends Kerkerkaart {
     }
 
     public void setBonusCombat(int bonusCombat) {
-        if (bonusCombat<0){
+        if (bonusCombat < 0) {
             throw new RaceException("exception.race.bonuscombat");
         }
         this.bonusCombat = bonusCombat;
     }
 
     public void setMonsterCombat(int monsterCombat) {
-        if (monsterCombat<0){
+        if (monsterCombat < 0) {
             throw new RaceException("exception.race.monstercombat");
         }
         this.monsterCombat = monsterCombat;
     }
 
     public void setRunAway(int runAway) {
-        if (runAway<0){
+        if (runAway < 0) {
             throw new RaceException("exception.race.runaway");
         }
         this.runAway = runAway;
     }
 
+    private String getTekstToString() {
+        String ret = "";
+        switch (type.toLowerCase()) {
+            case "dwarf":
+                ret = String.format("+%d bonus during combat", bonusCombat);
+                break;
+            case "elf":
+                ret = String.format("%d to run away", runAway);
+                break;
+            case "halfling":
+                ret = String.format("-%d moster buring combat", monsterCombat);
+                break;
+            default:
+                ret = "error";
+        }
+        return ret;
+    }
+
     @Override
     public String toString() {
-        return String.format("%s, %s",getNaam(), bonusCombat==0?(monsterCombat==0?String.format("+%d to run away", runAway):String.format("-%d to monster during combat", monsterCombat)):String.format("+%d bonus in combat",bonusCombat));
+        return String.format("%s, %s", getNaam(), getTekstToString());
     }
+
+
 }
