@@ -12,6 +12,9 @@ public class Race extends Kerkerkaart {
     private boolean extraWapen = false;
     private boolean doublePrice = false;
     private boolean extraRunAway = false;
+    private int bonusCombat;
+    private int monsterCombat;
+    private int runAway;
     private final String type;
     private String text;
 
@@ -45,6 +48,7 @@ public class Race extends Kerkerkaart {
         switch (type.toLowerCase()) {
             case "dwarf":
                 extraWapen = true;
+
                 break;
             case "halfling":
                 doublePrice = true;
@@ -123,5 +127,11 @@ public class Race extends Kerkerkaart {
         if (TYPES.valueOf(type.toLowerCase()) == null) {
             throw new RaceException("exception.race.type");
         }
+    }
+
+
+    @Override
+    public String toString() {
+        return String.format("%s, %s",getNaam(), bonusCombat==0?(monsterCombat==0?String.format("+%d to run away", runAway):String.format("-%d to monster during combat", monsterCombat)):String.format("+%d bonus in combat",bonusCombat));
     }
 }

@@ -129,4 +129,10 @@ public class Curse extends Kerkerkaart {
         }
         this.text = text;
     }
+
+
+    @Override
+    public String toString() {
+        return String.format("name: %s, %s%s",getNaam(), levelLost==1?"Lose a level":"lose 2 levels", text.isEmpty()?"":" "+getText());
+    }
 }

@@ -1,8 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="65c6d22f-232f-4b77-bc1e-1f6c0d29be8c" name="Default Changelist" comment="gui semi uc1">
+    <list default="true" id="65c6d22f-232f-4b77-bc1e-1f6c0d29be8c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/ui/cui/ucs/UseCase9.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domein/DomeinController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domein/DomeinController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domein/Spel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domein/Spel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domein/kaarten/Kaart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domein/kaarten/Kaart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domein/kaarten/kerkerkaarten/ConsumablesKerker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domein/kaarten/kerkerkaarten/ConsumablesKerker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domein/kaarten/kerkerkaarten/Curse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domein/kaarten/kerkerkaarten/Curse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domein/kaarten/kerkerkaarten/Monster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domein/kaarten/kerkerkaarten/Monster.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domein/kaarten/kerkerkaarten/Race.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domein/kaarten/kerkerkaarten/Race.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domein/kaarten/kerkerkaarten/monsterbadstuff/BadStuff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domein/kaarten/kerkerkaarten/monsterbadstuff/BadStuff.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domein/kaarten/schatkaarten/ConsumablesSchat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domein/kaarten/schatkaarten/ConsumablesSchat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domein/kaarten/schatkaarten/Equipment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domein/kaarten/schatkaarten/Equipment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/cui/ucs/UseCase1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/cui/ucs/UseCase1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/cui/ucs/UseCase2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/cui/ucs/UseCase2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/cui/ucs/UseCase3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/cui/ucs/UseCase3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/cui/ucs/UseCase4.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/cui/ucs/UseCase4.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/cui/ucs/UseCase8.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/cui/ucs/UseCase8.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -92,70 +108,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/domein/Spel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="703">
-              <caret line="168" selection-start-line="168" selection-end-line="168" />
+            <state relative-caret-position="335">
+              <caret line="191" column="5" lean-forward="true" selection-start-line="191" selection-start-column="5" selection-end-line="191" selection-end-column="5" />
               <folding>
-                <element signature="e#659#660#0" expanded="true" />
-                <element signature="e#682#683#0" expanded="true" />
-                <element signature="e#2514#2515#0" expanded="true" />
-                <element signature="e#2571#2572#0" expanded="true" />
-                <element signature="e#2717#2718#0" expanded="true" />
-                <element signature="e#2747#2748#0" expanded="true" />
-                <element signature="e#3517#3518#0" expanded="true" />
-                <element signature="e#3553#3554#0" expanded="true" />
-                <element signature="e#5563#5564#0" expanded="true" />
-                <element signature="e#5604#5605#0" expanded="true" />
-                <element signature="e#5794#5795#0" expanded="true" />
-                <element signature="e#5846#5847#0" expanded="true" />
-                <element signature="e#6013#6014#0" expanded="true" />
-                <element signature="e#6064#6065#0" expanded="true" />
-                <element signature="e#6107#6108#0" expanded="true" />
-                <element signature="e#6172#6173#0" expanded="true" />
-                <element signature="e#6377#6378#0" expanded="true" />
-                <element signature="e#6407#6408#0" expanded="true" />
-                <element signature="e#7840#7841#0" expanded="true" />
-                <element signature="e#7907#7908#0" expanded="true" />
-                <element signature="e#8859#8860#0" expanded="true" />
-                <element signature="e#8886#8887#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/domein/kaarten/Kaart.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="41" column="5" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/domein/kaarten/Kerkerkaart.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="22" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/domein/kaarten/Schatkaart.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase1.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1810">
-              <caret line="56" column="31" selection-start-line="56" selection-start-column="31" selection-end-line="56" selection-end-column="31" />
-              <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#9879#9880#0" expanded="true" />
+                <element signature="e#9916#9917#0" expanded="true" />
+                <element signature="e#9973#9974#0" expanded="true" />
+                <element signature="e#10025#10026#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -164,8 +123,97 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase2.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-250">
-              <caret line="90" column="24" selection-start-line="90" selection-start-column="24" selection-end-line="90" selection-end-column="24" />
+            <state relative-caret-position="433">
+              <caret line="63" column="58" selection-start-line="63" selection-start-column="58" selection-end-line="63" selection-end-column="58" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase8.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="650">
+              <caret line="59" column="9" lean-forward="true" selection-start-line="59" selection-start-column="9" selection-end-line="59" selection-end-column="9" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase9.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+              <folding>
+                <element signature="e#165#166#0" expanded="true" />
+                <element signature="e#193#194#0" expanded="true" />
+                <element signature="e#224#225#0" expanded="true" />
+                <element signature="e#302#303#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase6.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase5.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase1.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="301">
+              <caret line="67" column="23" lean-forward="true" selection-start-line="67" selection-start-column="23" selection-end-line="67" selection-end-column="23" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase4.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="177">
+              <caret line="53" column="44" selection-start-line="53" selection-start-column="44" selection-end-line="53" selection-end-column="44" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/domein/DomeinController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="296">
+              <caret line="120" column="7" lean-forward="true" selection-start-line="120" selection-start-column="7" selection-end-line="120" selection-end-column="7" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#2462#2463#0" expanded="true" />
+                <element signature="e#2508#2509#0" expanded="true" />
+                <element signature="e#3205#3206#0" expanded="true" />
+                <element signature="e#3284#3285#0" expanded="true" />
+                <element signature="docComment;method#geefSpelNaam#0;class#DomeinController#0" />
+                <element signature="e#4893#4894#0" expanded="true" />
+                <element signature="e#4944#4945#0" expanded="true" />
+                <element signature="e#4988#4989#0" expanded="true" />
+                <element signature="e#5028#5029#0" expanded="true" />
+                <element signature="e#5071#5072#0" expanded="true" />
+                <element signature="e#5110#5111#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -173,45 +221,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase3.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-742">
-              <caret line="41" column="99" selection-start-line="41" selection-start-column="99" selection-end-line="41" selection-end-column="99" />
+            <state relative-caret-position="404">
+              <caret line="51" column="103" lean-forward="true" selection-start-line="51" selection-start-column="103" selection-end-line="51" selection-end-column="103" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ui/gui/usecase1/UseCase1G.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="303">
-              <caret line="70" lean-forward="true" selection-start-line="70" selection-end-line="70" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2283#2284#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ui/gui/menubar/MenuBarGui.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="694">
-              <caret line="96" column="30" selection-start-line="96" selection-start-column="30" selection-end-line="96" selection-end-column="30" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ui/gui/usecase1/UseCase1G.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="27" lean-forward="true" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="27" />
             </state>
           </provider>
         </entry>
@@ -223,8 +237,8 @@
       <list>
         <option value="FxmlFile" />
         <option value="JavaFXApplication" />
-        <option value="Class" />
         <option value="CSS File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -242,6 +256,8 @@
       <find>ask</find>
       <find>language</find>
       <find>setid</find>
+      <find>use</find>
+      <find>beurt</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -250,18 +266,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/gui/UseCase3.java" />
-        <option value="$PROJECT_DIR$/src/gui/Test.java" />
-        <option value="$PROJECT_DIR$/src/persistentie/KaartMapperDb.java" />
-        <option value="$PROJECT_DIR$/src/gui/UseCase1.java" />
-        <option value="$PROJECT_DIR$/src/language/i18n.properties" />
-        <option value="$PROJECT_DIR$/src/language/i18n_en.properties" />
-        <option value="$PROJECT_DIR$/src/language/i18n_fr.properties" />
-        <option value="$PROJECT_DIR$/src/language/i18n_nl.properties" />
-        <option value="$PROJECT_DIR$/src/exceptions/SpelDatabaseException.java" />
-        <option value="$PROJECT_DIR$/src/persistentie/Connectie.java" />
-        <option value="$PROJECT_DIR$/src/gui/ucs/UseCaseX.java" />
-        <option value="$PROJECT_DIR$/src/gui/ucs/UseCaseY.java" />
         <option value="$PROJECT_DIR$/src/gui/ucs/UseCase5.java" />
         <option value="$PROJECT_DIR$/src/gui/ucs/UseCase4.java" />
         <option value="$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java" />
@@ -272,16 +276,12 @@
         <option value="$PROJECT_DIR$/src/language/resourcebundle/i18n_nl.properties" />
         <option value="$PROJECT_DIR$/src/language/resourcebundle/i18n_en.properties" />
         <option value="$PROJECT_DIR$/src/gui/ucs/UseCase1.java" />
-        <option value="$PROJECT_DIR$/src/domein/Spel.java" />
-        <option value="$PROJECT_DIR$/src/domein/DomeinController.java" />
         <option value="$PROJECT_DIR$/src/exceptions/database/SpelDatabaseException.java" />
         <option value="$PROJECT_DIR$/src/ui/gui/UseCase1.java" />
         <option value="$PROJECT_DIR$/src/ToDo.java" />
         <option value="$PROJECT_DIR$/src/domein/Speler.java" />
         <option value="$PROJECT_DIR$/src/main/StartUp.java" />
         <option value="$PROJECT_DIR$/src/language/resourcebundle/i18n.properties" />
-        <option value="$PROJECT_DIR$/src/ui/cui/ucs/UseCase1.java" />
-        <option value="$PROJECT_DIR$/src/ui/cui/ucs/UseCase3.java" />
         <option value="$PROJECT_DIR$/src/ui/gui/AfbeeldingTonen.java" />
         <option value="$PROJECT_DIR$/src/ui/gui/UseCase1GUI.java" />
         <option value="$PROJECT_DIR$/src/ui/gui/UseCase1Pane.java" />
@@ -301,6 +301,22 @@
         <option value="$PROJECT_DIR$/src/ui/gui/usecase1/UseCase1G.java" />
         <option value="$PROJECT_DIR$/src/ui/gui/menubar/MenuBarGui.java" />
         <option value="$PROJECT_DIR$/src/ui/gui/usecase1/UseCase1G.css" />
+        <option value="$PROJECT_DIR$/src/domein/kaarten/Kaart.java" />
+        <option value="$PROJECT_DIR$/src/domein/kaarten/schatkaarten/ConsumablesSchat.java" />
+        <option value="$PROJECT_DIR$/src/domein/kaarten/schatkaarten/Equipment.java" />
+        <option value="$PROJECT_DIR$/src/domein/kaarten/kerkerkaarten/monsterbadstuff/BadStuff.java" />
+        <option value="$PROJECT_DIR$/src/domein/kaarten/kerkerkaarten/ConsumablesKerker.java" />
+        <option value="$PROJECT_DIR$/src/domein/kaarten/kerkerkaarten/Curse.java" />
+        <option value="$PROJECT_DIR$/src/domein/kaarten/kerkerkaarten/Race.java" />
+        <option value="$PROJECT_DIR$/src/domein/kaarten/kerkerkaarten/Monster.java" />
+        <option value="$PROJECT_DIR$/src/ui/cui/ucs/UseCase8.java" />
+        <option value="$PROJECT_DIR$/src/ui/cui/ucs/UseCase9.java" />
+        <option value="$PROJECT_DIR$/src/ui/cui/ucs/UseCase1.java" />
+        <option value="$PROJECT_DIR$/src/ui/cui/ucs/UseCase2.java" />
+        <option value="$PROJECT_DIR$/src/ui/cui/ucs/UseCase4.java" />
+        <option value="$PROJECT_DIR$/src/domein/Spel.java" />
+        <option value="$PROJECT_DIR$/src/domein/DomeinController.java" />
+        <option value="$PROJECT_DIR$/src/ui/cui/ucs/UseCase3.java" />
       </list>
     </option>
   </component>
@@ -348,6 +364,31 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="domein" type="462c0819:PsiDirectoryNode" />
               <item name="kaarten" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Projecten 1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Projecten 1" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="domein" type="462c0819:PsiDirectoryNode" />
+              <item name="kaarten" type="462c0819:PsiDirectoryNode" />
+              <item name="kerkerkaarten" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Projecten 1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Projecten 1" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="domein" type="462c0819:PsiDirectoryNode" />
+              <item name="kaarten" type="462c0819:PsiDirectoryNode" />
+              <item name="kerkerkaarten" type="462c0819:PsiDirectoryNode" />
+              <item name="monsterbadstuff" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Projecten 1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Projecten 1" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="domein" type="462c0819:PsiDirectoryNode" />
+              <item name="kaarten" type="462c0819:PsiDirectoryNode" />
+              <item name="schatkaarten" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Projecten 1" type="b2602c69:ProjectViewProjectNode" />
@@ -441,7 +482,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553512580782" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553517636927" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -482,7 +523,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.StartUpGui">
+  <component name="RunManager" selected="Application.StartUp">
     <configuration name="AfbeeldingTonen" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ui.gui.AfbeeldingTonen" />
       <module name="Projecten 1" />
@@ -550,11 +591,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.StartUp" />
         <item itemvalue="Application.StartUpGui" />
         <item itemvalue="Application.Test" />
         <item itemvalue="Application.UseCase1G" />
         <item itemvalue="Application.AfbeeldingTonen" />
-        <item itemvalue="Application.StartUp" />
       </list>
     </recent_temporary>
   </component>
@@ -573,7 +614,7 @@
       <updated>1551993656744</updated>
       <workItem from="1551993658537" duration="141000" />
       <workItem from="1552226520023" duration="60340000" />
-      <workItem from="1552904444934" duration="52888000" />
+      <workItem from="1552904444934" duration="58037000" />
     </task>
     <task id="LOCAL-00001" summary="output">
       <created>1552228440827</created>
@@ -876,17 +917,24 @@
       <option name="project" value="LOCAL" />
       <updated>1553167103189</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="startup in main">
+      <created>1553512597305</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1553512597305</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="113725000" />
+    <option name="totallyTimeSpent" value="118874000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1200" extended-state="6" />
     <layout>
       <window_info id="Learn" order="0" weight="0.32897604" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.31576145" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.31576145" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Designer" order="4" />
@@ -897,7 +945,7 @@
       <window_info anchor="bottom" id="Messages" order="1" sideWeight="0.49891067" weight="0.32942238" />
       <window_info anchor="bottom" id="Message" order="2" />
       <window_info anchor="bottom" id="Find" order="3" weight="0.32942238" />
-      <window_info anchor="bottom" id="Run" order="4" sideWeight="0.49782136" visible="true" weight="0.31407943" />
+      <window_info active="true" anchor="bottom" id="Run" order="4" sideWeight="0.49782136" visible="true" weight="0.31407943" />
       <window_info anchor="bottom" id="Debug" order="5" weight="0.3998195" />
       <window_info anchor="bottom" id="Cvs" order="6" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="7" weight="0.4" />
@@ -955,7 +1003,6 @@
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="berzirias fixed" />
     <MESSAGE value="fixed null" />
     <MESSAGE value="mapper" />
     <MESSAGE value="aanpassing UC1" />
@@ -980,116 +1027,10 @@
     <MESSAGE value="push, werkt niet" />
     <MESSAGE value="gui semi uc1 tot speler 1" />
     <MESSAGE value="gui semi uc1" />
-    <option name="LAST_COMMIT_MESSAGE" value="gui semi uc1" />
+    <MESSAGE value="startup in main" />
+    <option name="LAST_COMMIT_MESSAGE" value="startup in main" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/domein/repositories/KaartDbRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="61" column="23" selection-start-line="61" selection-start-column="23" selection-end-line="61" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/domein/repositories/SpelDbRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="23" selection-start-line="23" selection-end-line="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/domein/kaarten/kerkerkaarten/Monster.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1231">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/domein/kaarten/kerkerkaarten/Race.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="90" lean-forward="true" selection-start-line="90" selection-end-line="90" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase8.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="43" column="60" selection-start-line="43" selection-start-column="60" selection-end-line="43" selection-end-column="60" />
-          <folding>
-            <element signature="e#563#564#0" expanded="true" />
-            <element signature="e#591#592#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/exceptions/kaarten/kerkerkaarten/monsterbadstuff/BadStuffException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="33" selection-start-line="33" selection-end-line="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Projecten 1.iml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/persistentie/Connectie.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor>
-            <caret column="18" selection-start-column="18" selection-end-column="18" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/language/resourcebundle/i18n_nl.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="444">
-          <caret line="81" column="7" lean-forward="true" selection-start-line="81" selection-start-column="7" selection-end-line="81" selection-end-column="7" />
-        </state>
-      </provider>
-      <provider editor-type-id="ResourceBundle" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/language/resourcebundle/i18n_en.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="519">
-          <caret line="91" column="6" selection-start-line="91" selection-start-column="6" selection-end-line="91" selection-end-column="6" />
-        </state>
-      </provider>
-      <provider editor-type-id="ResourceBundle" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/language/resourcebundle/i18n_fr.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="85" column="29" selection-start-line="85" selection-start-column="29" selection-end-line="85" selection-end-column="29" />
-        </state>
-      </provider>
-      <provider editor-type-id="ResourceBundle" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/exceptions/SpelerException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/exceptions/kaarten/SchatkaartException.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
@@ -1218,26 +1159,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/domein/DomeinController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="443">
-          <caret line="161" column="42" selection-start-line="161" selection-start-column="42" selection-end-line="161" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3205#3206#0" expanded="true" />
-            <element signature="e#3284#3285#0" expanded="true" />
-            <element signature="docComment;method#geefSpelNaam#0;class#DomeinController#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/StartUp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ongebruikt/munchkin-background.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -1278,16 +1199,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/gui/StartUpGui.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="49" column="5" selection-start-line="49" selection-start-column="5" selection-end-line="49" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ui/gui/maingui/MainGui.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -1312,7 +1223,7 @@
     <entry file="file://$PROJECT_DIR$/src/ui/gui/menubar/MenuBarGui.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="694">
-          <caret line="96" column="30" selection-start-line="96" selection-start-column="30" selection-end-line="96" selection-end-column="30" />
+          <caret line="106" column="30" selection-start-line="106" selection-start-column="30" selection-end-line="106" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1321,11 +1232,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ui/gui/usecase1/UseCase1G.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="70" lean-forward="true" selection-start-line="70" selection-end-line="70" />
+        <state relative-caret-position="348">
+          <caret line="73" lean-forward="true" selection-start-line="73" selection-end-line="73" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2283#2284#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1337,51 +1247,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/domein/Spel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="703">
-          <caret line="168" selection-start-line="168" selection-end-line="168" />
-          <folding>
-            <element signature="e#659#660#0" expanded="true" />
-            <element signature="e#682#683#0" expanded="true" />
-            <element signature="e#2514#2515#0" expanded="true" />
-            <element signature="e#2571#2572#0" expanded="true" />
-            <element signature="e#2717#2718#0" expanded="true" />
-            <element signature="e#2747#2748#0" expanded="true" />
-            <element signature="e#3517#3518#0" expanded="true" />
-            <element signature="e#3553#3554#0" expanded="true" />
-            <element signature="e#5563#5564#0" expanded="true" />
-            <element signature="e#5604#5605#0" expanded="true" />
-            <element signature="e#5794#5795#0" expanded="true" />
-            <element signature="e#5846#5847#0" expanded="true" />
-            <element signature="e#6013#6014#0" expanded="true" />
-            <element signature="e#6064#6065#0" expanded="true" />
-            <element signature="e#6107#6108#0" expanded="true" />
-            <element signature="e#6172#6173#0" expanded="true" />
-            <element signature="e#6377#6378#0" expanded="true" />
-            <element signature="e#6407#6408#0" expanded="true" />
-            <element signature="e#7840#7841#0" expanded="true" />
-            <element signature="e#7907#7908#0" expanded="true" />
-            <element signature="e#8859#8860#0" expanded="true" />
-            <element signature="e#8886#8887#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/domein/kaarten/Kaart.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="41" column="5" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/domein/kaarten/Kerkerkaart.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="22" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/domein/kaarten/Schatkaart.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
@@ -1389,27 +1254,215 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase1.java">
+    <entry file="file://$PROJECT_DIR$/src/main/StartUpGui.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1810">
-          <caret line="56" column="31" selection-start-line="56" selection-start-column="31" selection-end-line="56" selection-end-column="31" />
+        <state relative-caret-position="195">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/StartUp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="20" column="2" selection-start-line="20" selection-start-column="2" selection-end-line="20" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.0.2.jdk/Contents/Home/lib/src.zip!/java.base/java/lang/Object.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="244" column="18" selection-start-line="244" selection-start-column="18" selection-end-line="244" selection-end-column="18" />
+          <folding>
+            <element signature="e#10225#10226#0" expanded="true" />
+            <element signature="e#10308#10309#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/domein/kaarten/Kaart.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="38" column="9" lean-forward="true" selection-start-line="38" selection-start-column="9" selection-end-line="38" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/domein/kaarten/Kerkerkaart.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/domein/kaarten/schatkaarten/Equipment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="665">
+          <caret line="175" column="5" selection-start-line="175" selection-start-column="5" selection-end-line="175" selection-end-column="5" />
+          <folding>
+            <element signature="e#3624#3625#0" expanded="true" />
+            <element signature="e#3651#3652#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/domein/kaarten/kerkerkaarten/ConsumablesKerker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="599">
+          <caret line="57" column="91" selection-start-line="57" selection-start-column="91" selection-end-line="57" selection-end-column="91" />
+          <folding>
+            <element signature="e#1250#1251#0" expanded="true" />
+            <element signature="e#1278#1279#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/domein/kaarten/kerkerkaarten/Curse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="590">
+          <caret line="135" column="123" selection-start-line="135" selection-start-column="123" selection-end-line="135" selection-end-column="123" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/domein/kaarten/kerkerkaarten/Race.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="625">
+          <caret line="137" lean-forward="true" selection-start-line="137" selection-end-line="137" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/domein/kaarten/kerkerkaarten/Monster.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="262" column="290" selection-start-line="262" selection-start-column="290" selection-end-line="262" selection-end-column="290" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/domein/kaarten/kerkerkaarten/monsterbadstuff/BadStuff.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="48" column="18" selection-start-line="48" selection-start-column="18" selection-end-line="48" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/domein/kaarten/schatkaarten/ConsumablesSchat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="575">
+          <caret line="91" column="5" selection-start-line="91" selection-start-column="5" selection-end-line="91" selection-end-column="5" />
+          <folding>
+            <element signature="e#1880#1881#0" expanded="true" />
+            <element signature="e#1907#1908#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase7.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase8.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="650">
+          <caret line="59" column="9" lean-forward="true" selection-start-line="59" selection-start-column="9" selection-end-line="59" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase9.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+          <folding>
+            <element signature="e#165#166#0" expanded="true" />
+            <element signature="e#193#194#0" expanded="true" />
+            <element signature="e#224#225#0" expanded="true" />
+            <element signature="e#302#303#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="67" column="23" lean-forward="true" selection-start-line="67" selection-start-column="23" selection-end-line="67" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase6.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase5.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase2.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-250">
-          <caret line="90" column="24" selection-start-line="90" selection-start-column="24" selection-end-line="90" selection-end-column="24" />
+        <state relative-caret-position="433">
+          <caret line="63" column="58" selection-start-line="63" selection-start-column="58" selection-end-line="63" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase4.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="53" column="44" selection-start-line="53" selection-start-column="44" selection-end-line="53" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/domein/Spel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="335">
+          <caret line="191" column="5" lean-forward="true" selection-start-line="191" selection-start-column="5" selection-end-line="191" selection-end-column="5" />
+          <folding>
+            <element signature="e#9879#9880#0" expanded="true" />
+            <element signature="e#9916#9917#0" expanded="true" />
+            <element signature="e#9973#9974#0" expanded="true" />
+            <element signature="e#10025#10026#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/domein/DomeinController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="120" column="7" lean-forward="true" selection-start-line="120" selection-start-column="7" selection-end-line="120" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2462#2463#0" expanded="true" />
+            <element signature="e#2508#2509#0" expanded="true" />
+            <element signature="e#3205#3206#0" expanded="true" />
+            <element signature="e#3284#3285#0" expanded="true" />
+            <element signature="docComment;method#geefSpelNaam#0;class#DomeinController#0" />
+            <element signature="e#4893#4894#0" expanded="true" />
+            <element signature="e#4944#4945#0" expanded="true" />
+            <element signature="e#4988#4989#0" expanded="true" />
+            <element signature="e#5028#5029#0" expanded="true" />
+            <element signature="e#5071#5072#0" expanded="true" />
+            <element signature="e#5110#5111#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase3.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-742">
-          <caret line="41" column="99" selection-start-line="41" selection-start-column="99" selection-end-line="41" selection-end-column="99" />
+        <state relative-caret-position="404">
+          <caret line="51" column="103" lean-forward="true" selection-start-line="51" selection-start-column="103" selection-end-line="51" selection-end-column="103" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

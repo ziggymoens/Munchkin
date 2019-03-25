@@ -14,18 +14,23 @@ import java.util.Scanner;
 
 /**
  * @author ziggy
+ *
+ * GEEEEEN STATICS
  */
 class UseCase4 {
     private final DomeinController dc;
     private final Scanner SCAN= new Scanner(System.in);
+    private final int aantalSpelers;
 
 
-    UseCase4(DomeinController dc) {
+    //speler aan de beurt ==> dc.geefSpelerAanBeurt(), int van 0 tot aantalSpelers-1
+
+    UseCase4(DomeinController dc, int aantalSpelers) {
         this.dc = dc;
+        this.aantalSpelers = aantalSpelers;
     }
 
     void bereidSpelVoor() {
-
         System.out.println(LanguageResource.getString("usecase4.ask.help"));
         String help = SCAN.next().toLowerCase();
         while (!help.equals(LanguageResource.getString("yes")) && !help.equals(LanguageResource.getString("no"))) {
@@ -44,11 +49,13 @@ class UseCase4 {
             }
         }while(help2.equals(LanguageResource.getString("yes")));
 
-        int aantal = UseCase2.beurt + 1;
-        boolean[] bool = new boolean[UseCase1.aantalSpelers];
+
+
+        int aantal = dc.geefSpelerAanBeurt()+ 1;
+        boolean[] bool = new boolean[aantalSpelers];
         while(!areAllTrue(bool)){
-            for(int i = 0; i < UseCase1.aantalSpelers; i++){
-                if(aantal < UseCase1.aantalSpelers){
+            for(int i = 0; i < aantalSpelers; i++){
+                if(aantal < aantalSpelers){
                     System.out.println(dc.geefNaamSpeler(aantal) + LanguageResource.getString("usecase4.Monsterhelp"));
                     System.out.println(LanguageResource.getString("usecase4.choices"));
                     int keuze = SCAN.nextInt();

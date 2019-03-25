@@ -25,6 +25,9 @@ public abstract class Kaart {
         setId(id);
     }
 
+    @Override
+    public abstract String toString();
+
     /**
      * Setter voor de naam van de kaart met controle
      *

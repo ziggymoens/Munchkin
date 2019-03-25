@@ -257,4 +257,10 @@ public class Monster extends Kerkerkaart {
         }
     }
 
+
+    @Override
+    public String toString() {
+        return String.format("name = %s%s, level = %d%s%s, %s",getNaam(), text.isEmpty()?"":", "+getText(), getLevel(), runAway==0?"":String.format(", +%d to run away", runAway), specialRaceExtra==0?"":String.format(", +%d against %s", specialRaceExtra, specialRace.getType()), badStuff.toString());
+    }
+
 }

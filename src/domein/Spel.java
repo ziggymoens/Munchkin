@@ -15,6 +15,7 @@ import language.LanguageResource;
  */
 public class Spel {
 
+    public int spelerAanBeurt;
     //Declaratie attributen
     private int aantalSpelers;
     private final List<Speler> spelers;
@@ -181,13 +182,13 @@ public class Spel {
     /**
      * @return
      */
-    public String geefSpelsituatie() {
-        StringBuilder ret = new StringBuilder();
+    public List<String> geefSpelsituatie() {
+        List<String> ret = new ArrayList<>();
         for (Speler speler : spelers) {
             //items naar string weg
-            ret.append(String.format("%s: %s, %s: %s, %s: %d, %s: %s%n", LanguageResource.getString("player.name"), speler.getNaam(), LanguageResource.getString("player.sex"), speler.getGeslacht(), LanguageResource.getString("player.level"), speler.getLevel(), LanguageResource.getString("player.items"), speler.kaartenNaarString(speler.getItems())));
+            ret.add(String.format("%s: %s, %s: %s, %s: %d, %s: %s%n", LanguageResource.getString("player.name"), speler.getNaam(), LanguageResource.getString("player.sex"), speler.getGeslacht(), LanguageResource.getString("player.level"), speler.getLevel(), LanguageResource.getString("player.items"), speler.kaartenNaarString(speler.getItems())));
         }
-        return ret.toString();
+        return ret;
     }
 
     /**
@@ -341,5 +342,17 @@ public class Spel {
             }
         }
         return i;
+    }
+
+    public String bovensteKaartToString() {
+        return kerkerkaarten.get(0).toString();
+    }
+
+    public int getSpelerAanBeurt() {
+        return spelerAanBeurt;
+    }
+
+    public void setSpelerAanBeurt(int spelerAanBeurt) {
+        this.spelerAanBeurt = spelerAanBeurt;
     }
 }

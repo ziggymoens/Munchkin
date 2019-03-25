@@ -45,6 +45,11 @@ public class BadStuff {
         setText(text);
     }
 
+    @Override
+    public String toString() {
+        return String.format("Badstuff: %s ,%s",text, levelsLost==0?"escape is automatic":String.format("levels lost:%d", levelsLost));
+    }
+
     /**
      * Setter voor de naam die gebruik maakt van een switch om de juiste naam kaart te selecteren
      * 

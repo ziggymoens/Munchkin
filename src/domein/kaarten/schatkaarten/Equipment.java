@@ -169,4 +169,9 @@ public class Equipment extends Schatkaart {
         }
     }
 
+
+    @Override
+    public String toString() {
+        return null;
+    }
 }

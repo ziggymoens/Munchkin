@@ -23,7 +23,7 @@ class UseCase2 {
     //Declaraties voor gehele usecase.
     private final DomeinController dc;
     private final Scanner SCAN;
-    public static int beurt ;
+    private int aantalSpelers;
 
     /**
      * Constructor voor Use Case 2.
@@ -42,6 +42,7 @@ class UseCase2 {
      * @param aantalSpelers Het aantal spelers die meespelen
      */
     void speelSpel(int aantalSpelers) {
+        this.aantalSpelers = aantalSpelers;
         try {
             dc.controleerVolgorde();
             dc.geefStartKaarten();
@@ -54,7 +55,7 @@ class UseCase2 {
                 for (int i = 0; i < aantalSpelers; i++) {
                     if (niemandGewonnen()) {
                         String naam = dc.geefNaamSpeler(i);
-                        beurt = i;
+                        dc.zetSpelerAanBeurt(i);
                         speelBeurt(naam);
                     }
                 }
@@ -80,7 +81,7 @@ class UseCase2 {
         boolean tryAgain = true;
         while (tryAgain)
         try {
-            System.out.printf("%s: %s%n", LanguageResource.getString("player.turn"), String.format("%s", ColorsOutput.achtergrond("red")+ ColorsOutput.decoration("reversed") + naam + ColorsOutput.reset()));
+            System.out.printf("%s: %s%n", LanguageResource.getString("player.turn"), String.format("%s", ColorsOutput.kleur("blue") + naam + ColorsOutput.reset()));
             printKeuze();
             keuze = SCAN.nextInt();
             if (keuze<1 || keuze>3){
@@ -96,7 +97,7 @@ class UseCase2 {
             switch (keuze) {
                 case 1:
                     try {
-                        UseCase3 uc3 = new UseCase3(this.dc);
+                        UseCase3 uc3 = new UseCase3(this.dc, aantalSpelers);
                         uc3.speelBeurt(naam);
                     } catch (Exception e) {
                         System.out.print(Printer.exceptionCatch("Exception", e, false));

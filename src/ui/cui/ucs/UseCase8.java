@@ -9,6 +9,7 @@ import java.util.*;
 
 import domein.DomeinController;
 import exceptions.SpelException;
+import exceptions.database.SpelDatabaseException;
 import language.LanguageResource;
 import printer.Printer;
 
@@ -25,7 +26,6 @@ public class UseCase8 {
     }
 
     public void spelOpslaan() {
-        //dc.spelOpslaan();
         boolean tryAgain = true;
         while (tryAgain) {
             try {
@@ -35,13 +35,26 @@ public class UseCase8 {
                 tryAgain = false;
             } catch (SpelException e) {
                 System.out.println(Printer.exceptionCatch("SpelException", e));
+            } catch (Exception e) {
+                System.out.println(Printer.exceptionCatch("Exception", e, false));
             }
         }
 
         try {
             dc.spelOpslaan();
             System.out.println(Printer.printGreen("usecase8.game.saved"));
-            System.exit(0);
+            String ant;
+            do {
+                System.out.println(LanguageResource.getString("usecase8.exit"));
+                ant = SCAN.next();
+            } while (!ant.equals(LanguageResource.getString("yes")) && !ant.equals(LanguageResource.getString("no")));
+            if (ant.equals(LanguageResource.getString("yes"))) {
+                System.exit(0);
+            }
+        } catch (SpelException e) {
+            System.out.println(Printer.exceptionCatch("SpelException", e));
+        } catch (SpelDatabaseException e) {
+            System.out.println(Printer.exceptionCatch("SpelDatabaseException", e));
         } catch (Exception e) {
             System.out.print(Printer.exceptionCatch("Exception", e, false));
         }

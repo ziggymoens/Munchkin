@@ -51,6 +51,10 @@ public class ConsumablesKerker extends Kerkerkaart {
         if(bonus < -5 || bonus > 10)
             throw new ConsumablesKerkerException("exception.consumablesKerker.bonus"); 
     }
-    
-    
+
+
+    @Override
+    public String toString() {
+        return String.format("name: %s, %d to monster, play during combat",getNaam(), bonus);
+    }
 }

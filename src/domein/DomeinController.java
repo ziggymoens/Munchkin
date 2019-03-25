@@ -114,7 +114,7 @@ public class DomeinController {
     /**
      * @return
      */
-    public String geefSpelsituatie() {
+    public List<String> geefSpelsituatie() {
         return spel.geefSpelsituatie();
     }
 
@@ -231,5 +231,17 @@ public class DomeinController {
 
     public boolean spelerTeVeelKaarten(String naam) {
         return spel.spelerTeVeelKaarten(naam);
+    }
+
+    public String bovensteKaartToString() {
+        return spel.bovensteKaartToString();
+    }
+
+    public void zetSpelerAanBeurt(int i) {
+        spel.setSpelerAanBeurt(i);
+    }
+
+    public int geefSpelerAanBeurt(){
+        return spel.getSpelerAanBeurt();
     }
 }

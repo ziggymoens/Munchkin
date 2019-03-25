@@ -21,8 +21,9 @@ class UseCase3 {
     private Map<String, Runnable> types;
     private int huidigeKaart;
     private String naam;
+    private final int aantalSpelers;
 
-    UseCase3(DomeinController dc) {
+    UseCase3(DomeinController dc, int aantalSpelers) {
         types = new HashMap<>();
         types.put("ConsumablesKerker", this::geenEffectKaart);
         types.put("Curse", this::curseKaart);
@@ -31,17 +32,27 @@ class UseCase3 {
         types.put("ConsumablesSchat", this::geenEffectKaart);
         types.put("Equipment", this::geenEffectKaart);
         this.dc = dc;
+        this.aantalSpelers = aantalSpelers;
 
     }
 
     void speelBeurt(String naam) {
         this.naam = naam;
         try {
-            String huidigeSituatie = dc.geefSpelsituatie();
-            System.out.println(ColorsOutput.achtergrond("yellow") + dc.geefSpelsituatie() + ColorsOutput.reset());
-            System.out.println(dc.toonBovensteKk()+ " " + dc.geefTypeKaart(dc.geefIdBovensteKaart()));
+            List<String> huidigeSituatie = dc.geefSpelsituatie();
+            System.out.println();
+            for (int i = 0; i < aantalSpelers; i++) {
+                if (i == dc.geefSpelerAanBeurt()) {
+                    System.out.print(ColorsOutput.achtergrond("yellow") + huidigeSituatie.get(i) + ColorsOutput.reset());
+                } else {
+                    System.out.print(huidigeSituatie.get(i));
+                }
+            }
+            System.out.println();
+            System.out.println(dc.toonBovensteKk() + " " + dc.geefTypeKaart(dc.geefIdBovensteKaart()));
+            System.out.println(dc.bovensteKaartToString());
             huidigeKaart = dc.geefIdBovensteKaart();
-            System.out.println(LanguageResource.getString("usecase3.confirm"));
+            System.out.println(String.format("%s %s", naam, LanguageResource.getString("usecase3.confirm")));
             String bev = SCAN.next();
             while (!bev.equals(LanguageResource.getString("yes"))) {
                 System.out.printf(ColorsOutput.kleur("red") + "%s%n%n", LanguageResource.getString("usecase3.novalidconfirm") + ColorsOutput.reset());
@@ -51,7 +62,11 @@ class UseCase3 {
             System.out.println(dc.geefTypeKaart(huidigeKaart));
             speelKaart();
             beheerKaarten();
-            System.out.printf("%s", huidigeSituatie.compareToIgnoreCase(dc.geefSpelsituatie()) == 0 ? LanguageResource.getString("usecase3.nochanges")+"\n" : LanguageResource.getString("usecase3.changedsituation") + "\n" + dc.geefSpelsituatie());
+            boolean verschil = true;
+            for (int i = 0; i<aantalSpelers;i++){
+                verschil = huidigeSituatie.get(i).toLowerCase().equals(dc.geefSpelsituatie().get(i).toLowerCase());
+            }
+            System.out.printf("%s", verschil ? LanguageResource.getString("usecase3.nochanges") + "\n" : LanguageResource.getString("usecase3.changedsituation") + "\n" + dc.geefSpelsituatie());
             dc.nieuweBovensteKaartK();
         } catch (Exception e) {
             System.out.println(Printer.exceptionCatch("Exception", e, false));
@@ -64,13 +79,13 @@ class UseCase3 {
     }
 
     private void beheerKaarten() {
-        try{
-            UseCase7 ucY = new UseCase7(this.dc);
-            ucY.beheerKaarten(naam);
+        try {
+            UseCase7 uc7 = new UseCase7(this.dc);
+            uc7.beheerKaarten(naam);
             while (dc.spelerTeVeelKaarten(naam)) {
-                ucY.beheerKaarten(naam);
+                uc7.beheerKaarten(naam);
             }
-        }catch (UnsupportedOperationException e){
+        } catch (UnsupportedOperationException e) {
             System.out.print(Printer.exceptionCatch("UnsupportedOperationException", e, false));
         }
 
@@ -83,10 +98,9 @@ class UseCase3 {
 
     private void monsterKaart() {
         try {
-            UseCase4 uc4 = new UseCase4(this.dc);
+            UseCase4 uc4 = new UseCase4(this.dc, aantalSpelers);
             uc4.bereidSpelVoor();
-            UseCase6 ucX = new UseCase6(this.dc);
-            ucX.vechtMetMonster();
+            UseCase6 uc6 = new UseCase6(this.dc);
         } catch (UnsupportedOperationException e) {
             System.out.print(Printer.exceptionCatch("UnsupportedOperationException", e, false));
         }
@@ -128,5 +142,5 @@ class UseCase3 {
 //    private void equipmentKaart() {
 //        dc.effectKerkerkaart(naam);
 //        System.out.println(Printer.printGreen("play.equipment"));
-   }
+}
 

@@ -20,7 +20,7 @@ public class UseCase1 {
     private final Scanner SCAN = new Scanner(System.in);
     private final DomeinController dc;
     private final List<Locale> talen;
-    public static int aantalSpelers;
+    private int aantalSpelers;
 
     /**
      * constructor voor UseCase 1
@@ -67,7 +67,18 @@ public class UseCase1 {
                 UseCase2 uc2 = new UseCase2(this.dc);
                 uc2.speelSpel(aantalSpelers);
             } else if (nieuwSpel.equals(LanguageResource.getString("no"))) {
-                System.out.println(Printer.printGreen("gamestop"));
+                System.out.println(LanguageResource.getString("usecase1.load"));
+                String load = SCAN.next();
+                while (!load.equals(LanguageResource.getString("yes")) && !load.equals(LanguageResource.getString("no"))) {
+                    System.out.printf(ColorsOutput.decoration("bold") + ColorsOutput.kleur("red") + "%s%n%n", LanguageResource.getString("start.yesno") + ColorsOutput.reset());
+                    System.out.println(LanguageResource.getString("usecase1.load"));
+                    load = SCAN.next().toLowerCase();
+                }
+                if (load.equals(LanguageResource.getString("no"))) {
+                    System.out.println(Printer.printGreen("gamestop"));
+                }
+                UseCase9 uc9 = new UseCase9(this.dc);
+                uc9.spelLaden();
             }
         } catch (Exception e) {
             System.out.print(Printer.exceptionCatch("Exception", e, false));
@@ -81,25 +92,25 @@ public class UseCase1 {
         for (Locale l : talen) {
             System.out.printf("%s %s%n", LanguageResource.getStringLanguage("startUp", l), LanguageResource.getStringLanguage("languageC", l));
         }
-        char gekozenTaal = SCAN.next().toLowerCase().charAt(0);
+        String gekozenTaal = SCAN.next().toLowerCase();
         //zolang gekozen taal niet voldoet aan beginletter van frans, nederlands of engels
-        while (gekozenTaal != 'n' && gekozenTaal != 'f' && gekozenTaal != 'e') {
+        while (!gekozenTaal.equals("nederlands") && !gekozenTaal.equals("français") && !gekozenTaal.equals("english")) {
             for (Locale l : talen) {
                 System.out.printf(ColorsOutput.decoration("bold") + ColorsOutput.kleur("red") + "%s%n", LanguageResource.getStringLanguage("wrong", l) + ColorsOutput.reset());
             }
-            gekozenTaal = SCAN.next().toLowerCase().charAt(0);
+            gekozenTaal = SCAN.next().toLowerCase();
         }
         //switch voor de verschillende talen
         Locale choice;
         switch (gekozenTaal) {
-            case 'e':
+            case "english":
             default:
                 choice = new Locale("en");
                 break;
-            case 'f':
+            case "français":
                 choice = new Locale("fr");
                 break;
-            case 'n':
+            case "nederlands":
                 choice = new Locale("nl");
                 break;
         }

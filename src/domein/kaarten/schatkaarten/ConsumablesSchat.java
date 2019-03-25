@@ -85,4 +85,10 @@ public class ConsumablesSchat extends Schatkaart {
         this.battleBonus = battleBonus;
     }
 
+
+    @Override
+    public String toString() {
+        return null;
+    }
+
 }
