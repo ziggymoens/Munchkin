@@ -31,7 +31,7 @@ public class Speler {
      * "man", leeftijd = 99, level = 1, taal = "en"
      */
     public Speler() {
-        setLevel(3);
+        setLevel(1);
         kaarten = new ArrayList<>();
         items = new ArrayList<>();
         aantalKerkerkaarten = 0;
