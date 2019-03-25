@@ -2,6 +2,7 @@ package domein;
 
 import domein.kaarten.Kaart;
 import domein.kaarten.kerkerkaarten.Curse;
+import domein.repositories.KaartDbKleinRepository;
 import domein.repositories.KaartDbRepository;
 import exceptions.SpelException;
 
@@ -39,7 +40,8 @@ public class Spel {
     public Spel(int aantalSpelers) {
         setAantalSpelers(aantalSpelers);
         spelers = new ArrayList<>();
-        KaartDbRepository kr = new KaartDbRepository();
+        //KaartDbRepository kr = new KaartDbRepository();
+        KaartDbKleinRepository kr = new KaartDbKleinRepository();
         kaarten = new HashMap<>();
         schatkaarten = kr.getSchatkaarten();
         for (Kaart kaart : kr.getSchatkaarten()) {

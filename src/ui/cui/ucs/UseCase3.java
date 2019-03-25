@@ -59,7 +59,7 @@ class UseCase3 {
                 System.out.println(LanguageResource.getString("usecase3.confirm"));
                 bev = SCAN.next().toLowerCase();
             }
-            System.out.println(dc.geefTypeKaart(huidigeKaart));
+            //System.out.println(dc.geefTypeKaart(huidigeKaart));
             speelKaart();
             beheerKaarten();
             boolean verschil = true;
