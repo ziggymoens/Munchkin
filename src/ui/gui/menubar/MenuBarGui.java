@@ -1,17 +1,10 @@
 package ui.gui.menubar;
 
-import domein.DomeinController;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCombination;
-import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
 import language.LanguageResource;
-import ui.cui.ucs.UseCase1;
-import ui.gui.StartUpGui;
-import ui.gui.usecase1.UseCase1G;
 
 import java.io.IOException;
 import java.util.ArrayList;
