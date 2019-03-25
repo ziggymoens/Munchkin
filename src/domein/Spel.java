@@ -199,7 +199,7 @@ public class Spel {
     public List<String> geefBeknopteSpelsituatie(boolean vecht){
         List<String> ret = new ArrayList<>();
         for(Speler speler : spelers){
-            ret.add(String.format("%s: %s, %s: %s, %s: %d, %s%n", LanguageResource.getString("player.name"), speler.getNaam(), LanguageResource.getString("player.sex"), speler.getGeslacht(), LanguageResource.getString("player.level"), speler.getLevel(), vecht? "Vecht mee":"Vecht niet mee"));
+            ret.add(String.format("%s: %s, %s: %s, %s: %d, %s%n", LanguageResource.getString("player.name"), speler.getNaam(), LanguageResource.getString("player.sex"), speler.getGeslacht(), LanguageResource.getString("player.level"), speler.getLevel(), vecht?"Vecht mee":"Vecht niet mee"));
         }
         return ret;
     }

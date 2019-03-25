@@ -64,12 +64,12 @@ class UseCase4 {
          */
         int aantal = dc.geefSpelerAanBeurt() + 1;
         boolean[] bool = new boolean[aantalSpelers];
-        boolean[] helptmee = new boolean[aantalSpelers - 1];
+        boolean[] helptmee = new boolean[aantalSpelers];
+        helptmee[dc.geefSpelerAanBeurt()] = true;
         //Lus die alle spelers na de speler die vecht afgaat
         for (int i = 0; i < aantalSpelers; i++) {
             if (aantal < aantalSpelers) {
                 //De spelers blijven vragen welke optie hij of zij wilt nemen, tot de speler optie 3 neemt
-
                 while (!bool[i]) {
                     System.out.printf("%s%s%n", String.format("%s", ColorsOutput.kleur("blue") + dc.geefNaamSpeler(aantal) + ColorsOutput.reset()), LanguageResource.getString("usecase4.Monsterhelp"));
                     System.out.println(LanguageResource.getString("usecase4.choices"));
@@ -79,7 +79,7 @@ class UseCase4 {
                             //Mag alleen gebeuren als de speler die vecht akkoord is gegaan dat hij hulp wilt
                             if (help.equals(LanguageResource.getString("yes"))) {
                                 helpSpeler();
-                                helptmee[i] = true;
+                                helptmee[aantal] = true;
                             }else{
                                 System.err.println(LanguageResource.getString("exception.help"));
                             }
@@ -116,8 +116,8 @@ class UseCase4 {
         System.out.println(dc.bovensteKaartToString());
         System.out.printf("Het monster heeft een sterkte van %d en de speler een sterkte van %d%n", monster, speler);
         for (int i = 0; i < aantalSpelers; i++) {
-            List<String> huidigeSituatie = dc.geefBeknopteSpelsituatie(helptmee[i]);
-            huidigeSituatie.get(i);
+            List<String> ret = dc.geefBeknopteSpelsituatie(helptmee[i]);
+            System.out.print(ret.get(i));
         }
     }
 
