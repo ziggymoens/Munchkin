@@ -63,7 +63,7 @@ class UseCase4 {
          * Methode die de tegenstanders in volgorde 3 keuze geeft en deze uitvoert.
          */
         int aantal = dc.geefSpelerAanBeurt() + 1;
-        boolean[] bool = new boolean[aantalSpelers - 1];
+        boolean[] bool = new boolean[aantalSpelers];
         boolean[] helptmee = new boolean[aantalSpelers - 1];
         //Lus die alle spelers na de speler die vecht afgaat
         for (int i = 0; i < aantalSpelers; i++) {
@@ -80,8 +80,9 @@ class UseCase4 {
                             if (help.equals(LanguageResource.getString("yes"))) {
                                 helpSpeler();
                                 helptmee[i] = true;
+                            }else{
+                                System.err.println(LanguageResource.getString("exception.help"));
                             }
-
                             break;
                         case 2:
                             helpMonster();
@@ -118,7 +119,6 @@ class UseCase4 {
             List<String> huidigeSituatie = dc.geefBeknopteSpelsituatie(helptmee[i]);
             huidigeSituatie.get(i);
         }
-
     }
 
     private void helpSpeler() {
