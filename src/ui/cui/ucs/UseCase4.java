@@ -130,6 +130,4 @@ class UseCase4 {
         UseCase5 uc5 = new UseCase5(this.dc);
         uc5.speelKaart();
     }
-
-
 }
