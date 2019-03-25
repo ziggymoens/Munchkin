@@ -5,10 +5,13 @@
  */
 package ui.cui.ucs;
 
+import com.mysql.cj.xdevapi.ExprUnparser;
 import domein.DomeinController;
 import language.LanguageResource;
 import printer.*;
 
+import java.awt.image.PixelInterleavedSampleModel;
+import java.security.spec.ECField;
 import java.util.*;
 
 /**
@@ -76,8 +79,12 @@ class UseCase3 {
     }
 
     private void speelKaart() {
-        String type = dc.geefTypeKaart(huidigeKaart);
-        types.get(type).run();
+        try {
+            String type = dc.geefTypeKaart(huidigeKaart);
+            types.get(type).run();
+        }catch (Exception e){
+            System.out.println(Printer.exceptionCatch("Exception", e, false));
+        }
     }
 
     /**
@@ -97,8 +104,13 @@ class UseCase3 {
     }
 
     private void geenEffectKaart() {
-        dc.geefKerkerkaartAanSpeler(naam);
-        System.out.print(Printer.printGreen(String.format("usecase3.play.%s", dc.geefTypeKaart(huidigeKaart).toLowerCase())));
+        try{
+            dc.geefKerkerkaartAanSpeler(naam);
+            System.out.print(Printer.printGreen(String.format("usecase3.play.%s", dc.geefTypeKaart(huidigeKaart).toLowerCase())));
+        }catch (Exception e){
+            System.out.println(Printer.exceptionCatch("Exception", e, false));
+        }
+
     }
 
     private void monsterKaart() {
@@ -126,8 +138,12 @@ class UseCase3 {
 //                dc.verwijderItemSpeler(naam, keuze);
 //            }
 //        }
-        dc.curseKaart(naam);
-        System.out.println(Printer.printGreen("usecase3.play.curse"));
+        try {
+            dc.curseKaart(naam);
+            System.out.println(Printer.printGreen("usecase3.play.curse"));
+        }catch (Exception e){
+            System.out.println(Printer.exceptionCatch("Exception", e, false));
+        }
     }
 
 //    private void consumablesKKaart() {
