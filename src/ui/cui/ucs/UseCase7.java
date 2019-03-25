@@ -2,9 +2,7 @@ package ui.cui.ucs;
 
 import domein.DomeinController;
 import language.LanguageResource;
-import printer.Printer;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -27,9 +25,9 @@ class UseCase7 {
         boolean tryAgain = true;
         while(tryAgain){
             try {
-                System.out.println(LanguageResource.getString("actions"));
-                System.out.println(LanguageResource.getString("action1"));
-                System.out.println(LanguageResource.getString("action2"));
+                System.out.println(LanguageResource.getString("usecase8.actions"));
+                System.out.println(LanguageResource.getString("usecase8.action1"));
+                System.out.println(LanguageResource.getString("usecase8.action2"));
                 int keuze = scan.nextInt();
                 if(keuze == 1 || keuze == 2) {
                     tryAgain = false;
