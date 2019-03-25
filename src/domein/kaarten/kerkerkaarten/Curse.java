@@ -9,6 +9,8 @@ import exceptions.kaarten.kerkerkaarten.CurseException;
  */
 public class Curse extends Kerkerkaart {
 
+
+
     private enum LOSTTYPES {
         head, foot, item, all, sex, race, none, armor
     }
@@ -20,7 +22,26 @@ public class Curse extends Kerkerkaart {
     //private boolean sexLost;
 
     /**
+     * constructor voor curse
+     *
+     * KLEINE DB
+     *
+     * @param name
+     * @param id
+     * @param loseLevel
+     * @param description
+     */
+    public Curse(String name, int id, int loseLevel, String description) {
+        super(name, id);
+        setLevelLost(loseLevel);
+        setText(description);
+    }
+
+
+    /**
      * Constructor van cursekaart (die superklasse kerkerkaart gebruikt)
+     *
+     * GROTE DB
      * 
      * @param name
      * @param id

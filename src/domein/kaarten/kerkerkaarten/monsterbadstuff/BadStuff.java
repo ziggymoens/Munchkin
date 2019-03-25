@@ -45,6 +45,21 @@ public class BadStuff {
         setText(text);
     }
 
+    /**
+     * Constructor voor badstuff
+     *
+     * KLEINE DB
+     *
+     * @param id
+     * @param loseLevels
+     * @param badStuffDescription
+     */
+    public BadStuff(int id, int loseLevels, String badStuffDescription) {
+        setId(id);
+        setLevelsLost(loseLevels);
+        setText(badStuffDescription);
+    }
+
     @Override
     public String toString() {
         return String.format("Badstuff: %s ,%s",text, levelsLost==0?"escape is automatic":String.format("levels lost:%d", levelsLost));

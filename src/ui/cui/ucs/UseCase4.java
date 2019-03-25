@@ -15,12 +15,12 @@ import java.util.Scanner;
 
 /**
  * @author ziggy
- *
+ * <p>
  * GEEEEEN STATICS
  */
 class UseCase4 {
     private final DomeinController dc;
-    private final Scanner SCAN= new Scanner(System.in);
+    private final Scanner SCAN = new Scanner(System.in);
     private final int aantalSpelers;
 
 
@@ -30,6 +30,7 @@ class UseCase4 {
         this.dc = dc;
         this.aantalSpelers = aantalSpelers;
     }
+
     // Vragen aan speler of hij hulp wilt
     void bereidSpelVoor() {
         int monster = 0;
@@ -45,7 +46,7 @@ class UseCase4 {
         }
         // Vragen aan speler of hij een bonuskaart wilt spelen.
         String bonuskaart;
-        do{
+        do {
             System.out.println(LanguageResource.getString("usecase4.ask.bonuscard"));
             bonuskaart = SCAN.next().toLowerCase();
             while (!bonuskaart.equals(LanguageResource.getString("yes")) && !bonuskaart.equals(LanguageResource.getString("no"))) {
@@ -53,84 +54,82 @@ class UseCase4 {
                 System.out.println(LanguageResource.getString("usecase4.ask.bonuscard"));
                 bonuskaart = SCAN.next().toLowerCase();
             }
-            if(bonuskaart.equals(LanguageResource.getString("yes"))){
+            if (bonuskaart.equals(LanguageResource.getString("yes"))) {
                 UseCase5 uc5 = new UseCase5(this.dc);
                 uc5.speelKaart();
             }
-        }while(bonuskaart.equals(LanguageResource.getString("yes")));
+        } while (bonuskaart.equals(LanguageResource.getString("yes")));
         /**
          * Methode die de tegenstanders in volgorde 3 keuze geeft en deze uitvoert.
          */
-        int aantal = dc.geefSpelerAanBeurt()+ 1;
+        int aantal = dc.geefSpelerAanBeurt() + 1;
         boolean[] bool = new boolean[aantalSpelers - 1];
         boolean[] helptmee = new boolean[aantalSpelers - 1];
-            //Lus die alle spelers na de speler die vecht afgaat
-            for(int i = 0; i < aantalSpelers; i++) {
-                    if (aantal < aantalSpelers) {
-                        //De spelers blijven vragen welke optie hij of zij wilt nemen, tot de speler optie 3 neemt
+        //Lus die alle spelers na de speler die vecht afgaat
+        for (int i = 0; i < aantalSpelers; i++) {
+            if (aantal < aantalSpelers) {
+                //De spelers blijven vragen welke optie hij of zij wilt nemen, tot de speler optie 3 neemt
 
-                        while(!bool[i]){
-                            System.out.printf("%s%s%n", String.format("%s", ColorsOutput.kleur("blue") + dc.geefNaamSpeler(aantal) + ColorsOutput.reset()), LanguageResource.getString("usecase4.Monsterhelp"));
-                            System.out.println(LanguageResource.getString("usecase4.choices"));
-                            int keuze = SCAN.nextInt();
-                            switch (keuze) {
-                                case 1:
-                                    //Mag alleen gebeuren als de speler die vecht akkoord is gegaan dat hij hulp wilt
-                                    if(help.equals(LanguageResource.getString("yes"))){
-                                        helpSpeler();
-                                        helptmee[i] = true;
-                                    }
-
-                                    break;
-                                case 2:
-                                    helpMonster();
-                                    break;
-                                case 3:
-                                    bool[i] = true;
-                                    break;
+                while (!bool[i]) {
+                    System.out.printf("%s%s%n", String.format("%s", ColorsOutput.kleur("blue") + dc.geefNaamSpeler(aantal) + ColorsOutput.reset()), LanguageResource.getString("usecase4.Monsterhelp"));
+                    System.out.println(LanguageResource.getString("usecase4.choices"));
+                    int keuze = SCAN.nextInt();
+                    switch (keuze) {
+                        case 1:
+                            //Mag alleen gebeuren als de speler die vecht akkoord is gegaan dat hij hulp wilt
+                            if (help.equals(LanguageResource.getString("yes"))) {
+                                helpSpeler();
+                                helptmee[i] = true;
                             }
-                        }
-                    } else {
-                        aantal = -1;
+
+                            break;
+                        case 2:
+                            helpMonster();
+                            break;
+                        case 3:
+                            bool[i] = true;
+                            break;
                     }
-                    aantal++;
+                }
+            } else {
+                aantal = -1;
             }
-            String kaart;
-            //vragen of de speler nog een extra kaart wilt spelen, zoja, speel een kaart
-        do{
+            aantal++;
+        }
+        String kaart;
+        //vragen of de speler nog een extra kaart wilt spelen, zoja, speel een kaart
+        do {
             System.out.printf("%s%s%n", String.format("%s", ColorsOutput.kleur("blue") + dc.geefNaamSpeler(dc.geefSpelerAanBeurt()) + ColorsOutput.reset()), LanguageResource.getString("usecase4.ask.card"));
             kaart = SCAN.next().toLowerCase();
             while (!kaart.equals(LanguageResource.getString("yes")) && !kaart.equals(LanguageResource.getString("no"))) {
                 System.out.printf(ColorsOutput.decoration("bold") + ColorsOutput.kleur("red") + "%s%n%n", LanguageResource.getString("start.yesno") + ColorsOutput.reset());
                 System.out.println(LanguageResource.getString("usecase4.ask.bonuscard"));
                 kaart = SCAN.next().toLowerCase();
-            }if(kaart.equals(LanguageResource.getString("yes"))){
+            }
+            if (kaart.equals(LanguageResource.getString("yes"))) {
                 UseCase5 uc5 = new UseCase5(this.dc);
                 uc5.speelKaart();
             }
             //Het overzicht tonen voor het gevecht(hetgeen dat nog niet in orde is)
-        }while(kaart.equals(LanguageResource.getString("yes")));
+        } while (kaart.equals(LanguageResource.getString("yes")));
         System.out.println(dc.bovensteKaartToString());
         System.out.printf("Het monster heeft een sterkte van %d en de speler een sterkte van %d%n", monster, speler);
-        for(int i = 0; i < aantalSpelers; i ++){
+        for (int i = 0; i < aantalSpelers; i++) {
             List<String> huidigeSituatie = dc.geefBeknopteSpelsituatie(helptmee[i]);
             huidigeSituatie.get(i);
         }
 
     }
 
-    private void helpSpeler(){
+    private void helpSpeler() {
         UseCase5 uc5 = new UseCase5(this.dc);
         uc5.speelKaart();
     }
 
-    private void helpMonster(){
+    private void helpMonster() {
         UseCase5 uc5 = new UseCase5(this.dc);
         uc5.speelKaart();
     }
-
-
-
 
 
 }

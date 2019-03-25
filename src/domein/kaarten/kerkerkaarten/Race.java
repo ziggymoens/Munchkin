@@ -12,11 +12,12 @@ public class Race extends Kerkerkaart {
     private boolean extraWapen = false;
     private boolean doublePrice = false;
     private boolean extraRunAway = false;
-    private int bonusCombat;
-    private int monsterCombat;
-    private int runAway;
+    private int bonusCombat = 0;
+    private int monsterCombat = 0;
+    private int runAway = 0;
     private final String type;
     private String text;
+
 
     private enum TYPES {
         elf, dwarf, halfling, human, everyone, none, female, male
@@ -25,9 +26,33 @@ public class Race extends Kerkerkaart {
     public Race(String naam){
         this(naam, 999, "+1 to Run Away");
     }
-    
+
+    /**
+     * Constructor voor kerkerkaart ras
+     *
+     * KLEINE DB
+     *
+     * @param type
+     * @param id
+     * @param combatBonus
+     * @param runaway
+     */
+    public Race(String type, int id, int combatBonus, int runaway) {
+        super(type, id);
+        this.type = type;
+        if (type.toLowerCase().equals("dwarf")){
+            setBonusCombat(combatBonus);
+        }else if(type.toLowerCase().equals("halfing")){
+            setMonsterCombat(combatBonus);
+        }else {
+            setRunAway(runaway);
+        }
+    }
+
     /**
      * Constructor voor kerkerkaart ras (die superklasse Kerkerkaart gebruikt)
+     *
+     * GROTE DB
      *
      * @param type
      * @param id
@@ -129,6 +154,26 @@ public class Race extends Kerkerkaart {
         }
     }
 
+    public void setBonusCombat(int bonusCombat) {
+        if (bonusCombat<0){
+            throw new RaceException("exception.race.bonuscombat");
+        }
+        this.bonusCombat = bonusCombat;
+    }
+
+    public void setMonsterCombat(int monsterCombat) {
+        if (monsterCombat<0){
+            throw new RaceException("exception.race.monstercombat");
+        }
+        this.monsterCombat = monsterCombat;
+    }
+
+    public void setRunAway(int runAway) {
+        if (runAway<0){
+            throw new RaceException("exception.race.runaway");
+        }
+        this.runAway = runAway;
+    }
 
     @Override
     public String toString() {
