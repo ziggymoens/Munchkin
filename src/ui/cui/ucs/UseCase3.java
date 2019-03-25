@@ -78,6 +78,9 @@ class UseCase3 {
         types.get(type).run();
     }
 
+    /**
+     * Kaarten beheren en doorverwijzen naar UC7
+     */
     private void beheerKaarten() {
         try {
             UseCase7 uc7 = new UseCase7(this.dc);

@@ -247,4 +247,16 @@ public class DomeinController {
     public int geefSpelerAanBeurt(){
         return spel.getSpelerAanBeurt();
     }
+
+    public String geefKaartenKunnenNaarItems(String naam) {
+        return spel.geefKaartenKunnenNaarItems(naam);
+    }
+
+    public String geefVerkoopbareKaarten(String naam) {
+        return spel.geefVerkoopbareKaarten(naam);
+    }
+
+    public String geefNietVerkoopbareKaarten(String naam) {
+        return spel.geefNietVerkoopbareKaarten(naam);
+    }
 }

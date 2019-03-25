@@ -2,6 +2,9 @@ package domein;
 
 import domein.kaarten.Kaart;
 import domein.kaarten.kerkerkaarten.Curse;
+import domein.kaarten.kerkerkaarten.Race;
+import domein.kaarten.schatkaarten.ConsumablesSchat;
+import domein.kaarten.schatkaarten.Equipment;
 import domein.repositories.KaartDbKleinRepository;
 import domein.repositories.KaartDbRepository;
 import exceptions.SpelException;
@@ -364,5 +367,21 @@ public class Spel {
 
     public void setSpelerAanBeurt(int spelerAanBeurt) {
         this.spelerAanBeurt = spelerAanBeurt;
+    }
+
+    public String geefKaartenKunnenNaarItems(String naam) {
+        int i = zoekSpeler(naam);
+        List<Kaart> kaarten = spelers.get(i).getKaarten();
+        return spelers.get(i).geefKaartenKunnenNaarItems();
+    }
+
+    public String geefVerkoopbareKaarten(String naam) {
+        int i = zoekSpeler(naam);
+        return spelers.get(i).geefVerkoopbareKaarten();
+    }
+
+    public String geefNietVerkoopbareKaarten(String naam) {
+        int i = zoekSpeler(naam);
+        return spelers.get(i).geefNietVerkoopbareKaarten();
     }
 }

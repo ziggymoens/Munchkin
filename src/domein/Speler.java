@@ -287,7 +287,39 @@ public class Speler {
         items.remove(keuze);
     }
     
-    public int getAantalKaarten() {
+    public int getAantalKaarten()
+    {
         return aantalSchatkaarten+aantalKerkerkaarten;
+    }
+
+    public String geefKaartenKunnenNaarItems() {
+        List<Kaart> kaarten = getKaarten();
+        StringBuilder ret = new StringBuilder();
+        for (Kaart kaart: kaarten){
+            if (kaart instanceof Race || kaart instanceof Equipment){
+                ret.append(kaart.toString());
+            }
+        }
+        return ret.toString();
+    }
+
+    public String geefVerkoopbareKaarten() {
+        List<Kaart> kaarten = getKaarten();
+        StringBuilder ret = new StringBuilder();
+        for (Kaart kaart: kaarten){
+            if (kaart instanceof Equipment || kaart instanceof ConsumablesSchat){
+                ret.append(kaart.toString());
+            }
+        }
+        return ret.toString();
+    }
+
+    public String geefNietVerkoopbareKaarten() {
+        List<Kaart> kaarten = getKaarten();
+        StringBuilder ret = new StringBuilder();
+        for (Kaart kaart: kaarten){
+            ret.append(kaart.toString());
+        }
+        return ret.toString();
     }
 }

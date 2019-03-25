@@ -4,6 +4,7 @@ import domein.DomeinController;
 import language.LanguageResource;
 import printer.ColorsOutput;
 
+import javax.swing.*;
 import java.util.Scanner;
 
 /**
@@ -34,7 +35,7 @@ class UseCase7 {
                     throw new Exception();
                 }
                 tryAgain = false;
-                verwerkKeuze(keuze);
+                verwerkKeuze(keuze, naam);
             } catch (Exception e) {
                 System.out.println(ColorsOutput.kleur("red") + ColorsOutput.decoration("bold") + "Foute keuze, probeer opnieuw" + ColorsOutput.reset());
                 SCAN.nextLine();
@@ -43,21 +44,16 @@ class UseCase7 {
         }
     }
 
-    private void verwerkKeuze(int keuze) {
+    private void verwerkKeuze(int keuze, String naam) {
         switch (keuze) {
             case 1:
+                System.out.println(String.format("%s: %s", LanguageResource.getString("usecase7.toitems"), dc.geefKaartenKunnenNaarItems(naam)));
                 break;
             case 2:
+                System.out.println(String.format("%s: %s", LanguageResource.getString("usecase7.salable"), dc.geefVerkoopbareKaarten(naam)));
+                System.out.println(String.format("%s: %s", LanguageResource.getString("usecase7.throwaway"), dc.geefNietVerkoopbareKaarten(naam)));
                 break;
-
         }
-    }
-
-    public void overzichtAfleggen() {
-    }
-
-    public void overzichtVerkopen() {
-
     }
 }
 
