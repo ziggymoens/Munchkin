@@ -54,10 +54,12 @@ class UseCase3 {
             huidigeKaart = dc.geefIdBovensteKaart();
             System.out.println(String.format("%s %s", naam, LanguageResource.getString("usecase3.confirm")));
             String bev = SCAN.next();
+            SCAN.nextLine();
             while (!bev.equals(LanguageResource.getString("yes"))) {
                 System.out.printf(ColorsOutput.kleur("red") + "%s%n%n", LanguageResource.getString("usecase3.novalidconfirm") + ColorsOutput.reset());
                 System.out.println(LanguageResource.getString("usecase3.confirm"));
                 bev = SCAN.next().toLowerCase();
+                SCAN.nextLine();
             }
             //System.out.println(dc.geefTypeKaart(huidigeKaart));
             speelKaart();

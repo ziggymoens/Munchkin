@@ -5,6 +5,7 @@ import domein.*;
 import java.util.*;
 
 import exceptions.database.KaartDatabaseException;
+import javafx.scene.Scene;
 import printer.Printer;
 import exceptions.SpelException;
 import exceptions.SpelerException;
@@ -52,10 +53,12 @@ public class UseCase1 {
         //gebruiker vragen of hij een nieuw spel wil starten.
         System.out.println(LanguageResource.getString("newGame"));
         String nieuwSpel = SCAN.next().toLowerCase();
+        SCAN.nextLine();
         while (!nieuwSpel.equals(LanguageResource.getString("yes")) && !nieuwSpel.equals(LanguageResource.getString("no"))) {
             System.out.printf(ColorsOutput.decoration("bold") + ColorsOutput.kleur("red") + "%s%n%n", LanguageResource.getString("start.yesno") + ColorsOutput.reset());
             System.out.println(LanguageResource.getString("newGame"));
             nieuwSpel = SCAN.next().toLowerCase();
+            SCAN.nextLine();
         }
         try {
             if (nieuwSpel.equals(LanguageResource.getString("yes"))) {
@@ -69,10 +72,12 @@ public class UseCase1 {
             } else if (nieuwSpel.equals(LanguageResource.getString("no"))) {
                 System.out.println(LanguageResource.getString("usecase1.load"));
                 String load = SCAN.next();
+                SCAN.nextLine();
                 while (!load.equals(LanguageResource.getString("yes")) && !load.equals(LanguageResource.getString("no"))) {
                     System.out.printf(ColorsOutput.decoration("bold") + ColorsOutput.kleur("red") + "%s%n%n", LanguageResource.getString("start.yesno") + ColorsOutput.reset());
                     System.out.println(LanguageResource.getString("usecase1.load"));
                     load = SCAN.next().toLowerCase();
+                    SCAN.nextLine();
                 }
                 if (load.equals(LanguageResource.getString("no"))) {
                     System.out.println(Printer.printGreen("gamestop"));
@@ -93,12 +98,14 @@ public class UseCase1 {
             System.out.printf("%s %s%n", LanguageResource.getStringLanguage("startUp", l), LanguageResource.getStringLanguage("languageC", l));
         }
         String gekozenTaal = SCAN.next().toLowerCase();
+        SCAN.nextLine();
         //zolang gekozen taal niet voldoet aan beginletter van frans, nederlands of engels
         while (!gekozenTaal.equals("nederlands") && !gekozenTaal.equals("français") && !gekozenTaal.equals("english")) {
             for (Locale l : talen) {
                 System.out.printf(ColorsOutput.decoration("bold") + ColorsOutput.kleur("red") + "%s%n", LanguageResource.getStringLanguage("wrong", l) + ColorsOutput.reset());
             }
             gekozenTaal = SCAN.next().toLowerCase();
+            SCAN.nextLine();
         }
         //switch voor de verschillende talen
         Locale choice;
@@ -181,6 +188,7 @@ public class UseCase1 {
             try {
                 System.out.println(LanguageResource.getString("ask.name"));
                 String naam = SCAN.next();
+                SCAN.nextLine();
                 dc.geefSpelerNaam(i, naam);
                 tryAgain = false;
             } catch (SpelerException e) {
@@ -202,6 +210,7 @@ public class UseCase1 {
             try {
                 System.out.println(LanguageResource.getString("ask.sex"));
                 String geslacht = SCAN.next();
+                SCAN.nextLine();
                 dc.geefSpelerGeslacht(i, geslacht);
                 tryAgain = false;
             } catch (SpelerException e) {
