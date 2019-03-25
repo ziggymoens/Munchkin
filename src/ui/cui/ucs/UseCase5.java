@@ -21,6 +21,6 @@ public class UseCase5 {
     
     public String[] kiesKaart(String type, String naam){
         String [] keuze = new String [2];
-        
+        return keuze;
     }
 }
