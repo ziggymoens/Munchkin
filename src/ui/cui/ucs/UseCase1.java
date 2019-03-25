@@ -191,9 +191,6 @@ public class UseCase1 {
             try {
                 System.out.println(LanguageResource.getString("ask.sex"));
                 String geslacht = SCAN.next();
-                if (geslacht.equals("x")) {
-                    System.err.print("enkel sociaal aanvaarde geslachten");
-                }
                 dc.geefSpelerGeslacht(i, geslacht);
                 tryAgain = false;
             } catch (SpelerException e) {

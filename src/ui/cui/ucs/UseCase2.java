@@ -137,7 +137,6 @@ class UseCase2 {
 
     /**
      * Methode die de naam van de winnaar terug geeft
-     *
      * @return De naam van de winnaar van het spel
      */
     private String geefNaamWinnaar() {

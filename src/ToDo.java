@@ -1,5 +1,8 @@
 /* TO DO */
 /**
+ *
+ * VERGEET NIET TE PULLEN ALVORENS TE PUSHEN!
+ *
  * Controle van de namen nog aanpassen ==> DONE
  *
  * Java Doc aanvullen in klassen domein.kaarten. -- semi done, domein.kaarten, domein.kaarten.kerkerkaarten en domein.kaarten.kerkerkaarten.monsterbadstuff gedaan
@@ -9,7 +12,7 @@
  * 
  * Centraal punt voor exceptions maken in exceptions(Package). ==> DONE
  * 
- * internationalisatie aanvullen, vooral fr, en controleren ==> UP TO DATE HOUDEN
+ * internationalisatie aanvullen, vooral fr, en controleren ==> UP TO DATE HOUDEN -- ZEKER VERDER AANVULLEN
  * 
  * 
  * unieke controle toevoegen aan speler ==> DONE, leeftijd verwijderen van lus (want niet gevraagd blijkbaar) ==> DONE, ASCII code checken voor naam ==> DONE
