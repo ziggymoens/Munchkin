@@ -1,4 +1,4 @@
-package ui.gui;
+package main;
 
 import domein.DomeinController;
 import java.util.Optional;
