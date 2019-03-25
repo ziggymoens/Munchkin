@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="65c6d22f-232f-4b77-bc1e-1f6c0d29be8c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/language/resourcebundle/i18n.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/language/resourcebundle/i18n.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/language/resourcebundle/i18n_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/language/resourcebundle/i18n_en.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/language/resourcebundle/i18n_fr.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/language/resourcebundle/i18n_fr.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/language/resourcebundle/i18n_nl.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/language/resourcebundle/i18n_nl.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ui/cui/ucs/UseCase7.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/cui/ucs/UseCase7.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -62,18 +58,6 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase3.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="501">
-              <caret line="61" column="14" selection-start-line="61" selection-start-column="14" selection-end-line="61" selection-end-column="14" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase4.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-160">
@@ -82,11 +66,36 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase7.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="27" column="75" selection-start-line="27" selection-start-column="75" selection-end-line="27" selection-end-column="75" />
+            <state relative-caret-position="555">
+              <caret line="43" column="5" lean-forward="true" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
+              <folding>
+                <element signature="e#443#444#0" expanded="true" />
+                <element signature="e#470#471#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase1.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-25">
+              <caret line="85" column="5" lean-forward="true" selection-start-line="85" selection-start-column="5" selection-end-line="85" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase2.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="395">
+              <caret line="97" column="22" selection-start-line="97" selection-start-column="22" selection-end-line="97" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -98,11 +107,6 @@
               <caret line="53" lean-forward="true" selection-start-line="53" selection-end-line="53" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://i18n">
-          <provider selected="true" editor-type-id="ResourceBundle" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -192,7 +196,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/gui/ucs/UseCase3.java" />
         <option value="$PROJECT_DIR$/src/gui/ucs/UseCase2.java" />
         <option value="$PROJECT_DIR$/src/gui/ucs/UseCase8.java" />
         <option value="$PROJECT_DIR$/src/language/resourcebundle/i18n_nl.properties" />
@@ -243,6 +246,7 @@
         <option value="$PROJECT_DIR$/src/domein/repositories/SpelDbRepository.java" />
         <option value="$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java" />
         <option value="$PROJECT_DIR$/src/language/resourcebundle/i18n.properties" />
+        <option value="$PROJECT_DIR$/src/ui/cui/ucs/UseCase7.java" />
       </list>
     </option>
   </component>
@@ -326,7 +330,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553542299485" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553542724356" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -458,7 +462,7 @@
       <updated>1551993656744</updated>
       <workItem from="1551993658537" duration="141000" />
       <workItem from="1552226520023" duration="60340000" />
-      <workItem from="1552904444934" duration="62191000" />
+      <workItem from="1552904444934" duration="62615000" />
     </task>
     <task id="LOCAL-00001" summary="output">
       <created>1552228440827</created>
@@ -782,11 +786,18 @@
       <option name="project" value="LOCAL" />
       <updated>1553541832315</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="uc7">
+      <created>1553542310472</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1553542310472</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="123028000" />
+    <option name="totallyTimeSpent" value="123452000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1200" extended-state="6" />
@@ -839,7 +850,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="aanpassing UC1" />
     <MESSAGE value="hersturcturering" />
     <MESSAGE value="uc8" />
     <MESSAGE value="fixed" />
@@ -864,7 +874,8 @@
     <MESSAGE value="startup in main" />
     <MESSAGE value="alle kaarten, uc1,2,3,4, 8,9 &#10;spel en dc" />
     <MESSAGE value="Kleine Db" />
-    <option name="LAST_COMMIT_MESSAGE" value="Kleine Db" />
+    <MESSAGE value="uc7" />
+    <option name="LAST_COMMIT_MESSAGE" value="uc7" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/domein/Speler.java">
@@ -1125,23 +1136,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="433">
-          <caret line="63" column="58" selection-start-line="63" selection-start-column="58" selection-end-line="63" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="571">
-          <caret line="85" column="5" lean-forward="true" selection-start-line="85" selection-start-column="5" selection-end-line="85" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase6.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -1304,13 +1298,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase7.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="27" column="75" selection-start-line="27" selection-start-column="75" selection-end-line="27" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/language/resourcebundle/i18n.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="512">
@@ -1318,6 +1305,34 @@
         </state>
       </provider>
       <provider editor-type-id="ResourceBundle" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-25">
+          <caret line="85" column="5" lean-forward="true" selection-start-line="85" selection-start-column="5" selection-end-line="85" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="395">
+          <caret line="97" column="22" selection-start-line="97" selection-start-column="22" selection-end-line="97" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase7.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="43" column="5" lean-forward="true" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
+          <folding>
+            <element signature="e#443#444#0" expanded="true" />
+            <element signature="e#470#471#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
   </component>
   <component name="masterDetails">
