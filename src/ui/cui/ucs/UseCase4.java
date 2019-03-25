@@ -35,7 +35,7 @@ class UseCase4 {
         int monster = 0;
         int speler = 0;
 
-
+        //Vragen aan de speler of hij hulp wilt met het bevechten van het monster, zoja, mogen anderen hem helpen, anders niet
         System.out.println(LanguageResource.getString("usecase4.ask.help"));
         String help = SCAN.next().toLowerCase();
         while (!help.equals(LanguageResource.getString("yes")) && !help.equals(LanguageResource.getString("no"))) {
@@ -43,8 +43,8 @@ class UseCase4 {
             System.out.println(LanguageResource.getString("usecase4.ask.help"));
             help = SCAN.next().toLowerCase();
         }
-        String bonuskaart;
         // Vragen aan speler of hij een bonuskaart wilt spelen.
+        String bonuskaart;
         do{
             System.out.println(LanguageResource.getString("usecase4.ask.bonuscard"));
             bonuskaart = SCAN.next().toLowerCase();
@@ -64,14 +64,18 @@ class UseCase4 {
         int aantal = dc.geefSpelerAanBeurt()+ 1;
         boolean[] bool = new boolean[aantalSpelers - 1];
         boolean[] helptmee = new boolean[aantalSpelers - 1];
+            //Lus die alle spelers na de speler die vecht afgaat
             for(int i = 0; i < aantalSpelers; i++) {
                     if (aantal < aantalSpelers) {
+                        //De spelers blijven vragen welke optie hij of zij wilt nemen, tot de speler optie 3 neemt
+
                         while(!bool[i]){
                             System.out.printf("%s%s%n", String.format("%s", ColorsOutput.kleur("blue") + dc.geefNaamSpeler(aantal) + ColorsOutput.reset()), LanguageResource.getString("usecase4.Monsterhelp"));
                             System.out.println(LanguageResource.getString("usecase4.choices"));
                             int keuze = SCAN.nextInt();
                             switch (keuze) {
                                 case 1:
+                                    //Mag alleen gebeuren als de speler die vecht akkoord is gegaan dat hij hulp wilt
                                     if(help.equals(LanguageResource.getString("yes"))){
                                         helpSpeler();
                                         helptmee[i] = true;
@@ -92,6 +96,7 @@ class UseCase4 {
                     aantal++;
             }
             String kaart;
+            //vragen of de speler nog een extra kaart wilt spelen, zoja, speel een kaart
         do{
             System.out.printf("%s%s%n", String.format("%s", ColorsOutput.kleur("blue") + dc.geefNaamSpeler(dc.geefSpelerAanBeurt()) + ColorsOutput.reset()), LanguageResource.getString("usecase4.ask.card"));
             kaart = SCAN.next().toLowerCase();
@@ -103,6 +108,7 @@ class UseCase4 {
                 UseCase5 uc5 = new UseCase5(this.dc);
                 uc5.speelKaart();
             }
+            //Het overzicht tonen voor het gevecht(hetgeen dat nog niet in orde is)
         }while(kaart.equals(LanguageResource.getString("yes")));
         System.out.println(dc.bovensteKaartToString());
         System.out.printf("Het monster heeft een sterkte van %d en de speler een sterkte van %d%n", monster, speler);
