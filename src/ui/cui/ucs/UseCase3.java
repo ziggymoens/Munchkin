@@ -59,7 +59,7 @@ class UseCase3 {
             String bev = SCAN.next();
             SCAN.nextLine();
             while (!bev.equals(LanguageResource.getString("yes"))) {
-                System.out.printf(ColorsOutput.kleur("red") + "%s%n%n", LanguageResource.getString("usecase3.novalidconfirm") + ColorsOutput.reset());
+                System.out.printf(ColorsOutput.kleur("red") + ColorsOutput.decoration("bold") + "%s%n%n", LanguageResource.getString("usecase3.novalidconfirm") + ColorsOutput.reset());
                 System.out.println(LanguageResource.getString("usecase3.confirm"));
                 bev = SCAN.next().toLowerCase();
                 SCAN.nextLine();
@@ -68,7 +68,7 @@ class UseCase3 {
             speelKaart();
             beheerKaarten();
             boolean verschil = true;
-            for (int i = 0; i<aantalSpelers;i++){
+            for (int i = 0; i < aantalSpelers; i++) {
                 verschil = huidigeSituatie.get(i).toLowerCase().equals(dc.geefSpelsituatie().get(i).toLowerCase());
             }
             System.out.printf("%s", verschil ? LanguageResource.getString("usecase3.nochanges") + "\n" : LanguageResource.getString("usecase3.changedsituation") + "\n" + dc.geefSpelsituatie());
@@ -82,7 +82,7 @@ class UseCase3 {
         try {
             String type = dc.geefTypeKaart(huidigeKaart);
             types.get(type).run();
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(Printer.exceptionCatch("Exception", e, false));
         }
     }
@@ -104,10 +104,10 @@ class UseCase3 {
     }
 
     private void geenEffectKaart() {
-        try{
+        try {
             dc.geefKerkerkaartAanSpeler(naam);
             System.out.print(Printer.printGreen(String.format("usecase3.play.%s", dc.geefTypeKaart(huidigeKaart).toLowerCase())));
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(Printer.exceptionCatch("Exception", e, false));
         }
 
@@ -141,7 +141,7 @@ class UseCase3 {
         try {
             dc.curseKaart(naam);
             System.out.println(Printer.printGreen("usecase3.play.curse"));
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(Printer.exceptionCatch("Exception", e, false));
         }
     }
