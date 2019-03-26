@@ -119,7 +119,7 @@ public class DomeinController {
     }
     public List<String> geefBeknopteSpelsituatie(boolean vecht){
         return spel.geefBeknopteSpelsituatie(vecht);
-    }
+    }   
 
     /**
      * @return
