@@ -128,6 +128,7 @@ class UseCase2 {
                             tryAgain2 = false;
                         } catch (Exception e) {
                             System.out.print(ColorsOutput.kleur("red") + ColorsOutput.decoration("bold") + LanguageResource.getString("usecase2.choiceerror") + ColorsOutput.reset());
+                            SCAN.nextLine();
                         }
                     }
                     break;

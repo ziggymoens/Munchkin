@@ -70,9 +70,8 @@ public class UseCase1 {
                 UseCase2 uc2 = new UseCase2(this.dc);
                 uc2.speelSpel(aantalSpelers);
             } else if (nieuwSpel.equals(LanguageResource.getString("no"))) {
-                System.out.println(LanguageResource.getString("usecase1.load"));
+                System.out.println(LanguageResource.getString("usecase1.load") + String.format(" (%s, %s)", LanguageResource.getString("yes"), LanguageResource.getString("no")));
                 String load = SCAN.next();
-                SCAN.nextLine();
                 while (!load.equals(LanguageResource.getString("yes")) && !load.equals(LanguageResource.getString("no"))) {
                     System.out.printf(ColorsOutput.decoration("bold") + ColorsOutput.kleur("red") + "%s%n%n", LanguageResource.getString("start.yesno") + ColorsOutput.reset());
                     System.out.println(LanguageResource.getString("usecase1.load"));
@@ -80,7 +79,13 @@ public class UseCase1 {
                     SCAN.nextLine();
                 }
                 if (load.equals(LanguageResource.getString("no"))) {
-                    System.out.println(Printer.printGreen("gamestop"));
+                    //th1.start();
+                    maakSpel();
+                    voegSpelersToe();
+                    System.out.println(Printer.printGreen("spel.playersadded"));
+                    //verdergaan naar UC2
+                    UseCase2 uc2 = new UseCase2(this.dc);
+                    uc2.speelSpel(aantalSpelers);
                 }
                 UseCase9 uc9 = new UseCase9(this.dc);
                 uc9.spelLaden();
