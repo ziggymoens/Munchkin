@@ -296,13 +296,9 @@ public class Speler {
     public String geefKaartenKunnenNaarItems() {
         StringBuilder ret = new StringBuilder();
         int j = 0;
-        for (Kaart kaart: kaarten) {
+        for (Kaart kaart : kaarten) {
             if (kaart instanceof Race || kaart instanceof Equipment) {
-                if (j == 0) {
-                    ret.append(kaart.getNaam());
-                }else {
-                    ret.append(String.format(", %s",kaart.getNaam()));
-                }
+                ret.append(String.format("%d) %s%n", j, kaart.getNaam()));
                 j++;
             }
         }
@@ -314,11 +310,7 @@ public class Speler {
         int j = 0;
         for (Kaart kaart : kaarten) {
             if (kaart instanceof Equipment || kaart instanceof ConsumablesSchat) {
-                if (j == 0) {
-                    ret.append(kaart.getNaam());
-                }else {
-                    ret.append(String.format(", %s",kaart.getNaam()));
-                }
+                ret.append(String.format("%d) %s%n", j, kaart.getNaam()));
                 j++;
             } else {
                 continue;
@@ -331,11 +323,7 @@ public class Speler {
         StringBuilder ret = new StringBuilder();
         int j = 0;
         for (Kaart kaart : kaarten) {
-            if (j == 0) {
-                ret.append(kaart.getNaam());
-            }else {
-                ret.append(String.format(", %s",kaart.getNaam()));
-            }
+            ret.append(String.format("%d) %s%n", j, kaart.getNaam()));
             j++;
         }
         return ret.toString();
