@@ -127,7 +127,13 @@ class UseCase4 {
             //Het overzicht tonen voor het gevecht(hetgeen dat nog niet in orde is)
         } while (kaart.equals(LanguageResource.getString("yes")));
         System.out.println("\n" + dc.bovensteKaartToString());
-        System.out.printf("Het monster heeft een sterkte van %d en de speler een sterkte van %d%n%n", monster, speler);
+        if (LanguageResource.getLocale().toString().equals("nl")) {
+            System.out.printf("Het monster heeft een sterkte van %d en de speler een sterkte van %d%n%n", monster, speler);
+        }if (LanguageResource.getLocale().toString().equals("en")) {
+            System.out.printf("The monster has level %d and the player has level %d%n%n", monster, speler);
+        }if (LanguageResource.getLocale().toString().equals("fr")) {
+            System.out.printf("Le monstre a le niveau %d et le joueur a le niveau %d%n%n", monster, speler);
+        }
         for (int i = 0; i < aantalSpelers; i++) {
             List<String> ret = dc.geefBeknopteSpelsituatie(helptmee[i]);
             System.out.print(ret.get(i));
