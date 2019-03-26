@@ -259,4 +259,8 @@ public class DomeinController {
     public String geefNietVerkoopbareKaarten(String naam) {
         return spel.geefNietVerkoopbareKaarten(naam);
     }
+
+    public void verhoogLevel(String naam, int levelUp){
+        spel.verhoogLevel(naam, levelUp);
+    }
 }

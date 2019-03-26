@@ -384,4 +384,9 @@ public class Spel {
         int i = zoekSpeler(naam);
         return spelers.get(i).geefNietVerkoopbareKaarten();
     }
+
+    public void verhoogLevel(String naam, int levelUp){
+        int i = zoekSpeler(naam);
+        spelers.get(i).setLevel(spelers.get(i).getLevel() + levelUp);
+    }
 }

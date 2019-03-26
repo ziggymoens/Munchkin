@@ -22,10 +22,6 @@ class UseCase7 {
     }
 
     void beheerKaarten(String naam) {
-        maakKeuze(naam);
-    }
-
-    private void maakKeuze(String naam) {
         int keuze = 0;
         boolean tryAgain = true;
         while (tryAgain) {
@@ -57,14 +53,18 @@ class UseCase7 {
                     try {
                         System.out.println(String.format("%s: %s", LanguageResource.getString("usecase7.salable"), dc.geefVerkoopbareKaarten(naam)));
                         System.out.println(String.format("%s: %s", LanguageResource.getString("usecase7.throwaway"), dc.geefNietVerkoopbareKaarten(naam)));
+
                     } catch (Exception e) {
 
                     }
                     break;
             }
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("usecase2.choiceerror");
         }
+
+        
     }
+
 }
 
