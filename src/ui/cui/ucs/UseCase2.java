@@ -113,11 +113,22 @@ class UseCase2 {
                     }
                     break;
                 case 3:
-                    try {
-                        System.out.println(Printer.printGreen("gamestop"));
-                        System.exit(0);
-                    } catch (Exception e) {
-                        System.out.print(Printer.exceptionCatch("Exception", e, false));
+                    boolean tryAgain2 = true;
+                    while (tryAgain2) {
+                        try {
+                            System.out.println(LanguageResource.getString("close") + String.format(" (%s, %s)", LanguageResource.getString("yes"), LanguageResource.getString("no")));
+                            String yesno = SCAN.next();
+                            if (!yesno.equals(LanguageResource.getString("yes")) && !yesno.equals(LanguageResource.getString("no"))) {
+                                throw new Exception();
+                            }
+                            if (yesno.equals(LanguageResource.getString("yes"))) {
+                                System.out.println(Printer.printGreen("gamestop"));
+                                System.exit(0);
+                            }
+                            tryAgain2 = false;
+                        } catch (Exception e) {
+                            System.out.print(ColorsOutput.kleur("red") + ColorsOutput.decoration("bold") + LanguageResource.getString("usecase2.choiceerror") + ColorsOutput.reset());
+                        }
                     }
                     break;
                 default:

@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="65c6d22f-232f-4b77-bc1e-1f6c0d29be8c" name="Default Changelist" comment="UC7 maar werkt niet helemaal">
+    <list default="true" id="65c6d22f-232f-4b77-bc1e-1f6c0d29be8c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/cui/ucs/UseCase4.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/cui/ucs/UseCase4.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/language/resourcebundle/i18n.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/language/resourcebundle/i18n.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/language/resourcebundle/i18n_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/language/resourcebundle/i18n_en.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/cui/ucs/UseCase2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/cui/ucs/UseCase2.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -105,24 +107,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase4.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="500">
               <caret line="134" column="75" selection-start-line="134" selection-start-column="75" selection-end-line="134" selection-end-column="75" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/domein/Speler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="624">
-              <caret line="343" selection-start-line="343" selection-end-line="343" />
-              <folding>
-                <element signature="e#8177#8178#0" expanded="true" />
-                <element signature="e#8238#8239#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -139,14 +128,26 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase2.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="101" column="33" lean-forward="true" selection-start-line="101" selection-start-column="33" selection-end-line="101" selection-end-column="33" />
+            <state relative-caret-position="396">
+              <caret line="125" column="46" selection-start-line="125" selection-start-column="46" selection-end-line="125" selection-end-column="46" />
               <folding>
-                <element signature="e#4784#4785#0" expanded="true" />
-                <element signature="e#4995#4996#0" expanded="true" />
+                <element signature="e#5633#5634#0" expanded="true" />
+                <element signature="e#5844#5845#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase1.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="401">
+              <caret line="62" column="8" lean-forward="true" selection-start-line="62" selection-start-column="8" selection-end-line="62" selection-end-column="8" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -201,9 +202,9 @@
       <find>beurt</find>
       <find>escape</find>
       <find>usecase7</find>
-      <find>scan</find>
       <find>use</find>
       <find>red</find>
+      <find>scan</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -257,12 +258,12 @@
         <option value="$PROJECT_DIR$/src/ui/cui/ucs/UseCase5.java" />
         <option value="$PROJECT_DIR$/src/ui/cui/ucs/UseCase9.java" />
         <option value="$PROJECT_DIR$/src/ui/cui/ucs/UseCase1.java" />
-        <option value="$PROJECT_DIR$/src/ui/cui/ucs/UseCase2.java" />
         <option value="$PROJECT_DIR$/src/ui/cui/ucs/UseCase7.java" />
         <option value="$PROJECT_DIR$/src/domein/Speler.java" />
         <option value="$PROJECT_DIR$/src/domein/kaarten/kerkerkaarten/Race.java" />
         <option value="$PROJECT_DIR$/src/ui/cui/ucs/UseCase3.java" />
         <option value="$PROJECT_DIR$/src/ui/cui/ucs/UseCase4.java" />
+        <option value="$PROJECT_DIR$/src/ui/cui/ucs/UseCase2.java" />
       </list>
     </option>
   </component>
@@ -375,7 +376,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553585988402" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553586668388" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -507,14 +508,7 @@
       <updated>1551993656744</updated>
       <workItem from="1551993658537" duration="141000" />
       <workItem from="1552226520023" duration="60340000" />
-      <workItem from="1552904444934" duration="73813000" />
-    </task>
-    <task id="LOCAL-00011" summary="fixed null">
-      <created>1552398649744</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1552398649744</updated>
+      <workItem from="1552904444934" duration="74491000" />
     </task>
     <task id="LOCAL-00012" summary="fixed null">
       <created>1552398731508</created>
@@ -852,18 +846,25 @@
       <option name="project" value="LOCAL" />
       <updated>1553585752966</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="UC7 taal">
+      <created>1553586000137</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1553586000137</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="134650000" />
+    <option name="totallyTimeSpent" value="135328000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1200" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Learn" order="0" weight="0.32897604" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.15069222" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.15069222" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Designer" order="4" />
@@ -874,7 +875,7 @@
       <window_info anchor="bottom" id="Messages" order="1" sideWeight="0.49891067" weight="0.32942238" />
       <window_info anchor="bottom" id="Message" order="2" />
       <window_info anchor="bottom" id="Find" order="3" weight="0.32942238" />
-      <window_info anchor="bottom" id="Run" order="4" sideWeight="0.49782136" visible="true" weight="0.2833935" />
+      <window_info active="true" anchor="bottom" id="Run" order="4" sideWeight="0.49782136" visible="true" weight="0.2833935" />
       <window_info anchor="bottom" id="Debug" order="5" weight="0.3998195" />
       <window_info anchor="bottom" id="Cvs" order="6" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="7" weight="0.4" />
@@ -909,7 +910,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="herstruct." />
     <MESSAGE value="exception" />
     <MESSAGE value="gui" />
     <MESSAGE value="..." />
@@ -934,7 +934,8 @@
     <MESSAGE value="UC7 maar werkt niet helemaal" />
     <MESSAGE value="kleine aanpassingen" />
     <MESSAGE value="kleine aanpassing" />
-    <option name="LAST_COMMIT_MESSAGE" value="kleine aanpassing" />
+    <MESSAGE value="UC7 taal" />
+    <option name="LAST_COMMIT_MESSAGE" value="UC7 taal" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/ui/gui/AfbeeldingTonen.java">
@@ -1304,16 +1305,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="487">
-          <caret line="62" column="8" lean-forward="true" selection-start-line="62" selection-start-column="8" selection-end-line="62" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/domein/Speler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="624">
@@ -1329,17 +1320,6 @@
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="101" column="33" lean-forward="true" selection-start-line="101" selection-start-column="33" selection-end-line="101" selection-end-column="33" />
-          <folding>
-            <element signature="e#4784#4785#0" expanded="true" />
-            <element signature="e#4995#4996#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1402,6 +1382,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase4.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="500">
+          <caret line="134" column="75" selection-start-line="134" selection-start-column="75" selection-end-line="134" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase3.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
@@ -1412,10 +1399,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase4.java">
+    <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase1.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="134" column="75" selection-start-line="134" selection-start-column="75" selection-end-line="134" selection-end-column="75" />
+        <state relative-caret-position="401">
+          <caret line="62" column="8" lean-forward="true" selection-start-line="62" selection-start-column="8" selection-end-line="62" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="125" column="46" selection-start-line="125" selection-start-column="46" selection-end-line="125" selection-end-column="46" />
+          <folding>
+            <element signature="e#5633#5634#0" expanded="true" />
+            <element signature="e#5844#5845#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
