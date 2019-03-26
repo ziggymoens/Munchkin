@@ -117,8 +117,8 @@ public class DomeinController {
     public List<String> geefSpelsituatie() {
         return spel.geefSpelsituatie();
     }
-    public List<String> geefBeknopteSpelsituatie(boolean vecht){
-        return spel.geefBeknopteSpelsituatie(vecht);
+    public List<String> geefBeknopteSpelsituatie(/*boolean vecht*/){
+        return spel.geefBeknopteSpelsituatie(/*vecht*/);
     }   
 
     /**

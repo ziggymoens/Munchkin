@@ -64,9 +64,19 @@ class UseCase4 {
          * Methode die de tegenstanders in volgorde 3 keuze geeft en deze uitvoert.
          */
         int aantal = dc.geefSpelerAanBeurt() + 1;
-        boolean[] bool = new boolean[aantalSpelers];
-        boolean[] helptmee = new boolean[aantalSpelers];
-        helptmee[dc.geefSpelerAanBeurt()] = true;
+        List<Boolean> bool = new ArrayList<>();
+        List<Boolean> helptmee = new ArrayList<>();
+        for (int i = 0; i < aantalSpelers; i++) {
+            bool.add(false);
+            if (i == dc.geefSpelerAanBeurt()) {
+                helptmee.add(true);
+            } else {
+                helptmee.add(false);
+            }
+        }
+        //boolean[] bool = new boolean[aantalSpelers];
+        //boolean[] helptmee = new boolean[aantalSpelers];
+        //helptmee[dc.geefSpelerAanBeurt()] = true;
         //Lus die alle spelers na de speler die vecht afgaat
         for (int i = 0; i < aantalSpelers; i++) {
             if (aantal < aantalSpelers) {
@@ -74,19 +84,21 @@ class UseCase4 {
                 boolean tryAgain = true;
                 while (tryAgain) {
                     try {
-                        while (!bool[i]) {
+                        while (!bool.get(i)) {
                             System.out.printf("%s%s%n", String.format("%s", ColorsOutput.kleur("blue") + dc.geefNaamSpeler(aantal) + ColorsOutput.reset()), LanguageResource.getString("usecase4.Monsterhelp"));
                             System.out.println(LanguageResource.getString("usecase4.choices"));
                             int keuze = SCAN.nextInt();
-                            if (keuze <1 || keuze > 3){
+                            if (keuze < 1 || keuze > 3) {
                                 throw new Exception();
                             }
                             switch (keuze) {
                                 case 1:
                                     //Mag alleen gebeuren als de speler die vecht akkoord is gegaan dat hij hulp wilt
                                     if (help.equals(LanguageResource.getString("yes"))) {
+                                        //aanpassen???
                                         helpSpeler();
-                                        helptmee[aantal] = true;
+                                        helptmee.remove(aantal);
+                                        helptmee.add(aantal, true);
                                     } else {
                                         System.err.println(LanguageResource.getString("exception.help"));
                                     }
@@ -95,13 +107,15 @@ class UseCase4 {
                                     helpMonster();
                                     break;
                                 case 3:
-                                    bool[i] = true;
+                                    bool.remove(i);
+                                    bool.add(i, true);
+                                    //bool[i] = true;
                                     break;
                             }
                         }
                         tryAgain = false;
-                    }catch (Exception e){
-                        System.out.println(ColorsOutput.kleur("red")+ColorsOutput.decoration("bold")+LanguageResource.getString("usecase2.choiceerror")+ColorsOutput.reset());
+                    } catch (Exception e) {
+                        System.out.println(ColorsOutput.kleur("red") + ColorsOutput.decoration("bold") + LanguageResource.getString("usecase2.choiceerror") + ColorsOutput.reset());
                         SCAN.nextLine();
                     }
                 }
@@ -129,15 +143,20 @@ class UseCase4 {
         System.out.println("\n" + dc.bovensteKaartToString());
         if (LanguageResource.getLocale().toString().equals("nl")) {
             System.out.printf("Het monster heeft een sterkte van %d en de speler een sterkte van %d%n%n", monster, speler);
-        }if (LanguageResource.getLocale().toString().equals("en")) {
+        }
+        if (LanguageResource.getLocale().toString().equals("en")) {
             System.out.printf("The monster has level %d and the player has level %d%n%n", monster, speler);
-        }if (LanguageResource.getLocale().toString().equals("fr")) {
+        }
+        if (LanguageResource.getLocale().toString().equals("fr")) {
             System.out.printf("Le monstre a le niveau %d et le joueur a le niveau %d%n%n", monster, speler);
         }
-        for (int i = 0; i < aantalSpelers; i++) {
-            List<String> ret = dc.geefBeknopteSpelsituatie(helptmee[i]);
-            System.out.print(ret.get(i));
+        int waar = 0;
+        List<String> ret = dc.geefBeknopteSpelsituatie(/*helptmee[i]*/);
+        for (String str : ret) {
+            System.out.println(String.format("%s, %s",str, helptmee.get(waar) ? "vecht mee" : "vecht niet mee"));
+            waar++;
         }
+
     }
 
     private void helpSpeler() {

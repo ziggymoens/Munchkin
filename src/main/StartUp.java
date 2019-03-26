@@ -9,8 +9,10 @@ import ui.cui.ucs.UseCase1;
  */
 public class StartUp {
     public static DomeinController dc;
+
     /**
      * Methode die UC1 aanroep, UC1 roep de overige UC's aan
+     *
      * @param args vooraf meegegeven waarden met de startup, enkel via instellingen ==> NIET GEBRUIKT
      */
     public static void main(String[] args) {
