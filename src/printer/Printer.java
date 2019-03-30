@@ -4,6 +4,8 @@ import language.LanguageResource;
 
 public class Printer {
 
+    private static Boolean developerMode = false;
+
     /**
      * Methode die gevangen exception gooit naar terminal en deze controleert op exceptions.
      *
@@ -13,7 +15,7 @@ public class Printer {
     public static String exceptionCatch(String naam, Exception e) {
         String ret = "";
         try {
-            ret = String.format(ColorsOutput.decoration("bold") + ColorsOutput.kleur("red") + "%s: %s%n%n", naam, LanguageResource.getString(e.getMessage()) + ColorsOutput.reset());
+            ret = String.format(ColorsOutput.decoration("bold") + ColorsOutput.kleur("red") + "%s%s%n%s%n", developerMode?String.format("%s -> (%s: %s) -> %s: %d, %s: ",e.getStackTrace()[0].getClassName(),LanguageResource.getString("method"),e.getStackTrace()[0].getMethodName(),LanguageResource.getString("line"),e.getStackTrace()[0].getLineNumber(), naam):"", e.getMessage()==null?LanguageResource.getString("nomessage"):LanguageResource.getString(e.getMessage()), developerMode&&e.getCause()!=null?String.format("%s %s",LanguageResource.getString("cause"), e.getCause()):"") + ColorsOutput.reset();
         } catch (Exception ex) {
             ret = String.format("\u001B[31m" + "IllegalArgumentException: %s%n%n", LanguageResource.getString(ex.getMessage()) + "\u001B[0m");
         }
@@ -35,11 +37,15 @@ public class Printer {
             exceptionCatch(naam, e);
         } else {
             try {
-                ret = String.format(ColorsOutput.decoration("bold") + ColorsOutput.kleur("red") + "%s: %s%n%n", naam, e.getMessage() + ColorsOutput.reset());
+                ret = String.format(ColorsOutput.decoration("bold") + ColorsOutput.kleur("red") + "%s%s%n%n",developerMode?String.format("%s -> (%s: %s) -> %s: %d, %s: ",e.getStackTrace()[0].getClassName(),LanguageResource.getString("method"),e.getStackTrace()[0].getMethodName(),LanguageResource.getString("line"),e.getStackTrace()[0].getLineNumber(), naam):"", e.getMessage()==null?LanguageResource.getString("nomessage"):e.getMessage(),developerMode&&e.getCause()!=null?String.format("%s %s",LanguageResource.getString("cause"), e.getCause()):"") + ColorsOutput.reset();
             } catch (Exception ex) {
                 ret = String.format("\u001B[31m" + "IllegalArgumentException: %s%n%n", LanguageResource.getString(ex.getMessage()) + "\u001B[0m");
             }
         }
         return ret;
+    }
+
+    public static void setDeveloperMode(Boolean developerMode) {
+        Printer.developerMode = developerMode;
     }
 }

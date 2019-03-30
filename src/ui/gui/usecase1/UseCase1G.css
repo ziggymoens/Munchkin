@@ -8,7 +8,7 @@ BorderPane, UseCase1G {
 
 #menubar{
     -fx-font: bold 15 "sans-serif";
-    -fx-alignment: left;
+    -fx-alignment: center-left;
     -fx-pref-width: 32000; /* groot genoeg */
 }
 #buttonWelkom{

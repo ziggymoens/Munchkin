@@ -10,8 +10,10 @@ public class MainGui extends BorderPane {
 
     public MainGui(){
         this.mb = new MenuBarGui();
+        mb.setId("mb");
         this.setTop(mb);
-        getStylesheets().add("MainGui.css");
+
+        getStylesheets().add("ui/gui/maingui/MainGui.css");
     }
 
     public MenuBar getMb() {

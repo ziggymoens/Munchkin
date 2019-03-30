@@ -38,6 +38,8 @@
  * JAVADOCSSSSSSSSS!!!!!!!!!!!!!!
  *
  * CarriageReturn?
+ *
+ * kiesDb --> UC1 meertalig maken
  */
 
 public class ToDo {

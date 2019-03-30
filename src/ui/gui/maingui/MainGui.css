@@ -22,3 +22,6 @@ VBox Label {
 HBox {
     -fx-alignment: center;
 }
+#mb Menu{
+    -fx-alignment: center left;
+}

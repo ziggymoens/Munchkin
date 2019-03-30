@@ -17,36 +17,37 @@ public class MenuBarGui extends MenuBar {
     private List<RadioMenuItem> choiceItems;
 
     public MenuBarGui() {
-        Menu[] menus = new Menu[3];
-        menus[0] = new Menu("Options");
-        menus[1] = new Menu("Language");
-        menus[2] = new Menu("Help");
+        List<Menu> menus = new ArrayList<>();
+        menus.add(new Menu("Options"));
+        menus.add(new Menu("Language"));
+        menus.add(new Menu("Help"));
 
-        MenuItem[] menuItemsOptions = new MenuItem[6];
-        menuItemsOptions[0] = new MenuItem("New Game");
-        menuItemsOptions[0].setAccelerator(KeyCombination.keyCombination("Ctrl+N"));
-        menuItemsOptions[0].setOnAction(event -> {
+        List<MenuItem> menuItemsOptions = new ArrayList<>();
+        menuItemsOptions.add(new MenuItem("New Game"));
+        menuItemsOptions.get(0).setAccelerator(KeyCombination.keyCombination("Ctrl+N"));
+        menuItemsOptions.get(0).setOnAction(event -> {
             try {
                 buttonNewGameEventHandler(event);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
-        menuItemsOptions[1] = new MenuItem("Save Game");
-        menuItemsOptions[1].setAccelerator(KeyCombination.keyCombination("Ctrl+S"));
-        menuItemsOptions[1].setOnAction(this::buttonSaveEventHandler);
-        menuItemsOptions[2] = new MenuItem("Load Game");
-        menuItemsOptions[2].setAccelerator(KeyCombination.keyCombination("Ctrl+L"));
-        menuItemsOptions[2].setOnAction(this::buttonOpenEventHandler);
-        menuItemsOptions[3] = new SeparatorMenuItem();
-        menuItemsOptions[4] = new MenuItem("Exit Game");
-        menuItemsOptions[4].setAccelerator(KeyCombination.keyCombination("Ctrl+Q"));
-        menuItemsOptions[4].setOnAction(this::buttonExitEventHandler);
-        menuItemsOptions[5] = new MenuItem("Reload Game");
-        menuItemsOptions[5].setAccelerator(KeyCombination.keyCombination("Ctrl+R"));
-        menuItemsOptions[5].setOnAction(this::reloadEventHandler);
+        menuItemsOptions.add(new MenuItem("Save Game"));
+        menuItemsOptions.get(1).setAccelerator(KeyCombination.keyCombination("Ctrl+S"));
+        menuItemsOptions.get(1).setOnAction(this::buttonSaveEventHandler);
+        menuItemsOptions.add(new MenuItem("Load Game"));
+        menuItemsOptions.get(2).setAccelerator(KeyCombination.keyCombination("Ctrl+L"));
+        menuItemsOptions.get(2).setOnAction(this::buttonOpenEventHandler);
+        menuItemsOptions.add(new SeparatorMenuItem());
+        menuItemsOptions.add(new MenuItem("Exit Game"));
+        menuItemsOptions.get(4).setAccelerator(KeyCombination.keyCombination("Ctrl+Q"));
+        menuItemsOptions.get(4).setOnAction(this::buttonExitEventHandler);
+        menuItemsOptions.add(new SeparatorMenuItem());
+        menuItemsOptions.add(new MenuItem("Reload Game"));
+        menuItemsOptions.get(6).setAccelerator(KeyCombination.keyCombination("Ctrl+R"));
+        menuItemsOptions.get(6).setOnAction(this::reloadEventHandler);
 
-        menus[0].getItems().addAll(menuItemsOptions);
+        menus.get(0).getItems().addAll(menuItemsOptions);
 
         choiceItems = new ArrayList<>();
         choiceItems.add(new RadioMenuItem("Nederlands"));
@@ -64,10 +65,10 @@ public class MenuBarGui extends MenuBar {
 
 
         for (RadioMenuItem ch : choiceItems) {
-            menus[1].getItems().add(ch);
+            menus.get(1).getItems().add(ch);
         }
         MenuItem menuItemHelp = new MenuItem("Help");
-        menus[2].getItems().add(menuItemHelp);
+        menus.get(2).getItems().add(menuItemHelp);
 
         getMenus().addAll(menus);
 
