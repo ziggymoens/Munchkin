@@ -2,17 +2,14 @@ package domein;
 
 import domein.kaarten.Kaart;
 import domein.kaarten.kerkerkaarten.Curse;
-import domein.kaarten.kerkerkaarten.Race;
-import domein.kaarten.schatkaarten.ConsumablesSchat;
-import domein.kaarten.schatkaarten.Equipment;
 import domein.repositories.KaartDbKleinRepository;
-import domein.repositories.KaartDbRepository;
 import exceptions.SpelException;
-
-import java.util.*;
-
-import exceptions.SpelerException;
 import language.LanguageResource;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author ziggy
@@ -44,6 +41,21 @@ public class Spel {
         setAantalSpelers(aantalSpelers);
         spelers = new ArrayList<>();
         //KaartDbRepository kr = new KaartDbRepository();
+        KaartDbKleinRepository kr = new KaartDbKleinRepository();
+        kaarten = new HashMap<>();
+        schatkaarten = kr.getSchatkaarten();
+        for (Kaart kaart : kr.getSchatkaarten()) {
+            kaarten.put(kaart.getId(), kaart);
+        }
+        kerkerkaarten = kr.getKerkerkaarten();
+        for (Kaart kaart : kr.getKerkerkaarten()) {
+            kaarten.put(kaart.getId(), kaart);
+        }
+    }
+
+    public Spel(String naam, Boolean klein, List<Speler> spelers) {
+        setNaam(naam);
+        this.spelers = spelers;
         KaartDbKleinRepository kr = new KaartDbKleinRepository();
         kaarten = new HashMap<>();
         schatkaarten = kr.getSchatkaarten();
