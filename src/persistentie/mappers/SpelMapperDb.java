@@ -29,16 +29,16 @@ public class SpelMapperDb {
         spellen.clear();
         voegToe();
         try {
-            PreparedStatement query = conn.prepareStatement(String.format("SELECT * FROM ID222177_g35.Spel"));
+            PreparedStatement query = conn.prepareStatement("SELECT * FROM ID222177_g35.Spel");
             rs = query.executeQuery();
             while (rs.next()){
                 int spelId = rs.getInt("spelid");
                 String naam = rs.getString("naam");
                 Boolean klein = rs.getBoolean("kleingroot");
                 List<Speler> spelers = voegSpelersToe(spelId);
+                List<Integer> volgnummerD = geefVolgorde("d", spelId);
+                List<Integer> volgnummerT = geefVolgorde("t", spelId);
                 Spel spel = new Spel(naam, klein, spelers);
-
-
                 spellen.add(spelId, spel);
             }
             rs.close();
@@ -59,6 +59,8 @@ public class SpelMapperDb {
                 String naam = rs.getString("naam");
                 Boolean geslacht = rs.getBoolean("geslacht");
                 int level = rs.getInt("level");
+                List<Integer> kaarten = geefKaarten(spelerId, "k");
+                List<Integer> items = geefKaarten(spelerId, "i");
                 Speler speler = new Speler(naam,geslacht ,level);
                 spelers.add(spelerId, speler);
             }
@@ -69,6 +71,49 @@ public class SpelMapperDb {
         return spelers;
     }
 
+    private List<Integer> geefKaarten(int spelerId, String type) {
+        List<Integer> kaarten = new ArrayList<>();
+        try{
+            PreparedStatement query = conn.prepareStatement(String.format("SELECT * FROM ID222177_g35.SpelerKaart WHERE SpelerId = %d", spelerId));
+            rs = query.executeQuery();
+            while (rs.next()){
+                if (type.equals("i")){
+                    if (rs.getBoolean("plaatsKaart")){
+                        kaarten.add(rs.getInt("kaartId"));
+                    }
+                }else{
+                    if (!rs.getBoolean("plaatsKaart")){
+                        kaarten.add(rs.getInt("kaartId"));
+                    }
+                }
+            }
+            rs.close();
+        } catch (Exception e){
+
+        }
+        return kaarten;
+    }
+
+    private List<Integer> geefVolgorde(String type, int spelId){
+        List<Integer> volgorde = new ArrayList<>();
+        int nr;
+        try{
+            PreparedStatement query = conn.prepareStatement(String.format("SELECT * FROM ID222177_g35.Speler WHERE spelkaart where spelid = %d", spelId));
+            rs = query.executeQuery();
+            while (rs.next()){
+                if (type.equals("t")){
+                    nr = rs.getInt("volgnumerT");
+                }else{
+                    nr = rs.getInt("volgnummerD");
+                }
+                int kaartId = rs.getInt("kaartid");
+                volgorde.add(nr, kaartId);
+            }
+        }catch (Exception e){
+
+        }
+        return volgorde;
+    }
 
 
     public void addSpel() {
