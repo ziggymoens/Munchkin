@@ -2,7 +2,7 @@ package persistentie.mappers;
 
 import domein.Spel;
 import domein.Speler;
-import exceptions.database.KaartDatabaseException;
+import exceptions.database.SpelDatabaseException;
 import persistentie.Connectie;
 
 import java.sql.Connection;
@@ -21,7 +21,7 @@ public class SpelMapperDb {
         try {
             this.conn = DriverManager.getConnection(Connectie.JDBC_URL);
         } catch (Exception ex) {
-            throw new KaartDatabaseException(ex.getMessage());
+            throw new SpelDatabaseException(ex.getMessage());
         }
     }
 
@@ -44,7 +44,7 @@ public class SpelMapperDb {
             rs.close();
             query.close();
         } catch (Exception ex) {
-            throw new KaartDatabaseException(ex.getMessage());
+            throw new SpelDatabaseException(ex.getMessage());
         }
         return spellen;
     }
@@ -66,7 +66,7 @@ public class SpelMapperDb {
             }
             rs.close();
         }catch (Exception ex){
-
+            throw new SpelDatabaseException(ex.getMessage());
         }
         return spelers;
     }
@@ -89,7 +89,7 @@ public class SpelMapperDb {
             }
             rs.close();
         } catch (Exception e){
-
+            throw new SpelDatabaseException(e.getMessage());
         }
         return kaarten;
     }
@@ -110,7 +110,7 @@ public class SpelMapperDb {
                 volgorde.add(nr, kaartId);
             }
         }catch (Exception e){
-
+            throw new SpelDatabaseException(e.getMessage());
         }
         return volgorde;
     }
