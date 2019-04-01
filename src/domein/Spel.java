@@ -348,6 +348,11 @@ public class Spel {
         return spelers.get(i).getAantalKaarten() > 5;
     }
 
+    public boolean heeftGenoegKaarten(){
+        int i = zoekSpeler(naam);
+        return spelers.get(i).getAantalSchatkaarten() >= 1;
+    }
+
     private int zoekSpeler(String naam) {
         int i = 0;
         for (Speler speler : spelers) {

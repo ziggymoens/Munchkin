@@ -214,7 +214,7 @@ public class Speler {
      *
      * @return Het aantal schatkaarten
      */
-    private int getAantalSchatkaarten() {
+    public int getAantalSchatkaarten() {
         return aantalSchatkaarten;
     }
 

@@ -272,4 +272,8 @@ public class DomeinController {
     public int geefMonsterSchatkaarten(int id){
         return spel.geefMonsterSchatkaarten(id);
     }
+
+    public boolean heeftGenoegKaarten(){
+        return spel.heeftGenoegKaarten();
+    }
 }

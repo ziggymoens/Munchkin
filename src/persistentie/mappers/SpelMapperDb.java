@@ -38,8 +38,8 @@ public class SpelMapperDb {
                 List<Speler> spelers = voegSpelersToe(spelId);
                 List<Integer> volgnummerD = geefVolgorde("d", spelId);
                 List<Integer> volgnummerT = geefVolgorde("t", spelId);
-                Spel spel = new Spel(naam, klein, spelers);
-                spellen.add(spelId, spel);
+                // Spel spel = new Spel(naam, klein, spelers);
+                // spellen.add(spelId, spel);
             }
             rs.close();
             query.close();

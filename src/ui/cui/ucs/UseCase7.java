@@ -44,14 +44,19 @@ class UseCase7 {
             switch (keuze) {
                 case 1:
                     try {
-                        System.out.println(String.format("%s:%n%s", LanguageResource.getString("usecase7.toitems"), dc.geefKaartenKunnenNaarItems(naam)));
+                        if (dc.heeftGenoegKaarten() == true) {
+                            System.out.println(String.format("%s:%n", LanguageResource.getString("usecase7.toitems")));
+                            System.out.println(String.format("%s:%n", dc.geefKaartenKunnenNaarItems(naam)));
+                        }else{
+                            System.out.println(String.format("%s!", LanguageResource.getString("usecase7.nietgenoeg")));
+                        }
                     } catch (Exception e) {
 
                     }
                     break;
                 case 2:
                     try {
-                        System.out.println(String.format("%s:%n%s", LanguageResource.getString("usecase7.salable"), dc.geefVerkoopbareKaarten(naam)));
+                        System.out.println(String.format("%s:%n%s", LanguageResource.getString("usecase7.sellable"), dc.geefVerkoopbareKaarten(naam)));
                         System.out.println(String.format("%s:%n%s", LanguageResource.getString("usecase7.throwaway"), dc.geefNietVerkoopbareKaarten(naam)));
 
                     } catch (Exception e) {
@@ -62,6 +67,7 @@ class UseCase7 {
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("usecase2.choiceerror");
         }
+
 
 
     }
