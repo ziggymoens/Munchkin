@@ -50,6 +50,7 @@ public class UseCase8 {
             } while (!ant.equals(LanguageResource.getString("yes")) && !ant.equals(LanguageResource.getString("no")));
             if (ant.equals(LanguageResource.getString("yes"))) {
                 System.exit(0);
+
             }
         } catch (SpelException e) {
             System.out.println(Printer.exceptionCatch("SpelException", e));

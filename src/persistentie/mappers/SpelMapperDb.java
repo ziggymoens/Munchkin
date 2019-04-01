@@ -26,7 +26,7 @@ public class SpelMapperDb {
     }
 
     public List<Spel> geefSpellen() {
-        spellen.clear();
+//        spellen.clear();
         voegToe();
         try {
             PreparedStatement query = conn.prepareStatement("SELECT * FROM ID222177_g35.Spel");
