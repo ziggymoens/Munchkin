@@ -236,9 +236,7 @@ public class DomeinController {
         return spel.spelerTeVeelKaarten(naam);
     }
 
-    public String bovensteKaartToString() {
-        return spel.bovensteKaartToString();
-    }
+    public String bovensteKaartToString() { return spel.bovensteKaartToString(); }
 
     public void zetSpelerAanBeurt(int i) {
         spel.setSpelerAanBeurt(i);
@@ -262,5 +260,16 @@ public class DomeinController {
 
     public void verhoogLevel(String naam, int levelUp){
         spel.verhoogLevel(naam, levelUp);
+    }
+
+    public boolean gevechtResultaat(int monster, int speler){
+        return spel.gevechtResultaat(monster, speler);
+    }
+    public int geefMonsterLevelsUp(int id){ return spel.geefMonsterLevelsUp(id); }
+
+    public int geefMonsterLevel(int id){ return spel.geefMonsterLevel(id); }
+
+    public int geefMonsterSchatkaarten(int id){
+        return spel.geefMonsterSchatkaarten(id);
     }
 }

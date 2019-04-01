@@ -117,7 +117,6 @@ class UseCase3 {
         try {
             UseCase4 uc4 = new UseCase4(this.dc, aantalSpelers);
             uc4.bereidSpelVoor();
-            UseCase6 uc6 = new UseCase6(this.dc);
         } catch (UnsupportedOperationException e) {
             System.out.print(Printer.exceptionCatch("UnsupportedOperationException", e, false));
         }

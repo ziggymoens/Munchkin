@@ -2,6 +2,7 @@ package domein;
 
 import domein.kaarten.Kaart;
 import domein.kaarten.kerkerkaarten.Curse;
+import domein.kaarten.kerkerkaarten.Monster;
 import domein.kaarten.kerkerkaarten.Race;
 import domein.kaarten.schatkaarten.ConsumablesSchat;
 import domein.kaarten.schatkaarten.Equipment;
@@ -389,4 +390,30 @@ public class Spel {
         int i = zoekSpeler(naam);
         spelers.get(i).setLevel(spelers.get(i).getLevel() + levelUp);
     }
+
+    //Return true = Monster wint
+    //Return false = Speler in kwestie wint
+    public boolean gevechtResultaat(int monster, int speler){
+        if(monster >= speler){
+            System.out.println(LanguageResource.getString("usecase6.monsterwon"));
+            return true;
+        }else{
+            System.out.println(LanguageResource.getString("usecase6.playerwon"));
+            return false;
+        }
+    }
+    public int geefMonsterLevelsUp(int id){
+        Monster monster = (Monster) kerkerkaarten.get(id);
+        return monster.getWinstLevels();
+    }
+    public int geefMonsterLevel(int id){
+        Monster monster = (Monster) kerkerkaarten.get(id);
+        return monster.getLevel();
+    }
+
+    public int geefMonsterSchatkaarten(int id ){
+        Monster monster = (Monster) kerkerkaarten.get(id);
+        return monster.getWinstTeasures();
+    }
+
 }

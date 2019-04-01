@@ -329,5 +329,4 @@ public class Speler {
         return ret.toString();
     }
 
-
 }

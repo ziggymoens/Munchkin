@@ -138,9 +138,9 @@ class UseCase4 {
                 UseCase5 uc5 = new UseCase5(this.dc);
                 uc5.speelKaart();
             }
-            //Het overzicht tonen voor het gevecht(hetgeen dat nog niet in orde is)
         } while (kaart.equals(LanguageResource.getString("yes")));
         System.out.println("\n" + dc.bovensteKaartToString());
+        //Het overzicht tonen voor het gevecht(hetgeen dat nog niet in orde is)
         if (LanguageResource.getLocale().toString().equals("nl")) {
             System.out.printf("Het monster heeft een sterkte van %d en de speler een sterkte van %d%n%n", monster, speler);
         }
@@ -156,7 +156,8 @@ class UseCase4 {
             System.out.println(String.format("%s, %s",str, helptmee.get(waar) ? "vecht mee" : "vecht niet mee"));
             waar++;
         }
-
+        UseCase6 uc6 = new UseCase6(this.dc, monster, speler);
+        uc6.vechtMetMonster();
     }
 
     private void helpSpeler() {
