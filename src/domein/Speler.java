@@ -1,17 +1,17 @@
 package domein;
 
-import domein.kaarten.kerkerkaarten.ConsumablesKerker;
-import domein.kaarten.schatkaarten.ConsumablesSchat;
-import domein.kaarten.kerkerkaarten.Curse;
-import domein.kaarten.schatkaarten.Equipment;
 import domein.kaarten.Kaart;
+import domein.kaarten.kerkerkaarten.ConsumablesKerker;
+import domein.kaarten.kerkerkaarten.Curse;
 import domein.kaarten.kerkerkaarten.Monster;
 import domein.kaarten.kerkerkaarten.Race;
+import domein.kaarten.schatkaarten.ConsumablesSchat;
+import domein.kaarten.schatkaarten.Equipment;
 import exceptions.SpelerException;
-
-import java.util.*;
-
 import language.LanguageResource;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author G35
@@ -46,17 +46,18 @@ public class Speler {
      * @param geslacht Het geslacht van de speler
      */
     public Speler(String naam, String geslacht) {
-        this(naam, geslacht, 1);
+        this(naam, true, 1);
     }
 
     /**
      * Constructor van speler
      *
      * @param naam     De naam van de speler
-     * @param geslacht Het geslacht van de speler
+     * @param ges Het geslacht van de speler
      * @param level    Het level van de Speler
      */
-    private Speler(String naam, String geslacht, int level) {
+    public Speler(String naam, Boolean ges, int level) {
+        String geslacht = ges?LanguageResource.getString("man"):LanguageResource.getString("woman");
         setGeslacht(geslacht);
         setNaam(naam);
         setLevel(level);

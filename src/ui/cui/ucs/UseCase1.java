@@ -48,6 +48,7 @@ public class UseCase1 {
 //        }catch (Exception e){
 //            System.out.println(Printer.exceptionCatch("Exception", e, false));
 //        }
+        //vragen voor developer modus
         askDeveloper();
         //gebruiker vragen of hij een nieuw spel wil starten.
         System.out.println(LanguageResource.getString("newGame"));
@@ -61,9 +62,9 @@ public class UseCase1 {
         }
         try {
             if (nieuwSpel.equals(LanguageResource.getString("yes"))) {
-                try{
+                try {
                     gameStarter();
-                }catch (Exception e){
+                } catch (Exception e) {
                     System.out.println(Printer.exceptionCatch("Exception", e, false));
                 }
 
@@ -77,15 +78,15 @@ public class UseCase1 {
                     SCAN.nextLine();
                 }
                 if (load.equals(LanguageResource.getString("no"))) {
-                    try{
+                    try {
                         gameStarter();
-                    }catch (Exception e){
+                    } catch (Exception e) {
                         System.out.println(Printer.exceptionCatch("Exception", e, false));
                     }
                 }
-                try{
+                try {
                     gameLoader();
-                }catch (Exception e){
+                } catch (Exception e) {
                     System.out.println(Printer.exceptionCatch("Exception", e, false));
                 }
             }
@@ -94,7 +95,10 @@ public class UseCase1 {
         }
     }
 
-    private void askDeveloper(){
+    /**
+     * Methode die vraagt om developer modus te activeren
+     */
+    private void askDeveloper() {
         try {
             System.out.println(LanguageResource.getString("usecase1.developer"));
             String dev = SCAN.next().toLowerCase();
@@ -105,14 +109,18 @@ public class UseCase1 {
                 dev = SCAN.next().toLowerCase();
                 SCAN.nextLine();
             }
-            if (dev.equals(LanguageResource.getString("yes").toLowerCase())){
+            if (dev.equals(LanguageResource.getString("yes").toLowerCase())) {
                 Printer.setDeveloperMode(true);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(Printer.exceptionCatch("Exception", e, false));
         }
 
     }
+
+    /**
+     * methode om het spel te starten
+     */
     private void gameStarter() {
         try {
             maakSpel();
@@ -121,17 +129,20 @@ public class UseCase1 {
             //verdergaan naar UC2
             UseCase2 uc2 = new UseCase2(this.dc);
             uc2.speelSpel(aantalSpelers);
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(Printer.exceptionCatch("Exception", e, false));
         }
     }
 
+    /**
+     * methode om spel te laden
+     */
     private void gameLoader() {
         try {
             //verdergaan naar UC9
             UseCase9 uc9 = new UseCase9(this.dc);
             uc9.spelLaden();
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(Printer.exceptionCatch("Exception", e, false));
         }
     }
@@ -212,6 +223,11 @@ public class UseCase1 {
         System.out.println("\n" + Printer.printGreen("spel.made"));
     }
 
+    /**
+     * methode om een aantal spelers te kiezen
+     *
+     * @return het aantal spelers
+     */
     private int kiesSpelers() {
         int as = 0;
         boolean ta1 = true;
@@ -230,7 +246,7 @@ public class UseCase1 {
             } catch (SpelException e) {
                 System.out.println(Printer.exceptionCatch("SpelException", e));
                 SCAN.nextLine();
-            } catch (Exception e){
+            } catch (Exception e) {
                 System.out.println(Printer.exceptionCatch("Exception", e, false));
             }
         }
@@ -239,6 +255,12 @@ public class UseCase1 {
 
 
     //MEERTALIG MAKEN
+
+    /**
+     * methode om te kiezen welke databank wil gebruikt worden
+     *
+     * @return true = kleine databank
+     */
     private boolean kiesDb() {
         boolean ta2 = true;
         boolean kleine = false;
@@ -277,7 +299,7 @@ public class UseCase1 {
                 kiesNaamSpeler(i);
                 kiesGeslachtSpeler(i);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(Printer.exceptionCatch("Exception", e, false));
         }
     }

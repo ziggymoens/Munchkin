@@ -15,9 +15,13 @@ import java.util.Scanner;
 
 /**
  * @author ziggy
+ *
+ * HERWERKEN UC4
+ *
+ *
  * GEEEEEN STATICS
  */
-class UseCase4 {
+class UseCase4V2 {
     private final DomeinController dc;
     private final Scanner SCAN = new Scanner(System.in);
     private final int aantalSpelers;
@@ -25,7 +29,7 @@ class UseCase4 {
 
     //speler aan de beurt ==> dc.geefSpelerAanBeurt(), int van 0 tot aantalSpelers-1
 
-    UseCase4(DomeinController dc, int aantalSpelers) {
+    UseCase4V2(DomeinController dc, int aantalSpelers) {
         this.dc = dc;
         this.aantalSpelers = aantalSpelers;
     }
@@ -136,9 +140,11 @@ class UseCase4 {
                 UseCase5 uc5 = new UseCase5(this.dc);
                 uc5.speelKaart();
             }
+            //Het overzicht tonen voor het gevecht(hetgeen dat nog niet in orde is)
         } while (kaart.equals(LanguageResource.getString("yes")));
         System.out.println("\n" + dc.bovensteKaartToString());
-        //Het overzicht tonen voor het gevecht(hetgeen dat nog niet in orde is)
+
+
         if (LanguageResource.getLocale().toString().equals("nl")) {
             System.out.printf("Het monster heeft een sterkte van %d en de speler een sterkte van %d%n%n", monster, speler);
         }
@@ -148,14 +154,13 @@ class UseCase4 {
         if (LanguageResource.getLocale().toString().equals("fr")) {
             System.out.printf("Le monstre a le niveau %d et le joueur a le niveau %d%n%n", monster, speler);
         }
-        int waar = 0;
+        int sp = 0;
         List<String> ret = dc.geefBeknopteSpelsituatie(/*helptmee[i]*/);
         for (String str : ret) {
-            System.out.println(String.format("%s, %s",str, helptmee.get(waar) ? "vecht mee" : "vecht niet mee"));
-            waar++;
+            System.out.println(String.format("%s, %s",str, helptmee.get(sp) ? "vecht mee" : "vecht niet mee"));
+            sp++;
         }
-        UseCase6 uc6 = new UseCase6(this.dc, monster, speler);
-        uc6.vechtMetMonster();
+
     }
 
     private void helpSpeler() {
