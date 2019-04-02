@@ -47,19 +47,7 @@ class UseCase4 {
         }
         // Vragen aan speler of hij een bonuskaart wilt spelen.
         String bonuskaart;
-        do {
-            System.out.println(LanguageResource.getString("usecase4.ask.bonuscard"));
-            bonuskaart = SCAN.next().toLowerCase();
-            while (!bonuskaart.equals(LanguageResource.getString("yes")) && !bonuskaart.equals(LanguageResource.getString("no"))) {
-                System.out.printf(ColorsOutput.decoration("bold") + ColorsOutput.kleur("red") + "%s%n%n", LanguageResource.getString("start.yesno") + ColorsOutput.reset());
-                System.out.println(LanguageResource.getString("usecase4.ask.bonuscard"));
-                bonuskaart = SCAN.next().toLowerCase();
-            }
-            if (bonuskaart.equals(LanguageResource.getString("yes"))) {
-                UseCase5 uc5 = new UseCase5(this.dc, naam);
-                uc5.speelKaart();
-            }
-        } while (bonuskaart.equals(LanguageResource.getString("yes")));
+        vraagKaartSpelen("usecase4.ask.bonuscard");
         /**
          * Methode die de tegenstanders in volgorde 3 keuze geeft en deze uitvoert.
          */
@@ -126,19 +114,7 @@ class UseCase4 {
         }
         String kaart;
         //vragen of de speler nog een extra kaart wilt spelen, zoja, speel een kaart
-        do {
-            System.out.printf("%s%s%n", String.format("%s", ColorsOutput.kleur("blue") + naam + ColorsOutput.reset()), LanguageResource.getString("usecase4.ask.card"));
-            kaart = SCAN.next().toLowerCase();
-            while (!kaart.equals(LanguageResource.getString("yes")) && !kaart.equals(LanguageResource.getString("no"))) {
-                System.out.printf(ColorsOutput.decoration("bold") + ColorsOutput.kleur("red") + "%s%n%n", LanguageResource.getString("start.yesno") + ColorsOutput.reset());
-                System.out.println(LanguageResource.getString("usecase4.ask.bonuscard"));
-                kaart = SCAN.next().toLowerCase();
-            }
-            if (kaart.equals(LanguageResource.getString("yes"))) {
-                UseCase5 uc5 = new UseCase5(this.dc, naam);
-                uc5.speelKaart();
-            }
-        } while (kaart.equals(LanguageResource.getString("yes")));
+        vraagKaartSpelen("usecase4.ask.bonuscard");
         System.out.println("\n" + dc.bovensteKaartToString());
         //Het overzicht tonen voor het gevecht(hetgeen dat nog niet in orde is)
         if (LanguageResource.getLocale().toString().equals("nl")) {
@@ -156,7 +132,7 @@ class UseCase4 {
             System.out.println(String.format("%s, %s",str, helptmee.get(waar) ? "vecht mee" : "vecht niet mee"));
             waar++;
         }
-        vechtMonster(battleBonusMonster, battleBonusSpeler);
+        vechtMonster(battleBonusMonster, battleBonusSpeler, helptmee);
     }
 
     private void helpSpeler() {
@@ -169,10 +145,29 @@ class UseCase4 {
         uc5.speelKaart();
     }
 
-    private void vechtMonster(int battleBonusMonster, int battleBonusSpeler){
+    private void vechtMonster(int battleBonusMonster, int battleBonusSpeler, List<Boolean> helptmee) {
         UseCase6 uc6 = new UseCase6(this.dc);
-        uc6.vechtMetMonster(battleBonusMonster, battleBonusSpeler);
+        uc6.vechtMetMonster(battleBonusMonster, battleBonusSpeler, helptmee);
     }
+
+    private void vraagKaartSpelen(String output){
+        String kaart;
+        do {
+            System.out.printf("%s%s%n", String.format("%s", ColorsOutput.kleur("blue") + naam + ColorsOutput.reset()), LanguageResource.getString(output));
+            kaart = SCAN.next().toLowerCase();
+            while (!kaart.equals(LanguageResource.getString("yes")) && !kaart.equals(LanguageResource.getString("no"))) {
+                System.out.printf(ColorsOutput.decoration("bold") + ColorsOutput.kleur("red") + "%s%n%n", LanguageResource.getString("start.yesno") + ColorsOutput.reset());
+                System.out.println(LanguageResource.getString(output));
+                kaart = SCAN.next().toLowerCase();
+            }
+            if (kaart.equals(LanguageResource.getString("yes"))) {
+                UseCase5 uc5 = new UseCase5(this.dc, naam);
+                uc5.speelKaart();
+            }
+        } while (kaart.equals(LanguageResource.getString("yes")));
+    }
+
+
 
 
 }

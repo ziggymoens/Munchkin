@@ -1,7 +1,7 @@
 package ui.cui.ucs;
 
 import domein.DomeinController;
-import domein.kaarten.kerkerkaarten.Monster;
+import domein.kaarten.kerkerkaarten.monsterbadstuff.BadStuff;
 import language.LanguageResource;
 import printer.ColorsOutput;
 import java.security.SecureRandom;
@@ -23,45 +23,66 @@ public class UseCase6 {
 
     }
 
-    public void vechtMetMonster(int battleBonusMonster, int battleBonusSpeler) {
+    public void vechtMetMonster(int battleBonusMonster, int battleBonusSpeler, List<Boolean> helptmee) {
         boolean gevecht = dc.gevechtResultaat(battleBonusMonster, battleBonusSpeler);
-        int spelerAanBeurt = dc.geefSpelerAanBeurt();
         int id = dc.geefIdBovensteKaart();
-        String kaart;
-        int levelMonster = Integer.parseInt(dc.geefMonsterAttribuut(id, "level").toString());
-        int levelsUp = Integer.parseInt(dc.geefMonsterAttribuut(id, "levelsUp").toString());
-        //List<Integer> MonsterAttributen = dc.geefMonsterAttriubuut(id);
-        //int levelMonster = MonsterAttributen.get(0), schatkaarten = MonsterAttributen.get(1), levelsUp = MonsterAttributen.get(2), runAway = MonsterAttributen.get(3), pursueLevel = MonsterAttributen.get(4);
-        //int levelsUp;
-        //levelsUp = dc.geefMonsterLevelsUp(id);
-        //als de speler gewonnen heeft
+        //int levelMonster = Integer.parseInt(dc.geefMonsterAttribuut(id, "level").toString());
+
         if (!gevecht) {
-            dc.verhoogLevel(dc.geefNaamSpeler(spelerAanBeurt), levelsUp);
+            System.out.println(LanguageResource.getString("usecase6.playerwon"));
+            verhoogLevelsGewonnen(id, helptmee);
+
         } else {
-            do {
-                System.out.printf("%s%s%n", String.format("%s", ColorsOutput.kleur("blue") + dc.geefNaamSpeler(dc.geefSpelerAanBeurt()) + ColorsOutput.reset()), LanguageResource.getString("usecase4.ask.card"));
-                kaart = SCAN.next().toLowerCase();
-                while (!kaart.equals(LanguageResource.getString("yes")) && !kaart.equals(LanguageResource.getString("no"))) {
-                    System.out.printf(ColorsOutput.decoration("bold") + ColorsOutput.kleur("red") + "%s%n%n", LanguageResource.getString("start.yesno") + ColorsOutput.reset());
-                    System.out.println(LanguageResource.getString("usecase4.ask.bonuscard"));
-                    kaart = SCAN.next().toLowerCase();
-                }
-                if (kaart.equals(LanguageResource.getString("yes"))) {
-                    UseCase5 uc5 = new UseCase5(this.dc, dc.geefNaamSpeler(dc.geefSpelerAanBeurt()));
-                    uc5.speelKaart();
-                }
-            } while (kaart.equals(LanguageResource.getString("yes")));
-                //Speler ontsnapt
-                if(gooiDobbelsteen() > 4 /*getal moet nog aangepast worden naar een eventueel gespeelde kaart dat +x to run away geeft*/){
-                    System.out.println("Je bent ontsnapt");
-                }// Speler ontsnapt niet
-                else{
-                    System.out.println("Je bent niet ontsnapt");
-                }
+            System.out.println(LanguageResource.getString("usecase6.monsterwon"));
+            vraagKaartSpelen("usecase6.askplaycard");
+            ontsnappen(id);
+
         }
     }
 
     private int gooiDobbelsteen(){
         return new SecureRandom().nextInt(5) + 1;
+    }
+
+    private void verhoogLevelsGewonnen(int id, List<Boolean> helptmee){
+        int levelsUp = Integer.parseInt(dc.geefMonsterAttribuut(id, "levelsUp").toString());
+        for(int i = 0; i < helptmee.size(); i++){
+            if(helptmee.get(i)){
+                dc.verhoogLevel(dc.geefNaamSpeler(i), levelsUp);
+            }
+        }
+    }
+
+    private void vraagKaartSpelen(String output){
+        String kaart;
+        do {
+            System.out.printf("%s%s%n", String.format("%s", ColorsOutput.kleur("blue") + dc.geefNaamSpeler(dc.geefSpelerAanBeurt()) + ColorsOutput.reset()), LanguageResource.getString(output));
+            kaart = SCAN.next().toLowerCase();
+            while (!kaart.equals(LanguageResource.getString("yes")) && !kaart.equals(LanguageResource.getString("no"))) {
+                System.out.printf(ColorsOutput.decoration("bold") + ColorsOutput.kleur("red") + "%s%n%n", LanguageResource.getString("start.yesno") + ColorsOutput.reset());
+                System.out.println(LanguageResource.getString(output));
+                kaart = SCAN.next().toLowerCase();
+            }
+            if (kaart.equals(LanguageResource.getString("yes"))) {
+                UseCase5 uc5 = new UseCase5(this.dc, dc.geefNaamSpeler(dc.geefSpelerAanBeurt()));
+                uc5.speelKaart();
+            }
+        } while (kaart.equals(LanguageResource.getString("yes")));
+    }
+
+    private void ontsnappen(int id){
+        int runAway = Integer.parseInt(dc.geefMonsterAttribuut(id,"RunAway").toString());
+        //Speler ontsnapt
+        if(/* Moet nog de methode outRun aangeroepen worden ivm grote databank ||*/gooiDobbelsteen() > 4 - runAway){
+            System.out.println(LanguageResource.getString("usecase6.escape1"));
+        }// Speler ontsnapt niet
+        else{
+            System.out.println(LanguageResource.getString("usecase6.escape2"));
+            voerBadStuffUit(id);
+        }
+    }
+
+    private void voerBadStuffUit(int id){
+
     }
 }

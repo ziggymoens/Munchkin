@@ -432,13 +432,13 @@ public class Spel {
     //Return true = Monster wint
     //Return false = Speler in kwestie wint
     public boolean gevechtResultaat(int monster, int speler){
-        if(monster >= speler){
-            System.out.println(LanguageResource.getString("usecase6.monsterwon"));
+        /*if(monster >= speler){
             return true;
         }else{
-            System.out.println(LanguageResource.getString("usecase6.playerwon"));
             return false;
-        }
+        }*/
+        return monster >= speler;
+
     }
     public int geefMonsterLevelsUp(int id){
         Monster monster = (Monster) kerkerkaarten.get(id);
@@ -462,17 +462,6 @@ public class Spel {
                 break;
         }
         return value;
-    }
-
-
-    public int geefMonsterLevel(int id){
-        Monster monster = (Monster) kerkerkaarten.get(id);
-        return monster.getLevel();
-    }
-
-    public int geefMonsterSchatkaarten(int id ){
-        Monster monster = (Monster) kerkerkaarten.get(id);
-        return monster.getWinstTeasures();
     }
 
     public boolean isKlein() {

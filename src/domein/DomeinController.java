@@ -261,15 +261,6 @@ public class DomeinController {
     public boolean gevechtResultaat(int monster, int speler){
         return spel.gevechtResultaat(monster, speler);
     }
-    public int geefMonsterLevelsUp(int id){
-        return ((Monster)spel.getKaarten().get(id)).getWinstLevels();
-    }
-
-    public int geefMonsterLevel(int id){ return spel.geefMonsterLevel(id); }
-
-    public int geefMonsterSchatkaarten(int id){
-        return spel.geefMonsterSchatkaarten(id);
-    }
 
     public int getAantalKaarten(String naam){
         return spel.getAantalKaarten(naam);
