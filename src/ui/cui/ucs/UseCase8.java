@@ -16,15 +16,15 @@ import java.util.Scanner;
 /**
  * @author ziggy
  */
-public class UseCase8 {
+class UseCase8 {
     private final Scanner SCAN = new Scanner(System.in);
     private final DomeinController dc;
 
-    public UseCase8(DomeinController dc) {
+    UseCase8(DomeinController dc) {
         this.dc = dc;
     }
 
-    public void spelOpslaan() {
+    void spelOpslaan() {
         try {
             askName();
             saveGame();
