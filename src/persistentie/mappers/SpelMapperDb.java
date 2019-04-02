@@ -29,8 +29,8 @@ public class SpelMapperDb {
     private static final String PLAYER_SAVE = "INSERT INTO ID222177_g35.Speler (spelerid, naam, level, geslacht, spelid) VALUES (?,?,?,?,?)";
     private static final String GAME_CARDSAVE = "INSERT INTO ID222177_g35.SpelKaart (spelid, kaartid, volgnummerD, volgnumerT) values (?,?,?,?)";
     private static final String DELETE_PLAYERS = "DELETE FROM ID222177_g35.Speler WHERE spelid = ?";
-    private static final String DELETE_SPELERKAART = "DELETE FROM ID222177_g35.SpelerKaart";
-    private static final String DELETE_SPELKAART = "DELETE FROM SpelKaart WHERE spelid = ?";
+    private static final String DELETE_SPELERKAART = "DELETE ID222177_g35.SpelerKaart FROM ID222177_g35.SpelerKaart INNER JOIN ID222177_g35.Speler ON ID222177_g35.SpelerKaart.spelerid = ID222177_g35.Speler.spelerid where ID222177_g35.Speler.spelid = ?";
+    private static final String DELETE_SPELKAART = "DELETE FROM ID222177_g35.SpelKaart WHERE spelid = ?";
     private void voegToe() {
         try {
             this.conn = DriverManager.getConnection(Connectie.JDBC_URL);
@@ -184,7 +184,7 @@ public class SpelMapperDb {
     public void remove(int index) {
         voegToe();
         try {
-            PreparedStatement query = conn.prepareStatement(DELETE_GAME);
+            PreparedStatement query = conn.prepareStatement(DELETE_SPELERKAART);
             query.setInt(1, index);
             query.executeUpdate();
             query.close();
@@ -192,15 +192,17 @@ public class SpelMapperDb {
             query.setInt(1, index);
             query.executeUpdate();
             query.close();
-            query = conn.prepareStatement(DELETE_SPELERKAART);
+            query = conn.prepareStatement(DELETE_SPELKAART);
+            query.setInt(1, index);
             query.executeUpdate();
             query.close();
-            query = conn.prepareStatement(DELETE_SPELKAART);
+            query = conn.prepareStatement(DELETE_GAME);
             query.setInt(1, index);
             query.executeUpdate();
             query.close();
             conn.close();
         } catch (Exception ex) {
+            ex.printStackTrace();
             throw new SpelDatabaseException(ex.getMessage());
         }
     }

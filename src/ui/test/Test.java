@@ -51,7 +51,8 @@ public class Test {
         spel.geefStartKaarten();
         spel.setNaam("test123");
 
-        pc.spelOpslaan(spel);
+        //pc.spelOpslaan(spel);
+        pc.remove("test123");
 
         //SpelMapperDb sm = new SpelMapperDb();
         //sm.addSpel("test1234", 0, true);
