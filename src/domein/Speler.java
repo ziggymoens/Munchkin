@@ -23,9 +23,9 @@ public class Speler {
     private int level, aantalSchatkaarten, aantalKerkerkaarten;
     private String geslacht;
     private String naam;
-    private final List<Kaart> kaarten;
+    private List<Kaart> kaarten;
     private final List<Integer> volgordeKaarten;
-    private final List<Kaart> items;
+    private List<Kaart> items;
     private final List<Integer> volgordeItems;
     private boolean heeftMonsterVerslaan;
 
@@ -395,5 +395,15 @@ public class Speler {
 
     public int getSpelerId() {
         return spelerId;
+    }
+
+    public void setKaarten(List<Kaart> kaarten) {
+        this.kaarten = kaarten;
+        updateKaarten();
+    }
+
+    public void setItems(List<Kaart> items) {
+        this.items = items;
+        updateKaarten();
     }
 }

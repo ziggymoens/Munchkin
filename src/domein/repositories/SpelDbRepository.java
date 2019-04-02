@@ -7,21 +7,13 @@ import java.util.List;
 
 public class SpelDbRepository {
     private final PersistentieController pc;
-    private List<Spel> spellen;
 
     public SpelDbRepository() {
         pc = new PersistentieController();
-        spellen = pc.geefSpellen();
     }
 
     public void spelOpslaan(Spel spel) {
         pc.spelOpslaan(spel);
-    }
-
-    public List<Spel> getSpellen() {
-        spellen.clear();
-        spellen = pc.geefSpellen();
-        return spellen;
     }
 
     public List<String> geefOverzicht() {
@@ -35,6 +27,6 @@ public class SpelDbRepository {
     }
 
     public void verwijderOpgeslagenSpel(int index) {
-        pc.remove(spellen.get(index).getNaam());
+        pc.remove(index);
     }
 }

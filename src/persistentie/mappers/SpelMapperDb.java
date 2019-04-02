@@ -25,28 +25,28 @@ public class SpelMapperDb {
         }
     }
 
-    public List<Spel> geefSpellen() {
+    public Spel laadSpel(int spelId) {
         spellen.clear();
+        Spel spel = null;
         voegToe();
         try {
-            PreparedStatement query = conn.prepareStatement("SELECT * FROM ID222177_g35.Spel");
+            PreparedStatement query = conn.prepareStatement(String.format("SELECT * FROM ID222177_g35.Spel WHERE spelid = %d", spelId));
             rs = query.executeQuery();
             while (rs.next()){
-                int spelId = rs.getInt("spelid");
+                int Id = rs.getInt("spelid");
                 String naam = rs.getString("naam");
                 Boolean klein = rs.getBoolean("kleingroot");
                 List<Speler> spelers = voegSpelersToe(spelId);
                 List<Integer> volgnummerD = geefVolgorde("d", spelId);
                 List<Integer> volgnummerT = geefVolgorde("t", spelId);
-                Spel spel = new Spel(naam, klein, spelers, volgnummerD, volgnummerT);
-                spellen.add(spelId, spel);
+                spel = new Spel(naam, klein, spelers, volgnummerD, volgnummerT);
             }
             rs.close();
             query.close();
         } catch (Exception ex) {
             throw new SpelDatabaseException(ex.getMessage());
         }
-        return spellen;
+        return spel;
     }
 
     private List<Speler> voegSpelersToe(int spelId){
@@ -140,10 +140,10 @@ public class SpelMapperDb {
         return overzicht;
     }
 
-    public void remove(String naam) {
+    public void remove(int index) {
         voegToe();
         try {
-            PreparedStatement query = conn.prepareStatement(String.format("DELETE * FROM ID222177_g35.Spel WHERE naam = %s", naam));
+            PreparedStatement query = conn.prepareStatement(String.format("DELETE * FROM ID222177_g35.Spel WHERE spelid = %d", index));
             rs = query.executeQuery();
             rs.close();
             query.close();

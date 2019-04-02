@@ -88,11 +88,6 @@ public class PersistentieController {
         return kerkerkaarten;
     }
 
-    public List<Spel> geefSpellen() {
-        updateSpellen();
-        return spellen;
-    }
-
     public void spelOpslaan(Spel spel) {
         String naam = spel.getNaam();
         int i = spel.getSpelerAanBeurt();
@@ -148,19 +143,52 @@ public class PersistentieController {
         return sm.getOverzicht();
     }
 
-    public void remove(String naam) {
-        sm.remove(naam);
+    public void remove(int index) {
+        sm.remove(index);
     }
 
     public void laadSpel(int index) {
-        Spel spel = spellen.get(index);
+        Spel spel = sm.laadSpel(index);
+        for(Speler speler : spel.getSpelers()){
+            voegKaartenToe(speler);
+            voegItemsToe(speler);
+        }
+        voegKerkerkaartenToeAanSpel(spel);
+        voegSchatkaartenToeAanSpel(spel);
 
         //verder uitwerken
     }
 
-    private void updateSpellen() {
-        spellen.clear();
-        spellen = sm.geefSpellen();
+    private void voegKaartenToe(Speler speler){
+        List<Kaart> kaarten = new ArrayList<>();
+        for (Integer id : speler.getVolgordeKaarten()){
+            kaarten.add(kaartenBib.get(id));
+        }
+        speler.setKaarten(kaarten);
+    }
+
+    private void voegItemsToe(Speler speler){
+        List<Kaart> items = new ArrayList<>();
+        for (Integer id : speler.getVolgordeItems()){
+            items.add(kaartenBib.get(id));
+        }
+        speler.setItems(items);
+    }
+
+    private void voegKerkerkaartenToeAanSpel(Spel spel){
+        List<Kaart> kerkerkaarten = new ArrayList<>();
+        for (Integer id : spel.getVolgordeD()){
+            kerkerkaarten.add(kaartenBib.get(id));
+        }
+        spel.setKerkerkaarten(kerkerkaarten);
+    }
+
+    private void voegSchatkaartenToeAanSpel(Spel spel){
+        List<Kaart> schatkaarten = new ArrayList<>();
+        for (Integer id : spel.getVolgordeT()){
+            schatkaarten.add(kaartenBib.get(id));
+        }
+        spel.setSchatkaarten(schatkaarten);
     }
 
     public List<Kaart> getKaartenBib(){
