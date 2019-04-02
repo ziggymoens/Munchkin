@@ -1,11 +1,11 @@
 package ui.cui.ucs;
 
 import domein.DomeinController;
+import domein.kaarten.kerkerkaarten.Monster;
 import language.LanguageResource;
 import printer.ColorsOutput;
-
 import java.security.SecureRandom;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * Deze UC nummer is onbekend en zal later worden aangepast
@@ -15,23 +15,25 @@ import java.util.Scanner;
 
 public class UseCase6 {
     private final DomeinController dc;
-    private final int monster;
-    private final int speler;
+
     private final Scanner SCAN = new Scanner(System.in);
 
-    public UseCase6(DomeinController dc, int monster, int speler) {
+    public UseCase6(DomeinController dc) {
         this.dc = dc;
-        this.monster = monster;
-        this.speler = speler;
+
     }
 
-    public void vechtMetMonster() {
-        boolean gevecht = dc.gevechtResultaat(monster, speler);
+    public void vechtMetMonster(int battleBonusMonster, int battleBonusSpeler) {
+        boolean gevecht = dc.gevechtResultaat(battleBonusMonster, battleBonusSpeler);
         int spelerAanBeurt = dc.geefSpelerAanBeurt();
         int id = dc.geefIdBovensteKaart();
         String kaart;
-        int levelsUp;
-        levelsUp = dc.geefMonsterLevelsUp(id);
+        int levelMonster = Integer.parseInt(dc.geefMonsterAttribuut(id, "level").toString());
+        int levelsUp = Integer.parseInt(dc.geefMonsterAttribuut(id, "levelsUp").toString());
+        //List<Integer> MonsterAttributen = dc.geefMonsterAttriubuut(id);
+        //int levelMonster = MonsterAttributen.get(0), schatkaarten = MonsterAttributen.get(1), levelsUp = MonsterAttributen.get(2), runAway = MonsterAttributen.get(3), pursueLevel = MonsterAttributen.get(4);
+        //int levelsUp;
+        //levelsUp = dc.geefMonsterLevelsUp(id);
         //als de speler gewonnen heeft
         if (!gevecht) {
             dc.verhoogLevel(dc.geefNaamSpeler(spelerAanBeurt), levelsUp);
@@ -59,7 +61,7 @@ public class UseCase6 {
         }
     }
 
-    public int gooiDobbelsteen(){
-        return new SecureRandom().nextInt(5)+1;
+    private int gooiDobbelsteen(){
+        return new SecureRandom().nextInt(5) + 1;
     }
 }

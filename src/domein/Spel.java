@@ -429,6 +429,27 @@ public class Spel {
         Monster monster = (Monster) kerkerkaarten.get(id);
         return monster.getWinstLevels();
     }
+
+    public Object geefMonsterAttribuut(int id, String soort){
+        Object value = null;
+        switch(soort){
+            case "level":
+                value = ((Monster) (getKaarten().get(id))).getLevel();
+                break;
+            case "schatkaarten":
+                value = ((Monster) getKaarten().get(id)).getWinstTeasures();
+                break;
+            case "levelsUp":
+                value = ((Monster) getKaarten().get(id)).getWinstLevels();
+                break;
+            case "RunAway":
+                value = ((Monster) getKaarten().get(id)).getRunAway();
+                break;
+        }
+        return value;
+    }
+
+
     public int geefMonsterLevel(int id){
         Monster monster = (Monster) kerkerkaarten.get(id);
         return monster.getLevel();

@@ -1,10 +1,12 @@
 package domein;
 
+import domein.kaarten.kerkerkaarten.Monster;
 import domein.repositories.SpelDbRepository;
+
+import java.util.*;
+
 import exceptions.SpelException;
 import language.LanguageResource;
-
-import java.util.List;
 
 /**
  * @author ziggy
@@ -260,7 +262,9 @@ public class DomeinController {
     public boolean gevechtResultaat(int monster, int speler){
         return spel.gevechtResultaat(monster, speler);
     }
-    public int geefMonsterLevelsUp(int id){ return spel.geefMonsterLevelsUp(id); }
+    public int geefMonsterLevelsUp(int id){
+        return ((Monster)spel.getKaarten().get(id)).getWinstLevels();
+    }
 
     public int geefMonsterLevel(int id){ return spel.geefMonsterLevel(id); }
 
@@ -272,16 +276,8 @@ public class DomeinController {
         return spel.getAantalKaarten(naam);
     }
 
-    public List<String> geefOverzichtSpelen() {
-        List<String> overzicht = sr.geefOverzicht();
-        return overzicht;
+    public Object geefMonsterAttribuut(int id, String soort){{
+        return spel.geefMonsterAttribuut(id, soort);
     }
-
-    public void laadSpel(int index) {
-        sr.laadSpel(index);
-    }
-
-    public void verwijderOpgeslagenSpel(int index) {
-        sr.verwijderOpgeslagenSpel(index);
-    }
+}
 }
