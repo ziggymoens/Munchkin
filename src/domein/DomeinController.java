@@ -288,11 +288,19 @@ public class DomeinController {
         return sr.geefOverzicht();
     }
 
-    public void laadSpel(int index) {
-        sr.laadSpel(index);
+    public void setSpel(Spel spel) {
+        this.spel = spel;
     }
 
-    public void verwijderOpgeslagenSpel(int index) {
-        sr.verwijderOpgeslagenSpel(index);
+    public void laadSpel(String naam) {
+        sr.laadSpel(naam, this);
+    }
+
+    public void verwijderOpgeslagenSpel(String naam) {
+        sr.verwijderOpgeslagenSpel(naam);
+    }
+
+    public boolean bestaatSpel(String naam) {
+        return sr.bestaatSpel(naam);
     }
 }

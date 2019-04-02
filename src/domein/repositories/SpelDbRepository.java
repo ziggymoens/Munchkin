@@ -1,5 +1,6 @@
 package domein.repositories;
 
+import domein.DomeinController;
 import domein.Spel;
 import persistentie.mappers.PersistentieController;
 
@@ -22,11 +23,15 @@ public class SpelDbRepository {
         return overzicht;
     }
 
-    public void laadSpel(int index) {
-        pc.laadSpel(index);
+    public void laadSpel(String naam, DomeinController dc) {
+        dc.setSpel(pc.laadSpel(naam));
     }
 
-    public void verwijderOpgeslagenSpel(int index) {
-        pc.remove(index);
+    public void verwijderOpgeslagenSpel(String naam) {
+        pc.remove(naam);
+    }
+
+    public boolean bestaatSpel(String naam) {
+        return pc.bestaatSpel(naam);
     }
 }

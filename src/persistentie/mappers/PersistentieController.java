@@ -27,7 +27,6 @@ public class PersistentieController {
     private List<Kaart> kaartenBib;
     private List<Kaart> schatkaarten;
     private List<Kaart> kerkerkaarten;
-    private List<Spel> spellen;
 
 
     public PersistentieController() {
@@ -38,7 +37,6 @@ public class PersistentieController {
         kaartenBib = new ArrayList<>();
         schatkaarten = new ArrayList<>();
         kerkerkaarten = new ArrayList<>();
-        spellen = new ArrayList<>();
         haalKaartenOp(this.klein);
     }
 
@@ -92,9 +90,9 @@ public class PersistentieController {
         String naam = spel.getNaam();
         int i = spel.getSpelerAanBeurt();
         boolean klein = spel.isKlein();
+        sm.addSpel(naam, i, klein);
         List<Integer> volgordeD = spel.getVolgordeD();
         List<Integer> volgordeT = spel.getVolgordeT();
-        sm.addSpel(naam, i, klein);
         int spelId = sm.getSpelId(naam);
         schatkaartenSpelOpslaan(spelId, volgordeT);
         kerkerkaartenSpelOpslaan(spelId, volgordeD);
@@ -143,11 +141,12 @@ public class PersistentieController {
         return sm.getOverzicht();
     }
 
-    public void remove(int index) {
-        sm.remove(index);
+    public void remove(String naam) {
+        sm.remove(sm.getSpelId(naam));
     }
 
-    public void laadSpel(int index) {
+    public Spel laadSpel(String naam) {
+        int index = sm.getSpelId(naam);
         Spel spel = sm.laadSpel(index);
         for(Speler speler : spel.getSpelers()){
             voegKaartenToe(speler);
@@ -156,8 +155,11 @@ public class PersistentieController {
         voegKerkerkaartenToeAanSpel(spel);
         voegSchatkaartenToeAanSpel(spel);
 
+        return spel;
+
         //verder uitwerken
     }
+
 
     private void voegKaartenToe(Speler speler){
         List<Kaart> kaarten = new ArrayList<>();
@@ -193,5 +195,9 @@ public class PersistentieController {
 
     public List<Kaart> getKaartenBib(){
         return kaartenBib;
+    }
+
+    public boolean bestaatSpel(String naam) {
+        return getOverzicht().contains(naam);
     }
 }
