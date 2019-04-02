@@ -24,6 +24,7 @@ public class PersistentieController {
 
     private Boolean klein = true;
     private List<Kaart> kaarten;
+    private List<Kaart> kaartenBib;
     private List<Kaart> schatkaarten;
     private List<Kaart> kerkerkaarten;
     private List<Spel> spellen;
@@ -34,6 +35,7 @@ public class PersistentieController {
         kkm = new KaartMapperDbKlein();
         sm = new SpelMapperDb();
         kaarten = new ArrayList<>();
+        kaartenBib = new ArrayList<>();
         schatkaarten = new ArrayList<>();
         kerkerkaarten = new ArrayList<>();
         spellen = new ArrayList<>();
@@ -62,6 +64,7 @@ public class PersistentieController {
                 kaarten.addAll(km.geefKaartenType(type));
             }
         }
+        kaartenBib = kaarten;
         sorteerKaarten();
     }
 
@@ -105,13 +108,13 @@ public class PersistentieController {
     }
 
     private void schatkaartenSpelOpslaan(int spelId, List<Integer> volgordeT) {
-        for (Integer kaart : volgordeT){
+        for (Integer kaart : volgordeT) {
             sm.kaartSpelOpslaan(spelId, kaart, null, volgordeT.indexOf(kaart));
         }
     }
 
     private void kerkerkaartenSpelOpslaan(int spelId, List<Integer> volgordeD) {
-        for (Integer kaart: volgordeD){
+        for (Integer kaart : volgordeD) {
             sm.kaartSpelOpslaan(spelId, kaart, volgordeD.indexOf(kaart), null);
         }
     }
@@ -129,14 +132,14 @@ public class PersistentieController {
         }
     }
 
-    private void kaartenSpelerOpslaan(int spelerId, List<Integer> volgordeKaarten){
-        for (Integer id : volgordeKaarten){
+    private void kaartenSpelerOpslaan(int spelerId, List<Integer> volgordeKaarten) {
+        for (Integer id : volgordeKaarten) {
             sm.kaartSpelerOpslaan(spelerId, id, false);
         }
     }
 
-    private void itemsSpelerOpslaan(int spelerId, List<Integer> volgordeItems){
-        for (Integer id : volgordeItems){
+    private void itemsSpelerOpslaan(int spelerId, List<Integer> volgordeItems) {
+        for (Integer id : volgordeItems) {
             sm.kaartSpelerOpslaan(spelerId, id, true);
         }
     }
@@ -158,5 +161,9 @@ public class PersistentieController {
     private void updateSpellen() {
         spellen.clear();
         spellen = sm.geefSpellen();
+    }
+
+    public List<Kaart> getKaartenBib(){
+        return kaartenBib;
     }
 }

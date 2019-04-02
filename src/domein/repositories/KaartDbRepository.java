@@ -45,4 +45,8 @@ public class KaartDbRepository {
     public List<Kaart> getKerkerkaarten() {
         return kerkerkaarten;
     }
+
+    public List<Kaart> getKaartenBib(){
+        return pc.getKaartenBib();
+    }
 }

@@ -48,13 +48,8 @@ public class Spel {
         pc = new PersistentieController(true);
         kaarten = new HashMap<>();
         schatkaarten = pc.getSchatkaarten();
-        for (Kaart kaart : pc.getSchatkaarten()) {
-            kaarten.put(kaart.getId(), kaart);
-        }
         kerkerkaarten = pc.getKerkerkaarten();
-        for (Kaart kaart : pc.getKerkerkaarten()) {
-            kaarten.put(kaart.getId(), kaart);
-        }
+        maakKaartenBib();
         updateVolgorde();
     }
 
@@ -74,6 +69,13 @@ public class Spel {
 //        }
         this.volgordeT = volgnummerT;
         this.volgordeD = volgnummerD;
+        maakKaartenBib();
+    }
+
+    private void maakKaartenBib(){
+        for (Kaart kaart : pc.getKaartenBib()){
+            kaarten.put(kaart.getId(), kaart);
+        }
     }
 
     /**
