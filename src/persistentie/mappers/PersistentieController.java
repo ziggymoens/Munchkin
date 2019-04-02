@@ -150,7 +150,8 @@ public class PersistentieController {
     }
 
     public void laadSpel(int index) {
-        spellen.get(index);
+        Spel spel = spellen.get(index);
+
         //verder uitwerken
     }
 

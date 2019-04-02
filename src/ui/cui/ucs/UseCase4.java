@@ -21,13 +21,15 @@ class UseCase4 {
     private final DomeinController dc;
     private final Scanner SCAN = new Scanner(System.in);
     private final int aantalSpelers;
+    private String naam;
 
 
     //speler aan de beurt ==> dc.geefSpelerAanBeurt(), int van 0 tot aantalSpelers-1
 
-    UseCase4(DomeinController dc, int aantalSpelers) {
+    UseCase4(DomeinController dc, int aantalSpelers, String naam) {
         this.dc = dc;
         this.aantalSpelers = aantalSpelers;
+        this.naam = naam;
     }
 
     // Vragen aan speler of hij hulp wilt
@@ -54,7 +56,7 @@ class UseCase4 {
                 bonuskaart = SCAN.next().toLowerCase();
             }
             if (bonuskaart.equals(LanguageResource.getString("yes"))) {
-                UseCase5 uc5 = new UseCase5(this.dc);
+                UseCase5 uc5 = new UseCase5(this.dc, naam);
                 uc5.speelKaart();
             }
         } while (bonuskaart.equals(LanguageResource.getString("yes")));
@@ -125,7 +127,7 @@ class UseCase4 {
         String kaart;
         //vragen of de speler nog een extra kaart wilt spelen, zoja, speel een kaart
         do {
-            System.out.printf("%s%s%n", String.format("%s", ColorsOutput.kleur("blue") + dc.geefNaamSpeler(dc.geefSpelerAanBeurt()) + ColorsOutput.reset()), LanguageResource.getString("usecase4.ask.card"));
+            System.out.printf("%s%s%n", String.format("%s", ColorsOutput.kleur("blue") + naam + ColorsOutput.reset()), LanguageResource.getString("usecase4.ask.card"));
             kaart = SCAN.next().toLowerCase();
             while (!kaart.equals(LanguageResource.getString("yes")) && !kaart.equals(LanguageResource.getString("no"))) {
                 System.out.printf(ColorsOutput.decoration("bold") + ColorsOutput.kleur("red") + "%s%n%n", LanguageResource.getString("start.yesno") + ColorsOutput.reset());
@@ -133,7 +135,7 @@ class UseCase4 {
                 kaart = SCAN.next().toLowerCase();
             }
             if (kaart.equals(LanguageResource.getString("yes"))) {
-                UseCase5 uc5 = new UseCase5(this.dc);
+                UseCase5 uc5 = new UseCase5(this.dc, naam);
                 uc5.speelKaart();
             }
         } while (kaart.equals(LanguageResource.getString("yes")));
@@ -158,12 +160,12 @@ class UseCase4 {
     }
 
     private void helpSpeler() {
-        UseCase5 uc5 = new UseCase5(this.dc);
+        UseCase5 uc5 = new UseCase5(this.dc, naam);
         uc5.speelKaart();
     }
 
     private void helpMonster() {
-        UseCase5 uc5 = new UseCase5(this.dc);
+        UseCase5 uc5 = new UseCase5(this.dc, naam);
         uc5.speelKaart();
     }
 
