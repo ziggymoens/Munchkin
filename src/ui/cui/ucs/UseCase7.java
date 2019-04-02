@@ -43,7 +43,7 @@ class UseCase7 {
         }
         try {
             switch (keuze) {
-                case 1:
+                case 1: //naarItems (op tafel leggen)
                     try {
                         if (dc.getAantalKaarten(naam) >= 1) {
                             System.out.println(String.format("%s:%n", LanguageResource.getString("usecase7.toitems")));
@@ -55,24 +55,33 @@ class UseCase7 {
 
                     }
                     break;
-                case 2:
+                case 2: //verkopen + weggooien
                     try {
                         System.out.println(String.format("%s: %n%s", LanguageResource.getString("usecase7.sellable"), dc.geefVerkoopbareKaarten(naam)));
                         System.out.println(String.format("%s: %n%s", LanguageResource.getString("usecase7.throwaway"), dc.geefNietVerkoopbareKaarten(naam)));
                         System.out.println(LanguageResource.getString("usecase7.asktosell"));
                         String antw = SCAN.next();
 
-                        if(antw.equals(LanguageResource.getString("yes"))){
+                        if(antw.equals("yes") || antw.equals("oui") || antw.equals("ja")){
                             String antwoord;
-                                System.out.println(LanguageResource.getString("usecase7.sellorthrow"));
-                                antwoord = SCAN.next();
-                                if(!antwoord.equals(LanguageResource.getString("usecase7.translationsell")) || !antwoord.equals(LanguageResource.getString("usecase7.translationthrow")))
-                                    System.out.println("OPNIEUW INGEVEN");;
-                            if(antwoord.equals(LanguageResource.getString("usecase7.translationsell"))){
-                                System.out.println("VERKOPEN"); break;
-                            }else if(antwoord.equals(LanguageResource.getString("usecase7.translationthrow"))){
-                                System.out.println("WEGGOOIEN"); break;
-                            }
+                            boolean match = false;
+                                do {
+                                    System.out.println(LanguageResource.getString("usecase7.sellorthrow"));
+                                    antwoord = SCAN.next();
+                                    if(antwoord.equalsIgnoreCase(LanguageResource.getString("usecase7.translationsell"))){
+                                        System.out.println("gekozen voor verkopen -- hardcode, nog aanpassen");
+
+                                        match = true;
+                                    }
+                                    else if(antwoord.equalsIgnoreCase(LanguageResource.getString("usecase7.translationsell"))){
+                                        System.out.println("gekozen voor weggooien -- hardcode, nog aanpassen");
+                                        match = true;
+                                    }else{
+                                        System.err.println("fout in antwoord");
+                                    }
+                                }while (match = false);
+
+
                         }
                     } catch (Exception e) {
 
