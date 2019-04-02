@@ -62,18 +62,23 @@ class UseCase7 {
                         System.out.println(LanguageResource.getString("usecase7.asktosell"));
                         String antw = SCAN.next();
 
-                        if(antw.equals("yes") || antw.equals("oui") || antw.equals("ja")){
-                            String antwoord;
+                        if(antw.equalsIgnoreCase("yes") || antw.equalsIgnoreCase("oui") || antw.equalsIgnoreCase("ja")){
+                            String antwoord, keuzeKaart;
                             boolean match = false;
                                 do {
                                     System.out.println(LanguageResource.getString("usecase7.sellorthrow"));
                                     antwoord = SCAN.next();
                                     if(antwoord.equalsIgnoreCase(LanguageResource.getString("usecase7.translationsell"))){
+                                        System.out.println(String.format("%s: %n%s", LanguageResource.getString("usecase7.sellable"), dc.geefVerkoopbareKaarten(naam)));
+                                        System.out.println(LanguageResource.getString("usecase7.whattosell"));
+//      SPLITTEN ADHV KOMMA, SPATIE OF ENTER?????????
+                                        keuzeKaart = SCAN.next();
+                                        System.out.println();
                                         System.out.println("gekozen voor verkopen -- hardcode, nog aanpassen");
 
                                         match = true;
                                     }
-                                    else if(antwoord.equalsIgnoreCase(LanguageResource.getString("usecase7.translationsell"))){
+                                    else if(antwoord.equalsIgnoreCase(LanguageResource.getString("usecase7.translationthrow"))){
                                         System.out.println("gekozen voor weggooien -- hardcode, nog aanpassen");
                                         match = true;
                                     }else{
