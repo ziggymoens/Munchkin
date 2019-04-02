@@ -22,8 +22,8 @@ public class Speler {
     private int level, aantalSchatkaarten, aantalKerkerkaarten;
     private String geslacht;
     private String naam;
-    private final List<Kaart> kaarten;
-    private final List<Kaart> items;
+    private List<Kaart> kaarten;
+    private List<Kaart> items;
     private boolean heeftMonsterVerslaan;
 
     /**
@@ -46,7 +46,9 @@ public class Speler {
      * @param geslacht Het geslacht van de speler
      */
     public Speler(String naam, String geslacht) {
-        this(naam, true, 1);
+        setNaam(naam);
+        setGeslacht(geslacht);
+        setLevel(1);
     }
 
     /**
@@ -56,7 +58,7 @@ public class Speler {
      * @param ges Het geslacht van de speler
      * @param level    Het level van de Speler
      */
-    public Speler(String naam, Boolean ges, int level) {
+    public Speler(String naam, Boolean ges, int level, List<Integer> kaarten, List<Integer> items) {
         String geslacht = ges?LanguageResource.getString("man"):LanguageResource.getString("woman");
         setGeslacht(geslacht);
         setNaam(naam);

@@ -1,11 +1,10 @@
 package domein;
 
 import domein.repositories.SpelDbRepository;
-
-import java.util.*;
-
 import exceptions.SpelException;
 import language.LanguageResource;
+
+import java.util.List;
 
 /**
  * @author ziggy
@@ -275,5 +274,18 @@ public class DomeinController {
 
     public boolean heeftGenoegKaarten(){
         return spel.heeftGenoegKaarten();
+    }
+
+    public List<String> geefOverzichtSpelen() {
+        List<String> overzicht = sr.geefOverzicht();
+        return overzicht;
+    }
+
+    public void laadSpel(int index) {
+        sr.laadSpel(index);
+    }
+
+    public void verwijderOpgeslagenSpel(int index) {
+        sr.verwijderOpgeslagenSpel(index);
     }
 }
