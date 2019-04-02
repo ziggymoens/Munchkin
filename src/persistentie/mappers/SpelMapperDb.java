@@ -15,7 +15,7 @@ import java.util.List;
 public class SpelMapperDb {
     private Connection conn;
     private ResultSet rs;
-    private List<Spel> spellen;
+    private List<Spel> spellen = new ArrayList<>();
 
     private void voegToe() {
         try {
@@ -26,7 +26,7 @@ public class SpelMapperDb {
     }
 
     public List<Spel> geefSpellen() {
-//        spellen.clear();
+        spellen.clear();
         voegToe();
         try {
             PreparedStatement query = conn.prepareStatement("SELECT * FROM ID222177_g35.Spel");
@@ -38,8 +38,8 @@ public class SpelMapperDb {
                 List<Speler> spelers = voegSpelersToe(spelId);
                 List<Integer> volgnummerD = geefVolgorde("d", spelId);
                 List<Integer> volgnummerT = geefVolgorde("t", spelId);
-                // Spel spel = new Spel(naam, klein, spelers);
-                // spellen.add(spelId, spel);
+                Spel spel = new Spel(naam, klein, spelers, volgnummerD, volgnummerT);
+                spellen.add(spelId, spel);
             }
             rs.close();
             query.close();

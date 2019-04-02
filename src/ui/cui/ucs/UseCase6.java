@@ -3,8 +3,9 @@ package ui.cui.ucs;
 import domein.DomeinController;
 import language.LanguageResource;
 import printer.ColorsOutput;
-import java.util.Scanner;
+
 import java.security.SecureRandom;
+import java.util.Scanner;
 
 /**
  * Deze UC nummer is onbekend en zal later worden aangepast
@@ -59,9 +60,6 @@ public class UseCase6 {
     }
 
     public int gooiDobbelsteen(){
-        SecureRandom ran = new SecureRandom();
-        int worp;
-        worp = ran.nextInt(5) + 1;
-        return worp;
+        return new SecureRandom().nextInt(5)+1;
     }
 }
