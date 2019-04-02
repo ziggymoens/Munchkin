@@ -25,6 +25,7 @@ public class Spel {
     private final List<Kaart> schatkaarten;
     private final List<Kaart> kerkerkaarten;
     private String naam;
+    private boolean klein = true;
 
     /**
      * Constructor van Spel zonder parameters spelers = 3
@@ -460,4 +461,11 @@ public class Spel {
         return monster.getWinstTeasures();
     }
 
+    public boolean isKlein() {
+        return klein;
+    }
+
+    public void setKlein(boolean klein) {
+        this.klein = klein;
+    }
 }

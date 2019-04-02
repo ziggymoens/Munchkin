@@ -1,6 +1,7 @@
 package ui.cui.ucs;
 
 import domein.DomeinController;
+
 import java.util.List;
 
 public class UseCase5 {
@@ -17,9 +18,9 @@ public class UseCase5 {
         System.out.printf("Er wordt een kaart gespeeld %n%n");
     }
 
-    public String toonOverzichtKaartenInHand() {
-        return dc.toonOverzichtKaartenInHand(naam);
-    }
+    //public String toonOverzichtKaartenInHand() {
+        //return dc.toonOverzichtKaartenInHand(naam);
+    //}
 
     public String[] kiesKaart(String type, String naam) {
         String[] keuze = new String[2];

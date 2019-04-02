@@ -2,11 +2,10 @@ package domein;
 
 import domein.kaarten.kerkerkaarten.Monster;
 import domein.repositories.SpelDbRepository;
-
-import java.util.*;
-
 import exceptions.SpelException;
 import language.LanguageResource;
+
+import java.util.List;
 
 /**
  * @author ziggy
@@ -276,8 +275,13 @@ public class DomeinController {
         return spel.getAantalKaarten(naam);
     }
 
-    public Object geefMonsterAttribuut(int id, String soort){{
+    public Object geefMonsterAttribuut(int id, String soort){
         return spel.geefMonsterAttribuut(id, soort);
     }
-}
+
+
+
+    public boolean geefDatabank() {
+        return spel.isKlein();
+    }
 }

@@ -23,7 +23,9 @@ public class Speler {
     private String geslacht;
     private String naam;
     private final List<Kaart> kaarten;
+    private final List<Integer> volgordeKaarten;
     private final List<Kaart> items;
+    private final List<Integer> volgordeItems;
     private boolean heeftMonsterVerslaan;
 
     /**
@@ -33,7 +35,9 @@ public class Speler {
     public Speler() {
         setLevel(1);
         kaarten = new ArrayList<>();
+        volgordeKaarten = new ArrayList<>();
         items = new ArrayList<>();
+        volgordeItems = new ArrayList<>();
         aantalKerkerkaarten = 0;
         aantalSchatkaarten = 0;
     }
@@ -46,26 +50,37 @@ public class Speler {
      * @param geslacht Het geslacht van de speler
      */
     public Speler(String naam, String geslacht) {
-        this(naam, true, 1);
+        setGeslacht(geslacht);
+        setNaam(naam);
+        setLevel(1);
+        kaarten = new ArrayList<>();
+        volgordeKaarten = new ArrayList<>();
+        items = new ArrayList<>();
+        volgordeItems = new ArrayList<>();
+        aantalKerkerkaarten = 0;
+        aantalSchatkaarten = 0;
     }
 
     /**
      * Constructor van speler
      *
-     * @param naam     De naam van de speler
-     * @param ges Het geslacht van de speler
-     * @param level    Het level van de Speler
+     * @param naam  De naam van de speler
+     * @param ges   Het geslacht van de speler
+     * @param level Het level van de Speler
      */
-    public Speler(String naam, Boolean ges, int level) {
-        String geslacht = ges?LanguageResource.getString("man"):LanguageResource.getString("woman");
+    public Speler(String naam, Boolean ges, int level, List<Integer> kaarten, List<Integer> items) {
+        String geslacht = ges ? LanguageResource.getString("man") : LanguageResource.getString("woman");
         setGeslacht(geslacht);
         setNaam(naam);
         setLevel(level);
-        kaarten = new ArrayList<>();
-        items = new ArrayList<>();
+        this.kaarten = new ArrayList<>();
+        volgordeKaarten = kaarten;
+        this.items = new ArrayList<>();
+        volgordeItems = items;
         aantalKerkerkaarten = 0;
         aantalSchatkaarten = 0;
     }
+
 
     /**
      * Setter voor het geslacht van de speler, controle van geslacht in de taal
@@ -152,6 +167,7 @@ public class Speler {
             aantalKerkerkaarten++;
         }
         kaarten.add(kaart);
+        updateKaarten();
     }
 
     /**
@@ -280,6 +296,7 @@ public class Speler {
                 }
             }
         }
+        updateKaarten();
     }
 
     public int getAantalItems() {
@@ -288,6 +305,7 @@ public class Speler {
 
     public void verwijderItem(int keuze) {
         items.remove(keuze);
+        updateKaarten();
     }
 
     public int getAantalKaarten() {
@@ -329,26 +347,44 @@ public class Speler {
         }
         return ret.toString();
     }
-    
+
     /* Systeem toont naam en type van de kaarten in de hand*/
-    public String toonOverzichtKaartenInHand(){
-        
+    public String toonOverzichtKaartenInHand() {
+
         String output = "";
         int i = 1;
-        for (Kaart kaart: kaarten) {
+        for (Kaart kaart : kaarten) {
             output += String.format("%d: %s, %s", i, kaart.getNaam(), kaart.getClass().getSimpleName());
             i++;
         }
-        
-       return String.format("Kaarten in de hand: %n%s", output);
+
+        return String.format("Kaarten in de hand: %n%s", output);
     }
-    
-    public List<String> geefInfo(List<Boolean> helptmee){
-        List<String> gegevens = new ArrayList<>();
-        
-        gegevens.add(naam);
-        gegevens.add(geslacht);
-        gegevens.add(Integer.toString(level));
-        gegevens.add();
+
+    public List<Integer> getVolgordeKaarten() {
+        return volgordeKaarten;
+    }
+
+    private void setVolgordeKaarten(){
+        volgordeKaarten.clear();
+        for (Kaart kaart : kaarten){
+            volgordeKaarten.add(kaart.getId());
+        }
+    }
+
+    public List<Integer> getVolgordeItems() {
+        return volgordeItems;
+    }
+
+    private void setVolgordeItems(){
+        volgordeItems.clear();
+        for (Kaart kaart: items){
+            volgordeItems.add(kaart.getId());
+        }
+    }
+
+    private void updateKaarten(){
+        setVolgordeKaarten();
+        setVolgordeItems();
     }
 }

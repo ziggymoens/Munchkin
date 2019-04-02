@@ -1,40 +1,40 @@
 package domein.repositories;
 
 import domein.Spel;
-import persistentie.mappers.SpelMapperDb;
+import persistentie.mappers.PersistentieController;
 
 import java.util.List;
 
 public class SpelDbRepository {
-    private final SpelMapperDb sm;
+    private final PersistentieController pc;
     private List<Spel> spellen;
 
     public SpelDbRepository() {
-        sm = new SpelMapperDb();
-        spellen = sm.geefSpellen();
+        pc = new PersistentieController();
+        spellen = pc.geefSpellen();
     }
 
     public void spelOpslaan(Spel spel) {
-        sm.addSpel();
+        pc.addSpel(spel);
     }
 
     public List<Spel> getSpellen() {
         spellen.clear();
-        spellen = sm.geefSpellen();
+        spellen = pc.geefSpellen();
         return spellen;
     }
 
     public List<String> geefOverzicht() {
         List<String> overzicht;
-        overzicht = sm.getOverzicht();
+        overzicht = pc.getOverzicht();
         return overzicht;
     }
 
     public void laadSpel(int index) {
-
+        pc.laadSpel(index);
     }
 
     public void verwijderOpgeslagenSpel(int index) {
-        sm.remove(spellen.get(index).getNaam());
+        pc.remove(spellen.get(index).getNaam());
     }
 }
