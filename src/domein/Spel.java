@@ -342,7 +342,7 @@ public class Spel {
             throw new SpelException("exception.spel.name");
         }
     }
-
+/**
     public boolean spelerTeVeelKaarten(String naam) {
         int i = zoekSpeler(naam);
         return spelers.get(i).getAantalKaarten() > 5;
@@ -351,6 +351,11 @@ public class Spel {
     public boolean heeftGenoegKaarten(){
         int i = zoekSpeler(naam);
         return spelers.get(i).getAantalSchatkaarten() >= 1;
+    }
+    **/
+    public int getAantalKaarten(String naam){
+        int i = zoekSpeler(naam);
+        return spelers.get(i).getAantalKaarten();
     }
 
     private int zoekSpeler(String naam) {

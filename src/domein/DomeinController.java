@@ -232,10 +232,6 @@ public class DomeinController {
         spel.setNaam(naam);
     }
 
-    public boolean spelerTeVeelKaarten(String naam) {
-        return spel.spelerTeVeelKaarten(naam);
-    }
-
     public String bovensteKaartToString() { return spel.bovensteKaartToString(); }
 
     public void zetSpelerAanBeurt(int i) {
@@ -273,7 +269,7 @@ public class DomeinController {
         return spel.geefMonsterSchatkaarten(id);
     }
 
-    public boolean heeftGenoegKaarten(){
-        return spel.heeftGenoegKaarten();
+    public int getAantalKaarten(String naam){
+        return spel.getAantalKaarten(naam);
     }
 }

@@ -1,6 +1,7 @@
 package ui.cui.ucs;
 
 import domein.DomeinController;
+import javafx.application.Platform;
 import language.LanguageResource;
 import printer.ColorsOutput;
 import printer.Printer;
@@ -44,7 +45,7 @@ class UseCase7 {
             switch (keuze) {
                 case 1:
                     try {
-                        if (dc.heeftGenoegKaarten() == true) {
+                        if (dc.getAantalKaarten(naam) >= 1) {
                             System.out.println(String.format("%s:%n", LanguageResource.getString("usecase7.toitems")));
                             System.out.println(String.format("%s:%n", dc.geefKaartenKunnenNaarItems(naam)));
                         }else{
@@ -56,9 +57,23 @@ class UseCase7 {
                     break;
                 case 2:
                     try {
-                        System.out.println(String.format("%s:%n%s", LanguageResource.getString("usecase7.sellable"), dc.geefVerkoopbareKaarten(naam)));
-                        System.out.println(String.format("%s:%n%s", LanguageResource.getString("usecase7.throwaway"), dc.geefNietVerkoopbareKaarten(naam)));
+                        System.out.println(String.format("%s: %n%s", LanguageResource.getString("usecase7.sellable"), dc.geefVerkoopbareKaarten(naam)));
+                        System.out.println(String.format("%s: %n%s", LanguageResource.getString("usecase7.throwaway"), dc.geefNietVerkoopbareKaarten(naam)));
+                        System.out.println(LanguageResource.getString("usecase7.asktosell"));
+                        String antw = SCAN.next();
 
+                        if(antw.equals(LanguageResource.getString("yes"))){
+                            String antwoord;
+                                System.out.println(LanguageResource.getString("usecase7.sellorthrow"));
+                                antwoord = SCAN.next();
+                                if(!antwoord.equals(LanguageResource.getString("usecase7.translationsell")) || !antwoord.equals(LanguageResource.getString("usecase7.translationthrow")))
+                                    System.out.println("OPNIEUW INGEVEN");;
+                            if(antwoord.equals(LanguageResource.getString("usecase7.translationsell"))){
+                                System.out.println("VERKOPEN"); break;
+                            }else if(antwoord.equals(LanguageResource.getString("usecase7.translationthrow"))){
+                                System.out.println("WEGGOOIEN"); break;
+                            }
+                        }
                     } catch (Exception e) {
 
                     }
