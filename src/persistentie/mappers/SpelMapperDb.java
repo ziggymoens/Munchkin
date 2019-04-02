@@ -116,7 +116,7 @@ public class SpelMapperDb {
     }
 
 
-    public void addSpel() {
+    public void addSpel(String naam, int i, boolean klein) {
 
     }
 
@@ -150,5 +150,18 @@ public class SpelMapperDb {
         } catch (Exception ex) {
             throw new SpelDatabaseException(ex.getMessage());
         }
+    }
+
+    public void kaartSpelerOpslaan(int spelerId, Integer id, boolean items) {
+    }
+
+    public void spelerOpslaan(int spelerId, String naam, int level, String geslacht, int spelId) {
+    }
+
+    public int getSpelId(String naam) {
+        return 0;
+    }
+
+    public void kaartSpelOpslaan(int spelId, Integer kaart, Object volgnummerD, Object volgnummerT) {
     }
 }

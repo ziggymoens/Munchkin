@@ -3,9 +3,9 @@ package domein;
 import domein.kaarten.Kaart;
 import domein.kaarten.kerkerkaarten.Curse;
 import domein.kaarten.kerkerkaarten.Monster;
-import domein.repositories.KaartDbKleinRepository;
 import exceptions.SpelException;
 import language.LanguageResource;
+import persistentie.mappers.PersistentieController;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,13 +17,15 @@ import java.util.Map;
  */
 public class Spel {
 
-    public int spelerAanBeurt;
-    //Declaratie attributen
+    private PersistentieController pc;
+    private int spelerAanBeurt;
     private int aantalSpelers;
     private final List<Speler> spelers;
-    private final Map<Integer, Kaart> kaarten;
-    private final List<Kaart> schatkaarten;
-    private final List<Kaart> kerkerkaarten;
+    private Map<Integer, Kaart> kaarten;
+    private List<Kaart> schatkaarten;
+    private List<Integer> volgordeT;
+    private List<Kaart> kerkerkaarten;
+    private List<Integer> volgordeD;
     private String naam;
     private boolean klein = true;
 
@@ -43,32 +45,35 @@ public class Spel {
         setAantalSpelers(aantalSpelers);
         spelers = new ArrayList<>();
         //KaartDbRepository kr = new KaartDbRepository();
-        KaartDbKleinRepository kr = new KaartDbKleinRepository();
+        pc = new PersistentieController(true);
         kaarten = new HashMap<>();
-        schatkaarten = kr.getSchatkaarten();
-        for (Kaart kaart : kr.getSchatkaarten()) {
+        schatkaarten = pc.getSchatkaarten();
+        for (Kaart kaart : pc.getSchatkaarten()) {
             kaarten.put(kaart.getId(), kaart);
         }
-        kerkerkaarten = kr.getKerkerkaarten();
-        for (Kaart kaart : kr.getKerkerkaarten()) {
+        kerkerkaarten = pc.getKerkerkaarten();
+        for (Kaart kaart : pc.getKerkerkaarten()) {
             kaarten.put(kaart.getId(), kaart);
         }
+        updateVolgorde();
     }
 
     public Spel(String naam, boolean klein, List<Speler> spelers, List<Integer> volgnummerD, List<Integer> volgnummerT){
         setAantalSpelers(spelers.size());
         setNaam(naam);
         this.spelers = spelers;
-        KaartDbKleinRepository kr = new KaartDbKleinRepository();
-        kaarten = new HashMap<>();
-        schatkaarten = kr.getSchatkaarten();
-        for (Kaart kaart : kr.getSchatkaarten()) {
-            kaarten.put(kaart.getId(), kaart);
-        }
-        kerkerkaarten = kr.getKerkerkaarten();
-        for (Kaart kaart : kr.getKerkerkaarten()) {
-            kaarten.put(kaart.getId(), kaart);
-        }
+        pc = new PersistentieController(true);
+//        kaarten = new HashMap<>();
+//        schatkaarten = pc.getSchatkaarten();
+//        for (Kaart kaart : pc.getSchatkaarten()) {
+//            kaarten.put(kaart.getId(), kaart);
+//        }
+//        kerkerkaarten = pc.getKerkerkaarten();
+//        for (Kaart kaart : pc.getKerkerkaarten()) {
+//            kaarten.put(kaart.getId(), kaart);
+//        }
+        this.volgordeT = volgnummerT;
+        this.volgordeD = volgnummerD;
     }
 
     /**
@@ -172,6 +177,11 @@ public class Spel {
         }
         spelers.remove(speler);
         spelers.add(0, speler);
+        int id = 0;
+        for (Speler sp : spelers){
+            sp.setSpelerId(id);
+            id++;
+        }
     }
 
     /**
@@ -467,5 +477,44 @@ public class Spel {
 
     public void setKlein(boolean klein) {
         this.klein = klein;
+    }
+
+    public List<Integer> getVolgordeT() {
+        return volgordeT;
+    }
+
+    public List<Integer> getVolgordeD() {
+        return volgordeD;
+    }
+
+    private void updateVolgorde(){
+        setVolgordeD();
+        setVolgordeT();
+    }
+
+    private void setVolgordeT() {
+        volgordeT.clear();
+        for (Kaart kaart : schatkaarten){
+            volgordeT.add(kaart.getId());
+        }
+    }
+
+    private void setVolgordeD() {
+        volgordeD.clear();
+        for (Kaart kaart : kerkerkaarten){
+            volgordeD.add(kaart.getId());
+        }
+    }
+
+    public void setKaarten(Map<Integer, Kaart> kaarten) {
+        this.kaarten = kaarten;
+    }
+
+    public void setSchatkaarten(List<Kaart> schatkaarten) {
+        this.schatkaarten = schatkaarten;
+    }
+
+    public void setKerkerkaarten(List<Kaart> kerkerkaarten) {
+        this.kerkerkaarten = kerkerkaarten;
     }
 }

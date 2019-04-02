@@ -3,6 +3,7 @@ package persistentie.mappers;
 
 import domein.DomeinController;
 import domein.Spel;
+import domein.Speler;
 import domein.kaarten.Kaart;
 import domein.kaarten.kerkerkaarten.ConsumablesKerker;
 import domein.kaarten.kerkerkaarten.Curse;
@@ -28,7 +29,7 @@ public class PersistentieController {
     private List<Spel> spellen;
 
 
-    public PersistentieController(){
+    public PersistentieController() {
         km = new KaartMapperDb();
         kkm = new KaartMapperDbKlein();
         sm = new SpelMapperDb();
@@ -39,7 +40,7 @@ public class PersistentieController {
         haalKaartenOp(this.klein);
     }
 
-    public PersistentieController(Boolean klein){
+    public PersistentieController(Boolean klein) {
         km = new KaartMapperDb();
         kkm = new KaartMapperDbKlein();
         sm = new SpelMapperDb();
@@ -50,14 +51,14 @@ public class PersistentieController {
         haalKaartenOp(this.klein);
     }
 
-    private void haalKaartenOp(Boolean klein){
+    private void haalKaartenOp(Boolean klein) {
         String[] kaartTypes = {"ConsumablesD", "ConsumablesT", "Curse", "Equipment", "Monster", "Race"};
-        if (klein){
-            for (String type : kaartTypes){
+        if (klein) {
+            for (String type : kaartTypes) {
                 kaarten.addAll(kkm.geefKaartenType(type));
             }
-        }else{
-            for (String type : kaartTypes){
+        } else {
+            for (String type : kaartTypes) {
                 kaarten.addAll(km.geefKaartenType(type));
             }
         }
@@ -91,11 +92,53 @@ public class PersistentieController {
 
     public void addSpel(Spel spel) {
         String naam = spel.getNaam();
-        int i = spel.spelerAanBeurt;
-        List<Integer> volgordeD = new ArrayList<>();
-        List<Integer> volgordeT = new ArrayList<>();
+        int i = spel.getSpelerAanBeurt();
+        boolean klein = spel.isKlein();
+        List<Integer> volgordeD = spel.getVolgordeD();
+        List<Integer> volgordeT = spel.getVolgordeT();
+        sm.addSpel(naam, i, klein);
+        int spelId = sm.getSpelId(naam);
+        schatkaartenSpelOpslaan(spelId, volgordeT);
+        kerkerkaartenSpelOpslaan(spelId, volgordeD);
+        spelersOpslaan(spelId, spel.getSpelers());
 
-        sm.addSpel();
+    }
+
+    private void schatkaartenSpelOpslaan(int spelId, List<Integer> volgordeT) {
+        for (Integer kaart : volgordeT){
+            sm.kaartSpelOpslaan(spelId, kaart, null, volgordeT.indexOf(kaart));
+        }
+    }
+
+    private void kerkerkaartenSpelOpslaan(int spelId, List<Integer> volgordeD) {
+        for (Integer kaart: volgordeD){
+            sm.kaartSpelOpslaan(spelId, kaart, volgordeD.indexOf(kaart), null);
+        }
+    }
+
+    private void spelersOpslaan(int spelId, List<Speler> spelers) {
+        for (Speler speler : spelers) {
+            int spelerId = speler.getSpelerId();
+            String naam = speler.getNaam();
+            String geslacht = speler.getGeslacht();
+            int level = speler.getLevel();
+
+            sm.spelerOpslaan(spelerId, naam, level, geslacht, spelId);
+            kaartenSpelerOpslaan(spelerId, speler.getVolgordeKaarten());
+            itemsSpelerOpslaan(spelerId, speler.getVolgordeItems());
+        }
+    }
+
+    private void kaartenSpelerOpslaan(int spelerId, List<Integer> volgordeKaarten){
+        for (Integer id : volgordeKaarten){
+            sm.kaartSpelerOpslaan(spelerId, id, false);
+        }
+    }
+
+    private void itemsSpelerOpslaan(int spelerId, List<Integer> volgordeItems){
+        for (Integer id : volgordeItems){
+            sm.kaartSpelerOpslaan(spelerId, id, true);
+        }
     }
 
     public List<String> getOverzicht() {
@@ -111,7 +154,7 @@ public class PersistentieController {
         //verder uitwerken
     }
 
-    private void updateSpellen(){
+    private void updateSpellen() {
         spellen.clear();
         spellen = sm.geefSpellen();
     }

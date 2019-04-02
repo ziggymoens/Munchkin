@@ -19,6 +19,7 @@ import java.util.List;
 public class Speler {
 
     //Declaratie attributen
+    private int spelerId;
     private int level, aantalSchatkaarten, aantalKerkerkaarten;
     private String geslacht;
     private String naam;
@@ -386,5 +387,13 @@ public class Speler {
     private void updateKaarten(){
         setVolgordeKaarten();
         setVolgordeItems();
+    }
+
+    public void setSpelerId(int spelerId) {
+        this.spelerId = spelerId;
+    }
+
+    public int getSpelerId() {
+        return spelerId;
     }
 }
