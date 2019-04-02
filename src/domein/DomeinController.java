@@ -89,27 +89,27 @@ public class DomeinController {
         sr.spelOpslaan(this.spel);
     }
 
-    /**
-     * @return
-     */
-    public String geefOpgeslagenSpellen() {
-        List<Spel> spellen = sr.getSpellen();
-        StringBuilder ret = new StringBuilder();
-        int index = 1;
-        for (Spel spel : spellen) {
-            ret.append(String.format("Spel %d%n%s", index, spel.toString()));
-        }
-        return ret.toString();
-    }
+//    /**
+//     * @return
+//     */
+//    public String geefOpgeslagenSpellen() {
+//        List<Spel> spellen = sr.getSpellen();
+//        StringBuilder ret = new StringBuilder();
+//        int index = 1;
+//        for (Spel spel : spellen) {
+//            ret.append(String.format("Spel %d%n%s", index, spel.toString()));
+//        }
+//        return ret.toString();
+//    }
 
-    /**
-     * Spel laden
-     *
-     * @param index
-     */
-    public void spelLaden(int index) {
-        this.spel = sr.getSpellen().get(index - 1);
-    }
+//    /**
+//     * Spel laden
+//     *
+//     * @param index
+//     */
+//    public void spelLaden(int index) {
+//        this.spel = sr.getSpellen().get(index - 1);
+//    }
 
     /**
      * @return
@@ -279,9 +279,20 @@ public class DomeinController {
         return spel.geefMonsterAttribuut(id, soort);
     }
 
-
-
     public boolean geefDatabank() {
         return spel.isKlein();
+    }
+
+
+    public List<String> geefOverzichtSpelen() {
+        return sr.geefOverzicht();
+    }
+
+    public void laadSpel(int index) {
+        sr.laadSpel(index);
+    }
+
+    public void verwijderOpgeslagenSpel(int index) {
+        sr.verwijderOpgeslagenSpel(index);
     }
 }

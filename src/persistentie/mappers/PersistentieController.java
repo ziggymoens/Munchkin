@@ -90,7 +90,7 @@ public class PersistentieController {
         return spellen;
     }
 
-    public void addSpel(Spel spel) {
+    public void spelOpslaan(Spel spel) {
         String naam = spel.getNaam();
         int i = spel.getSpelerAanBeurt();
         boolean klein = spel.isKlein();

@@ -152,14 +152,14 @@ public class SpelMapperDb {
         }
     }
 
+    public int getSpelId(String naam) {
+        return 0;
+    }
+
     public void kaartSpelerOpslaan(int spelerId, Integer id, boolean items) {
     }
 
     public void spelerOpslaan(int spelerId, String naam, int level, String geslacht, int spelId) {
-    }
-
-    public int getSpelId(String naam) {
-        return 0;
     }
 
     public void kaartSpelOpslaan(int spelId, Integer kaart, Object volgnummerD, Object volgnummerT) {

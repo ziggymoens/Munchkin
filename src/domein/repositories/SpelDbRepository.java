@@ -15,7 +15,7 @@ public class SpelDbRepository {
     }
 
     public void spelOpslaan(Spel spel) {
-        pc.addSpel(spel);
+        pc.spelOpslaan(spel);
     }
 
     public List<Spel> getSpellen() {
