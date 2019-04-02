@@ -5,14 +5,15 @@
  */
 package ui.cui.ucs;
 
-import com.mysql.cj.xdevapi.ExprUnparser;
 import domein.DomeinController;
 import language.LanguageResource;
-import printer.*;
+import printer.ColorsOutput;
+import printer.Printer;
 
-import java.awt.image.PixelInterleavedSampleModel;
-import java.security.spec.ECField;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
 
 /**
  * @author ziggy
