@@ -329,5 +329,26 @@ public class Speler {
         }
         return ret.toString();
     }
-
+    
+    /* Systeem toont naam en type van de kaarten in de hand*/
+    public String toonOverzichtKaartenInHand(){
+        
+        String output = "";
+        int i = 1;
+        for (Kaart kaart: kaarten) {
+            output += String.format("%d: %s, %s", i, kaart.getNaam(), kaart.getClass().getSimpleName());
+            i++;
+        }
+        
+       return String.format("Kaarten in de hand: %n%s", output);
+    }
+    
+    public List<String> geefInfo(List<Boolean> helptmee){
+        List<String> gegevens = new ArrayList<>();
+        
+        gegevens.add(naam);
+        gegevens.add(geslacht);
+        gegevens.add(Integer.toString(level));
+        gegevens.add();
+    }
 }

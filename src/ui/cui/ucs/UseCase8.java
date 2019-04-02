@@ -5,27 +5,35 @@
  */
 package ui.cui.ucs;
 
-import java.util.*;
-
 import domein.DomeinController;
 import exceptions.SpelException;
 import exceptions.database.SpelDatabaseException;
 import language.LanguageResource;
 import printer.Printer;
 
+import java.util.Scanner;
+
 /**
  * @author ziggy
  */
-public class UseCase8 {
+class UseCase8 {
     private final Scanner SCAN = new Scanner(System.in);
-
     private final DomeinController dc;
 
-    public UseCase8(DomeinController dc) {
+    UseCase8(DomeinController dc) {
         this.dc = dc;
     }
 
-    public void spelOpslaan() {
+    void spelOpslaan() {
+        try {
+            askName();
+            saveGame();
+        } catch (Exception e){
+            System.out.println(Printer.exceptionCatch("Exception", e, false));
+        }
+    }
+
+    private void askName() {
         boolean tryAgain = true;
         while (tryAgain) {
             try {
@@ -39,7 +47,9 @@ public class UseCase8 {
                 System.out.println(Printer.exceptionCatch("Exception", e, false));
             }
         }
+    }
 
+    private void saveGame() {
         try {
             dc.spelOpslaan();
             System.out.println(Printer.printGreen("usecase8.game.saved"));
@@ -50,7 +60,6 @@ public class UseCase8 {
             } while (!ant.equals(LanguageResource.getString("yes")) && !ant.equals(LanguageResource.getString("no")));
             if (ant.equals(LanguageResource.getString("yes"))) {
                 System.exit(0);
-
             }
         } catch (SpelException e) {
             System.out.println(Printer.exceptionCatch("SpelException", e));
@@ -60,6 +69,4 @@ public class UseCase8 {
             System.out.print(Printer.exceptionCatch("Exception", e, false));
         }
     }
-
-
 }

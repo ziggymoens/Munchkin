@@ -115,7 +115,6 @@ public class UseCase1 {
         } catch (Exception e) {
             System.out.println(Printer.exceptionCatch("Exception", e, false));
         }
-
     }
 
     /**

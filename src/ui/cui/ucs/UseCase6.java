@@ -3,8 +3,9 @@ package ui.cui.ucs;
 import domein.DomeinController;
 import language.LanguageResource;
 import printer.ColorsOutput;
-import java.util.Scanner;
+
 import java.security.SecureRandom;
+import java.util.Scanner;
 
 /**
  * Deze UC nummer is onbekend en zal later worden aangepast
@@ -44,7 +45,7 @@ public class UseCase6 {
                     kaart = SCAN.next().toLowerCase();
                 }
                 if (kaart.equals(LanguageResource.getString("yes"))) {
-                    UseCase5 uc5 = new UseCase5(this.dc);
+                    UseCase5 uc5 = new UseCase5(this.dc, dc.geefNaamSpeler(dc.geefSpelerAanBeurt()));
                     uc5.speelKaart();
                 }
             } while (kaart.equals(LanguageResource.getString("yes")));
@@ -59,9 +60,6 @@ public class UseCase6 {
     }
 
     public int gooiDobbelsteen(){
-        SecureRandom ran = new SecureRandom();
-        int worp;
-        worp = ran.nextInt(5) + 1;
-        return worp;
+        return new SecureRandom().nextInt(5)+1;
     }
 }

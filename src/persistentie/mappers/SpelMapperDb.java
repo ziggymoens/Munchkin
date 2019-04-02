@@ -15,7 +15,7 @@ import java.util.List;
 public class SpelMapperDb {
     private Connection conn;
     private ResultSet rs;
-    private List<Spel> spellen;
+    private List<Spel> spellen = new ArrayList<>();
 
     private void voegToe() {
         try {
@@ -26,7 +26,7 @@ public class SpelMapperDb {
     }
 
     public List<Spel> geefSpellen() {
-        // spellen.clear();
+        spellen.clear();
         voegToe();
         try {
             PreparedStatement query = conn.prepareStatement("SELECT * FROM ID222177_g35.Spel");
@@ -38,8 +38,8 @@ public class SpelMapperDb {
                 List<Speler> spelers = voegSpelersToe(spelId);
                 List<Integer> volgnummerD = geefVolgorde("d", spelId);
                 List<Integer> volgnummerT = geefVolgorde("t", spelId);
-                // Spel spel = new Spel(naam, klein, spelers);
-                // spellen.add(spelId, spel);
+                Spel spel = new Spel(naam, klein, spelers, volgnummerD, volgnummerT);
+                spellen.add(spelId, spel);
             }
             rs.close();
             query.close();
@@ -61,7 +61,7 @@ public class SpelMapperDb {
                 int level = rs.getInt("level");
                 List<Integer> kaarten = geefKaarten(spelerId, "k");
                 List<Integer> items = geefKaarten(spelerId, "i");
-                Speler speler = new Speler(naam,geslacht ,level);
+                Speler speler = new Speler(naam,geslacht ,level, kaarten, items);
                 spelers.add(spelerId, speler);
             }
             rs.close();
@@ -118,5 +118,37 @@ public class SpelMapperDb {
 
     public void addSpel() {
 
+    }
+
+    public List<String> getOverzicht() {
+        List<String> overzicht = new ArrayList<>();
+        voegToe();
+        try {
+            PreparedStatement query = conn.prepareStatement("SELECT * FROM ID222177_g35.Spel");
+            rs = query.executeQuery();
+            while (rs.next()){
+                int spelId = rs.getInt("spelid");
+                String naam = rs.getString("naam");
+                List<Speler> spelers = voegSpelersToe(spelId);
+                overzicht.add(String.format("%d: %s --> %d", spelId, naam, spelers.size()));
+            }
+            rs.close();
+            query.close();
+        } catch (Exception ex) {
+            throw new SpelDatabaseException(ex.getMessage());
+        }
+        return overzicht;
+    }
+
+    public void remove(String naam) {
+        voegToe();
+        try {
+            PreparedStatement query = conn.prepareStatement(String.format("DELETE * FROM ID222177_g35.Spel WHERE naam = %s", naam));
+            rs = query.executeQuery();
+            rs.close();
+            query.close();
+        } catch (Exception ex) {
+            throw new SpelDatabaseException(ex.getMessage());
+        }
     }
 }

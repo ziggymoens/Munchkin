@@ -116,7 +116,7 @@ class UseCase3 {
 
     private void monsterKaart() {
         try {
-            UseCase4 uc4 = new UseCase4(this.dc, aantalSpelers);
+            UseCase4 uc4 = new UseCase4(this.dc, aantalSpelers, naam);
             uc4.bereidSpelVoor();
         } catch (UnsupportedOperationException e) {
             System.out.print(Printer.exceptionCatch("UnsupportedOperationException", e, false));
