@@ -148,10 +148,7 @@ public class KaartMapperDbKlein {
                 String usableBy = rs.getString("usableBy");
                 String specialRace = rs.getString("specialRace");
                 int escapeBonus = rs.getInt("escapeBonus");
-                boolean inGame = rs.getBoolean("inGame");
-                if (inGame) {
-                    kaarten.add(new Equipment(name, id, goldPieces, type, bonus, new Race(usableBy), bonus, specialBonus, new Race(specialRace)));
-                }
+                kaarten.add(new Equipment(name, id, goldPieces, type, bonus, new Race(usableBy), bonus, specialBonus, new Race(specialRace)));
             }
         } catch (Exception ex) {
             throw new KaartDatabaseException(ex.getMessage());

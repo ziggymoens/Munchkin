@@ -45,9 +45,11 @@ public class Spel {
         setAantalSpelers(aantalSpelers);
         spelers = new ArrayList<>();
         //KaartDbRepository kr = new KaartDbRepository();
-        pc = new PersistentieController(true);
+        pc = new PersistentieController();
         kaarten = new HashMap<>();
         schatkaarten = pc.getSchatkaarten();
+        volgordeD = new ArrayList<>();
+        volgordeT = new ArrayList<>();
         kerkerkaarten = pc.getKerkerkaarten();
         maakKaartenBib();
         updateVolgorde();
@@ -57,7 +59,7 @@ public class Spel {
         setAantalSpelers(spelers.size());
         setNaam(naam);
         this.spelers = spelers;
-        pc = new PersistentieController(true);
+        pc = new PersistentieController();
 //        kaarten = new HashMap<>();
 //        schatkaarten = pc.getSchatkaarten();
 //        for (Kaart kaart : pc.getSchatkaarten()) {
