@@ -157,6 +157,7 @@ public class PersistentieController {
         for (Speler speler : spel.getSpelers()) {
             voegKaartenToe(speler);
             voegItemsToe(speler);
+            speler.updateKaarten();
         }
         voegKerkerkaartenToeAanSpel(spel);
         voegSchatkaartenToeAanSpel(spel);
@@ -166,7 +167,7 @@ public class PersistentieController {
 
 
     private void voegKaartenToe(Speler speler) {
-        for (int id : speler.getVolgordeKaarten()) {
+        for (Integer id : speler.getVolgordeKaarten()) {
             speler.voegKaartToe(kaartenBib.get(id));
         }
     }

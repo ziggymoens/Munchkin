@@ -168,7 +168,6 @@ public class Speler {
             aantalKerkerkaarten++;
         }
         kaarten.add(kaart);
-        updateKaarten();
     }
 
     /**
@@ -384,7 +383,7 @@ public class Speler {
         }
     }
 
-    private void updateKaarten(){
+    public void updateKaarten(){
         setVolgordeKaarten();
         setVolgordeItems();
     }
