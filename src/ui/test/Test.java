@@ -7,12 +7,12 @@ package ui.test;
 
 import domein.DomeinController;
 import domein.Spel;
+import domein.Speler;
 import domein.kaarten.Kaart;
 import domein.kaarten.kerkerkaarten.ConsumablesKerker;
 import domein.kaarten.kerkerkaarten.Curse;
 import domein.kaarten.kerkerkaarten.Monster;
 import domein.kaarten.kerkerkaarten.Race;
-import domein.kaarten.kerkerkaarten.monsterbadstuff.BadStuff;
 import domein.kaarten.schatkaarten.ConsumablesSchat;
 import domein.kaarten.schatkaarten.Equipment;
 import domein.repositories.KaartDbRepository;
@@ -38,22 +38,31 @@ public class Test {
     public static void main(String[] args) {
         PersistentieController pc = new PersistentieController();
         LanguageResource.setLocale(new Locale("en"));
-        Spel spel = new Spel(3);
-        spel.maakNieuweSpeler();
-        spel.geefSpelerNaam(0, "janjan");
-        spel.geefSpelerGeslacht(0, "man");
-        spel.maakNieuweSpeler();
-        spel.geefSpelerNaam(1, "mariee");
-        spel.geefSpelerGeslacht(1, "woman");
-        spel.maakNieuweSpeler();
-        spel.geefSpelerNaam(2, "zigggy");
-        spel.geefSpelerGeslacht(2, "man");
-        spel.controleerVolgorde();
-        spel.geefStartKaarten();
-        spel.setNaam("test123");
+//        Spel spel = new Spel(3);
+//        spel.maakNieuweSpeler();
+//        spel.geefSpelerNaam(0, "janjan");
+//        spel.geefSpelerGeslacht(0, "man");
+//        spel.maakNieuweSpeler();
+//        spel.geefSpelerNaam(1, "mariee");
+//        spel.geefSpelerGeslacht(1, "woman");
+//        spel.maakNieuweSpeler();
+//        spel.geefSpelerNaam(2, "zigggy");
+//        spel.geefSpelerGeslacht(2, "man");
+//        spel.controleerVolgorde();
+//        spel.geefStartKaarten();
+//        spel.setSpelerAanBeurt(1);
+//        spel.setNaam("test123");
+
 
         //pc.spelOpslaan(spel);
-        pc.remove("test123");
+        //pc.remove("test123");
+
+        Spel spel1 = pc.laadSpel("test123");
+        System.out.println(spel1.geefSpelsituatie());
+        for (Speler speler:spel1.getSpelers()){
+            System.out.println(speler.toString());
+            System.out.println(speler.kaartenNaarString(speler.getKaarten()));
+        }
 
         //SpelMapperDb sm = new SpelMapperDb();
         //sm.addSpel("test1234", 0, true);

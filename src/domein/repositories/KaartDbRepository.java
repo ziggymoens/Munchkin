@@ -10,6 +10,7 @@ import persistentie.mappers.PersistentieController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -46,7 +47,7 @@ public class KaartDbRepository {
         return kerkerkaarten;
     }
 
-    public List<Kaart> getKaartenBib(){
+    public Map<Integer, Kaart> getKaartenBib(){
         return pc.getKaartenBib();
     }
 }

@@ -12,9 +12,7 @@ import domein.kaarten.kerkerkaarten.Race;
 import domein.kaarten.schatkaarten.ConsumablesSchat;
 import domein.kaarten.schatkaarten.Equipment;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class PersistentieController {
     private final KaartMapperDb km;
@@ -22,9 +20,10 @@ public class PersistentieController {
     private final SpelMapperDb sm;
     private DomeinController dc;
 
-    private Boolean klein = true;
+    private Boolean klein;
     private List<Kaart> kaarten;
-    private List<Kaart> kaartenBib;
+    private List<Integer> ids;
+    private Map<Integer, Kaart> kaartenBib;
     private List<Kaart> schatkaarten;
     private List<Kaart> kerkerkaarten;
 
@@ -34,16 +33,19 @@ public class PersistentieController {
         kkm = new KaartMapperDbKlein();
         sm = new SpelMapperDb();
         kaarten = new ArrayList<>();
-        kaartenBib = new ArrayList<>();
+        ids = new ArrayList<>();
+        kaartenBib = new HashMap<>();
         schatkaarten = new ArrayList<>();
         kerkerkaarten = new ArrayList<>();
-        haalKaartenOp(this.klein);
+        haalKaartenOp(true);
     }
 
     public PersistentieController(Boolean klein) {
         km = new KaartMapperDb();
         kkm = new KaartMapperDbKlein();
         sm = new SpelMapperDb();
+        kaartenBib = new HashMap<>();
+        ids = new ArrayList<>();
         kaarten = new ArrayList<>();
         schatkaarten = new ArrayList<>();
         kerkerkaarten = new ArrayList<>();
@@ -54,15 +56,18 @@ public class PersistentieController {
     private void haalKaartenOp(Boolean klein) {
         String[] kaartTypes = {"ConsumablesD", "ConsumablesT", "Curse", "Equipment", "Monster", "Race"};
         if (klein) {
-            for (String type : kaartTypes) {
-                kaarten.addAll(kkm.geefKaartenType(type));
-            }
+            //for (String type : kaartTypes) {
+                kaarten.addAll(kkm.geefKaartenType(kaartTypes));
+            //}
         } else {
             for (String type : kaartTypes) {
                 kaarten.addAll(km.geefKaartenType(type));
             }
         }
-        kaartenBib = kaarten;
+        for(Kaart kaart : kaarten){
+            kaartenBib.put(kaart.getId(), kaart);
+            ids.add(kaart.getId());
+        }
         sorteerKaarten();
     }
 
@@ -90,26 +95,31 @@ public class PersistentieController {
         String naam = spel.getNaam();
         int i = spel.getSpelerAanBeurt();
         boolean klein = spel.isKlein();
-        sm.addSpel(naam, i, klein);
+        int ls = spel.getSpelerAanBeurt();
+        sm.addSpel(naam, i, klein, ls);
         List<Integer> volgordeD = spel.getVolgordeD();
         List<Integer> volgordeT = spel.getVolgordeT();
         int spelId = sm.getSpelId(naam);
-        schatkaartenSpelOpslaan(spelId, volgordeT);
-        kerkerkaartenSpelOpslaan(spelId, volgordeD);
+        List<Integer> ids = new ArrayList<>();
+        sm.kaartSpelOpslaan(spelId, ids, volgordeD, volgordeT);
+        //schatkaartenSpelOpslaan(spelId, volgordeT);
+        //kerkerkaartenSpelOpslaan(spelId, volgordeD);
         spelersOpslaan(spelId, spel.getSpelers());
 
     }
 
     private void schatkaartenSpelOpslaan(int spelId, List<Integer> volgordeT) {
         for (Integer kaart : volgordeT) {
-            sm.kaartSpelOpslaan(spelId, kaart, null, volgordeT.indexOf(kaart));
+            //sm.kaartSpelOpslaan(spelId, kaart, null, volgordeT.indexOf(kaart));
         }
     }
 
     private void kerkerkaartenSpelOpslaan(int spelId, List<Integer> volgordeD) {
-        for (Integer kaart : volgordeD) {
-            sm.kaartSpelOpslaan(spelId, kaart, volgordeD.indexOf(kaart), null);
-        }
+
+
+        //for (Integer kaart : volgordeD) {
+        //    sm.kaartSpelOpslaan(spelId, kaart, volgordeD.indexOf(kaart), null);
+        //}
     }
 
     private void spelersOpslaan(int spelId, List<Speler> spelers) {
@@ -126,15 +136,11 @@ public class PersistentieController {
     }
 
     private void kaartenSpelerOpslaan(int spelerId, List<Integer> volgordeKaarten) {
-        for (Integer id : volgordeKaarten) {
-            sm.kaartSpelerOpslaan(spelerId, id, false);
-        }
+        sm.kaartSpelerOpslaan(spelerId, volgordeKaarten, false);
     }
 
     private void itemsSpelerOpslaan(int spelerId, List<Integer> volgordeItems) {
-        for (Integer id : volgordeItems) {
-            sm.kaartSpelerOpslaan(spelerId, id, true);
-        }
+        sm.kaartSpelerOpslaan(spelerId, volgordeItems, true);
     }
 
     public List<String> getOverzicht() {
@@ -148,7 +154,7 @@ public class PersistentieController {
     public Spel laadSpel(String naam) {
         int index = sm.getSpelId(naam);
         Spel spel = sm.laadSpel(index);
-        for(Speler speler : spel.getSpelers()){
+        for (Speler speler : spel.getSpelers()) {
             voegKaartenToe(speler);
             voegItemsToe(speler);
         }
@@ -156,44 +162,42 @@ public class PersistentieController {
         voegSchatkaartenToeAanSpel(spel);
 
         return spel;
-
-        //verder uitwerken
     }
 
 
-    private void voegKaartenToe(Speler speler){
-        List<Kaart> kaarten = new ArrayList<>();
-        for (Integer id : speler.getVolgordeKaarten()){
-            kaarten.add(kaartenBib.get(id));
+    private void voegKaartenToe(Speler speler) {
+        for (int id : speler.getVolgordeKaarten()) {
+            speler.voegKaartToe(kaartenBib.get(id));
         }
-        speler.setKaarten(kaarten);
     }
 
-    private void voegItemsToe(Speler speler){
-        List<Kaart> items = new ArrayList<>();
-        for (Integer id : speler.getVolgordeItems()){
-            items.add(kaartenBib.get(id));
+    private void voegItemsToe(Speler speler) {
+        for (int id : speler.getVolgordeItems()) {
+            speler.voegKaartToe(kaartenBib.get(id));
         }
-        speler.setItems(items);
     }
 
-    private void voegKerkerkaartenToeAanSpel(Spel spel){
+    private void voegKerkerkaartenToeAanSpel(Spel spel) {
         List<Kaart> kerkerkaarten = new ArrayList<>();
-        for (Integer id : spel.getVolgordeD()){
-            kerkerkaarten.add(kaartenBib.get(id));
+        for (Integer id : spel.getVolgordeD()) {
+            if(spel.getVolgordeD().get(id)!= -1) {
+                kerkerkaarten.add(spel.getVolgordeD().indexOf(id), kaartenBib.get(id));
+            }
         }
         spel.setKerkerkaarten(kerkerkaarten);
     }
 
-    private void voegSchatkaartenToeAanSpel(Spel spel){
+    private void voegSchatkaartenToeAanSpel(Spel spel) {
         List<Kaart> schatkaarten = new ArrayList<>();
-        for (Integer id : spel.getVolgordeT()){
-            schatkaarten.add(kaartenBib.get(id));
+        for (Integer id : spel.getVolgordeT()) {
+            if(spel.getVolgordeT().get(id)!= -1) {
+                schatkaarten.add(spel.getVolgordeT().indexOf(id),kaartenBib.get(id));
+            }
         }
         spel.setSchatkaarten(schatkaarten);
     }
 
-    public List<Kaart> getKaartenBib(){
+    public Map<Integer, Kaart> getKaartenBib() {
         return kaartenBib;
     }
 

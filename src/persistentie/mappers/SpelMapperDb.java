@@ -4,20 +4,17 @@ import domein.Spel;
 import domein.Speler;
 import exceptions.database.SpelDatabaseException;
 import language.LanguageResource;
-import persistentie.Connectie;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class SpelMapperDb {
     private Connection conn;
-    private ResultSet rs;
+    private ResultSet rs, rs1, rs2, rs3, rs5, rs7;
+    private PreparedStatement query, query1, query2, query3, query4, query5,query6,query7,query8,query9,query10;
     private List<Spel> spellen = new ArrayList<>();
-    private static final String INSERT_GAME = "INSERT INTO ID222177_g35.Spel (spelid, naam, kleingroot) VALUES (?, ?, ?)";
+    private static final String INSERT_GAME = "INSERT INTO ID222177_g35.Spel (spelid, naam, kleingroot, spelerAanBeurt) VALUES (?, ?, ?, ?)";
     private static final String DELETE_GAME = "DELETE FROM ID222177_g35.Spel WHERE spelid = ?";
     private static final String ALL_GAMES = "SELECT * FROM ID222177_g35.Spel";
     private static final String GAME_CARDSEQ = "SELECT * FROM ID222177_g35.SpelerKaart WHERE spelerid = ?";
@@ -31,36 +28,47 @@ public class SpelMapperDb {
     private static final String DELETE_PLAYERS = "DELETE FROM ID222177_g35.Speler WHERE spelid = ?";
     private static final String DELETE_SPELERKAART = "DELETE ID222177_g35.SpelerKaart FROM ID222177_g35.SpelerKaart INNER JOIN ID222177_g35.Speler ON ID222177_g35.SpelerKaart.spelerid = ID222177_g35.Speler.spelerid where ID222177_g35.Speler.spelid = ?";
     private static final String DELETE_SPELKAART = "DELETE FROM ID222177_g35.SpelKaart WHERE spelid = ?";
+
     private void voegToe() {
         try {
-            this.conn = DriverManager.getConnection(Connectie.JDBC_URL);
+            this.conn = DriverManager.getConnection("jdbc:mysql://ID222177_g35.db.webhosting.be?serverTimezone=UTC&useLegacyDatetimeCode=false&user=ID222177_g35&password=Te6VibUp");
         } catch (Exception ex) {
+            ex.printStackTrace();
             throw new SpelDatabaseException(ex.getMessage());
         }
     }
 
-    public Spel laadSpel(int spelId) {
+    Spel laadSpel(int spelId) {
         spellen.clear();
         Spel spel = null;
         voegToe();
         try {
-            PreparedStatement query = conn.prepareStatement(GAME_LOAD);
+            query = conn.prepareStatement(GAME_LOAD);
             query.setInt(1, spelId);
             rs = query.executeQuery();
             while (rs.next()) {
                 int Id = rs.getInt("spelid");
                 String naam = rs.getString("naam");
-                Boolean klein = rs.getBoolean("kleingroot");
+                boolean klein = rs.getBoolean("kleingroot");
+                int ls = rs.getInt("spelerAanBeurt");
                 List<Speler> spelers = voegSpelersToe(spelId);
                 List<Integer> volgnummerD = geefVolgorde("d", spelId);
                 List<Integer> volgnummerT = geefVolgorde("t", spelId);
-                spel = new Spel(naam, klein, spelers, volgnummerD, volgnummerT);
+                spel = new Spel(naam, klein, spelers, ls, volgnummerD, volgnummerT);
             }
-            rs.close();
-            query.close();
-            conn.close();
+            //rs.close();
+            //query.close();
+            //conn.close();
         } catch (Exception ex) {
+            ex.printStackTrace();
             throw new SpelDatabaseException(ex.getMessage());
+        }finally {
+            try {
+                rs.close();
+                query.close();
+                conn.close();
+            } catch (SQLException ignored){
+            }
         }
         return spel;
     }
@@ -69,23 +77,29 @@ public class SpelMapperDb {
         List<Speler> spelers = new ArrayList<>();
         voegToe();
         try {
-            PreparedStatement query = conn.prepareStatement(GAME_GETPLAYERS);
-            rs = query.executeQuery();
-            while (rs.next()) {
-                int spelerId = rs.getInt("spelerid");
-                String naam = rs.getString("naam");
-                Boolean geslacht = rs.getBoolean("geslacht");
-                int level = rs.getInt("level");
+            query1 = conn.prepareStatement(GAME_GETPLAYERS);
+            query1.setInt(1, spelId);
+            rs1 = query1.executeQuery();
+            while (rs1.next()) {
+                int spelerId = rs1.getInt("spelerid");
+                String naam = rs1.getString("naam");
+                Boolean geslacht = rs1.getBoolean("geslacht");
+                int level = rs1.getInt("level");
                 List<Integer> kaarten = geefKaarten(spelerId, "k");
                 List<Integer> items = geefKaarten(spelerId, "i");
                 Speler speler = new Speler(naam, geslacht, level, kaarten, items);
                 spelers.add(spelerId, speler);
             }
-            rs.close();
-            query.close();
-            conn.close();
+
         } catch (Exception ex) {
             throw new SpelDatabaseException(ex.getMessage());
+        } finally {
+            try {
+                rs1.close();
+                query1.close();
+                //conn.close();
+            } catch (SQLException ignored) {
+            }
         }
         return spelers;
     }
@@ -94,23 +108,23 @@ public class SpelMapperDb {
         List<Integer> kaarten = new ArrayList<>();
         voegToe();
         try {
-            PreparedStatement query = conn.prepareStatement(PLAYER_GETCARDS);
-            query.setInt(1, spelerId);
-            rs = query.executeQuery();
-            while (rs.next()) {
+            query2 = conn.prepareStatement(PLAYER_GETCARDS);
+            query2.setInt(1, spelerId);
+            rs2 = query2.executeQuery();
+            while (rs2.next()) {
                 if (type.equals("i")) {
-                    if (rs.getBoolean("plaatsKaart")) {
-                        kaarten.add(rs.getInt("kaartId"));
+                    if (rs2.getBoolean("plaatsKaart")) {
+                        kaarten.add(rs2.getInt("kaartId"));
                     }
                 } else {
-                    if (!rs.getBoolean("plaatsKaart")) {
-                        kaarten.add(rs.getInt("kaartId"));
+                    if (!rs2.getBoolean("plaatsKaart")) {
+                        kaarten.add(rs2.getInt("kaartId"));
                     }
                 }
             }
-            rs.close();
-            query.close();
-            conn.close();
+            rs2.close();
+            query2.close();
+            //conn.close();
         } catch (Exception e) {
             throw new SpelDatabaseException(e.getMessage());
         }
@@ -122,21 +136,21 @@ public class SpelMapperDb {
         voegToe();
         int nr;
         try {
-            PreparedStatement query = conn.prepareStatement(GAME_CARDSEQ);
-            query.setInt(1, spelId);
-            rs = query.executeQuery();
-            while (rs.next()) {
+            query3 = conn.prepareStatement(GAME_CARDSEQ);
+            query3.setInt(1, spelId);
+            rs3 = query3.executeQuery();
+            while (rs3.next()) {
                 if (type.equals("t")) {
-                    nr = rs.getInt("volgnumerT");
+                    nr = rs3.getInt("volgnumerT");
                 } else {
-                    nr = rs.getInt("volgnummerD");
+                    nr = rs3.getInt("volgnummerD");
                 }
                 int kaartId = rs.getInt("kaartid");
                 volgorde.add(nr, kaartId);
             }
-            rs.close();
-            query.close();
-            conn.close();
+            rs3.close();
+            query3.close();
+            //conn.close();
         } catch (Exception e) {
             throw new SpelDatabaseException(e.getMessage());
         }
@@ -144,130 +158,137 @@ public class SpelMapperDb {
     }
 
 
-    public void addSpel(String naam, int i, boolean klein) {
+    void addSpel(String naam, int i, boolean klein, int laatsteSpeler) {
         voegToe();
         try {
-            PreparedStatement query = conn.prepareStatement(INSERT_GAME);
-            query.setInt(1, 0);
-            query.setString(2, naam);
-            query.setBoolean(3, klein);
-            query.executeUpdate();
-            query.close();
-            conn.close();
+            query4 = conn.prepareStatement(INSERT_GAME);
+            query4.setInt(1, 0);
+            query4.setString(2, naam);
+            query4.setBoolean(3, klein);
+            query4.setInt(4, laatsteSpeler);
+            query4.executeUpdate();
+            query4.close();
+            //conn.close();
         } catch (Exception e) {
             throw new SpelDatabaseException(e.getMessage());
         }
 
     }
 
-    public List<String> getOverzicht() {
+    List<String> getOverzicht() {
         List<String> overzicht = new ArrayList<>();
         voegToe();
         try {
-            PreparedStatement query = conn.prepareStatement(ALL_GAMES);
-            rs = query.executeQuery();
-            while (rs.next()) {
-                int spelId = rs.getInt("spelid");
-                String naam = rs.getString("naam");
+            query5 = conn.prepareStatement(ALL_GAMES);
+            rs5 = query.executeQuery();
+            while (rs5.next()) {
+                int spelId = rs5.getInt("spelid");
+                String naam = rs5.getString("naam");
                 List<Speler> spelers = voegSpelersToe(spelId);
                 overzicht.add(String.format("%d: %s --> %d", spelId, naam, spelers.size()));
             }
-            rs.close();
-            query.close();
-            conn.close();
+            rs5.close();
+            query5.close();
+            //conn.close();
         } catch (Exception ex) {
             throw new SpelDatabaseException(ex.getMessage());
         }
         return overzicht;
     }
 
-    public void remove(int index) {
+    void remove(int index) {
         voegToe();
         try {
-            PreparedStatement query = conn.prepareStatement(DELETE_SPELERKAART);
-            query.setInt(1, index);
-            query.executeUpdate();
-            query.close();
-            query = conn.prepareStatement(DELETE_PLAYERS);
-            query.setInt(1, index);
-            query.executeUpdate();
-            query.close();
-            query = conn.prepareStatement(DELETE_SPELKAART);
-            query.setInt(1, index);
-            query.executeUpdate();
-            query.close();
-            query = conn.prepareStatement(DELETE_GAME);
-            query.setInt(1, index);
-            query.executeUpdate();
-            query.close();
-            conn.close();
+            query6 = conn.prepareStatement(DELETE_SPELERKAART);
+            query6.setInt(1, index);
+            query6.executeUpdate();
+            query6.close();
+            query6 = conn.prepareStatement(DELETE_PLAYERS);
+            query6.setInt(1, index);
+            query6.executeUpdate();
+            query6.close();
+            query6 = conn.prepareStatement(DELETE_SPELKAART);
+            query6.setInt(1, index);
+            query6.executeUpdate();
+            query6.close();
+            query6 = conn.prepareStatement(DELETE_GAME);
+            query6.setInt(1, index);
+            query6.executeUpdate();
+            query6.close();
+            //conn.close();
         } catch (Exception ex) {
             ex.printStackTrace();
             throw new SpelDatabaseException(ex.getMessage());
         }
     }
 
-    public int getSpelId(String naam) {
+    int getSpelId(String naam) {
         int id;
         voegToe();
         try {
-            PreparedStatement query = conn.prepareStatement(GAME_GETID);
-            query.setString(1, naam);
-            query.executeQuery();
-            rs = query.executeQuery();
-            rs.next();
-            id = rs.getInt("spelid");
-            query.close();
-            conn.close();
+            query7 = conn.prepareStatement(GAME_GETID);
+            query7.setString(1, naam);
+            query7.executeQuery();
+            rs7 = query7.executeQuery();
+            rs7.next();
+            id = rs7.getInt("spelid");
+            query7.close();
+            //conn.close();
         } catch (Exception ex) {
+            ex.printStackTrace();
             throw new SpelDatabaseException(ex.getMessage());
         }
         return id;
     }
 
-    public void kaartSpelerOpslaan(int spelerId, Integer id, boolean items) {
+    //LUSSEN
+    void kaartSpelerOpslaan(int spelerId, List<Integer> ids, boolean items) {
         voegToe();
         try {
-            PreparedStatement query = conn.prepareStatement(PLAYER_SAVECARD);
-            query.setInt(1, spelerId);
-            query.setInt(2, id);
-            query.setBoolean(3, items);
-            query.executeUpdate();
-            query.close();
-            conn.close();
+            for (Integer id : ids) {
+                query8 = conn.prepareStatement(PLAYER_SAVECARD);
+                query8.setInt(1, spelerId);
+                query8.setInt(2, id);
+                query8.setBoolean(3, items);
+                query8.executeUpdate();
+                query8.close();
+            }
+            //conn.close();
         } catch (Exception e) {
             throw new SpelDatabaseException(e.getMessage());
         }
     }
 
-    public void spelerOpslaan(int spelerId, String naam, int level, String geslacht, int spelId) {
+    void spelerOpslaan(int spelerId, String naam, int level, String geslacht, int spelId) {
         voegToe();
         try {
-            PreparedStatement query = conn.prepareStatement(PLAYER_SAVE);
-            query.setInt(1, spelerId);
-            query.setString(2, naam);
-            query.setInt(3, level);
-            query.setBoolean(4, (geslacht.equalsIgnoreCase(LanguageResource.getString("man"))));
-            query.setInt(5, spelId);
-            query.executeUpdate();
-            query.close();
-            conn.close();
+            query9 = conn.prepareStatement(PLAYER_SAVE);
+            query9.setInt(1, spelerId);
+            query9.setString(2, naam);
+            query9.setInt(3, level);
+            query9.setBoolean(4, (geslacht.equalsIgnoreCase(LanguageResource.getString("man"))));
+            query9.setInt(5, spelId);
+            query9.executeUpdate();
+            query9.close();
+            //conn.close();
         } catch (Exception e) {
             throw new SpelDatabaseException(e.getMessage());
         }
     }
 
-    public void kaartSpelOpslaan(int spelId, Integer kaart, Object volgnummerD, Object volgnummerT) {
+    void kaartSpelOpslaan(int spelId, List<Integer> kaart, List<Integer> volgnummerD, List<Integer> volgnummerT) {
         voegToe();
         try {
-            PreparedStatement query = conn.prepareStatement(GAME_CARDSAVE);
-            query.setInt(1, spelId);
-            query.setInt(2, kaart);
-            query.setObject(3, volgnummerD);
-            query.setObject(4, volgnummerT);
-            query.executeUpdate();
-            query.close();
-            conn.close();
+            for (int id : kaart) {
+                query10 = conn.prepareStatement(GAME_CARDSAVE);
+                query10.setInt(1, spelId);
+                query10.setInt(2, id);
+                query10.setObject(3, volgnummerD.indexOf(id));
+                query10.setObject(4, volgnummerT.indexOf(id));
+                query10.executeUpdate();
+                query10.close();
+            }
+            //conn.close();
         } catch (Exception e) {
             throw new SpelDatabaseException(e.getMessage());
         }

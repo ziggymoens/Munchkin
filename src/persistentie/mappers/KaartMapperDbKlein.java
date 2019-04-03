@@ -11,10 +11,7 @@ import domein.kaarten.schatkaarten.Equipment;
 import exceptions.database.KaartDatabaseException;
 import persistentie.Connectie;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -42,21 +39,30 @@ public class KaartMapperDbKlein {
         try {
             this.conn = DriverManager.getConnection(Connectie.JDBC_URL);
         } catch (Exception ex) {
+            ex.printStackTrace();
             throw new KaartDatabaseException(ex.getMessage());
         }
     }
 
-    public List<Kaart> geefKaartenType(String type) {
+    public List<Kaart> geefKaartenType(String[] types) {
         voegToe();
         kaarten.clear();
         try {
-            PreparedStatement query = conn.prepareStatement(String.format("SELECT * FROM ID222177_g35.K%s", type));
-            rs = query.executeQuery();
-            soorten.get(type).run();
-            rs.close();
-            query.close();
+            for(String type: types) {
+                PreparedStatement query = conn.prepareStatement(String.format("SELECT * FROM ID222177_g35.K%s", type));
+                rs = query.executeQuery();
+                soorten.get(type).run();
+                rs.close();
+                query.close();
+            }
         } catch (Exception ex) {
             throw new KaartDatabaseException(ex.getMessage());
+        } finally {
+            try{
+                conn.close();
+            }catch (SQLException ignored){
+
+            }
         }
         return kaarten;
     }
