@@ -12,6 +12,7 @@ import domein.kaarten.kerkerkaarten.ConsumablesKerker;
 import domein.kaarten.kerkerkaarten.Curse;
 import domein.kaarten.kerkerkaarten.Monster;
 import domein.kaarten.kerkerkaarten.Race;
+import domein.kaarten.kerkerkaarten.monsterbadstuff.BadStuff;
 import domein.kaarten.schatkaarten.ConsumablesSchat;
 import domein.kaarten.schatkaarten.Equipment;
 import domein.repositories.KaartDbRepository;

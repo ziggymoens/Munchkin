@@ -3,6 +3,7 @@ package domein;
 import domein.kaarten.Kaart;
 import domein.kaarten.kerkerkaarten.Curse;
 import domein.kaarten.kerkerkaarten.Monster;
+import domein.kaarten.kerkerkaarten.monsterbadstuff.BadStuff;
 import exceptions.SpelException;
 import language.LanguageResource;
 import persistentie.mappers.PersistentieController;
@@ -463,6 +464,12 @@ public class Spel {
         }
         return value;
     }
+
+    public Object voerBadStuffUit(int id){
+         ((Monster) getKaarten().get(id)).getBadStuff();
+        return null;
+    }
+
 
     public boolean isKlein() {
         return klein;
