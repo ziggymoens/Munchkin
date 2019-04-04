@@ -295,6 +295,7 @@ public class DomeinController {
     public boolean bestaatSpel(String naam) {
         return sr.bestaatSpel(naam);
     }
+
     public BadStuff geefBadStuff(int id){
         return spel.geefBadStuff(id);
     }

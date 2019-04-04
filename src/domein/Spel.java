@@ -3,6 +3,7 @@ package domein;
 import domein.kaarten.Kaart;
 import domein.kaarten.kerkerkaarten.Curse;
 import domein.kaarten.kerkerkaarten.Monster;
+import domein.kaarten.kerkerkaarten.monsterbadstuff.BadStuff;
 import domein.repositories.KaartDbKleinRepository;
 import exceptions.SpelException;
 import language.LanguageResource;
@@ -469,16 +470,10 @@ public class Spel {
         return value;
     }
 
-
-    public int geefMonsterLevel(int id) {
-        Monster monster = (Monster) kerkerkaarten.get(id);
-        return monster.getLevel();
+    public BadStuff geefBadStuff(int id){
+        return ((Monster) getKaarten().get(id)).getBadStuff();
     }
 
-    public int geefMonsterSchatkaarten(int id) {
-        Monster monster = (Monster) kerkerkaarten.get(id);
-        return monster.getWinstTeasures();
-    }
 
     public boolean isKlein() {
         return klein;
