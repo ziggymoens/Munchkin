@@ -1,6 +1,7 @@
 package domein;
 
 import domein.kaarten.kerkerkaarten.Monster;
+import domein.kaarten.kerkerkaarten.monsterbadstuff.BadStuff;
 import domein.repositories.SpelDbRepository;
 import exceptions.SpelException;
 import language.LanguageResource;
@@ -293,5 +294,8 @@ public class DomeinController {
 
     public boolean bestaatSpel(String naam) {
         return sr.bestaatSpel(naam);
+    }
+    public BadStuff geefBadStuff(int id){
+        return spel.geefBadStuff(id);
     }
 }

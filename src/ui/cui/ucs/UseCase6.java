@@ -27,11 +27,12 @@ public class UseCase6 {
         boolean gevecht = dc.gevechtResultaat(battleBonusMonster, battleBonusSpeler);
         int id = dc.geefIdBovensteKaart();
         //int levelMonster = Integer.parseInt(dc.geefMonsterAttribuut(id, "level").toString());
-
+        //Als je het gevecht wint
         if (!gevecht) {
             System.out.println(LanguageResource.getString("usecase6.playerwon"));
             verhoogLevelsGewonnen(id, helptmee);
-
+            geefSchatkaarten();
+        //Als je het gevecht verliest
         } else {
             System.out.println(LanguageResource.getString("usecase6.monsterwon"));
             vraagKaartSpelen("usecase6.askplaycard");
@@ -51,6 +52,10 @@ public class UseCase6 {
                 dc.verhoogLevel(dc.geefNaamSpeler(i), levelsUp);
             }
         }
+    }
+
+    private void geefSchatkaarten(){
+
     }
 
     private void vraagKaartSpelen(String output){
@@ -83,6 +88,14 @@ public class UseCase6 {
     }
 
     private void voerBadStuffUit(int id){
-
+        BadStuff bs = dc.geefBadStuff(id);
+        //Checkt of het level dat je verliest groter is dan 0 => de badstuff is een level verliezen
+        if(bs.getLevelsLost() > 0){
+            System.out.printf(LanguageResource.getString("usecase6.loselevels") + "%n", bs.getLevelsLost());
+            dc.verhoogLevel(dc.geefNaamSpeler(dc.geefSpelerAanBeurt()), -bs.getLevelsLost());
+        }//als je geen level verliest ontsnap je automatisch  (er is aar 1 kaart die geen level verliest in de kleine kaarten set)
+        else{
+            System.out.println(LanguageResource.getString("usecase6.escape1"));
+        }
     }
 }
