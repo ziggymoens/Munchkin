@@ -1,6 +1,7 @@
 package domein;
 
 import domein.kaarten.Kaart;
+import domein.kaarten.Schatkaart;
 import domein.kaarten.kerkerkaarten.Curse;
 import domein.kaarten.kerkerkaarten.Monster;
 import domein.kaarten.kerkerkaarten.monsterbadstuff.BadStuff;
@@ -442,10 +443,8 @@ public class Spel {
     //Return false = Speler in kwestie wint
     public boolean gevechtResultaat(int monster, int speler) {
         if (monster >= speler) {
-            System.out.println(LanguageResource.getString("usecase6.monsterwon"));
             return true;
         } else {
-            System.out.println(LanguageResource.getString("usecase6.playerwon"));
             return false;
         }
     }
@@ -476,6 +475,12 @@ public class Spel {
 
     public BadStuff geefBadStuff(int id){
         return ((Monster) getKaarten().get(id)).getBadStuff();
+    }
+
+    public Schatkaart geefSchatkaart(){
+        Schatkaart schatkaart = (Schatkaart) schatkaarten.get(0);
+        schatkaarten.remove(0);
+        return schatkaart;
     }
 
 

@@ -15,15 +15,14 @@ import java.util.*;
 
 public class UseCase6 {
     private final DomeinController dc;
-
     private final Scanner SCAN = new Scanner(System.in);
 
     public UseCase6(DomeinController dc) {
         this.dc = dc;
-
     }
 
-    public void vechtMetMonster(int battleBonusMonster, int battleBonusSpeler, List<Boolean> helptmee) {
+    public void vechtMetMonster(int battleBonusMonster, int battleBonusSpeler, List<Boolean> helptmee, int aantalSpelers) {
+
         boolean gevecht = dc.gevechtResultaat(battleBonusMonster, battleBonusSpeler);
         int id = dc.geefIdBovensteKaart();
         //int levelMonster = Integer.parseInt(dc.geefMonsterAttribuut(id, "level").toString());
@@ -31,14 +30,14 @@ public class UseCase6 {
         if (!gevecht) {
             System.out.println(LanguageResource.getString("usecase6.playerwon"));
             verhoogLevelsGewonnen(id, helptmee);
-            geefSchatkaarten();
+            geefSchatkaarten(id, aantalSpelers, helptmee);
         //Als je het gevecht verliest
         } else {
             System.out.println(LanguageResource.getString("usecase6.monsterwon"));
             vraagKaartSpelen("usecase6.askplaycard");
             ontsnappen(id);
-
         }
+        System.out.println(dc.geefSpelsituatie().toString());
     }
 
     private int gooiDobbelsteen(){
@@ -54,8 +53,19 @@ public class UseCase6 {
         }
     }
 
-    private void geefSchatkaarten(){
-
+    private void geefSchatkaarten(int id, int aantalSpelers, List<Boolean> helptmee){
+        int aantal = dc.geefSpelerAanBeurt();
+        int aantalSchatkaarten = Integer.parseInt(dc.geefMonsterAttribuut(id, "schatkaarten").toString());
+        for(int i = 0; i < aantalSchatkaarten;i++){
+            if(aantal < aantalSpelers){
+                if(helptmee.get(aantal)){
+                    dc.geefSchatkaart();
+                }
+            }else{
+                aantal = -1;
+            }
+            aantal++;
+        }
     }
 
     private void vraagKaartSpelen(String output){

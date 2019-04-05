@@ -147,7 +147,7 @@ class UseCase4 {
 
     private void vechtMonster(int battleBonusMonster, int battleBonusSpeler, List<Boolean> helptmee) {
         UseCase6 uc6 = new UseCase6(this.dc);
-        uc6.vechtMetMonster(battleBonusMonster, battleBonusSpeler, helptmee);
+        uc6.vechtMetMonster(battleBonusMonster, battleBonusSpeler, helptmee, aantalSpelers);
     }
 
     private void vraagKaartSpelen(String output){

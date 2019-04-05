@@ -1,5 +1,6 @@
 package domein;
 
+import domein.kaarten.Schatkaart;
 import domein.kaarten.kerkerkaarten.Monster;
 import domein.kaarten.kerkerkaarten.monsterbadstuff.BadStuff;
 import domein.repositories.SpelDbRepository;
@@ -299,4 +300,6 @@ public class DomeinController {
     public BadStuff geefBadStuff(int id){
         return spel.geefBadStuff(id);
     }
+
+    public Schatkaart geefSchatkaart(){ return spel.geefSchatkaart(); }
 }
