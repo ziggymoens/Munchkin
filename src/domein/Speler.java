@@ -1,6 +1,7 @@
 package domein;
 
 import domein.kaarten.Kaart;
+import domein.kaarten.Schatkaart;
 import domein.kaarten.kerkerkaarten.ConsumablesKerker;
 import domein.kaarten.kerkerkaarten.Curse;
 import domein.kaarten.kerkerkaarten.Monster;
@@ -327,9 +328,11 @@ public class Speler {
     public String geefVerkoopbareKaarten() {
         StringBuilder ret = new StringBuilder();
         int j = 0;
+
         for (Kaart kaart : kaarten) {
             if (kaart instanceof Equipment || kaart instanceof ConsumablesSchat) {
-                ret.append(String.format("%d) %s%n", j, kaart.getNaam()));
+                String idKaart = "ID = " + kaart.getId();
+                ret.append(String.format("%d) %s - %s %d - %s %n", j, kaart.getNaam(), LanguageResource.getString("kaart.value"), ((Schatkaart) kaart).getWaarde(), idKaart));
                 j++;
             } else {
                 continue;

@@ -14,15 +14,15 @@ import java.util.Scanner;
  * Beheer kaarten in hand
  * UC7
  */
-class UseCase7 {
+public class UseCase7 {
     private final DomeinController dc;
     private final Scanner SCAN = new Scanner(System.in);
 
-    UseCase7(DomeinController dc) {
+    public UseCase7(DomeinController dc) {
         this.dc = dc;
     }
 
-    void beheerKaarten(String naam) {
+    public void beheerKaarten(String naam) {
         int keuze = 0;
         boolean tryAgain = true;
         while (tryAgain) {
@@ -69,12 +69,13 @@ class UseCase7 {
                                     System.out.println(LanguageResource.getString("usecase7.sellorthrow"));
                                     antwoord = SCAN.next();
                                     if(antwoord.equalsIgnoreCase(LanguageResource.getString("usecase7.translationsell"))){
+                                        System.out.println(LanguageResource.getString("usecase7.sell"));
                                         System.out.println(String.format("%s: %n%s", LanguageResource.getString("usecase7.sellable"), dc.geefVerkoopbareKaarten(naam)));
                                         System.out.println(LanguageResource.getString("usecase7.whattosell"));
-//      SPLITTEN ADHV KOMMA, SPATIE OF ENTER?????????
                                         keuzeKaart = SCAN.next();
+
                                         System.out.println();
-                                        System.out.println("gekozen voor verkopen -- hardcode, nog aanpassen");
+
 
                                         match = true;
                                     }
