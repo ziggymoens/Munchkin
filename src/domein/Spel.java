@@ -419,7 +419,7 @@ public class Spel {
 
     public String geefKaartenKunnenNaarItems(String naam) {
         int i = zoekSpeler(naam);
-        List<Kaart> kaarten = spelers.get(i).getKaarten();
+        //List<Kaart> kaarten = spelers.get(i).getKaarten();
         return spelers.get(i).geefKaartenKunnenNaarItems();
     }
 
