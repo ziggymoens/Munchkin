@@ -8,6 +8,9 @@ import printer.Printer;
 
 import javax.swing.*;
 import java.security.spec.ECField;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -63,7 +66,8 @@ public class UseCase7 {
                         String antw = SCAN.next();
 
                         if(antw.equalsIgnoreCase("yes") || antw.equalsIgnoreCase("oui") || antw.equalsIgnoreCase("ja")){
-                            String antwoord, keuzeKaart;
+                            String antwoord;
+                            String[] keuzeKaart;
                             boolean match = false;
                                 do {
                                     System.out.println(LanguageResource.getString("usecase7.sellorthrow"));
@@ -72,9 +76,21 @@ public class UseCase7 {
                                         System.out.println(LanguageResource.getString("usecase7.sell"));
                                         System.out.println(String.format("%s: %n%s", LanguageResource.getString("usecase7.sellable"), dc.geefVerkoopbareKaarten(naam)));
                                         System.out.println(LanguageResource.getString("usecase7.whattosell"));
-                                        keuzeKaart = SCAN.next();
+                                        SCAN.nextLine();
+                                        int g;
+                                        int teller = 0;
+                                        List<Integer> ids = new ArrayList<Integer>();
+                                        do{
+                                            g = SCAN.nextInt();
+                                            if(g != 999)
+                                                ids.add(g);
+                                            teller++;
+                                            System.out.println(LanguageResource.getString("usecase7.nogeen"));
+                                        }
+                                        while (g != 999 && teller <= dc.geefVerkoopbareKaarten(naam).length()-1);
 
-                                        System.out.println();
+
+                                        System.out.println(ids);
 
 
                                         match = true;
