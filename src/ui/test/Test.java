@@ -38,20 +38,23 @@ public class Test {
     public static void main(String[] args) {
         PersistentieController pc = new PersistentieController();
         LanguageResource.setLocale(new Locale("en"));
-//        Spel spel = new Spel(3);
-//        spel.maakNieuweSpeler();
-//        spel.geefSpelerNaam(0, "janjan");
-//        spel.geefSpelerGeslacht(0, "man");
-//        spel.maakNieuweSpeler();
-//        spel.geefSpelerNaam(1, "mariee");
-//        spel.geefSpelerGeslacht(1, "woman");
-//        spel.maakNieuweSpeler();
-//        spel.geefSpelerNaam(2, "zigggy");
-//        spel.geefSpelerGeslacht(2, "man");
-//        spel.controleerVolgorde();
-//        spel.geefStartKaarten();
-//        spel.setSpelerAanBeurt(1);
-//        spel.setNaam("test123");
+        Spel spel = new Spel(3);
+        spel.maakNieuweSpeler();
+        spel.geefSpelerNaam(0, "janjan");
+        spel.geefSpelerGeslacht(0, "man");
+        spel.maakNieuweSpeler();
+        spel.geefSpelerNaam(1, "mariee");
+        spel.geefSpelerGeslacht(1, "woman");
+        spel.maakNieuweSpeler();
+        spel.geefSpelerNaam(2, "zigggy");
+        spel.geefSpelerGeslacht(2, "man");
+        spel.controleerVolgorde();
+        //System.out.println(spel.getSchatkaarten().toString());
+        //System.out.println(spel.getKerkerkaarten().toString());
+        //System.out.println(spel.getKaarten().toString());
+        //spel.geefStartKaarten();
+        spel.setSpelerAanBeurt(1);
+        spel.setNaam("test123");
 
 
         //pc.spelOpslaan(spel);

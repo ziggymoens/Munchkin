@@ -48,7 +48,7 @@ public class Spel {
         spelers = new ArrayList<>();
         kr = new KaartDbKleinRepository();
         //pc = new PersistentieController();
-        kaarten = new HashMap<>();
+        //kaarten = new HashMap<>();
         schatkaarten = kr.getSchatkaarten();
         volgordeD = new ArrayList<>();
         volgordeT = new ArrayList<>();
@@ -410,7 +410,11 @@ public class Spel {
     }
 
     public void setSpelerAanBeurt(int spelerAanBeurt) {
-        this.spelerAanBeurt = spelerAanBeurt;
+        if (spelerAanBeurt+1 == spelers.size()){
+            this.spelerAanBeurt = 0;
+        }else {
+            this.spelerAanBeurt = spelerAanBeurt+1;
+        }
     }
 
     public String geefKaartenKunnenNaarItems(String naam) {
@@ -520,5 +524,13 @@ public class Spel {
 
     public void setKerkerkaarten(List<Kaart> kerkerkaarten) {
         this.kerkerkaarten = kerkerkaarten;
+    }
+
+    public List<Kaart> getSchatkaarten() {
+        return schatkaarten;
+    }
+
+    public List<Kaart> getKerkerkaarten() {
+        return kerkerkaarten;
     }
 }
