@@ -252,6 +252,10 @@ public class DomeinController {
         return spel.geefVerkoopbareKaarten(naam);
     }
 
+    public List<Integer> geefIdVerkoopbareKaarten(){
+        return spel.geefIdVerkoopbarekaarten();
+    }
+
     public String geefNietVerkoopbareKaarten(String naam) {
         return spel.geefNietVerkoopbareKaarten(naam);
     }

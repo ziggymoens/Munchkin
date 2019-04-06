@@ -328,7 +328,6 @@ public class Speler {
     public String geefVerkoopbareKaarten() {
         StringBuilder ret = new StringBuilder();
         int j = 0;
-
         for (Kaart kaart : kaarten) {
             if (kaart instanceof Equipment || kaart instanceof ConsumablesSchat) {
                 String idKaart = "ID = " + kaart.getId();
@@ -339,6 +338,17 @@ public class Speler {
             }
         }
         return ret.toString();
+    }
+
+    public List<Integer> geefIdVerkoopbareKaarten(){
+        List<Integer> idKaart = new ArrayList<>();
+        for(Kaart kaart : kaarten){
+            if(kaart instanceof Equipment || kaart instanceof ConsumablesSchat){
+                idKaart.add(kaart.getId());
+            }else
+                continue;
+        }
+        return idKaart;
     }
 
     public String geefNietVerkoopbareKaarten() {

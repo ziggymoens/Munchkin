@@ -82,16 +82,17 @@ public class UseCase7 {
                                         List<Integer> ids = new ArrayList<Integer>();
                                         do{
                                             g = SCAN.nextInt();
-                                            if(g != 999)
-                                                ids.add(g);
+                                                if(g == dc.geefIdVerkoopbareKaarten().get(teller) && g!= 999){
+                                                    ids.add(g);
+                                                }else
                                             teller++;
                                             System.out.println(LanguageResource.getString("usecase7.nogeen"));
                                         }
-                                        while (g != 999 && teller <= dc.geefVerkoopbareKaarten(naam).length()-1);
+                                        while (g != 999 && teller <= dc.geefIdVerkoopbareKaarten().size()-1);
 
 
                                         System.out.println(ids);
-
+                                        System.out.println(dc.geefIdVerkoopbareKaarten());
 
                                         match = true;
                                     }
@@ -113,9 +114,6 @@ public class UseCase7 {
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("usecase2.choiceerror");
         }
-
-
-
     }
 
 }
