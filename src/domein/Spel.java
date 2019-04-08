@@ -524,6 +524,11 @@ public class Spel {
         }
     }
 
+    public List<Integer> getWaardeSchatkaart(){
+        int i = zoekSpeler(naam);
+        return spelers.get(i).getWaardeSchatkaart();
+    }
+
     public void setKaarten(Map<Integer, Kaart> kaarten) {
         this.kaarten = kaarten;
     }

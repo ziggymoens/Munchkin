@@ -280,6 +280,9 @@ public class DomeinController {
         return spel.isKlein();
     }
 
+    public List<Integer> getWaardeSchatkaart(){
+        return spel.getWaardeSchatkaart();
+    }
 
     public List<String> geefOverzichtSpelen() {
         return sr.geefOverzicht();

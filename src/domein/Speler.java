@@ -351,6 +351,16 @@ public class Speler {
         return idKaart;
     }
 
+    //methode om waarde van schatkaart op te vragen
+    public List<Integer> getWaardeSchatkaart(){
+        List<Integer> waardes = new ArrayList<>();
+        for(Kaart kaart : kaarten) {
+            if (kaart instanceof Equipment || kaart instanceof ConsumablesSchat) {
+                waardes.add(((Schatkaart) kaart).getWaarde());
+            }
+        }
+        return waardes;
+    }
     public String geefNietVerkoopbareKaarten() {
         StringBuilder ret = new StringBuilder();
         int j = 0;

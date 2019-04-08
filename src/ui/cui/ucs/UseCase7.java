@@ -68,32 +68,36 @@ public class UseCase7 {
                         if(antw.equalsIgnoreCase("yes") || antw.equalsIgnoreCase("oui") || antw.equalsIgnoreCase("ja")){
                             String antwoord;
                             String[] keuzeKaart;
-                            boolean match = false;
+                            int waarde = 0;
+                            boolean match = false, inList = false;
                                 do {
                                     System.out.println(LanguageResource.getString("usecase7.sellorthrow"));
                                     antwoord = SCAN.next();
-                                    if(antwoord.equalsIgnoreCase(LanguageResource.getString("usecase7.translationsell"))) {
+                                    if (antwoord.equalsIgnoreCase(LanguageResource.getString("usecase7.translationsell"))) {
                                         System.out.println(LanguageResource.getString("usecase7.sell"));
                                         System.out.println(String.format("%s: %n%s", LanguageResource.getString("usecase7.sellable"), dc.geefVerkoopbareKaarten(naam)));
                                         System.out.println(LanguageResource.getString("usecase7.whattosell"));
                                         SCAN.nextLine();
                                         int g;
                                         int teller = 0;
-                                        List<Integer> ids = new ArrayList<Integer>();
+                                        List<Integer> ids = new ArrayList<>();
                                         do {
                                             g = SCAN.nextInt();
-                                            if (g == dc.geefIdVerkoopbareKaarten().get(teller) && g != 999) {
+                                            if (dc.geefIdVerkoopbareKaarten().contains(g) && g != 999) {
                                                 ids.add(g);
                                                 System.out.println(LanguageResource.getString("usecase7.nogeen"));
                                             }
+                                            match = true;
                                             teller++;
 
-                                        } while (g != 999 && teller <= dc.geefIdVerkoopbareKaarten().size() - 1);
-                                        System.out.println(ids);
-                                        System.out.println(dc.geefIdVerkoopbareKaarten());
-                                        match = true;
-                                    }
-                                    else if(antwoord.equalsIgnoreCase(LanguageResource.getString("usecase7.translationthrow"))){
+                                        } while (g != 999 && teller <= dc.geefIdVerkoopbareKaarten().size() - 1 || !match);
+                                        System.out.println("Dit zijn de ingegeven ids: " + ids);
+                                        System.out.println("Dit zijn de ids van de te verkopen kaarten: " + dc.geefIdVerkoopbareKaarten());
+                                        for(int i = 0; i <= ids.size()-1; i++){
+                                            System.out.println(dc.getWaardeSchatkaart());
+                                        }
+                                        System.out.println("Dit is de totale waarde: " + waarde);
+                                    }else if(antwoord.equalsIgnoreCase(LanguageResource.getString("usecase7.translationthrow"))){
                                         System.out.println("gekozen voor weggooien -- hardcode, nog aanpassen");
                                         match = true;
                                     }else{
@@ -104,7 +108,7 @@ public class UseCase7 {
 
                         }
                     } catch (Exception e) {
-
+                        System.out.println("FOUT MET HET ANTWOORD -- hardcode, nog aanpassen");
                     }
                     break;
             }
