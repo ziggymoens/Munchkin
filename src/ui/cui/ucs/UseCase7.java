@@ -72,7 +72,7 @@ public class UseCase7 {
                                 do {
                                     System.out.println(LanguageResource.getString("usecase7.sellorthrow"));
                                     antwoord = SCAN.next();
-                                    if(antwoord.equalsIgnoreCase(LanguageResource.getString("usecase7.translationsell"))){
+                                    if(antwoord.equalsIgnoreCase(LanguageResource.getString("usecase7.translationsell"))) {
                                         System.out.println(LanguageResource.getString("usecase7.sell"));
                                         System.out.println(String.format("%s: %n%s", LanguageResource.getString("usecase7.sellable"), dc.geefVerkoopbareKaarten(naam)));
                                         System.out.println(LanguageResource.getString("usecase7.whattosell"));
@@ -80,20 +80,17 @@ public class UseCase7 {
                                         int g;
                                         int teller = 0;
                                         List<Integer> ids = new ArrayList<Integer>();
-                                        do{
+                                        do {
                                             g = SCAN.nextInt();
-                                                if(g == dc.geefIdVerkoopbareKaarten().get(teller) && g!= 999){
-                                                    ids.add(g);
-                                                }else
+                                            if (g == dc.geefIdVerkoopbareKaarten().get(teller) && g != 999) {
+                                                ids.add(g);
+                                                System.out.println(LanguageResource.getString("usecase7.nogeen"));
+                                            }
                                             teller++;
-                                            System.out.println(LanguageResource.getString("usecase7.nogeen"));
-                                        }
-                                        while (g != 999 && teller <= dc.geefIdVerkoopbareKaarten().size()-1);
 
-
+                                        } while (g != 999 && teller <= dc.geefIdVerkoopbareKaarten().size() - 1);
                                         System.out.println(ids);
                                         System.out.println(dc.geefIdVerkoopbareKaarten());
-
                                         match = true;
                                     }
                                     else if(antwoord.equalsIgnoreCase(LanguageResource.getString("usecase7.translationthrow"))){
