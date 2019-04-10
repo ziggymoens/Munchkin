@@ -331,7 +331,7 @@ public class Speler {
         for (Kaart kaart : kaarten) {
             if (kaart instanceof Equipment || kaart instanceof ConsumablesSchat) {
                 String idKaart = "ID = " + kaart.getId();
-                ret.append(String.format("%d) %s - %s %d - %s %n", j, kaart.getNaam(), LanguageResource.getString("kaart.value"), ((Schatkaart) kaart).getWaarde(), idKaart));
+                ret.append(String.format("%d) %s - %s %d %s - %s %n", j, kaart.getNaam(), LanguageResource.getString("kaart.value"), ((Schatkaart) kaart).getWaarde(), LanguageResource.getString("coins") ,idKaart));
                 j++;
             } else {
                 continue;

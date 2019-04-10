@@ -68,8 +68,8 @@ public class UseCase7 {
                         if(antw.equalsIgnoreCase("yes") || antw.equalsIgnoreCase("oui") || antw.equalsIgnoreCase("ja")){
                             String antwoord;
                             String[] keuzeKaart;
-                            int waarde = 0;
-                            boolean match = false, inList = false;
+                            int totWaarde = 0;
+                            boolean match = false, sold = false;
                                 do {
                                     System.out.println(LanguageResource.getString("usecase7.sellorthrow"));
                                     antwoord = SCAN.next();
@@ -86,7 +86,9 @@ public class UseCase7 {
                                             if (dc.geefIdVerkoopbareKaarten().contains(g) && g != 999) {
                                                 ids.add(g);
                                                 System.out.println(LanguageResource.getString("usecase7.nogeen"));
+                                                sold = true;
                                             }
+
                                             match = true;
                                             teller++;
 
@@ -94,9 +96,33 @@ public class UseCase7 {
                                         System.out.println("Dit zijn de ingegeven ids: " + ids);
                                         System.out.println("Dit zijn de ids van de te verkopen kaarten: " + dc.geefIdVerkoopbareKaarten());
                                         for(int i = 0; i <= ids.size()-1; i++){
-                                            System.out.println(dc.getWaardeSchatkaart());
+                                            System.out.println(dc.getWaardeSchatkaart().get(i));
+                                            totWaarde += dc.getWaardeSchatkaart().get(i);
                                         }
-                                        System.out.println("Dit is de totale waarde: " + waarde);
+
+                                        if(totWaarde/1000 < 1){
+                                            System.out.println(LanguageResource.getString("usecase7.kleinewaarde"));
+                                        }else{
+                                            int gedeeldeWaarde = totWaarde/1000;
+                                            dc.verhoogLevel(naam, gedeeldeWaarde);
+                                        }
+                                        //voorlopig laten staan in case bovenstaande methode nie blijkt te werken
+                                        //if(totWaarde >= 1000 && totWaarde < 2000){
+                                        //    dc.verhoogLevel(naam, 1);
+                                        //}else if(totWaarde >= 2000 && totWaarde < 3000){
+                                        //    dc.verhoogLevel(naam, 2);}
+                                        //else if(totWaarde >= 3000 && totWaarde < 4000){
+                                        //    dc.verhoogLevel(naam, 3);}
+                                        //else if(totWaarde >= 4000 && totWaarde < 5000){
+                                        //    dc.verhoogLevel(naam, 4);}
+                                        //else if(totWaarde >= 5000 && totWaarde < 6000)
+                                        //    dc.verhoogLevel(naam, 5);
+                                        //else if(totWaarde >= 6000 && totWaarde < 7000)
+                                        //    dc.verhoogLevel(naam, 7);
+                                        //else if(totWaarde < 1000)
+                                          //  System.out.println(LanguageResource.getString("usecase7.kleinewaarde"));
+                                        System.out.println("totale waarde volgens deling: " + totWaarde/1000);
+                                        System.out.println("Dit is de totale waarde: " + totWaarde);
                                     }else if(antwoord.equalsIgnoreCase(LanguageResource.getString("usecase7.translationthrow"))){
                                         System.out.println("gekozen voor weggooien -- hardcode, nog aanpassen");
                                         match = true;
