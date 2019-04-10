@@ -36,6 +36,12 @@ public class Test {
     private final DomeinController dc = new DomeinController();
 
     public static void main(String[] args) {
+
+        int test = 1002;
+        int test2 = 2000;
+        System.out.println(test/1000);
+        System.out.println(test2/1000);
+
         PersistentieController pc = new PersistentieController();
         LanguageResource.setLocale(new Locale("en"));
         Spel spel = new Spel(3);
@@ -55,8 +61,6 @@ public class Test {
         //spel.geefStartKaarten();
         spel.setSpelerAanBeurt(1);
         spel.setNaam("test123");
-
-
         //pc.spelOpslaan(spel);
         //pc.remove("test123");
 
