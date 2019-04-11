@@ -433,5 +433,12 @@ public class Spel {
         Monster monster = (Monster) kerkerkaarten.get(id);
         return monster.getWinstTeasures();
     }
+    
+    public String toonOverzichtKaartenInHand(String naam){
+        int i = zoekSpeler(naam);
+        return spelers.get(i).toonOverzichtKaartenInHand();
+    }
+    
+    
 
 }
