@@ -21,9 +21,9 @@ public class UseCase5 {
 
     }
 
-    public String toonOverzichtKaartenInHand() {
-        return dc.toonOverzichtKaartenInHand(naam);
-    }
+    //public String toonOverzichtKaartenInHand() {
+        //return dc.toonOverzichtKaartenInHand(naam);
+    //}
 
     public String[] kiesKaart(String type, String naam) {
         String[] keuze = new String[2];

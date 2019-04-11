@@ -1,8 +1,10 @@
 package domein;
 
 import domein.kaarten.Kaart;
+import domein.kaarten.Schatkaart;
 import domein.kaarten.kerkerkaarten.Curse;
 import domein.kaarten.kerkerkaarten.Monster;
+import domein.kaarten.kerkerkaarten.monsterbadstuff.BadStuff;
 import domein.repositories.KaartDbKleinRepository;
 import exceptions.SpelException;
 import language.LanguageResource;
@@ -17,14 +19,18 @@ import java.util.Map;
  */
 public class Spel {
 
-    public int spelerAanBeurt;
-    //Declaratie attributen
+    //private PersistentieController pc;
+    private KaartDbKleinRepository kr;
+    private int spelerAanBeurt;
     private int aantalSpelers;
     private final List<Speler> spelers;
-    private final Map<Integer, Kaart> kaarten;
-    private final List<Kaart> schatkaarten;
-    private final List<Kaart> kerkerkaarten;
+    private Map<Integer, Kaart> kaarten;
+    private List<Kaart> schatkaarten;
+    private List<Integer> volgordeT;
+    private List<Kaart> kerkerkaarten;
+    private List<Integer> volgordeD;
     private String naam;
+    private boolean klein = true;
 
     /**
      * Constructor van Spel zonder parameters spelers = 3
@@ -41,33 +47,42 @@ public class Spel {
     public Spel(int aantalSpelers) {
         setAantalSpelers(aantalSpelers);
         spelers = new ArrayList<>();
-        //KaartDbRepository kr = new KaartDbRepository();
-        KaartDbKleinRepository kr = new KaartDbKleinRepository();
-        kaarten = new HashMap<>();
+        kr = new KaartDbKleinRepository();
+        //pc = new PersistentieController();
+        //kaarten = new HashMap<>();
         schatkaarten = kr.getSchatkaarten();
-        for (Kaart kaart : kr.getSchatkaarten()) {
-            kaarten.put(kaart.getId(), kaart);
-        }
+        volgordeD = new ArrayList<>();
+        volgordeT = new ArrayList<>();
         kerkerkaarten = kr.getKerkerkaarten();
-        for (Kaart kaart : kr.getKerkerkaarten()) {
-            kaarten.put(kaart.getId(), kaart);
-        }
+        maakKaartenBib();
+        updateVolgorde();
+        setSpelerAanBeurt(0);
     }
 
-    public Spel(String naam, boolean klein, List<Speler> spelers, List<Integer> volgnummerD, List<Integer> volgnummerT){
+    public Spel(String naam, boolean klein, List<Speler> spelers, int ls, List<Integer> volgnummerD, List<Integer> volgnummerT) {
+        kr= new KaartDbKleinRepository();
         setAantalSpelers(spelers.size());
         setNaam(naam);
         this.spelers = spelers;
-        KaartDbKleinRepository kr = new KaartDbKleinRepository();
+        setSpelerAanBeurt(ls);
+        //pc = new PersistentieController();
+//        kaarten = new HashMap<>();
+//        schatkaarten = pc.getSchatkaarten();
+//        for (Kaart kaart : pc.getSchatkaarten()) {
+//            kaarten.put(kaart.getId(), kaart);
+//        }
+//        kerkerkaarten = pc.getKerkerkaarten();
+//        for (Kaart kaart : pc.getKerkerkaarten()) {
+//            kaarten.put(kaart.getId(), kaart);
+//        }
+        this.volgordeT = volgnummerT;
+        this.volgordeD = volgnummerD;
         kaarten = new HashMap<>();
-        schatkaarten = kr.getSchatkaarten();
-        for (Kaart kaart : kr.getSchatkaarten()) {
-            kaarten.put(kaart.getId(), kaart);
-        }
-        kerkerkaarten = kr.getKerkerkaarten();
-        for (Kaart kaart : kr.getKerkerkaarten()) {
-            kaarten.put(kaart.getId(), kaart);
-        }
+        maakKaartenBib();
+    }
+
+    private void maakKaartenBib() {
+        kaarten = kr.getKaartenBib();
     }
 
     /**
@@ -171,6 +186,11 @@ public class Spel {
         }
         spelers.remove(speler);
         spelers.add(0, speler);
+        int id = 0;
+        for (Speler sp : spelers) {
+            sp.setSpelerId(id);
+            id++;
+        }
     }
 
     /**
@@ -210,9 +230,9 @@ public class Spel {
         return ret;
     }
 
-    public List<String> geefBeknopteSpelsituatie(/*boolean vecht*/){
+    public List<String> geefBeknopteSpelsituatie(/*boolean vecht*/) {
         List<String> ret = new ArrayList<>();
-        for(Speler speler : spelers){
+        for (Speler speler : spelers) {
             ret.add(String.format("%s: %s, %s: %s, %s: %d%n", LanguageResource.getString("player.name"), speler.getNaam(), LanguageResource.getString("player.sex"), speler.getGeslacht(), LanguageResource.getString("player.level"), speler.getLevel() /*, vecht?"Vecht mee":"Vecht niet mee"*/));
         }
         return ret;
@@ -356,14 +376,20 @@ public class Spel {
         }
     }
 
-    public boolean spelerTeVeelKaarten(String naam) {
+    /**
+     * public boolean spelerTeVeelKaarten(String naam) {
+     * int i = zoekSpeler(naam);
+     * return spelers.get(i).getAantalKaarten() > 5;
+     * }
+     * <p>
+     * public boolean heeftGenoegKaarten(){
+     * int i = zoekSpeler(naam);
+     * return spelers.get(i).getAantalSchatkaarten() >= 1;
+     * }
+     **/
+    public int getAantalKaarten(String naam) {
         int i = zoekSpeler(naam);
-        return spelers.get(i).getAantalKaarten() > 5;
-    }
-
-    public boolean heeftGenoegKaarten(){
-        int i = zoekSpeler(naam);
-        return spelers.get(i).getAantalSchatkaarten() >= 1;
+        return spelers.get(i).getAantalKaarten();
     }
 
     private int zoekSpeler(String naam) {
@@ -385,12 +411,16 @@ public class Spel {
     }
 
     public void setSpelerAanBeurt(int spelerAanBeurt) {
-        this.spelerAanBeurt = spelerAanBeurt;
+        if (spelerAanBeurt+1 == spelers.size()){
+            this.spelerAanBeurt = 0;
+        }else {
+            this.spelerAanBeurt = spelerAanBeurt+1;
+        }
     }
 
     public String geefKaartenKunnenNaarItems(String naam) {
         int i = zoekSpeler(naam);
-        List<Kaart> kaarten = spelers.get(i).getKaarten();
+        //List<Kaart> kaarten = spelers.get(i).getKaarten();
         return spelers.get(i).geefKaartenKunnenNaarItems();
     }
 
@@ -399,39 +429,57 @@ public class Spel {
         return spelers.get(i).geefVerkoopbareKaarten();
     }
 
+    public List<Integer> geefIdVerkoopbarekaarten(){
+        int i = zoekSpeler(naam);
+        return spelers.get(i).geefIdVerkoopbareKaarten();
+    }
+
     public String geefNietVerkoopbareKaarten(String naam) {
         int i = zoekSpeler(naam);
         return spelers.get(i).geefNietVerkoopbareKaarten();
     }
 
-    public void verhoogLevel(String naam, int levelUp){
+    public void verhoogLevel(String naam, int levelUp) {
         int i = zoekSpeler(naam);
         spelers.get(i).setLevel(spelers.get(i).getLevel() + levelUp);
     }
 
     //Return true = Monster wint
     //Return false = Speler in kwestie wint
-    public boolean gevechtResultaat(int monster, int speler){
-        if(monster >= speler){
-            System.out.println(LanguageResource.getString("usecase6.monsterwon"));
+    public boolean gevechtResultaat(int monster, int speler) {
+        if (monster >= speler) {
             return true;
-        }else{
-            System.out.println(LanguageResource.getString("usecase6.playerwon"));
+        } else {
             return false;
         }
     }
-    public int geefMonsterLevelsUp(int id){
+
+    public int geefMonsterLevelsUp(int id) {
         Monster monster = (Monster) kerkerkaarten.get(id);
         return monster.getWinstLevels();
     }
-    public int geefMonsterLevel(int id){
-        Monster monster = (Monster) kerkerkaarten.get(id);
-        return monster.getLevel();
+
+    public Object geefMonsterAttribuut(int id, String soort) {
+        Object value = null;
+        switch (soort) {
+            case "level":
+                value = ((Monster) (getKaarten().get(id))).getLevel();
+                break;
+            case "schatkaarten":
+                value = ((Monster) getKaarten().get(id)).getWinstTeasures();
+                break;
+            case "levelsUp":
+                value = ((Monster) getKaarten().get(id)).getWinstLevels();
+                break;
+            case "RunAway":
+                value = ((Monster) getKaarten().get(id)).getRunAway();
+                break;
+        }
+        return value;
     }
 
-    public int geefMonsterSchatkaarten(int id ){
-        Monster monster = (Monster) kerkerkaarten.get(id);
-        return monster.getWinstTeasures();
+    public BadStuff geefBadStuff(int id){
+        return ((Monster) getKaarten().get(id)).getBadStuff();
     }
     
     public String toonOverzichtKaartenInHand(String naam){
@@ -441,4 +489,70 @@ public class Spel {
     
     
 
+    public Schatkaart geefSchatkaart(){
+        Schatkaart schatkaart = (Schatkaart) schatkaarten.get(0);
+        schatkaarten.remove(0);
+        return schatkaart;
+    }
+
+
+    public boolean isKlein() {
+        return klein;
+    }
+
+    public void setKlein(boolean klein) {
+        this.klein = klein;
+    }
+
+    public List<Integer> getVolgordeT() {
+        return volgordeT;
+    }
+
+    public List<Integer> getVolgordeD() {
+        return volgordeD;
+    }
+
+    private void updateVolgorde() {
+        setVolgordeD();
+        setVolgordeT();
+    }
+
+    private void setVolgordeT() {
+        volgordeT.clear();
+        for (Kaart kaart : schatkaarten) {
+            volgordeT.add(kaart.getId());
+        }
+    }
+
+    private void setVolgordeD() {
+        volgordeD.clear();
+        for (Kaart kaart : kerkerkaarten) {
+            volgordeD.add(kaart.getId());
+        }
+    }
+
+    public List<Integer> getWaardeSchatkaart(){
+        int i = zoekSpeler(naam);
+        return spelers.get(i).getWaardeSchatkaart();
+    }
+
+    public void setKaarten(Map<Integer, Kaart> kaarten) {
+        this.kaarten = kaarten;
+    }
+
+    public void setSchatkaarten(List<Kaart> schatkaarten) {
+        this.schatkaarten = schatkaarten;
+    }
+
+    public void setKerkerkaarten(List<Kaart> kerkerkaarten) {
+        this.kerkerkaarten = kerkerkaarten;
+    }
+
+    public List<Kaart> getSchatkaarten() {
+        return schatkaarten;
+    }
+
+    public List<Kaart> getKerkerkaarten() {
+        return kerkerkaarten;
+    }
 }

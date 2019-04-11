@@ -9,7 +9,7 @@ import exceptions.kaarten.schatkaarten.ConsumablesSchatException;
  */
 public class ConsumablesSchat extends Schatkaart {
 
-    private String text;
+    private String text="";
     private int battleBonus;
     private boolean killsFloatingNose;
 
@@ -60,6 +60,8 @@ public class ConsumablesSchat extends Schatkaart {
     private void setKillsFloatingNose(int id) {
         if (id == 33) {
             this.killsFloatingNose = true;
+        }else {
+            this.killsFloatingNose = false;
         }
     }
 
@@ -88,7 +90,7 @@ public class ConsumablesSchat extends Schatkaart {
 
     @Override
     public String toString() {
-        return null;
+        return String.format("naam: %s, id: %d, value = %d, description = %s, battlebonus = %d", getNaam(), getId(), getWaarde(), getText(), getBattleBonus());
     }
 
 }

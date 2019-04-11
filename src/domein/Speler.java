@@ -1,6 +1,7 @@
 package domein;
 
 import domein.kaarten.Kaart;
+import domein.kaarten.Schatkaart;
 import domein.kaarten.kerkerkaarten.ConsumablesKerker;
 import domein.kaarten.kerkerkaarten.Curse;
 import domein.kaarten.kerkerkaarten.Monster;
@@ -19,11 +20,14 @@ import java.util.List;
 public class Speler {
 
     //Declaratie attributen
+    private int spelerId;
     private int level, aantalSchatkaarten, aantalKerkerkaarten;
     private String geslacht;
     private String naam;
-    private final List<Kaart> kaarten;
-    private final List<Kaart> items;
+    private List<Kaart> kaarten;
+    private final List<Integer> volgordeKaarten;
+    private List<Kaart> items;
+    private final List<Integer> volgordeItems;
     private boolean heeftMonsterVerslaan;
     
     private boolean runaway;
@@ -33,9 +37,11 @@ public class Speler {
      * "man", leeftijd = 99, level = 1, taal = "en"
      */
     public Speler() {
-        setLevel(1);
+        setLevel(4);
         kaarten = new ArrayList<>();
+        volgordeKaarten = new ArrayList<>();
         items = new ArrayList<>();
+        volgordeItems = new ArrayList<>();
         aantalKerkerkaarten = 0;
         aantalSchatkaarten = 0;
     }
@@ -48,26 +54,37 @@ public class Speler {
      * @param geslacht Het geslacht van de speler
      */
     public Speler(String naam, String geslacht) {
-        this(naam, true, 1);
+        setGeslacht(geslacht);
+        setNaam(naam);
+        setLevel(1);
+        kaarten = new ArrayList<>();
+        volgordeKaarten = new ArrayList<>();
+        items = new ArrayList<>();
+        volgordeItems = new ArrayList<>();
+        aantalKerkerkaarten = 0;
+        aantalSchatkaarten = 0;
     }
 
     /**
      * Constructor van speler
      *
-     * @param naam     De naam van de speler
-     * @param ges Het geslacht van de speler
-     * @param level    Het level van de Speler
+     * @param naam  De naam van de speler
+     * @param ges   Het geslacht van de speler
+     * @param level Het level van de Speler
      */
-    public Speler(String naam, Boolean ges, int level) {
-        String geslacht = ges?LanguageResource.getString("man"):LanguageResource.getString("woman");
+    public Speler(String naam, Boolean ges, int level, List<Integer> kaarten, List<Integer> items) {
+        String geslacht = ges ? LanguageResource.getString("man") : LanguageResource.getString("woman");
         setGeslacht(geslacht);
         setNaam(naam);
         setLevel(level);
-        kaarten = new ArrayList<>();
-        items = new ArrayList<>();
+        this.kaarten = new ArrayList<>();
+        volgordeKaarten = kaarten;
+        this.items = new ArrayList<>();
+        volgordeItems = items;
         aantalKerkerkaarten = 0;
         aantalSchatkaarten = 0;
     }
+
 
     /**
      * Setter voor het geslacht van de speler, controle van geslacht in de taal
@@ -282,6 +299,7 @@ public class Speler {
                 }
             }
         }
+        updateKaarten();
     }
 
     public int getAantalItems() {
@@ -290,6 +308,7 @@ public class Speler {
 
     public void verwijderItem(int keuze) {
         items.remove(keuze);
+        updateKaarten();
     }
 
     public int getAantalKaarten() {
@@ -313,7 +332,8 @@ public class Speler {
         int j = 0;
         for (Kaart kaart : kaarten) {
             if (kaart instanceof Equipment || kaart instanceof ConsumablesSchat) {
-                ret.append(String.format("%d) %s%n", j, kaart.getNaam()));
+                String idKaart = "ID = " + kaart.getId();
+                ret.append(String.format("%d) %s - %s %d %s - %s %n", j, kaart.getNaam(), LanguageResource.getString("kaart.value"), ((Schatkaart) kaart).getWaarde(), LanguageResource.getString("coins") ,idKaart));
                 j++;
             } else {
                 continue;
@@ -322,6 +342,27 @@ public class Speler {
         return ret.toString();
     }
 
+    public List<Integer> geefIdVerkoopbareKaarten(){
+        List<Integer> idKaart = new ArrayList<>();
+        for(Kaart kaart : kaarten){
+            if(kaart instanceof Equipment || kaart instanceof ConsumablesSchat){
+                idKaart.add(kaart.getId());
+            }else
+                continue;
+        }
+        return idKaart;
+    }
+
+    //methode om waarde van schatkaart op te vragen
+    public List<Integer> getWaardeSchatkaart(){
+        List<Integer> waardes = new ArrayList<>();
+        for(Kaart kaart : kaarten) {
+            if (kaart instanceof Equipment || kaart instanceof ConsumablesSchat) {
+                waardes.add(((Schatkaart) kaart).getWaarde());
+            }
+        }
+        return waardes;
+    }
     public String geefNietVerkoopbareKaarten() {
         StringBuilder ret = new StringBuilder();
         int j = 0;
@@ -331,21 +372,18 @@ public class Speler {
         }
         return ret.toString();
     }
-    
+
     /* Systeem toont naam en type van de kaarten in de hand*/
-    public String toonOverzichtKaartenInHand(){
-        
+    public String toonOverzichtKaartenInHand() {
+
         String output = "";
         int i = 1;
-        for (Kaart kaart: kaarten) {
+        for (Kaart kaart : kaarten) {
             output += String.format("%d: %s, %s", i, kaart.getNaam(), kaart.getClass().getSimpleName());
             i++;
         }
-        
-       return String.format("Kaarten in de hand: %n%s", output);
+
+        return String.format("Kaarten in de hand: %n%s", output);
     }
-    
-    
-    
-    
 }
+

@@ -1,51 +1,28 @@
 package domein.repositories;
 
 import domein.kaarten.Kaart;
-import domein.kaarten.kerkerkaarten.ConsumablesKerker;
-import domein.kaarten.kerkerkaarten.Curse;
-import domein.kaarten.kerkerkaarten.Monster;
-import domein.kaarten.kerkerkaarten.Race;
-import domein.kaarten.schatkaarten.ConsumablesSchat;
-import domein.kaarten.schatkaarten.Equipment;
-import persistentie.mappers.KaartMapperDb;
+import persistentie.mappers.PersistentieController;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 public class KaartDbKleinRepository {
-    private final String[] kaartTypes = {"ConsumablesD", "ConsumablesT", "Curse", "Equipment", "Monster", "Race"};
-    private final KaartMapperDb mapper;
-    private List<Kaart> kaarten;
-    private final List<Kaart> schatkaarten;
-    private final List<Kaart> kerkerkaarten;
+    private final PersistentieController pc;
+    private List<Kaart> schatkaarten;
+    private List<Kaart> kerkerkaarten;
 
     public KaartDbKleinRepository() {
-        mapper = new KaartMapperDb();
-        kaarten = new ArrayList<>();
-        kaarten = geefKaarten();
-        schatkaarten = new ArrayList<>();
-        kerkerkaarten = new ArrayList<>();
-        sorteerKaarten();
-
+        pc = new PersistentieController(true);
+        setSchatKaarten();
+        setKerkerKaart();
     }
 
-    public List<Kaart> geefKaarten() {
-        for (String type : kaartTypes){
-            kaarten.addAll(mapper.geefKaartenType(type));
-        }
-        return kaarten;
+    public void setSchatKaarten() {
+        schatkaarten = pc.getSchatkaarten();
     }
-    private void sorteerKaarten() {
-        for (Kaart kaart : kaarten) {
-            if (kaart instanceof Equipment || kaart instanceof ConsumablesSchat) {
-                schatkaarten.add(kaart);
-            } else if (kaart instanceof Monster || kaart instanceof Curse || kaart instanceof Race || kaart instanceof ConsumablesKerker) {
-                kerkerkaarten.add(kaart);
-            }
-        }
-        Collections.shuffle(schatkaarten);
-        Collections.shuffle(kerkerkaarten);
+
+    public void setKerkerKaart(){
+        kerkerkaarten = pc.getKerkerkaarten();
     }
 
     public List<Kaart> getSchatkaarten() {
@@ -54,5 +31,9 @@ public class KaartDbKleinRepository {
 
     public List<Kaart> getKerkerkaarten() {
         return kerkerkaarten;
+    }
+
+    public Map<Integer, Kaart> getKaartenBib(){
+        return pc.getKaartenBib();
     }
 }

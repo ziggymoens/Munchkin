@@ -95,7 +95,7 @@ class UseCase3 {
         try {
             UseCase7 uc7 = new UseCase7(this.dc);
             uc7.beheerKaarten(naam);
-            while (dc.spelerTeVeelKaarten(naam)) {
+            while (dc.getAantalKaarten(naam) > 5) {
                 uc7.beheerKaarten(naam);
             }
         } catch (UnsupportedOperationException e) {

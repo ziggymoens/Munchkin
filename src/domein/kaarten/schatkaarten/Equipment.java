@@ -1,7 +1,7 @@
 package domein.kaarten.schatkaarten;
 
-import domein.kaarten.kerkerkaarten.Race;
 import domein.kaarten.Schatkaart;
+import domein.kaarten.kerkerkaarten.Race;
 import exceptions.kaarten.schatkaarten.EquipmentException;
 
 /**
@@ -172,6 +172,6 @@ public class Equipment extends Schatkaart {
 
     @Override
     public String toString() {
-        return null;
+        return String.format("name = %s, id = %d, value = %d, type = %s, bonus = %d", getNaam(), getId(), getWaarde(), getType(), getBonus());
     }
 }

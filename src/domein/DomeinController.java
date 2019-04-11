@@ -1,5 +1,8 @@
 package domein;
 
+import domein.kaarten.Schatkaart;
+import domein.kaarten.kerkerkaarten.Monster;
+import domein.kaarten.kerkerkaarten.monsterbadstuff.BadStuff;
 import domein.repositories.SpelDbRepository;
 import exceptions.SpelException;
 import java.util.ArrayList;
@@ -89,27 +92,27 @@ public class DomeinController {
         sr.spelOpslaan(this.spel);
     }
 
-    /**
-     * @return
-     */
-    public String geefOpgeslagenSpellen() {
-        List<Spel> spellen = sr.getSpellen();
-        StringBuilder ret = new StringBuilder();
-        int index = 1;
-        for (Spel spel : spellen) {
-            ret.append(String.format("Spel %d%n%s", index, spel.toString()));
-        }
-        return ret.toString();
-    }
+//    /**
+//     * @return
+//     */
+//    public String geefOpgeslagenSpellen() {
+//        List<Spel> spellen = sr.getSpellen();
+//        StringBuilder ret = new StringBuilder();
+//        int index = 1;
+//        for (Spel spel : spellen) {
+//            ret.append(String.format("Spel %d%n%s", index, spel.toString()));
+//        }
+//        return ret.toString();
+//    }
 
-    /**
-     * Spel laden
-     *
-     * @param index
-     */
-    public void spelLaden(int index) {
-        this.spel = sr.getSpellen().get(index - 1);
-    }
+//    /**
+//     * Spel laden
+//     *
+//     * @param index
+//     */
+//    public void spelLaden(int index) {
+//        this.spel = sr.getSpellen().get(index - 1);
+//    }
 
     /**
      * @return
@@ -232,10 +235,6 @@ public class DomeinController {
         spel.setNaam(naam);
     }
 
-    public boolean spelerTeVeelKaarten(String naam) {
-        return spel.spelerTeVeelKaarten(naam);
-    }
-
     public String bovensteKaartToString() { return spel.bovensteKaartToString(); }
 
     public void zetSpelerAanBeurt(int i) {
@@ -254,6 +253,10 @@ public class DomeinController {
         return spel.geefVerkoopbareKaarten(naam);
     }
 
+    public List<Integer> geefIdVerkoopbareKaarten(){
+        return spel.geefIdVerkoopbarekaarten();
+    }
+
     public String geefNietVerkoopbareKaarten(String naam) {
         return spel.geefNietVerkoopbareKaarten(naam);
     }
@@ -265,30 +268,35 @@ public class DomeinController {
     public boolean gevechtResultaat(int monster, int speler){
         return spel.gevechtResultaat(monster, speler);
     }
-    public int geefMonsterLevelsUp(int id){ return spel.geefMonsterLevelsUp(id); }
 
-    public int geefMonsterLevel(int id){ return spel.geefMonsterLevel(id); }
-
-    public int geefMonsterSchatkaarten(int id){
-        return spel.geefMonsterSchatkaarten(id);
+    public int getAantalKaarten(String naam){
+        return spel.getAantalKaarten(naam);
     }
 
-    public boolean heeftGenoegKaarten(){
-        return spel.heeftGenoegKaarten();
+    public Object geefMonsterAttribuut(int id, String soort){
+        return spel.geefMonsterAttribuut(id, soort);
+    }
+
+    public boolean geefDatabank() {
+        return spel.isKlein();
+    }
+
+    public List<Integer> getWaardeSchatkaart(){
+        return spel.getWaardeSchatkaart();
     }
 
     public List<String> geefOverzichtSpelen() {
-        List<String> overzicht = sr.geefOverzicht();
-        return overzicht;
+        return sr.geefOverzicht();
     }
 
-    public void laadSpel(int index) {
-        sr.laadSpel(index);
+    public void setSpel(Spel spel) {
+        this.spel = spel;
     }
 
-    public void verwijderOpgeslagenSpel(int index) {
-        sr.verwijderOpgeslagenSpel(index);
+    public void laadSpel(String naam) {
+        sr.laadSpel(naam, this);
     }
+
     
     public String toonOverzichtKaartenInHand(String naam) {
         return spel.toonOverzichtKaartenInHand(naam);
@@ -304,4 +312,20 @@ public class DomeinController {
         }
         return tegenspelers;
     }
+
+
+    public void verwijderOpgeslagenSpel(String naam) {
+        sr.verwijderOpgeslagenSpel(naam);
+    }
+
+    public boolean bestaatSpel(String naam) {
+        return sr.bestaatSpel(naam);
+    }
+
+    public BadStuff geefBadStuff(int id){
+        return spel.geefBadStuff(id);
+    }
+
+    public Schatkaart geefSchatkaart(){ return spel.geefSchatkaart(); }
+
 }
