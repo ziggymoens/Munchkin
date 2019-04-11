@@ -4,6 +4,7 @@ import domein.DomeinController;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import language.LanguageResource;
 
 public class UseCase5 {
 
@@ -18,7 +19,10 @@ public class UseCase5 {
 
     void speelKaart() {
         System.out.printf("Er wordt een kaart gespeeld %n%n");
-
+        toonOverzichtKaartenInHand();
+        System.out.print("De gewenste kaart: " + Arrays.toString(kiesKaart));
+        toString(geefSpelsituatieGevecht());
+        
     }
 
     public String toonOverzichtKaartenInHand() {
@@ -26,28 +30,47 @@ public class UseCase5 {
     }
 
     public String[] kiesKaart(String type, String naam) {
+        Scanner invoer = new Scanner(System.in);
         String[] keuze = new String[2];
+       
+        System.out.print("Kies de gewenste kaart ");
+        System.out.print("Kaartnaam: ");
+        naam = invoer.nextLine();
+        keuze[0] = naam;
+        System.out.print("Kaarttype: ");
+        type = invoer.nextLine();
+        keuze[1] = type;
         return keuze;
     }
 
     public void validatieKaart(String naam) {
+        int keuze = 0;
+        //DR_Speel_Kaart
         Scanner invoer = new Scanner(System.in);
             if (spelerLooptWeg == false) {
-            
-            if (dc.geefTegenspelers().contains(naam)) {
+                //hier eerst nog met if checken of speler hulp wou
+                //wil hulp
+                if(){
                 
-            }else{
-                System.out.printf("%s kan volgende type van kaarten afleggen: ", dc.geefNaamSpeler(dc.geefSpelerAanBeurt()));
-                String output = "";
-                int keuze = 0;
-
-                output += String.format("1. Consumptie%n2. Uitrusting%n3. Ras%n4. Monster");
+                System.out.printf("%s kies een kaart die je wilt afleggen: 1. Consumptie%n2. Uitrusting%n3. Ras%n4. Monster" ,dc.geefSpelerAanBeurt());
                 keuze = invoer.nextInt();
-
                 switch (keuze) {
                 case 1:
                 }
+            if (dc.geefTegenspelers().contains(naam)) {
+                System.out.printf("%s kies een kaart die je wilt afleggen: 1. Consumptie%n2. Monster%n3. Vervloeking", dc.geefNaamSpeler(dc.geefTegenspelers.contains(naam)));
+                keuze = invoer.nextInt();
+                switch (keuze) {
+                case 1:
+                }
+            }
+                
+            }else{
+                //tegenspeler kan enkel negatieve consumptiekaart afleggen
+               
+                
 
+                
             }
 
             
@@ -55,7 +78,10 @@ public class UseCase5 {
             //consumptiekaart afleggen
             }
             
-       
+    
+            
+    //DR_Afgelegde_Kaart
+    
     }
 
     public void verwijderKaartUitHand() {
