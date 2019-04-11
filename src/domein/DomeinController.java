@@ -313,6 +313,7 @@ public class DomeinController {
         public String toonOverzichtKaartenInHand(String naam) {
         return spel.toonOverzichtKaartenInHand(naam);
     }
+        //fix
     
     public List<String> geefTegenspelers(){
         List<Speler> spelers = spel.getSpelers();
