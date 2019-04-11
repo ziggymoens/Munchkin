@@ -548,7 +548,7 @@ public class Spel {
     public List<Kaart> getKerkerkaarten() {
         return kerkerkaarten;
     }
-    
+    //fix 
     public String toonOverzichtKaartenInHand(String naam){
         int i = zoekSpeler(naam);
         return spelers.get(i).toonOverzichtKaartenInHand();

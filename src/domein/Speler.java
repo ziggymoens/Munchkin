@@ -371,6 +371,7 @@ public class Speler {
         return ret.toString();
     }
 
+    //fix 
     /* Systeem toont naam en type van de kaarten in de hand*/
     public String toonOverzichtKaartenInHand() {
 
