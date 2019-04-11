@@ -2,6 +2,7 @@ package domein;
 
 import domein.repositories.SpelDbRepository;
 import exceptions.SpelException;
+import java.util.ArrayList;
 import language.LanguageResource;
 
 import java.util.List;
@@ -287,5 +288,20 @@ public class DomeinController {
 
     public void verwijderOpgeslagenSpel(int index) {
         sr.verwijderOpgeslagenSpel(index);
+    }
+    
+    public String toonOverzichtKaartenInHand(String naam) {
+        return spel.toonOverzichtKaartenInHand(naam);
+    }
+    
+    public List<String> geefTegenspelers(){
+        List<Speler> spelers = spel.getSpelers();
+        List<String> tegenspelers = new ArrayList<>();
+        for(int i = 0; i<tegenspelers.size(); i++){
+            if(i != geefSpelerAanBeurt()){
+                tegenspelers.add(spelers.get(i).getNaam());
+            }
+        }
+        return tegenspelers;
     }
 }
