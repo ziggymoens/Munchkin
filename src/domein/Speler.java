@@ -29,8 +29,6 @@ public class Speler {
     private List<Kaart> items;
     private final List<Integer> volgordeItems;
     private boolean heeftMonsterVerslaan;
-    
-    private boolean runaway;
 
     /**
      * Constructor van Speler zonder parameters naam = "onbekend", geslacht =
@@ -385,5 +383,49 @@ public class Speler {
 
         return String.format("Kaarten in de hand: %n%s", output);
     }
-}
 
+    public List<Integer> getVolgordeKaarten() {
+        return volgordeKaarten;
+    }
+
+    private void setVolgordeKaarten(){
+        volgordeKaarten.clear();
+        for (Kaart kaart : kaarten){
+            volgordeKaarten.add(kaart.getId());
+        }
+    }
+
+    public List<Integer> getVolgordeItems() {
+        return volgordeItems;
+    }
+
+    private void setVolgordeItems(){
+        volgordeItems.clear();
+        for (Kaart kaart: items){
+            volgordeItems.add(kaart.getId());
+        }
+    }
+
+    public void updateKaarten(){
+        setVolgordeKaarten();
+        setVolgordeItems();
+    }
+
+    public void setSpelerId(int spelerId) {
+        this.spelerId = spelerId;
+    }
+
+    public int getSpelerId() {
+        return spelerId;
+    }
+
+    public void setKaarten(List<Kaart> kaarten) {
+        this.kaarten = kaarten;
+        updateKaarten();
+    }
+
+    public void setItems(List<Kaart> items) {
+        this.items = items;
+        updateKaarten();
+    }
+}

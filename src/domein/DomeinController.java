@@ -5,7 +5,6 @@ import domein.kaarten.kerkerkaarten.Monster;
 import domein.kaarten.kerkerkaarten.monsterbadstuff.BadStuff;
 import domein.repositories.SpelDbRepository;
 import exceptions.SpelException;
-import java.util.ArrayList;
 import language.LanguageResource;
 
 import java.util.List;
@@ -297,23 +296,6 @@ public class DomeinController {
         sr.laadSpel(naam, this);
     }
 
-    
-    public String toonOverzichtKaartenInHand(String naam) {
-        return spel.toonOverzichtKaartenInHand(naam);
-    }
-    
-    public List<String> geefTegenspelers(){
-        List<Speler> spelers = spel.getSpelers();
-        List<String> tegenspelers = new ArrayList<>();
-        for(int i = 0; i<tegenspelers.size(); i++){
-            if(i != geefSpelerAanBeurt()){
-                tegenspelers.add(spelers.get(i).getNaam());
-            }
-        }
-        return tegenspelers;
-    }
-
-
     public void verwijderOpgeslagenSpel(String naam) {
         sr.verwijderOpgeslagenSpel(naam);
     }
@@ -327,21 +309,4 @@ public class DomeinController {
     }
 
     public Schatkaart geefSchatkaart(){ return spel.geefSchatkaart(); }
-
-     public String toonOverzichtKaartenInHand(String naam) {
-        return spel.toonOverzichtKaartenInHand(naam);
-    }
-    
-    public List<String> geefTegenspelers(){
-        List<Speler> spelers = spel.getSpelers();
-        List<String> tegenspelers = new ArrayList<>();
-        for(int i = 0; i<tegenspelers.size(); i++){
-            if(i != geefSpelerAanBeurt()){
-                tegenspelers.add(spelers.get(i).getNaam());
-            }
-        }
-        return tegenspelers;
-    }
-}
-
 }

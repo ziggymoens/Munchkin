@@ -481,13 +481,6 @@ public class Spel {
     public BadStuff geefBadStuff(int id){
         return ((Monster) getKaarten().get(id)).getBadStuff();
     }
-    
-    public String toonOverzichtKaartenInHand(String naam){
-        int i = zoekSpeler(naam);
-        return spelers.get(i).toonOverzichtKaartenInHand();
-    }
-    
-    
 
     public Schatkaart geefSchatkaart(){
         Schatkaart schatkaart = (Schatkaart) schatkaarten.get(0);
