@@ -25,6 +25,8 @@ public class Speler {
     private final List<Kaart> kaarten;
     private final List<Kaart> items;
     private boolean heeftMonsterVerslaan;
+    
+    private boolean runaway;
 
     /**
      * Constructor van Speler zonder parameters naam = "onbekend", geslacht =
@@ -343,12 +345,7 @@ public class Speler {
        return String.format("Kaarten in de hand: %n%s", output);
     }
     
-    public List<String> geefInfo(List<Boolean> helptmee){
-        List<String> gegevens = new ArrayList<>();
-        
-        gegevens.add(naam);
-        gegevens.add(geslacht);
-        gegevens.add(Integer.toString(level));
-        gegevens.add();
-    }
+    
+    
+    
 }
