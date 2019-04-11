@@ -2,6 +2,7 @@ package ui.cui.ucs;
 
 import domein.DomeinController;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import language.LanguageResource;
@@ -20,8 +21,8 @@ public class UseCase5 {
     void speelKaart() {
         System.out.printf("Er wordt een kaart gespeeld %n%n");
         toonOverzichtKaartenInHand();
-        System.out.print("De gewenste kaart: " + Arrays.toString(kiesKaart));
-        toString(geefSpelsituatieGevecht());
+        System.out.print("De gewenste kaart: " + Arrays.toString(kiesKaart("",naam)));
+        //toString(geefSpelsituatieGevecht(1));
         
     }
 
@@ -50,7 +51,7 @@ public class UseCase5 {
             if (spelerLooptWeg == false) {
                 //hier eerst nog met if checken of speler hulp wou
                 //wil hulp
-                if(){
+                if(spelerLooptWeg == false){
                 
                 System.out.printf("%s kies een kaart die je wilt afleggen: 1. Consumptie%n2. Uitrusting%n3. Ras%n4. Monster" ,dc.geefSpelerAanBeurt());
                 keuze = invoer.nextInt();
@@ -58,7 +59,7 @@ public class UseCase5 {
                 case 1:
                 }
             if (dc.geefTegenspelers().contains(naam)) {
-                System.out.printf("%s kies een kaart die je wilt afleggen: 1. Consumptie%n2. Monster%n3. Vervloeking", dc.geefNaamSpeler(dc.geefTegenspelers.contains(naam)));
+                //System.out.printf("%s kies een kaart die je wilt afleggen: 1. Consumptie%n2. Monster%n3. Vervloeking", dc.geefNaamSpeler(dc.geefTegenspelers.contains(naam)));
                 keuze = invoer.nextInt();
                 switch (keuze) {
                 case 1:

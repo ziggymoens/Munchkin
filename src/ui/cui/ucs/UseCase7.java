@@ -14,7 +14,8 @@ import java.util.Scanner;
 public class UseCase7 {
     private final DomeinController dc;
     private final Scanner SCAN = new Scanner(System.in);
-
+    private List<Integer> ids = new ArrayList<>();
+    private int g;
     public UseCase7(DomeinController dc) {
         this.dc = dc;
     }
@@ -70,22 +71,29 @@ public class UseCase7 {
                                         System.out.println(LanguageResource.getString("usecase7.sell"));
                                         System.out.println(String.format("%s: %n%s", LanguageResource.getString("usecase7.sellable"), dc.geefVerkoopbareKaarten(naam)));
                                         SCAN.nextLine();
-                                        int g;
                                         int teller = 0;
-                                        List<Integer> ids = new ArrayList<>();
+
+                                        // do-while waarin ids van de verkoopbare kaarten toegevoegd worden aan een List om die vervolgens uit te lezen om de waardes op te tellen
+                                        // kan verbeterd worden -- OPTIMALISEREN
                                         do {
                                             System.out.println(LanguageResource.getString("usecase7.whattosell"));
                                             g = SCAN.nextInt();
                                             if (dc.geefIdVerkoopbareKaarten().contains(g) && g != 999) {
                                                 ids.add(g);
+
                                                 teller++;
+
                                             }else if(!dc.geefIdVerkoopbareKaarten().contains(g)){
                                                 System.out.println(LanguageResource.getString("usecase7.foutid"));
+
                                             }else if(g == 999){
+                                                System.out.println("GESTOPT - HARDCODE");
                                                 break;
                                             }
                                             match = true;
-
+                                            //for(int i = 0; i <= teller - 1; i++) {
+                                                //dc.verwijderVerkocht(g);
+                                            //}
                                         } while (g != 999 && teller <= dc.geefIdVerkoopbareKaarten().size() - 1);
                                         System.out.println(" *** Dit zijn de ingegeven ids: " + ids);
                                         System.out.println(" *** Dit zijn de ids van de te verkopen kaarten: " + dc.geefIdVerkoopbareKaarten());
@@ -93,7 +101,9 @@ public class UseCase7 {
                                             System.out.println(dc.getWaardeSchatkaart().get(i));
                                             totWaarde += dc.getWaardeSchatkaart().get(i);
                                         }
-
+                                        for(int i = 0; i <= dc.getAantalKaarten(naam) - 1; i++) {
+                                            dc.verwijderVerkocht(ids.get(i));
+                                        }
                                         if(totWaarde/1000 < 1){
                                             System.out.println(ColorsOutput.kleur("yellow") + ColorsOutput.decoration("bold") + LanguageResource.getString("usecase7.kleinewaarde") + ColorsOutput.reset());
                                         }else{
@@ -117,24 +127,29 @@ public class UseCase7 {
                                           //  System.out.println(LanguageResource.getString("usecase7.kleinewaarde"));
                                         System.out.println(" *** totale levels stijgen volgens deling: " + totWaarde/1000);
                                         System.out.println(" *** Dit is de totale waarde: " + totWaarde);
+
                                     }else if(antwoord.equalsIgnoreCase(LanguageResource.getString("usecase7.translationthrow"))){
                                         System.out.println(" *** gekozen voor weggooien -- hardcode, nog aanpassen");
                                         match = true;
-                                    }else{
-                                        System.err.println("fout in antwoord");
                                     }
+                                    System.out.println(dc.geefInformatie());
                                 }while (match = false);
 
 
                         }
                     } catch (Exception e) {
-                        System.out.println("FOUT MET HET ANTWOORD -- hardcode, nog aanpassen");
+                        System.out.println(ColorsOutput.kleur("red") + ColorsOutput.decoration("bold") + e.getMessage());
                     }
                     break;
             }
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("usecase2.choiceerror");
         }
+    }
+
+    public void verwijderVerkocht(int id){
+
+        dc.verwijderVerkocht(id);
     }
 
 }

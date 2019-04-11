@@ -434,6 +434,11 @@ public class Spel {
         return spelers.get(i).geefIdVerkoopbareKaarten();
     }
 
+    public void verwijderVerkocht(int id){
+        int i = zoekSpeler(naam);
+        spelers.get(i).verwijderVerkocht(id);
+    }
+
     public String geefNietVerkoopbareKaarten(String naam) {
         int i = zoekSpeler(naam);
         return spelers.get(i).geefNietVerkoopbareKaarten();

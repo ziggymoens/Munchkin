@@ -350,6 +350,10 @@ public class Speler {
         }
         return idKaart;
     }
+    public void verwijderVerkocht(int id) {
+        kaarten.remove(id);
+        updateKaarten();
+    }
 
     //methode om waarde van schatkaart op te vragen
     public List<Integer> getWaardeSchatkaart(){
