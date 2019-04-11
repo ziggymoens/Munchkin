@@ -328,4 +328,20 @@ public class DomeinController {
 
     public Schatkaart geefSchatkaart(){ return spel.geefSchatkaart(); }
 
+     public String toonOverzichtKaartenInHand(String naam) {
+        return spel.toonOverzichtKaartenInHand(naam);
+    }
+    
+    public List<String> geefTegenspelers(){
+        List<Speler> spelers = spel.getSpelers();
+        List<String> tegenspelers = new ArrayList<>();
+        for(int i = 0; i<tegenspelers.size(); i++){
+            if(i != geefSpelerAanBeurt()){
+                tegenspelers.add(spelers.get(i).getNaam());
+            }
+        }
+        return tegenspelers;
+    }
+}
+
 }
