@@ -4,7 +4,10 @@ import domein.DomeinController;
 import language.LanguageResource;
 import printer.ColorsOutput;
 
+import java.awt.*;
 import java.util.*;
+import java.util.List;
+
 /**
  * Beheer kaarten in hand
  * UC7
@@ -62,11 +65,12 @@ public class UseCase7 {
                             String antwoord;
                             String[] keuzeKaart;
                             int totWaarde = 0;
-                            boolean match = false;
+                            boolean match = true;
                                 do {
                                     System.out.println(LanguageResource.getString("usecase7.sellorthrow"));
                                     antwoord = SCAN.next();
                                     if (antwoord.equalsIgnoreCase(LanguageResource.getString("usecase7.translationsell"))) {
+                                        match = false;
                                         System.out.println(LanguageResource.getString("usecase7.sell"));
                                         System.out.println(String.format("%s: %n%s", LanguageResource.getString("usecase7.sellable"), dc.geefVerkoopbareKaarten(naam)));
                                         SCAN.nextLine();
@@ -88,13 +92,13 @@ public class UseCase7 {
                                                 System.out.println("GESTOPT - HARDCODE");
                                                 break;
                                             }
-                                            match = true;
+                                            match = false;
                                         } while (g != 999 && teller <= dc.geefIdVerkoopbareKaarten().size() - 1);
                                         System.out.println(ColorsOutput.kleur("blue") + "Dit zijn de ingegeven ids: " + ids + ColorsOutput.reset());
                                         System.out.println(ColorsOutput.kleur("blue") + "Dit zijn de ids van de te verkopen kaarten: " + dc.geefIdVerkoopbareKaarten() + ColorsOutput.reset());
                                         System.out.println();
                                         for(int i = 0; i <= ids.size()-1; i++){
-                                            System.out.println(dc.getWaardeSchatkaart().get(i));
+                                            //System.out.println(dc.getWaardeSchatkaart().get(i));
                                             totWaarde += dc.getWaardeSchatkaart().get(i);
                                         }
 
@@ -105,32 +109,18 @@ public class UseCase7 {
                                         }else if(gedeeldeWaarde >= 1){
                                             dc.verhoogLevel(naam, gedeeldeWaarde);
                                             System.out.println(ColorsOutput.kleur("green") + ColorsOutput.decoration("bold") + String.format(LanguageResource.getString("usecase7.levelup"), gedeeldeWaarde, gedeeldeWaarde > 1 ? "s" : "") + ColorsOutput.reset());
+                                            System.out.println(ColorsOutput.kleur("blue") + ColorsOutput.decoration("bold") + dc.geefInformatie() + ColorsOutput.reset());
                                         }
-                                        //voorlopig laten staan in case bovenstaande methode nie blijkt te werken
-                                        //if(totWaarde >= 1000 && totWaarde < 2000){
-                                        //    dc.verhoogLevel(naam, 1);
-                                        //}else if(totWaarde >= 2000 && totWaarde < 3000){
-                                        //    dc.verhoogLevel(naam, 2);}
-                                        //else if(totWaarde >= 3000 && totWaarde < 4000){
-                                        //    dc.verhoogLevel(naam, 3);}
-                                        //else if(totWaarde >= 4000 && totWaarde < 5000){
-                                        //    dc.verhoogLevel(naam, 4);}
-                                        //else if(totWaarde >= 5000 && totWaarde < 6000)
-                                        //    dc.verhoogLevel(naam, 5);
-                                        //else if(totWaarde >= 6000 && totWaarde < 7000)
-                                        //    dc.verhoogLevel(naam, 7);
-                                        //else if(totWaarde < 1000)
-                                          //  System.out.println(LanguageResource.getString("usecase7.kleinewaarde"));
-
                                         // System.out.println(ColorsOutput.kleur("white") + ColorsOutput.decoration("bold") + ColorsOutput.achtergrond("red") + " *** totale levels stijgen volgens deling: " + totWaarde/1000 + ColorsOutput.reset());
                                         // System.out.println(" *** Dit is de totale waarde: " + totWaarde);
 
                                     }else if(antwoord.equalsIgnoreCase(LanguageResource.getString("usecase7.translationthrow"))){
                                         System.out.println(" *** gekozen voor weggooien -- hardcode, nog aanpassen");
-                                        match = true;
+                                        match = false;
                                     }
-                                    System.out.println(dc.geefInformatie());
-                                }while (match = false);
+                                    else
+                                        match = true;
+                                }while (match);
 
 
                         }
