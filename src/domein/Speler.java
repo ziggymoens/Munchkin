@@ -350,8 +350,8 @@ public class Speler {
         }
         return idKaart;
     }
-    public void verwijderVerkocht(int id) {
-        kaarten.remove(id);
+    public void verwijderKaart(Kaart kaart) {
+        kaarten.remove(kaart);
         updateKaarten();
     }
 

@@ -257,8 +257,8 @@ public class DomeinController {
         return spel.geefIdVerkoopbarekaarten();
     }
 
-    public void verwijderVerkocht(int id){
-        spel.verwijderVerkocht(id);
+    public void verwijderKaart(int id){
+        spel.verwijderKaart(id);
     }
 
     public String geefNietVerkoopbareKaarten(String naam) {

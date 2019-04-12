@@ -3,10 +3,8 @@ package ui.cui.ucs;
 import domein.DomeinController;
 import language.LanguageResource;
 import printer.ColorsOutput;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 
+import java.util.*;
 /**
  * Beheer kaarten in hand
  * UC7
@@ -14,13 +12,14 @@ import java.util.Scanner;
 public class UseCase7 {
     private final DomeinController dc;
     private final Scanner SCAN = new Scanner(System.in);
-    private List<Integer> ids = new ArrayList<>();
     private int g;
+
     public UseCase7(DomeinController dc) {
         this.dc = dc;
     }
 
      void beheerKaarten(String naam) {
+        List<Integer> ids = new ArrayList<>();
         int keuze = 0;
         boolean tryAgain = true;
         while (tryAgain) {
@@ -80,10 +79,9 @@ public class UseCase7 {
                                             g = SCAN.nextInt();
                                             if (dc.geefIdVerkoopbareKaarten().contains(g) && g != 999) {
                                                 ids.add(g);
-
                                                 teller++;
 
-                                            }else if(!dc.geefIdVerkoopbareKaarten().contains(g)){
+                                            }else if(!dc.geefIdVerkoopbareKaarten().contains(g) && g != 999){
                                                 System.out.println(LanguageResource.getString("usecase7.foutid"));
 
                                             }else if(g == 999){
@@ -91,24 +89,22 @@ public class UseCase7 {
                                                 break;
                                             }
                                             match = true;
-                                            //for(int i = 0; i <= teller - 1; i++) {
-                                                //dc.verwijderVerkocht(g);
-                                            //}
                                         } while (g != 999 && teller <= dc.geefIdVerkoopbareKaarten().size() - 1);
-                                        System.out.println(" *** Dit zijn de ingegeven ids: " + ids);
-                                        System.out.println(" *** Dit zijn de ids van de te verkopen kaarten: " + dc.geefIdVerkoopbareKaarten());
+                                        System.out.println(ColorsOutput.kleur("blue") + "Dit zijn de ingegeven ids: " + ids + ColorsOutput.reset());
+                                        System.out.println(ColorsOutput.kleur("blue") + "Dit zijn de ids van de te verkopen kaarten: " + dc.geefIdVerkoopbareKaarten() + ColorsOutput.reset());
+                                        System.out.println();
                                         for(int i = 0; i <= ids.size()-1; i++){
                                             System.out.println(dc.getWaardeSchatkaart().get(i));
                                             totWaarde += dc.getWaardeSchatkaart().get(i);
                                         }
-                                        for(int i = 0; i <= dc.getAantalKaarten(naam) - 1; i++) {
-                                            dc.verwijderVerkocht(ids.get(i));
-                                        }
-                                        if(totWaarde/1000 < 1){
+
+                                        //level verhogen adhv opgetelde waarde van de kaarten
+                                        int gedeeldeWaarde = totWaarde/1000;
+                                        if(gedeeldeWaarde < 1){
                                             System.out.println(ColorsOutput.kleur("yellow") + ColorsOutput.decoration("bold") + LanguageResource.getString("usecase7.kleinewaarde") + ColorsOutput.reset());
-                                        }else{
-                                            int gedeeldeWaarde = totWaarde/1000;
+                                        }else if(gedeeldeWaarde >= 1){
                                             dc.verhoogLevel(naam, gedeeldeWaarde);
+                                            System.out.println(ColorsOutput.kleur("green") + ColorsOutput.decoration("bold") + String.format(LanguageResource.getString("usecase7.levelup"), gedeeldeWaarde, gedeeldeWaarde > 1 ? "s" : "") + ColorsOutput.reset());
                                         }
                                         //voorlopig laten staan in case bovenstaande methode nie blijkt te werken
                                         //if(totWaarde >= 1000 && totWaarde < 2000){
@@ -125,8 +121,9 @@ public class UseCase7 {
                                         //    dc.verhoogLevel(naam, 7);
                                         //else if(totWaarde < 1000)
                                           //  System.out.println(LanguageResource.getString("usecase7.kleinewaarde"));
-                                        System.out.println(" *** totale levels stijgen volgens deling: " + totWaarde/1000);
-                                        System.out.println(" *** Dit is de totale waarde: " + totWaarde);
+
+                                        // System.out.println(ColorsOutput.kleur("white") + ColorsOutput.decoration("bold") + ColorsOutput.achtergrond("red") + " *** totale levels stijgen volgens deling: " + totWaarde/1000 + ColorsOutput.reset());
+                                        // System.out.println(" *** Dit is de totale waarde: " + totWaarde);
 
                                     }else if(antwoord.equalsIgnoreCase(LanguageResource.getString("usecase7.translationthrow"))){
                                         System.out.println(" *** gekozen voor weggooien -- hardcode, nog aanpassen");
@@ -138,7 +135,7 @@ public class UseCase7 {
 
                         }
                     } catch (Exception e) {
-                        System.out.println(ColorsOutput.kleur("red") + ColorsOutput.decoration("bold") + e.getMessage());
+                        System.out.println(ColorsOutput.kleur("red") + ColorsOutput.decoration("bold") + e.getMessage() + ColorsOutput.reset());
                     }
                     break;
             }
@@ -146,11 +143,5 @@ public class UseCase7 {
             throw new IllegalArgumentException("usecase2.choiceerror");
         }
     }
-
-    public void verwijderVerkocht(int id){
-
-        dc.verwijderVerkocht(id);
-    }
-
 }
 
