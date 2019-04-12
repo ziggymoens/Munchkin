@@ -266,7 +266,7 @@ public class UseCase1 {
         while (ta2) {
             try {
                 SCAN.nextLine();
-                System.out.println("klein(1) of grote(2) db.");
+                System.out.println(String.format(LanguageResource.getString("dbchoice")));
                 int k = SCAN.nextInt();
                 if (k < 1 || k > 2) {
                     throw new Exception("usecase2.choiceinput");
