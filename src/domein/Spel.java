@@ -414,7 +414,7 @@ public class Spel {
         if (spelerAanBeurt+1 == spelers.size()){
             this.spelerAanBeurt = 0;
         }else {
-            this.spelerAanBeurt = spelerAanBeurt+1;
+            this.spelerAanBeurt = spelerAanBeurt;
         }
     }
 
