@@ -233,7 +233,7 @@ public class Spel {
     public List<String> geefBeknopteSpelsituatie(/*boolean vecht*/) {
         List<String> ret = new ArrayList<>();
         for (Speler speler : spelers) {
-            ret.add(String.format("%s: %s, %s: %s, %s: %d%n", LanguageResource.getString("player.name"), speler.getNaam(), LanguageResource.getString("player.sex"), speler.getGeslacht(), LanguageResource.getString("player.level"), speler.getLevel() /*, vecht?"Vecht mee":"Vecht niet mee"*/));
+            ret.add(String.format("%s: %s, %s: %s, %s: %d", LanguageResource.getString("player.name"), speler.getNaam(), LanguageResource.getString("player.sex"), speler.getGeslacht(), LanguageResource.getString("player.level"), speler.getLevel() /*, vecht?"Vecht mee":"Vecht niet mee"*/));
         }
         return ret;
     }
@@ -411,7 +411,7 @@ public class Spel {
     }
 
     public void setSpelerAanBeurt(int spelerAanBeurt) {
-        if (spelerAanBeurt+1 == spelers.size()){
+        if (spelerAanBeurt == spelers.size()){
             this.spelerAanBeurt = 0;
         }else {
             this.spelerAanBeurt = spelerAanBeurt;
