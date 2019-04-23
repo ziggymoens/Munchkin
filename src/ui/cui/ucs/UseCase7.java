@@ -30,8 +30,9 @@ public class UseCase7 {
                 System.out.println(String.format("%s %s", naam, LanguageResource.getString("usecase7.actions")));
                 System.out.println(String.format("1) %s", LanguageResource.getString("usecase7.action1")));
                 System.out.println(String.format("2) %s", LanguageResource.getString("usecase7.action2")));
+                System.out.println(String.format("3) %s", LanguageResource.getString("usecase7.action3")));
                 keuze = SCAN.nextInt();
-                if (keuze < 1 || keuze > 2) {
+                if (keuze < 1 || keuze > 3) {
                     throw new Exception();
                 }
                 tryAgain = false;
@@ -61,8 +62,8 @@ public class UseCase7 {
                         System.out.println(ColorsOutput.decoration("bold") + String.format("%s:",LanguageResource.getString("usecase7.throwaway")) + ColorsOutput.reset());
                         System.out.println(dc.geefNietVerkoopbareKaarten(naam));
                         System.out.println(LanguageResource.getString("usecase7.asktosell"));
-                        String antw = SCAN.next();
 
+                        String antw = SCAN.next();
                         if(antw.equalsIgnoreCase("yes") || antw.equalsIgnoreCase("oui") || antw.equalsIgnoreCase("ja")){
                             String antwoord;
                             String[] keuzeKaart;
@@ -126,6 +127,10 @@ public class UseCase7 {
                     } catch (Exception e) {
                         System.out.println(ColorsOutput.kleur("red") + ColorsOutput.decoration("bold") + e.getMessage() + ColorsOutput.reset());
                     }
+                    break;
+                case 3:
+                default:
+                    System.out.println(ColorsOutput.kleur("red") + ColorsOutput.decoration("reversed") + LanguageResource.getString("quit") + ColorsOutput.reset());
                     break;
             }
         } catch (IllegalArgumentException e) {
