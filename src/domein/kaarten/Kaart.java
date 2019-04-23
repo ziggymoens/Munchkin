@@ -2,6 +2,8 @@ package domein.kaarten;
 
 import exceptions.kaarten.KaartException;
 
+import java.util.Objects;
+
 /**
  *
  * @author ziggy
@@ -89,4 +91,21 @@ public abstract class Kaart {
         this.id = id;
     }
 
+    /**
+     * equalsmethode om kaart te vergelijken - niet meer nodig om ids te vergelijken
+     * @param o
+     * @return
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Kaart kaart = (Kaart) o;
+        return id == kaart.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }

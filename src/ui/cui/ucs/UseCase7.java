@@ -130,7 +130,8 @@ public class UseCase7 {
                     break;
                 case 3:
                 default:
-                    System.out.println(ColorsOutput.kleur("red") + ColorsOutput.decoration("reversed") + LanguageResource.getString("quit") + ColorsOutput.reset());
+                    System.out.println(ColorsOutput.decoration("bold") + ColorsOutput.kleur("red") + ColorsOutput.decoration("reversed") + LanguageResource.getString("quit") + ColorsOutput.reset());
+                    System.out.println();
                     break;
             }
         } catch (IllegalArgumentException e) {
