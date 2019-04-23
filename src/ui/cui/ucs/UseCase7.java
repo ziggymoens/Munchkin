@@ -45,8 +45,8 @@ public class UseCase7 {
                 case 1: //naarItems (op tafel leggen)
                     try {
                         if (dc.getAantalKaarten(naam) >= 1) {
-                            System.out.println(String.format("%s:%n", LanguageResource.getString("usecase7.toitems")));
-                            System.out.println(String.format("%s:%n", dc.geefKaartenKunnenNaarItems(naam)));
+                            System.out.println(ColorsOutput.decoration("bold") + String.format("%s:", LanguageResource.getString("usecase7.toitems")) + ColorsOutput.reset());
+                            System.out.println(String.format("%s", dc.geefKaartenKunnenNaarItems(naam)));
                         }else{
                             System.out.println(String.format("%s!", LanguageResource.getString("usecase7.nietgenoeg")));
                         }
@@ -56,8 +56,10 @@ public class UseCase7 {
                     break;
                 case 2: //verkopen + weggooien
                     try {
-                        System.out.println(String.format("%s: %n%s", LanguageResource.getString("usecase7.sellable"), dc.geefVerkoopbareKaarten(naam)));
-                        System.out.println(String.format("%s: %n%s", LanguageResource.getString("usecase7.throwaway"), dc.geefNietVerkoopbareKaarten(naam)));
+                        System.out.println(ColorsOutput.decoration("bold") + String.format("%s:", LanguageResource.getString("usecase7.sellable") + ColorsOutput.reset() ));
+                        System.out.println(dc.geefVerkoopbareKaarten(naam));
+                        System.out.println(ColorsOutput.decoration("bold") + String.format("%s:",LanguageResource.getString("usecase7.throwaway")) + ColorsOutput.reset());
+                        System.out.println(dc.geefNietVerkoopbareKaarten(naam));
                         System.out.println(LanguageResource.getString("usecase7.asktosell"));
                         String antw = SCAN.next();
 
@@ -88,9 +90,6 @@ public class UseCase7 {
                                             }else if(!dc.geefIdVerkoopbareKaarten().contains(g) && g != 999){
                                                 System.out.println(LanguageResource.getString("usecase7.foutid"));
 
-                                            }else if(g == 999){
-                                                System.out.println("GESTOPT - HARDCODE");
-                                                break;
                                             }
                                             match = false;
                                         } while (g != 999 && teller <= dc.geefIdVerkoopbareKaarten().size() - 1);
