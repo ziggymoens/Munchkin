@@ -298,6 +298,7 @@ public class UseCase1 {
                 kiesNaamSpeler(i);
                 kiesGeslachtSpeler(i);
             }
+            dc.geefStartKaarten();
         } catch (Exception e) {
             System.out.println(Printer.exceptionCatch("Exception", e, false));
         }

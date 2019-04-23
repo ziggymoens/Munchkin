@@ -6,14 +6,13 @@
 package ui.cui.ucs;
 
 import domein.DomeinController;
-
-import java.util.*;
-
 import exceptions.SpelException;
 import exceptions.SpelerException;
-import printer.Printer;
-import printer.ColorsOutput;
 import language.LanguageResource;
+import printer.ColorsOutput;
+import printer.Printer;
+
+import java.util.Scanner;
 
 /**
  * @author ziggy
@@ -45,7 +44,6 @@ class UseCase2 {
         this.aantalSpelers = aantalSpelers;
         try {
             dc.controleerVolgorde();
-            dc.geefStartKaarten();
             System.out.println(String.format("De volgorde van de spelers is: %n%s%n", dc.geefInformatie()));
         } catch (SpelException | SpelerException e) {
             System.out.print(Printer.exceptionCatch("Spel/SpelerException", e));
