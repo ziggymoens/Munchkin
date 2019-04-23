@@ -40,10 +40,6 @@ public class UseCase6 {
         System.out.println(dc.geefSpelsituatie().toString());
     }
 
-    private int gooiDobbelsteen(){
-        return new SecureRandom().nextInt(5) + 1;
-    }
-
     private void verhoogLevelsGewonnen(int id, List<Boolean> helptmee){
         int levelsUp = Integer.parseInt(dc.geefMonsterAttribuut(id, "levelsUp").toString());
         for(int i = 0; i < helptmee.size(); i++){
@@ -87,8 +83,10 @@ public class UseCase6 {
 
     private void ontsnappen(int id){
         int runAway = Integer.parseInt(dc.geefMonsterAttribuut(id,"RunAway").toString());
+        int worp = dc.gooiDobbelsteen();
+        System.out.printf(LanguageResource.getString("usecase6.diceroll") + "%n", worp);
         //Speler ontsnapt
-        if(/* Moet nog de methode outRun aangeroepen worden ivm grote databank ||*/gooiDobbelsteen() > 4 - runAway){
+        if(/* Moet nog de methode outRun aangeroepen worden ivm grote databank ||*/ worp > 4 - runAway){
             System.out.println(LanguageResource.getString("usecase6.escape1"));
         }// Speler ontsnapt niet
         else{

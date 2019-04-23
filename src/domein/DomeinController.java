@@ -329,6 +329,8 @@ public class DomeinController {
         }
         return tegenspelers;
     }
-
+    public int gooiDobbelsteen(){
+        return spel.gooiDobbelsteen();
+    }
     
 }

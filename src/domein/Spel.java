@@ -9,6 +9,7 @@ import domein.repositories.KaartDbKleinRepository;
 import exceptions.SpelException;
 import language.LanguageResource;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -558,6 +559,10 @@ public class Spel {
     public String toonOverzichtKaartenInHand(String naam){
         int i = zoekSpeler(naam);
         return spelers.get(i).toonOverzichtKaartenInHand();
+    }
+
+    public int gooiDobbelsteen(){
+        return new SecureRandom().nextInt(5) + 1;
     }
 
 }
