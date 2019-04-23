@@ -2,7 +2,7 @@ package ui.gui.maingui;
 
 import javafx.scene.control.MenuBar;
 import javafx.scene.layout.BorderPane;
-import ui.gui.menubar.MenuBarGui;
+import ui.gui.extras.menubar.MenuBarGui;
 
 
 public class MainGui extends BorderPane {
