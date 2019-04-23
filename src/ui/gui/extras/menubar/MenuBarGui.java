@@ -1,4 +1,4 @@
-package ui.gui.menubar;
+package ui.gui.extras.menubar;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
