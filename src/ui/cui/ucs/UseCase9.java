@@ -22,8 +22,8 @@ public class UseCase9 {
     }
 
     public void spelLaden() {
-        toonOverzicht();
-        String keuze = maakKeuze();
+        //toonOverzicht();
+        int keuze = maakKeuze();
         laadSpel(keuze);
     }
 
@@ -38,15 +38,15 @@ public class UseCase9 {
         System.out.println(ret);
     }
 
-    private String maakKeuze(){
-        String keuze = "";
+    private int maakKeuze(){
+        int keuze = -1;
         boolean tryAgain = true;
         while (tryAgain) {
             try {
                 do {
                     System.out.println(LanguageResource.getString("usecase9.makechoice"));
                     System.out.println(dc.geefOverzichtSpelen());
-                    keuze = SCAN.next();
+                    keuze = SCAN.nextInt();
                     tryAgain = false;
                     SCAN.nextLine();
                 } while (!dc.bestaatSpel(keuze));
@@ -57,8 +57,8 @@ public class UseCase9 {
         return keuze;
     }
 
-    private void laadSpel(String naam){
-        dc.laadSpel(naam);
-        dc.verwijderOpgeslagenSpel(naam);
+    private void laadSpel(int id){
+        dc.laadSpel(id);
+        //dc.verwijderOpgeslagenSpel(id);
     }
 }

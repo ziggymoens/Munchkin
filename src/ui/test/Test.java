@@ -23,7 +23,6 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * test github intellij kilian
  * @author ziggy
  */
 public class Test {
@@ -64,13 +63,14 @@ public class Test {
         //pc.spelOpslaan(spel);
         //pc.remove("test123");
 
-        Spel spel1 = pc.laadSpel("test123");
+        Spel spel1 = pc.laadSpel(23);
         System.out.println(spel1.geefSpelsituatie());
         for (Speler speler:spel1.getSpelers()){
             System.out.println(speler.toString());
             System.out.println(speler.kaartenNaarString(speler.getKaarten()));
         }
 
+        System.out.println(pc.getOverzicht());
         //SpelMapperDb sm = new SpelMapperDb();
         //sm.addSpel("test1234", 0, true);
         //System.out.println(test.geefKaarten());

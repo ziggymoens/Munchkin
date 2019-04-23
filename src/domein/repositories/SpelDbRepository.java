@@ -23,15 +23,15 @@ public class SpelDbRepository {
         return overzicht;
     }
 
-    public void laadSpel(String naam, DomeinController dc) {
-        dc.setSpel(pc.laadSpel(naam));
+    public void laadSpel(int id, DomeinController dc) {
+        dc.setSpel(pc.laadSpel(id));
     }
 
-    public void verwijderOpgeslagenSpel(String naam) {
-        pc.remove(naam);
+    public void verwijderOpgeslagenSpel(int id) {
+        pc.remove(id);
     }
 
-    public boolean bestaatSpel(String naam) {
-        return pc.bestaatSpel(naam);
+    public boolean bestaatSpel(int id) {
+        return pc.bestaatSpel(id);
     }
 }

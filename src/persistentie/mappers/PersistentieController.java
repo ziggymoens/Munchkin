@@ -147,12 +147,12 @@ public class PersistentieController {
         return sm.getOverzicht();
     }
 
-    public void remove(String naam) {
-        sm.remove(sm.getSpelId(naam));
+    public void remove(int id) {
+        sm.remove(id);
     }
 
-    public Spel laadSpel(String naam) {
-        int index = sm.getSpelId(naam);
+    public Spel laadSpel(int index) {
+        //int index = sm.getSpelId(naam);
         Spel spel = sm.laadSpel(index);
         for (Speler speler : spel.getSpelers()) {
             voegKaartenToe(speler);
@@ -202,7 +202,7 @@ public class PersistentieController {
         return kaartenBib;
     }
 
-    public boolean bestaatSpel(String naam) {
-        return getOverzicht().contains(naam);
+    public boolean bestaatSpel(int id) {
+        return getOverzicht().contains(id);
     }
 }

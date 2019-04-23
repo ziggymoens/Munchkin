@@ -11,8 +11,21 @@ import java.util.List;
 
 public class SpelMapperDb {
     private Connection conn;
-    private ResultSet rs, rs1, rs2, rs3, rs5, rs7;
-    private PreparedStatement query, query1, query2, query3, query4, query5,query6,query7,query8,query9,query10;
+    private ResultSet rs;
+    private ResultSet rs1;
+    private ResultSet rs2;
+    private ResultSet rs3;
+    private ResultSet rs7;
+    private PreparedStatement query;
+    private PreparedStatement query1;
+    private PreparedStatement query2;
+    private PreparedStatement query3;
+    private PreparedStatement query4;
+    private PreparedStatement query6;
+    private PreparedStatement query7;
+    private PreparedStatement query8;
+    private PreparedStatement query9;
+    private PreparedStatement query10;
     private List<Spel> spellen = new ArrayList<>();
     private static final String INSERT_GAME = "INSERT INTO ID222177_g35.Spel (spelid, naam, kleingroot, spelerAanBeurt) VALUES (?, ?, ?, ?)";
     private static final String DELETE_GAME = "DELETE FROM ID222177_g35.Spel WHERE spelid = ?";
@@ -179,13 +192,16 @@ public class SpelMapperDb {
         List<String> overzicht = new ArrayList<>();
         voegToe();
         try {
-            query5 = conn.prepareStatement(ALL_GAMES);
-            rs5 = query.executeQuery();
+            PreparedStatement query5 = conn.prepareStatement(ALL_GAMES);
+            ResultSet rs5 = query5.executeQuery();
             while (rs5.next()) {
                 int spelId = rs5.getInt("spelid");
                 String naam = rs5.getString("naam");
-                List<Speler> spelers = voegSpelersToe(spelId);
-                overzicht.add(String.format("%d: %s --> %d", spelId, naam, spelers.size()));
+                int spelerAanbeurt = rs5.getInt("spelerAanBeurt");
+                System.out.println(spelerAanbeurt);
+                String add = String.format("%d: %s --> %d", spelId, naam, spelerAanbeurt);
+                System.out.println(add);
+                overzicht.add(add);
             }
             rs5.close();
             query5.close();

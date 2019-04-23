@@ -1,7 +1,6 @@
 package domein;
 
 import domein.kaarten.Schatkaart;
-import domein.kaarten.kerkerkaarten.Monster;
 import domein.kaarten.kerkerkaarten.monsterbadstuff.BadStuff;
 import domein.repositories.SpelDbRepository;
 import exceptions.SpelException;
@@ -297,16 +296,16 @@ public class DomeinController {
         this.spel = spel;
     }
 
-    public void laadSpel(String naam) {
-        sr.laadSpel(naam, this);
+    public void laadSpel(int id) {
+        sr.laadSpel(id, this);
     }
 
-    public void verwijderOpgeslagenSpel(String naam) {
-        sr.verwijderOpgeslagenSpel(naam);
+    public void verwijderOpgeslagenSpel(int id) {
+        sr.verwijderOpgeslagenSpel(id);
     }
 
-    public boolean bestaatSpel(String naam) {
-        return sr.bestaatSpel(naam);
+    public boolean bestaatSpel(int id) {
+        return sr.bestaatSpel(id);
     }
 
     public BadStuff geefBadStuff(int id){
