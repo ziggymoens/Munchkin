@@ -1,17 +1,21 @@
-package ui.gui.usecase1;
+package ui.gui.ucs.usecase1;
 
 import domein.DomeinController;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.layout.*;
-import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import language.LanguageResource;
 import ui.gui.maingui.MainGui;
 
-import javax.swing.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 
 public class UseCase1G extends MainGui {
@@ -47,7 +51,7 @@ public class UseCase1G extends MainGui {
         //vragen een nieuw spel te starten
 
         //css linken
-        getStylesheets().add("ui/gui/usecase1/UseCase1G.css");
+        getStylesheets().add("ui/gui/ucs/usecase1/UseCase1G.css");
         //layout voor borderbox
     }
 

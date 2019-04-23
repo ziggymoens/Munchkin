@@ -1,9 +1,9 @@
-package ui.gui.usecase9;
+package ui.gui.ucs.usecase9;
 
 import ui.gui.maingui.MainGui;
 
 public class UseCase9G extends MainGui{
     public UseCase9G() {
-        getStylesheets().add("ui/gui/usecase9/UseCase9G.css");
+        getStylesheets().add("ui/gui/ucs/usecase9/UseCase9G.css");
     }
 }
