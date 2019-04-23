@@ -1,7 +1,6 @@
 package main;
 
 import domein.DomeinController;
-import java.util.Optional;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
@@ -9,7 +8,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import language.LanguageResource;
-import ui.gui.usecase1.UseCase1G;
+import ui.gui.ucs.usecase1.UseCase1G;
+
+import java.util.Optional;
 
 public class StartUpGui extends Application {
 
