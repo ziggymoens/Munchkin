@@ -24,7 +24,10 @@ public class UseCase9 {
     public void spelLaden() {
         //toonOverzicht();
         int keuze = maakKeuze();
+        th1.start();
         laadSpel(keuze);
+        th1.stop();
+
     }
 
     private void toonOverzicht(){
@@ -68,4 +71,16 @@ public class UseCase9 {
         uc2.speelSpel(dc.geefAantalSpelers());
 
     }
+    private final Thread th1 = new Thread(() -> {
+        System.out.print("\nLoading ");
+        for (int i = 0; i < 15; i++) {
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException ex) {
+                System.out.println(Printer.exceptionCatch("InterruptedException", ex, false));
+            }
+            System.out.print(".");
+        }
+        System.out.println();
+    });
 }
