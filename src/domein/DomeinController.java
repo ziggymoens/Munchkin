@@ -336,5 +336,8 @@ public class DomeinController {
     public Speler geefSpeler(int i){
         return spel.geefSpeler(i);
     }
-    
+
+    public int geefAantalSpelers() {
+        return spel.getAantalSpelers();
+    }
 }

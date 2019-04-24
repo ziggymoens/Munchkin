@@ -198,9 +198,9 @@ public class SpelMapperDb {
                 int spelId = rs5.getInt("spelid");
                 String naam = rs5.getString("naam");
                 int spelerAanbeurt = rs5.getInt("spelerAanBeurt");
-                System.out.println(spelerAanbeurt);
+                //System.out.println(spelerAanbeurt);
                 String add = String.format("%d: %s --> %d", spelId, naam, spelerAanbeurt);
-                System.out.println(add);
+                //System.out.println(add);
                 overzicht.add(add);
             }
             rs5.close();

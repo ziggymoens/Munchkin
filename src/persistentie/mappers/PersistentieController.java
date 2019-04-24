@@ -203,6 +203,6 @@ public class PersistentieController {
     }
 
     public boolean bestaatSpel(int id) {
-        return getOverzicht().contains(id);
+        return getOverzicht().toString().contains(String.format("%s:",String.valueOf(id)));
     }
 }

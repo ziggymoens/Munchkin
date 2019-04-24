@@ -45,12 +45,16 @@ public class UseCase9 {
             try {
                 do {
                     System.out.println(LanguageResource.getString("usecase9.makechoice"));
-                    System.out.println(dc.geefOverzichtSpelen());
+                    for (String lijn : dc.geefOverzichtSpelen()){
+                        System.out.println(lijn);
+                    }
+                    System.out.println(LanguageResource.getString("usecase9.choice"));
                     keuze = SCAN.nextInt();
                     tryAgain = false;
-                    SCAN.nextLine();
+
                 } while (!dc.bestaatSpel(keuze));
             } catch (Exception e) {
+                SCAN.nextLine();
                 System.out.println(Printer.exceptionCatch("Exception", e, false));
             }
         }
@@ -60,5 +64,8 @@ public class UseCase9 {
     private void laadSpel(int id){
         dc.laadSpel(id);
         //dc.verwijderOpgeslagenSpel(id);
+        UseCase2 uc2 = new UseCase2(dc);
+        uc2.speelSpel(dc.geefAantalSpelers());
+
     }
 }

@@ -50,7 +50,11 @@ class UseCase2 {
         }
         try {
             while (niemandGewonnen()) {
-                for (int i = 0; i < aantalSpelers; i++) {
+                int x = dc.geefSpelerAanBeurt();
+                if(x >= aantalSpelers-1){
+                    x = 0;
+                }
+                for (int i = x; i < aantalSpelers; i++) {
                     if (niemandGewonnen()) {
                         String naam = dc.geefNaamSpeler(i);
                         dc.zetSpelerAanBeurt(i);
