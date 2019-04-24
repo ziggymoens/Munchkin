@@ -134,12 +134,12 @@ class UseCase4 {
     }
 
     private void helpSpeler() {
-        UseCase5 uc5 = new UseCase5(this.dc, naam);
+        UseCase5 uc5 = new UseCase5(this.dc, naam, false);
         uc5.speelKaart();
     }
 
     private void helpMonster() {
-        UseCase5 uc5 = new UseCase5(this.dc, naam);
+        UseCase5 uc5 = new UseCase5(this.dc, naam, false);
         uc5.speelKaart();
     }
 
@@ -159,13 +159,9 @@ class UseCase4 {
                 kaart = SCAN.next().toLowerCase();
             }
             if (kaart.equals(LanguageResource.getString("yes"))) {
-                UseCase5 uc5 = new UseCase5(this.dc, naam);
+                UseCase5 uc5 = new UseCase5(this.dc, naam, false);
                 uc5.speelKaart();
             }
         } while (kaart.equals(LanguageResource.getString("yes")));
     }
-
-
-
-
 }

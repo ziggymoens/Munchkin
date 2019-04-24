@@ -314,8 +314,8 @@ public class DomeinController {
 
     public Schatkaart geefSchatkaart(){ return spel.geefSchatkaart(); }
     
-        public String toonOverzichtKaartenInHand(String naam) {
-        return spel.toonOverzichtKaartenInHand(naam);
+    public String toonOverzichtKaartenInHand(int speler) {
+        return spel.toonOverzichtKaartenInHand(speler);
     }
         //fix
     
@@ -331,6 +331,10 @@ public class DomeinController {
     }
     public int gooiDobbelsteen(){
         return spel.gooiDobbelsteen();
+    }
+
+    public Speler geefSpeler(int i){
+        return spel.geefSpeler(i);
     }
     
 }

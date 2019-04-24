@@ -2,9 +2,13 @@ package domein;
 
 import domein.kaarten.Kaart;
 import domein.kaarten.Schatkaart;
+import domein.kaarten.kerkerkaarten.ConsumablesKerker;
 import domein.kaarten.kerkerkaarten.Curse;
 import domein.kaarten.kerkerkaarten.Monster;
+import domein.kaarten.kerkerkaarten.Race;
 import domein.kaarten.kerkerkaarten.monsterbadstuff.BadStuff;
+import domein.kaarten.schatkaarten.ConsumablesSchat;
+import domein.kaarten.schatkaarten.Equipment;
 import domein.repositories.KaartDbKleinRepository;
 import exceptions.SpelException;
 import language.LanguageResource;
@@ -556,14 +560,41 @@ public class Spel {
     public List<Kaart> getKerkerkaarten() {
         return kerkerkaarten;
     }
-    //fix 
-    public String toonOverzichtKaartenInHand(String naam){
-        int i = zoekSpeler(naam);
-        return spelers.get(i).toonOverzichtKaartenInHand();
+
+    public String toonOverzichtKaartenInHand(int speler){
+        String output = String.format("Dit is een overzicht van je kaarten in je hand %n") ;
+        List<Kaart> kaartenInHand =  spelers.get(speler).getKaarten();
+        for(int i = 0; i < spelers.get(speler).getKaarten().size(); i++){
+            String help = "";
+            if(kaartenInHand.get(i) instanceof ConsumablesKerker){
+                help = "Consumable";
+            }
+            if(kaartenInHand.get(i) instanceof Curse){
+                help = "Curse";
+            }
+            if(kaartenInHand.get(i) instanceof Monster){
+                help = "Monster";
+            }
+            if(kaartenInHand.get(i) instanceof Race){
+                help = "Race";
+            }
+            if(kaartenInHand.get(i) instanceof ConsumablesSchat){
+                help = "Consumable";
+            }
+            if(kaartenInHand.get(i) instanceof Equipment){
+                help = "Equipment";
+            }
+            output += String.format("%d)%s: %s%n",i+1, kaartenInHand.get(i).getNaam(), help);
+        }
+        return output;
     }
 
     public int gooiDobbelsteen(){
         return new SecureRandom().nextInt(5) + 1;
+    }
+
+    public Speler geefSpeler(int i){
+        return spelers.get(i);
     }
 
 }

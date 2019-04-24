@@ -75,7 +75,7 @@ public class UseCase6 {
                 kaart = SCAN.next().toLowerCase();
             }
             if (kaart.equals(LanguageResource.getString("yes"))) {
-                UseCase5 uc5 = new UseCase5(this.dc, dc.geefNaamSpeler(dc.geefSpelerAanBeurt()));
+                UseCase5 uc5 = new UseCase5(this.dc, dc.geefNaamSpeler(dc.geefSpelerAanBeurt()), true);
                 uc5.speelKaart();
             }
         } while (kaart.equals(LanguageResource.getString("yes")));
