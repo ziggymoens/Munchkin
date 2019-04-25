@@ -2,6 +2,7 @@ package ui.cui.ucs;
 
 import domein.DomeinController;
 import language.LanguageResource;
+import printer.ColorsOutput;
 import printer.Printer;
 
 import java.util.List;
@@ -44,11 +45,11 @@ public class UseCase9 {
         while (tryAgain) {
             try {
                 do {
-                    System.out.println(LanguageResource.getString("usecase9.makechoice"));
+                    System.out.println(ColorsOutput.decoration("bold") + LanguageResource.getString("usecase9.makechoice") + ColorsOutput.reset());
                     for (String lijn : dc.geefOverzichtSpelen()){
                         System.out.println(lijn);
                     }
-                    System.out.println(LanguageResource.getString("usecase9.choice"));
+                    System.out.printf("%n%s ", LanguageResource.getString("usecase9.choice"));
                     keuze = SCAN.nextInt();
                     tryAgain = false;
 
@@ -80,7 +81,7 @@ public class UseCase9 {
     }
     private final Thread th1 = new Thread(() -> {
         System.out.print("\nLoading ");
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 17; i++) {
             try {
                 Thread.sleep(200);
             } catch (InterruptedException ex) {
@@ -88,6 +89,8 @@ public class UseCase9 {
             }
             System.out.print(".");
         }
+        System.out.println();
+        System.out.println(ColorsOutput.kleur("green") + ColorsOutput.decoration("bold") + LanguageResource.getString("usecase9.load") + ColorsOutput.reset());
         System.out.println();
     });
 }
