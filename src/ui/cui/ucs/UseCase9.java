@@ -25,7 +25,17 @@ public class UseCase9 {
     public void spelLaden() {
         //toonOverzicht();
         int keuze = maakKeuze();
-        laadSpel(keuze);
+        th1.start();
+        th1.suspend();
+        try {
+            th1.resume();
+            laadSpel(keuze);
+            th1.stop();
+        }catch (Exception e){
+            th1.suspend();
+        }
+        System.out.println("\n" + Printer.printGreen("usecase9.load"));
+        speelSpel();
     }
 
     private void toonOverzicht(){
@@ -63,25 +73,31 @@ public class UseCase9 {
     }
 
     private void laadSpel(int id){
-        th1.start();
-        th1.suspend();
+        //th1.start();
+        //th1.suspend();
         try{
-            th1.resume();
+          //  th1.resume();
             dc.laadSpel(id);
-            UseCase2 uc2 = new UseCase2(dc);
-            uc2.speelSpel(dc.geefAantalSpelers());
-            th1.stop();
+            //UseCase2 uc2 = new UseCase2(dc);
+            //uc2.speelSpel(dc.geefAantalSpelers());
+            //th1.stop();
+            //System.out.println(Printer.printGreen("usecase9.load"));
         }catch (Exception e){
-            th1.suspend();
+            //th1.suspend();
         }
 
         //dc.verwijderOpgeslagenSpel(id);
 
 
     }
+    private void speelSpel(){
+        UseCase2 uc2 = new UseCase2(dc);
+        uc2.speelSpel(dc.geefAantalSpelers());
+    }
+
     private final Thread th1 = new Thread(() -> {
         System.out.print("\nLoading ");
-        for (int i = 0; i < 17; i++) {
+        for (int i = 0; i < 100; i++) {
             try {
                 Thread.sleep(200);
             } catch (InterruptedException ex) {
@@ -89,8 +105,8 @@ public class UseCase9 {
             }
             System.out.print(".");
         }
-        System.out.println();
-        System.out.println(ColorsOutput.kleur("green") + ColorsOutput.decoration("bold") + LanguageResource.getString("usecase9.load") + ColorsOutput.reset());
-        System.out.println();
+        //System.out.println();
+        //System.out.println(ColorsOutput.kleur("green") + ColorsOutput.decoration("bold") + LanguageResource.getString("usecase9.load") + ColorsOutput.reset());
+        //System.out.println();
     });
 }
