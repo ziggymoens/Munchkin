@@ -24,10 +24,7 @@ public class UseCase9 {
     public void spelLaden() {
         //toonOverzicht();
         int keuze = maakKeuze();
-        th1.start();
         laadSpel(keuze);
-        th1.stop();
-
     }
 
     private void toonOverzicht(){
@@ -65,15 +62,25 @@ public class UseCase9 {
     }
 
     private void laadSpel(int id){
-        dc.laadSpel(id);
+        th1.start();
+        th1.suspend();
+        try{
+            th1.resume();
+            dc.laadSpel(id);
+            UseCase2 uc2 = new UseCase2(dc);
+            uc2.speelSpel(dc.geefAantalSpelers());
+            th1.stop();
+        }catch (Exception e){
+            th1.suspend();
+        }
+
         //dc.verwijderOpgeslagenSpel(id);
-        UseCase2 uc2 = new UseCase2(dc);
-        uc2.speelSpel(dc.geefAantalSpelers());
+
 
     }
     private final Thread th1 = new Thread(() -> {
         System.out.print("\nLoading ");
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 100; i++) {
             try {
                 Thread.sleep(200);
             } catch (InterruptedException ex) {
