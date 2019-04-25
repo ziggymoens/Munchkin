@@ -143,7 +143,7 @@ public class Speler {
         if (level >= 1) {
             this.level = level;
         } else {
-            throw new SpelerException("exception.speler.level");
+            this.level = 1;
         }
     }
 
@@ -350,8 +350,10 @@ public class Speler {
         }
         return idKaart;
     }
+
     public void verwijderKaart(Kaart kaart) {
-        kaarten.remove(kaart);
+        kaarten.add(kaart);
+
         updateKaarten();
     }
 
@@ -369,7 +371,8 @@ public class Speler {
         StringBuilder ret = new StringBuilder();
         int j = 0;
         for (Kaart kaart : kaarten) {
-            ret.append(String.format("%d) %s%n", j, kaart.getNaam()));
+            String idKaart = "ID = " + kaart.getId();
+            ret.append(String.format("%d) %s - %s %n", j, kaart.getNaam(), idKaart));
             j++;
         }
         return ret.toString();
