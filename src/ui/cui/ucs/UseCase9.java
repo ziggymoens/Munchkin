@@ -5,7 +5,6 @@ import language.LanguageResource;
 import printer.ColorsOutput;
 import printer.Printer;
 
-import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -13,17 +12,15 @@ import java.util.Scanner;
  * al ergens in code !!!!!
  */
 
-public class UseCase9 {
+class UseCase9 {
     private DomeinController dc;
-    private int aantalSpelen;
     private Scanner SCAN = new Scanner(System.in);
 
-    public UseCase9(DomeinController dc) {
+    UseCase9(DomeinController dc) {
         this.dc = dc;
     }
 
-    public void spelLaden() {
-        //toonOverzicht();
+    void spelLaden() {
         int keuze = maakKeuze();
         th1.start();
         th1.suspend();
@@ -36,17 +33,6 @@ public class UseCase9 {
         }
         System.out.println("\n" + Printer.printGreen("usecase9.load"));
         speelSpel();
-    }
-
-    private void toonOverzicht(){
-        String ret = "";
-        List<String> overzicht = dc.geefOverzichtSpelen();
-        int i = 1;
-        for (String lijn : overzicht){
-            ret += String.format("%d: %s", i, lijn);
-        }
-        aantalSpelen = overzicht.size();
-        System.out.println(ret);
     }
 
     private int maakKeuze(){
@@ -66,29 +52,18 @@ public class UseCase9 {
                 } while (!dc.bestaatSpel(keuze));
             } catch (Exception e) {
                 SCAN.nextLine();
-                System.out.println(Printer.exceptionCatch("Exception", e, false));
+                System.out.println(LanguageResource.getString("usecase2.choiceinput"));
             }
         }
         return keuze;
     }
 
     private void laadSpel(int id){
-        //th1.start();
-        //th1.suspend();
         try{
-          //  th1.resume();
             dc.laadSpel(id);
-            //UseCase2 uc2 = new UseCase2(dc);
-            //uc2.speelSpel(dc.geefAantalSpelers());
-            //th1.stop();
-            //System.out.println(Printer.printGreen("usecase9.load"));
         }catch (Exception e){
-            //th1.suspend();
+            System.out.println(Printer.exceptionCatch("Exception", e, false));
         }
-
-        //dc.verwijderOpgeslagenSpel(id);
-
-
     }
     private void speelSpel(){
         UseCase2 uc2 = new UseCase2(dc);
@@ -105,8 +80,16 @@ public class UseCase9 {
             }
             System.out.print(".");
         }
-        //System.out.println();
-        //System.out.println(ColorsOutput.kleur("green") + ColorsOutput.decoration("bold") + LanguageResource.getString("usecase9.load") + ColorsOutput.reset());
-        //System.out.println();
     });
 }
+
+//    private void toonOverzicht(){
+//        String ret = "";
+//        List<String> overzicht = dc.geefOverzichtSpelen();
+//        int i = 1;
+//        for (String lijn : overzicht){
+//            ret += String.format("%d: %s", i, lijn);
+//        }
+//        aantalSpelen = overzicht.size();
+//        System.out.println(ret);
+//    }

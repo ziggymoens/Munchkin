@@ -15,7 +15,6 @@ public class Printer {
     public static String exceptionCatch(String naam, Exception e) {
         String ret = "";
         try {
-            e.printStackTrace();
             ret = String.format(ColorsOutput.decoration("bold") + ColorsOutput.kleur("red") + "%s%s%n%s%n", developerMode ? String.format("%s -> (%s: %s) -> %s: %d, %s: ", e.getStackTrace()[0].getClassName(), LanguageResource.getString("method"), e.getStackTrace()[0].getMethodName(), LanguageResource.getString("line"), e.getStackTrace()[0].getLineNumber(), naam) : "", e.getMessage() == null ? LanguageResource.getString("nomessage") : LanguageResource.getString(e.getMessage()), developerMode && e.getCause() != null ? String.format("%s %s", LanguageResource.getString("cause"), e.getCause()) : "") + ColorsOutput.reset();
             if(printStackTrace){
                 e.printStackTrace();
@@ -57,7 +56,7 @@ public class Printer {
         Printer.developerMode = developerMode;
     }
 
-    public static void setPrintStackTrace(boolean stackTrace){
+    public static void setPrintStackTrace(Boolean stackTrace){
         Printer.printStackTrace = stackTrace;
     }
 }
