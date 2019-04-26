@@ -34,7 +34,6 @@ public class UseCase6 {
         //Als je het gevecht verliest
         } else {
             System.out.println(LanguageResource.getString("usecase6.monsterwon"));
-            vraagKaartSpelen("usecase6.askplaycard");
             ontsnappen(id);
         }
         System.out.println(dc.geefSpelsituatie().toString());
@@ -64,29 +63,12 @@ public class UseCase6 {
         }
     }
 
-    private void vraagKaartSpelen(String output){
-        String kaart;
-        do {
-            System.out.printf("%s, %s%n", String.format("%s", ColorsOutput.kleur("blue") + dc.geefNaamSpeler(dc.geefSpelerAanBeurt()) + ColorsOutput.reset()), LanguageResource.getString(output));
-            kaart = SCAN.next().toLowerCase();
-            while (!kaart.equals(LanguageResource.getString("yes")) && !kaart.equals(LanguageResource.getString("no"))) {
-                System.out.printf(ColorsOutput.decoration("bold") + ColorsOutput.kleur("red") + "%s%n%n", LanguageResource.getString("start.yesno") + ColorsOutput.reset());
-                System.out.println(LanguageResource.getString(output));
-                kaart = SCAN.next().toLowerCase();
-            }
-            if (kaart.equals(LanguageResource.getString("yes"))) {
-                UseCase5 uc5 = new UseCase5(this.dc, dc.geefNaamSpeler(dc.geefSpelerAanBeurt()), true);
-                uc5.speelKaart();
-            }
-        } while (kaart.equals(LanguageResource.getString("yes")));
-    }
-
     private void ontsnappen(int id){
         int runAway = Integer.parseInt(dc.geefMonsterAttribuut(id,"RunAway").toString());
         int worp = dc.gooiDobbelsteen();
         System.out.printf(LanguageResource.getString("usecase6.diceroll") + "%n", worp);
         //Speler ontsnapt
-        if(/* Moet nog de methode outRun aangeroepen worden ivm grote databank ||*/ worp > 4 - runAway){
+        if(worp > 4 - runAway){
             System.out.println(LanguageResource.getString("usecase6.escape1"));
         }// Speler ontsnapt niet
         else{
@@ -101,7 +83,7 @@ public class UseCase6 {
         if(bs.getLevelsLost() > 0){
             System.out.printf(LanguageResource.getString("usecase6.loselevels") + "%n", bs.getLevelsLost());
             dc.verhoogLevel(dc.geefNaamSpeler(dc.geefSpelerAanBeurt()), -bs.getLevelsLost());
-        }//als je geen level verliest ontsnap je automatisch  (er is aar 1 kaart die geen level verliest in de kleine kaarten set)
+        }//als je geen level verliest ontsnap je automatisch  (er is maar 1 kaart die geen level verliest in de kleine kaarten set)
         else{
             System.out.println(LanguageResource.getString("usecase6.escape1"));
         }

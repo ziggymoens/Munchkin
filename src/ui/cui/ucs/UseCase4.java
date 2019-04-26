@@ -36,7 +36,8 @@ class UseCase4 {
     void bereidSpelVoor() {
         int id = dc.geefIdBovensteKaart();
         int battleBonusMonster = Integer.parseInt(dc.geefMonsterAttribuut(id,"level").toString());;
-        int battleBonusSpeler = dc.geefLevel(dc.geefSpelerAanBeurt())   ;
+        int battleBonusSpeler = dc.geefLevel(dc.geefSpelerAanBeurt());
+
         String help = "";
         //Vragen aan de speler of hij hulp wilt met het bevechten van het monster, zoja, mogen anderen hem helpen, anders niet
         help = hulpVragen(help);
@@ -92,7 +93,7 @@ class UseCase4 {
                                     //Mag alleen gebeuren als de speler die vecht akkoord is gegaan dat hij hulp wilt
                                     if (help.equals(LanguageResource.getString("yes"))) {
                                         //aanpassen???
-                                        helpSpeler();
+                                        helpSpeler(aantal);
                                         helptmee.remove(aantal);
                                         helptmee.add(aantal, true);
                                     } else {
@@ -100,7 +101,7 @@ class UseCase4 {
                                     }
                                     break;
                                 case 2:
-                                    helpMonster();
+                                    helpMonster(aantal);
                                     break;
                                 case 3:
                                     beurt.remove(i);
@@ -133,13 +134,13 @@ class UseCase4 {
         vechtMonster(battleBonusMonster, battleBonusSpeler, helptmee);
     }
 
-    private void helpSpeler() {
-        UseCase5 uc5 = new UseCase5(this.dc, naam, false);
+    private void helpSpeler(int i) {
+        UseCase5 uc5 = new UseCase5(this.dc, i);
         uc5.speelKaart();
     }
 
-    private void helpMonster() {
-        UseCase5 uc5 = new UseCase5(this.dc, naam, false);
+    private void helpMonster(int i) {
+        UseCase5 uc5 = new UseCase5(this.dc, i);
         uc5.speelKaart();
     }
 
@@ -159,7 +160,7 @@ class UseCase4 {
                 kaart = SCAN.next().toLowerCase();
             }
             if (kaart.equals(LanguageResource.getString("yes"))) {
-                UseCase5 uc5 = new UseCase5(this.dc, naam, false);
+                UseCase5 uc5 = new UseCase5(this.dc, dc.geefSpelerAanBeurt());
                 uc5.speelKaart();
             }
         } while (kaart.equals(LanguageResource.getString("yes")));

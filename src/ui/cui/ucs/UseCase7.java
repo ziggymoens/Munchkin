@@ -106,7 +106,7 @@ public class UseCase7 {
                                         int gedeeldeWaarde = totWaarde/1000;
                                         if(gedeeldeWaarde < 1){
                                             System.out.println(ColorsOutput.kleur("yellow") + ColorsOutput.decoration("bold") + LanguageResource.getString("usecase7.kleinewaarde") + ColorsOutput.reset());
-                                        }else if(gedeeldeWaarde >= 1){
+                                        }else{
                                             dc.verhoogLevel(naam, gedeeldeWaarde);
                                             System.out.println(ColorsOutput.kleur("green") + ColorsOutput.decoration("bold") + String.format(LanguageResource.getString("usecase7.levelup"), gedeeldeWaarde, gedeeldeWaarde > 1 ? "s" : "") + ColorsOutput.reset());
                                             System.out.println(ColorsOutput.kleur("blue") + ColorsOutput.decoration("bold") + dc.geefInformatie() + ColorsOutput.reset());
@@ -116,6 +116,8 @@ public class UseCase7 {
 
                                     }else if(antwoord.equalsIgnoreCase(LanguageResource.getString("usecase7.translationthrow"))){
                                         System.out.println(" *** gekozen voor weggooien -- hardcode, nog aanpassen");
+                                        System.out.println(LanguageResource.getString("usecase7.throw"));
+                                        System.out.println(dc.geefNietVerkoopbareKaarten(naam));
                                         match = false;
                                     }
                                     else
