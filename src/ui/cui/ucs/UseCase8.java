@@ -50,8 +50,12 @@ class UseCase8 {
     }
 
     private void saveGame() {
+        th1.start();
+        th1.suspend();
         try {
+            th1.resume();
             dc.spelOpslaan();
+            th1.stop();
             System.out.println(Printer.printGreen("usecase8.game.saved"));
             String ant;
             do {
@@ -62,11 +66,26 @@ class UseCase8 {
                 System.exit(0);
             }
         } catch (SpelException e) {
+            th1.suspend();
             System.out.println(Printer.exceptionCatch("SpelException", e));
         } catch (SpelDatabaseException e) {
+            th1.suspend();
             System.out.println(Printer.exceptionCatch("SpelDatabaseException", e));
         } catch (Exception e) {
+            th1.suspend();
             System.out.print(Printer.exceptionCatch("Exception", e, false));
         }
     }
+
+    private final Thread th1 = new Thread(() -> {
+        System.out.print("\nLoading ");
+        for (int i = 0; i < 100; i++) {
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException ex) {
+                System.out.println(Printer.exceptionCatch("InterruptedException", ex, false));
+            }
+            System.out.print(".");
+        }
+    });
 }

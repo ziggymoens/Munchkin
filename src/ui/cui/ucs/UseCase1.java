@@ -100,22 +100,40 @@ public class UseCase1 {
      */
     private void askDeveloper() {
         try {
-            System.out.println(LanguageResource.getString("usecase1.developer"));
-            String dev = SCAN.next().toLowerCase();
-            SCAN.nextLine();
-            while (!dev.equals(LanguageResource.getString("yes")) && !dev.equals(LanguageResource.getString("no"))) {
-                System.out.printf(ColorsOutput.decoration("bold") + ColorsOutput.kleur("red") + "%s%n%n", LanguageResource.getString("start.yesno") + ColorsOutput.reset());
-                System.out.println(LanguageResource.getString("newGame"));
-                dev = SCAN.next().toLowerCase();
-                SCAN.nextLine();
-            }
-            if (dev.equals(LanguageResource.getString("yes").toLowerCase())) {
+            boolean antw = controleYesNo("usecase1.developer");
+            if (antw) {
                 Printer.setDeveloperMode(true);
+                askStackTrace();
             }
         } catch (Exception e) {
             System.out.println(Printer.exceptionCatch("Exception", e, false));
         }
     }
+
+    private void askStackTrace(){
+        try{
+            boolean antw = controleYesNo("usecase1.stacktrace");
+            if (antw) {
+                Printer.setPrintStackTrace(true);
+            }
+        }catch (Exception e){
+            System.out.println(Printer.exceptionCatch("Exception", e, false));
+        }
+    }
+
+    private Boolean controleYesNo(String text){
+        System.out.println(LanguageResource.getString(text));
+        String antw = SCAN.next().toLowerCase();
+        SCAN.nextLine();
+        while (!antw.equals(LanguageResource.getString("yes")) && !antw.equals(LanguageResource.getString("no"))) {
+            System.out.printf(ColorsOutput.decoration("bold") + ColorsOutput.kleur("red") + "%s%n%n", LanguageResource.getString("start.yesno") + ColorsOutput.reset());
+            System.out.println(LanguageResource.getString("newGame"));
+            antw = SCAN.next().toLowerCase();
+            SCAN.nextLine();
+        }
+        return antw.equals(LanguageResource.getString("yes"));
+    }
+
 
     /**
      * methode om het spel te starten
