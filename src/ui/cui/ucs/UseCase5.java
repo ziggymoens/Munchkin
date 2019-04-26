@@ -20,11 +20,13 @@ public class UseCase5 {
     private final DomeinController dc;
     private int spelerAanBeurt;
     private final Scanner SCAN = new Scanner(System.in);
+    private boolean help;
 
 
-    public UseCase5(DomeinController dc, int i) {
+    public UseCase5(DomeinController dc, int i, String help) {
         this.dc = dc;
         this.spelerAanBeurt = i;
+        this.help = help.equalsIgnoreCase(LanguageResource.getString("yes"));
     }
 
     void speelKaart() {
@@ -37,24 +39,38 @@ public class UseCase5 {
             System.err.println("Je moet de juiste input geven");
         }
         System.out.println(dc.geefSpeler(spelerAanBeurt).getKaarten().get(kaart - 1));
-        if(validatieKaart(kaart)){
+        if(validatieKaart(kaart, spelerAanBeurt)){
 
         }else{
             System.out.println("Kaart mag niet gespeeld worden");
+            speelKaart();
         }
     }
 
-    private Boolean validatieKaart(int kaart){
+    private Boolean validatieKaart(int kaart, int spelerAanbeurt){
         Kaart kr = dc.geefSpeler(spelerAanBeurt).getKaarten().get(kaart - 1);
-        //Kaarten die de Tegenspelers mogen spelen
+        //Kaarten die de Speler mag spelen
         if(dc.geefTegenspelers().contains(dc.geefNaamSpeler(dc.geefSpelerAanBeurt()))){
             if(kr instanceof ConsumablesSchat || kr instanceof ConsumablesKerker || kr instanceof Equipment || kr instanceof Race || kr instanceof Monster){
-                return true;
+                if(kr instanceof Monster){
+                    if(dc.geefTegenspelers().contains(dc.geefNaamSpeler(spelerAanbeurt))){
+                        return true;
+                    }else{
+                        return false;
+                    }
+                }return true;
             }return false;
-            //Kaarten die de Speler mag spelen
+            //Kaarten die de Tegenspelers mogen spelen
         }else{
             if(kr instanceof ConsumablesSchat || kr instanceof ConsumablesKerker || kr instanceof Monster || kr instanceof Curse){
                 //Aanpassen dat als speler geen hulp wou, alleen negatieve ConsumablesKerker gespeeld mag worden
+                if(help){
+                    if(kr instanceof ConsumablesKerker){
+                        if(((ConsumablesKerker) kr).getBonus() < 0){
+                            return false;
+                        }
+                    }
+                }
                 return true;
             }
         }

@@ -340,4 +340,6 @@ public class DomeinController {
     public int geefAantalSpelers() {
         return spel.getAantalSpelers();
     }
+
+
 }

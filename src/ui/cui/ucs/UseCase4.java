@@ -42,7 +42,7 @@ class UseCase4 {
         //Vragen aan de speler of hij hulp wilt met het bevechten van het monster, zoja, mogen anderen hem helpen, anders niet
         help = hulpVragen(help);
         // Vragen aan speler of hij een bonuskaart wilt spelen.
-        vraagKaartSpelen("usecase4.ask.bonuscard");
+        vraagKaartSpelen("usecase4.ask.bonuscard", help);
         //initialisatie van de 2 lijsten beurt en helptmee
         List<Boolean> beurt = new ArrayList<>();
         List<Boolean> helptmee = new ArrayList<>();
@@ -56,7 +56,7 @@ class UseCase4 {
         }
         monsterKeuze(help, beurt, helptmee);
         //vragen of de speler nog een extra kaart wilt spelen, zoja, speel een kaart
-        vraagKaartSpelen("usecase4.ask.bonuscard");
+        vraagKaartSpelen("usecase4.ask.bonuscard", help);
         System.out.println("\n" + dc.bovensteKaartToString());
         //Het overzicht tonen voor het gevecht
         geefOverzichtGevecht(battleBonusMonster, battleBonusSpeler, helptmee);
@@ -93,7 +93,7 @@ class UseCase4 {
                                     //Mag alleen gebeuren als de speler die vecht akkoord is gegaan dat hij hulp wilt
                                     if (help.equals(LanguageResource.getString("yes"))) {
                                         //aanpassen???
-                                        helpSpeler(aantal);
+                                        helpSpeler(aantal, help);
                                         helptmee.remove(aantal);
                                         helptmee.add(aantal, true);
                                     } else {
@@ -101,7 +101,7 @@ class UseCase4 {
                                     }
                                     break;
                                 case 2:
-                                    helpMonster(aantal);
+                                    helpMonster(aantal, help);
                                     break;
                                 case 3:
                                     beurt.remove(i);
@@ -134,13 +134,13 @@ class UseCase4 {
         vechtMonster(battleBonusMonster, battleBonusSpeler, helptmee);
     }
 
-    private void helpSpeler(int i) {
-        UseCase5 uc5 = new UseCase5(this.dc, i);
+    private void helpSpeler(int i, String help) {
+        UseCase5 uc5 = new UseCase5(this.dc, i, help);
         uc5.speelKaart();
     }
 
-    private void helpMonster(int i) {
-        UseCase5 uc5 = new UseCase5(this.dc, i);
+    private void helpMonster(int i, String help) {
+        UseCase5 uc5 = new UseCase5(this.dc, i, help);
         uc5.speelKaart();
     }
 
@@ -149,7 +149,7 @@ class UseCase4 {
         uc6.vechtMetMonster(battleBonusMonster, battleBonusSpeler, helptmee, aantalSpelers);
     }
 
-    private void vraagKaartSpelen(String output){
+    private void vraagKaartSpelen(String output, String help){
         String kaart;
         do {
             System.out.printf("%s, %s%n", String.format("%s", ColorsOutput.kleur("blue") + naam + ColorsOutput.reset()), LanguageResource.getString(output));
@@ -160,7 +160,7 @@ class UseCase4 {
                 kaart = SCAN.next().toLowerCase();
             }
             if (kaart.equals(LanguageResource.getString("yes"))) {
-                UseCase5 uc5 = new UseCase5(this.dc, dc.geefSpelerAanBeurt());
+                UseCase5 uc5 = new UseCase5(this.dc, dc.geefSpelerAanBeurt(), help);
                 uc5.speelKaart();
             }
         } while (kaart.equals(LanguageResource.getString("yes")));
