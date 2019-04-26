@@ -1,7 +1,6 @@
 package ui.cui.ucs;
 
 import language.LanguageResource;
-import printer.ColorsOutput;
 import printer.Printer;
 
 import java.util.InputMismatchException;
@@ -18,13 +17,9 @@ public class UniversalMethods {
             antw = SCAN.next().toLowerCase();
             SCAN.nextLine();
             while (!antw.equals(LanguageResource.getString("yes")) && !antw.equals(LanguageResource.getString("no"))) {
-                System.out.printf(ColorsOutput.decoration("bold") + ColorsOutput.kleur("red") + "%s%n%n", LanguageResource.getString("start.yesno") + ColorsOutput.reset());
-                System.out.println(LanguageResource.getString(text));
-                antw = SCAN.next().toLowerCase();
-                SCAN.nextLine();
+                throw new InputMismatchException("start.yesno");
             }
         } catch (InputMismatchException e) {
-            e = new InputMismatchException("usecase2.choiceerror");
             System.out.println(Printer.exceptionCatch("InputException (UM)", e));
             SCAN.nextLine();
         }

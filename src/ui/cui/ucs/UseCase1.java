@@ -12,6 +12,10 @@ import java.util.*;
 
 /**
  * @author g35
+ *
+ * KLAAR -- ZIGGY -- 26/4/2019
+ * CONTROLE JONA --
+ * CONTROLE KILI --
  */
 public class UseCase1 {
 
@@ -316,10 +320,14 @@ public class UseCase1 {
                 System.out.println(LanguageResource.getString("ask.sex"));
                 String geslacht = SCAN.next();
                 SCAN.nextLine();
+                //geslacht toewijzen aan speler i
                 dc.geefSpelerGeslacht(i, geslacht);
                 tryAgain = false;
             } catch (SpelerException e) {
                 System.out.print(Printer.exceptionCatch("SpelerException (UC1)", e));
+                SCAN.nextLine();
+            } catch (Exception e){
+                System.out.println(Printer.exceptionCatch("Exception (UC1)", e, false));
                 SCAN.nextLine();
             }
         }
@@ -329,6 +337,7 @@ public class UseCase1 {
      * deze werkt niet goed in netbeans
      */
     private final Thread th1 = new Thread(() -> {
+        try{
         System.out.print("\nLoading ");
         for (int i = 0; i < 100; i++) {
             try {
@@ -338,12 +347,12 @@ public class UseCase1 {
             }
             System.out.print(".");
         }
+        }catch (Exception e){
+            System.out.println(Printer.exceptionCatch("Exception (UC1)", e, false));
+        }
     });
 }
 
-
-//    //MEERTALIG MAKEN
-//
 //    /**
 //     * methode om te kiezen welke databank wil gebruikt worden
 //     *
