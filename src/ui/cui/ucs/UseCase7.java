@@ -16,6 +16,7 @@ public class UseCase7 {
     private final DomeinController dc;
     private final Scanner SCAN = new Scanner(System.in);
     private int g;
+    private String antw;
 
     public UseCase7(DomeinController dc) {
         this.dc = dc;
@@ -48,6 +49,13 @@ public class UseCase7 {
                         if (dc.getAantalKaarten(naam) >= 1) {
                             System.out.println(ColorsOutput.decoration("bold") + String.format("%s:", LanguageResource.getString("usecase7.toitems")) + ColorsOutput.reset());
                             System.out.println(String.format("%s", dc.geefKaartenKunnenNaarItems(naam)));
+                            SCAN.nextLine();
+                            System.out.println(LanguageResource.getString("usecase7.itemsconfirm"));
+                            antw = SCAN.nextLine();
+
+                            if(antw.equalsIgnoreCase(LanguageResource.getString("yes"))){
+                                System.out.println("ja, naar items");
+                            }
                         }else{
                             System.out.println(String.format("%s!", LanguageResource.getString("usecase7.nietgenoeg")));
                         }
@@ -63,8 +71,8 @@ public class UseCase7 {
                         System.out.println(dc.geefNietVerkoopbareKaarten(naam));
                         System.out.println(LanguageResource.getString("usecase7.asktosell"));
 
-                        String antw = SCAN.next();
-                        if(antw.equalsIgnoreCase("yes") || antw.equalsIgnoreCase("oui") || antw.equalsIgnoreCase("ja")){
+                        antw = SCAN.next();
+                        if(antw.equalsIgnoreCase(LanguageResource.getString("yes"))){
                             String antwoord;
                             String[] keuzeKaart;
                             int totWaarde = 0;
@@ -111,12 +119,14 @@ public class UseCase7 {
                                             System.out.println(ColorsOutput.kleur("green") + ColorsOutput.decoration("bold") + String.format(LanguageResource.getString("usecase7.levelup"), gedeeldeWaarde, gedeeldeWaarde > 1 ? "s" : "") + ColorsOutput.reset());
                                             System.out.println(ColorsOutput.kleur("blue") + ColorsOutput.decoration("bold") + dc.geefInformatie() + ColorsOutput.reset());
                                         }
+
                                         // System.out.println(ColorsOutput.kleur("white") + ColorsOutput.decoration("bold") + ColorsOutput.achtergrond("red") + " *** totale levels stijgen volgens deling: " + totWaarde/1000 + ColorsOutput.reset());
                                         // System.out.println(" *** Dit is de totale waarde: " + totWaarde);
 
                                     }else if(antwoord.equalsIgnoreCase(LanguageResource.getString("usecase7.translationthrow"))){
                                         System.out.println(" *** gekozen voor weggooien -- hardcode, nog aanpassen");
                                         System.out.println(LanguageResource.getString("usecase7.throw"));
+
                                         System.out.println(dc.geefNietVerkoopbareKaarten(naam));
                                         match = false;
                                     }

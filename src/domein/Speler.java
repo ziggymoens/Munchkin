@@ -318,7 +318,8 @@ public class Speler {
         int j = 0;
         for (Kaart kaart : kaarten) {
             if (kaart instanceof Race || kaart instanceof Equipment) {
-                ret.append(String.format("%d) %s%n", j, kaart.getNaam()));
+                String idKaart = "ID = " + kaart.getId();
+                ret.append(String.format("%d) %s - %s %n", j, kaart.getNaam(), idKaart));
                 j++;
             }
         }

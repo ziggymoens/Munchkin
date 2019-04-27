@@ -116,7 +116,7 @@ class UseCase3 {
      */
     private void beheerKaarten() {
         try {
-            UseCase7V2 uc7 = new UseCase7V2(this.dc);
+            UseCase7 uc7 = new UseCase7(this.dc);
             uc7.beheerKaarten(naam);
             while (dc.getAantalKaarten(naam) > 5) {
                 uc7.beheerKaarten(naam);
