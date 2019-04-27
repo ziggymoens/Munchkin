@@ -12,7 +12,7 @@ import java.util.*;
 
 /**
  * @author g35
- *
+ * <p>
  * KLAAR -- ZIGGY -- 26/4/2019
  * CONTROLE JONA --
  * CONTROLE KILI -- 27/04/2019
@@ -35,7 +35,7 @@ public class UseCase1 {
         this.dc = dc;
         talen = new HashMap<>();
 
-        for (String taal: taalCodes){
+        for (String taal : taalCodes) {
             talen.put(taal, new Locale(taal));
         }
         try {
@@ -98,10 +98,10 @@ public class UseCase1 {
     /**
      * Methode die de mogelijkheid geeft om de gebruiker de stacktrace te laten printen
      */
-    private void askStackTrace(){
-        try{
+    private void askStackTrace() {
+        try {
             Printer.setPrintStackTrace(UniversalMethods.controleJaNee("usecase1.stacktrace"));
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.print(Printer.exceptionCatch("Exception (UC1)", e, false));
         }
     }
@@ -168,7 +168,7 @@ public class UseCase1 {
             //switch voor de verschillende talen
             LanguageResource.setLocale(talen.get(talenVolledig.get(gekozenTaal)));
             System.out.printf("%s: %s%n", LanguageResource.getString("picked"), LanguageResource.getString("language"));
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.print(Printer.exceptionCatch("Exception (UC1)", e, false));
             scan.nextLine();
         }
@@ -184,7 +184,7 @@ public class UseCase1 {
             th1.start();
             //thread pauzeren
             th1.suspend();
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.print(Printer.exceptionCatch("Exception (UC1)", e, false));
         }
         boolean tryAgain = true;
@@ -252,7 +252,6 @@ public class UseCase1 {
     }
 
 
-
     /**
      * Voeg het aantal gekozen aantal spelers toe aan het spel a.d.h.v. naam,
      * maakt leeg spelerobject, kent naam en geslacht toe aan speler op index i
@@ -270,10 +269,10 @@ public class UseCase1 {
             }
             //geef startkaarten aan spelers in volgorde van ingeven (DR_uc1)
             dc.geefStartKaarten();
-        }catch (InputMismatchException e) {
+        } catch (InputMismatchException e) {
             e = new InputMismatchException("usecase2.choiceerror");
             System.out.print(Printer.exceptionCatch("InputException (UC1)", e));
-        }catch (Exception e) {
+        } catch (Exception e) {
             System.out.print(Printer.exceptionCatch("Exception (UC1)", e, false));
         }
     }
@@ -299,11 +298,11 @@ public class UseCase1 {
             } catch (SpelException e) {
                 System.out.print(Printer.exceptionCatch("SpelException (UC1)", e));
                 scan.nextLine();
-            }catch (InputMismatchException e) {
+            } catch (InputMismatchException e) {
                 e = new InputMismatchException("usecase2.choiceerror");
                 System.out.print(Printer.exceptionCatch("InputException (UC1)", e));
                 scan.nextLine();
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.print(Printer.exceptionCatch("Exception (UC1)", e, false));
                 scan.nextLine();
             }
@@ -328,7 +327,7 @@ public class UseCase1 {
             } catch (SpelerException e) {
                 System.out.print(Printer.exceptionCatch("SpelerException (UC1)", e));
                 scan.nextLine();
-            } catch (Exception e){
+            } catch (Exception e) {
                 System.out.print(Printer.exceptionCatch("Exception (UC1)", e, false));
                 scan.nextLine();
             }
@@ -339,17 +338,17 @@ public class UseCase1 {
      * Loading thread
      */
     private final Thread th1 = new Thread(() -> {
-        try{
-        System.out.print("\nLoading ");
-        for (int i = 0; i < 100; i++) {
-            try {
-                Thread.sleep(200);
-            } catch (InterruptedException ex) {
-                System.out.println(Printer.exceptionCatch("InterruptedException", ex, false));
+        try {
+            System.out.print("\nLoading ");
+            for (int i = 0; i < 100; i++) {
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException ex) {
+                    System.out.println(Printer.exceptionCatch("InterruptedException", ex, false));
+                }
+                System.out.print(".");
             }
-            System.out.print(".");
-        }
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.print(Printer.exceptionCatch("Exception (UC1)", e, false));
         }
     });

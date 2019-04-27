@@ -12,6 +12,9 @@ import language.LanguageResource;
 import printer.ColorsOutput;
 import printer.Printer;
 
+import java.util.HashMap;
+import java.util.InputMismatchException;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -26,6 +29,8 @@ class UseCase2 {
     //Declaraties voor gehele usecase.
     private final DomeinController dc;
     private final Scanner scan;
+    private final Map<Integer, Runnable> beurtOpties;
+    private final Runnable[] opties = {this::spelen, this::opslaan, this::stoppen};
     private int aantalSpelers;
     private String naam;
 
@@ -37,7 +42,10 @@ class UseCase2 {
     UseCase2(DomeinController dc) {
         this.dc = dc;
         scan = new Scanner(System.in);
-
+        beurtOpties = new HashMap<>();
+        for (int i = 0; i < opties.length; i++) {
+            beurtOpties.put(i + 1, opties[i]);
+        }
     }
 
     /**
@@ -50,16 +58,16 @@ class UseCase2 {
         try {
             //zet spelers in de volgorde zoals opgegeven in DR
             dc.controleerVolgorde();
-            System.out.println(String.format("%s: %n%s%n",LanguageResource.getString("usecase2.volgorde"),dc.geefInformatie()));
+            System.out.println(String.format("%s: %n%s%n", LanguageResource.getString("usecase2.volgorde"), dc.geefInformatie()));
         } catch (SpelException | SpelerException e) {
             System.out.print(Printer.exceptionCatch("Spel/SpelerException (UC2)", e));
-        } catch (Exception e){
-            System.out.println(Printer.exceptionCatch("Exception (UC2)", e, false));
+        } catch (Exception e) {
+            System.out.print(Printer.exceptionCatch("Exception (UC2)", e, false));
         }
         try {
             while (niemandGewonnen()) {
                 int x = dc.geefSpelerAanBeurt();
-                if(x >= aantalSpelers-1){
+                if (x >= aantalSpelers - 1) {
                     x = 0;
                 }
                 for (int i = x; i < aantalSpelers; i++) {
@@ -72,17 +80,16 @@ class UseCase2 {
             }
         } catch (SpelException | SpelerException e) {
             System.out.print(Printer.exceptionCatch("Spel/SpelerException (UC2)", e));
-        } catch (Exception e){
-            System.out.println(Printer.exceptionCatch("Exception (UC2)", e, false));
+        } catch (Exception e) {
+            System.out.print(Printer.exceptionCatch("Exception (UC2)", e, false));
         }
         try {
             System.out.printf("%s: %s", LanguageResource.getString("end.won"), geefNaamWinnaar());
         } catch (SpelException | SpelerException e) {
             System.out.print(Printer.exceptionCatch("Spel/SpelerException (UC2)", e));
-        } catch (Exception e){
-            System.out.println(Printer.exceptionCatch("Exception (UC2)", e, false));
+        } catch (Exception e) {
+            System.out.print(Printer.exceptionCatch("Exception (UC2)", e, false));
         }
-
     }
 
     /**
@@ -100,55 +107,58 @@ class UseCase2 {
                     throw new Exception();
                 }
                 tryAgain = false;
+            } catch (InputMismatchException e) {
+                e = new InputMismatchException("usecase2.choiceerror");
+                System.out.print(Printer.exceptionCatch("InputMismatch (UC2)", e));
             } catch (Exception e) {
-                System.out.println(ColorsOutput.kleur("red") + ColorsOutput.decoration("bold") + LanguageResource.getString("usecase2.choiceinput") + ColorsOutput.reset());
-                //System.out.println(Printer.exceptionCatch("Exception", e, false));
+                e = new Exception("usecase2.choiceinput");
+                System.out.print(Printer.exceptionCatch("Exception (UC2)", e, false));
                 scan.nextLine();
             }
-        }
-        try {
-            switch (keuze) {
-                case 1:
-                    try {
-                        UseCase3 uc3 = new UseCase3(this.dc, aantalSpelers);
-                        uc3.speelBeurt(naam);
-                    } catch (Exception e) {
-                        System.out.print(Printer.exceptionCatch("Exception", e, false));
-                    }
-                    break;
-                case 2:
-                    try {
-                        UseCase8 uc8 = new UseCase8(this.dc);
-                        uc8.spelOpslaan();
-                    } catch (Exception e) {
-                        System.out.print(Printer.exceptionCatch("Exception", e, false));
-                    }
-                    break;
-                case 3:
-                    boolean tryAgain2 = true;
-                    while (tryAgain2) {
-                        try {
-                            System.out.println(LanguageResource.getString("close") + String.format(" (%s, %s)", LanguageResource.getString("yes"), LanguageResource.getString("no")));
-                            String yesno = scan.next();
-                            if (!yesno.equals(LanguageResource.getString("yes")) && !yesno.equals(LanguageResource.getString("no"))) {
-                                throw new Exception();
-                            }
-                            if (yesno.equals(LanguageResource.getString("yes"))) {
-                                System.out.println(Printer.printGreen("gamestop"));
-                                System.exit(0);
-                            }
-                            tryAgain2 = false;
-                        } catch (Exception e) {
-                            System.out.print(ColorsOutput.kleur("red") + ColorsOutput.decoration("bold") + LanguageResource.getString("usecase2.choiceerror") + ColorsOutput.reset());
-                            scan.nextLine();
-                        }
-                    }
-                    break;
-                default:
-                    throw new IllegalArgumentException("usecase2.choiceerror");
+            try {
+                beurtOpties.get(keuze).run();
+            } catch (Exception e) {
+                System.out.print(Printer.exceptionCatch("Exception (UC2)", e, false));
             }
-        } catch (IllegalArgumentException e) {
-            System.out.print(Printer.exceptionCatch("IllegalArgumentException", e));
+        }
+    }
+
+    private void spelen() {
+        try {
+            UseCase3 uc3 = new UseCase3(this.dc, aantalSpelers);
+            uc3.speelBeurt(naam);
+        } catch (Exception e) {
+            System.out.print(Printer.exceptionCatch("Exception", e, false));
+        }
+    }
+
+    private void opslaan() {
+        try {
+            UseCase8 uc8 = new UseCase8(this.dc);
+            uc8.spelOpslaan();
+        } catch (Exception e) {
+            System.out.print(Printer.exceptionCatch("Exception", e, false));
+        }
+    }
+
+    private void stoppen() {
+        boolean tryAgain2 = true;
+        while (tryAgain2) {
+            try {
+                System.out.println(LanguageResource.getString("close") + String.format(" (%s, %s)", LanguageResource.getString("yes"), LanguageResource.getString("no")));
+                String yesno = scan.next();
+                if (!yesno.equals(LanguageResource.getString("yes")) && !yesno.equals(LanguageResource.getString("no"))) {
+                    throw new Exception();
+                }
+                if (yesno.equals(LanguageResource.getString("yes"))) {
+                    System.out.println(Printer.printGreen("gamestop"));
+                    System.exit(0);
+                }
+                tryAgain2 = false;
+            } catch (Exception e) {
+                System.out.print(ColorsOutput.kleur("red") + ColorsOutput.decoration("bold") + LanguageResource.getString("usecase2.choiceerror") + ColorsOutput.reset());
+                scan.nextLine();
+            }
         }
     }
 
