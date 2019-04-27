@@ -24,7 +24,7 @@ public class UseCase1 {
     private final DomeinController dc;
     private final Map<String, Locale> talen;
     private int aantalSpelers;
-    private String[] taalCodes = {"nl", "en", "fr"};
+    private final String[] taalCodes = {"nl", "en", "fr"};
 
     /**
      * constructor voor UseCase 1
