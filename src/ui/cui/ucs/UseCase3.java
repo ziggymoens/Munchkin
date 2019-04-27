@@ -26,6 +26,7 @@ class UseCase3 {
     private int huidigeKaart;
     private String naam;
     private final int aantalSpelers;
+    private List<String> huidigeSituatie;
 
     UseCase3(DomeinController dc, int aantalSpelers) {
         types = new HashMap<>();
@@ -40,23 +41,17 @@ class UseCase3 {
 
     }
 
+    /**
+     * @param naam
+     */
     void speelBeurt(String naam) {
         this.naam = naam;
         try {
-            List<String> huidigeSituatie = dc.geefSpelsituatie();
-            System.out.println();
-            for (int i = 0; i < aantalSpelers; i++) {
-                if (i == dc.geefSpelerAanBeurt()) {
-                    System.out.print(ColorsOutput.achtergrond("yellow") + huidigeSituatie.get(i) + ColorsOutput.reset());
-                } else {
-                    System.out.print(huidigeSituatie.get(i));
-                }
-            }
-            System.out.println();
+            toonSituatie();
             System.out.println(dc.toonBovensteKk() + " " + dc.geefTypeKaart(dc.geefIdBovensteKaart()));
             System.out.println(dc.bovensteKaartToString());
             huidigeKaart = dc.geefIdBovensteKaart();
-            System.out.println(String.format("%s %s", naam, LanguageResource.getString("usecase3.confirm")));
+            System.out.println(String.format("%s %s", Printer.printBlue(naam), LanguageResource.getString("usecase3.confirm")));
             String bev = SCAN.next();
             SCAN.nextLine();
             while (!bev.equals(LanguageResource.getString("yes"))) {
@@ -72,19 +67,47 @@ class UseCase3 {
             for (int i = 0; i < aantalSpelers; i++) {
                 verschil = huidigeSituatie.get(i).toLowerCase().equals(dc.geefSpelsituatie().get(i).toLowerCase());
             }
-            System.out.printf("%s", verschil ? LanguageResource.getString("usecase3.nochanges") + "\n" : LanguageResource.getString("usecase3.changedsituation") + "\n" + dc.geefSpelsituatie());
+            if (verschil) {
+                System.out.printf("%s%n", LanguageResource.getString("usecase3.nochanges"));
+            } else {
+                System.out.printf("%s%n", LanguageResource.getString("usecase3.changedsituation"));
+                toonSituatie();
+            }
             dc.nieuweBovensteKaartK();
         } catch (Exception e) {
-            System.out.println(Printer.exceptionCatch("Exception", e, false));
+            System.out.print(Printer.exceptionCatch("Exception (UC3)", e, false));
         }
     }
 
+    /**
+     *
+     */
     private void speelKaart() {
         try {
             String type = dc.geefTypeKaart(huidigeKaart);
             types.get(type).run();
         } catch (Exception e) {
-            System.out.println(Printer.exceptionCatch("Exception", e, false));
+            System.out.print(Printer.exceptionCatch("Exception (UC3)", e, false));
+        }
+    }
+
+    /**
+     *
+     */
+    private void toonSituatie() {
+        try {
+            System.out.println();
+            huidigeSituatie = dc.geefSpelsituatie();
+            for (int i = 0; i < aantalSpelers; i++) {
+                if (i == dc.geefSpelerAanBeurt()) {
+                    System.out.print(ColorsOutput.achtergrond("yellow") + huidigeSituatie.get(i) + ColorsOutput.reset());
+                } else {
+                    System.out.print(huidigeSituatie.get(i));
+                }
+            }
+            System.out.println();
+        } catch (Exception e) {
+            System.out.print(Printer.exceptionCatch("Ecxeption (UC3)", e, false));
         }
     }
 
@@ -93,75 +116,53 @@ class UseCase3 {
      */
     private void beheerKaarten() {
         try {
-            UseCase7 uc7 = new UseCase7(this.dc);
+            UseCase7V2 uc7 = new UseCase7V2(this.dc);
             uc7.beheerKaarten(naam);
             while (dc.getAantalKaarten(naam) > 5) {
                 uc7.beheerKaarten(naam);
             }
-        } catch (UnsupportedOperationException e) {
-            System.out.print(Printer.exceptionCatch("UnsupportedOperationException", e, false));
+        } catch (Exception e) {
+            System.out.print(Printer.exceptionCatch("Exception (UC3)", e, false));
         }
 
     }
 
+    /**
+     *
+     */
     private void geenEffectKaart() {
         try {
             dc.geefKerkerkaartAanSpeler(naam);
             System.out.print(Printer.printGreen(String.format("usecase3.play.%s", dc.geefTypeKaart(huidigeKaart).toLowerCase())));
         } catch (Exception e) {
-            System.out.println(Printer.exceptionCatch("Exception", e, false));
+            System.out.print(Printer.exceptionCatch("Exception (UC3)", e, false));
         }
 
     }
 
+    /**
+     *
+     */
     private void monsterKaart() {
         try {
             UseCase4 uc4 = new UseCase4(this.dc, aantalSpelers, naam);
             uc4.bereidSpelVoor();
-        } catch (UnsupportedOperationException e) {
-            System.out.print(Printer.exceptionCatch("UnsupportedOperationException", e, false));
+        } catch (Exception e) {
+            System.out.print(Printer.exceptionCatch("Exception (UC3)", e, false));
         }
         System.out.print(Printer.printGreen("usecase3.play.monster"));
     }
 
-
+    /**
+     *
+     */
     private void curseKaart() {
-//        if (dc.geefTypeLostCurse().equals("item")) {
-//            System.out.println(dc.toonItemsSpeler(naam));
-//            if (dc.geefAantalItemsSpeler(naam) > 0) {
-//                int keuze;
-//                do {
-//                    System.out.println(LanguageResource.getString("usecase3.itemlose"));
-//                    System.out.printf("(1 - %d)    ", dc.geefAantalItemsSpeler(naam));
-//                    keuze = SCAN.nextInt();
-//               } while (keuze < 1 || keuze >= dc.geefAantalItemsSpeler(naam));
-//                dc.verwijderItemSpeler(naam, keuze);
-//            }
-//        }
         try {
             dc.curseKaart(naam);
             System.out.println(Printer.printGreen("usecase3.play.curse"));
         } catch (Exception e) {
-            System.out.println(Printer.exceptionCatch("Exception", e, false));
+            System.out.print(Printer.exceptionCatch("Exception (UC3)", e, false));
         }
     }
-
-//    private void consumablesKKaart() {
-//        dc.geefKerkerkaartAanSpeler(naam);
-//        System.out.println(Printer.printGreen("play.consumablesk"));
-//    }
-//    private void raceKaart() {
-//        dc.geefKerkerkaartAanSpeler(naam);
-//        System.out.println(Printer.printGreen("play.race"));
-//    }
-//
-//    private void consumablesSKaart() {
-//        dc.effectKerkerkaart(naam);
-//        System.out.println(Printer.printGreen("play.consumabless"));
-//    }
-//
-//    private void equipmentKaart() {
-//        dc.effectKerkerkaart(naam);
-//        System.out.println(Printer.printGreen("play.equipment"));
 }
 

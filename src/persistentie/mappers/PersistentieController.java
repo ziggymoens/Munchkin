@@ -161,7 +161,6 @@ public class PersistentieController {
         }
         voegKerkerkaartenToeAanSpel(spel);
         voegSchatkaartenToeAanSpel(spel);
-
         return spel;
     }
 

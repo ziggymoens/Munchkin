@@ -123,6 +123,9 @@ class UseCase2 {
         }
     }
 
+    /**
+     *
+     */
     private void spelen() {
         try {
             UseCase3 uc3 = new UseCase3(this.dc, aantalSpelers);
@@ -132,6 +135,9 @@ class UseCase2 {
         }
     }
 
+    /**
+     *
+     */
     private void opslaan() {
         try {
             UseCase8 uc8 = new UseCase8(this.dc);
@@ -141,6 +147,9 @@ class UseCase2 {
         }
     }
 
+    /**
+     *
+     */
     private void stoppen() {
         boolean tryAgain2 = true;
         while (tryAgain2) {
@@ -180,6 +189,9 @@ class UseCase2 {
         return dc.geefNaamWinnaar();
     }
 
+    /**
+     *
+     */
     private void printKeuze() {
         System.out.printf("%s%n"
                 + "1) %s%n"

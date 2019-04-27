@@ -35,6 +35,10 @@ public class Printer {
         return String.format(ColorsOutput.decoration("underline") + ColorsOutput.kleur("green") + "%n%s%n", LanguageResource.getString(String.format("%s", key)) + ColorsOutput.reset());
     }
 
+    public static String printBlue(String text){
+        return String.format(ColorsOutput.kleur("blue") + "%s", text + ColorsOutput.reset());
+    }
+
     public static String exceptionCatch(String naam, Exception e, boolean lang) {
         String ret = "";
         if (lang) {

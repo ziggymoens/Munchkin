@@ -44,10 +44,11 @@ public class UseCase7V2 {
             try {
                 keuze = 0;
                 printMenu(naam);
-                keuze = SCAN.nextInt();
-                if (keuze < 1 || keuze > 3) {
+                int k = SCAN.nextInt();
+                if (k < 1 || k > 3) {
                     throw new Exception();
                 }
+                keuze = k;
             } catch (Exception e) {
                 //INTERNATIONALISEREN !!!
                 System.out.println(ColorsOutput.kleur("red") + ColorsOutput.decoration("bold") + "Foute keuze, probeer opnieuw" + ColorsOutput.reset());
