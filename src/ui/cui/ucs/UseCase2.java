@@ -25,7 +25,7 @@ class UseCase2 {
 
     //Declaraties voor gehele usecase.
     private final DomeinController dc;
-    private final Scanner SCAN;
+    private final Scanner scan;
     private int aantalSpelers;
     private String naam;
 
@@ -36,7 +36,7 @@ class UseCase2 {
      */
     UseCase2(DomeinController dc) {
         this.dc = dc;
-        SCAN = new Scanner(System.in);
+        scan = new Scanner(System.in);
 
     }
 
@@ -95,7 +95,7 @@ class UseCase2 {
             try {
                 System.out.printf("%s: %s%n", LanguageResource.getString("player.turn"), String.format("%s", ColorsOutput.kleur("blue") + naam + ColorsOutput.reset()));
                 printKeuze();
-                keuze = SCAN.nextInt();
+                keuze = scan.nextInt();
                 if (keuze < 1 || keuze > 3) {
                     throw new Exception();
                 }
@@ -103,7 +103,7 @@ class UseCase2 {
             } catch (Exception e) {
                 System.out.println(ColorsOutput.kleur("red") + ColorsOutput.decoration("bold") + LanguageResource.getString("usecase2.choiceinput") + ColorsOutput.reset());
                 //System.out.println(Printer.exceptionCatch("Exception", e, false));
-                SCAN.nextLine();
+                scan.nextLine();
             }
         }
         try {
@@ -129,7 +129,7 @@ class UseCase2 {
                     while (tryAgain2) {
                         try {
                             System.out.println(LanguageResource.getString("close") + String.format(" (%s, %s)", LanguageResource.getString("yes"), LanguageResource.getString("no")));
-                            String yesno = SCAN.next();
+                            String yesno = scan.next();
                             if (!yesno.equals(LanguageResource.getString("yes")) && !yesno.equals(LanguageResource.getString("no"))) {
                                 throw new Exception();
                             }
@@ -140,7 +140,7 @@ class UseCase2 {
                             tryAgain2 = false;
                         } catch (Exception e) {
                             System.out.print(ColorsOutput.kleur("red") + ColorsOutput.decoration("bold") + LanguageResource.getString("usecase2.choiceerror") + ColorsOutput.reset());
-                            SCAN.nextLine();
+                            scan.nextLine();
                         }
                     }
                     break;

@@ -20,7 +20,7 @@ import java.util.*;
 public class UseCase1 {
 
     //declaraties voor gehele usecase
-    private final Scanner SCAN = new Scanner(System.in);
+    private final Scanner scan = new Scanner(System.in);
     private final DomeinController dc;
     private final Map<String, Locale> talen;
     private int aantalSpelers;
@@ -147,8 +147,8 @@ public class UseCase1 {
             for (Map.Entry<String, Locale> taal : talen.entrySet()) {
                 System.out.printf("%s %s%n", LanguageResource.getStringLanguage("startUp", taal.getValue()), LanguageResource.getStringLanguage("languageC", taal.getValue()));
             }
-            String gekozenTaal = SCAN.next().toLowerCase();
-            SCAN.nextLine();
+            String gekozenTaal = scan.next().toLowerCase();
+            scan.nextLine();
             //zolang gekozen taal niet voldoet aan van frans, nederlands of engels in de eigen taal
 
             Map<String, String> talenVolledig = new HashMap<>();
@@ -162,15 +162,15 @@ public class UseCase1 {
                 for (Map.Entry<String, Locale> taal : talen.entrySet()) {
                     System.out.printf(ColorsOutput.decoration("bold") + ColorsOutput.kleur("red") + "%s%n", LanguageResource.getStringLanguage("wrong", taal.getValue()) + ColorsOutput.reset());
                 }
-                gekozenTaal = SCAN.next().toLowerCase();
-                SCAN.nextLine();
+                gekozenTaal = scan.next().toLowerCase();
+                scan.nextLine();
             }
             //switch voor de verschillende talen
             LanguageResource.setLocale(talen.get(talenVolledig.get(gekozenTaal)));
             System.out.printf("%s: %s%n", LanguageResource.getString("picked"), LanguageResource.getString("language"));
         }catch (Exception e){
             System.out.print(Printer.exceptionCatch("Exception (UC1)", e, false));
-            SCAN.nextLine();
+            scan.nextLine();
         }
     }
 
@@ -231,7 +231,7 @@ public class UseCase1 {
         while (ta1) {
             try {
                 System.out.println(LanguageResource.getString("amountOfPlayers"));
-                as = SCAN.nextInt();
+                as = scan.nextInt();
                 if (as < 3 || as > 6) {
                     throw new SpelException("exception.spel.players");
                 }
@@ -239,13 +239,13 @@ public class UseCase1 {
             } catch (InputMismatchException e) {
                 e = new InputMismatchException("usecase2.choiceerror");
                 System.out.print(Printer.exceptionCatch("InputException (UC1)", e));
-                SCAN.nextLine();
+                scan.nextLine();
             } catch (SpelException e) {
                 System.out.print(Printer.exceptionCatch("SpelException (UC1)", e));
-                SCAN.nextLine();
+                scan.nextLine();
             } catch (Exception e) {
                 System.out.print(Printer.exceptionCatch("Exception (UC1)", e, false));
-                SCAN.nextLine();
+                scan.nextLine();
             }
         }
         return as;
@@ -288,24 +288,24 @@ public class UseCase1 {
         while (tryAgain) {
             try {
                 System.out.println(LanguageResource.getString("ask.name"));
-                String naam = SCAN.next();
-                SCAN.nextLine();
+                String naam = scan.next();
+                scan.nextLine();
                 //voeg naam toe aan speler i
                 dc.geefSpelerNaam(i, naam);
                 tryAgain = false;
             } catch (SpelerException e) {
                 System.out.print(Printer.exceptionCatch("SpelerException (UC1)", e));
-                SCAN.nextLine();
+                scan.nextLine();
             } catch (SpelException e) {
                 System.out.print(Printer.exceptionCatch("SpelException (UC1)", e));
-                SCAN.nextLine();
+                scan.nextLine();
             }catch (InputMismatchException e) {
                 e = new InputMismatchException("usecase2.choiceerror");
                 System.out.print(Printer.exceptionCatch("InputException (UC1)", e));
-                SCAN.nextLine();
+                scan.nextLine();
             }catch (Exception e){
                 System.out.print(Printer.exceptionCatch("Exception (UC1)", e, false));
-                SCAN.nextLine();
+                scan.nextLine();
             }
         }
     }
@@ -320,17 +320,17 @@ public class UseCase1 {
         while (tryAgain) {
             try {
                 System.out.println(LanguageResource.getString("ask.sex"));
-                String geslacht = SCAN.next();
-                SCAN.nextLine();
+                String geslacht = scan.next();
+                scan.nextLine();
                 //geslacht toewijzen aan speler i
                 dc.geefSpelerGeslacht(i, geslacht);
                 tryAgain = false;
             } catch (SpelerException e) {
                 System.out.print(Printer.exceptionCatch("SpelerException (UC1)", e));
-                SCAN.nextLine();
+                scan.nextLine();
             } catch (Exception e){
                 System.out.print(Printer.exceptionCatch("Exception (UC1)", e, false));
-                SCAN.nextLine();
+                scan.nextLine();
             }
         }
     }
@@ -365,9 +365,9 @@ public class UseCase1 {
 //        boolean kleine = false;
 //        while (ta2) {
 //            try {
-//                SCAN.nextLine();
+//                scan.nextLine();
 //                System.out.println(String.format(LanguageResource.getString("dbchoice")));
-//                int k = SCAN.nextInt();
+//                int k = scan.nextInt();
 //                if (k < 1 || k > 2) {
 //                    throw new Exception("usecase2.choiceinput");
 //                }
