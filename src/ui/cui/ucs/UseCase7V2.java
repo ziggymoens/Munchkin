@@ -59,7 +59,7 @@ public class UseCase7V2 {
     private void printMenu(String naam) {
         System.out.println(String.format("%s %s", naam, LanguageResource.getString("usecase7.actions")));
         for (int i = 1; i <= 3; i++) {
-            System.out.println(String.format("1) %s", LanguageResource.getString(String.format("usecase7.action%d", i))));
+            System.out.println(String.format("%d) %s",i, LanguageResource.getString(String.format("usecase7.action%d", i))));
         }
     }
 

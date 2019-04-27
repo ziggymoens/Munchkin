@@ -104,14 +104,14 @@ class UseCase2 {
                 printKeuze();
                 keuze = scan.nextInt();
                 if (keuze < 1 || keuze > 3) {
-                    throw new Exception();
+                    throw new Exception("choiceturn");
                 }
                 tryAgain = false;
             } catch (InputMismatchException e) {
-                e = new InputMismatchException("usecase2.choiceerror");
+                //e = new InputMismatchException("usecase2.choiceerror");
                 System.out.print(Printer.exceptionCatch("InputMismatch (UC2)", e));
             } catch (Exception e) {
-                e = new Exception("usecase2.choiceinput");
+                //e = new Exception("usecase2.choiceinput");
                 System.out.print(Printer.exceptionCatch("Exception (UC2)", e, false));
                 scan.nextLine();
             }
@@ -184,7 +184,7 @@ class UseCase2 {
         System.out.printf("%s%n"
                 + "1) %s%n"
                 + "2) %s%n"
-                + "3) %s%n", LanguageResource.getString("turn.choice"), LanguageResource.getString("turn.play"), LanguageResource.getString("turn.save"), LanguageResource.getString("turn.stop"));
+                + "3) %s%n", LanguageResource.getString("usecase2.turn.choice"), LanguageResource.getString("usecase2.turn.play"), LanguageResource.getString("usecase2.turn.save"), LanguageResource.getString("usecase2.turn.stop"));
     }
 
 }

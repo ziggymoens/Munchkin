@@ -29,7 +29,7 @@ class UseCase8 {
             askName();
             saveGame();
         } catch (Exception e){
-            System.out.println(Printer.exceptionCatch("Exception", e, false));
+            System.out.print(Printer.exceptionCatch("Exception", e, false));
         }
     }
 
@@ -42,9 +42,9 @@ class UseCase8 {
                 dc.geefSpelNaam(naamSpel);
                 tryAgain = false;
             } catch (SpelException e) {
-                System.out.println(Printer.exceptionCatch("SpelException", e));
+                System.out.print(Printer.exceptionCatch("SpelException", e));
             } catch (Exception e) {
-                System.out.println(Printer.exceptionCatch("Exception", e, false));
+                System.out.print(Printer.exceptionCatch("Exception", e, false));
             }
         }
     }
@@ -67,10 +67,10 @@ class UseCase8 {
             }
         } catch (SpelException e) {
             th1.suspend();
-            System.out.println(Printer.exceptionCatch("SpelException", e));
+            System.out.print(Printer.exceptionCatch("SpelException", e));
         } catch (SpelDatabaseException e) {
             th1.suspend();
-            System.out.println(Printer.exceptionCatch("SpelDatabaseException", e));
+            System.out.print(Printer.exceptionCatch("SpelDatabaseException", e));
         } catch (Exception e) {
             th1.suspend();
             System.out.print(Printer.exceptionCatch("Exception", e, false));
@@ -78,14 +78,18 @@ class UseCase8 {
     }
 
     private final Thread th1 = new Thread(() -> {
-        System.out.print("\nLoading ");
-        for (int i = 0; i < 100; i++) {
-            try {
-                Thread.sleep(200);
-            } catch (InterruptedException ex) {
-                System.out.println(Printer.exceptionCatch("InterruptedException", ex, false));
+        try {
+            System.out.print("\nLoading ");
+            for (int i = 0; i < 100; i++) {
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException ex) {
+                    System.out.println(Printer.exceptionCatch("InterruptedException", ex, false));
+                }
+                System.out.print(".");
             }
-            System.out.print(".");
+        }catch (Exception e){
+            System.out.print(Printer.exceptionCatch("Exception (UC8)", e, false));
         }
     });
 }
