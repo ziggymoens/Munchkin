@@ -15,7 +15,7 @@ import java.util.*;
  *
  * KLAAR -- ZIGGY -- 26/4/2019
  * CONTROLE JONA --
- * CONTROLE KILI --
+ * CONTROLE KILI -- 27/04/2019
  */
 public class UseCase1 {
 
@@ -81,6 +81,7 @@ public class UseCase1 {
 
     /**
      * Methode die vraagt om developer modus te activeren
+     * deze modus geeft meer uitgebreide foutmeldingen
      */
     private void askDeveloper() {
         try {
@@ -254,6 +255,7 @@ public class UseCase1 {
 
     /**
      * Voeg het aantal gekozen aantal spelers toe aan het spel a.d.h.v. naam,
+     * maakt leeg spelerobject, kent naam en geslacht toe aan speler op index i
      */
     private void voegSpelersToe() {
         try {
@@ -334,7 +336,7 @@ public class UseCase1 {
     }
 
     /**
-     * deze werkt niet goed in netbeans
+     * Loading thread
      */
     private final Thread th1 = new Thread(() -> {
         try{
