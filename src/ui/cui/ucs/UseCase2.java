@@ -15,6 +15,10 @@ import printer.Printer;
 import java.util.Scanner;
 
 /**
+ * KLAAR -- NIET
+ * CONTROLE KILI --
+ * CONTROLE JONA --
+ *
  * @author ziggy
  */
 class UseCase2 {
@@ -23,6 +27,7 @@ class UseCase2 {
     private final DomeinController dc;
     private final Scanner SCAN;
     private int aantalSpelers;
+    private String naam;
 
     /**
      * Constructor voor Use Case 2.
@@ -43,10 +48,13 @@ class UseCase2 {
     void speelSpel(int aantalSpelers) {
         this.aantalSpelers = aantalSpelers;
         try {
+            //zet spelers in de volgorde zoals opgegeven in DR
             dc.controleerVolgorde();
-            System.out.println(String.format("De volgorde van de spelers is: %n%s%n", dc.geefInformatie()));
+            System.out.println(String.format("%s: %n%s%n",LanguageResource.getString("usecase2.volgorde"),dc.geefInformatie()));
         } catch (SpelException | SpelerException e) {
-            System.out.print(Printer.exceptionCatch("Spel/SpelerException", e));
+            System.out.print(Printer.exceptionCatch("Spel/SpelerException (UC2)", e));
+        } catch (Exception e){
+            System.out.println(Printer.exceptionCatch("Exception (UC2)", e, false));
         }
         try {
             while (niemandGewonnen()) {
@@ -56,29 +64,31 @@ class UseCase2 {
                 }
                 for (int i = x; i < aantalSpelers; i++) {
                     if (niemandGewonnen()) {
-                        String naam = dc.geefNaamSpeler(i);
+                        naam = dc.geefNaamSpeler(i);
                         dc.zetSpelerAanBeurt(i);
-                        speelBeurt(naam);
+                        speelBeurt();
                     }
                 }
             }
         } catch (SpelException | SpelerException e) {
-            System.out.print(Printer.exceptionCatch("Spel/SpelerException", e));
+            System.out.print(Printer.exceptionCatch("Spel/SpelerException (UC2)", e));
+        } catch (Exception e){
+            System.out.println(Printer.exceptionCatch("Exception (UC2)", e, false));
         }
         try {
             System.out.printf("%s: %s", LanguageResource.getString("end.won"), geefNaamWinnaar());
         } catch (SpelException | SpelerException e) {
-            System.out.print(Printer.exceptionCatch("Spel/SpelerException", e));
+            System.out.print(Printer.exceptionCatch("Spel/SpelerException (UC2)", e));
+        } catch (Exception e){
+            System.out.println(Printer.exceptionCatch("Exception (UC2)", e, false));
         }
 
     }
 
     /**
      * Methode die de beurt laat spelen en de keuze laat maken tussen 3 opties
-     *
-     * @param naam De naam van de speler die aan beurt is
      */
-    private void speelBeurt(String naam) {
+    private void speelBeurt() {
         int keuze = 0;
         boolean tryAgain = true;
         while (tryAgain) {

@@ -54,7 +54,7 @@ public class UseCase1 {
                     //methode start game op
                     gameStarter();
                 } catch (Exception e) {
-                    System.out.println(Printer.exceptionCatch("Exception (UC1)", e, false));
+                    System.out.print(Printer.exceptionCatch("Exception (UC1)", e, false));
                 }
 
             } else {
@@ -64,14 +64,14 @@ public class UseCase1 {
                         //methode start game op
                         gameStarter();
                     } catch (Exception e) {
-                        System.out.println(Printer.exceptionCatch("Exception (UC1)", e, false));
+                        System.out.print(Printer.exceptionCatch("Exception (UC1)", e, false));
                     }
                 }
                 try {
                     //methode om game te laden
                     gameLoader();
                 } catch (Exception e) {
-                    System.out.println(Printer.exceptionCatch("Exception (UC1)", e, false));
+                    System.out.print(Printer.exceptionCatch("Exception (UC1)", e, false));
                 }
             }
         } catch (Exception e) {
@@ -90,7 +90,7 @@ public class UseCase1 {
                 askStackTrace();
             }
         } catch (Exception e) {
-            System.out.println(Printer.exceptionCatch("Exception (UC1)", e, false));
+            System.out.print(Printer.exceptionCatch("Exception (UC1)", e, false));
         }
     }
 
@@ -101,7 +101,7 @@ public class UseCase1 {
         try{
             Printer.setPrintStackTrace(UniversalMethods.controleJaNee("usecase1.stacktrace"));
         }catch (Exception e){
-            System.out.println(Printer.exceptionCatch("Exception (UC1)", e, false));
+            System.out.print(Printer.exceptionCatch("Exception (UC1)", e, false));
         }
     }
 
@@ -119,7 +119,7 @@ public class UseCase1 {
             UseCase2 uc2 = new UseCase2(this.dc);
             uc2.speelSpel(aantalSpelers);
         } catch (Exception e) {
-            System.out.println(Printer.exceptionCatch("Exception (UC1)", e, false));
+            System.out.print(Printer.exceptionCatch("Exception (UC1)", e, false));
         }
     }
 
@@ -132,7 +132,7 @@ public class UseCase1 {
             UseCase9 uc9 = new UseCase9(this.dc);
             uc9.spelLaden();
         } catch (Exception e) {
-            System.out.println(Printer.exceptionCatch("Exception (UC1)", e, false));
+            System.out.print(Printer.exceptionCatch("Exception (UC1)", e, false));
         }
     }
 
@@ -168,7 +168,7 @@ public class UseCase1 {
             LanguageResource.setLocale(talen.get(talenVolledig.get(gekozenTaal)));
             System.out.printf("%s: %s%n", LanguageResource.getString("picked"), LanguageResource.getString("language"));
         }catch (Exception e){
-            System.out.println(Printer.exceptionCatch("Exception (UC1)", e, false));
+            System.out.print(Printer.exceptionCatch("Exception (UC1)", e, false));
             SCAN.nextLine();
         }
     }
@@ -184,7 +184,7 @@ public class UseCase1 {
             //thread pauzeren
             th1.suspend();
         }catch (Exception e){
-            System.out.println(Printer.exceptionCatch("Exception (UC1)", e, false));
+            System.out.print(Printer.exceptionCatch("Exception (UC1)", e, false));
         }
         boolean tryAgain = true;
         while (tryAgain) {
@@ -209,11 +209,11 @@ public class UseCase1 {
                 //thread pauzeren
                 th1.suspend();
                 e = new InputMismatchException("usecase2.choiceerror");
-                System.out.println(Printer.exceptionCatch("InputException (UC1)", e));
+                System.out.print(Printer.exceptionCatch("InputException (UC1)", e));
             } catch (Exception e) {
                 //thread pauzeren
                 th1.suspend();
-                System.out.println(Printer.exceptionCatch("Exception (UC1)", e, false));
+                System.out.print(Printer.exceptionCatch("Exception (UC1)", e, false));
             }
         }
         System.out.println("\n" + Printer.printGreen("spel.made"));
@@ -237,13 +237,13 @@ public class UseCase1 {
                 ta1 = false;
             } catch (InputMismatchException e) {
                 e = new InputMismatchException("usecase2.choiceerror");
-                System.out.println(Printer.exceptionCatch("InputException (UC1)", e));
+                System.out.print(Printer.exceptionCatch("InputException (UC1)", e));
                 SCAN.nextLine();
             } catch (SpelException e) {
-                System.out.println(Printer.exceptionCatch("SpelException (UC1)", e));
+                System.out.print(Printer.exceptionCatch("SpelException (UC1)", e));
                 SCAN.nextLine();
             } catch (Exception e) {
-                System.out.println(Printer.exceptionCatch("Exception (UC1)", e, false));
+                System.out.print(Printer.exceptionCatch("Exception (UC1)", e, false));
                 SCAN.nextLine();
             }
         }
@@ -270,9 +270,9 @@ public class UseCase1 {
             dc.geefStartKaarten();
         }catch (InputMismatchException e) {
             e = new InputMismatchException("usecase2.choiceerror");
-            System.out.println(Printer.exceptionCatch("InputException (UC1)", e));
+            System.out.print(Printer.exceptionCatch("InputException (UC1)", e));
         }catch (Exception e) {
-            System.out.println(Printer.exceptionCatch("Exception (UC1)", e, false));
+            System.out.print(Printer.exceptionCatch("Exception (UC1)", e, false));
         }
     }
 
@@ -299,10 +299,10 @@ public class UseCase1 {
                 SCAN.nextLine();
             }catch (InputMismatchException e) {
                 e = new InputMismatchException("usecase2.choiceerror");
-                System.out.println(Printer.exceptionCatch("InputException (UC1)", e));
+                System.out.print(Printer.exceptionCatch("InputException (UC1)", e));
                 SCAN.nextLine();
             }catch (Exception e){
-                System.out.println(Printer.exceptionCatch("Exception (UC1)", e, false));
+                System.out.print(Printer.exceptionCatch("Exception (UC1)", e, false));
                 SCAN.nextLine();
             }
         }
@@ -327,7 +327,7 @@ public class UseCase1 {
                 System.out.print(Printer.exceptionCatch("SpelerException (UC1)", e));
                 SCAN.nextLine();
             } catch (Exception e){
-                System.out.println(Printer.exceptionCatch("Exception (UC1)", e, false));
+                System.out.print(Printer.exceptionCatch("Exception (UC1)", e, false));
                 SCAN.nextLine();
             }
         }
@@ -348,7 +348,7 @@ public class UseCase1 {
             System.out.print(".");
         }
         }catch (Exception e){
-            System.out.println(Printer.exceptionCatch("Exception (UC1)", e, false));
+            System.out.print(Printer.exceptionCatch("Exception (UC1)", e, false));
         }
     });
 }
