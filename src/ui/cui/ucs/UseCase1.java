@@ -3,6 +3,7 @@ package ui.cui.ucs;
 import domein.DomeinController;
 import exceptions.SpelException;
 import exceptions.SpelerException;
+import exceptions.database.InternetException;
 import exceptions.database.KaartDatabaseException;
 import language.LanguageResource;
 import printer.ColorsOutput;
@@ -34,6 +35,13 @@ public class UseCase1 {
     public UseCase1(DomeinController dc) {
         this.dc = dc;
         UniversalMethods.setDc(this.dc);
+        try{
+            this.dc.checkConnection();
+            System.out.println(Printer.printGreen("connected"));
+        }catch (InternetException e){
+            System.out.println(Printer.exceptionCatch("InternetException", e));
+            System.exit(0);
+        }
         talen = new HashMap<>();
 
         for (String taal : taalCodes) {
@@ -194,6 +202,7 @@ public class UseCase1 {
                 int as = kiesSpelers();
                 //thread opnieuw opstarten
                 th1.resume();
+                dc.laadSpelRepo();
                 dc.startSpel(as);
                 //thread stoppen
                 th1.stop();

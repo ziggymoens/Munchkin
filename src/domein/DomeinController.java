@@ -4,8 +4,11 @@ import domein.kaarten.Schatkaart;
 import domein.kaarten.kerkerkaarten.monsterbadstuff.BadStuff;
 import domein.repositories.SpelDbRepository;
 import exceptions.SpelException;
+import exceptions.database.InternetException;
 import language.LanguageResource;
 
+import java.net.InetSocketAddress;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,15 +18,18 @@ import java.util.List;
 public class DomeinController {
 
     private Spel spel;
-    private final SpelDbRepository sr;
+    private SpelDbRepository sr;
 
     /**
      * Constructor DomeinController
      */
     public DomeinController() {
-        sr = new SpelDbRepository();
+
     }
 
+    public void laadSpelRepo(){
+        sr = new SpelDbRepository();
+    }
 
     /**
      * Methode om het spel te starten adhv het aantal spelers en de gekozen taal
@@ -341,5 +347,15 @@ public class DomeinController {
         return spel.getAantalSpelers();
     }
 
-
+    public void checkConnection() {
+        try {
+            String host="redhat.com";
+            int port=80;
+            int timeOutInMilliSec=5000;// 5 Seconds
+            Socket socket = new Socket();
+            socket.connect(new InetSocketAddress(host, port), timeOutInMilliSec);
+        }catch (Exception e){
+            throw new InternetException();
+        }
+    }
 }

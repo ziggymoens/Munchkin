@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SCOPE_TYPE" value="3" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="65c6d22f-232f-4b77-bc1e-1f6c0d29be8c" name="Default Changelist" comment="verwijderKaart aangepast, nog steeds niet werkend. &#10;Vertalingen en kleur toegevoegd">
+    <list default="true" id="65c6d22f-232f-4b77-bc1e-1f6c0d29be8c" name="Default Changelist" comment="fout db laden">
+      <change afterPath="$PROJECT_DIR$/src/exceptions/database/InternetException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domein/Speler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domein/Speler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domein/DomeinController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domein/DomeinController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/language/resourcebundle/i18n.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/language/resourcebundle/i18n.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/language/resourcebundle/i18n_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/language/resourcebundle/i18n_en.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/language/resourcebundle/i18n_fr.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/language/resourcebundle/i18n_fr.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/language/resourcebundle/i18n_nl.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/language/resourcebundle/i18n_nl.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/cui/ucs/UseCase7.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/cui/ucs/UseCase7.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/persistentie/mappers/KaartMapperDbKlein.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/persistentie/mappers/KaartMapperDbKlein.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/cui/ucs/UseCase1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/cui/ucs/UseCase1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/test/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/test/Test.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,31 +37,56 @@
     <expand>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="@ID222177_g35.db.webhosting.be" type="feb32156:DbDataSourceImpl" />
+        <item name="munchkin_g35" type="feb32156:DbDataSourceImpl" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="@ID222177_g35.db.webhosting.be" type="feb32156:DbDataSourceImpl" />
+        <item name="munchkin_g35" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="@ID222177_g35.db.webhosting.be" type="feb32156:DbDataSourceImpl" />
+        <item name="munchkin_g35" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="ID222177_g35: schema" type="76f4a085:MysqlImplModel$Schema" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="@ID222177_g35.db.webhosting.be" type="feb32156:DbDataSourceImpl" />
+        <item name="munchkin_g35" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="ID222177_g35: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="KEquipment: table" type="285a2a93:MysqlImplModel$Table" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="munchkin_g35" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="ID222177_g35: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="Spel: table" type="285a2a93:MysqlImplModel$Table" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="munchkin_g35" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="ID222177_g35: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="Speler: table" type="285a2a93:MysqlImplModel$Table" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="munchkin_g35" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="ID222177_g35: schema" type="76f4a085:MysqlImplModel$Schema" />
         <item name="SpelerKaart: table" type="285a2a93:MysqlImplModel$Table" />
       </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="munchkin_g35" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="ID222177_g35: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="SpelKaart: table" type="285a2a93:MysqlImplModel$Table" />
+      </path>
     </expand>
     <select />
-  </component>
-  <component name="DefaultGradleProjectSettings">
-    <option name="isMigrated" value="true" />
   </component>
   <component name="ErrorTreeViewConfiguration">
     <option name="hideWarnings" value="true" />
@@ -63,11 +94,58 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase7.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/domein/DomeinController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="467">
-              <caret line="126" column="54" selection-start-line="126" selection-start-column="54" selection-end-line="126" selection-end-column="54" />
+            <state relative-caret-position="418">
+              <caret line="30" column="5" lean-forward="true" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#598#599#0" expanded="true" />
+                <element signature="e#641#642#0" expanded="true" />
+                <element signature="e#1962#1963#0" expanded="true" />
+                <element signature="e#2003#2004#0" expanded="true" />
+                <element signature="e#2634#2635#0" expanded="true" />
+                <element signature="e#2680#2681#0" expanded="true" />
+                <element signature="e#6851#6852#0" expanded="true" />
+                <element signature="e#6892#6893#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/StartUp.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="19" selection-start-line="19" selection-end-line="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/domein/repositories/SpelDbRepository.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="12" selection-start-line="12" selection-end-line="12" />
+              <folding>
+                <element signature="e#316#317#0" expanded="true" />
+                <element signature="e#358#359#0" expanded="true" />
+                <element signature="e#394#395#0" expanded="true" />
+                <element signature="e#597#598#0" expanded="true" />
+                <element signature="e#640#641#0" expanded="true" />
+                <element signature="e#762#763#0" expanded="true" />
+                <element signature="e#803#804#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase1.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="399">
+              <caret line="204" column="34" selection-start-line="204" selection-start-column="34" selection-end-line="204" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -76,58 +154,84 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UniversalMethods.java">
+        <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase2.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="12" column="26" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/printer/ColorsOutput.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="98">
-              <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/printer/Printer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-98">
-              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/domein/DomeinController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="255" column="51" selection-start-line="255" selection-start-column="51" selection-end-line="255" selection-end-column="51" />
+            <state relative-caret-position="-534">
+              <caret line="34" column="23" selection-start-line="34" selection-start-column="23" selection-end-line="34" selection-end-column="23" />
               <folding>
-                <element signature="e#5013#5014#0" expanded="true" />
-                <element signature="e#5047#5048#0" expanded="true" />
-                <element signature="e#5362#5363#0" expanded="true" />
-                <element signature="e#5422#5423#0" expanded="true" />
-                <element signature="e#5589#5590#0" expanded="true" />
-                <element signature="e#5643#5644#0" expanded="true" />
-                <element signature="e#6513#6514#0" expanded="true" />
-                <element signature="e#6554#6555#0" expanded="true" />
-                <element signature="e#7741#7742#0" expanded="true" />
-                <element signature="e#7787#7788#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#6231#6232#0" expanded="true" />
+                <element signature="e#6274#6275#0" expanded="true" />
+                <element signature="e#6442#6443#0" expanded="true" />
+                <element signature="e#6485#6486#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/domein/Spel.java">
+        <entry file="file://$PROJECT_DIR$/src/persistentie/mappers/PersistentieController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="197">
-              <caret line="439" column="46" selection-start-line="439" selection-start-column="46" selection-end-line="439" selection-end-column="46" />
+            <state relative-caret-position="339">
+              <caret line="40" selection-start-line="40" selection-end-line="40" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#2785#2786#0" expanded="true" />
+                <element signature="e#2820#2821#0" expanded="true" />
+                <element signature="e#2865#2866#0" expanded="true" />
+                <element signature="e#2901#2902#0" expanded="true" />
+                <element signature="e#4900#4901#0" expanded="true" />
+                <element signature="e#4940#4941#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/persistentie/mappers/KaartMapperDbKlein.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="317">
+              <caret line="48" selection-start-line="48" selection-end-line="48" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/exceptions/database/InternetException.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" column="37" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="37" />
+              <folding>
+                <element signature="e#119#120#0" expanded="true" />
+                <element signature="e#138#139#0" expanded="true" />
+                <element signature="e#173#174#0" expanded="true" />
+                <element signature="e#203#204#0" expanded="true" />
+                <element signature="e#268#269#0" expanded="true" />
+                <element signature="e#305#306#0" expanded="true" />
+                <element signature="e#354#355#0" expanded="true" />
+                <element signature="e#382#383#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ui/test/Test.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="369">
+              <caret line="46" column="81" selection-start-line="46" selection-start-column="81" selection-end-line="46" selection-end-column="81" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/exceptions/database/KaartDatabaseException.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -146,36 +250,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>bib</find>
-      <find>verwijderK</find>
-      <find>toonoverz</find>
-      <find>dc.geef</find>
-      <find>klein</find>
-      <find>col</find>
-      <find>g</find>
-      <find>spelsi</find>
-      <find>kaarten</find>
-      <find>ids</find>
-      <find>verwijder</find>
-      <find>dungeon</find>
-      <find>consum</find>
-      <find>niet</find>
-      <find>setlevel</find>
-      <find>print</find>
-      <find>th1</find>
-      <find>verwijderka</find>
-      <find>closeconfirm</find>
-      <find>LanguageResource.getString</find>
-      <find>univers</find>
-      <find>laden</find>
+      <find>green</find>
+      <find>excep</find>
+      <find>53</find>
+      <find>nose</find>
+      <find>item</find>
+      <find>spel.name</find>
+      <find>ask</find>
+      <find>language</find>
+      <find>setid</find>
+      <find>beurt</find>
+      <find>escape</find>
+      <find>usecase7</find>
+      <find>use</find>
+      <find>scan</find>
+      <find>gee</find>
+      <find>usecase</find>
+      <find>red</find>
+      <find>aantal</find>
+      <find>kaarte</find>
+      <find>cont</find>
+      <find>heeft</find>
+      <find>geefover</find>
+      <find>getspel</find>
+      <find>setspel</find>
+      <find>getsp</find>
       <find>opslaan</find>
-      <find>items</find>
-      <find>geefId</find>
-      <find>kunnen</find>
-      <find>dc.geefIdVerkoopbareKaarten</find>
-      <find>level</find>
-      <find>boolean</find>
-      <find>System.out.println(gedeeldeWaarde);</find>
+      <find>print</find>
+      <find>kaart</find>
+      <find>db</find>
+      <find>g</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -184,69 +288,63 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/ui/gui/UseCase1.java" />
-        <option value="$PROJECT_DIR$/src/ToDo.java" />
-        <option value="$PROJECT_DIR$/src/main/StartUp.java" />
-        <option value="$PROJECT_DIR$/src/ui/gui/AfbeeldingTonen.java" />
-        <option value="$PROJECT_DIR$/src/ui/gui/UseCase1GUI.java" />
-        <option value="$PROJECT_DIR$/src/ui/gui/UseCase1Pane.java" />
-        <option value="$PROJECT_DIR$/src/ui/gui/MainGUI.java" />
-        <option value="$PROJECT_DIR$/src/ui/gui/usecase1/UseCase1LayOut.fxml" />
-        <option value="$PROJECT_DIR$/src/ui/gui/usecase1/view/UseCase1LayOut.fxml" />
-        <option value="$PROJECT_DIR$/src/ui/gui/usecase1/view/UseCase1GUI.java" />
-        <option value="$PROJECT_DIR$/src/ui/gui/usecase1/view/UseCase1.fxml" />
-        <option value="$PROJECT_DIR$/src/ui/gui/MenuBar.java" />
-        <option value="$PROJECT_DIR$/src/ui/gui/MainGUI.css" />
-        <option value="$PROJECT_DIR$/src/ui/gui/MenuBarGUI.java" />
-        <option value="$PROJECT_DIR$/src/ui/gui/MainGui.java" />
-        <option value="$PROJECT_DIR$/src/language/LanguageResource.java" />
+        <option value="$PROJECT_DIR$/src/ongebruikt/SpelMapper.java" />
         <option value="$PROJECT_DIR$/src/ui/gui/maingui/MainGui.java" />
-        <option value="$PROJECT_DIR$/src/ui/gui/StartUpGui.java" />
-        <option value="$PROJECT_DIR$/src/ui/gui/usecase1/UseCase1G.java" />
         <option value="$PROJECT_DIR$/src/ui/gui/menubar/MenuBarGui.java" />
         <option value="$PROJECT_DIR$/src/ui/gui/usecase1/UseCase1G.css" />
+        <option value="$PROJECT_DIR$/src/ui/gui/maingui/MainGui.css" />
+        <option value="$PROJECT_DIR$/src/ToDo.java" />
+        <option value="$PROJECT_DIR$/src/ui/cui/ucs/UseCase4V2.java" />
+        <option value="$PROJECT_DIR$/src/ui/cui/ucs/UseCase5.java" />
+        <option value="$PROJECT_DIR$/src/ui/cui/ucs/UseCase4.java" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/.datagrid/cell" />
+        <option value="$PROJECT_DIR$/src/domein/repositories/KaartDbRepository.java" />
+        <option value="$PROJECT_DIR$/src/persistentie/Connectie.java" />
+        <option value="$PROJECT_DIR$/src/domein/Speler.java" />
         <option value="$PROJECT_DIR$/src/domein/kaarten/schatkaarten/ConsumablesSchat.java" />
         <option value="$PROJECT_DIR$/src/domein/kaarten/schatkaarten/Equipment.java" />
-        <option value="$PROJECT_DIR$/src/domein/kaarten/kerkerkaarten/ConsumablesKerker.java" />
-        <option value="$PROJECT_DIR$/src/domein/kaarten/kerkerkaarten/Curse.java" />
-        <option value="$PROJECT_DIR$/src/domein/kaarten/kerkerkaarten/Race.java" />
-        <option value="$PROJECT_DIR$/src/domein/kaarten/kerkerkaarten/Monster.java" />
-        <option value="$PROJECT_DIR$/src/domein/kaarten/kerkerkaarten/monsterbadstuff/BadStuff.java" />
         <option value="$PROJECT_DIR$/src/domein/repositories/KaartDbKleinRepository.java" />
-        <option value="$PROJECT_DIR$/src/domein/repositories/SpelDbRepository.java" />
-        <option value="$PROJECT_DIR$/src/ui/cui/ucs/UseCase2.java" />
-        <option value="$PROJECT_DIR$/src/ui/cui/ucs/UseCase8.java" />
-        <option value="$PROJECT_DIR$/src/ui/cui/ucs/UseCase4.java" />
-        <option value="$PROJECT_DIR$/src/persistentie/mappers/KaartMapperDbKlein.java" />
-        <option value="$PROJECT_DIR$/src/language/resourcebundle/i18n_nl.properties" />
-        <option value="$PROJECT_DIR$/src/language/resourcebundle/i18n_fr.properties" />
-        <option value="$PROJECT_DIR$/src/language/resourcebundle/i18n_en.properties" />
-        <option value="$PROJECT_DIR$/src/ui/test/testKilian.java" />
-        <option value="$PROJECT_DIR$/src/language/resourcebundle/i18n.properties" />
-        <option value="$PROJECT_DIR$/src/ui/test/Test.java" />
-        <option value="$PROJECT_DIR$/src/ui/cui/ucs/UseCase5.java" />
-        <option value="$PROJECT_DIR$/src/domein/kaarten/Kaart.java" />
-        <option value="$PROJECT_DIR$/src/ui/cui/ucs/UseCase9.java" />
-        <option value="$PROJECT_DIR$/src/ui/cui/ucs/UseCase1.java" />
-        <option value="$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java" />
-        <option value="$PROJECT_DIR$/src/ui/cui/ucs/UseCase3.java" />
         <option value="$PROJECT_DIR$/src/domein/Spel.java" />
-        <option value="$PROJECT_DIR$/src/domein/DomeinController.java" />
+        <option value="$PROJECT_DIR$/src/ui/gui/usecase2/UseCase2G.css" />
+        <option value="$PROJECT_DIR$/src/ui/gui/usecase3/UseCase3G.css" />
+        <option value="$PROJECT_DIR$/src/ui/gui/usecase4/UseCase4G.css" />
+        <option value="$PROJECT_DIR$/src/ui/gui/usecase5/UseCase5G.css" />
+        <option value="$PROJECT_DIR$/src/ui/gui/usecase6/UseCase6G.css" />
+        <option value="$PROJECT_DIR$/src/ui/gui/usecase7/UseCase7G.css" />
+        <option value="$PROJECT_DIR$/src/ui/gui/usecase8/UseCase8G.css" />
+        <option value="$PROJECT_DIR$/src/ui/gui/usecase9/UseCase9G.css" />
+        <option value="$PROJECT_DIR$/src/ui/gui/usecase9/UseCase9G.java" />
+        <option value="$PROJECT_DIR$/src/ui/gui/usecase8/UseCase8G.java" />
+        <option value="$PROJECT_DIR$/src/ui/gui/usecase7/UseCase7G.java" />
+        <option value="$PROJECT_DIR$/src/ui/gui/usecase6/UseCase6G.java" />
+        <option value="$PROJECT_DIR$/src/ui/gui/usecase5/UseCase5G.java" />
+        <option value="$PROJECT_DIR$/src/ui/gui/usecase4/UseCase4G.java" />
+        <option value="$PROJECT_DIR$/src/ui/gui/usecase2/UseCase2G.java" />
+        <option value="$PROJECT_DIR$/src/ui/gui/usecase3/UseCase3G.java" />
+        <option value="$PROJECT_DIR$/src/language/resourcebundle/i18n.properties" />
+        <option value="$PROJECT_DIR$/src/printer/ColorsOutput.java" />
+        <option value="$PROJECT_DIR$/src/ui/cui/ucs/UseCase8.java" />
         <option value="$PROJECT_DIR$/src/ui/cui/ucs/UseCase7V2.java" />
-        <option value="$PROJECT_DIR$/src/domein/Speler.java" />
-        <option value="$PROJECT_DIR$/src/ui/cui/ucs/UseCase7.java" />
+        <option value="$PROJECT_DIR$/src/printer/Printer.java" />
+        <option value="$PROJECT_DIR$/src/ui/cui/ucs/UseCase2.java" />
+        <option value="$PROJECT_DIR$/src/ui/cui/ucs/UniversalMethods.java" />
+        <option value="$PROJECT_DIR$/src/ui/cui/ucs/UseCase3.java" />
+        <option value="$PROJECT_DIR$/src/ui/cui/ucs/UseCase6.java" />
+        <option value="$PROJECT_DIR$/src/ui/cui/ucs/UseCase9.java" />
+        <option value="$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java" />
+        <option value="$PROJECT_DIR$/src/persistentie/mappers/KaartMapperDbKlein.java" />
+        <option value="$PROJECT_DIR$/src/persistentie/mappers/PersistentieController.java" />
+        <option value="$PROJECT_DIR$/src/domein/repositories/SpelDbRepository.java" />
+        <option value="$PROJECT_DIR$/src/exceptions/database/InternetException.java" />
+        <option value="$PROJECT_DIR$/src/ui/test/Test.java" />
+        <option value="$PROJECT_DIR$/src/domein/DomeinController.java" />
+        <option value="$PROJECT_DIR$/src/ui/cui/ucs/UseCase1.java" />
       </list>
     </option>
   </component>
-  <component name="MavenProjectNavigator">
-    <treeState>
-      <expand />
-      <select />
-    </treeState>
-  </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="width" value="714" />
-    <option name="height" value="900" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="width" value="960" />
+    <option name="height" value="1200" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -257,66 +355,73 @@
         <subPane>
           <expand>
             <path>
-              <item name="munchkin-g35_a" type="b2602c69:ProjectViewProjectNode" />
-              <item name="munchkin-g35_a" type="462c0819:PsiDirectoryNode" />
+              <item name="Projecten 1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Projecten 1" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="munchkin-g35_a" type="b2602c69:ProjectViewProjectNode" />
-              <item name="munchkin-g35_a" type="462c0819:PsiDirectoryNode" />
+              <item name="Projecten 1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Projecten 1" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Projecten 1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Projecten 1" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="production" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Projecten 1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Projecten 1" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="munchkin-g35_a" type="b2602c69:ProjectViewProjectNode" />
-              <item name="munchkin-g35_a" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="domein" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="munchkin-g35_a" type="b2602c69:ProjectViewProjectNode" />
-              <item name="munchkin-g35_a" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="domein" type="462c0819:PsiDirectoryNode" />
-              <item name="kaarten" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="munchkin-g35_a" type="b2602c69:ProjectViewProjectNode" />
-              <item name="munchkin-g35_a" type="462c0819:PsiDirectoryNode" />
+              <item name="Projecten 1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Projecten 1" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="domein" type="462c0819:PsiDirectoryNode" />
-              <item name="kaarten" type="462c0819:PsiDirectoryNode" />
-              <item name="kerkerkaarten" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="munchkin-g35_a" type="b2602c69:ProjectViewProjectNode" />
-              <item name="munchkin-g35_a" type="462c0819:PsiDirectoryNode" />
+              <item name="Projecten 1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Projecten 1" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="language" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="munchkin-g35_a" type="b2602c69:ProjectViewProjectNode" />
-              <item name="munchkin-g35_a" type="462c0819:PsiDirectoryNode" />
+              <item name="Projecten 1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Projecten 1" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="language" type="462c0819:PsiDirectoryNode" />
               <item name="resourcebundle" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="munchkin-g35_a" type="b2602c69:ProjectViewProjectNode" />
-              <item name="munchkin-g35_a" type="462c0819:PsiDirectoryNode" />
+              <item name="Projecten 1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Projecten 1" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="printer" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="munchkin-g35_a" type="b2602c69:ProjectViewProjectNode" />
-              <item name="munchkin-g35_a" type="462c0819:PsiDirectoryNode" />
+              <item name="Projecten 1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Projecten 1" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="ui" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="munchkin-g35_a" type="b2602c69:ProjectViewProjectNode" />
-              <item name="munchkin-g35_a" type="462c0819:PsiDirectoryNode" />
+              <item name="Projecten 1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Projecten 1" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="ui" type="462c0819:PsiDirectoryNode" />
               <item name="ucs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Projecten 1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Projecten 1" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="ui" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Projecten 1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
           <select />
@@ -327,11 +432,10 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="DatabaseDriversLRU" value="mysql" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556114798941" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556456473231" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect" value="MySQL" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -340,18 +444,21 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="settings.editor.selected.configurable" value="Images" />
     <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/src/language/i18n_en.properties" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="ui.gui" />
     </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="ui.gui" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/ui/images" />
     </key>
-    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="ui.gui" />
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="ui.cui.ucs" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/ui/gui/maingui" />
@@ -374,9 +481,22 @@
     </option>
   </component>
   <component name="RunManager" selected="Application.StartUp">
+    <configuration name="AfbeeldingTonen" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ui.gui.AfbeeldingTonen" />
+      <module name="Projecten 1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ui.gui.maingui.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="StartUp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.StartUp" />
-      <module name="munchkin-g35_a" />
+      <module name="Projecten 1" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="main.*" />
@@ -389,34 +509,6 @@
     </configuration>
     <configuration name="StartUpGui" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.StartUpGui" />
-      <module name="munchkin-g35_a" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ui.gui.maingui.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="10" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="ui.test.Test" />
-      <module name="munchkin-g35_a" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ui.test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UseCase1G" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ui.gui.usecase1.UseCase1G" />
       <module name="Projecten 1" />
       <extension name="coverage">
         <pattern>
@@ -428,9 +520,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="testKilian" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ui.test.testKilian" />
-      <module name="munchkin-g35_a" />
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ui.test.Test" />
+      <module name="Projecten 1" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="ui.test.*" />
@@ -441,25 +533,31 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <list>
-      <item itemvalue="Application.UseCase1G" />
-      <item itemvalue="Application.StartUp" />
-      <item itemvalue="Application.StartUpGui" />
-      <item itemvalue="Application.Test" />
-      <item itemvalue="Application.testKilian" />
-    </list>
+    <configuration name="UseCase1G" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ui.gui.ucs.usecase1.UseCase1G" />
+      <module name="Projecten 1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ui.gui.maingui.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.StartUp" />
-        <item itemvalue="Application.StartUpGui" />
         <item itemvalue="Application.Test" />
-        <item itemvalue="Application.testKilian" />
+        <item itemvalue="Application.StartUpGui" />
         <item itemvalue="Application.UseCase1G" />
+        <item itemvalue="Application.AfbeeldingTonen" />
       </list>
     </recent_temporary>
   </component>
   <component name="StructureViewFactory">
-    <option name="ACTIVE_ACTIONS" value=",GROUP_BY_PREFIXES,ALPHA_COMPARATOR" />
+    <option name="ACTIVE_ACTIONS" value=",GROUP_BY_PREFIXES" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -473,464 +571,432 @@
       <updated>1551993656744</updated>
       <workItem from="1551993658537" duration="141000" />
       <workItem from="1552226520023" duration="60340000" />
-      <workItem from="1552904444934" duration="67291000" />
-      <workItem from="1553585130246" duration="5001000" />
-      <workItem from="1553850799094" duration="275000" />
-      <workItem from="1554108600235" duration="1931000" />
-      <workItem from="1554112260109" duration="1382000" />
-      <workItem from="1554138432066" duration="18588000" />
-      <workItem from="1554228883424" duration="4606000" />
-      <workItem from="1554284232791" duration="1190000" />
-      <workItem from="1554378080586" duration="388000" />
-      <workItem from="1554379892595" duration="60000" />
-      <workItem from="1554392299355" duration="3363000" />
-      <workItem from="1554408697923" duration="6000" />
-      <workItem from="1554451492309" duration="19000" />
-      <workItem from="1554454732362" duration="460000" />
-      <workItem from="1554462361985" duration="14587000" />
-      <workItem from="1554570154916" duration="261000" />
-      <workItem from="1554717895693" duration="1565000" />
-      <workItem from="1554749619820" duration="17272000" />
-      <workItem from="1554985586164" duration="14322000" />
-      <workItem from="1555070892951" duration="711000" />
-      <workItem from="1556001977069" duration="8000000" />
-      <workItem from="1556094429632" duration="466000" />
-      <workItem from="1556102066673" duration="685000" />
-      <workItem from="1556114678399" duration="127000" />
-      <workItem from="1556134833081" duration="5603000" />
-      <workItem from="1556219837453" duration="640000" />
-      <workItem from="1556221229669" duration="547000" />
-      <workItem from="1556267872108" duration="14102000" />
+      <workItem from="1552904444934" duration="83190000" />
+      <workItem from="1553698044672" duration="5239000" />
+      <workItem from="1553850050271" duration="78080000" />
+      <workItem from="1554724450394" duration="3996000" />
+      <workItem from="1554801320853" duration="139000" />
+      <workItem from="1556002839818" duration="38481000" />
     </task>
-    <task id="LOCAL-00037" summary="push, werkt niet">
-      <created>1553069456403</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1553069456403</updated>
-    </task>
-    <task id="LOCAL-00038" summary="push, werkt niet">
-      <created>1553074111450</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1553074111450</updated>
-    </task>
-    <task id="LOCAL-00039" summary="gui semi uc1">
-      <created>1553076105703</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1553076105703</updated>
-    </task>
-    <task id="LOCAL-00040" summary="gui semi uc1">
-      <created>1553079072410</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1553079072410</updated>
-    </task>
-    <task id="LOCAL-00041" summary="gui semi uc1 tot speler 1">
-      <created>1553107803243</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1553107803243</updated>
-    </task>
-    <task id="LOCAL-00042" summary="gui semi uc1">
-      <created>1553119042108</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1553119042108</updated>
-    </task>
-    <task id="LOCAL-00043" summary="gui semi uc1">
-      <created>1553167103188</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1553167103189</updated>
-    </task>
-    <task id="LOCAL-00044" summary="startup in main">
-      <created>1553512597305</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1553512597305</updated>
-    </task>
-    <task id="LOCAL-00045" summary="alle kaarten, uc1,2,3,4, 8,9 &#10;spel en dc">
-      <created>1553517699851</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1553517699851</updated>
-    </task>
-    <task id="LOCAL-00046" summary="Kleine Db">
-      <created>1553541832315</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1553541832315</updated>
-    </task>
-    <task id="LOCAL-00047" summary="uc7">
-      <created>1553542310472</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1553542310472</updated>
-    </task>
-    <task id="LOCAL-00048" summary="uc7 herwerkt wat + opstart">
-      <created>1553542758274</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1553542758274</updated>
-    </task>
-    <task id="LOCAL-00049" summary="uc7 met overzicht">
-      <created>1553544156769</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1553544156770</updated>
-    </task>
-    <task id="LOCAL-00050" summary="uc7 met overzicht">
-      <created>1553544893269</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1553544893271</updated>
-    </task>
-    <task id="LOCAL-00051" summary="UC5 michiel + saven code">
-      <created>1553546823867</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1553546823867</updated>
-    </task>
-    <task id="LOCAL-00052" summary="UC5 michiel + saven code">
-      <created>1553546874291</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1553546874291</updated>
-    </task>
-    <task id="LOCAL-00053" summary="uc9 opm">
-      <created>1553546975190</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1553546975190</updated>
-    </task>
-    <task id="LOCAL-00054" summary="bug fix">
-      <created>1553548306875</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1553548306875</updated>
-    </task>
-    <task id="LOCAL-00055" summary="UC7">
-      <created>1553549055956</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1553549055956</updated>
-    </task>
-    <task id="LOCAL-00056" summary="UC7">
-      <created>1553585535288</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1553585535289</updated>
-    </task>
-    <task id="LOCAL-00057" summary="Methode verhooglevel">
-      <created>1553597306801</created>
-      <option name="number" value="00057" />
-      <option name="presentableId" value="LOCAL-00057" />
-      <option name="project" value="LOCAL" />
-      <updated>1553597306801</updated>
-    </task>
-    <task id="LOCAL-00058" summary="vertalingen + optimalisatie uc8.">
-      <created>1554113277185</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1554113277186</updated>
-    </task>
-    <task id="LOCAL-00059" summary="extra methode om te kijken of speler minstens 1 kaart in hand heeft">
-      <created>1554142163042</created>
-      <option name="number" value="00059" />
-      <option name="presentableId" value="LOCAL-00059" />
-      <option name="project" value="LOCAL" />
-      <updated>1554142163043</updated>
-    </task>
-    <task id="LOCAL-00060" summary="UC7">
-      <created>1554201000130</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
-      <option name="project" value="LOCAL" />
-      <updated>1554201000130</updated>
-    </task>
-    <task id="LOCAL-00061" summary="Vervolg uc7, oneindige lus trachten verwijderen">
-      <created>1554215752909</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1554215752910</updated>
-    </task>
-    <task id="LOCAL-00062" summary="vertalingen fix">
-      <created>1554232690240</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
-      <option name="project" value="LOCAL" />
-      <updated>1554232690241</updated>
-    </task>
-    <task id="LOCAL-00063" summary="uc7 - inlezen van de te verkopen kaarten (twijfel over manier)">
-      <created>1554237048800</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1554237048800</updated>
-    </task>
-    <task id="LOCAL-00064" summary="kleine aanpassing uc7, tussentijdse save (vooral vertalingen + string sellables aangepast in Speler)">
-      <created>1554465829227</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1554465829228</updated>
-    </task>
-    <task id="LOCAL-00065" summary="methode om ID in te lezen...">
-      <created>1554475443586</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1554475443586</updated>
-    </task>
-    <task id="LOCAL-00066" summary="kleine aanpassing, nog niet werkend">
-      <created>1554553807484</created>
-      <option name="number" value="00066" />
-      <option name="presentableId" value="LOCAL-00066" />
-      <option name="project" value="LOCAL" />
-      <updated>1554553807484</updated>
-    </task>
-    <task id="LOCAL-00067" summary="inlezen voor 1ste speler werkt, probleem met arraylist bij 2e speler, moet eigenlijk gecleared worden.">
-      <created>1554722885432</created>
+    <task id="LOCAL-00067" summary="uc1 javadocs">
+      <created>1554053364466</created>
       <option name="number" value="00067" />
       <option name="presentableId" value="LOCAL-00067" />
       <option name="project" value="LOCAL" />
-      <updated>1554722885432</updated>
+      <updated>1554053364466</updated>
     </task>
-    <task id="LOCAL-00068" summary="methode om waardes van te verkopen kaarten op te vragen. Nog steeds zelfde probleem met lus">
-      <created>1554756768313</created>
+    <task id="LOCAL-00068" summary="speler">
+      <created>1554055045275</created>
       <option name="number" value="00068" />
       <option name="presentableId" value="LOCAL-00068" />
       <option name="project" value="LOCAL" />
-      <updated>1554756768314</updated>
+      <updated>1554055045276</updated>
     </task>
-    <task id="LOCAL-00069" summary="toevoeging level adhv waardes vd ingegeven kaarten, foutmelding indien niet meer dan 1000">
-      <created>1554888859054</created>
+    <task id="LOCAL-00069" summary="db">
+      <created>1554056714717</created>
       <option name="number" value="00069" />
       <option name="presentableId" value="LOCAL-00069" />
       <option name="project" value="LOCAL" />
-      <updated>1554888859054</updated>
+      <updated>1554056714717</updated>
     </task>
-    <task id="LOCAL-00070" summary="verdere aanpassing verkopen - kaarten nu nog laten toevoegen aan juiste stapel en arraylist met id's opnieuw laten laden bij elke speler">
-      <created>1554903985025</created>
+    <task id="LOCAL-00070" summary="mapper spel">
+      <created>1554058464450</created>
       <option name="number" value="00070" />
       <option name="presentableId" value="LOCAL-00070" />
       <option name="project" value="LOCAL" />
-      <updated>1554903985025</updated>
+      <updated>1554058464450</updated>
     </task>
-    <task id="LOCAL-00071" summary="merge fix">
-      <created>1554985757749</created>
+    <task id="LOCAL-00071" summary="mapper spel">
+      <created>1554058522864</created>
       <option name="number" value="00071" />
       <option name="presentableId" value="LOCAL-00071" />
       <option name="project" value="LOCAL" />
-      <updated>1554985757750</updated>
+      <updated>1554058522864</updated>
     </task>
-    <task id="LOCAL-00072" summary="import">
-      <created>1554987883672</created>
+    <task id="LOCAL-00072" summary="mapper spel">
+      <created>1554187027073</created>
       <option name="number" value="00072" />
       <option name="presentableId" value="LOCAL-00072" />
       <option name="project" value="LOCAL" />
-      <updated>1554987883672</updated>
+      <updated>1554187027073</updated>
     </task>
-    <task id="LOCAL-00073" summary="methode verwijderen kaart, werkt NIET">
-      <created>1555016132761</created>
+    <task id="LOCAL-00073" summary="mapper spel">
+      <created>1554188180677</created>
       <option name="number" value="00073" />
       <option name="presentableId" value="LOCAL-00073" />
       <option name="project" value="LOCAL" />
-      <updated>1555016132761</updated>
+      <updated>1554188180677</updated>
     </task>
-    <task id="LOCAL-00074" summary="verwijderKaart aangepast, nog steeds niet werkend. &#10;Vertalingen en kleur toegevoegd">
-      <created>1555060413824</created>
+    <task id="LOCAL-00074" summary="mapper spel">
+      <created>1554192438205</created>
       <option name="number" value="00074" />
       <option name="presentableId" value="LOCAL-00074" />
       <option name="project" value="LOCAL" />
-      <updated>1555060413824</updated>
+      <updated>1554192438205</updated>
     </task>
-    <task id="LOCAL-00075" summary="kleeeuuuurrr">
-      <created>1555061693528</created>
+    <task id="LOCAL-00075" summary="mapper spel">
+      <created>1554193264432</created>
       <option name="number" value="00075" />
       <option name="presentableId" value="LOCAL-00075" />
       <option name="project" value="LOCAL" />
-      <updated>1555061693528</updated>
+      <updated>1554193264432</updated>
     </task>
-    <task id="LOCAL-00076" summary="kleine aanpassingen in vertaligen">
-      <created>1555071599214</created>
+    <task id="LOCAL-00076" summary="UC8">
+      <created>1554195318689</created>
       <option name="number" value="00076" />
       <option name="presentableId" value="LOCAL-00076" />
       <option name="project" value="LOCAL" />
-      <updated>1555071599215</updated>
+      <updated>1554195318689</updated>
     </task>
-    <task id="LOCAL-00077" summary="kleine aanpassing formatting uc7">
-      <created>1556004712418</created>
+    <task id="LOCAL-00077" summary="uc8">
+      <created>1554196202556</created>
       <option name="number" value="00077" />
       <option name="presentableId" value="LOCAL-00077" />
       <option name="project" value="LOCAL" />
-      <updated>1556004712419</updated>
+      <updated>1554196202556</updated>
     </task>
-    <task id="LOCAL-00078" summary="vertalingen + equalsmethode in kaart">
-      <created>1556013806011</created>
+    <task id="LOCAL-00078" summary="mapper spel">
+      <created>1554209782485</created>
       <option name="number" value="00078" />
       <option name="presentableId" value="LOCAL-00078" />
       <option name="project" value="LOCAL" />
-      <updated>1556013806012</updated>
+      <updated>1554209782485</updated>
     </task>
-    <task id="LOCAL-00079" summary="vertaling fix">
-      <created>1556114787978</created>
+    <task id="LOCAL-00079" summary="persistentie spel &#10;&#10;NOG NIET AF">
+      <created>1554211901711</created>
       <option name="number" value="00079" />
       <option name="presentableId" value="LOCAL-00079" />
       <option name="project" value="LOCAL" />
-      <updated>1556114787979</updated>
+      <updated>1554211901711</updated>
     </task>
-    <task id="LOCAL-00080" summary="tijdelijke thread voor laden spel">
-      <created>1556139321855</created>
+    <task id="LOCAL-00080" summary="mapper spel">
+      <created>1554212169510</created>
       <option name="number" value="00080" />
       <option name="presentableId" value="LOCAL-00080" />
       <option name="project" value="LOCAL" />
-      <updated>1556139321856</updated>
+      <updated>1554212169510</updated>
     </task>
-    <task id="LOCAL-00081" summary="opmaak uc9">
-      <created>1556213675367</created>
+    <task id="LOCAL-00081" summary="mapper spel">
+      <created>1554212366859</created>
       <option name="number" value="00081" />
       <option name="presentableId" value="LOCAL-00081" />
       <option name="project" value="LOCAL" />
-      <updated>1556213675367</updated>
+      <updated>1554212366859</updated>
     </task>
-    <task id="LOCAL-00082" summary="uc7, ids weg te gooien kaarten bij string geplaatst">
-      <created>1556217158890</created>
+    <task id="LOCAL-00082" summary="mapper spel">
+      <created>1554212693657</created>
       <option name="number" value="00082" />
       <option name="presentableId" value="LOCAL-00082" />
       <option name="project" value="LOCAL" />
-      <updated>1556217158890</updated>
+      <updated>1554212693657</updated>
     </task>
-    <task id="LOCAL-00083" summary="Controle UC1">
-      <created>1556356115985</created>
+    <task id="LOCAL-00083" summary="mapper klaar?">
+      <created>1554213645860</created>
       <option name="number" value="00083" />
       <option name="presentableId" value="LOCAL-00083" />
       <option name="project" value="LOCAL" />
-      <updated>1556356115986</updated>
+      <updated>1554213645860</updated>
     </task>
-    <task id="LOCAL-00084" summary="uc7 aangeroepen, v2 momenteel nog niet werkend. &#10;UC7 op zich ook nog niet werkend..">
-      <created>1556389154341</created>
+    <task id="LOCAL-00084" summary="fix">
+      <created>1554223359076</created>
       <option name="number" value="00084" />
       <option name="presentableId" value="LOCAL-00084" />
       <option name="project" value="LOCAL" />
-      <updated>1556389154341</updated>
+      <updated>1554223359076</updated>
     </task>
-    <task id="LOCAL-00085" summary="Fix verkopen, ids wijzigen nu en blijven niet statisch bij volgende speler!">
-      <created>1556435564109</created>
+    <task id="LOCAL-00085" summary="mapper spel">
+      <created>1554233168300</created>
       <option name="number" value="00085" />
       <option name="presentableId" value="LOCAL-00085" />
       <option name="project" value="LOCAL" />
-      <updated>1556435564110</updated>
+      <updated>1554233168300</updated>
     </task>
-    <option name="localTasksCounter" value="86" />
+    <task id="LOCAL-00086" summary="mapper spel">
+      <created>1554237641909</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1554237641909</updated>
+    </task>
+    <task id="LOCAL-00087" summary="bijnaaaa spel opslaan en laden">
+      <created>1554312419813</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1554312419813</updated>
+    </task>
+    <task id="LOCAL-00088" summary="opslaan/laden UC8,9 klaar">
+      <created>1554313875836</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1554313875836</updated>
+    </task>
+    <task id="LOCAL-00089" summary="fixed mappers">
+      <created>1554457123748</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1554457123748</updated>
+    </task>
+    <task id="LOCAL-00090" summary="...">
+      <created>1554457216967</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1554457216967</updated>
+    </task>
+    <task id="LOCAL-00091" summary="mapper spel">
+      <created>1556002989589</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1556002989590</updated>
+    </task>
+    <task id="LOCAL-00092" summary="mapper spel">
+      <created>1556003055872</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1556003055873</updated>
+    </task>
+    <task id="LOCAL-00093" summary="hierarchie GUI">
+      <created>1556003765944</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1556003765944</updated>
+    </task>
+    <task id="LOCAL-00094" summary="mapper spel">
+      <created>1556004063267</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1556004063267</updated>
+    </task>
+    <task id="LOCAL-00095" summary="mapper spel">
+      <created>1556004455418</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1556004455418</updated>
+    </task>
+    <task id="LOCAL-00096" summary="mapper spel">
+      <created>1556011349037</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1556011349037</updated>
+    </task>
+    <task id="LOCAL-00097" summary="taal">
+      <created>1556130423051</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1556130423051</updated>
+    </task>
+    <task id="LOCAL-00098" summary="mapper spel">
+      <created>1556136403345</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1556136403345</updated>
+    </task>
+    <task id="LOCAL-00099" summary="mapper spel">
+      <created>1556194087802</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1556194087802</updated>
+    </task>
+    <task id="LOCAL-00100" summary="UC9 werkt, opkuis nog nodig">
+      <created>1556214552890</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1556214552890</updated>
+    </task>
+    <task id="LOCAL-00101" summary="mapper spel">
+      <created>1556263049861</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1556263049861</updated>
+    </task>
+    <task id="LOCAL-00102" summary="mapper spel">
+      <created>1556263252427</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1556263252428</updated>
+    </task>
+    <task id="LOCAL-00103" summary="UC1, UM, UC7V2, UC9">
+      <created>1556273684952</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1556273684952</updated>
+    </task>
+    <task id="LOCAL-00104" summary="UC1 klaar">
+      <created>1556274658188</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1556274658188</updated>
+    </task>
+    <task id="LOCAL-00105" summary="UC1, UC2">
+      <created>1556355246879</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1556355246879</updated>
+    </task>
+    <task id="LOCAL-00106" summary="UC1">
+      <created>1556355299797</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1556355299797</updated>
+    </task>
+    <task id="LOCAL-00107" summary="Scanner lowercase UC1, UC2">
+      <created>1556355460609</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1556355460609</updated>
+    </task>
+    <task id="LOCAL-00108" summary="UC1, UC2">
+      <created>1556356432819</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
+      <option name="project" value="LOCAL" />
+      <updated>1556356432819</updated>
+    </task>
+    <task id="LOCAL-00109" summary="UC1, UC2">
+      <created>1556357541810</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1556357541810</updated>
+    </task>
+    <task id="LOCAL-00110" summary="fout db laden">
+      <created>1556361729019</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1556361729019</updated>
+    </task>
+    <task id="LOCAL-00111" summary="yes no fixed">
+      <created>1556439542600</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1556439542600</updated>
+    </task>
+    <task id="LOCAL-00112" summary="fout db laden">
+      <created>1556440169424</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1556440169424</updated>
+    </task>
+    <task id="LOCAL-00113" summary="fout db laden">
+      <created>1556441839873</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1556441839873</updated>
+    </task>
+    <task id="LOCAL-00114" summary="fout db laden">
+      <created>1556444896107</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1556444896107</updated>
+    </task>
+    <task id="LOCAL-00115" summary="fout db laden">
+      <created>1556454406900</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1556454406900</updated>
+    </task>
+    <option name="localTasksCounter" value="116" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="244575000" />
-  </component>
-  <component name="TodoView">
-    <todo-panel id="selected-file">
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="true" />
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
+    <option name="totallyTimeSpent" value="269962000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <frame x="0" y="0" width="960" height="1200" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Learn" order="0" weight="0.32897604" />
-      <window_info content_ui="combo" id="Project" order="1" weight="0.1788269" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.31808278" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Designer" order="4" />
       <window_info id="UI Designer" order="5" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Favorites" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Database Console" order="0" weight="0.32942238" />
-      <window_info anchor="bottom" id="Messages" order="1" sideWeight="0.49891067" weight="0.30722892" />
-      <window_info anchor="bottom" id="Message" order="2" />
-      <window_info anchor="bottom" id="Find" order="3" weight="0.32891566" />
-      <window_info active="true" anchor="bottom" id="Run" order="4" sideWeight="0.49713877" visible="true" weight="0.4361446" />
-      <window_info anchor="bottom" id="Debug" order="5" weight="0.3987952" />
-      <window_info anchor="bottom" id="Cvs" order="6" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="7" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="8" weight="0.32891566" />
-      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="10" weight="0.32771084" />
-      <window_info anchor="bottom" id="Database Changes" order="11" weight="0.32891566" />
-      <window_info anchor="bottom" id="Terminal" order="12" weight="0.32891566" />
-      <window_info anchor="bottom" id="Event Log" order="13" sideWeight="0.5028612" side_tool="true" weight="0.2253012" />
-      <window_info anchor="bottom" id="Inspection Results" order="14" weight="0.32891566" />
+      <window_info anchor="bottom" id="Inspection Results" order="0" sideWeight="0.49946752" weight="0.4169675" />
+      <window_info anchor="bottom" id="Database Console" order="1" weight="0.32942238" />
+      <window_info anchor="bottom" id="Messages" order="2" sideWeight="0.49840257" weight="0.32942238" />
+      <window_info anchor="bottom" id="Message" order="3" />
+      <window_info anchor="bottom" id="Find" order="4" weight="0.32942238" />
+      <window_info active="true" anchor="bottom" id="Run" order="5" sideWeight="0.6746539" visible="true" weight="0.41967508" />
+      <window_info anchor="bottom" id="Debug" order="6" sideWeight="0.49946752" weight="0.2906137" />
+      <window_info anchor="bottom" id="Cvs" order="7" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="9" />
+      <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="11" weight="0.32942238" />
+      <window_info anchor="bottom" id="Database Changes" order="12" weight="0.32942238" />
+      <window_info anchor="bottom" id="Terminal" order="13" weight="0.32942238" />
+      <window_info anchor="bottom" id="Event Log" order="14" sideWeight="0.5005325" side_tool="true" weight="0.3998195" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.24964234" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" id="Theme Preview" order="4" />
-      <window_info anchor="right" id="Maven" order="5" weight="0.3297568" />
+      <window_info anchor="right" id="Maven" order="5" />
       <window_info anchor="right" id="Capture Analysis" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
-      <window_info anchor="right" id="Database" order="8" weight="0.24034335" />
-      <window_info anchor="right" id="Maven Projects" order="9" />
+      <window_info anchor="right" id="Database" order="8" weight="0.106496274" />
     </layout>
     <layout-to-restore>
       <window_info id="Learn" order="0" weight="0.32897604" />
-      <window_info content_ui="combo" id="Project" order="1" weight="0.1788269" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.15548456" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Designer" order="4" />
       <window_info id="UI Designer" order="5" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Favorites" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Database Console" order="0" weight="0.32942238" />
-      <window_info anchor="bottom" id="Messages" order="1" sideWeight="0.49891067" weight="0.30722892" />
-      <window_info anchor="bottom" id="Message" order="2" />
-      <window_info anchor="bottom" id="Find" order="3" weight="0.32891566" />
-      <window_info anchor="bottom" id="Run" order="4" sideWeight="0.49713877" visible="true" weight="0.39518073" />
-      <window_info anchor="bottom" id="Debug" order="5" weight="0.3987952" />
-      <window_info anchor="bottom" id="Cvs" order="6" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="7" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="8" weight="0.32891566" />
-      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="10" weight="0.32771084" />
-      <window_info anchor="bottom" id="Database Changes" order="11" weight="0.32891566" />
-      <window_info anchor="bottom" id="Terminal" order="12" weight="0.32891566" />
-      <window_info anchor="bottom" id="Event Log" order="13" sideWeight="0.5028612" side_tool="true" weight="0.2253012" />
-      <window_info anchor="bottom" id="Inspection Results" order="14" weight="0.32891566" />
+      <window_info anchor="bottom" id="Inspection Results" order="0" sideWeight="0.49946752" weight="0.4169675" />
+      <window_info anchor="bottom" id="Database Console" order="1" weight="0.32942238" />
+      <window_info anchor="bottom" id="Messages" order="2" sideWeight="0.49840257" weight="0.32942238" />
+      <window_info anchor="bottom" id="Message" order="3" />
+      <window_info active="true" anchor="bottom" id="Find" order="4" visible="true" weight="0.32942238" />
+      <window_info anchor="bottom" id="Run" order="5" sideWeight="0.6746539" weight="0.35830325" />
+      <window_info anchor="bottom" id="Debug" order="6" sideWeight="0.49946752" weight="0.2906137" />
+      <window_info anchor="bottom" id="Cvs" order="7" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="9" />
+      <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="11" weight="0.32942238" />
+      <window_info anchor="bottom" id="Database Changes" order="12" weight="0.32942238" />
+      <window_info anchor="bottom" id="Terminal" order="13" weight="0.32942238" />
+      <window_info anchor="bottom" id="Event Log" order="14" sideWeight="0.5005325" side_tool="true" weight="0.3998195" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.24964234" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" id="Theme Preview" order="4" />
-      <window_info anchor="right" id="Maven" order="5" weight="0.3297568" />
+      <window_info anchor="right" id="Maven" order="5" />
       <window_info anchor="right" id="Capture Analysis" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
-      <window_info anchor="right" id="Database" order="8" weight="0.24034335" />
-      <window_info anchor="right" id="Maven Projects" order="9" />
+      <window_info anchor="right" id="Database" order="8" weight="0.106496274" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -947,374 +1013,976 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Vervolg uc7, oneindige lus trachten verwijderen" />
-    <MESSAGE value="vertalingen fix" />
-    <MESSAGE value="uc7 - inlezen van de te verkopen kaarten (twijfel over manier)" />
-    <MESSAGE value="kleine aanpassing uc7, tussentijdse save (vooral vertalingen + string sellables aangepast in Speler)" />
-    <MESSAGE value="methode om ID in te lezen..." />
-    <MESSAGE value="kleine aanpassing, nog niet werkend" />
-    <MESSAGE value="inlezen voor 1ste speler werkt, probleem met arraylist bij 2e speler, moet eigenlijk gecleared worden." />
-    <MESSAGE value="methode om waardes van te verkopen kaarten op te vragen. Nog steeds zelfde probleem met lus" />
-    <MESSAGE value="toevoeging level adhv waardes vd ingegeven kaarten, foutmelding indien niet meer dan 1000" />
-    <MESSAGE value="verdere aanpassing verkopen - kaarten nu nog laten toevoegen aan juiste stapel en arraylist met id's opnieuw laten laden bij elke speler" />
-    <MESSAGE value="merge fix" />
-    <MESSAGE value="import" />
-    <MESSAGE value="methode verwijderen kaart, werkt NIET" />
-    <MESSAGE value="verwijderKaart aangepast, nog steeds niet werkend. &#10;Vertalingen en kleur toegevoegd" />
-    <MESSAGE value="kleeeuuuurrr" />
-    <MESSAGE value="kleine aanpassingen in vertaligen" />
-    <MESSAGE value="kleine aanpassing formatting uc7" />
-    <MESSAGE value="vertalingen + equalsmethode in kaart" />
-    <MESSAGE value="vertaling fix" />
-    <MESSAGE value="tijdelijke thread voor laden spel" />
-    <MESSAGE value="opmaak uc9" />
-    <MESSAGE value="uc7, ids weg te gooien kaarten bij string geplaatst" />
-    <MESSAGE value="Controle UC1" />
-    <MESSAGE value="uc7 aangeroepen, v2 momenteel nog niet werkend. &#10;UC7 op zich ook nog niet werkend.." />
-    <MESSAGE value="Fix verkopen, ids wijzigen nu en blijven niet statisch bij volgende speler!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix verkopen, ids wijzigen nu en blijven niet statisch bij volgende speler!" />
+    <MESSAGE value="uc7 beetje oplossen" />
+    <MESSAGE value="- UC1 + Developer mode&#10;- kleine aanpassing in gui&#10;- TO DO" />
+    <MESSAGE value="uc1 javadocs" />
+    <MESSAGE value="speler" />
+    <MESSAGE value="db" />
+    <MESSAGE value="UC8" />
+    <MESSAGE value="uc8" />
+    <MESSAGE value="persistentie spel &#10;&#10;NOG NIET AF" />
+    <MESSAGE value="mapper klaar?" />
+    <MESSAGE value="fix" />
+    <MESSAGE value="bijnaaaa spel opslaan en laden" />
+    <MESSAGE value="opslaan/laden UC8,9 klaar" />
+    <MESSAGE value="fixed mappers" />
+    <MESSAGE value="..." />
+    <MESSAGE value="hierarchie GUI" />
+    <MESSAGE value="taal" />
+    <MESSAGE value="UC9 werkt, opkuis nog nodig" />
+    <MESSAGE value="mapper spel" />
+    <MESSAGE value="UC1, UM, UC7V2, UC9" />
+    <MESSAGE value="UC1 klaar" />
+    <MESSAGE value="UC1" />
+    <MESSAGE value="Scanner lowercase UC1, UC2" />
+    <MESSAGE value="UC1, UC2" />
+    <MESSAGE value="yes no fixed" />
+    <MESSAGE value="fout db laden" />
+    <option name="LAST_COMMIT_MESSAGE" value="fout db laden" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
-  <component name="antWorkspaceConfiguration">
-    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
-    <option name="FILTER_TARGETS" value="false" />
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/ui/test/Test.java</url>
+          <line>74</line>
+          <properties />
+          <option name="timeStamp" value="73" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/PersistentieController.java</url>
+          <line>181</line>
+          <properties />
+          <option name="timeStamp" value="131" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/PersistentieController.java</url>
+          <line>182</line>
+          <properties />
+          <option name="timeStamp" value="132" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/PersistentieController.java</url>
+          <line>183</line>
+          <properties />
+          <option name="timeStamp" value="133" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/PersistentieController.java</url>
+          <line>185</line>
+          <properties />
+          <option name="timeStamp" value="134" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/PersistentieController.java</url>
+          <line>184</line>
+          <properties />
+          <option name="timeStamp" value="135" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/PersistentieController.java</url>
+          <line>186</line>
+          <properties />
+          <option name="timeStamp" value="136" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/PersistentieController.java</url>
+          <line>187</line>
+          <properties />
+          <option name="timeStamp" value="137" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/PersistentieController.java</url>
+          <line>191</line>
+          <properties />
+          <option name="timeStamp" value="138" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/PersistentieController.java</url>
+          <line>193</line>
+          <properties />
+          <option name="timeStamp" value="139" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/PersistentieController.java</url>
+          <line>192</line>
+          <properties />
+          <option name="timeStamp" value="140" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/PersistentieController.java</url>
+          <line>195</line>
+          <properties />
+          <option name="timeStamp" value="141" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/PersistentieController.java</url>
+          <line>196</line>
+          <properties />
+          <option name="timeStamp" value="142" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/PersistentieController.java</url>
+          <line>197</line>
+          <properties />
+          <option name="timeStamp" value="143" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/PersistentieController.java</url>
+          <line>194</line>
+          <properties />
+          <option name="timeStamp" value="144" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/PersistentieController.java</url>
+          <line>162</line>
+          <properties />
+          <option name="timeStamp" value="148" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/PersistentieController.java</url>
+          <line>163</line>
+          <properties />
+          <option name="timeStamp" value="149" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/PersistentieController.java</url>
+          <line>164</line>
+          <properties />
+          <option name="timeStamp" value="150" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>150</line>
+          <properties />
+          <option name="timeStamp" value="156" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>149</line>
+          <properties />
+          <option name="timeStamp" value="157" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>151</line>
+          <properties />
+          <option name="timeStamp" value="159" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>152</line>
+          <properties />
+          <option name="timeStamp" value="160" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>153</line>
+          <properties />
+          <option name="timeStamp" value="161" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>155</line>
+          <properties />
+          <option name="timeStamp" value="162" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>159</line>
+          <properties />
+          <option name="timeStamp" value="163" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>154</line>
+          <properties />
+          <option name="timeStamp" value="164" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>160</line>
+          <properties />
+          <option name="timeStamp" value="165" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>161</line>
+          <properties />
+          <option name="timeStamp" value="166" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>162</line>
+          <properties />
+          <option name="timeStamp" value="167" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>163</line>
+          <properties />
+          <option name="timeStamp" value="168" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>164</line>
+          <properties />
+          <option name="timeStamp" value="171" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>165</line>
+          <properties />
+          <option name="timeStamp" value="174" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>166</line>
+          <properties />
+          <option name="timeStamp" value="176" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>167</line>
+          <properties />
+          <option name="timeStamp" value="178" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>172</line>
+          <properties />
+          <option name="timeStamp" value="181" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>171</line>
+          <properties />
+          <option name="timeStamp" value="182" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>170</line>
+          <properties />
+          <option name="timeStamp" value="183" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>169</line>
+          <properties />
+          <option name="timeStamp" value="184" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>168</line>
+          <properties />
+          <option name="timeStamp" value="185" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/PersistentieController.java</url>
+          <line>206</line>
+          <properties />
+          <option name="timeStamp" value="186" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/PersistentieController.java</url>
+          <line>205</line>
+          <properties />
+          <option name="timeStamp" value="187" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>330</line>
+          <properties />
+          <option name="timeStamp" value="188" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>319</line>
+          <properties />
+          <option name="timeStamp" value="198" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>320</line>
+          <properties />
+          <option name="timeStamp" value="199" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>321</line>
+          <properties />
+          <option name="timeStamp" value="200" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>322</line>
+          <properties />
+          <option name="timeStamp" value="201" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>323</line>
+          <properties />
+          <option name="timeStamp" value="202" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>324</line>
+          <properties />
+          <option name="timeStamp" value="203" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>326</line>
+          <properties />
+          <option name="timeStamp" value="204" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>325</line>
+          <properties />
+          <option name="timeStamp" value="205" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>317</line>
+          <properties />
+          <option name="timeStamp" value="206" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>318</line>
+          <properties />
+          <option name="timeStamp" value="207" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>156</line>
+          <properties />
+          <option name="timeStamp" value="208" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>157</line>
+          <properties />
+          <option name="timeStamp" value="209" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>158</line>
+          <properties />
+          <option name="timeStamp" value="210" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>71</line>
+          <properties />
+          <option name="timeStamp" value="211" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>64</line>
+          <properties />
+          <option name="timeStamp" value="212" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>65</line>
+          <properties />
+          <option name="timeStamp" value="213" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>66</line>
+          <properties />
+          <option name="timeStamp" value="214" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>67</line>
+          <properties />
+          <option name="timeStamp" value="215" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>68</line>
+          <properties />
+          <option name="timeStamp" value="216" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>69</line>
+          <properties />
+          <option name="timeStamp" value="217" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>70</line>
+          <properties />
+          <option name="timeStamp" value="218" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>91</line>
+          <properties />
+          <option name="timeStamp" value="219" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>92</line>
+          <properties />
+          <option name="timeStamp" value="220" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>93</line>
+          <properties />
+          <option name="timeStamp" value="221" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>94</line>
+          <properties />
+          <option name="timeStamp" value="223" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>95</line>
+          <properties />
+          <option name="timeStamp" value="224" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>96</line>
+          <properties />
+          <option name="timeStamp" value="225" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>97</line>
+          <properties />
+          <option name="timeStamp" value="226" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>98</line>
+          <properties />
+          <option name="timeStamp" value="227" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>99</line>
+          <properties />
+          <option name="timeStamp" value="228" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>100</line>
+          <properties />
+          <option name="timeStamp" value="229" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>101</line>
+          <properties />
+          <option name="timeStamp" value="230" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>102</line>
+          <properties />
+          <option name="timeStamp" value="231" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>103</line>
+          <properties />
+          <option name="timeStamp" value="233" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>104</line>
+          <properties />
+          <option name="timeStamp" value="234" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>105</line>
+          <properties />
+          <option name="timeStamp" value="235" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>106</line>
+          <properties />
+          <option name="timeStamp" value="237" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/domein/DomeinController.java</url>
+          <line>349</line>
+          <properties />
+          <option name="timeStamp" value="244" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java</url>
+          <line>148</line>
+          <properties class="persistentie.mappers.SpelMapperDb" method="geefVolgorde">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="155" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/language/resourcebundle/i18n_fr.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2085">
-          <caret line="139" column="31" selection-start-line="139" selection-start-column="31" selection-end-line="139" selection-end-column="31" />
-        </state>
-      </provider>
-      <provider editor-type-id="ResourceBundle" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/language/resourcebundle/i18n_en.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="553">
-          <caret line="139" column="31" selection-start-line="139" selection-start-column="31" selection-end-line="139" selection-end-column="31" />
-        </state>
-      </provider>
-      <provider editor-type-id="ResourceBundle" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/language/LanguageResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="21" column="20" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/1f5f1cd0-ae45-4e5f-907f-97613be45606/console.sql" />
-    <entry file="das://1f5f1cd0-ae45-4e5f-907f-97613be45606/collation/ascii_general_ci" />
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/4b1835ce-cd8e-4b69-b82a-0cac71054732/console.sql" />
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/src/ui/gui/ucs/usecase6/UseCase6G.css">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/test/testKilian.java" />
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.0.2.jdk/Contents/Home/lib/src.zip!/java.base/java/lang/AbstractStringBuilder.java">
+    <entry file="file://$PROJECT_DIR$/src/ui/gui/ucs/usecase7/UseCase7G.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/gui/ucs/usecase8/UseCase8G.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/gui/ucs/usecase9/UseCase9G.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/gui/ucs/usecase3/UseCase3G.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/gui/ucs/usecase4/UseCase4G.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/gui/ucs/usecase1/UseCase1G.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="506" column="33" selection-start-line="506" selection-start-column="33" selection-end-line="506" selection-end-column="33" />
+        <state relative-caret-position="735">
+          <caret line="49" column="62" selection-start-line="49" selection-start-column="62" selection-end-line="49" selection-end-column="62" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.0.2.jdk/Contents/Home/lib/src.zip!/java.base/java/lang/StringBuilder.java">
+    <entry file="file://$PROJECT_DIR$/src/ui/gui/ucs/usecase9/UseCase9G.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="140" column="17" lean-forward="true" selection-start-line="140" selection-start-column="17" selection-end-line="140" selection-end-column="17" />
+        <state relative-caret-position="90">
+          <caret line="6" column="41" lean-forward="true" selection-start-line="6" selection-start-column="41" selection-end-line="6" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#390#391#0" expanded="true" />
+            <element signature="e#459#460#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/domein/kaarten/Kerkerkaart.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://4b1835ce-cd8e-4b69-b82a-0cac71054732/schema/ID222177_g35/table/BadStuff" />
-    <entry file="das://4b1835ce-cd8e-4b69-b82a-0cac71054732/schema/ID222177_g35/table/ConsumablesD" />
-    <entry file="das://4b1835ce-cd8e-4b69-b82a-0cac71054732/schema/ID222177_g35/table/ConsumablesT" />
-    <entry file="file://$PROJECT_DIR$/src/domein/repositories/KaartDbKleinRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="36" column="25" selection-start-line="36" selection-start-column="25" selection-end-line="36" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/domein/kaarten/Kaart.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="77" column="15" selection-start-line="77" selection-start-column="15" selection-end-line="77" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase4.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2355">
-          <caret line="167" selection-start-line="167" selection-end-line="167" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase6.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1530">
-          <caret line="109" selection-start-line="109" selection-end-line="109" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://4b1835ce-cd8e-4b69-b82a-0cac71054732/schema/ID222177_g35/table/Spel" />
-    <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase5.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="47" column="1" lean-forward="true" selection-start-line="47" selection-start-column="1" selection-end-line="47" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/domein/repositories/SpelDbRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="21" column="26" lean-forward="true" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/domein/kaarten/schatkaarten/ConsumablesSchat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="47">
-          <caret line="9" column="43" selection-start-line="9" selection-start-column="43" selection-end-line="9" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/domein/kaarten/Schatkaart.java">
+    <entry file="file://$PROJECT_DIR$/src/ui/gui/ucs/usecase8/UseCase8G.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
-          <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#390#391#0" expanded="true" />
+            <element signature="e#459#460#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/gui/ucs/usecase7/UseCase7G.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#390#391#0" expanded="true" />
+            <element signature="e#459#460#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/gui/ucs/usecase6/UseCase6G.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#390#391#0" expanded="true" />
+            <element signature="e#459#460#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/gui/ucs/usecase5/UseCase5G.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#390#391#0" expanded="true" />
+            <element signature="e#459#460#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/gui/ucs/usecase4/UseCase4G.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#390#391#0" expanded="true" />
+            <element signature="e#459#460#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ui/gui/ucs/usecase2/UseCase2G.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/gui/ucs/usecase1/UseCase1G.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-84">
-          <caret line="90" column="29" selection-start-line="90" selection-start-column="29" selection-end-line="90" selection-end-column="29" />
+        <state relative-caret-position="135">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#390#391#0" expanded="true" />
+            <element signature="e#459#460#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ui/gui/ucs/usecase3/UseCase3G.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        <state relative-caret-position="165">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+          <folding>
+            <element signature="e#391#392#0" expanded="true" />
+            <element signature="e#460#461#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ToDo.java">
+    <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase4V2.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="44" column="13" selection-start-line="44" selection-start-column="13" selection-end-line="44" selection-end-column="13" />
+        <state relative-caret-position="62">
+          <caret line="141" column="14" selection-start-line="141" selection-start-column="14" selection-end-line="141" selection-end-column="14" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/test/Test.java">
+    <entry file="file://$PROJECT_DIR$/src/domein/Speler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="28" selection-start-line="28" selection-end-line="28" />
+        <state relative-caret-position="723">
+          <caret line="299" column="23" selection-start-line="299" selection-start-column="23" selection-end-line="299" selection-end-column="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/gui/maingui/MainGui.java">
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.0.2.jdk/Contents/Home/lib/src.zip!/java.base/java/io/FileInputStream.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        <state relative-caret-position="252">
+          <caret line="243" column="23" selection-start-line="243" selection-start-column="23" selection-end-line="243" selection-end-column="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/gui/extras/menubar/MenuBarGui.java">
+    <entry file="file://$PROJECT_DIR$/src/persistentie/mappers/KaartMapperDb.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
-          <caret line="82" column="42" selection-start-line="82" selection-start-column="42" selection-end-line="82" selection-end-column="42" />
+        <state relative-caret-position="190">
+          <caret line="53" column="23" selection-start-line="53" selection-start-column="23" selection-end-line="53" selection-end-column="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build/classes/language/resourcebundle/i18n.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="447">
-          <caret line="136" selection-start-line="136" selection-end-line="136" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/src/language/resourcebundle/i18n.properties">
+      <provider selected="true" editor-type-id="text-editor" />
       <provider editor-type-id="ResourceBundle" />
     </entry>
-    <entry file="das://4b1835ce-cd8e-4b69-b82a-0cac71054732/schema/ID222177_g35/table/SpelerKaart.sql">
+    <entry file="file://$PROJECT_DIR$/src/domein/kaarten/kerkerkaarten/Monster.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
+        <state relative-caret-position="262">
+          <caret line="74" selection-start-line="74" selection-end-line="74" />
+          <folding>
+            <element signature="e#4072#4073#0" expanded="true" />
+            <element signature="e#4106#4107#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="das://4b1835ce-cd8e-4b69-b82a-0cac71054732/schema/ID222177_g35/table/SpelerKaart">
+    <entry file="file://$PROJECT_DIR$/src/domein/kaarten/kerkerkaarten/Race.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/domein/kaarten/Kaart.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="11" column="22" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/domein/kaarten/schatkaarten/ConsumablesSchat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="26" selection-start-line="26" selection-end-line="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/domein/kaarten/schatkaarten/Equipment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2370">
+          <caret line="174" column="142" selection-start-line="174" selection-start-column="142" selection-end-line="174" selection-end-column="142" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/domein/kaarten/kerkerkaarten/Curse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/domein/kaarten/kerkerkaarten/ConsumablesKerker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/printer/ColorsOutput.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="24" column="35" selection-start-line="24" selection-start-column="35" selection-end-line="24" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase7.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="16" column="6" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase4.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1561">
+          <caret line="155" column="46" lean-forward="true" selection-start-line="155" selection-start-column="46" selection-end-line="155" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/printer/Printer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="383">
+          <caret line="37" column="31" selection-start-line="37" selection-start-column="31" selection-end-line="37" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase7V2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="505">
+          <caret line="63" column="34" lean-forward="true" selection-start-line="63" selection-start-column="34" selection-end-line="63" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/domein/Spel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="66" column="93" selection-start-line="66" selection-start-column="93" selection-end-line="66" selection-end-column="93" />
+          <folding>
+            <element signature="e#15070#15071#0" expanded="true" />
+            <element signature="e#15102#15103#0" expanded="true" />
+            <element signature="e#15145#15146#0" expanded="true" />
+            <element signature="e#15177#15178#0" expanded="true" />
+            <element signature="e#15895#15896#0" expanded="true" />
+            <element signature="e#15943#15944#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://79f0d59e-e9c8-47b0-95cb-632d85fb8553/schema/ID222177_g35/table/SpelKaart">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java">
+    <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase5.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="32" column="56" selection-start-line="32" selection-start-column="56" selection-end-line="32" selection-end-column="56" />
+        <state relative-caret-position="390">
+          <caret line="39" selection-start-line="39" selection-end-line="39" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/persistentie/mappers/PersistentieController.java">
+    <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UniversalMethods.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="146" column="21" lean-forward="true" selection-start-line="146" selection-start-column="21" selection-end-line="146" selection-end-column="21" />
-          <folding>
-            <element signature="e#4900#4901#0" expanded="true" />
-            <element signature="e#4940#4941#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/persistentie/mappers/KaartMapperDb.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1365">
-          <caret line="66" column="5" selection-start-line="66" selection-start-column="5" selection-end-line="66" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/persistentie/mappers/KaartMapperDbKlein.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1125">
-          <caret line="58" selection-start-line="58" selection-end-line="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase8.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="41" column="25" lean-forward="true" selection-start-line="41" selection-start-column="25" selection-end-line="41" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="385">
-          <caret line="143" column="23" selection-start-line="143" selection-start-column="23" selection-end-line="143" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="17" column="30" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
+        <state relative-caret-position="438">
+          <caret line="51" column="17" lean-forward="true" selection-start-line="51" selection-start-column="17" selection-end-line="51" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase9.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="22" column="9" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#2129#2130#0" expanded="true" />
+            <element signature="e#2157#2158#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase3.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1710">
-          <caret line="118" column="31" selection-start-line="118" selection-start-column="31" selection-end-line="118" selection-end-column="31" />
+        <state relative-caret-position="790">
+          <caret line="63" column="25" lean-forward="true" selection-start-line="63" selection-start-column="25" selection-end-line="63" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/printer/ColorsOutput.java">
+    <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase6.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+        <state relative-caret-position="53">
+          <caret line="38" column="40" selection-start-line="38" selection-start-column="40" selection-end-line="38" selection-end-column="40" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/printer/Printer.java">
+    <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase9.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-98">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        <state relative-caret-position="207">
+          <caret line="46" column="31" selection-start-line="46" selection-start-column="31" selection-end-line="46" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UniversalMethods.java">
+    <entry file="file://$PROJECT_DIR$/src/persistentie/mappers/SpelMapperDb.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="146" column="5" lean-forward="true" selection-start-line="146" selection-start-column="5" selection-end-line="146" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase8.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="56" column="19" lean-forward="true" selection-start-line="56" selection-start-column="19" selection-end-line="56" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-534">
+          <caret line="34" column="23" selection-start-line="34" selection-start-column="23" selection-end-line="34" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#6231#6232#0" expanded="true" />
+            <element signature="e#6274#6275#0" expanded="true" />
+            <element signature="e#6442#6443#0" expanded="true" />
+            <element signature="e#6485#6486#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/exceptions/database/KaartDatabaseException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/exceptions/database/InternetException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="37" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="37" />
+          <folding>
+            <element signature="e#119#120#0" expanded="true" />
+            <element signature="e#138#139#0" expanded="true" />
+            <element signature="e#173#174#0" expanded="true" />
+            <element signature="e#203#204#0" expanded="true" />
+            <element signature="e#268#269#0" expanded="true" />
+            <element signature="e#305#306#0" expanded="true" />
+            <element signature="e#354#355#0" expanded="true" />
+            <element signature="e#382#383#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/persistentie/mappers/KaartMapperDbKlein.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="317">
+          <caret line="48" selection-start-line="48" selection-end-line="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/test/Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="369">
+          <caret line="46" column="81" selection-start-line="46" selection-start-column="81" selection-end-line="46" selection-end-column="81" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/domein/repositories/SpelDbRepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
-          <caret line="12" column="26" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+          <folding>
+            <element signature="e#316#317#0" expanded="true" />
+            <element signature="e#358#359#0" expanded="true" />
+            <element signature="e#394#395#0" expanded="true" />
+            <element signature="e#597#598#0" expanded="true" />
+            <element signature="e#640#641#0" expanded="true" />
+            <element signature="e#762#763#0" expanded="true" />
+            <element signature="e#803#804#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/persistentie/mappers/PersistentieController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="339">
+          <caret line="40" selection-start-line="40" selection-end-line="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2785#2786#0" expanded="true" />
+            <element signature="e#2820#2821#0" expanded="true" />
+            <element signature="e#2865#2866#0" expanded="true" />
+            <element signature="e#2901#2902#0" expanded="true" />
+            <element signature="e#4900#4901#0" expanded="true" />
+            <element signature="e#4940#4941#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/domein/DomeinController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="255" column="51" selection-start-line="255" selection-start-column="51" selection-end-line="255" selection-end-column="51" />
-          <folding>
-            <element signature="e#5013#5014#0" expanded="true" />
-            <element signature="e#5047#5048#0" expanded="true" />
-            <element signature="e#5362#5363#0" expanded="true" />
-            <element signature="e#5422#5423#0" expanded="true" />
-            <element signature="e#5589#5590#0" expanded="true" />
-            <element signature="e#5643#5644#0" expanded="true" />
-            <element signature="e#6513#6514#0" expanded="true" />
-            <element signature="e#6554#6555#0" expanded="true" />
-            <element signature="e#7741#7742#0" expanded="true" />
-            <element signature="e#7787#7788#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/language/resourcebundle/i18n.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="152" selection-start-line="152" selection-end-line="152" />
-        </state>
-      </provider>
-      <provider editor-type-id="ResourceBundle" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/domein/Speler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="56" column="18" selection-start-line="56" selection-start-column="18" selection-end-line="56" selection-end-column="18" />
+        <state relative-caret-position="418">
+          <caret line="30" column="5" lean-forward="true" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#12391#12392#0" expanded="true" />
-            <element signature="e#12422#12423#0" expanded="true" />
+            <element signature="e#598#599#0" expanded="true" />
+            <element signature="e#641#642#0" expanded="true" />
+            <element signature="e#1962#1963#0" expanded="true" />
+            <element signature="e#2003#2004#0" expanded="true" />
+            <element signature="e#2634#2635#0" expanded="true" />
+            <element signature="e#2680#2681#0" expanded="true" />
+            <element signature="e#6851#6852#0" expanded="true" />
+            <element signature="e#6892#6893#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/domein/Spel.java">
+    <entry file="file://$PROJECT_DIR$/src/main/StartUp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="439" column="46" selection-start-line="439" selection-start-column="46" selection-end-line="439" selection-end-column="46" />
+        <state relative-caret-position="270">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase7V2.java">
+    <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase1.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1845">
-          <caret line="128" column="31" selection-start-line="128" selection-start-column="26" selection-end-line="128" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/cui/ucs/UseCase7.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="467">
-          <caret line="126" column="54" selection-start-line="126" selection-start-column="54" selection-end-line="126" selection-end-column="54" />
+        <state relative-caret-position="399">
+          <caret line="204" column="34" selection-start-line="204" selection-start-column="34" selection-end-line="204" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1350,7 +2018,7 @@
       </state>
       <state key="GlobalLibrariesConfigurable.UI">
         <settings>
-          <last-edited>javafx</last-edited>
+          <last-edited>JavaFX</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -1362,7 +2030,7 @@
       </state>
       <state key="JdkListConfigurable.UI">
         <settings>
-          <last-edited>10</last-edited>
+          <last-edited>11</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -1374,11 +2042,12 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>munchkin-g35_a</last-edited>
+          <last-edited>Projecten 1</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>
