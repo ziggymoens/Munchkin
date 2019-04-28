@@ -254,6 +254,10 @@ public class DomeinController {
         return spel.geefKaartenKunnenNaarItems(naam);
     }
 
+    public List<Integer> geefIdsKunnenNaarItems(String naam){
+        return spel.geefIdsKunnenNaarItems(naam);
+    }
+
     public String geefVerkoopbareKaarten(String naam) {
         return spel.geefVerkoopbareKaarten(naam);
     }
@@ -292,6 +296,10 @@ public class DomeinController {
 
     public List<Integer> getWaardeSchatkaart(){
         return spel.getWaardeSchatkaart();
+    }
+
+    public int getWaardeSchatkaart(int id){
+        return spel.getWaardeSchatkaart(id);
     }
 
     public List<String> geefOverzichtSpelen() {
@@ -357,5 +365,9 @@ public class DomeinController {
         }catch (Exception e){
             throw new InternetException();
         }
+    }
+
+    public List<Integer> geefIDKaartenInHand(String naam) {
+        return spel.geefIDKaartenInHand(naam);
     }
 }

@@ -346,8 +346,7 @@ public class Speler {
         for(Kaart kaart : kaarten){
             if(kaart instanceof Equipment || kaart instanceof ConsumablesSchat){
                 idKaart.add(kaart.getId());
-            }else
-                continue;
+            }
         }
         return idKaart;
     }
@@ -436,5 +435,23 @@ public class Speler {
     public void setItems(List<Kaart> items) {
         this.items = items;
         updateKaarten();
+    }
+
+    public List<Integer> getIDKaartenInHand() {
+        List<Integer> ids = new ArrayList<>();
+        for (Kaart kaart: kaarten){
+            ids.add(kaart.getId());
+        }
+        return ids;
+    }
+
+    public List<Integer> geefIdsKunnenNaarItems() {
+        List<Integer> ids = new ArrayList<>();
+        for (Kaart kaart : kaarten) {
+            if (kaart instanceof Race || kaart instanceof Equipment) {
+                ids.add(kaart.getId());
+            }
+        }
+        return ids;
     }
 }

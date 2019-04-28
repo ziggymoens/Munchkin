@@ -537,6 +537,16 @@ public class Spel {
         return spelers.get(i).getWaardeSchatkaart();
     }
 
+    public int getWaardeSchatkaart(int id){
+        if (kaarten.get(id).getClass().getSimpleName().toLowerCase().equals("equipment")){
+            return ((Equipment)kaarten.get(id)).getWaarde();
+        }else if(kaarten.get(id).getClass().getSimpleName().equals("consumablesschat")){
+            return ((ConsumablesSchat)kaarten.get(id)).getWaarde();
+        }else {
+            return 999;
+        }
+    }
+
     public void setKaarten(Map<Integer, Kaart> kaarten) {
         this.kaarten = kaarten;
     }
@@ -593,4 +603,11 @@ public class Spel {
         return spelers.get(i);
     }
 
+    public List<Integer> geefIDKaartenInHand(String naam) {
+        return spelers.get(zoekSpeler(naam)).getIDKaartenInHand();
+    }
+
+    public List<Integer> geefIdsKunnenNaarItems(String naam) {
+        return spelers.get(zoekSpeler(naam)).geefIdsKunnenNaarItems();
+    }
 }
