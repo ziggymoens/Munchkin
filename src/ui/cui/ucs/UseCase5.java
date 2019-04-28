@@ -21,12 +21,14 @@ public class UseCase5 {
     private int spelerAanBeurt;
     private final Scanner SCAN = new Scanner(System.in);
     private boolean help;
+    private boolean monster;
 
 
-    public UseCase5(DomeinController dc, int i, String help) {
+    public UseCase5(DomeinController dc, int i, String help, boolean monster) {
         this.dc = dc;
         this.spelerAanBeurt = i;
         this.help = help.equalsIgnoreCase(LanguageResource.getString("yes"));
+        this.monster = monster;
     }
 
     void speelKaart() {
@@ -39,7 +41,7 @@ public class UseCase5 {
             System.err.println("Je moet de juiste input geven");
         }
         System.out.println(dc.geefSpeler(spelerAanBeurt).getKaarten().get(kaart - 1));
-        if(validatieKaart(kaart, spelerAanBeurt)){
+        if(validatieKaart(kaart)){
 
         }else{
             System.out.println("Kaart mag niet gespeeld worden");
@@ -47,19 +49,21 @@ public class UseCase5 {
         }
     }
 
-    private Boolean validatieKaart(int kaart, int spelerAanbeurt){
+    private Boolean validatieKaart(int kaart){
         Kaart kr = dc.geefSpeler(spelerAanBeurt).getKaarten().get(kaart - 1);
         //Kaarten die de Speler mag spelen
-        if(dc.geefTegenspelers().contains(dc.geefNaamSpeler(dc.geefSpelerAanBeurt()))){
+        if(dc.geefSpelerAanBeurt() == spelerAanBeurt){
             if(kr instanceof ConsumablesSchat || kr instanceof ConsumablesKerker || kr instanceof Equipment || kr instanceof Race || kr instanceof Monster){
                 if(kr instanceof Monster){
-                    if(dc.geefTegenspelers().contains(dc.geefNaamSpeler(spelerAanbeurt))){
+                    if(monster){
                         return true;
                     }else{
                         return false;
                     }
-                }return true;
-            }return false;
+                }
+                return true;
+            }
+            return false;
             //Kaarten die de Tegenspelers mogen spelen
         }else{
             if(kr instanceof ConsumablesSchat || kr instanceof ConsumablesKerker || kr instanceof Monster || kr instanceof Curse){
