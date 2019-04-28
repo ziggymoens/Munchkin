@@ -32,7 +32,7 @@ public class SpelMapperDb {
     private static final String INSERT_GAME = "INSERT INTO ID222177_g35.Spel (spelid, naam, kleingroot, spelerAanBeurt) VALUES (?, ?, ?, ?)";
     private static final String DELETE_GAME = "DELETE FROM ID222177_g35.Spel WHERE spelid = ?";
     private static final String ALL_GAMES = "SELECT * FROM ID222177_g35.Spel";
-    private static final String GAME_CARDSEQ = "SELECT * FROM ID222177_g35.SpelKaart WHERE spelid = ?";
+    private static final String GAME_CARDSEQ = "SELECT spelid, kaartid, volgnumerT, volgnummerD FROM ID222177_g35.SpelKaart WHERE spelid = ?";
     private static final String GAME_GETID = "SELECT spelid FROM ID222177_g35.Spel WHERE naam = ?";
     private static final String PLAYER_GETCARDS = "SELECT * FROM ID222177_g35.SpelerKaart WHERE SpelerId = ?";
     private static final String GAME_GETPLAYERS = "SELECT * FROM ID222177_g35.Speler WHERE spelid = ?";
@@ -149,19 +149,19 @@ public class SpelMapperDb {
     private List<Integer> geefVolgorde(String type, int spelId) {
         List<Integer> volgorde = new ArrayList<>();
         voegToe();
-        int nr;
         try {
             query3 = conn.prepareStatement(GAME_CARDSEQ);
             query3.setInt(1, spelId);
             rs3 = query3.executeQuery();
             while (rs3.next()) {
+                int nrT = rs3.getInt("volgnumerT");
+                int nrD = rs3.getInt("volgnummerD");
+                int kaartId = rs.getInt("kaartId");
                 if (type.equals("t")) {
-                    nr = rs3.getInt("volgnumerT");
+                    volgorde.add(nrT, kaartId);
                 } else {
-                    nr = rs3.getInt("volgnummerD");
+                    volgorde.add(nrD, kaartId);
                 }
-                int kaartId = rs.getInt("kaartid");
-                volgorde.add(nr, kaartId);
             }
             rs3.close();
             query3.close();
