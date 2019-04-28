@@ -98,6 +98,10 @@ public class UseCase7 {
                                             if (dc.geefIdVerkoopbareKaarten(naam).contains(kaartId) && kaartId != 999) {
                                                 ids.add(kaartId);
                                                 teller++;
+                                                for(int i = 0; i <= ids.size()-1; i++){
+                                                    System.out.println(dc.getWaardeSchatkaart().get(i));
+                                                    totWaarde += dc.getWaardeSchatkaart().get(i);
+                                                }
 
                                             }else if(!dc.geefIdVerkoopbareKaarten(naam).contains(kaartId) && kaartId != 999){
                                                 System.out.println(LanguageResource.getString("usecase7.foutid"));
@@ -108,10 +112,6 @@ public class UseCase7 {
                                         System.out.println(ColorsOutput.kleur("blue") + "Dit zijn de ingegeven ids: " + ids + ColorsOutput.reset());
                                         System.out.println(ColorsOutput.kleur("blue") + "Dit zijn de ids van de te verkopen kaarten: " + dc.geefIdVerkoopbareKaarten(naam) + ColorsOutput.reset());
                                         System.out.println();
-                                        for(int i = 0; i <= ids.size()-1; i++){
-                                            //System.out.println(dc.getWaardeSchatkaart().get(i));
-                                            totWaarde += dc.getWaardeSchatkaart().get(i);
-                                        }
 
                                         //level verhogen adhv opgetelde waarde van de kaarten
                                         int gedeeldeWaarde = totWaarde/1000;
@@ -120,10 +120,11 @@ public class UseCase7 {
                                             System.out.println(ColorsOutput.kleur("yellow") + ColorsOutput.decoration("bold") + LanguageResource.getString("usecase7.kleinewaarde") + ColorsOutput.reset());
                                         }else if(gedeeldeWaarde >=1){
                                             dc.verhoogLevel(naam, gedeeldeWaarde);
-                                            //System.out.println(ColorsOutput.kleur("green") + ColorsOutput.decoration("bold") + String.format(LanguageResource.getString("usecase7.levelup"), gedeeldeWaarde, gedeeldeWaarde > 1 ? "s" : "") + ColorsOutput.reset());
-                                            System.out.println(Printer.printGreen(String.format(LanguageResource.getString("usecase7.levelup"), gedeeldeWaarde)));
+                                            System.out.println(ColorsOutput.kleur("green") + ColorsOutput.decoration("bold") + String.format(LanguageResource.getString("usecase7.levelup"), gedeeldeWaarde, gedeeldeWaarde > 1 ? "s" : "") + ColorsOutput.reset());
+                                            //System.out.println(Printer.printGreen(String.format(LanguageResource.getString("usecase7.levelup"), gedeeldeWaarde, gedeeldeWaarde > 1? "s" : "")));
                                             System.out.println(ColorsOutput.kleur("blue") + ColorsOutput.decoration("bold") + dc.geefInformatie() + ColorsOutput.reset());
                                         }
+                                        totWaarde = 0;
 
                                         // System.out.println(ColorsOutput.kleur("white") + ColorsOutput.decoration("bold") + ColorsOutput.achtergrond("red") + " *** totale levels stijgen volgens deling: " + totWaarde/1000 + ColorsOutput.reset());
                                         // System.out.println(" *** Dit is de totale waarde: " + totWaarde);
