@@ -5,6 +5,7 @@ import language.LanguageResource;
 import printer.ColorsOutput;
 import printer.Printer;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -28,44 +29,52 @@ class UseCase9 {
             th1.resume();
             laadSpel(keuze);
             th1.stop();
-        }catch (Exception e){
+        } catch (Exception e) {
             th1.suspend();
         }
         System.out.println("\n" + Printer.printGreen("usecase9.load"));
         speelSpel();
     }
 
-    private int maakKeuze(){
+    private int maakKeuze() {
         int keuze = -1;
         boolean tryAgain = true;
         while (tryAgain) {
             try {
-                do {
-                    System.out.println(ColorsOutput.decoration("bold") + LanguageResource.getString("usecase9.makechoice") + ColorsOutput.reset());
-                    for (String lijn : dc.geefOverzichtSpelen()){
-                        System.out.println(lijn);
-                    }
-                    System.out.printf("%n%s ", LanguageResource.getString("usecase9.choice"));
-                    keuze = SCAN.nextInt();
-                    tryAgain = false;
-
-                } while (!dc.bestaatSpel(keuze));
-            } catch (Exception e) {
-                SCAN.nextLine();
+                overzicht();
+                System.out.printf("%n%s ", LanguageResource.getString("usecase9.choice"));
+                keuze = SCAN.nextInt();
+                if (!dc.bestaatSpel(keuze)) {
+                    throw new Exception();
+                }
+                tryAgain = false;
+            } catch (InputMismatchException e) {
                 System.out.println(LanguageResource.getString("usecase2.choiceinput"));
+                SCAN.nextLine();
+            } catch (Exception e) {
+                System.out.println(LanguageResource.getString("usecase2.choiceinput"));
+                SCAN.nextLine();
             }
         }
         return keuze;
     }
 
-    private void laadSpel(int id){
-        try{
+    private void overzicht() {
+        System.out.println(ColorsOutput.decoration("bold") + LanguageResource.getString("usecase9.makechoice") + ColorsOutput.reset());
+        for (String lijn : dc.geefOverzichtSpelen()) {
+            System.out.println(lijn);
+        }
+    }
+
+    private void laadSpel(int id) {
+        try {
             dc.laadSpel(id);
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(Printer.exceptionCatch("Exception", e, false));
         }
     }
-    private void speelSpel(){
+
+    private void speelSpel() {
         UseCase2 uc2 = new UseCase2(dc);
         uc2.speelSpel(dc.geefAantalSpelers());
     }

@@ -319,9 +319,12 @@ public class SpelMapperDb {
             query11 = conn.prepareStatement(ALL_GAMES);
             rs11 = query11.executeQuery();
             while (rs11.next()) {
-                int id = rs.getInt("spelid");
-                ids.add(id);
+                int spelId = rs11.getInt("spelid");
+                ids.add(spelId);
             }
+            rs11.close();
+            query11.close();
+            conn.close();
         }catch (Exception e){
             throw new SpelDatabaseException(e.getMessage());
         }
