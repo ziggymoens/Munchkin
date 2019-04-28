@@ -16,6 +16,7 @@ public class SpelMapperDb {
     private ResultSet rs2;
     private ResultSet rs3;
     private ResultSet rs7;
+    private ResultSet rs11;
     private PreparedStatement query;
     private PreparedStatement query1;
     private PreparedStatement query2;
@@ -26,6 +27,7 @@ public class SpelMapperDb {
     private PreparedStatement query8;
     private PreparedStatement query9;
     private PreparedStatement query10;
+    private PreparedStatement query11;
     private List<Spel> spellen = new ArrayList<>();
     private static final String INSERT_GAME = "INSERT INTO ID222177_g35.Spel (spelid, naam, kleingroot, spelerAanBeurt) VALUES (?, ?, ?, ?)";
     private static final String DELETE_GAME = "DELETE FROM ID222177_g35.Spel WHERE spelid = ?";
@@ -308,5 +310,21 @@ public class SpelMapperDb {
         } catch (Exception e) {
             throw new SpelDatabaseException(e.getMessage());
         }
+    }
+
+    public List<Integer> geefSpelIds() {
+        List<Integer> ids = new ArrayList<>();
+        voegToe();
+        try{
+            query11 = conn.prepareStatement(ALL_GAMES);
+            rs11 = query11.executeQuery();
+            while (rs11.next()) {
+                int id = rs.getInt("spelid");
+                ids.add(id);
+            }
+        }catch (Exception e){
+            throw new SpelDatabaseException(e.getMessage());
+        }
+        return ids;
     }
 }

@@ -26,6 +26,7 @@ public class PersistentieController {
     private Map<Integer, Kaart> kaartenBib;
     private List<Kaart> schatkaarten;
     private List<Kaart> kerkerkaarten;
+    private List<Integer> spelIds;
 
 
     public PersistentieController() {
@@ -202,6 +203,7 @@ public class PersistentieController {
     }
 
     public boolean bestaatSpel(int id) {
-        return getOverzicht().toString().contains(String.format("%s:",String.valueOf(id)));
+        spelIds = sm.geefSpelIds();
+        return spelIds.contains(id);
     }
 }

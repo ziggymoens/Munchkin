@@ -3,9 +3,9 @@ package ui.cui.ucs;
 import domein.DomeinController;
 import domein.kaarten.kerkerkaarten.monsterbadstuff.BadStuff;
 import language.LanguageResource;
-import printer.ColorsOutput;
-import java.security.SecureRandom;
-import java.util.*;
+
+import java.util.List;
+import java.util.Scanner;
 
 /**
  * Deze UC nummer is onbekend en zal later worden aangepast
@@ -36,7 +36,7 @@ public class UseCase6 {
             System.out.println(LanguageResource.getString("usecase6.monsterwon"));
             ontsnappen(id);
         }
-        System.out.println(dc.geefSpelsituatie().toString());
+        UniversalMethods.toonSituatie();
     }
 
     private void verhoogLevelsGewonnen(int id, List<Boolean> helptmee){
