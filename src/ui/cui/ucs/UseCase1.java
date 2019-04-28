@@ -1,5 +1,6 @@
 package ui.cui.ucs;
 
+import connection.Connection;
 import domein.DomeinController;
 import exceptions.SpelException;
 import exceptions.SpelerException;
@@ -13,7 +14,6 @@ import java.util.*;
 
 /**
  * @author g35
- * <p>
  * KLAAR -- ZIGGY -- 26/4/2019
  * CONTROLE JONA --
  * CONTROLE KILI -- 27/04/2019
@@ -35,13 +35,6 @@ public class UseCase1 {
     public UseCase1(DomeinController dc) {
         this.dc = dc;
         UniversalMethods.setDc(this.dc);
-        try{
-            this.dc.checkConnection();
-            System.out.println(Printer.printGreen("connected"));
-        }catch (InternetException e){
-            System.out.println(Printer.exceptionCatch("InternetException", e));
-            System.exit(0);
-        }
         talen = new HashMap<>();
 
         for (String taal : taalCodes) {
@@ -53,9 +46,11 @@ public class UseCase1 {
             System.out.print(Printer.exceptionCatch("Exception (UC1)", e, false));
         }
 
+        //verbinding met internet controleren
+        checkInternet();
+
         //vragen voor developer modus
         askDeveloper();
-
 
         try {
             boolean newGame = UniversalMethods.controleJaNee("newGame");
@@ -68,26 +63,50 @@ public class UseCase1 {
                 }
 
             } else {
-                boolean load = UniversalMethods.controleJaNee("usecase1.load");
-                if (!load) {
-                    try {
-                        //methode start game op
-                        gameStarter();
-                    } catch (Exception e) {
-                        System.out.print(Printer.exceptionCatch("Exception (UC1)", e, false));
+                //controleert de internetverbinding
+                if (Connection.isConnected()) {
+                    boolean load = UniversalMethods.controleJaNee("usecase1.load");
+                    if (!load) {
+                        try {
+                            //methode start game op
+                            gameStarter();
+                        } catch (Exception e) {
+                            System.out.print(Printer.exceptionCatch("Exception (UC1)", e, false));
+                        }
+                    } else {
+                        try {
+                            //methode om game te laden
+                            gameLoader();
+                        } catch (Exception e) {
+                            System.out.print(Printer.exceptionCatch("Exception (UC1)", e, false));
+                        }
                     }
-                }
-                try {
-                    //methode om game te laden
-                    gameLoader();
-                } catch (Exception e) {
-                    System.out.print(Printer.exceptionCatch("Exception (UC1)", e, false));
+                } else {
+                    System.exit(0);
                 }
             }
         } catch (Exception e) {
             System.out.print(Printer.exceptionCatch("Exception (UC1)", e, false));
         }
     }
+
+    private void checkInternet() {
+        try {
+            this.dc.checkConnection();
+            System.out.println(Printer.printGreen("connected"));
+            Connection.setConnected(true);
+        } catch (InternetException e) {
+            System.out.println(Printer.exceptionCatch("InternetException", e));
+            Connection.setConnected(false);
+            boolean offline = UniversalMethods.controleJaNee("offline");
+            if (!offline) {
+                e = new InternetException("exception.reconnect");
+                System.out.println(Printer.exceptionCatch("InternetException", e));
+                System.exit(0);
+            }
+        }
+    }
+
 
     /**
      * Methode die vraagt om developer modus te activeren

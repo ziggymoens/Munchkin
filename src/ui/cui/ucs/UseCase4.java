@@ -35,7 +35,7 @@ class UseCase4 {
     // Vragen aan speler of hij hulp wilt
     void bereidSpelVoor() {
         int id = dc.geefIdBovensteKaart();
-        int battleBonusMonster = Integer.parseInt(dc.geefMonsterAttribuut(id,"level").toString());;
+        int battleBonusMonster = Integer.parseInt(dc.geefMonsterAttribuut(id,"level").toString());
         int battleBonusSpeler = dc.geefLevel(dc.geefSpelerAanBeurt());
 
         String help = "";

@@ -58,11 +58,7 @@ public class ConsumablesSchat extends Schatkaart {
      * @param id
      */
     private void setKillsFloatingNose(int id) {
-        if (id == 33) {
-            this.killsFloatingNose = true;
-        }else {
-            this.killsFloatingNose = false;
-        }
+        this.killsFloatingNose = id == 33;
     }
 
     /**

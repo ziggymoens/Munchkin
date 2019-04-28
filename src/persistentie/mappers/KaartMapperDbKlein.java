@@ -17,14 +17,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class KaartMapperDbKlein {
+class KaartMapperDbKlein {
 
     private ResultSet rs;
     private Connection conn;
     private final Map<String, Runnable> soorten;
     private final List<Kaart> kaarten;
 
-    public KaartMapperDbKlein() {
+    KaartMapperDbKlein() {
         kaarten = new ArrayList<>();
         soorten = new HashMap<>();
         soorten.put("Race", this::raceKaart);
@@ -44,7 +44,7 @@ public class KaartMapperDbKlein {
         }
     }
 
-    public List<Kaart> geefKaartenType(String[] types) {
+    List<Kaart> geefKaartenType(String[] types) {
         voegToe();
         kaarten.clear();
         try {
@@ -153,7 +153,7 @@ public class KaartMapperDbKlein {
                 int specialBonus = rs.getInt("bonusRace");
                 String usableBy = rs.getString("usableBy");
                 String specialRace = rs.getString("specialRace");
-                int escapeBonus = rs.getInt("escapeBonus");
+                //int escapeBonus = rs.getInt("escapeBonus");
                 kaarten.add(new Equipment(name, id, goldPieces, type, bonus, new Race(usableBy), bonus, specialBonus, new Race(specialRace)));
             }
         } catch (Exception ex) {

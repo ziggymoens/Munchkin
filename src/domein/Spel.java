@@ -459,11 +459,7 @@ public class Spel {
     //Return true = Monster wint
     //Return false = Speler in kwestie wint
     public boolean gevechtResultaat(int monster, int speler) {
-        if (monster >= speler) {
-            return true;
-        } else {
-            return false;
-        }
+        return monster >= speler;
     }
 
     public int geefMonsterLevelsUp(int id) {

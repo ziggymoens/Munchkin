@@ -22,11 +22,7 @@ class UniversalMethods {
                 System.out.println(LanguageResource.getString(text));
                 antw = SCAN.next().toLowerCase();
                 SCAN.nextLine();
-                while (!antw.equals(LanguageResource.getString("yes")) && !antw.equals(LanguageResource.getString("no"))) {
-//                    System.out.printf(ColorsOutput.decoration("bold") + ColorsOutput.kleur("red") + "%s%n%n", LanguageResource.getString("start.yesno") + ColorsOutput.reset());
-//                    System.out.println(LanguageResource.getString(text));
-//                    antw = SCAN.next().toLowerCase();
-//                    SCAN.nextLine();
+                if (!antw.equals(LanguageResource.getString("yes")) && !antw.equals(LanguageResource.getString("no"))) {
                     throw new Exception("start.yesno");
                 }
                 tryAgain = false;
