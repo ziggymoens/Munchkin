@@ -33,6 +33,7 @@ public class UseCase1 {
      */
     public UseCase1(DomeinController dc) {
         this.dc = dc;
+        UniversalMethods.setDc(this.dc);
         talen = new HashMap<>();
 
         for (String taal : taalCodes) {
@@ -171,7 +172,6 @@ public class UseCase1 {
             System.out.printf("%s: %s%n", LanguageResource.getString("picked"), LanguageResource.getString("language"));
         } catch (Exception e) {
             System.out.print(Printer.exceptionCatch("Exception (UC1)", e, false));
-            scan.nextLine();
         }
     }
 
@@ -295,17 +295,13 @@ public class UseCase1 {
                 tryAgain = false;
             } catch (SpelerException e) {
                 System.out.print(Printer.exceptionCatch("SpelerException (UC1)", e));
-                scan.nextLine();
             } catch (SpelException e) {
                 System.out.print(Printer.exceptionCatch("SpelException (UC1)", e));
-                scan.nextLine();
             } catch (InputMismatchException e) {
                 e = new InputMismatchException("usecase2.choiceerror");
                 System.out.print(Printer.exceptionCatch("InputException (UC1)", e));
-                scan.nextLine();
             } catch (Exception e) {
                 System.out.print(Printer.exceptionCatch("Exception (UC1)", e, false));
-                scan.nextLine();
             }
         }
     }
@@ -327,10 +323,8 @@ public class UseCase1 {
                 tryAgain = false;
             } catch (SpelerException e) {
                 System.out.print(Printer.exceptionCatch("SpelerException (UC1)", e));
-                scan.nextLine();
             } catch (Exception e) {
                 System.out.print(Printer.exceptionCatch("Exception (UC1)", e, false));
-                scan.nextLine();
             }
         }
     }

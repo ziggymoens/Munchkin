@@ -47,7 +47,7 @@ class UseCase3 {
     void speelBeurt(String naam) {
         this.naam = naam;
         try {
-            toonSituatie();
+            UniversalMethods.toonSituatie();
             System.out.println(dc.toonBovensteKk() + " " + dc.geefTypeKaart(dc.geefIdBovensteKaart()));
             System.out.println(dc.bovensteKaartToString());
             huidigeKaart = dc.geefIdBovensteKaart();
@@ -71,7 +71,7 @@ class UseCase3 {
                 System.out.printf("%s%n", LanguageResource.getString("usecase3.nochanges"));
             } else {
                 System.out.printf("%s%n", LanguageResource.getString("usecase3.changedsituation"));
-                toonSituatie();
+                UniversalMethods.toonSituatie();
             }
             dc.nieuweBovensteKaartK();
         } catch (Exception e) {
@@ -91,25 +91,7 @@ class UseCase3 {
         }
     }
 
-    /**
-     *
-     */
-    private void toonSituatie() {
-        try {
-            System.out.println();
-            huidigeSituatie = dc.geefSpelsituatie();
-            for (int i = 0; i < aantalSpelers; i++) {
-                if (i == dc.geefSpelerAanBeurt()) {
-                    System.out.print(ColorsOutput.achtergrond("yellow") + huidigeSituatie.get(i) + ColorsOutput.reset());
-                } else {
-                    System.out.print(huidigeSituatie.get(i));
-                }
-            }
-            System.out.println();
-        } catch (Exception e) {
-            System.out.print(Printer.exceptionCatch("Ecxeption (UC3)", e, false));
-        }
-    }
+
 
     /**
      * Kaarten beheren en doorverwijzen naar UC7
