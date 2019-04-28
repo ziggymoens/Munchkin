@@ -21,9 +21,9 @@ public class UseCase6 {
         this.dc = dc;
     }
 
-    public void vechtMetMonster(int battleBonusMonster, int battleBonusSpeler, List<Boolean> helptmee, int aantalSpelers) {
+    public void vechtMetMonster(List<Boolean> helptmee, int aantalSpelers) {
 
-        boolean gevecht = dc.gevechtResultaat(battleBonusMonster, battleBonusSpeler);
+        boolean gevecht = dc.gevechtResultaat(dc.getMonsterBattlePoints(), dc.getSpelerBattlePoints());
         int id = dc.geefIdBovensteKaart();
         //int levelMonster = Integer.parseInt(dc.geefMonsterAttribuut(id, "level").toString());
         //Als je het gevecht wint

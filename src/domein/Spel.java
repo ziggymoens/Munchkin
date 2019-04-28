@@ -36,6 +36,8 @@ public class Spel {
     private List<Integer> volgordeD;
     private String naam;
     private boolean klein = true;
+    private int monsterBattlePoints;
+    private int spelerBattlePoints;
 
     /**
      * Constructor van Spel zonder parameters spelers = 3
@@ -596,5 +598,22 @@ public class Spel {
     public Speler geefSpeler(int i){
         return spelers.get(i);
     }
+
+    public void setMonsterBattlePoints(int monsterBattlePoints) {
+         this.monsterBattlePoints = monsterBattlePoints;
+    }
+
+    public void setSpelerBattlePoints(int spelerBattlePoints) {
+        this.spelerBattlePoints = spelerBattlePoints;
+    }
+
+    public int getMonsterBattlePoints() {
+        return monsterBattlePoints;
+    }
+
+    public int getSpelerBattlePoints() {
+        return spelerBattlePoints;
+    }
+
 
 }

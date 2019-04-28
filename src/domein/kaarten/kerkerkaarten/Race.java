@@ -178,6 +178,10 @@ public class Race extends Kerkerkaart {
         this.runAway = runAway;
     }
 
+    public int getBonusCombat(){
+        return bonusCombat;
+    }
+
     private String getTekstToString() {
         String ret = "";
         switch (type.toLowerCase()) {
