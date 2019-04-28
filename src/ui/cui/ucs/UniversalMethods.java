@@ -3,25 +3,31 @@ package ui.cui.ucs;
 import language.LanguageResource;
 import printer.Printer;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class UniversalMethods {
+class UniversalMethods {
 
-    private static Scanner SCAN = new Scanner(System.in);
+    private static final Scanner SCAN = new Scanner(System.in);
 
-    public static Boolean controleJaNee(String text) {
-        String antw = null;
-        try {
-            System.out.println(LanguageResource.getString(text));
-            antw = SCAN.next().toLowerCase();
-            SCAN.nextLine();
-            while (!antw.equals(LanguageResource.getString("yes")) && !antw.equals(LanguageResource.getString("no"))) {
-                throw new InputMismatchException("start.yesno");
+    static Boolean controleJaNee(String text) {
+        boolean tryAgain = true;
+        String antw = "";
+        while(tryAgain) {
+            try {
+                System.out.println(LanguageResource.getString(text));
+                antw = SCAN.next().toLowerCase();
+                SCAN.nextLine();
+                while (!antw.equals(LanguageResource.getString("yes")) && !antw.equals(LanguageResource.getString("no"))) {
+//                    System.out.printf(ColorsOutput.decoration("bold") + ColorsOutput.kleur("red") + "%s%n%n", LanguageResource.getString("start.yesno") + ColorsOutput.reset());
+//                    System.out.println(LanguageResource.getString(text));
+//                    antw = SCAN.next().toLowerCase();
+//                    SCAN.nextLine();
+                    throw new Exception("start.yesno");
+                }
+                tryAgain = false;
+            } catch (Exception e) {
+                System.out.println(Printer.exceptionCatch("InputException (UM)", e));
             }
-        } catch (InputMismatchException e) {
-            System.out.println(Printer.exceptionCatch("InputException (UM)", e));
-            SCAN.nextLine();
         }
         return antw.equals(LanguageResource.getString("yes"));
     }

@@ -47,8 +47,9 @@ public class UseCase1 {
         //vragen voor developer modus
         askDeveloper();
 
-        boolean newGame = UniversalMethods.controleJaNee("newGame");
+
         try {
+            boolean newGame = UniversalMethods.controleJaNee("newGame");
             if (newGame) {
                 try {
                     //methode start game op
