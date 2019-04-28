@@ -426,7 +426,6 @@ public class Spel {
 
     public String geefKaartenKunnenNaarItems(String naam) {
         int i = zoekSpeler(naam);
-        //List<Kaart> kaarten = spelers.get(i).getKaarten();
         return spelers.get(i).geefKaartenKunnenNaarItems();
     }
 
@@ -438,6 +437,11 @@ public class Spel {
     public List<Integer> geefIdVerkoopbarekaarten(String naam){
         int i = zoekSpeler(naam);
         return spelers.get(i).geefIdVerkoopbareKaarten();
+    }
+
+    public List<Integer> geefIdKaartenNaarItems(String naam){
+        int i = zoekSpeler(naam);
+        return spelers.get(i).geefIdKaartenNaarItems();
     }
 
     public void verwijderKaart(int id){
@@ -537,16 +541,6 @@ public class Spel {
         return spelers.get(i).getWaardeSchatkaart();
     }
 
-    public int getWaardeSchatkaart(int id){
-        if (kaarten.get(id).getClass().getSimpleName().toLowerCase().equals("equipment")){
-            return ((Equipment)kaarten.get(id)).getWaarde();
-        }else if(kaarten.get(id).getClass().getSimpleName().equals("consumablesschat")){
-            return ((ConsumablesSchat)kaarten.get(id)).getWaarde();
-        }else {
-            return 999;
-        }
-    }
-
     public void setKaarten(Map<Integer, Kaart> kaarten) {
         this.kaarten = kaarten;
     }
@@ -603,11 +597,4 @@ public class Spel {
         return spelers.get(i);
     }
 
-    public List<Integer> geefIDKaartenInHand(String naam) {
-        return spelers.get(zoekSpeler(naam)).getIDKaartenInHand();
-    }
-
-    public List<Integer> geefIdsKunnenNaarItems(String naam) {
-        return spelers.get(zoekSpeler(naam)).geefIdsKunnenNaarItems();
-    }
 }
