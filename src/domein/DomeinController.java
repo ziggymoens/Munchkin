@@ -252,8 +252,8 @@ public class DomeinController {
         return spel.geefVerkoopbareKaarten(naam);
     }
 
-    public List<Integer> geefIdVerkoopbareKaarten(){
-        return spel.geefIdVerkoopbarekaarten();
+    public List<Integer> geefIdVerkoopbareKaarten(String naam){
+        return spel.geefIdVerkoopbarekaarten(naam);
     }
 
     public void verwijderKaart(int id){

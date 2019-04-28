@@ -435,7 +435,7 @@ public class Spel {
         return spelers.get(i).geefVerkoopbareKaarten();
     }
 
-    public List<Integer> geefIdVerkoopbarekaarten(){
+    public List<Integer> geefIdVerkoopbarekaarten(String naam){
         int i = zoekSpeler(naam);
         return spelers.get(i).geefIdVerkoopbareKaarten();
     }

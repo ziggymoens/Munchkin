@@ -11,6 +11,7 @@ import java.util.*;
  * Beheer kaarten in hand
  * UC7
  */
+/*
 public class UseCase7V2 {
     private final DomeinController dc;
     private final Scanner SCAN = new Scanner(System.in);
@@ -107,16 +108,16 @@ public class UseCase7V2 {
                         do {
                             System.out.println(LanguageResource.getString("usecase7.whattosell"));
                             verkoopKaart = SCAN.nextInt();
-                            if (dc.geefIdVerkoopbareKaarten().contains(verkoopKaart) && verkoopKaart != 999) {
+                            if (dc.geefIdVerkoopbareKaarten(naam).contains(verkoopKaart) && verkoopKaart != 999) {
                                 ids.add(verkoopKaart);
                                 teller++;
 
-                            } else if (!dc.geefIdVerkoopbareKaarten().contains(verkoopKaart) && verkoopKaart != 999) {
+                            } else if (!dc.geefIdVerkoopbareKaarten(naam).contains(verkoopKaart) && verkoopKaart != 999) {
                                 System.out.println(LanguageResource.getString("usecase7.foutid"));
 
                             }
                             match = false;
-                        } while (verkoopKaart != 999 && teller <= dc.geefIdVerkoopbareKaarten().size() - 1);
+                        } while (verkoopKaart != 999 && teller <= dc.geefIdVerkoopbareKaarten(naam).size() - 1);
                         System.out.println(ColorsOutput.kleur("blue") + "Dit zijn de ingegeven ids: " + ids + ColorsOutput.reset());
                         System.out.println(ColorsOutput.kleur("blue") + "Dit zijn de ids van de te verkopen kaarten: " + dc.geefIdVerkoopbareKaarten() + ColorsOutput.reset());
                         System.out.println();
@@ -155,3 +156,4 @@ public class UseCase7V2 {
         System.out.println(ColorsOutput.decoration("bold") + ColorsOutput.kleur("red") + ColorsOutput.decoration("reversed") + LanguageResource.getString("quit") + ColorsOutput.reset() + "\n");
     }
 }
+ */
