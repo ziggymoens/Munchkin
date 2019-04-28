@@ -272,7 +272,7 @@ public class Speler {
     /**
      * @return
      */
-    public boolean isHeeftMonsterVerslaan() {
+    public boolean heeftMonsterVerslaan() {
         return heeftMonsterVerslaan;
     }
 

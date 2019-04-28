@@ -216,7 +216,7 @@ public class Spel {
      * @param speler
      */
     public void geefLevel(Speler speler) {
-        if (speler.getLevel() == 9 && speler.isHeeftMonsterVerslaan()) {
+        if (speler.getLevel() == 9 && speler.heeftMonsterVerslaan()) {
             speler.setLevel(speler.getLevel() + 1);
         } else if (speler.getLevel() >= 1 && speler.getLevel() < 9) {
             speler.setLevel(speler.getLevel() + 1);
