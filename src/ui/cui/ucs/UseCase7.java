@@ -47,10 +47,7 @@ public class UseCase7 {
                 case 1: //naarItems (op tafel leggen)
                     try {
                         if (dc.getAantalKaarten(naam) >= 1) {
-                            System.out.println(ColorsOutput.decoration("bold") + String.format("%s:", LanguageResource.getString("usecase7.toitems")) + ColorsOutput.reset());
-                            System.out.println(String.format("%s", dc.geefKaartenKunnenNaarItems(naam)));
-                            SCAN.nextLine();
-                            System.out.println(LanguageResource.getString("usecase7.itemsconfirm"));
+                            overzichtNrItems(naam);
                             antw = SCAN.nextLine();
                             do {
                                 //als antwoord ja is
@@ -76,18 +73,21 @@ public class UseCase7 {
 
                     }
                     break;
+
+
+
+
+
+
+
                 case 2: //verkopen + weggooien
                     try {
-                        System.out.println(ColorsOutput.decoration("bold") + String.format("%s:", LanguageResource.getString("usecase7.sellable") + ColorsOutput.reset()));
-                        System.out.println(dc.geefVerkoopbareKaarten(naam));
-                        System.out.println(ColorsOutput.decoration("bold") + String.format("%s:", LanguageResource.getString("usecase7.throwaway")) + ColorsOutput.reset());
-                        System.out.println(dc.geefNietVerkoopbareKaarten(naam));
-                        System.out.println(LanguageResource.getString("usecase7.asktosell"));
-
+                        overzichtVerkWeg(naam);
                         antw = SCAN.next();
                         if (antw.equalsIgnoreCase(LanguageResource.getString("yes"))) {
                             int totWaarde = 0;
                             boolean match = true;
+                            List<Integer> mogelijkheden = dc.geefIdVerkoopbareKaarten(naam);
                             do {
                                 System.out.println(LanguageResource.getString("usecase7.sellorthrow"));
                                 antw = SCAN.next();
@@ -98,40 +98,26 @@ public class UseCase7 {
                                     SCAN.nextLine();
                                     int teller = 0;
 
-                                    // do-while waarin ids van de verkoopbare kaarten toegevoegd worden aan een List om die vervolgens uit te lezen om de waardes op te tellen
-                                    // kan verbeterd worden -- OPTIMALISEREN
                                     do {
                                         System.out.println(LanguageResource.getString("usecase7.whattosell"));
                                         kaartId = SCAN.nextInt();
-                                        if (dc.geefIdVerkoopbareKaarten(naam).contains(kaartId) && kaartId != 999) {
+                                        if (mogelijkheden.contains(kaartId) && kaartId != 999) {
                                             ids.add(kaartId);
-                                            totWaarde += dc.getWaardeSchatkaart(kaartId);
                                             teller++;
-
-
-                                        } else if (!dc.geefIdVerkoopbareKaarten(naam).contains(kaartId) && kaartId != 999) {
+                                        } else if (!mogelijkheden.contains(kaartId) && kaartId != 999) {
                                             System.out.println(LanguageResource.getString("usecase7.foutid"));
-
                                         }
+
                                         match = false;
-                                    } while (kaartId != 999 && teller <= dc.geefIdVerkoopbareKaarten(naam).size() - 1);
+                                    } while (kaartId != 999 && teller <= mogelijkheden.size() - 1);
                                     System.out.println(ColorsOutput.kleur("blue") + "Dit zijn de ingegeven ids: " + ids + ColorsOutput.reset());
                                     System.out.println(ColorsOutput.kleur("blue") + "Dit zijn de ids van de te verkopen kaarten: " + dc.geefIdVerkoopbareKaarten(naam) + ColorsOutput.reset());
                                     System.out.println();
-
-                                    System.out.println(totWaarde);
-                                    //level verhogen adhv opgetelde waarde van de kaarten
-                                    int gedeeldeWaarde = totWaarde / 1000;
-                                    System.out.println(gedeeldeWaarde);
-                                    if (gedeeldeWaarde < 1) {
-                                        System.out.println(ColorsOutput.kleur("yellow") + ColorsOutput.decoration("bold") + LanguageResource.getString("usecase7.kleinewaarde") + ColorsOutput.reset());
-                                    } else if (gedeeldeWaarde >= 1) {
-                                        dc.verhoogLevel(naam, gedeeldeWaarde);
-                                        System.out.println(ColorsOutput.kleur("green") + ColorsOutput.decoration("bold") + String.format(LanguageResource.getString("usecase7.levelup"), gedeeldeWaarde, gedeeldeWaarde > 1 ? "s" : "") + ColorsOutput.reset());
-                                        //System.out.println(Printer.printGreen(String.format(LanguageResource.getString("usecase7.levelup"), gedeeldeWaarde, gedeeldeWaarde > 1? "s" : "")));
-                                        System.out.println(ColorsOutput.kleur("blue") + ColorsOutput.decoration("bold") + dc.geefInformatie() + ColorsOutput.reset());
-                                        totWaarde = 0;
+                                    for (int i = 0; i < ids.size(); i++){
+                                        totWaarde += dc.getWaardeSchatkaart().get(i);
                                     }
+                                    System.out.println(totWaarde);
+                                    levelUp(naam, totWaarde);
 
 
                                     // System.out.println(ColorsOutput.kleur("white") + ColorsOutput.decoration("bold") + ColorsOutput.achtergrond("red") + " *** totale levels stijgen volgens deling: " + totWaarde/1000 + ColorsOutput.reset());
@@ -161,6 +147,33 @@ public class UseCase7 {
             }
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("usecase2.choiceerror");
+        }
+    }
+     void overzichtVerkWeg(String naam){
+        System.out.println(ColorsOutput.decoration("bold") + String.format("%s:", LanguageResource.getString("usecase7.sellable") + ColorsOutput.reset()));
+        System.out.println(dc.geefVerkoopbareKaarten(naam));
+        System.out.println(ColorsOutput.decoration("bold") + String.format("%s:", LanguageResource.getString("usecase7.throwaway")) + ColorsOutput.reset());
+        System.out.println(dc.geefNietVerkoopbareKaarten(naam));
+        System.out.println(LanguageResource.getString("usecase7.asktosell"));
+    }
+
+    void overzichtNrItems(String naam){
+        System.out.println(ColorsOutput.decoration("bold") + String.format("%s:", LanguageResource.getString("usecase7.toitems")) + ColorsOutput.reset());
+        System.out.println(String.format("%s", dc.geefKaartenKunnenNaarItems(naam)));
+        SCAN.nextLine();
+        System.out.println(LanguageResource.getString("usecase7.itemsconfirm"));
+    }
+
+    void levelUp(String naam,int totWaarde){
+        int gedeeldeWaarde = totWaarde / 1000;
+        System.out.println(gedeeldeWaarde);
+        if (gedeeldeWaarde < 1) {
+            System.out.println(ColorsOutput.kleur("yellow") + ColorsOutput.decoration("bold") + LanguageResource.getString("usecase7.kleinewaarde") + ColorsOutput.reset());
+        } else if (gedeeldeWaarde >= 1) {
+            dc.verhoogLevel(naam, gedeeldeWaarde);
+            System.out.println(ColorsOutput.kleur("green") + ColorsOutput.decoration("bold") + String.format(LanguageResource.getString("usecase7.levelup"), gedeeldeWaarde, gedeeldeWaarde > 1 ? "s" : "") + ColorsOutput.reset());
+            //System.out.println(Printer.printGreen(String.format(LanguageResource.getString("usecase7.levelup"), gedeeldeWaarde, gedeeldeWaarde > 1? "s" : "")));
+            System.out.println(ColorsOutput.kleur("blue") + ColorsOutput.decoration("bold") + dc.geefInformatie() + ColorsOutput.reset());
         }
     }
 }

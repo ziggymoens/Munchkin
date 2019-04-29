@@ -67,7 +67,7 @@ public class UseCase7V3 {
     }
 
     private void overzichtVerkopenWeggooien() {
-        System.out.printf("%s%n%s%n%s%n%s%n%s%n", ColorsOutput.decoration("bold") + String.format("%s:", LanguageResource.getString("usecase7.sellable") + ColorsOutput.reset()), dc.geefVerkoopbareKaarten(naam), ColorsOutput.decoration("bold") + String.format("%s:", LanguageResource.getString("usecase7.throwaway")) + ColorsOutput.reset(), dc.geefNietVerkoopbareKaarten(naam));
+        System.out.printf("%s%n%s%n%s%n%s%n", ColorsOutput.decoration("bold") + String.format("%s:", LanguageResource.getString("usecase7.sellable") + ColorsOutput.reset()), dc.geefVerkoopbareKaarten(naam), ColorsOutput.decoration("bold") + String.format("%s:", LanguageResource.getString("usecase7.throwaway")) + ColorsOutput.reset(), dc.geefNietVerkoopbareKaarten(naam));
         boolean verkopen = UniversalMethods.controleJaNee("usecase7.asktosell");
         if (verkopen){
             kiesKaarten("V");
