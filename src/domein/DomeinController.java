@@ -255,7 +255,7 @@ public class DomeinController {
     }
 
     public List<Integer> geefIdsKunnenNaarItems(String naam){
-        return spel.geefIdsKunnenNaarItems(naam);
+        return spel.geefIdKaartenNaarItems(naam);
     }
 
     public String geefVerkoopbareKaarten(String naam) {
@@ -375,4 +375,5 @@ public class DomeinController {
     /*public List<Integer> geefIDKaartenInHand(String naam) {
         return spel.geefIDKaartenInHand(naam);
     }
+    */
 }
