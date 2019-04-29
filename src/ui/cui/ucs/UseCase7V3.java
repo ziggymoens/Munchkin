@@ -1,4 +1,4 @@
-package ui.cui.ucs;
+/*package ui.cui.ucs;
 
 import domein.DomeinController;
 import language.LanguageResource;
@@ -140,3 +140,5 @@ public class UseCase7V3 {
     }
 }
 
+
+ */

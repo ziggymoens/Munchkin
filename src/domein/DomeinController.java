@@ -372,6 +372,22 @@ public class DomeinController {
         }
     }
 
+    public void setMonsterBattlePoints(int monsterBattlePoints) {
+        spel.setMonsterBattlePoints(monsterBattlePoints);
+    }
+
+    public void setSpelerBattlePoints(int spelerBattlePoints) {
+        spel.setSpelerBattlePoints(spelerBattlePoints);
+    }
+
+    public int getMonsterBattlePoints() {
+        return spel.getMonsterBattlePoints();
+    }
+
+    public int getSpelerBattlePoints() {
+        return spel.getSpelerBattlePoints();
+    }
+
     /*public List<Integer> geefIDKaartenInHand(String naam) {
         return spel.geefIDKaartenInHand(naam);
     }

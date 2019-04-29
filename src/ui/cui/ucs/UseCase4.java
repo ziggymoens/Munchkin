@@ -38,8 +38,8 @@ class UseCase4 {
     // Vragen aan speler of hij hulp wilt
     void bereidSpelVoor() {
         int id = dc.geefIdBovensteKaart();
-        dc.setMonsterBattlePoints(Integer.parseInt(dc.geefMonsterAttribuut(id,"level").toString()));
-        dc.setSpelerBattlePoints(dc.geefLevel(dc.geefSpelerAanBeurt()));
+       // dc.setMonsterBattlePoints(Integer.parseInt(dc.geefMonsterAttribuut(id,"level").toString()));
+        //dc.setSpelerBattlePoints(dc.geefLevel(dc.geefSpelerAanBeurt()));
 
         String help = "";
         //Vragen aan de speler of hij hulp wilt met het bevechten van het monster, zoja, mogen anderen hem helpen, anders niet
