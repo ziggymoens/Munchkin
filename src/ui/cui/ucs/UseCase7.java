@@ -56,10 +56,13 @@ public class UseCase7 {
                             //als antwoord ja is
 
                                 if(antw.equalsIgnoreCase(LanguageResource.getString("yes"))){
-                                    System.out.println(LanguageResource.getString("usecase7.whattoitems"));
-                                    kaartId = SCAN.nextInt();
-                                    if(dc.geefIdKaartenNaarItems(naam).contains(kaartId))
-                                        tryAgain = false;
+                                    do {
+                                        System.out.println(LanguageResource.getString("usecase7.whattoitems"));
+                                        kaartId = SCAN.nextInt();
+                                        if(dc.geefIdKaartenNaarItems(naam).contains(kaartId))
+                                            tryAgain = false;
+                                    }while(tryAgain);
+
                                 }else{
                                     break;
                                 }
@@ -83,10 +86,8 @@ public class UseCase7 {
 
                         antw = SCAN.next();
                         if(antw.equalsIgnoreCase(LanguageResource.getString("yes"))){
-                            String[] keuzeKaart;
                             int totWaarde = 0;
                             boolean match = true;
-
                                 do {
                                     System.out.println(LanguageResource.getString("usecase7.sellorthrow"));
                                     antw = SCAN.next();
@@ -103,9 +104,10 @@ public class UseCase7 {
                                             System.out.println(LanguageResource.getString("usecase7.whattosell"));
                                             kaartId = SCAN.nextInt();
                                             if (dc.geefIdVerkoopbareKaarten(naam).contains(kaartId) && kaartId != 999) {
+                                                ids.add(kaartId);
                                                 totWaarde += dc.getWaardeSchatkaart(kaartId);
                                                 teller++;
-                                                System.out.println(totWaarde);
+
 
                                             }else if(!dc.geefIdVerkoopbareKaarten(naam).contains(kaartId) && kaartId != 999){
                                                 System.out.println(LanguageResource.getString("usecase7.foutid"));
@@ -117,6 +119,7 @@ public class UseCase7 {
                                         System.out.println(ColorsOutput.kleur("blue") + "Dit zijn de ids van de te verkopen kaarten: " + dc.geefIdVerkoopbareKaarten(naam) + ColorsOutput.reset());
                                         System.out.println();
 
+                                        System.out.println(totWaarde);
                                         //level verhogen adhv opgetelde waarde van de kaarten
                                         int gedeeldeWaarde = totWaarde/1000;
                                         System.out.println(gedeeldeWaarde);
@@ -127,8 +130,9 @@ public class UseCase7 {
                                             System.out.println(ColorsOutput.kleur("green") + ColorsOutput.decoration("bold") + String.format(LanguageResource.getString("usecase7.levelup"), gedeeldeWaarde, gedeeldeWaarde > 1 ? "s" : "") + ColorsOutput.reset());
                                             //System.out.println(Printer.printGreen(String.format(LanguageResource.getString("usecase7.levelup"), gedeeldeWaarde, gedeeldeWaarde > 1? "s" : "")));
                                             System.out.println(ColorsOutput.kleur("blue") + ColorsOutput.decoration("bold") + dc.geefInformatie() + ColorsOutput.reset());
+                                            totWaarde = 0;
                                         }
-                                        totWaarde = 0;
+
 
                                         // System.out.println(ColorsOutput.kleur("white") + ColorsOutput.decoration("bold") + ColorsOutput.achtergrond("red") + " *** totale levels stijgen volgens deling: " + totWaarde/1000 + ColorsOutput.reset());
                                         // System.out.println(" *** Dit is de totale waarde: " + totWaarde);

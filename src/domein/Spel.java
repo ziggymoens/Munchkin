@@ -548,11 +548,10 @@ public class Spel {
             return ((Equipment)kaarten.get(id)).getWaarde();
         }else if(kaarten.get(id).getClass().getSimpleName().equals("consumablesschat")){
             return ((ConsumablesSchat)kaarten.get(id)).getWaarde();
-        }else {
-            return 999;
-
+        }else
+            return 1234567;
         }
-    }
+
 
     public void setKaarten(Map<Integer, Kaart> kaarten) {
         this.kaarten = kaarten;
