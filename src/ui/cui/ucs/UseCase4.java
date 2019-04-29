@@ -6,6 +6,9 @@
 package ui.cui.ucs;
 
 import domein.DomeinController;
+import domein.kaarten.Kaart;
+import domein.kaarten.kerkerkaarten.Race;
+import domein.kaarten.schatkaarten.Equipment;
 import language.LanguageResource;
 import printer.ColorsOutput;
 
@@ -35,14 +38,12 @@ class UseCase4 {
     // Vragen aan speler of hij hulp wilt
     void bereidSpelVoor() {
         int id = dc.geefIdBovensteKaart();
-        int battleBonusMonster = Integer.parseInt(dc.geefMonsterAttribuut(id,"level").toString());
-        int battleBonusSpeler = dc.geefLevel(dc.geefSpelerAanBeurt());
+        dc.setMonsterBattlePoints(Integer.parseInt(dc.geefMonsterAttribuut(id,"level").toString()));
+        dc.setSpelerBattlePoints(dc.geefLevel(dc.geefSpelerAanBeurt()));
 
         String help = "";
         //Vragen aan de speler of hij hulp wilt met het bevechten van het monster, zoja, mogen anderen hem helpen, anders niet
         help = hulpVragen(help);
-        // Vragen aan speler of hij een bonuskaart wilt spelen.
-        vraagKaartSpelen("usecase4.ask.bonuscard", help, true);
         //initialisatie van de 2 lijsten beurt en helptmee
         List<Boolean> beurt = new ArrayList<>();
         List<Boolean> helptmee = new ArrayList<>();
@@ -54,12 +55,14 @@ class UseCase4 {
                 helptmee.add(false);
             }
         }
+        // Vragen aan speler of hij een bonuskaart wilt spelen.
+        vraagKaartSpelen("usecase4.ask.bonuscard", help, true, helptmee);
         monsterKeuze(help, beurt, helptmee);
         //vragen of de speler nog een extra kaart wilt spelen, zoja, speel een kaart
-        vraagKaartSpelen("usecase4.ask.bonuscard", help, false);
+        vraagKaartSpelen("usecase4.ask.bonuscard", help, false, helptmee);
         System.out.println("\n" + dc.bovensteKaartToString());
         //Het overzicht tonen voor het gevecht
-        geefOverzichtGevecht(battleBonusMonster, battleBonusSpeler, helptmee);
+        geefOverzichtGevecht(helptmee);
     }
 
     private String hulpVragen(String help){
@@ -93,7 +96,7 @@ class UseCase4 {
                                     //Mag alleen gebeuren als de speler die vecht akkoord is gegaan dat hij hulp wilt
                                     if (help.equals(LanguageResource.getString("yes"))) {
                                         //aanpassen???
-                                        helpSpeler(aantal, help);
+                                        helpSpeler(aantal, help, helptmee);
                                         helptmee.remove(aantal);
                                         helptmee.add(aantal, true);
                                     } else {
@@ -101,7 +104,7 @@ class UseCase4 {
                                     }
                                     break;
                                 case 2:
-                                    helpMonster(aantal, help);
+                                    helpMonster(aantal, help, helptmee);
                                     break;
                                 case 3:
                                     beurt.remove(i);
@@ -123,33 +126,34 @@ class UseCase4 {
         }
     }
 
-    private void geefOverzichtGevecht(int battleBonusMonster, int battleBonusSpeler, List<Boolean> helptmee){
-        System.out.printf(LanguageResource.getString("usecase4.battle") + "%n%n", battleBonusMonster, battleBonusSpeler);
+    private void geefOverzichtGevecht(List<Boolean> helptmee){
+        System.out.printf(LanguageResource.getString("usecase4.battle") + "%n%n", dc.getMonsterBattlePoints(), dc.getSpelerBattlePoints());
         int waar = 0;
         List<String> ret = dc.geefBeknopteSpelsituatie();
         for (String str : ret) {
             System.out.println(String.format("%s, %s",str, helptmee.get(waar) ? "vecht mee" : "vecht niet mee"));
             waar++;
         }
-        vechtMonster(battleBonusMonster, battleBonusSpeler, helptmee);
+        dc.setSpelerBattlePoints(dc.getSpelerBattlePoints() + spelerLevels(helptmee));
+        vechtMonster(helptmee);
     }
 
-    private void helpSpeler(int i, String help) {
-        UseCase5 uc5 = new UseCase5(this.dc, i, help, true);
+    private void helpSpeler(int i, String help, List<Boolean> helptmee) {
+        UseCase5 uc5 = new UseCase5(this.dc, i, help, true, helptmee);
         uc5.speelKaart();
     }
 
-    private void helpMonster(int i, String help) {
-        UseCase5 uc5 = new UseCase5(this.dc, i, help, true);
+    private void helpMonster(int i, String help, List<Boolean> helptmee) {
+        UseCase5 uc5 = new UseCase5(this.dc, i, help, true, helptmee);
         uc5.speelKaart();
     }
 
-    private void vechtMonster(int battleBonusMonster, int battleBonusSpeler, List<Boolean> helptmee) {
+    private void vechtMonster(List<Boolean> helptmee) {
         UseCase6 uc6 = new UseCase6(this.dc);
-        uc6.vechtMetMonster(battleBonusMonster, battleBonusSpeler, helptmee, aantalSpelers);
+        uc6.vechtMetMonster(helptmee, aantalSpelers);
     }
 
-    private void vraagKaartSpelen(String output, String help, boolean monster){
+    private void vraagKaartSpelen(String output, String help, boolean monster, List<Boolean> helptmee){
         String kaart;
         do {
             System.out.printf("%s, %s%n", String.format("%s", ColorsOutput.kleur("blue") + naam + ColorsOutput.reset()), LanguageResource.getString(output));
@@ -160,9 +164,29 @@ class UseCase4 {
                 kaart = SCAN.next().toLowerCase();
             }
             if (kaart.equals(LanguageResource.getString("yes"))) {
-                UseCase5 uc5 = new UseCase5(this.dc, dc.geefSpelerAanBeurt(), help, monster);
+                UseCase5 uc5 = new UseCase5(this.dc, dc.geefSpelerAanBeurt(), help, monster, helptmee);
                 uc5.speelKaart();
             }
         } while (kaart.equals(LanguageResource.getString("yes")));
+    }
+
+    private int spelerLevels(List<Boolean> helptmee){
+        int extraLevels = 0;
+        int aantal = 0;
+        for(int i = 0; i < helptmee.size(); i++){
+            if(helptmee.get(i)){
+                List<Kaart>  items = dc.geefSpeler(i).getItems();
+
+                for(int j = 0; j < items.size(); j++){
+                    if(items.get(j) instanceof Equipment){
+                        aantal +=((Equipment)items.get(j)).getBonus();
+                    }if(items.get(j) instanceof Race){
+                        aantal += ((Race)items.get(j)).getBonusCombat();
+                    }
+                }
+                extraLevels += dc.geefSpeler(i).getLevel() + aantal;
+            }
+        }
+        return extraLevels;
     }
 }

@@ -52,12 +52,19 @@ public class UseCase7 {
                             SCAN.nextLine();
                             System.out.println(LanguageResource.getString("usecase7.itemsconfirm"));
                             antw = SCAN.nextLine();
+                            do {
                             //als antwoord ja is
-                            if(antw.equalsIgnoreCase(LanguageResource.getString("yes"))){
-                                System.out.println("ja");
-                            }else{
-                                break;
-                            }
+
+                                if(antw.equalsIgnoreCase(LanguageResource.getString("yes"))){
+                                    System.out.println(LanguageResource.getString("usecase7.whattoitems"));
+                                    kaartId = SCAN.nextInt();
+                                    if(dc.geefIdKaartenNaarItems(naam).contains(kaartId))
+                                        tryAgain = false;
+                                }else{
+                                    break;
+                                }
+                            }while(tryAgain);
+
 
                         }else{
                             System.out.println(String.format("%s!", LanguageResource.getString("usecase7.nietgenoeg")));

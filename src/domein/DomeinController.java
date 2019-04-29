@@ -266,6 +266,10 @@ public class DomeinController {
         return spel.geefIdVerkoopbarekaarten(naam);
     }
 
+    public List<Integer> geefIdKaartenNaarItems(String naam){
+        return spel.geefIdKaartenNaarItems(naam);
+    }
+
     public void verwijderKaart(int id){
         spel.verwijderKaart(id);
     }
@@ -368,7 +372,7 @@ public class DomeinController {
         }
     }
 
-    public List<Integer> geefIDKaartenInHand(String naam) {
+    /*public List<Integer> geefIDKaartenInHand(String naam) {
         return spel.geefIDKaartenInHand(naam);
     }
 }

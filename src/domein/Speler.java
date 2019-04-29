@@ -351,6 +351,16 @@ public class Speler {
         return idKaart;
     }
 
+    public List<Integer> geefIdKaartenNaarItems(){
+        List<Integer> idKaart = new ArrayList<>();
+        for(Kaart kaart : kaarten){
+            if(kaart instanceof Race || kaart instanceof Equipment){
+                idKaart.add(kaart.getId());
+            }
+        }
+        return idKaart;
+    }
+
     public void verwijderKaart(Kaart kaart) {
         kaarten.add(kaart);
 
@@ -378,7 +388,7 @@ public class Speler {
         return ret.toString();
     }
 
-    //fix 
+    //fix
     /* Systeem toont naam en type van de kaarten in de hand*/
     public String toonOverzichtKaartenInHand() {
 
@@ -435,23 +445,5 @@ public class Speler {
     public void setItems(List<Kaart> items) {
         this.items = items;
         updateKaarten();
-    }
-
-    public List<Integer> getIDKaartenInHand() {
-        List<Integer> ids = new ArrayList<>();
-        for (Kaart kaart: kaarten){
-            ids.add(kaart.getId());
-        }
-        return ids;
-    }
-
-    public List<Integer> geefIdsKunnenNaarItems() {
-        List<Integer> ids = new ArrayList<>();
-        for (Kaart kaart : kaarten) {
-            if (kaart instanceof Race || kaart instanceof Equipment) {
-                ids.add(kaart.getId());
-            }
-        }
-        return ids;
     }
 }

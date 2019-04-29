@@ -36,6 +36,8 @@ public class Spel {
     private List<Integer> volgordeD;
     private String naam;
     private boolean klein = true;
+    private int monsterBattlePoints;
+    private int spelerBattlePoints;
 
     /**
      * Constructor van Spel zonder parameters spelers = 3
@@ -426,7 +428,6 @@ public class Spel {
 
     public String geefKaartenKunnenNaarItems(String naam) {
         int i = zoekSpeler(naam);
-        //List<Kaart> kaarten = spelers.get(i).getKaarten();
         return spelers.get(i).geefKaartenKunnenNaarItems();
     }
 
@@ -438,6 +439,11 @@ public class Spel {
     public List<Integer> geefIdVerkoopbarekaarten(String naam){
         int i = zoekSpeler(naam);
         return spelers.get(i).geefIdVerkoopbareKaarten();
+    }
+
+    public List<Integer> geefIdKaartenNaarItems(String naam){
+        int i = zoekSpeler(naam);
+        return spelers.get(i).geefIdKaartenNaarItems();
     }
 
     public void verwijderKaart(int id){
@@ -604,11 +610,21 @@ public class Spel {
         return spelers.get(i);
     }
 
-    public List<Integer> geefIDKaartenInHand(String naam) {
-        return spelers.get(zoekSpeler(naam)).getIDKaartenInHand();
+    public void setMonsterBattlePoints(int monsterBattlePoints) {
+         this.monsterBattlePoints = monsterBattlePoints;
     }
 
-    public List<Integer> geefIdsKunnenNaarItems(String naam) {
-        return spelers.get(zoekSpeler(naam)).geefIdsKunnenNaarItems();
+    public void setSpelerBattlePoints(int spelerBattlePoints) {
+        this.spelerBattlePoints = spelerBattlePoints;
     }
+
+    public int getMonsterBattlePoints() {
+        return monsterBattlePoints;
+    }
+
+    public int getSpelerBattlePoints() {
+        return spelerBattlePoints;
+    }
+
+
 }
