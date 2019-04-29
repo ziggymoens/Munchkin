@@ -12,7 +12,9 @@ import exceptions.SpelerException;
 import language.LanguageResource;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author G35
@@ -29,6 +31,8 @@ public class Speler {
     private List<Kaart> items;
     private final List<Integer> volgordeItems;
     private boolean heeftMonsterVerslaan;
+    private Map<String, Integer> protection;
+    private Map<String, Integer> protectionMax;
 
     /**
      * Constructor van Speler zonder parameters naam = "onbekend", geslacht =
@@ -42,6 +46,16 @@ public class Speler {
         volgordeItems = new ArrayList<>();
         aantalKerkerkaarten = 0;
         aantalSchatkaarten = 0;
+        protection = new HashMap<>();
+        protection.put("head", 0);
+        protection.put("armor", 0);
+        protection.put("foot", 0);
+        protection.put("weapon", 0);
+        protectionMax = new HashMap<>();
+        protectionMax.put("head", 1);
+        protectionMax.put("armor", 1);
+        protectionMax.put("foot", 1);
+        protectionMax.put("weapon", 2);
     }
 
     /**
@@ -332,7 +346,7 @@ public class Speler {
         for (Kaart kaart : kaarten) {
             if (kaart instanceof Equipment || kaart instanceof ConsumablesSchat) {
                 String idKaart = "ID = " + kaart.getId();
-                ret.append(String.format("%d) %s - %s %d %s - %s %n", j, kaart.getNaam(), LanguageResource.getString("kaart.value"), ((Schatkaart) kaart).getWaarde(), LanguageResource.getString("coins") ,idKaart));
+                ret.append(String.format("%d) %s - %s %d %s - %s %n", j, kaart.getNaam(), LanguageResource.getString("kaart.value"), ((Schatkaart) kaart).getWaarde(), LanguageResource.getString("coins"), idKaart));
                 j++;
             } else {
                 continue;
@@ -341,20 +355,20 @@ public class Speler {
         return ret.toString();
     }
 
-    public List<Integer> geefIdVerkoopbareKaarten(){
+    public List<Integer> geefIdVerkoopbareKaarten() {
         List<Integer> idKaart = new ArrayList<>();
-        for(Kaart kaart : kaarten){
-            if(kaart instanceof Equipment || kaart instanceof ConsumablesSchat){
+        for (Kaart kaart : kaarten) {
+            if (kaart instanceof Equipment || kaart instanceof ConsumablesSchat) {
                 idKaart.add(kaart.getId());
             }
         }
         return idKaart;
     }
 
-    public List<Integer> geefIdKaartenNaarItems(){
+    public List<Integer> geefIdKaartenNaarItems() {
         List<Integer> idKaart = new ArrayList<>();
-        for(Kaart kaart : kaarten){
-            if(kaart instanceof Race || kaart instanceof Equipment){
+        for (Kaart kaart : kaarten) {
+            if (kaart instanceof Race || kaart instanceof Equipment) {
                 idKaart.add(kaart.getId());
             }
         }
@@ -368,9 +382,9 @@ public class Speler {
     }
 
     //methode om waarde van schatkaart op te vragen
-    public List<Integer> getWaardeSchatkaart(){
+    public List<Integer> getWaardeSchatkaart() {
         List<Integer> waardes = new ArrayList<>();
-        for(Kaart kaart : kaarten) {
+        for (Kaart kaart : kaarten) {
             if (kaart instanceof Equipment || kaart instanceof ConsumablesSchat) {
                 waardes.add(((Schatkaart) kaart).getWaarde());
             }
@@ -408,9 +422,9 @@ public class Speler {
         return volgordeKaarten;
     }
 
-    private void setVolgordeKaarten(){
+    private void setVolgordeKaarten() {
         volgordeKaarten.clear();
-        for (Kaart kaart : kaarten){
+        for (Kaart kaart : kaarten) {
             volgordeKaarten.add(kaart.getId());
         }
     }
@@ -419,14 +433,14 @@ public class Speler {
         return volgordeItems;
     }
 
-    private void setVolgordeItems(){
+    private void setVolgordeItems() {
         volgordeItems.clear();
-        for (Kaart kaart: items){
+        for (Kaart kaart : items) {
             volgordeItems.add(kaart.getId());
         }
     }
 
-    public void updateKaarten(){
+    public void updateKaarten() {
         setVolgordeKaarten();
         setVolgordeItems();
     }
@@ -452,10 +466,34 @@ public class Speler {
 
     public List<Integer> getIDKaartenInHand() {
         List<Integer> ids = new ArrayList<>();
-        for (Kaart kaart: kaarten){
+        for (Kaart kaart : kaarten) {
             ids.add(kaart.getId());
         }
         return ids;
     }
 
+    private void updateItems(){
+        for (Kaart item: items) {
+            if (item instanceof Equipment) {
+                int old = protection.get(((Equipment) item).getType());
+                protection.replace(((Equipment) item).getType(), old + 1);
+            }
+        }
+    }
+
+    private boolean controleItems() {
+        String[] types = {"head", "armor", "foot", "weapon"};
+        boolean oke = true;
+        int aantalRace = 0;
+        for (String type : types) {
+            oke = protection.get(type) <= protectionMax.get(type);
+        }
+        for (Kaart item : items) {
+            if (item instanceof Race) {
+                aantalRace++;
+            }
+        }
+        oke = aantalRace >= 1;
+        return oke;
+    }
 }
