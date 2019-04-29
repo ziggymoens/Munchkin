@@ -559,14 +559,14 @@ public class Spel {
     }
 
     public int getWaardeSchatkaart(int id){
-        if (kaarten.get(id).getClass().getSimpleName().toLowerCase().equals("equipment")){
-            return ((Equipment)kaarten.get(id)).getWaarde();
-        }else if(kaarten.get(id).getClass().getSimpleName().equals("consumablesschat")){
-            return ((ConsumablesSchat)kaarten.get(id)).getWaarde();
-        }else
-            return 1234567;
+        int waarde = 0;
+        if(kaarten.get(id) instanceof Equipment){
+            waarde =  ((Equipment)kaarten.get(id)).getWaarde();
+        }else if(kaarten.get(id) instanceof ConsumablesSchat){
+            waarde = ((ConsumablesSchat)kaarten.get(id)).getWaarde();
         }
-
+        return waarde;
+    }
 
     public void setKaarten(Map<Integer, Kaart> kaarten) {
         this.kaarten = kaarten;
@@ -644,4 +644,52 @@ public class Spel {
         return spelers.get(zoekSpeler(naam)).getIDKaartenInHand();
     }
 
+    public void gooiKaartenWeg(String naam, List<Integer> gekozenKaarten) {
+        int speler = zoekSpeler(naam);
+        List<Kaart> temp = spelers.get(speler).getItems();
+        for(Integer k: gekozenKaarten){
+            for (Kaart kaart: temp){
+                if (kaart.getId() == k){
+                    temp.remove(kaart);
+                    if (kaart instanceof Equipment || kaart instanceof ConsumablesSchat){
+                        schatkaarten.add(kaart);
+                    }else{
+                        kerkerkaarten.add(kaart);
+                    }
+                }
+            }
+        }
+        spelers.get(speler).setItems(temp);
+        spelers.get(speler).updateItems();
+    }
+
+    public void verkoopKaarten(String naam, List<Integer> gekozenKaarten) {
+        int speler = zoekSpeler(naam);
+        int waarde = 0;
+        List<Kaart> temp = spelers.get(speler).getKaarten();
+        for (Integer k:gekozenKaarten){
+            for (Kaart kaart:spelers.get(speler).getKaarten()){
+                if (kaart.getId() == k){
+                    waarde += ((Schatkaart)kaart).getWaarde();
+                    temp.remove(kaart);
+                }
+            }
+        }
+        spelers.get(speler).setKaarten(temp);
+        spelers.get(speler).setLevel(spelers.get(speler).getLevel()+(waarde/1000));
+    }
+
+    public void verplaatsNaarItems(String naam, List<Integer> gekozenKaarten) {
+        int speler = zoekSpeler(naam);
+        List<Kaart> tempK = spelers.get(speler).getKaarten();
+        List<Kaart> tempI = spelers.get(speler).getItems();
+        for (Kaart kaart : tempK){
+            if (gekozenKaarten.contains(kaart.getId())){
+                tempK.remove(kaart);
+                tempI.add(kaart);
+            }
+        }
+        spelers.get(speler).setKaarten(tempK);
+        spelers.get(speler).setItems(tempI);
+    }
 }

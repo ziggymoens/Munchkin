@@ -393,4 +393,16 @@ public class DomeinController {
     public int getSpelerBattlePoints() {
         return spel.getSpelerBattlePoints();
     }
+
+    public void gooiKaartenWeg(String naam, List<Integer> gekozenKaarten) {
+        spel.gooiKaartenWeg(naam, gekozenKaarten);
+    }
+
+    public void verkoopKaarten(String naam, List<Integer> gekozenKaarten) {
+        spel.verkoopKaarten(naam, gekozenKaarten);
+    }
+
+    public void verplaatsNaarItems(String naam, List<Integer> gekozenKaarten) {
+        spel.verplaatsNaarItems(naam, gekozenKaarten);
+    }
 }

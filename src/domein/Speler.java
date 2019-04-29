@@ -472,7 +472,7 @@ public class Speler {
         return ids;
     }
 
-    private void updateItems(){
+    public void updateItems(){
         for (Kaart item: items) {
             if (item instanceof Equipment) {
                 int old = protection.get(((Equipment) item).getType());
