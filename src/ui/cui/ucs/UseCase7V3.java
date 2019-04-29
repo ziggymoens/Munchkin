@@ -131,6 +131,7 @@ public class UseCase7V3 {
         totaleWaarde = 0;
         for(Integer id: gekozenKaarten){
             if (dc.getWaardeSchatkaart(id)==999){
+
                 System.out.println("ERROR");
                 break;
             }

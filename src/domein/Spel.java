@@ -544,6 +544,7 @@ public class Spel {
             return ((ConsumablesSchat)kaarten.get(id)).getWaarde();
         }else {
             return 999;
+
         }
     }
 

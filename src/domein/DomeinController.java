@@ -300,6 +300,7 @@ public class DomeinController {
 
     public int getWaardeSchatkaart(int id){
         return spel.getWaardeSchatkaart(id);
+
     }
 
     public List<String> geefOverzichtSpelen() {
