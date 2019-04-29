@@ -1,4 +1,4 @@
-package ui.cui.ucs;
+/* package ui.cui.ucs;
 
 import domein.DomeinController;
 import language.LanguageResource;
@@ -6,12 +6,12 @@ import printer.ColorsOutput;
 import printer.Printer;
 
 import java.util.*;
-
+*/
 /**
  * Beheer kaarten in hand
  * UC7
  */
-
+/*
 public class UseCase7V2 {
     private final DomeinController dc;
     private final Scanner SCAN = new Scanner(System.in);
@@ -131,7 +131,7 @@ public class UseCase7V2 {
         System.out.println();
         for (int i = 0; i <= ids.size() - 1; i++) {
             //System.out.println(dc.getWaardeSchatkaart().get(i));
-            totWaarde += dc.getWaardeSchatkaart().get(i);
+            totWaarde += dc.getWaardeSchatkaart.get(i);
         }
 
         //level verhogen adhv opgetelde waarde van de kaarten
@@ -166,3 +166,6 @@ public class UseCase7V2 {
         System.out.println(ColorsOutput.decoration("bold") + ColorsOutput.kleur("red") + ColorsOutput.decoration("reversed") + LanguageResource.getString("quit") + ColorsOutput.reset() + "\n");
     }
 }
+
+ */
+

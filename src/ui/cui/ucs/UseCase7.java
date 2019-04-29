@@ -103,12 +103,9 @@ public class UseCase7 {
                                             System.out.println(LanguageResource.getString("usecase7.whattosell"));
                                             kaartId = SCAN.nextInt();
                                             if (dc.geefIdVerkoopbareKaarten(naam).contains(kaartId) && kaartId != 999) {
-                                                ids.add(kaartId);
+                                                totWaarde += dc.getWaardeSchatkaart(kaartId);
                                                 teller++;
-                                                for(int i = 0; i <= ids.size()-1; i++){
-                                                    System.out.println(dc.getWaardeSchatkaart().get(i));
-                                                    totWaarde += dc.getWaardeSchatkaart().get(i);
-                                                }
+                                                System.out.println(totWaarde);
 
                                             }else if(!dc.geefIdVerkoopbareKaarten(naam).contains(kaartId) && kaartId != 999){
                                                 System.out.println(LanguageResource.getString("usecase7.foutid"));

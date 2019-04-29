@@ -377,6 +377,8 @@ public class Speler {
         }
         return waardes;
     }
+
+
     public String geefNietVerkoopbareKaarten() {
         StringBuilder ret = new StringBuilder();
         int j = 0;
