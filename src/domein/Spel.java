@@ -185,7 +185,9 @@ public class Spel {
     public void controleerVolgorde() {
         Speler speler = spelers.get(0);
         for (Speler speler1 : spelers) {
-            if (speler.getNaam().toLowerCase().length() >= speler1.getNaam().toLowerCase().length()) {
+            if (speler.getNaam().toLowerCase().length() > speler1.getNaam().toLowerCase().length()) {
+                speler = speler1;
+            }else if (speler.getNaam().toLowerCase().length() == speler1.getNaam().toLowerCase().length()){
                 if (speler.getNaam().compareToIgnoreCase(speler1.getNaam()) <= 0) {
                     speler = speler1;
                 }
