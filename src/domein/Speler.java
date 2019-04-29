@@ -446,4 +446,14 @@ public class Speler {
         this.items = items;
         updateKaarten();
     }
+
+
+    public List<Integer> getIDKaartenInHand() {
+        List<Integer> ids = new ArrayList<>();
+        for (Kaart kaart: kaarten){
+            ids.add(kaart.getId());
+        }
+        return ids;
+    }
+
 }

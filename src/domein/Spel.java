@@ -626,5 +626,8 @@ public class Spel {
         return spelerBattlePoints;
     }
 
+    public List<Integer> geefIDKaartenInHand(String naam) {
+        return spelers.get(zoekSpeler(naam)).getIDKaartenInHand();
+    }
 
 }
