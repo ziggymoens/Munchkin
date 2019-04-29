@@ -28,7 +28,7 @@ class UseCase8 {
         try {
             askName();
             saveGame();
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.print(Printer.exceptionCatch("Exception", e, false));
         }
     }
@@ -88,7 +88,7 @@ class UseCase8 {
                 }
                 System.out.print(".");
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.print(Printer.exceptionCatch("Exception (UC8)", e, false));
         }
     });

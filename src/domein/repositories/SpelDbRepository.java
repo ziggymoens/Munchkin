@@ -1,5 +1,6 @@
 package domein.repositories;
 
+import connection.Connection;
 import domein.DomeinController;
 import domein.Spel;
 import persistentie.mappers.PersistentieController;
@@ -7,10 +8,12 @@ import persistentie.mappers.PersistentieController;
 import java.util.List;
 
 public class SpelDbRepository {
-    private final PersistentieController pc;
+    private PersistentieController pc;
 
     public SpelDbRepository() {
-        pc = new PersistentieController();
+        if (Connection.isConnected()) {
+            pc = new PersistentieController();
+        }
     }
 
     public void spelOpslaan(Spel spel) {

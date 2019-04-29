@@ -15,9 +15,8 @@ import domein.kaarten.schatkaarten.ConsumablesSchat;
 import domein.kaarten.schatkaarten.Equipment;
 import domein.repositories.KaartDbRepository;
 import language.LanguageResource;
+import persistentie.mappers.KaartMapper;
 
-import java.net.InetSocketAddress;
-import java.net.Socket;
 import java.util.List;
 
 /**
@@ -34,18 +33,57 @@ public class Test {
 
     public static void main(String[] args) {
 
+        KaartMapper km = new KaartMapper();
+        List<Kaart> kkk = km.getKaarten();
+        int k = 0, s=0;
+        int ck=0,c=0,m=0,r=0,cs=0,e=0;
+        StringBuilder out = new StringBuilder();
+        for (Kaart kaart: kkk) {
+            out.append(String.format("%5d:%40s -->%20s%n",kaart.getId(), kaart.getNaam(), kaart.getClass().getSimpleName()));
+            if (kaart instanceof ConsumablesSchat){
+                cs++;
+                s++;
+            }
+            if (kaart instanceof Equipment){
+                e++;
+                s++;
+            }
 
-        try{
-            String host="redhat.com";
-            int port=80;
-            int timeOutInMilliSec=5000;// 5 Seconds
-            Socket socket = new Socket();
-            socket.connect(new InetSocketAddress(host, port), timeOutInMilliSec);
-            System.out.println("Internet is Available");
         }
-        catch(Exception ex){
-            System.out.println("No Connectivity");
+        for (Kaart kaart: kkk){
+            out.append(String.format("%5d:%40s -->%20s%n",kaart.getId(), kaart.getNaam(), kaart.getClass().getSimpleName()));
+            if (kaart instanceof ConsumablesKerker){
+                ck++;
+                k++;}
+            if (kaart instanceof Curse){
+                c++;
+                k++;
+            }
+            if (kaart instanceof Monster){
+                m++;
+                k++;
+            }
+            if (kaart instanceof Race){
+                r++;
+                k++;
+            }
+
         }
+        System.err.printf("cs = %d, e = %d, ck = %d, c = %d, m = %d, r = %d, schat = %d, kerker = %d%n", cs, e, ck, c, m, r, s, k);
+        //System.out.println(out.toString());
+
+
+//        try{
+//            String host="redhat.com";
+//            int port=80;
+//            int timeOutInMilliSec=5000;// 5 Seconds
+//            Socket socket = new Socket();
+//            socket.connect(new InetSocketAddress(host, port), timeOutInMilliSec);
+//            System.out.println("Internet is Available");
+//        }
+//        catch(Exception ex){
+//            System.out.println("No Connectivity");
+//        }
 
 //        int test = 1002;
 //        int test2 = 2000;

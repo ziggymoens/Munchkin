@@ -29,6 +29,7 @@ class UseCase3 {
     private List<String> huidigeSituatie;
 
     UseCase3(DomeinController dc, int aantalSpelers) {
+        //map die bepaalt hoe kaart afgehandeld wordt
         types = new HashMap<>();
         types.put("ConsumablesKerker", this::geenEffectKaart);
         types.put("Curse", this::curseKaart);
@@ -48,6 +49,7 @@ class UseCase3 {
         this.naam = naam;
         try {
             UniversalMethods.toonSituatie();
+            huidigeSituatie = dc.geefSpelsituatie();
             System.out.println(dc.toonBovensteKk() + " " + dc.geefTypeKaart(dc.geefIdBovensteKaart()));
             System.out.println(dc.bovensteKaartToString());
             huidigeKaart = dc.geefIdBovensteKaart();

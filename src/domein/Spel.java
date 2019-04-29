@@ -1,5 +1,6 @@
 package domein;
 
+import connection.Connection;
 import domein.kaarten.Kaart;
 import domein.kaarten.Schatkaart;
 import domein.kaarten.kerkerkaarten.ConsumablesKerker;
@@ -10,6 +11,7 @@ import domein.kaarten.kerkerkaarten.monsterbadstuff.BadStuff;
 import domein.kaarten.schatkaarten.ConsumablesSchat;
 import domein.kaarten.schatkaarten.Equipment;
 import domein.repositories.KaartDbKleinRepository;
+import domein.repositories.KaartRepository;
 import exceptions.SpelException;
 import language.LanguageResource;
 
@@ -26,6 +28,7 @@ public class Spel {
 
     //private PersistentieController pc;
     private KaartDbKleinRepository kr;
+    private KaartRepository krOffline;
     private int spelerAanBeurt;
     private int aantalSpelers;
     private final List<Speler> spelers;
@@ -54,13 +57,19 @@ public class Spel {
     public Spel(int aantalSpelers) {
         setAantalSpelers(aantalSpelers);
         spelers = new ArrayList<>();
-        kr = new KaartDbKleinRepository();
-        //pc = new PersistentieController();
-        //kaarten = new HashMap<>();
-        schatkaarten = kr.getSchatkaarten();
+        if(Connection.isConnected()){
+            kr = new KaartDbKleinRepository();
+            //pc = new PersistentieController();
+            //kaarten = new HashMap<>();
+            schatkaarten = kr.getSchatkaarten();
+            kerkerkaarten = kr.getKerkerkaarten();
+        }else{
+            krOffline = new KaartRepository();
+            schatkaarten = krOffline.getSchatkaarten();
+            kerkerkaarten = krOffline.getKerkerkaarten();
+        }
         volgordeD = new ArrayList<>();
         volgordeT = new ArrayList<>();
-        kerkerkaarten = kr.getKerkerkaarten();
         maakKaartenBib();
         updateVolgorde();
         setSpelerAanBeurt(0);
@@ -89,7 +98,11 @@ public class Spel {
     }
 
     private void maakKaartenBib() {
-        kaarten = kr.getKaartenBib();
+        if (Connection.isConnected()){
+            kaarten = kr.getKaartenBib();
+        }else {
+            kaarten = krOffline.getKaartenBib();
+        }
     }
 
     /**

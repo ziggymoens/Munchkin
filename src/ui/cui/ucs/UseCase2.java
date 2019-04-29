@@ -5,6 +5,7 @@
  */
 package ui.cui.ucs;
 
+import connection.Connection;
 import domein.DomeinController;
 import exceptions.SpelException;
 import exceptions.SpelerException;
@@ -12,10 +13,7 @@ import language.LanguageResource;
 import printer.ColorsOutput;
 import printer.Printer;
 
-import java.util.HashMap;
-import java.util.InputMismatchException;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * KLAAR -- NIET
@@ -67,6 +65,7 @@ class UseCase2 {
         try {
             while (niemandGewonnen()) {
                 int x = dc.geefSpelerAanBeurt();
+                //speler aan beurt bepalen
                 if (x >= aantalSpelers - 1) {
                     x = 0;
                 }
@@ -98,29 +97,38 @@ class UseCase2 {
     private void speelBeurt() {
         int keuze = 0;
         boolean tryAgain = true;
+        List<Integer> mog = new ArrayList<>();
         while (tryAgain) {
             try {
                 System.out.printf("%s: %s%n", LanguageResource.getString("player.turn"), String.format("%s", ColorsOutput.kleur("blue") + naam + ColorsOutput.reset()));
                 printKeuze();
                 keuze = scan.nextInt();
-                if (keuze < 1 || keuze > 3) {
+                mog.add(1);
+                mog.add(3);
+                if (Connection.isConnected()) {
+                    mog.add(2);
+                }
+                if (!mog.contains(keuze)) {
+                    System.err.println("fout");
                     throw new Exception("choiceturn");
                 }
                 tryAgain = false;
             } catch (InputMismatchException e) {
                 //e = new InputMismatchException("usecase2.choiceerror");
                 System.out.print(Printer.exceptionCatch("InputMismatch (UC2)", e));
+                scan.nextLine();
             } catch (Exception e) {
                 //e = new Exception("usecase2.choiceinput");
                 System.out.print(Printer.exceptionCatch("Exception (UC2)", e, false));
                 scan.nextLine();
             }
-            try {
-                beurtOpties.get(keuze).run();
-            } catch (Exception e) {
-                System.out.print(Printer.exceptionCatch("Exception (UC2)", e, false));
-            }
         }
+        try {
+            beurtOpties.get(keuze).run();
+        } catch (Exception e) {
+            System.out.print(Printer.exceptionCatch("Exception (UC2)", e, false));
+        }
+
     }
 
     /**
@@ -195,8 +203,8 @@ class UseCase2 {
     private void printKeuze() {
         System.out.printf("%s%n"
                 + "1) %s%n"
-                + "2) %s%n"
-                + "3) %s%n", LanguageResource.getString("usecase2.turn.choice"), LanguageResource.getString("usecase2.turn.play"), LanguageResource.getString("usecase2.turn.save"), LanguageResource.getString("usecase2.turn.stop"));
+                + "2) %s%s%n"
+                + "3) %s%n", LanguageResource.getString("usecase2.turn.choice"), LanguageResource.getString("usecase2.turn.play"), LanguageResource.getString("usecase2.turn.save"), Connection.isConnected() ? "" : String.format(" ==> %s", LanguageResource.getString("notavailable")), LanguageResource.getString("usecase2.turn.stop"));
     }
 
 }
