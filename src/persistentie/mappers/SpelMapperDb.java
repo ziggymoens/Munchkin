@@ -7,6 +7,7 @@ import language.LanguageResource;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class SpelMapperDb {
@@ -32,17 +33,18 @@ public class SpelMapperDb {
     private static final String INSERT_GAME = "INSERT INTO ID222177_g35.Spel (spelid, naam, kleingroot, spelerAanBeurt) VALUES (?, ?, ?, ?)";
     private static final String DELETE_GAME = "DELETE FROM ID222177_g35.Spel WHERE spelid = ?";
     private static final String ALL_GAMES = "SELECT * FROM ID222177_g35.Spel";
-    private static final String GAME_CARDSEQ = "SELECT spelid, volgnumerT, volgnummerD, kaartid FROM ID222177_g35.SpelKaart WHERE spelid = ?";
+    private static final String GAME_CARDSEQ = "SELECT * FROM ID222177_g35.SpelKaart WHERE spelidSpelKaart = ?";
     private static final String GAME_GETID = "SELECT spelid FROM ID222177_g35.Spel WHERE naam = ?";
     private static final String PLAYER_GETCARDS = "SELECT * FROM ID222177_g35.SpelerKaart WHERE SpelerId = ?";
-    private static final String GAME_GETPLAYERS = "SELECT * FROM ID222177_g35.Speler WHERE spelid = ?";
+    private static final String GAME_GETPLAYERS = "SELECT * FROM ID222177_g35.Speler WHERE spelidSpel = ?";
     private static final String GAME_LOAD = "SELECT * FROM ID222177_g35.Spel WHERE spelid = ?";
-    private static final String PLAYER_SAVECARD = "INSERT INTO ID222177_g35.SpelerKaart (spelerid, kaartid, plaatsKaart) VALUES (?, ?, ?)";
-    private static final String PLAYER_SAVE = "INSERT INTO ID222177_g35.Speler (spelerid, naam, level, geslacht, spelid) VALUES (?,?,?,?,?)";
-    private static final String GAME_CARDSAVE = "INSERT INTO ID222177_g35.SpelKaart (spelid, kaartid, volgnummerD, volgnumerT) values (?,?,?,?)";
-    private static final String DELETE_PLAYERS = "DELETE FROM ID222177_g35.Speler WHERE spelid = ?";
+    private static final String PLAYER_SAVECARD = "INSERT INTO ID222177_g35.SpelerKaart (spelerid, kaartidSpelKaart, plaatsKaart, spelidSpelerKaart) VALUES (?, ?, ?, ?)";
+    private static final String PLAYER_SAVE = "INSERT INTO ID222177_g35.Speler (spelerid, naam, level, geslacht, spelidSpel) VALUES (?,?,?,?,?)";
+    private static final String GAME_CARDSAVE = "INSERT INTO ID222177_g35.SpelKaart (kaartidSpelKaart, volgnummerD, volgnumerT, spelidSpelKaart) values (?,?,?,?)";
+    private static final String DELETE_PLAYERS = "DELETE FROM ID222177_g35.Speler WHERE spelidSpel = ?";
     private static final String DELETE_SPELERKAART = "DELETE ID222177_g35.SpelerKaart FROM ID222177_g35.SpelerKaart INNER JOIN ID222177_g35.Speler ON ID222177_g35.SpelerKaart.spelerid = ID222177_g35.Speler.spelerid where ID222177_g35.Speler.spelid = ?";
-    private static final String DELETE_SPELKAART = "DELETE FROM ID222177_g35.SpelKaart WHERE spelid = ?";
+    private static final String DELETE_SPELKAART = "DELETE FROM ID222177_g35.SpelKaart WHERE spelidSpelKaart = ?";
+    private static final String RESET_INCREMENT_SPEL = "ALTER TABLE ID222177_g35.`Spel` AUTO_INCREMENT = 1;";
 
     private void voegToe() {
         try {
@@ -77,15 +79,25 @@ public class SpelMapperDb {
         } catch (Exception ex) {
             ex.printStackTrace();
             throw new SpelDatabaseException(ex.getMessage());
-        }finally {
+        } finally {
             try {
                 rs.close();
                 query.close();
                 conn.close();
-            } catch (SQLException ignored){
+            } catch (SQLException ignored) {
             }
         }
         return spel;
+    }
+
+    public void resetIncrement() {
+        voegToe();
+        try {
+            PreparedStatement query = conn.prepareStatement(RESET_INCREMENT_SPEL);
+            query.executeUpdate();
+        } catch (Exception ex) {
+            throw new SpelDatabaseException(ex.getMessage());
+        }
     }
 
     private List<Speler> voegSpelersToe(int spelId) {
@@ -129,11 +141,11 @@ public class SpelMapperDb {
             while (rs2.next()) {
                 if (type.equals("i")) {
                     if (rs2.getBoolean("plaatsKaart")) {
-                        kaarten.add(rs2.getInt("kaartId"));
+                        kaarten.add(rs2.getInt("kaartIdSpelerKaart"));
                     }
                 } else {
                     if (!rs2.getBoolean("plaatsKaart")) {
-                        kaarten.add(rs2.getInt("kaartId"));
+                        kaarten.add(rs2.getInt("kaartIdSpelerKaart"));
                     }
                 }
             }
@@ -147,26 +159,35 @@ public class SpelMapperDb {
     }
 
     private List<Integer> geefVolgorde(String type, int spelId) {
-        List<Integer> volgorde = new ArrayList<>();
+        List<Integer> volgorde;
         voegToe();
         try {
+            if (type.equals("t")) {
+                volgorde = new ArrayList<Integer>(Collections.nCopies(50, 0));
+            }else {
+                volgorde = new ArrayList<Integer>(Collections.nCopies(28, 0));
+            }
             query3 = conn.prepareStatement(GAME_CARDSEQ);
             query3.setInt(1, spelId);
             rs3 = query3.executeQuery();
             while (rs3.next()) {
-                int nrT = rs3.getInt("volgnumerT");
-                int nrD = rs3.getInt("volgnummerD");
-                int kaartId = rs.getInt("kaartid");
                 if (type.equals("t")) {
-                    volgorde.add(nrT, kaartId);
+                    if (rs3.getInt("volgnumerT")!=-1) {
+                        System.out.println(rs3.getInt("volgnumerT") + "  T  " + rs3.getInt("kaartidSpelKaart"));
+                        volgorde.add(rs3.getInt("volgnumerT"), rs3.getInt("kaartidSpelKaart"));
+                    }
                 } else {
-                    volgorde.add(nrD, kaartId);
+                    if (rs3.getInt("volgnummerD")!=-1) {
+                        System.out.println(rs3.getInt("volgnummerD") + "  D  " + rs3.getInt("kaartidSpelKaart"));
+                        volgorde.add(rs3.getInt("volgnummerD"), rs3.getInt("kaartidSpelKaart"));
+                    }
                 }
             }
             rs3.close();
             query3.close();
             //conn.close();
         } catch (Exception e) {
+            e.printStackTrace();
             throw new SpelDatabaseException(e.getMessage());
         }
         return volgorde;
@@ -260,7 +281,7 @@ public class SpelMapperDb {
     }
 
     //LUSSEN
-    void kaartSpelerOpslaan(int spelerId, List<Integer> ids, boolean items) {
+    void kaartSpelerOpslaan(int spelerId, List<Integer> ids, boolean items, int spelid) {
         voegToe();
         try {
             for (Integer id : ids) {
@@ -268,6 +289,7 @@ public class SpelMapperDb {
                 query8.setInt(1, spelerId);
                 query8.setInt(2, id);
                 query8.setBoolean(3, items);
+                query8.setInt(4, spelid);
                 query8.executeUpdate();
                 query8.close();
             }
@@ -299,10 +321,10 @@ public class SpelMapperDb {
         try {
             for (int id : kaart) {
                 query10 = conn.prepareStatement(GAME_CARDSAVE);
-                query10.setInt(1, spelId);
-                query10.setInt(2, id);
-                query10.setObject(3, volgnummerD.indexOf(id));
-                query10.setObject(4, volgnummerT.indexOf(id));
+                query10.setInt(1, id);
+                query10.setObject(2, volgnummerD.indexOf(id));
+                query10.setObject(3, volgnummerT.indexOf(id));
+                query10.setInt(4, spelId);
                 query10.executeUpdate();
                 query10.close();
             }
@@ -315,7 +337,7 @@ public class SpelMapperDb {
     public List<Integer> geefSpelIds() {
         List<Integer> ids = new ArrayList<>();
         voegToe();
-        try{
+        try {
             query11 = conn.prepareStatement(ALL_GAMES);
             rs11 = query11.executeQuery();
             while (rs11.next()) {
@@ -325,7 +347,7 @@ public class SpelMapperDb {
             rs11.close();
             query11.close();
             conn.close();
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new SpelDatabaseException(e.getMessage());
         }
         return ids;
