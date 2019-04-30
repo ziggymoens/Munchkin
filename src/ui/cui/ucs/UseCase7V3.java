@@ -146,6 +146,7 @@ class UseCase7V3 {
                 }
             }while(keuze != 999 && teller < dc.geefIDKaartenInHand(naam).size());
             dc.gooiKaartenWeg(naam, gekozenKaarten);
+
         }else if(type.equals("I")){
             mogelijkheden = dc.geefIdsKunnenNaarItems(naam);
             int keuze = 0;
@@ -156,6 +157,10 @@ class UseCase7V3 {
                     gekozenKaarten.add(keuze);
                     teller++;
                 } else if (keuze == 999) {
+                    System.out.println("Wilt u stoppen? (ja/nee)");
+                    stop = scan.next();
+                    if(stop.equalsIgnoreCase(LanguageResource.getString("yes")))
+                        break;
                 } else {
                     System.out.println("foute keuze");
                 }
