@@ -6,7 +6,7 @@ import printer.ColorsOutput;
 
 import java.util.*;
 
-public class UseCase7V3 {
+class UseCase7V3 {
     private DomeinController dc;
     private final Map<Integer, Runnable> keuzes = new HashMap<>();
     private final Scanner scan = new Scanner(System.in);
@@ -14,7 +14,7 @@ public class UseCase7V3 {
     private final List<Integer> gekozenKaarten = new ArrayList<>();
     private int totaleWaarde;
 
-    public UseCase7V3(DomeinController dc) {
+    UseCase7V3(DomeinController dc) {
         this.dc = dc;
         keuzes.put(1, this::naarItems);
         keuzes.put(2, this::verkopenEnWeggooien);
@@ -22,7 +22,7 @@ public class UseCase7V3 {
         naam = dc.geefNaamSpeler(dc.geefSpelerAanBeurt());
     }
 
-    public void beheerKaarten() {
+    void beheerKaarten() {
         gekozenKaarten.clear();
         overzichtOpties();
         int keuze = maakKeuze();

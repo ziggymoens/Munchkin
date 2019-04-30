@@ -6,6 +6,8 @@
 package ui.test;
 
 import domein.DomeinController;
+import domein.Spel;
+import domein.Speler;
 import domein.kaarten.Kaart;
 import domein.kaarten.kerkerkaarten.ConsumablesKerker;
 import domein.kaarten.kerkerkaarten.Curse;
@@ -16,8 +18,10 @@ import domein.kaarten.schatkaarten.Equipment;
 import domein.repositories.KaartDbRepository;
 import language.LanguageResource;
 import persistentie.mappers.KaartMapper;
+import persistentie.mappers.PersistentieController;
 
 import java.util.List;
+import java.util.Locale;
 
 /**
  * @author ziggy
@@ -91,8 +95,8 @@ public class Test {
 //        System.out.println(test/1000);
 //        System.out.println(test2/1000);
 //
-//        PersistentieController pc = new PersistentieController();
-//        LanguageResource.setLocale(new Locale("en"));
+        PersistentieController pc = new PersistentieController();
+        LanguageResource.setLocale(new Locale("en"));
 //        Spel spel = new Spel(3);
 //        spel.maakNieuweSpeler();
 //        spel.geefSpelerNaam(0, "janjan");
@@ -113,12 +117,12 @@ public class Test {
 //        //pc.spelOpslaan(spel);
 //        //pc.remove("test123");
 //
-//        Spel spel1 = pc.laadSpel(23);
-//        System.out.println(spel1.geefSpelsituatie());
-//        for (Speler speler:spel1.getSpelers()){
-//            System.out.println(speler.toString());
-//            System.out.println(speler.kaartenNaarString(speler.getKaarten()));
-//        }
+        Spel spel1 = pc.laadSpel(23);
+        System.out.println(spel1.geefSpelsituatie());
+        for (Speler speler:spel1.getSpelers()){
+            System.out.println(speler.toString());
+            System.out.println(speler.kaartenNaarString(speler.getKaarten()));
+        }
 //
 //        System.out.println(pc.getOverzicht());
         //SpelMapperDb sm = new SpelMapperDb();

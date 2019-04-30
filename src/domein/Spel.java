@@ -433,7 +433,7 @@ public class Spel {
         return spelerAanBeurt;
     }
 
-    public void setSpelerAanBeurt(int spelerAanBeurt) {
+    void setSpelerAanBeurt(int spelerAanBeurt) {
         if (spelerAanBeurt == spelers.size()){
             this.spelerAanBeurt = 0;
         }else {

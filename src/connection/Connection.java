@@ -10,6 +10,4 @@ public class Connection {
     public static void setConnected(boolean connected) {
         Connection.connected = connected;
     }
-
-
 }

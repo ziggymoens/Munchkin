@@ -32,7 +32,7 @@ public class SpelMapperDb {
     private static final String INSERT_GAME = "INSERT INTO ID222177_g35.Spel (spelid, naam, kleingroot, spelerAanBeurt) VALUES (?, ?, ?, ?)";
     private static final String DELETE_GAME = "DELETE FROM ID222177_g35.Spel WHERE spelid = ?";
     private static final String ALL_GAMES = "SELECT * FROM ID222177_g35.Spel";
-    private static final String GAME_CARDSEQ = "SELECT spelid, kaartid, volgnumerT, volgnummerD FROM ID222177_g35.SpelKaart WHERE spelid = ?";
+    private static final String GAME_CARDSEQ = "SELECT spelid, volgnumerT, volgnummerD, kaartid FROM ID222177_g35.SpelKaart WHERE spelid = ?";
     private static final String GAME_GETID = "SELECT spelid FROM ID222177_g35.Spel WHERE naam = ?";
     private static final String PLAYER_GETCARDS = "SELECT * FROM ID222177_g35.SpelerKaart WHERE SpelerId = ?";
     private static final String GAME_GETPLAYERS = "SELECT * FROM ID222177_g35.Speler WHERE spelid = ?";
@@ -156,7 +156,7 @@ public class SpelMapperDb {
             while (rs3.next()) {
                 int nrT = rs3.getInt("volgnumerT");
                 int nrD = rs3.getInt("volgnummerD");
-                int kaartId = rs.getInt("kaartId");
+                int kaartId = rs.getInt("kaartid");
                 if (type.equals("t")) {
                     volgorde.add(nrT, kaartId);
                 } else {

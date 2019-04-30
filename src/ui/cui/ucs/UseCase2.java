@@ -16,9 +16,10 @@ import printer.Printer;
 import java.util.*;
 
 /**
- * KLAAR -- NIET
+ * KLAAR -- 30/4/2019
  * CONTROLE KILI --
  * CONTROLE JONA --
+ * CONTROLE MICHIEL --
  *
  * @author ziggy
  */
