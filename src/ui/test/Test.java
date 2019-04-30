@@ -69,6 +69,7 @@ public class Test {
             }
 
         }
+        //test push
         System.err.printf("cs = %d, e = %d, ck = %d, c = %d, m = %d, r = %d, schat = %d, kerker = %d%n", cs, e, ck, c, m, r, s, k);
         //System.out.println(out.toString());
 
