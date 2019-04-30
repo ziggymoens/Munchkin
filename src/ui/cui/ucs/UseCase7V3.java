@@ -13,7 +13,7 @@ class UseCase7V3 {
     private final Scanner scan = new Scanner(System.in);
     private String naam;
     private final List<Integer> gekozenKaarten = new ArrayList<>();
-    private int totaleWaarde;
+    private int totaleWaarde, keuze, teller;
 
     UseCase7V3(DomeinController dc) {
         this.dc = dc;
@@ -68,10 +68,10 @@ class UseCase7V3 {
     }
 
     private void overzichtVerkopenWeggooien() {
-        System.out.printf("%s:%n%s%n%n%s:%n%s%n", ColorsOutput.decoration("bold") + LanguageResource.getString("usecase7.sellable") + ColorsOutput.reset(), dc.geefVerkoopbareKaarten(naam), ColorsOutput.decoration("bold") + LanguageResource.getString("usecase7.throwaway") + ColorsOutput.reset(), dc.geefNietVerkoopbareKaarten(naam));
-        boolean verkWeg = UniversalMethods.controleJaNee("usecase7.asktosell");
+        System.out.printf("%n%s:%n%s%n%n%s:%n%s%n", ColorsOutput.decoration("bold") + LanguageResource.getString("usecase7.sellable") + ColorsOutput.reset(), dc.geefVerkoopbareKaarten(naam), ColorsOutput.decoration("bold") + LanguageResource.getString("usecase7.throwaway") + ColorsOutput.reset(), dc.geefNietVerkoopbareKaarten(naam));
+        boolean verkoopWeg = UniversalMethods.controleJaNee("usecase7.asktosell");
 
-        if (verkWeg) {
+        if (verkoopWeg) {
             System.out.println(LanguageResource.getString("usecase7.sellorthrow"));
             String keuze = scan.next();
             if (keuze.equalsIgnoreCase(LanguageResource.getString("usecase7.translationsell"))) {
@@ -84,29 +84,31 @@ class UseCase7V3 {
                 }else
                     System.out.println(ColorsOutput.kleur("yellow") + ColorsOutput.decoration("bold") + LanguageResource.getString("usecase7.kleinewaarde") + ColorsOutput.reset());
             } else if (keuze.equalsIgnoreCase(LanguageResource.getString("usecase7.translationthrow"))) {
+                System.out.printf("%s: %n%s%n", ColorsOutput.decoration("bold") + LanguageResource.getString("usecase7.throwaway") + ColorsOutput.reset(), dc.geefNietVerkoopbareKaarten(naam));
                 kiesKaarten("W");
                 dc.gooiKaartenWeg(naam, gekozenKaarten);
-            }
+                System.out.print(Printer.printGreen(String.format("usecase7.succesdelete")));            }
         }
     }
 
     private void overzichtItems(){
         System.out.printf("%s%n%s", ColorsOutput.decoration("bold") + String.format("%s:", LanguageResource.getString("usecase7.toitems")) + ColorsOutput.reset(), dc.geefKaartenKunnenNaarItems(naam));
-        boolean items = UniversalMethods.controleJaNee("usecase7.itemsconfirm");
+        /*boolean items = UniversalMethods.controleJaNee("usecase7.itemsconfirm");
         if (items){
             kiesKaarten("I");
             dc.verplaatsNaarItems(naam, gekozenKaarten);
         }
+
+         */
     }
 
     private void kiesKaarten(String type){
         List<Integer> mogelijkheden;
         String stop;
-        int teller = 0;
+        teller = 0;
         if (type.equals("V")) {
-            mogelijkheden = dc.geefIDKaartenInHand(naam);
-            int keuze = 0;
-
+            mogelijkheden = dc.geefIdVerkoopbareKaarten(naam);
+            keuze = 0;
             do {
                 System.out.printf("%s: %n", LanguageResource.getString("usecase7.whattosell"));
                 keuze = scan.nextInt();
@@ -114,7 +116,7 @@ class UseCase7V3 {
                     gekozenKaarten.add(keuze);
                     teller++;
                 } else if (keuze == 999) {
-                    System.out.println("Wilt u stoppen?");
+                    System.out.println("Wilt u stoppen? (ja/nee)");
                     stop = scan.next();
                     if (stop.equalsIgnoreCase(LanguageResource.getString("yes"))) {
                         break;
@@ -122,26 +124,28 @@ class UseCase7V3 {
                 } else {
                     System.out.println("foute keuze");
                 }
-            } while (keuze != 999 && teller < mogelijkheden.size() - 1);
+            } while (keuze != 999 && teller < mogelijkheden.size() - 2);
 
-            //code uc7v1
-            /*do {
-                System.out.println(LanguageResource.getString("usecase7.whattosell"));
-                keuze = scan.nextInt();
-                if (mogelijkheden.contains(keuze) && kaartId != 999) {
-                    ids.add(kaartId);
-                    teller++;
-                } else if (!mogelijkheden.contains(kaartId) && kaartId != 999) {
-                    System.out.println(LanguageResource.getString("usecase7.foutid"));
-                }
-
-                match = false;
-            } while (kaartId != 999 && teller <= mogelijkheden.size() - 1);
-
-
-            */
         }else if(type.equals("W")){
+            mogelijkheden = dc.geefIDKaartenInHand(naam);
+            keuze = 0;
 
+            do {
+                System.out.printf("%s: %n", LanguageResource.getString("usecase7.whattoitems"));
+                keuze = scan.nextInt();
+                if(mogelijkheden.contains(keuze) && keuze != 999){
+                    gekozenKaarten.add(keuze);
+                    teller++;
+                }else if(keuze == 999){
+                    System.out.println("Wilt u stoppen? (ja/nee)");
+                    stop = scan.next();
+                    if(stop.equalsIgnoreCase(LanguageResource.getString("yes"))){
+                        break;
+                    }else
+                        System.out.println("Foute keuze");
+                }
+            }while(keuze != 999 && teller < dc.geefIDKaartenInHand(naam).size());
+            dc.gooiKaartenWeg(naam, gekozenKaarten);
         }else if(type.equals("I")){
             mogelijkheden = dc.geefIdsKunnenNaarItems(naam);
             int keuze = 0;
