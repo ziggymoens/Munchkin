@@ -588,7 +588,7 @@ public class Spel {
         return kerkerkaarten;
     }
 
-    public String toonOverzichtKaartenInHand(int speler){
+    /*public String toonOverzichtKaartenInHand(int speler){
         String output = String.format("Dit is een overzicht van je kaarten in je hand %n") ;
         List<Kaart> kaartenInHand =  spelers.get(speler).getKaarten();
         for(int i = 0; i < spelers.get(speler).getKaarten().size(); i++){
@@ -612,6 +612,35 @@ public class Spel {
                 help = "Equipment";
             }
             output += String.format("%d)%s: %s%n",i+1, kaartenInHand.get(i).getNaam(), help);
+        }
+        return output;
+    }*/
+
+    public List<String> toonOverzichtKaartenInHand2(int speler){
+        List<String> output = new ArrayList<>();
+        output.add("Dit is een overzicht van je kaarten in je hand");
+        List<Kaart> kaartenInHand =  spelers.get(speler).getKaarten();
+        for(int i = 0; i < spelers.get(speler).getKaarten().size(); i++){
+            String help = "";
+            if(kaartenInHand.get(i) instanceof ConsumablesKerker){
+                help = "Consumable";
+            }
+            if(kaartenInHand.get(i) instanceof Curse){
+                help = "Curse";
+            }
+            if(kaartenInHand.get(i) instanceof Monster){
+                help = "Monster";
+            }
+            if(kaartenInHand.get(i) instanceof Race){
+                help = "Race";
+            }
+            if(kaartenInHand.get(i) instanceof ConsumablesSchat){
+                help = "Consumable";
+            }
+            if(kaartenInHand.get(i) instanceof Equipment){
+                help = "Equipment";
+            }
+            output.add(String.format("%d)%s: %s",i+1, kaartenInHand.get(i).getNaam(), help));
         }
         return output;
     }
@@ -642,6 +671,16 @@ public class Spel {
 
     public List<Integer> geefIDKaartenInHand(String naam) {
         return spelers.get(zoekSpeler(naam)).getIDKaartenInHand();
+    }
+
+    public void voegkaartonderaanstapeltoe(Kaart kaart){
+        //kaart is een kerkerkaart
+        if(kaart instanceof ConsumablesKerker || kaart instanceof Curse || kaart instanceof Monster || kaart instanceof Race){
+            kerkerkaarten.add(kaart);
+        }//kaart is een schatkaart
+        else{
+            schatkaarten.add(kaart);
+        }
     }
 
     public void gooiKaartenWeg(String naam, List<Integer> gekozenKaarten) {

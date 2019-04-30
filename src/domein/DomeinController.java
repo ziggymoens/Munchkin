@@ -1,5 +1,6 @@
 package domein;
 
+import domein.kaarten.Kaart;
 import domein.kaarten.Schatkaart;
 import domein.kaarten.kerkerkaarten.monsterbadstuff.BadStuff;
 import domein.repositories.SpelDbRepository;
@@ -333,8 +334,12 @@ public class DomeinController {
 
     public Schatkaart geefSchatkaart(){ return spel.geefSchatkaart(); }
     
-    public String toonOverzichtKaartenInHand(int speler) {
+    /*public String toonOverzichtKaartenInHand(int speler) {
         return spel.toonOverzichtKaartenInHand(speler);
+    }*/
+
+    public List<String> toonOverzichtKaartenInHand2(int speler){
+        return spel.toonOverzichtKaartenInHand2(speler);
     }
         //fix
     
@@ -392,6 +397,10 @@ public class DomeinController {
 
     public int getSpelerBattlePoints() {
         return spel.getSpelerBattlePoints();
+    }
+
+    public void voegkaartonderaanstapeltoe(Kaart kaart){
+        spel.voegkaartonderaanstapeltoe(kaart);
     }
 
     public void gooiKaartenWeg(String naam, List<Integer> gekozenKaarten) {
