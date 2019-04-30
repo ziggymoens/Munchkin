@@ -1,10 +1,6 @@
 package ui.cui.ucs;
 
 import domein.DomeinController;
-
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
 import domein.kaarten.Kaart;
 import domein.kaarten.kerkerkaarten.ConsumablesKerker;
 import domein.kaarten.kerkerkaarten.Curse;
@@ -13,7 +9,10 @@ import domein.kaarten.kerkerkaarten.Race;
 import domein.kaarten.schatkaarten.ConsumablesSchat;
 import domein.kaarten.schatkaarten.Equipment;
 import language.LanguageResource;
+
+import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Scanner;
 
 public class UseCase5 {
 
@@ -78,11 +77,7 @@ public class UseCase5 {
         if(dc.geefSpelerAanBeurt() == spelerAanBeurt){
             if(kr instanceof ConsumablesSchat || kr instanceof ConsumablesKerker || kr instanceof Equipment || kr instanceof Race || kr instanceof Monster){
                 if(kr instanceof Monster){
-                    if(monster){
-                        return true;
-                    }else{
-                        return false;
-                    }
+                    return monster;
                 }
                 return true;
             }
@@ -93,9 +88,7 @@ public class UseCase5 {
                 //Aanpassen dat als speler geen hulp wou, alleen negatieve ConsumablesKerker gespeeld mag worden
                 if(help){
                     if(kr instanceof ConsumablesKerker){
-                        if(((ConsumablesKerker) kr).getBonus() < 0){
-                            return false;
-                        }
+                        return ((ConsumablesKerker) kr).getBonus() >= 0;
                     }
                 }
                 return true;

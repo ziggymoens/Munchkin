@@ -100,10 +100,10 @@ class UseCase3 {
      */
     private void beheerKaarten() {
         try {
-            UseCase7 uc7 = new UseCase7(this.dc);
-            uc7.beheerKaarten(naam);
+            UseCase7V3 uc7 = new UseCase7V3(this.dc);
+            uc7.beheerKaarten();
             while (dc.getAantalKaarten(naam) > 5) {
-                uc7.beheerKaarten(naam);
+                uc7.beheerKaarten();
             }
         } catch (Exception e) {
             System.out.print(Printer.exceptionCatch("Exception (UC3)", e, false));

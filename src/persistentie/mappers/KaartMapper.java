@@ -204,27 +204,4 @@ public class KaartMapper {
     public List<Kaart> getSchatkaarten() {
         return schatkaarten;
     }
-
-//    private void openFileLezen(String type) {
-//        try {
-//            input = new ObjectInputStream(Files.newInputStream(
-//                    Paths.get()));
-//        } catch (InvalidPathException ie) {
-//            System.err.println("Error finding file.");
-//            System.exit(1);
-//        } catch (IOException io) {
-//            System.err.println("Error opening file.");
-//            System.exit(1);
-//        }
-//    }
-//
-//    private void closeFile() {
-//        if (input != null) {
-//            try {
-//                input.close();
-//            } catch (IOException ex) {
-//                System.exit(1);
-//            }
-//        }
-//    }
 }

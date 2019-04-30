@@ -683,12 +683,14 @@ public class Spel {
         int speler = zoekSpeler(naam);
         List<Kaart> tempK = spelers.get(speler).getKaarten();
         List<Kaart> tempI = spelers.get(speler).getItems();
+        List<Kaart> verwijderKaarten = new ArrayList<>();
         for (Kaart kaart : tempK){
             if (gekozenKaarten.contains(kaart.getId())){
-                tempK.remove(kaart);
+                verwijderKaarten.add(kaart);
                 tempI.add(kaart);
             }
         }
+        tempK.removeAll(verwijderKaarten);
         spelers.get(speler).setKaarten(tempK);
         spelers.get(speler).setItems(tempI);
     }
