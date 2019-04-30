@@ -681,6 +681,7 @@ public class Spel {
         else{
             schatkaarten.add(kaart);
         }
+
     }
 
     public void gooiKaartenWeg(String naam, List<Integer> gekozenKaarten) {
