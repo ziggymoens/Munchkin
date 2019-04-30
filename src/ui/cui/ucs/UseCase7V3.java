@@ -98,32 +98,83 @@ class UseCase7V3 {
 
     private void kiesKaarten(String type){
         List<Integer> mogelijkheden;
+        String antw;
+        boolean match = true;
+        int teller = 0;
         if (type.equals("V") || type.equals("W")){
             mogelijkheden = dc.geefIDKaartenInHand(naam);
             int keuze = 0;
+            /*
             do {
                 System.out.printf("Geef de %s ID's, na elke ID enter (999 om te stoppen)", type.equals("V")?"te verkopen":"weg te gooien");
                 keuze = scan.nextInt();
-                if (mogelijkheden.contains(keuze)){
+                if (mogelijkheden.contains(keuze) && keuze != 999){
                     gekozenKaarten.add(keuze);
+                    teller++;
                 }else if (keuze == 999){
+                    System.out.println("Wilt u stoppen?");
+                    stop = scan.next();
+                    if(stop.equalsIgnoreCase(LanguageResource.getString("yes"))){
+                        break;
+                    }
                 }else{
                     System.out.println("foute keuze");
                 }
-            }while (keuze != 999);
+            }while (keuze != 999 && teller < mogelijkheden.size() - 1);
+
+
+             */
+            //code uc7v1
+
+            do {
+                System.out.println(LanguageResource.getString("usecase7.sellorthrow"));
+                antw = scan.next();
+                if (antw.equalsIgnoreCase(LanguageResource.getString("usecase7.translationsell"))) {
+                    match = false;
+                    System.out.println(LanguageResource.getString("usecase7.sell"));
+                    System.out.println(String.format("%s: %n%s", LanguageResource.getString("usecase7.sellable"), dc.geefVerkoopbareKaarten(naam)));
+                    scan.nextLine();
+                    do {
+                        System.out.println(LanguageResource.getString("usecase7.whattosell"));
+                        keuze = scan.nextInt();
+                        if (mogelijkheden.contains(keuze) && keuze != 999) {
+                            gekozenKaarten.add(keuze);
+                            teller++;
+                        } else if (!mogelijkheden.contains(keuze) && keuze != 999) {
+                            System.out.println(LanguageResource.getString("usecase7.foutid"));
+                        }
+
+                        match = false;
+                    } while (keuze != 999 && teller <= mogelijkheden.size() - 1);
+                    // System.out.println(ColorsOutput.kleur("white") + ColorsOutput.decoration("bold") + ColorsOutput.achtergrond("red") + " *** totale levels stijgen volgens deling: " + totWaarde/1000 + ColorsOutput.reset());
+                    // System.out.println(" *** Dit is de totale waarde: " + totWaarde);
+
+                } else if (antw.equalsIgnoreCase(LanguageResource.getString("usecase7.translationthrow"))) {
+                    System.out.println(" *** gekozen voor weggooien -- hardcode, nog aanpassen");
+                    System.out.println(LanguageResource.getString("usecase7.throw"));
+
+                    System.out.println(dc.geefNietVerkoopbareKaarten(naam));
+                    match = false;
+                } else
+                    match = true;
+            } while (match);
+
+
+
         }else if(type.equals("I")){
             mogelijkheden = dc.geefIdsKunnenNaarItems(naam);
             int keuze = 0;
             do {
                 System.out.println("Geef de te verplaatsen ID's, na elke ID enter (999 om te stoppen)");
                 keuze = scan.nextInt();
-                if (mogelijkheden.contains(keuze)) {
+                if (mogelijkheden.contains(keuze) && keuze != 999) {
                     gekozenKaarten.add(keuze);
+                    teller++;
                 } else if (keuze == 999) {
                 } else {
                     System.out.println("foute keuze");
                 }
-            }while (keuze!=999);
+            }while (keuze!=999 && teller < mogelijkheden.size() - 1);
         }
     }
 
