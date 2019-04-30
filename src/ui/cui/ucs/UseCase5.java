@@ -1,6 +1,11 @@
 package ui.cui.ucs;
 
 import domein.DomeinController;
+
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 import domein.kaarten.Kaart;
 import domein.kaarten.kerkerkaarten.ConsumablesKerker;
 import domein.kaarten.kerkerkaarten.Curse;
@@ -8,9 +13,9 @@ import domein.kaarten.kerkerkaarten.Monster;
 import domein.kaarten.kerkerkaarten.Race;
 import domein.kaarten.schatkaarten.ConsumablesSchat;
 import domein.kaarten.schatkaarten.Equipment;
+import exceptions.SpelerException;
 import language.LanguageResource;
-
-import java.util.InputMismatchException;
+import printer.ColorsOutput;
 import java.util.List;
 import java.util.Scanner;
 
@@ -33,19 +38,30 @@ public class UseCase5 {
     }
 
     void speelKaart() {
-        System.out.println(dc.toonOverzichtKaartenInHand(spelerAanBeurt));
+        //System.out.println(dc.toonOverzichtKaartenInHand(spelerAanBeurt));
+        System.out.println("");
+        System.out.printf(ColorsOutput.decoration("bold") + ColorsOutput.kleur("purple") + "%s%n", dc.toonOverzichtKaartenInHand2(spelerAanBeurt).get(0) + ColorsOutput.reset());
+        for(int i = 1; i < dc.toonOverzichtKaartenInHand2(spelerAanBeurt).size(); i++){
+            System.out.println(dc.toonOverzichtKaartenInHand2(spelerAanBeurt).get(i));
+        }
+        System.out.println("");
         int kaart = 0;
-        Boolean tryagain = false;
-        while(!tryagain){
-            try{
+        Boolean tryagain = true;
+        try{
+            while(tryagain) {
                 System.out.println(LanguageResource.getString("usecase5.choicecard"));
                 kaart = SCAN.nextInt();
-                tryagain = true;
-            }catch(InputMismatchException e){
-                System.err.println("Je moet de juiste input geven");
+                if(kaart <= 0 || kaart > dc.toonOverzichtKaartenInHand2(spelerAanBeurt).size()){
+                    throw new SpelerException("exception.wronginput");
+                }
                 tryagain = false;
             }
+        }catch(InputMismatchException e){
+            System.err.println(LanguageResource.getString("exception.inputmismatch"));
+            System.out.println(LanguageResource.getString("usecase5.choicecard"));
+            kaart = SCAN.nextInt();
         }
+
         System.out.println(dc.geefSpeler(spelerAanBeurt).getKaarten().get(kaart - 1));
         //De speler mag de kaart spelen
         if(validatieKaartSpeler(kaart) && validatieKaartItems(kaart)){
@@ -63,10 +79,11 @@ public class UseCase5 {
                     itemsbijvoegen(gespeeldeKaart);
                 }
             }
-
+            dc.voegkaartonderaanstapeltoe(gespeeldeKaart);
         }//De speler mag de kaart niet spelen
         else{
-            System.out.println("Kaart mag niet gespeeld worden");
+            System.out.println("");
+            System.err.println(LanguageResource.getString("usecase5.invalidcard"));
             speelKaart();
         }
     }
@@ -90,6 +107,12 @@ public class UseCase5 {
                     if(kr instanceof ConsumablesKerker){
                         return ((ConsumablesKerker) kr).getBonus() >= 0;
                     }
+                }else{
+                    if(kr instanceof Curse){
+                        if(helptmee.get(spelerAanBeurt)){
+                            return false;
+                        }
+                    }
                 }
                 return true;
             }
@@ -105,7 +128,7 @@ public class UseCase5 {
             return false;
         }
         for(int i = 0; i < items.size();i++){
-            if(items.get(i) instanceof Equipment){
+            if(items.get(i) instanceof Equipment && kr instanceof Equipment){
                 Kaart kr2 = items.get(i);
                 if(((Equipment) kr2).getType().equals("Head") && ((Equipment) kr).getType().equals("Head")){
                     return false;
@@ -128,7 +151,12 @@ public class UseCase5 {
     }
 
     private void curseKaart(Kaart gespeeldeKaart){
-
+        for(int i = 0; i < overzichthelpendespelers().size();i++){
+            System.out.println(overzichthelpendespelers().get(i));
+        }
+        System.out.println(LanguageResource.getString("usecase5.chooseplayer"));
+        int speler = SCAN.nextInt();
+        curseuitvoeren(speler, gespeeldeKaart);
 
     }
 
@@ -160,5 +188,20 @@ public class UseCase5 {
 
     private void itemsbijvoegen(Kaart gespeeldeKaart){
         dc.geefSpeler(spelerAanBeurt).getItems().add(gespeeldeKaart);
+    }
+
+    private List<String> overzichthelpendespelers(){
+        List<String> output = new ArrayList<>();
+        output.add(LanguageResource.getString("usecase5.summaryhelp"));
+        for(int i = 0; i < helptmee.size();i++){
+            if(helptmee.get(i)){
+                output.add(String.format("%d) %s",i+1, dc.geefNaamSpeler(i)));
+            }
+        }
+        return output;
+    }
+
+    private void curseuitvoeren(int speler, Kaart gespeeldeKaart){
+        dc.geefSpeler(speler).setLevel(dc.geefLevel(speler) - ((Curse) gespeeldeKaart).getLevelLost());
     }
 }

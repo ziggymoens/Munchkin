@@ -96,9 +96,9 @@ class UseCase4 {
                                     //Mag alleen gebeuren als de speler die vecht akkoord is gegaan dat hij hulp wilt
                                     if (help.equals(LanguageResource.getString("yes"))) {
                                         //aanpassen???
-                                        helpSpeler(aantal, help, helptmee);
                                         helptmee.remove(aantal);
                                         helptmee.add(aantal, true);
+                                        helpSpeler(aantal, help, helptmee);
                                     } else {
                                         System.err.println(LanguageResource.getString("exception.help"));
                                     }
