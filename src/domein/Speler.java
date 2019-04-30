@@ -333,7 +333,7 @@ public class Speler {
         for (Kaart kaart : kaarten) {
             if (kaart instanceof Race || kaart instanceof Equipment) {
                 String idKaart = "ID = " + kaart.getId();
-                ret.append(String.format("%d) %s - %s %n", j, kaart.getNaam(), idKaart));
+                ret.append(String.format("%d) %s - %s %n", j+1, kaart.getNaam(), idKaart));
                 j++;
             }
         }
@@ -342,7 +342,7 @@ public class Speler {
 
     public String geefVerkoopbareKaarten() {
         StringBuilder ret = new StringBuilder();
-        int j = 0;
+        int j = 1;
         for (Kaart kaart : kaarten) {
             if (kaart instanceof Equipment || kaart instanceof ConsumablesSchat) {
                 String idKaart = "ID = " + kaart.getId();
@@ -395,7 +395,7 @@ public class Speler {
 
     public String geefNietVerkoopbareKaarten() {
         StringBuilder ret = new StringBuilder();
-        int j = 0;
+        int j = 1;
         for (Kaart kaart : kaarten) {
             String idKaart = "ID = " + kaart.getId();
             ret.append(String.format("%d) %s - %s %n", j, kaart.getNaam(), idKaart));
