@@ -3,6 +3,7 @@ package ui.cui.ucs;
 import domein.DomeinController;
 import language.LanguageResource;
 import printer.ColorsOutput;
+import printer.Printer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -172,7 +173,7 @@ public class UseCase7 {
         } else if (gedeeldeWaarde >= 1) {
             dc.verhoogLevel(naam, gedeeldeWaarde);
             System.out.println(ColorsOutput.kleur("green") + ColorsOutput.decoration("bold") + String.format(LanguageResource.getString("usecase7.levelup"), gedeeldeWaarde, gedeeldeWaarde > 1 ? "s" : "") + ColorsOutput.reset());
-            //System.out.println(Printer.printGreen(String.format(LanguageResource.getString("usecase7.levelup"), gedeeldeWaarde, gedeeldeWaarde > 1? "s" : "")));
+            System.out.println(Printer.printGreen(String.format(LanguageResource.getString("usecase7.levelup"), gedeeldeWaarde, gedeeldeWaarde > 1? "s" : "")));
             System.out.println(ColorsOutput.kleur("blue") + ColorsOutput.decoration("bold") + dc.geefInformatie() + ColorsOutput.reset());
         }
     }

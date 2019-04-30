@@ -708,14 +708,16 @@ public class Spel {
         int speler = zoekSpeler(naam);
         int waarde = 0;
         List<Kaart> temp = spelers.get(speler).getKaarten();
+        List<Kaart> verwijderenKaart = new ArrayList<>();
         for (Integer k:gekozenKaarten){
             for (Kaart kaart:spelers.get(speler).getKaarten()){
                 if (kaart.getId() == k){
                     waarde += ((Schatkaart)kaart).getWaarde();
-                    temp.remove(kaart);
+                    verwijderenKaart.add(kaart);
                 }
             }
         }
+        temp.removeAll(verwijderenKaart);
         spelers.get(speler).setKaarten(temp);
         spelers.get(speler).setLevel(spelers.get(speler).getLevel()+(waarde/1000));
     }
