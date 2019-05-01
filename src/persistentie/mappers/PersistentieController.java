@@ -1,6 +1,7 @@
 package persistentie.mappers;
 
 
+import connection.Connection;
 import domein.DomeinController;
 import domein.Spel;
 import domein.Speler;
@@ -18,6 +19,7 @@ public class PersistentieController {
     private final KaartMapperDb km;
     private final KaartMapperDbKlein kkm;
     private final SpelMapperDb sm;
+    private final KaartMapper kmOffline;
     private DomeinController dc;
 
     private Boolean klein;
@@ -33,25 +35,46 @@ public class PersistentieController {
         km = new KaartMapperDb();
         kkm = new KaartMapperDbKlein();
         sm = new SpelMapperDb();
+        kmOffline = new KaartMapper();
         kaarten = new ArrayList<>();
         ids = new ArrayList<>();
         kaartenBib = new HashMap<>();
         schatkaarten = new ArrayList<>();
         kerkerkaarten = new ArrayList<>();
-        haalKaartenOp(true);
+        if (Connection.isConnected()){
+            haalKaartenOp(this.klein);
+        }else {
+            haalKaartenOpOffline();
+        }
     }
 
     public PersistentieController(Boolean klein) {
         km = new KaartMapperDb();
         kkm = new KaartMapperDbKlein();
         sm = new SpelMapperDb();
+        kmOffline = new KaartMapper();
         kaartenBib = new HashMap<>();
         ids = new ArrayList<>();
         kaarten = new ArrayList<>();
         schatkaarten = new ArrayList<>();
         kerkerkaarten = new ArrayList<>();
         this.klein = klein;
-        haalKaartenOp(this.klein);
+        if (Connection.isConnected()){
+            haalKaartenOp(this.klein);
+        }else {
+            haalKaartenOpOffline();
+        }
+
+    }
+
+    private void haalKaartenOpOffline(){
+        kaarten.addAll(kmOffline.getKaarten());
+        for (Kaart kaart: kaarten){
+            ids.add(kaart.getId());
+        }
+        kaartenBib = kmOffline.getKaartenBib();
+        schatkaarten = kmOffline.getSchatkaarten();
+        kerkerkaarten = kmOffline.getKerkerkaarten();
     }
 
     private void haalKaartenOp(Boolean klein) {
@@ -101,7 +124,7 @@ public class PersistentieController {
         List<Integer> volgordeD = spel.getVolgordeD();
         List<Integer> volgordeT = spel.getVolgordeT();
         int spelId = sm.getSpelId(naam);
-        List<Integer> ids = new ArrayList<>();
+        //List<Integer> ids = new ArrayList<>();
         sm.kaartSpelOpslaan(spelId, ids, volgordeD, volgordeT);
         //schatkaartenSpelOpslaan(spelId, volgordeT);
         //kerkerkaartenSpelOpslaan(spelId, volgordeD);
@@ -131,17 +154,17 @@ public class PersistentieController {
             int level = speler.getLevel();
 
             sm.spelerOpslaan(spelerId, naam, level, geslacht, spelId);
-            kaartenSpelerOpslaan(spelerId, speler.getVolgordeKaarten());
-            itemsSpelerOpslaan(spelerId, speler.getVolgordeItems());
+            kaartenSpelerOpslaan(spelerId, speler.getVolgordeKaarten(), spelId);
+            itemsSpelerOpslaan(spelerId, speler.getVolgordeItems(), spelId);
         }
     }
 
-    private void kaartenSpelerOpslaan(int spelerId, List<Integer> volgordeKaarten) {
-        sm.kaartSpelerOpslaan(spelerId, volgordeKaarten, false);
+    private void kaartenSpelerOpslaan(int spelerId, List<Integer> volgordeKaarten, int spelid) {
+        sm.kaartSpelerOpslaan(spelerId, volgordeKaarten, false, spelid);
     }
 
-    private void itemsSpelerOpslaan(int spelerId, List<Integer> volgordeItems) {
-        sm.kaartSpelerOpslaan(spelerId, volgordeItems, true);
+    private void itemsSpelerOpslaan(int spelerId, List<Integer> volgordeItems, int spelid) {
+        sm.kaartSpelerOpslaan(spelerId, volgordeItems, true, spelid);
     }
 
     public List<String> getOverzicht() {
@@ -179,7 +202,7 @@ public class PersistentieController {
     }
 
     private void voegKerkerkaartenToeAanSpel(Spel spel) {
-        List<Kaart> kerkerkaarten = new ArrayList<>();
+        List<Kaart> kerkerkaarten = new ArrayList<Kaart>(Collections.nCopies(28,new Race("elf")));
         for (Integer id : spel.getVolgordeD()) {
             if(spel.getVolgordeD().get(id)!= -1) {
                 kerkerkaarten.add(spel.getVolgordeD().indexOf(id), kaartenBib.get(id));
@@ -189,7 +212,7 @@ public class PersistentieController {
     }
 
     private void voegSchatkaartenToeAanSpel(Spel spel) {
-        List<Kaart> schatkaarten = new ArrayList<>();
+        List<Kaart> schatkaarten = new ArrayList<Kaart>(Collections.nCopies(50, new Equipment("test", 1, 1, "head", 1, new Race("elf"), 1,1, new Race("test"))));
         for (Integer id : spel.getVolgordeT()) {
             if(spel.getVolgordeT().get(id)!= -1) {
                 schatkaarten.add(spel.getVolgordeT().indexOf(id),kaartenBib.get(id));

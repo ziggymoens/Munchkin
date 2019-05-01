@@ -77,6 +77,7 @@ public class Spel {
 
     public Spel(String naam, boolean klein, List<Speler> spelers, int ls, List<Integer> volgnummerD, List<Integer> volgnummerT) {
         kr= new KaartDbKleinRepository();
+        krOffline = new KaartRepository();
         setAantalSpelers(spelers.size());
         setNaam(naam);
         this.spelers = spelers;
@@ -433,7 +434,7 @@ public class Spel {
         return spelerAanBeurt;
     }
 
-    void setSpelerAanBeurt(int spelerAanBeurt) {
+    public void setSpelerAanBeurt(int spelerAanBeurt) {
         if (spelerAanBeurt == spelers.size()){
             this.spelerAanBeurt = 0;
         }else {
@@ -534,7 +535,7 @@ public class Spel {
         return volgordeD;
     }
 
-    private void updateVolgorde() {
+    public void updateVolgorde() {
         setVolgordeD();
         setVolgordeT();
     }

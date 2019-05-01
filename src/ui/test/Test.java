@@ -5,20 +5,15 @@
  */
 package ui.test;
 
+import connection.Connection;
 import domein.DomeinController;
 import domein.Spel;
 import domein.Speler;
 import domein.kaarten.Kaart;
-import domein.kaarten.kerkerkaarten.ConsumablesKerker;
-import domein.kaarten.kerkerkaarten.Curse;
-import domein.kaarten.kerkerkaarten.Monster;
-import domein.kaarten.kerkerkaarten.Race;
-import domein.kaarten.schatkaarten.ConsumablesSchat;
-import domein.kaarten.schatkaarten.Equipment;
 import domein.repositories.KaartDbRepository;
 import language.LanguageResource;
-import persistentie.mappers.KaartMapper;
 import persistentie.mappers.PersistentieController;
+import persistentie.mappers.SpelMapperDb;
 
 import java.util.List;
 import java.util.Locale;
@@ -37,45 +32,45 @@ public class Test {
 
     public static void main(String[] args) {
 
-        KaartMapper km = new KaartMapper();
-        List<Kaart> kkk = km.getKaarten();
-        int k = 0, s=0;
-        int ck=0,c=0,m=0,r=0,cs=0,e=0;
-        StringBuilder out = new StringBuilder();
-        for (Kaart kaart: kkk) {
-            out.append(String.format("%5d:%40s -->%20s%n",kaart.getId(), kaart.getNaam(), kaart.getClass().getSimpleName()));
-            if (kaart instanceof ConsumablesSchat){
-                cs++;
-                s++;
-            }
-            if (kaart instanceof Equipment){
-                e++;
-                s++;
-            }
-
-        }
-        for (Kaart kaart: kkk){
-            out.append(String.format("%5d:%40s -->%20s%n",kaart.getId(), kaart.getNaam(), kaart.getClass().getSimpleName()));
-            if (kaart instanceof ConsumablesKerker){
-                ck++;
-                k++;}
-            if (kaart instanceof Curse){
-                c++;
-                k++;
-            }
-            if (kaart instanceof Monster){
-                m++;
-                k++;
-            }
-            if (kaart instanceof Race){
-                r++;
-                k++;
-            }
-
-        }
-        //test push
-        System.err.printf("cs = %d, e = %d, ck = %d, c = %d, m = %d, r = %d, schat = %d, kerker = %d%n", cs, e, ck, c, m, r, s, k);
-        //System.out.println(out.toString());
+//        KaartMapper km = new KaartMapper();
+//        List<Kaart> kkk = km.getKaarten();
+//        int k = 0, s=0;
+//        int ck=0,c=0,m=0,r=0,cs=0,e=0;
+//        StringBuilder out = new StringBuilder();
+//        for (Kaart kaart: kkk) {
+//            out.append(String.format("%5d:%40s -->%20s%n",kaart.getId(), kaart.getNaam(), kaart.getClass().getSimpleName()));
+//            if (kaart instanceof ConsumablesSchat){
+//                cs++;
+//                s++;
+//            }
+//            if (kaart instanceof Equipment){
+//                e++;
+//                s++;
+//            }
+//
+//        }
+//        for (Kaart kaart: kkk){
+//            out.append(String.format("%5d:%40s -->%20s%n",kaart.getId(), kaart.getNaam(), kaart.getClass().getSimpleName()));
+//            if (kaart instanceof ConsumablesKerker){
+//                ck++;
+//                k++;}
+//            if (kaart instanceof Curse){
+//                c++;
+//                k++;
+//            }
+//            if (kaart instanceof Monster){
+//                m++;
+//                k++;
+//            }
+//            if (kaart instanceof Race){
+//                r++;
+//                k++;
+//            }
+//
+//        }
+//        //test push
+//        System.err.printf("cs = %d, e = %d, ck = %d, c = %d, m = %d, r = %d, schat = %d, kerker = %d%n", cs, e, ck, c, m, r, s, k);
+//        //System.out.println(out.toString());
 
 
 //        try{
@@ -96,71 +91,88 @@ public class Test {
 //        System.out.println(test2/1000);
 //
         PersistentieController pc = new PersistentieController();
+        SpelMapperDb spelMapperDb = new SpelMapperDb();
         LanguageResource.setLocale(new Locale("en"));
-//        Spel spel = new Spel(3);
-//        spel.maakNieuweSpeler();
-//        spel.geefSpelerNaam(0, "janjan");
-//        spel.geefSpelerGeslacht(0, "man");
-//        spel.maakNieuweSpeler();
-//        spel.geefSpelerNaam(1, "mariee");
-//        spel.geefSpelerGeslacht(1, "woman");
-//        spel.maakNieuweSpeler();
-//        spel.geefSpelerNaam(2, "zigggy");
-//        spel.geefSpelerGeslacht(2, "man");
-//        spel.controleerVolgorde();
-//        //System.out.println(spel.getSchatkaarten().toString());
-//        //System.out.println(spel.getKerkerkaarten().toString());
-//        //System.out.println(spel.getKaarten().toString());
-//        //spel.geefStartKaarten();
-//        spel.setSpelerAanBeurt(1);
-//        spel.setNaam("test123");
-//        //pc.spelOpslaan(spel);
-//        //pc.remove("test123");
+        Connection.setConnected(false);
+        Spel spel = new Spel(3);
+        spel.maakNieuweSpeler();
+        spel.geefSpelerNaam(0, "janjan");
+        spel.geefSpelerGeslacht(0, "man");
+        spel.maakNieuweSpeler();
+        spel.geefSpelerNaam(1, "mariee");
+        spel.geefSpelerGeslacht(1, "woman");
+        spel.maakNieuweSpeler();
+        spel.geefSpelerNaam(2, "zigggy");
+        spel.geefSpelerGeslacht(2, "man");
+        spel.geefStartKaarten();
+        spel.controleerVolgorde();
+        for (Speler speler:spel.getSpelers()){
+            speler.updateItems();
+            speler.updateKaarten();
+        }
+        spel.updateVolgorde();
+        //System.out.println(spel.getSchatkaarten().toString());
+        //System.out.println(spel.getKerkerkaarten().toString());
+        //System.out.println(spel.getKaarten().toString());
+        //spel.geefStartKaarten();
+        spel.setSpelerAanBeurt(1);
+        spel.setNaam("test007");
+        //spelMapperDb.resetIncrement();
+        //pc.spelOpslaan(spel);
+        System.out.println(pc.getOverzicht().toString());
+        Spel spel1 = pc.laadSpel(1);
+        spel1.geefSpelsituatie();
+        System.out.println(spel1.getKerkerkaarten().toString());
+        System.out.println(spel1.getSchatkaarten().toString());
+        for (Speler speler: spel.getSpelers()){
+            System.out.println(speler.getKaarten().toString());
+        }
+////        //pc.remove("test123");
+////
+//        Spel spel1 = pc.laadSpel(23);
+//        System.out.println(spel1.geefSpelsituatie());
+//        for (Speler speler:spel1.getSpelers()){
+//            System.out.println(speler.toString());
+//            System.out.println(speler.kaartenNaarString(speler.getKaarten()));
+//        }
+////
+////        System.out.println(pc.getOverzicht());
+//        //SpelMapperDb sm = new SpelMapperDb();
+//        //sm.addSpel("test1234", 0, true);
+//        //System.out.println(test.geefKaarten());
+//    }
 //
-        Spel spel1 = pc.laadSpel(23);
-        System.out.println(spel1.geefSpelsituatie());
-        for (Speler speler:spel1.getSpelers()){
-            System.out.println(speler.toString());
-            System.out.println(speler.kaartenNaarString(speler.getKaarten()));
-        }
-//
-//        System.out.println(pc.getOverzicht());
-        //SpelMapperDb sm = new SpelMapperDb();
-        //sm.addSpel("test1234", 0, true);
-        //System.out.println(test.geefKaarten());
-    }
-    
-    private String geefKaarten(){
-        int k = 0, s=0;
-        int ck=0,c=0,m=0,r=0,cs=0,e=0;
-        StringBuilder out = new StringBuilder();
-        for (Kaart kaart: sk) {
-            out.append(String.format("%5d:%40s -->%20s%n",kaart.getId(), kaart.getNaam(), kaart.getClass().getSimpleName()));
-            if (kaart instanceof ConsumablesSchat){
-                cs++;
-            }
-            if (kaart instanceof Equipment){
-                e++;
-            }
-            s++;
-        }
-        for (Kaart kaart: kk){
-            out.append(String.format("%5d:%40s -->%20s%n",kaart.getId(), kaart.getNaam(), kaart.getClass().getSimpleName()));
-            if (kaart instanceof ConsumablesKerker){
-                ck++;
-            }
-            if (kaart instanceof Curse){
-                c++;
-            }
-            if (kaart instanceof Monster){
-                m++;
-            }
-            if (kaart instanceof Race){
-                r++;
-            }
-            k++;
-        }
-        System.err.printf("cs = %d, e = %d, ck = %d, c = %d, m = %d, r = %d, schat = %d, kerker = %d%n", cs, e, ck, c, m, r, s, k);
-        return out.toString();
+//    private String geefKaarten(){
+//        int k = 0, s=0;
+//        int ck=0,c=0,m=0,r=0,cs=0,e=0;
+//        StringBuilder out = new StringBuilder();
+//        for (Kaart kaart: sk) {
+//            out.append(String.format("%5d:%40s -->%20s%n",kaart.getId(), kaart.getNaam(), kaart.getClass().getSimpleName()));
+//            if (kaart instanceof ConsumablesSchat){
+//                cs++;
+//            }
+//            if (kaart instanceof Equipment){
+//                e++;
+//            }
+//            s++;
+//        }
+//        for (Kaart kaart: kk){
+//            out.append(String.format("%5d:%40s -->%20s%n",kaart.getId(), kaart.getNaam(), kaart.getClass().getSimpleName()));
+//            if (kaart instanceof ConsumablesKerker){
+//                ck++;
+//            }
+//            if (kaart instanceof Curse){
+//                c++;
+//            }
+//            if (kaart instanceof Monster){
+//                m++;
+//            }
+//            if (kaart instanceof Race){
+//                r++;
+//            }
+//            k++;
+//        }
+//        System.err.printf("cs = %d, e = %d, ck = %d, c = %d, m = %d, r = %d, schat = %d, kerker = %d%n", cs, e, ck, c, m, r, s, k);
+//        return out.toString();
     }
 }

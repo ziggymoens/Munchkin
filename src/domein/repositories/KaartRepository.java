@@ -22,7 +22,7 @@ public class KaartRepository {
         kaarten = km.getKaarten();
         schatkaarten = km.getSchatkaarten();
         kerkerkaarten = km.getKerkerkaarten();
-        kaartenBib  =km.getKaartenBib();
+        kaartenBib  = km.getKaartenBib();
     }
 
     public List<Kaart> geefKaarten() {
