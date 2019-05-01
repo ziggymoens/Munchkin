@@ -96,6 +96,7 @@ public class UseCase1 {
             this.dc.checkConnection();
             System.out.println(Printer.printGreen("connected"));
             Connection.setConnected(true);
+            dc.laadSpelRepo();
         } catch (InternetException e) {
             System.out.println(Printer.exceptionCatch("InternetException", e));
             Connection.setConnected(false);
@@ -222,7 +223,7 @@ public class UseCase1 {
                 int as = kiesSpelers();
                 //thread opnieuw opstarten
                 th1.resume();
-                dc.laadSpelRepo();
+                dc.haalKaartenUitDb();
                 dc.startSpel(as);
                 //thread stoppen
                 th1.stop();

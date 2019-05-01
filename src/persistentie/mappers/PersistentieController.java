@@ -22,7 +22,7 @@ public class PersistentieController {
     private final KaartMapper kmOffline;
     private DomeinController dc;
 
-    private Boolean klein;
+    private Boolean klein = true;
     private List<Kaart> kaarten;
     private List<Integer> ids;
     private Map<Integer, Kaart> kaartenBib;
@@ -65,6 +65,14 @@ public class PersistentieController {
             haalKaartenOpOffline();
         }
 
+    }
+
+    public void haalKaartenUitDb(){
+        if (Connection.isConnected()){
+            haalKaartenOp(this.klein);
+        }else {
+            haalKaartenOpOffline();
+        }
     }
 
     private void haalKaartenOpOffline(){
@@ -191,8 +199,10 @@ public class PersistentieController {
 
     private void voegKaartenToe(Speler speler) {
         for (Integer id : speler.getVolgordeKaarten()) {
+            System.out.println(speler.getVolgordeKaarten().toString());
             speler.voegKaartToe(kaartenBib.get(id));
         }
+        System.out.println(speler.getKaarten().toString());
     }
 
     private void voegItemsToe(Speler speler) {
@@ -202,22 +212,36 @@ public class PersistentieController {
     }
 
     private void voegKerkerkaartenToeAanSpel(Spel spel) {
-        List<Kaart> kerkerkaarten = new ArrayList<Kaart>(Collections.nCopies(28,new Race("elf")));
-        for (Integer id : spel.getVolgordeD()) {
-            if(spel.getVolgordeD().get(id)!= -1) {
-                kerkerkaarten.add(spel.getVolgordeD().indexOf(id), kaartenBib.get(id));
+        List<Kaart> kerkerkaarten = new ArrayList<Kaart>(Collections.nCopies(150,null));
+        for (int i = 0; i<spel.getVolgordeD().size();i++) {
+            if(spel.getVolgordeD().get(i)!= 0) {
+                kerkerkaarten.add(i, kaartenBib.get(spel.getVolgordeD().get(i)));
             }
         }
+        List<Kaart> verwijderKaarten = new ArrayList<>();
+        for (Kaart kaart: kerkerkaarten){
+            if (kaart == null){
+                verwijderKaarten.add(kaart);
+            }
+        }
+        kerkerkaarten.removeAll(verwijderKaarten);
         spel.setKerkerkaarten(kerkerkaarten);
     }
 
     private void voegSchatkaartenToeAanSpel(Spel spel) {
-        List<Kaart> schatkaarten = new ArrayList<Kaart>(Collections.nCopies(50, new Equipment("test", 1, 1, "head", 1, new Race("elf"), 1,1, new Race("test"))));
-        for (Integer id : spel.getVolgordeT()) {
-            if(spel.getVolgordeT().get(id)!= -1) {
-                schatkaarten.add(spel.getVolgordeT().indexOf(id),kaartenBib.get(id));
+        List<Kaart> schatkaarten = new ArrayList<Kaart>(Collections.nCopies(150, null));
+        for (int i = 0; i<spel.getVolgordeT().size();i++) {
+            if(spel.getVolgordeT().get(i)!= 0) {
+                schatkaarten.add(i, kaartenBib.get(spel.getVolgordeT().get(i)));
             }
         }
+        List<Kaart> verwijderKaarten = new ArrayList<>();
+        for (Kaart kaart: schatkaarten){
+            if (kaart == null){
+                verwijderKaarten.add(kaart);
+            }
+        }
+        schatkaarten.removeAll(verwijderKaarten);
         spel.setSchatkaarten(schatkaarten);
     }
 

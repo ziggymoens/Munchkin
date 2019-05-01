@@ -5,18 +5,13 @@
  */
 package ui.test;
 
-import connection.Connection;
 import domein.DomeinController;
-import domein.Spel;
-import domein.Speler;
 import domein.kaarten.Kaart;
 import domein.repositories.KaartDbRepository;
 import language.LanguageResource;
-import persistentie.mappers.PersistentieController;
-import persistentie.mappers.SpelMapperDb;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * @author ziggy
@@ -90,43 +85,58 @@ public class Test {
 //        System.out.println(test/1000);
 //        System.out.println(test2/1000);
 //
-        PersistentieController pc = new PersistentieController();
-        SpelMapperDb spelMapperDb = new SpelMapperDb();
-        LanguageResource.setLocale(new Locale("en"));
-        Connection.setConnected(false);
-        Spel spel = new Spel(3);
-        spel.maakNieuweSpeler();
-        spel.geefSpelerNaam(0, "janjan");
-        spel.geefSpelerGeslacht(0, "man");
-        spel.maakNieuweSpeler();
-        spel.geefSpelerNaam(1, "mariee");
-        spel.geefSpelerGeslacht(1, "woman");
-        spel.maakNieuweSpeler();
-        spel.geefSpelerNaam(2, "zigggy");
-        spel.geefSpelerGeslacht(2, "man");
-        spel.geefStartKaarten();
-        spel.controleerVolgorde();
-        for (Speler speler:spel.getSpelers()){
-            speler.updateItems();
-            speler.updateKaarten();
-        }
-        spel.updateVolgorde();
-        //System.out.println(spel.getSchatkaarten().toString());
-        //System.out.println(spel.getKerkerkaarten().toString());
-        //System.out.println(spel.getKaarten().toString());
-        //spel.geefStartKaarten();
-        spel.setSpelerAanBeurt(1);
-        spel.setNaam("test007");
-        //spelMapperDb.resetIncrement();
-        //pc.spelOpslaan(spel);
-        System.out.println(pc.getOverzicht().toString());
-        Spel spel1 = pc.laadSpel(1);
-        spel1.geefSpelsituatie();
-        System.out.println(spel1.getKerkerkaarten().toString());
-        System.out.println(spel1.getSchatkaarten().toString());
-        for (Speler speler: spel.getSpelers()){
-            System.out.println(speler.getKaarten().toString());
-        }
+
+
+
+//        PersistentieController pc = new PersistentieController();
+//        SpelMapperDb spelMapperDb = new SpelMapperDb();
+//        LanguageResource.setLocale(new Locale("en"));
+//        Connection.setConnected(false);
+//        Spel spel = new Spel(3);
+//        spel.maakNieuweSpeler();
+//        spel.geefSpelerNaam(0, "janjan");
+//        spel.geefSpelerGeslacht(0, "man");
+//        spel.maakNieuweSpeler();
+//        spel.geefSpelerNaam(1, "mariee");
+//        spel.geefSpelerGeslacht(1, "woman");
+//        spel.maakNieuweSpeler();
+//        spel.geefSpelerNaam(2, "zigggy");
+//        spel.geefSpelerGeslacht(2, "man");
+//        spel.geefStartKaarten();
+//        spel.controleerVolgorde();
+//        for (Speler speler:spel.getSpelers()){
+//            speler.updateItems();
+//            speler.updateKaarten();
+//        }
+//        spel.updateVolgorde();
+//        //System.out.println(spel.getSchatkaarten().toString());
+//        //System.out.println(spel.getKerkerkaarten().toString());
+//        //System.out.println(spel.getKaarten().toString());
+//        //spel.geefStartKaarten();
+//        spel.setSpelerAanBeurt(1);
+//        spel.setNaam("test007");
+//        //spelMapperDb.resetIncrement();
+//        //pc.spelOpslaan(spel);
+//        System.out.println(pc.getOverzicht().toString());
+//        Spel spel1 = pc.laadSpel(1);
+//        System.out.println(spel1.geefSpelsituatie());
+//        //System.out.println(spel1.getKerkerkaarten().toString());
+//        //System.out.println(spel1.getSchatkaarten().toString());
+//        for (Speler speler: spel.getSpelers()){
+//            System.out.println(speler.getKaarten().toString());
+//        }
+
+        List<Integer> test = new ArrayList<>();
+        test.add(1);
+        test.add(2);
+        test.add(3);
+        System.out.println(test.toString());
+        test.clear();
+        System.out.println(test.toString());
+
+
+
+
 ////        //pc.remove("test123");
 ////
 //        Spel spel1 = pc.laadSpel(23);

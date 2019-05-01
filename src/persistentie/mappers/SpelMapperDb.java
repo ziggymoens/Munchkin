@@ -35,7 +35,7 @@ public class SpelMapperDb {
     private static final String ALL_GAMES = "SELECT * FROM ID222177_g35.Spel";
     private static final String GAME_CARDSEQ = "SELECT * FROM ID222177_g35.SpelKaart WHERE spelidSpelKaart = ?";
     private static final String GAME_GETID = "SELECT spelid FROM ID222177_g35.Spel WHERE naam = ?";
-    private static final String PLAYER_GETCARDS = "SELECT * FROM ID222177_g35.SpelerKaart WHERE SpelerId = ?";
+    private static final String PLAYER_GETCARDS = "SELECT * FROM ID222177_g35.SpelerKaart WHERE spelerid = ?";
     private static final String GAME_GETPLAYERS = "SELECT * FROM ID222177_g35.Speler WHERE spelidSpel = ?";
     private static final String GAME_LOAD = "SELECT * FROM ID222177_g35.Spel WHERE spelid = ?";
     private static final String PLAYER_SAVECARD = "INSERT INTO ID222177_g35.SpelerKaart (spelerid, kaartidSpelKaart, plaatsKaart, spelidSpelerKaart) VALUES (?, ?, ?, ?)";
@@ -173,12 +173,10 @@ public class SpelMapperDb {
             while (rs3.next()) {
                 if (type.equals("t")) {
                     if (rs3.getInt("volgnumerT")!=-1) {
-                        System.out.println(rs3.getInt("volgnumerT") + "  T  " + rs3.getInt("kaartidSpelKaart"));
                         volgorde.add(rs3.getInt("volgnumerT"), rs3.getInt("kaartidSpelKaart"));
                     }
                 } else {
                     if (rs3.getInt("volgnummerD")!=-1) {
-                        System.out.println(rs3.getInt("volgnummerD") + "  D  " + rs3.getInt("kaartidSpelKaart"));
                         volgorde.add(rs3.getInt("volgnummerD"), rs3.getInt("kaartidSpelKaart"));
                     }
                 }

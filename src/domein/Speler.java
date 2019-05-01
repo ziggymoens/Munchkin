@@ -90,9 +90,11 @@ public class Speler {
         setNaam(naam);
         setLevel(level);
         this.kaarten = new ArrayList<>();
-        volgordeKaarten = kaarten;
+        this.volgordeKaarten = new ArrayList<>();
+        volgordeKaarten.addAll(kaarten);
         this.items = new ArrayList<>();
-        volgordeItems = items;
+        this.volgordeItems = new ArrayList<>();
+        volgordeItems.addAll(items);
         aantalKerkerkaarten = 0;
         aantalSchatkaarten = 0;
     }
@@ -423,10 +425,15 @@ public class Speler {
     }
 
     private void setVolgordeKaarten() {
+        System.out.println(volgordeKaarten.toString());
         volgordeKaarten.clear();
+        System.out.println(volgordeKaarten.toString());
+        System.out.println(kaarten.toString());
         for (Kaart kaart : kaarten) {
+            System.out.println(kaart.getId());
             volgordeKaarten.add(kaart.getId());
         }
+        System.out.println(volgordeKaarten.toString());
     }
 
     public List<Integer> getVolgordeItems() {

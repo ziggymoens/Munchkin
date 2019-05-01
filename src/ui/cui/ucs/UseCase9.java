@@ -49,9 +49,11 @@ class UseCase9 {
                 }
                 tryAgain = false;
             } catch (InputMismatchException e) {
+                e.printStackTrace();
                 System.out.println(LanguageResource.getString("usecase2.choiceinput"));
                 SCAN.nextLine();
             } catch (Exception e) {
+                e.printStackTrace();
                 System.out.println(LanguageResource.getString("usecase2.choiceinput"));
                 SCAN.nextLine();
             }

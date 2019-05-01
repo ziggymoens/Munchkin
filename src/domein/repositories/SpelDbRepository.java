@@ -21,9 +21,7 @@ public class SpelDbRepository {
     }
 
     public List<String> geefOverzicht() {
-        List<String> overzicht;
-        overzicht = pc.getOverzicht();
-        return overzicht;
+        return pc.getOverzicht();
     }
 
     public void laadSpel(int id, DomeinController dc) {
@@ -36,5 +34,9 @@ public class SpelDbRepository {
 
     public boolean bestaatSpel(int id) {
         return pc.bestaatSpel(id);
+    }
+
+    public void haalKaartenUitDb() {
+        pc.haalKaartenUitDb();
     }
 }

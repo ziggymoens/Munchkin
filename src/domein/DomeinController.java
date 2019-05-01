@@ -414,4 +414,8 @@ public class DomeinController {
     public void verplaatsNaarItems(String naam, List<Integer> gekozenKaarten) {
         spel.verplaatsNaarItems(naam, gekozenKaarten);
     }
+
+    public void haalKaartenUitDb() {
+        sr.haalKaartenUitDb();
+    }
 }
