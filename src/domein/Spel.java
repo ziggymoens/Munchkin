@@ -41,6 +41,7 @@ public class Spel {
     private boolean klein = true;
     private int monsterBattlePoints;
     private int spelerBattlePoints;
+    private Gevecht gevecht;
 
     /**
      * Constructor van Spel zonder parameters spelers = 3
@@ -259,8 +260,11 @@ public class Spel {
             ret.add(String.format("%s: %s, %s: %s, %s: %d", LanguageResource.getString("player.name"), speler.getNaam(), LanguageResource.getString("player.sex"), speler.getGeslacht(), LanguageResource.getString("player.level"), speler.getLevel() /*, vecht?"Vecht mee":"Vecht niet mee"*/));
         }
         return ret;
-
     }
+
+    /*public List<String> geeBeknopteSpelsituatieUC5(){
+
+    }*/
 
     /**
      * @return
@@ -737,4 +741,17 @@ public class Spel {
         spelers.get(speler).setKaarten(tempK);
         spelers.get(speler).setItems(tempI);
     }
+
+    //Alles wat te maken heeft met gevecht hieronder
+
+        //Setters
+    public void setHelp(String help){
+        gevecht.setHelp(help);
+    }
+        //Getters
+    public String getHelp(){
+        return gevecht.getHelp();
+    }
+
+
 }

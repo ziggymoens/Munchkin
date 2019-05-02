@@ -418,4 +418,16 @@ public class DomeinController {
     public void haalKaartenUitDb() {
         sr.haalKaartenUitDb();
     }
+
+    //Alles wat te maken heeft met gevecht
+        //Setters
+    public void setHelp(String help){
+        spel.setHelp(help);
+    }
+
+        //Getters
+    public String getHelp(){
+        return spel.getHelp();
+    }
+
 }

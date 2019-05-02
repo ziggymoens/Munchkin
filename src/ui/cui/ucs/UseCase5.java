@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import domein.Spel;
 import domein.kaarten.Kaart;
 import domein.kaarten.kerkerkaarten.ConsumablesKerker;
 import domein.kaarten.kerkerkaarten.Curse;
@@ -17,16 +18,15 @@ import exceptions.SpelerException;
 import language.LanguageResource;
 import printer.ColorsOutput;
 import java.util.List;
-import java.util.Scanner;
 
 public class UseCase5 {
-
     private final DomeinController dc;
     private int spelerAanBeurt;
     private final Scanner SCAN = new Scanner(System.in);
     private boolean help;
     private boolean monster;
     private List<Boolean> helptmee;
+    private int kaart;
 
 
     public UseCase5(DomeinController dc, int i, String help, boolean monster, List<Boolean> helptmee) {
@@ -45,21 +45,23 @@ public class UseCase5 {
             System.out.println(dc.toonOverzichtKaartenInHand2(spelerAanBeurt).get(i));
         }
         System.out.println("");
-        int kaart = 0;
-        Boolean tryagain = true;
-        try{
-            while(tryagain) {
+        Boolean tryAgain = true;
+        while(tryAgain) {
+            try {
                 System.out.println(LanguageResource.getString("usecase5.choicecard"));
                 kaart = SCAN.nextInt();
-                if(kaart <= 0 || kaart > dc.toonOverzichtKaartenInHand2(spelerAanBeurt).size()){
+                int end = dc.toonOverzichtKaartenInHand2(spelerAanBeurt).size();
+                if (kaart <= 0 || kaart > end) {
                     throw new SpelerException("exception.wronginput");
                 }
-                tryagain = false;
+                tryAgain = false;
+            } catch (InputMismatchException e) {
+                System.err.println(LanguageResource.getString("exception.inputmismatch"));
+                SCAN.nextLine();
+            } catch (SpelerException e) {
+                System.out.println(LanguageResource.getString("exception.wronginput"));
+                SCAN.nextLine();
             }
-        }catch(InputMismatchException e){
-            System.err.println(LanguageResource.getString("exception.inputmismatch"));
-            System.out.println(LanguageResource.getString("usecase5.choicecard"));
-            kaart = SCAN.nextInt();
         }
 
         System.out.println(dc.geefSpeler(spelerAanBeurt).getKaarten().get(kaart - 1));
@@ -80,6 +82,7 @@ public class UseCase5 {
                 }
             }
             dc.voegkaartonderaanstapeltoe(gespeeldeKaart);
+            //dc.geefBeknopteSpelsituatie();
         }//De speler mag de kaart niet spelen
         else{
             System.out.println("");
@@ -151,11 +154,28 @@ public class UseCase5 {
     }
 
     private void curseKaart(Kaart gespeeldeKaart){
-        for(int i = 0; i < overzichthelpendespelers().size();i++){
+        for(int i = 0; i < overzichthelpendespelers().size();i++) {
             System.out.println(overzichthelpendespelers().get(i));
         }
-        System.out.println(LanguageResource.getString("usecase5.chooseplayer"));
-        int speler = SCAN.nextInt();
+        int speler = 0;
+        Boolean tryAgain = true;
+        while(tryAgain) {
+            try {
+                System.out.println(LanguageResource.getString("usecase5.chooseplayer"));
+                speler = SCAN.nextInt();
+                int end = overzichthelpendespelers().size();
+                if (speler <= 0 || speler > end) {
+                    throw new SpelerException("exception.wronginput");
+                }
+                tryAgain = false;
+            } catch (InputMismatchException e) {
+                System.err.println(LanguageResource.getString("exception.inputmismatch"));
+                SCAN.nextLine();
+            } catch (SpelerException e) {
+                System.out.println(LanguageResource.getString("exception.wronginput"));
+                SCAN.nextLine();
+            }
+        }
         curseuitvoeren(speler, gespeeldeKaart);
 
     }

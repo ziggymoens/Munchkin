@@ -38,12 +38,12 @@ class UseCase4 {
     // Vragen aan speler of hij hulp wilt
     void bereidSpelVoor() {
         int id = dc.geefIdBovensteKaart();
-       // dc.setMonsterBattlePoints(Integer.parseInt(dc.geefMonsterAttribuut(id,"level").toString()));
-        //dc.setSpelerBattlePoints(dc.geefLevel(dc.geefSpelerAanBeurt()));
+        // dc.setMonsterBattlePoints(Integer.parseInt(dc.geefMonsterAttribuut(id,"level").toString()));
+        // dc.setSpelerBattlePoints(dc.geefLevel(dc.geefSpelerAanBeurt()));
 
         String help = "";
         //Vragen aan de speler of hij hulp wilt met het bevechten van het monster, zoja, mogen anderen hem helpen, anders niet
-        help = hulpVragen(help);
+        help = hulpVragen();
         //initialisatie van de 2 lijsten beurt en helptmee
         List<Boolean> beurt = new ArrayList<>();
         List<Boolean> helptmee = new ArrayList<>();
@@ -65,9 +65,9 @@ class UseCase4 {
         geefOverzichtGevecht(helptmee);
     }
 
-    private String hulpVragen(String help){
+    private String hulpVragen(){
         System.out.println(LanguageResource.getString("usecase4.ask.help"));
-        help = SCAN.next().toLowerCase();
+        String help = SCAN.next().toLowerCase();
         while (!help.equals(LanguageResource.getString("yes")) && !help.equals(LanguageResource.getString("no"))) {
             System.out.printf(ColorsOutput.decoration("bold") + ColorsOutput.kleur("red") + "%s%n%n", LanguageResource.getString("start.yesno") + ColorsOutput.reset());
             System.out.println(LanguageResource.getString("usecase4.ask.help"));
