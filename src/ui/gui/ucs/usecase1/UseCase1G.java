@@ -33,6 +33,7 @@ public class UseCase1G extends MainGui {
     private TextField naamVeld;
     private ChoiceBox<String> choiceBoxGeslacht;
     private int nr;
+    private Label labelSpeler;
 
     public UseCase1G(DomeinController dc) {
         this.dc = dc;
@@ -65,7 +66,7 @@ public class UseCase1G extends MainGui {
     private void welcome() {
         vBox.getChildren().clear();
         StringBuilder welkom = new StringBuilder();
-        for (String loc: talenLoc){
+        for (String loc : talenLoc) {
             welkom.append(String.format("%s%n", LanguageResource.getStringLanguage("welcome", new Locale(loc))));
         }
         Label welcome = new Label(welkom.toString());
@@ -214,34 +215,44 @@ public class UseCase1G extends MainGui {
     }
 
     private void spelersToevoegen() {
-
         Label naam = new Label(LanguageResource.getString("player.name"));
         naamVeld = new TextField();
-
         Label geslacht = new Label(LanguageResource.getString("player.sex"));
         choiceBoxGeslacht = new ChoiceBox<>();
         choiceBoxGeslacht.getItems().addAll(LanguageResource.getString("man"), LanguageResource.getString("woman"));
+        choiceBoxGeslacht.setValue(LanguageResource.getString("man"));
         Button button = new Button("select");
         button.setOnAction(this::spelerAanmaken);
-        for (int i = 0; i < aantalS; i++) {
-            vBox.getChildren().clear();
-            hBox.getChildren().clear();
-            nr = i;
-            Label label = new Label(String.format("%s %d", LanguageResource.getString("player"), i + 1));
-            vBox.getChildren().add(label);
-            vBox.getChildren().addAll(naam, naamVeld);
-            vBox.getChildren().addAll(geslacht, choiceBoxGeslacht);
-            hBox.getChildren().add(button);
-
-        }
+        vBox.getChildren().clear();
+        hBox.getChildren().clear();
+        nr = 0;
+        labelSpeler = new Label(String.format("%s %d", LanguageResource.getString("player"), nr + 1));
+        vBox.getChildren().addAll(labelSpeler, naam, naamVeld);
+        vBox.getChildren().addAll(geslacht, choiceBoxGeslacht);
+        hBox.getChildren().add(button);
     }
 
     private void spelerAanmaken(ActionEvent event) {
+        dc.maakSpeler();
         String naam = naamVeld.getText();
         String geslacht = choiceBoxGeslacht.getValue();
         dc.geefSpelerNaam(nr, naam);
         dc.geefSpelerGeslacht(nr, geslacht);
-        vBox.getChildren().clear();
-        hBox.getChildren().clear();
+        naamVeld.clear();
+        nr++;
+        if (nr < dc.geefAantalSpelers()) {
+            labelSpeler.setText(String.format("%s %d", LanguageResource.getString("player"), nr + 1));
+        }
+        if (nr == dc.geefAantalSpelers()){
+            vBox.getChildren().clear();
+            hBox.getChildren().clear();
+            dc.geefStartKaarten();
+            toonSpelOverzicht();
+        }
+
+    }
+
+    private void toonSpelOverzicht(){
+        vBox.getChildren().add(new Label(dc.geefSpelsituatie().toString()));
     }
 }

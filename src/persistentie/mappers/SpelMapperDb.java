@@ -162,25 +162,29 @@ public class SpelMapperDb {
         List<Integer> volgorde;
         voegToe();
         try {
-            if (type.equals("t")) {
-                volgorde = new ArrayList<Integer>(Collections.nCopies(50, 0));
-            }else {
-                volgorde = new ArrayList<Integer>(Collections.nCopies(28, 0));
-            }
+            volgorde = new ArrayList<Integer>(Collections.nCopies(200, 0));
             query3 = conn.prepareStatement(GAME_CARDSEQ);
             query3.setInt(1, spelId);
             rs3 = query3.executeQuery();
             while (rs3.next()) {
                 if (type.equals("t")) {
-                    if (rs3.getInt("volgnumerT")!=-1) {
+                    if (rs3.getInt("volgnumerT") != -1) {
                         volgorde.add(rs3.getInt("volgnumerT"), rs3.getInt("kaartidSpelKaart"));
                     }
                 } else {
-                    if (rs3.getInt("volgnummerD")!=-1) {
+                    if (rs3.getInt("volgnummerD") != -1) {
                         volgorde.add(rs3.getInt("volgnummerD"), rs3.getInt("kaartidSpelKaart"));
                     }
                 }
             }
+            int teller = 0;
+            for (Integer i: volgorde){
+                if (i == 0){
+                    teller++;
+                }
+            }
+            List<Integer> test = new ArrayList<Integer>(Collections.nCopies(teller, 0));
+            volgorde.remove(test);
             rs3.close();
             query3.close();
             //conn.close();
