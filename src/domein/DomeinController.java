@@ -425,9 +425,25 @@ public class DomeinController {
         spel.setHelp(help);
     }
 
+    public void setHelptmee(List<Boolean> helptmee){
+        spel.setHelptmee(helptmee);
+    }
+
         //Getters
     public String getHelp(){
         return spel.getHelp();
+    }
+
+    public List<Boolean> gethelptmee(){
+        return spel.gethelptmee();
+    }
+
+    public int spelerLevels(){
+        return spel.spelerLevels();
+    }
+
+    public void voerBadStuffUit(int id){
+        spel.voerBadStuffUit(id);
     }
 
 }

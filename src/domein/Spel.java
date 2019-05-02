@@ -39,9 +39,7 @@ public class Spel {
     private List<Integer> volgordeD;
     private String naam;
     private boolean klein = true;
-    private int monsterBattlePoints;
-    private int spelerBattlePoints;
-    private Gevecht gevecht;
+    private Gevecht gevecht = new Gevecht();
 
     /**
      * Constructor van Spel zonder parameters spelers = 3
@@ -659,19 +657,19 @@ public class Spel {
     }
 
     public void setMonsterBattlePoints(int monsterBattlePoints) {
-         this.monsterBattlePoints = monsterBattlePoints;
+        gevecht.setMonsterBattlePoints(monsterBattlePoints);
     }
 
     public void setSpelerBattlePoints(int spelerBattlePoints) {
-        this.spelerBattlePoints = spelerBattlePoints;
+        gevecht.setSpelerBattlePoints(spelerBattlePoints);
     }
 
     public int getMonsterBattlePoints() {
-        return monsterBattlePoints;
+        return gevecht.getMonsterBattlePoints();
     }
 
     public int getSpelerBattlePoints() {
-        return spelerBattlePoints;
+        return gevecht.getSpelerBattlePoints();
     }
 
     public List<Integer> geefIDKaartenInHand(String naam) {
@@ -748,10 +746,52 @@ public class Spel {
     public void setHelp(String help){
         gevecht.setHelp(help);
     }
+
+    public void setHelptmee(List<Boolean> helptmee){
+        gevecht.setHelptmee(helptmee);
+    }
+
         //Getters
     public String getHelp(){
         return gevecht.getHelp();
     }
 
+    public List<Boolean> gethelptmee(){
+        return gevecht.gethelptmee();
+    }
+
+    public void voerBadStuffUit(int id){
+        BadStuff bs = geefBadStuff(id);
+        //Checkt of het level dat je verliest groter is dan 0 => de badstuff is een level verliezen
+        if(bs.getLevelsLost() > 0){
+            System.out.printf(LanguageResource.getString("usecase6.loselevels") + "%n", bs.getLevelsLost());
+            verhoogLevel(getSpelers().get(getSpelerAanBeurt()).getNaam(), -bs.getLevelsLost());
+
+        }//als je geen level verliest ontsnap je automatisch  (er is maar 1 kaart die geen level verliest in de kleine kaarten set)
+        else{
+            System.out.println(LanguageResource.getString("usecase6.escape1"));
+        }
+    }
+
+    public int spelerLevels(){
+        List<Boolean> helptmee = gethelptmee();
+        int extraLevels = 0;
+        int aantal = 0;
+        for(int i = 0; i < helptmee.size(); i++){
+            if(helptmee.get(i)){
+                List<Kaart>  items = geefSpeler(i).getItems();
+
+                for(int j = 0; j < items.size(); j++){
+                    if(items.get(j) instanceof Equipment){
+                        aantal +=((Equipment)items.get(j)).getBonus();
+                    }if(items.get(j) instanceof Race){
+                        aantal += ((Race)items.get(j)).getBonusCombat();
+                    }
+                }
+                extraLevels += geefSpeler(i).getLevel() + aantal;
+            }
+        }
+        return extraLevels;
+    }
 
 }

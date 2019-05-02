@@ -29,15 +29,15 @@ public class UseCase5 {
     private int kaart;
 
 
-    public UseCase5(DomeinController dc, int i, String help, boolean monster, List<Boolean> helptmee) {
+    public UseCase5(DomeinController dc, int i, boolean monster) {
         this.dc = dc;
         this.spelerAanBeurt = i;
-        this.help = help.equalsIgnoreCase(LanguageResource.getString("yes"));
         this.monster = monster;
-        this.helptmee = helptmee;
     }
 
     void speelKaart() {
+        this.help = dc.getHelp().equalsIgnoreCase(LanguageResource.getString("yes"));
+        this.helptmee = dc.gethelptmee();
         //System.out.println(dc.toonOverzichtKaartenInHand(spelerAanBeurt));
         System.out.println("");
         System.out.printf(ColorsOutput.decoration("bold") + ColorsOutput.kleur("purple") + "%s%n", dc.toonOverzichtKaartenInHand2(spelerAanBeurt).get(0) + ColorsOutput.reset());
@@ -181,9 +181,10 @@ public class UseCase5 {
     }
 
     private void monsterKaart(Kaart gespeeldeKaart){
-        if(monster || helptmee.get(spelerAanBeurt)){
+        if(!monster || helptmee.get(spelerAanBeurt)){
             dc.setSpelerBattlePoints(dc.getSpelerBattlePoints() + ((Monster) gespeeldeKaart).getLevel());
         }else{
+            System.out.println("Er wordt " + ((Monster) gespeeldeKaart).getLevel() + "bij het monster (" + dc.getMonsterBattlePoints() + ") geteld");
             dc.setMonsterBattlePoints(dc.getMonsterBattlePoints() + ((Monster) gespeeldeKaart).getLevel());
         }
     }
@@ -214,8 +215,10 @@ public class UseCase5 {
         List<String> output = new ArrayList<>();
         output.add(LanguageResource.getString("usecase5.summaryhelp"));
         for(int i = 0; i < helptmee.size();i++){
+            int aantal = 1;
             if(helptmee.get(i)){
-                output.add(String.format("%d) %s",i+1, dc.geefNaamSpeler(i)));
+                output.add(String.format("%d) %s",aantal, dc.geefNaamSpeler(i)));
+                aantal++;
             }
         }
         return output;

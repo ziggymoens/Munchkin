@@ -1,11 +1,9 @@
 package ui.cui.ucs;
 
 import domein.DomeinController;
-import domein.kaarten.kerkerkaarten.monsterbadstuff.BadStuff;
 import language.LanguageResource;
 
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * Deze UC nummer is onbekend en zal later worden aangepast
@@ -15,14 +13,13 @@ import java.util.Scanner;
 
 public class UseCase6 {
     private final DomeinController dc;
-    private final Scanner SCAN = new Scanner(System.in);
 
     public UseCase6(DomeinController dc) {
         this.dc = dc;
     }
 
-    public void vechtMetMonster(List<Boolean> helptmee, int aantalSpelers) {
-
+    public void vechtMetMonster(int aantalSpelers) {
+        List<Boolean> helptmee = dc.gethelptmee();
         boolean gevecht = dc.gevechtResultaat(dc.getMonsterBattlePoints(), dc.getSpelerBattlePoints());
         int id = dc.geefIdBovensteKaart();
         //int levelMonster = Integer.parseInt(dc.geefMonsterAttribuut(id, "level").toString());
@@ -73,19 +70,7 @@ public class UseCase6 {
         }// Speler ontsnapt niet
         else{
             System.out.println(LanguageResource.getString("usecase6.escape2"));
-            voerBadStuffUit(id);
-        }
-    }
-
-    private void voerBadStuffUit(int id){
-        BadStuff bs = dc.geefBadStuff(id);
-        //Checkt of het level dat je verliest groter is dan 0 => de badstuff is een level verliezen
-        if(bs.getLevelsLost() > 0){
-            System.out.printf(LanguageResource.getString("usecase6.loselevels") + "%n", bs.getLevelsLost());
-            dc.verhoogLevel(dc.geefNaamSpeler(dc.geefSpelerAanBeurt()), -bs.getLevelsLost());
-        }//als je geen level verliest ontsnap je automatisch  (er is maar 1 kaart die geen level verliest in de kleine kaarten set)
-        else{
-            System.out.println(LanguageResource.getString("usecase6.escape1"));
+            dc.voerBadStuffUit(id);
         }
     }
 }
