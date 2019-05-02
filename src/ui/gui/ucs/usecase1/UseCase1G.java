@@ -1,21 +1,24 @@
 package ui.gui.ucs.usecase1;
 
 import domein.DomeinController;
+import exceptions.SpelerException;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.geometry.Pos;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import language.LanguageResource;
+import printer.ColorsOutput;
+import printer.Printer;
 import ui.gui.maingui.MainGui;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 
 
 public class UseCase1G extends MainGui {
@@ -221,7 +224,7 @@ public class UseCase1G extends MainGui {
         choiceBoxGeslacht = new ChoiceBox<>();
         choiceBoxGeslacht.getItems().addAll(LanguageResource.getString("man"), LanguageResource.getString("woman"));
         choiceBoxGeslacht.setValue(LanguageResource.getString("man"));
-        Button button = new Button("select");
+        Button button = new Button(LanguageResource.getString("usecase1.make"));
         button.setOnAction(this::spelerAanmaken);
         vBox.getChildren().clear();
         hBox.getChildren().clear();
@@ -233,21 +236,29 @@ public class UseCase1G extends MainGui {
     }
 
     private void spelerAanmaken(ActionEvent event) {
-        dc.maakSpeler();
-        String naam = naamVeld.getText();
-        String geslacht = choiceBoxGeslacht.getValue();
-        dc.geefSpelerNaam(nr, naam);
-        dc.geefSpelerGeslacht(nr, geslacht);
-        naamVeld.clear();
-        nr++;
-        if (nr < dc.geefAantalSpelers()) {
-            labelSpeler.setText(String.format("%s %d", LanguageResource.getString("player"), nr + 1));
-        }
-        if (nr == dc.geefAantalSpelers()) {
-            vBox.getChildren().clear();
-            hBox.getChildren().clear();
-            dc.geefStartKaarten();
-            toonSpelOverzicht();
+        try {
+            dc.maakSpeler();
+            String naam = naamVeld.getText();
+            String geslacht = choiceBoxGeslacht.getValue();
+            dc.geefSpelerNaam(nr, naam);
+            dc.geefSpelerGeslacht(nr, geslacht);
+            naamVeld.clear();
+            nr++;
+            if (nr < dc.geefAantalSpelers()) {
+                labelSpeler.setText(String.format("%s %d", LanguageResource.getString("player"), nr + 1));
+            }
+            if (nr == dc.geefAantalSpelers()) {
+                vBox.getChildren().clear();
+                hBox.getChildren().clear();
+                dc.geefStartKaarten();
+                toonSpelOverzicht();
+            }
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle(LanguageResource.getString("warning"));
+            alert.setContentText(LanguageResource.getString("warningtextname"));
+            Optional<ButtonType> antwoord = alert.showAndWait();
+            event.consume();
         }
 
     }
