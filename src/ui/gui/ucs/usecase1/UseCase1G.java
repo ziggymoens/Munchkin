@@ -243,7 +243,7 @@ public class UseCase1G extends MainGui {
         if (nr < dc.geefAantalSpelers()) {
             labelSpeler.setText(String.format("%s %d", LanguageResource.getString("player"), nr + 1));
         }
-        if (nr == dc.geefAantalSpelers()){
+        if (nr == dc.geefAantalSpelers()) {
             vBox.getChildren().clear();
             hBox.getChildren().clear();
             dc.geefStartKaarten();
@@ -252,7 +252,7 @@ public class UseCase1G extends MainGui {
 
     }
 
-    private void toonSpelOverzicht(){
+    private void toonSpelOverzicht() {
         vBox.getChildren().add(new Label(dc.geefSpelsituatie().toString()));
     }
 }
