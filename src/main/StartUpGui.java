@@ -27,6 +27,7 @@ public class StartUpGui extends Application {
         stage.setScene(scene);
         stage.setTitle("Munchkin - G35");
         stage.show();
+        //voorlopig false, indien veranderen naar true -> aanpassing maken zodat background mee groeit/verkleint bij resizen.
         stage.setResizable(false);
         stage.setOnCloseRequest(
                 event -> {
