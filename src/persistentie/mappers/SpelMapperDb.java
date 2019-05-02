@@ -38,7 +38,7 @@ public class SpelMapperDb {
     private static final String PLAYER_GETCARDS = "SELECT * FROM ID222177_g35.SpelerKaart WHERE spelerid = ?";
     private static final String GAME_GETPLAYERS = "SELECT * FROM ID222177_g35.Speler WHERE spelidSpel = ?";
     private static final String GAME_LOAD = "SELECT * FROM ID222177_g35.Spel WHERE spelid = ?";
-    private static final String PLAYER_SAVECARD = "INSERT INTO ID222177_g35.SpelerKaart (spelerid, kaartidSpelKaart, plaatsKaart, spelidSpelerKaart) VALUES (?, ?, ?, ?)";
+    private static final String PLAYER_SAVECARD = "INSERT INTO ID222177_g35.SpelerKaart (spelerid, kaartidSpelerKaart, plaatsKaart, spelidSpelerKaart) VALUES (?, ?, ?, ?)";
     private static final String PLAYER_SAVE = "INSERT INTO ID222177_g35.Speler (spelerid, naam, level, geslacht, spelidSpel) VALUES (?,?,?,?,?)";
     private static final String GAME_CARDSAVE = "INSERT INTO ID222177_g35.SpelKaart (kaartidSpelKaart, volgnummerD, volgnumerT, spelidSpelKaart) values (?,?,?,?)";
     private static final String DELETE_PLAYERS = "DELETE FROM ID222177_g35.Speler WHERE spelidSpel = ?";
