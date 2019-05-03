@@ -18,7 +18,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.Optional;
 
 
 public class MenuBarGui extends MenuBar {
@@ -28,7 +27,7 @@ public class MenuBarGui extends MenuBar {
     public MenuBarGui() {
         List<Menu> menus = new ArrayList<>();
         menus.add(new Menu("Options"));
-        menus.add(new Menu("Language"));
+        //menus.add(new Menu("Language"));
         menus.add(new Menu("Help"));
 
         List<MenuItem> menuItemsOptions = new ArrayList<>();
@@ -78,12 +77,13 @@ public class MenuBarGui extends MenuBar {
 
 
         for (RadioMenuItem ch : choiceItems) {
-            menus.get(1).getItems().add(ch);
+            //menus.get(1).getItems().add(ch);
         }
         MenuItem menuItemHelp = new MenuItem("Help");
         menuItemHelp.setAccelerator(KeyCombination.keyCombination("Ctrl+H"));
         menuItemHelp.setOnAction(this::helpScreen);
-        menus.get(2).getItems().add(menuItemHelp);
+        //aangepast
+        menus.get(1).getItems().add(menuItemHelp);
 
         getMenus().addAll(menus);
 
@@ -99,14 +99,12 @@ public class MenuBarGui extends MenuBar {
 
     private void helpScreen(ActionEvent event) {
         try{
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle(LanguageResource.getString("help"));
-            alert.setHeaderText(String.format("%s",LanguageResource.getString("helptext")));
-            alert.setContentText(LanguageResource.getString("helpuser"));
-            Optional<ButtonType> antw = alert.showAndWait();
-            if(antw.get() == ButtonType.OK ||antw.get() == ButtonType.CANCEL) {
-                event.consume();
-            }
+            Stage stage = new Stage();
+            Scene scene = new Scene(new Help(), 450, 300);
+            stage.setScene(scene);
+            stage.setTitle(String.format("Munchkin - G35 - %s", LanguageResource.getString("help")));
+            stage.show();
+            stage.setResizable(false);
         }catch (Exception ignored){
         }
     }

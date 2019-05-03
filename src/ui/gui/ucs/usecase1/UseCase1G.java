@@ -82,7 +82,7 @@ public class UseCase1G extends MainGui {
         initializeLeftVBox();
     }
 
-    private void initializeRightVBox(){
+    private void initializeRightVBox() {
         Image bR = new Image("ui/images/Arrow-right.png");
         buttonRight = new ImageView();
         buttonRight.setImage(bR);
@@ -90,7 +90,8 @@ public class UseCase1G extends MainGui {
         buttonRight.setFitWidth(100);
         rightVBox.getChildren().add(buttonRight);
     }
-    private void initializeLeftVBox(){
+
+    private void initializeLeftVBox() {
         Image bL = new Image("ui/images/Arrow-right.png");
         buttonLeft = new ImageView();
         buttonLeft.setImage(bL);
@@ -297,15 +298,13 @@ public class UseCase1G extends MainGui {
     }
 
     private void spelerAanmaken(MouseEvent event) {
-
         try {
-
             String naam = naamVeld.getText();
             String geslacht = choiceBoxGeslacht.getValue();
-            if(!naam.equals("")) {
+            if (!naam.equals("")) {
                 dc.maakSpeler();
                 dc.geefSpelerNaam(nr, naam);
-            }else
+            } else
                 throw new SpelerException();
             dc.geefSpelerGeslacht(nr, geslacht);
             naamVeld.clear();
@@ -314,10 +313,10 @@ public class UseCase1G extends MainGui {
                 labelSpeler.setText(String.format("%s %d", LanguageResource.getString("player"), nr + 1));
             }
             if (nr == dc.geefAantalSpelers()) {
-                centerVBox.getChildren().clear();
-                bottomHBox.getChildren().clear();
                 dc.geefStartKaarten();
                 buttonRight.setOnMouseClicked(this::toonSpelOverzicht);
+                centerVBox.getChildren().clear();
+                bottomHBox.getChildren().clear();
             }
         } catch (SpelerException e) {
             printErrors();
@@ -325,7 +324,7 @@ public class UseCase1G extends MainGui {
             getMessages().setText(LanguageResource.getString("exception.speler.name"));
             visiblePause();
             event.consume();
-        }catch (SpelException e) {
+        } catch (SpelException e) {
             printErrors();
             getMessages().setVisible(true);
             getMessages().setText(LanguageResource.getString("exception.spel.namenotunique"));
@@ -336,6 +335,8 @@ public class UseCase1G extends MainGui {
     }
 
     private void toonSpelOverzicht(MouseEvent event) {
+        centerVBox.getChildren().clear();
+        bottomHBox.getChildren().clear();
         centerVBox.getChildren().add(new Label(dc.geefSpelsituatie().toString()));
     }
 }
