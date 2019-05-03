@@ -141,40 +141,66 @@ public class UseCase1G extends MainGui {
 
         label.setText(labelText.toString());
 
+        HBox hBox = new HBox();
+
+        ImageView nederlands = new ImageView(new Image("/ui/images/nederlands.png"));
+        nederlands.setPreserveRatio(true);
+        nederlands.setFitWidth(125);
+        nederlands.setOnMouseClicked(Event -> {
+            LanguageResource.setLocale(new Locale("nl"));
+            buttonTaalEventHandler();
+        });
+        ImageView frans = new ImageView(new Image("/ui/images/frans.png"));
+        frans.setPreserveRatio(true);
+        frans.setFitWidth(125);
+        frans.setOnMouseClicked(Event -> {
+            LanguageResource.setLocale(new Locale("fr"));
+            buttonTaalEventHandler();
+        });
+        ImageView engels = new ImageView(new Image("/ui/images/engels.png"));
+        engels.setPreserveRatio(true);
+        engels.setFitWidth(125);
+        engels.setOnMouseClicked(Event -> {
+            LanguageResource.setLocale(new Locale("en"));
+            buttonTaalEventHandler();
+        });
+
         //keuze vak voor talen
-        choiceBoxTaal = new ChoiceBox<>();
-        for (String taal : talen) {
-            choiceBoxTaal.getItems().add(taal);
-        }
-        choiceBoxTaal.setValue(talen.get(0));
+//        choiceBoxTaal = new ChoiceBox<>();
+//        for (String taal : talen) {
+//            choiceBoxTaal.getItems().add(taal);
+//        }
+//        choiceBoxTaal.setValue(talen.get(0));
 
         //button in Hbox die taal selecteert
         //Button button = new Button("→");
 
         //button.setOnAction(this::buttonTaalEventHandler);
 
-        buttonRight.setOnMouseClicked(this::buttonTaalEventHandler);
+        //buttonRight.setOnMouseClicked(this::buttonTaalEventHandler);
 
+        hBox.getChildren().addAll(nederlands, engels, frans);
+        hBox.setSpacing(25);
         centerVBox.getChildren().add(label);
 
         //button en choiceB toevoegen aan Hbox
-        bottomHBox.getChildren().addAll(choiceBoxTaal);
+        bottomHBox.getChildren().add(/*choiceBoxTaal*/hBox);
     }
 
-    private void buttonTaalEventHandler(MouseEvent event) {
-        switch (choiceBoxTaal.getValue()) {
-            case "Nederlands":
-                locale = new Locale("nl");
-                break;
-            case "Français":
-                locale = new Locale("fr");
-                break;
-            case "English":
-            default:
-                locale = new Locale("en");
-                break;
-        }
-        LanguageResource.setLocale(locale);
+    private void buttonTaalEventHandler(/*MouseEvent event*/) {
+//        switch (choiceBoxTaal.getValue()) {
+//            case "Nederlands":
+//                locale = new Locale("nl");
+//                break;
+//            case "Français":
+//                locale = new Locale("fr");
+//                break;
+//            case "English":
+//            default:
+//                locale = new Locale("en");
+//                break;
+//        }
+//        LanguageResource.setLocale(locale);
         centerVBox.getChildren().clear();
         bottomHBox.getChildren().clear();
         Label label = new Label("→");
@@ -234,19 +260,52 @@ public class UseCase1G extends MainGui {
         bottomHBox.getChildren().clear();
         Label label = new Label(LanguageResource.getString("amountOfPlayers"));
         label.setId("string");
-        as = new ChoiceBox<>();
-        for (int i = 3; i <= 6; i++) {
-            as.getItems().add(i);
-        }
-        as.setValue(3);
+        ImageView nr3 = new ImageView(new Image("/ui/images/nr3.png"));
+        nr3.setPreserveRatio(true);
+        nr3.setFitWidth(75);
+        nr3.setOnMouseClicked(Event -> {
+            aantalS = 3;
+            buttonPlayersEventHandler();
+        });
+        ImageView nr4 = new ImageView(new Image("ui/images/nr4.png"));
+        nr4.setPreserveRatio(true);
+        nr4.setFitWidth(75);
+        nr4.setOnMouseClicked(Event -> {
+            aantalS = 4;
+            buttonPlayersEventHandler();
+        });
+        ImageView nr5 = new ImageView(new Image("ui/images/nr5.png"));
+        nr5.setPreserveRatio(true);
+        nr5.setFitWidth(75);
+        nr5.setOnMouseClicked(Event -> {
+            aantalS = 5;
+            buttonPlayersEventHandler();
+        });
+        ImageView nr6 = new ImageView(new Image("ui/images/nr6.png"));
+        nr6.setPreserveRatio(true);
+        nr6.setFitWidth(75);
+        nr6.setOnMouseClicked(Event -> {
+            aantalS = 6;
+            buttonPlayersEventHandler();
+        });
+
+        HBox hBox = new HBox();
+        hBox.getChildren().addAll(nr3, nr4, nr5, nr6);
+        hBox.setSpacing(15);
+
+        //as = new ChoiceBox<>();
+        //for (int i = 3; i <= 6; i++) {
+        //    as.getItems().add(i);
+        //}
+        //as.setValue(3);
         //Button button = new Button(LanguageResource.getString("pick"));
         //button.setOnAction(this::buttonPlayersEventHandler);
-        buttonRight.setOnMouseClicked(this::buttonPlayersEventHandler);
+        //buttonRight.setOnMouseClicked(this::buttonPlayersEventHandler);
         centerVBox.getChildren().add(label);
-        bottomHBox.getChildren().addAll(as);
+        bottomHBox.getChildren().add(hBox);
     }
 
-    private void buttonPlayersEventHandler(MouseEvent event) {
+    private void buttonPlayersEventHandler(/*MouseEvent event*/) {
         bottomHBox.getChildren().clear();
         centerVBox.getChildren().clear();
         printConfirmation();
@@ -256,7 +315,7 @@ public class UseCase1G extends MainGui {
         //button.setOnAction(this::buttonStartGame);
         buttonRight.setOnMouseClicked(this::buttonStartGame);
         //bottomHBox.getChildren().add(button);
-        aantalS = as.getValue();
+        //aantalS = as.getValue();
         dc.startSpel(aantalS);
     }
 
