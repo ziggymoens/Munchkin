@@ -39,5 +39,5 @@ Project Structure:
 - [Printer](/src/printer)
 - [UI](/src/ui)
   * [Use Case's CUI](/src/ui/cui/ucs)
-  * [Use Case's GUI](/src/ui/gui)
+  * [Use Case's GUI](/src/ui/gui/ucs)
 
