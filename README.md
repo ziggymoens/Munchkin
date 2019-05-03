@@ -37,7 +37,7 @@ Project Structure:
   * [Mappers](/src/persistentie/mappers)
   * [Persistentie controller](/src/persistentie/mappers/PersistentieController.java)
 - [Printer](/src/printer)
-- [Ui](/src/ui)
+- [UI](/src/ui)
   * [Use Case's CUI](/src/ui/cui/ucs)
   * [Use Case's GUI](/src/ui/gui)
 
