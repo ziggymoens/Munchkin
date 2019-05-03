@@ -29,6 +29,6 @@ HBox {
 }
 
 #messages{
-    -fx-font: bold 20 "sans-serif";
+    -fx-font: bold 16 "sans-serif";
     -fx-background-color: white;
 }

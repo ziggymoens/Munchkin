@@ -28,7 +28,7 @@ public class MainGui extends BorderPane {
         messages.setId("messages");
         pane = new BorderPane();
         pane.setId("pane");
-        this.setTop(mb);
+        //this.setTop(mb);
         this.setCenter(pane);
         this.setBottom(messages);
         getStylesheets().add("ui/gui/maingui/MainGui.css");

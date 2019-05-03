@@ -67,4 +67,12 @@ public class Printer {
     public static void setPrintStackTrace(Boolean stackTrace){
         Printer.printStackTrace = stackTrace;
     }
+
+    public static Boolean getDeveloperMode() {
+        return developerMode;
+    }
+
+    public static Boolean getPrintStackTrace() {
+        return printStackTrace;
+    }
 }

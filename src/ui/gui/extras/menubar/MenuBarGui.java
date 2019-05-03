@@ -7,8 +7,10 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
 import language.LanguageResource;
+import ui.TabExtended;
 import ui.gui.TabsMunchkin;
 import ui.gui.help.Help;
+import ui.gui.settings.Settings;
 import ui.gui.ucs.usecase8.UseCase8G;
 import ui.gui.ucs.usecase9.UseCase9G;
 
@@ -29,29 +31,33 @@ public class MenuBarGui extends MenuBar {
         menus.add(new Menu("Help"));
 
         List<MenuItem> menuItemsOptions = new ArrayList<>();
+        menuItemsOptions.add(new MenuItem("Settings"));
+        menuItemsOptions.get(0).setOnAction(this::openSetting);
+        menuItemsOptions.get(0).setAccelerator(KeyCombination.keyCombination("Ctrl+P"));
         menuItemsOptions.add(new MenuItem("New Game"));
-        menuItemsOptions.get(0).setAccelerator(KeyCombination.keyCombination("Ctrl+N"));
-        menuItemsOptions.get(0).setOnAction(event -> {
+        menuItemsOptions.get(1).setAccelerator(KeyCombination.keyCombination("Ctrl+N"));
+        menuItemsOptions.get(1).setOnAction(event -> {
             try {
                 buttonNewGameEventHandler(event);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
+
         menuItemsOptions.add(new MenuItem("Save Game"));
-        menuItemsOptions.get(1).setAccelerator(KeyCombination.keyCombination("Ctrl+S"));
-        menuItemsOptions.get(1).setOnAction(this::buttonSaveEventHandler);
+        menuItemsOptions.get(2).setAccelerator(KeyCombination.keyCombination("Ctrl+S"));
+        menuItemsOptions.get(2).setOnAction(this::buttonSaveEventHandler);
         menuItemsOptions.add(new MenuItem("Load Game"));
-        menuItemsOptions.get(2).setAccelerator(KeyCombination.keyCombination("Ctrl+L"));
-        menuItemsOptions.get(2).setOnAction(this::buttonOpenEventHandler);
+        menuItemsOptions.get(3).setAccelerator(KeyCombination.keyCombination("Ctrl+L"));
+        menuItemsOptions.get(3).setOnAction(this::buttonOpenEventHandler);
         menuItemsOptions.add(new SeparatorMenuItem());
         menuItemsOptions.add(new MenuItem("Exit Game"));
         menuItemsOptions.get(4).setAccelerator(KeyCombination.keyCombination("Ctrl+Q"));
         menuItemsOptions.get(4).setOnAction(this::buttonExitEventHandler);
         menuItemsOptions.add(new SeparatorMenuItem());
         menuItemsOptions.add(new MenuItem("Reload Game"));
-        menuItemsOptions.get(6).setAccelerator(KeyCombination.keyCombination("Ctrl+R"));
-        menuItemsOptions.get(6).setOnAction(this::reloadEventHandler);
+        menuItemsOptions.get(7).setAccelerator(KeyCombination.keyCombination("Ctrl+R"));
+        menuItemsOptions.get(7).setOnAction(this::reloadEventHandler);
 
         menus.get(0).getItems().addAll(menuItemsOptions);
 
@@ -80,6 +86,14 @@ public class MenuBarGui extends MenuBar {
 
         getMenus().addAll(menus);
 
+    }
+
+    private void openSetting(ActionEvent event) {
+        Stage stage = new Stage();
+        Scene scene = new Scene(new Settings(((TabExtended)TabsMunchkin.getPane().getTabs().get(TabsMunchkin.getPane().getSelectionModel().getSelectedIndex()))), 450, 250);
+        stage.setScene(scene);
+        stage.setTitle("Munchkin - G35 - Settings");
+        stage.show();
     }
 
     private void helpScreen(ActionEvent event) {

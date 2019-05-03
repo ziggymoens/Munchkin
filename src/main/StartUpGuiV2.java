@@ -1,6 +1,5 @@
 package main;
 
-import domein.DomeinController;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.Event;
@@ -14,6 +13,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import language.LanguageResource;
 import ui.gui.TabsMunchkin;
+import ui.gui.extras.menubar.MenuBarGui;
 
 import java.util.Optional;
 
@@ -25,21 +25,22 @@ public class StartUpGuiV2 extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        primaryStage.setTitle("Tabs");
+        primaryStage.setTitle("Munchkin - G35");
         primaryStage.setMinHeight(850);
         primaryStage.setMinWidth(1000);
         Group root = new Group();
-        DomeinController dc = new DomeinController();
         Scene scene = new Scene(root, Color.WHITE);
         TabPane tabPane = TabsMunchkin.getPane();
         BorderPane borderPane = new BorderPane();
+        tabPane.setTabDragPolicy(TabPane.TabDragPolicy.REORDER);
+        tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.ALL_TABS);
         TabsMunchkin.addNewGame();
         // bind to take available space
         borderPane.prefHeightProperty().bind(scene.heightProperty());
         borderPane.prefWidthProperty().bind(scene.widthProperty());
-
         borderPane.setCenter(tabPane);
-        root.getChildren().add(borderPane);
+        borderPane.setTop(new MenuBarGui());
+        root.getChildren().addAll(borderPane);
         primaryStage.setScene(scene);
         primaryStage.show();
         primaryStage.setResizable(false);
