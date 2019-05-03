@@ -2,9 +2,15 @@ package ui.gui.extras.menubar;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCombination;
+import javafx.stage.Stage;
 import language.LanguageResource;
+import ui.gui.TabsMunchkin;
+import ui.gui.help.Help;
+import ui.gui.ucs.usecase8.UseCase8G;
+import ui.gui.ucs.usecase9.UseCase9G;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -68,10 +74,25 @@ public class MenuBarGui extends MenuBar {
             menus.get(1).getItems().add(ch);
         }
         MenuItem menuItemHelp = new MenuItem("Help");
+        menuItemHelp.setAccelerator(KeyCombination.keyCombination("Ctrl+H"));
+        menuItemHelp.setOnAction(this::helpScreen);
         menus.get(2).getItems().add(menuItemHelp);
 
         getMenus().addAll(menus);
 
+    }
+
+    private void helpScreen(ActionEvent event) {
+        try{
+            Stage stage = new Stage();
+            Scene scene = new Scene(new Help(), 450, 300);
+            stage.setScene(scene);
+            stage.setTitle(String.format("Munchkin - G35 - %s", LanguageResource.getString("help")));
+            stage.show();
+            stage.setResizable(false);
+        }catch (Exception ignored){
+
+        }
     }
 
     private void reloadEventHandler(ActionEvent actionEvent) {
@@ -97,20 +118,38 @@ public class MenuBarGui extends MenuBar {
     }
 
     private void buttonNewGameEventHandler(ActionEvent event) throws IOException {
+        TabsMunchkin.addNewGame();
         //StartUpGui startUpGui = new StartUpGui();
         //startUpGui.reload();
     }
 
     private void buttonOpenEventHandler(ActionEvent event) {
+        try{
+            Stage stage = new Stage();
+            Scene scene = new Scene(new UseCase9G(), 450, 300);
+            stage.setScene(scene);
+            stage.setTitle(String.format("Munchkin - G35 - %s", LanguageResource.getString("load")));
+            stage.show();
+            stage.setResizable(false);
+        }catch (Exception ignored){
 
+        }
     }
 
     private void buttonSaveEventHandler(ActionEvent event) {
+        try{
+            Stage stage = new Stage();
+            Scene scene = new Scene(new UseCase8G(), 450, 300);
+            stage.setScene(scene);
+            stage.setTitle(String.format("Munchkin - G35 - %s", LanguageResource.getString("save")));
+            stage.show();
+            stage.setResizable(false);
+        }catch (Exception ignored){
 
+        }
     }
 
     private void buttonExitEventHandler(ActionEvent event) {
-
         Platform.exit();
         System.exit(0);
     }

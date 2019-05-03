@@ -1,6 +1,8 @@
 BorderPane, UseCase1G {
     -fx-background-image: url("/ui/images/munchkin-background.jpg");
     -fx-background-position: top center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-radius: 20;
     -fx-padding: 10;
     -fx-pref-width: 1000;
     -fx-pref-height: 750;
@@ -26,7 +28,7 @@ HBox {
     -fx-alignment: center left;
 }
 
-#errors{
-    -fx-alignment: center;
+#messages{
     -fx-font: bold 20 "sans-serif";
+    -fx-background-color: white;
 }

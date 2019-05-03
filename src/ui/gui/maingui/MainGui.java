@@ -12,24 +12,25 @@ import ui.gui.extras.menubar.MenuBarGui;
 
 public class MainGui extends BorderPane {
     private final MenuBarGui mb;
-    private final Label errors;
+    private final Label messages;
     private final BorderPane pane;
     private final PauseTransition visiblePause;
 
     public MainGui(){
         this.mb = new MenuBarGui();
-        this.errors = new Label();
-        errors.setAlignment(Pos.CENTER);
+        this.messages = new Label();
+        messages.setMaxWidth(Double.MAX_VALUE);
+        messages.setAlignment(Pos.CENTER);
         visiblePause = new PauseTransition(Duration.seconds(3));
-        visiblePause.setOnFinished(event -> errors.setVisible(false));
-        errors.setVisible(false);
+        visiblePause.setOnFinished(event -> messages.setVisible(false));
+        messages.setVisible(false);
         mb.setId("mb");
-        errors.setId("errors");
+        messages.setId("messages");
         pane = new BorderPane();
         pane.setId("pane");
         this.setTop(mb);
         this.setCenter(pane);
-        this.setBottom(errors);
+        this.setBottom(messages);
         getStylesheets().add("ui/gui/maingui/MainGui.css");
     }
 
@@ -41,8 +42,8 @@ public class MainGui extends BorderPane {
         mb.updateMenuBarLang();
     }
 
-    public Label getErrors() {
-        return errors;
+    public Label getMessages() {
+        return messages;
     }
 
     public void visiblePause(){
@@ -54,10 +55,10 @@ public class MainGui extends BorderPane {
     }
 
     public void printErrors(){
-        errors.setTextFill(Color.web("#FF0000"));
+        messages.setTextFill(Color.web("#FF0000"));
     }
 
     public void printConfirmation(){
-        errors.setTextFill(Color.web("#00FF00"));
+        messages.setTextFill(Color.web("#00FF00"));
     }
 }

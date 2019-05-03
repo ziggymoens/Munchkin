@@ -252,8 +252,8 @@ public class UseCase1G extends MainGui {
         bottomHBox.getChildren().clear();
         centerVBox.getChildren().clear();
         printConfirmation();
-        getErrors().setVisible(true);
-        getErrors().setText(LanguageResource.getString("spel.made"));
+        getMessages().setVisible(true);
+        getMessages().setText(LanguageResource.getString("spel.made"));
         //Button button = new Button(LanguageResource.getString("next"));
         //button.setOnAction(this::buttonStartGame);
         buttonRight.setOnMouseClicked(this::buttonStartGame);
@@ -265,7 +265,7 @@ public class UseCase1G extends MainGui {
     private void buttonStartGame(MouseEvent event) {
         centerVBox.getChildren().clear();
         bottomHBox.getChildren().clear();
-        getErrors().setText("");
+        getMessages().setText("");
         spelersToevoegen();
     }
 
@@ -323,14 +323,14 @@ public class UseCase1G extends MainGui {
             }
         } catch (SpelerException e) {
             printErrors();
-            getErrors().setVisible(true);
-            getErrors().setText(LanguageResource.getString("exception.speler.name"));
+            getMessages().setVisible(true);
+            getMessages().setText(LanguageResource.getString("exception.speler.name"));
             visiblePause();
             event.consume();
         }catch (SpelException e) {
             printErrors();
-            getErrors().setVisible(true);
-            getErrors().setText(LanguageResource.getString("exception.spel.namenotunique"));
+            getMessages().setVisible(true);
+            getMessages().setText(LanguageResource.getString("exception.spel.namenotunique"));
             visiblePause();
             event.consume();
         }
