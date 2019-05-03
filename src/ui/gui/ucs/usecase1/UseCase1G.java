@@ -301,10 +301,14 @@ public class UseCase1G extends MainGui {
     private void spelerAanmaken(MouseEvent event) {
 
         try {
-            dc.maakSpeler();
+
             String naam = naamVeld.getText();
             String geslacht = choiceBoxGeslacht.getValue();
-            dc.geefSpelerNaam(nr, naam);
+            if(!naam.equals("")) {
+                dc.maakSpeler();
+                dc.geefSpelerNaam(nr, naam);
+            }else
+                throw new SpelerException();
             dc.geefSpelerGeslacht(nr, geslacht);
             naamVeld.clear();
             nr++;
