@@ -25,3 +25,8 @@ HBox {
 #mb Menu{
     -fx-alignment: center left;
 }
+
+#errors{
+    -fx-alignment: center;
+    -fx-font: bold 20 "sans-serif";
+}

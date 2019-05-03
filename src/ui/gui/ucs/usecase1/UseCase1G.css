@@ -33,7 +33,11 @@ Button{
     -fx-spacing: 10;
 }
 
-#welcomeString{
+#string{
     -fx-text-alignment: center;
-    -fx-font: bold 15 "sans-serif";
+    -fx-font: bold italic 20 "sans-serif";
+}
+
+#welcomeTop{
+    -fx-font: bold 30 "sans-serif";
 }

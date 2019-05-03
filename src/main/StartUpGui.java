@@ -42,7 +42,5 @@ public class StartUpGui extends Application {
                         Platform.exit();
                     }
                 });
-
     }
-
 }

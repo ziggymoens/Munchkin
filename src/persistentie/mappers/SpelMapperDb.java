@@ -42,7 +42,7 @@ public class SpelMapperDb {
     private static final String PLAYER_SAVE = "INSERT INTO ID222177_g35.Speler (spelerid, naam, level, geslacht, spelidSpel) VALUES (?,?,?,?,?)";
     private static final String GAME_CARDSAVE = "INSERT INTO ID222177_g35.SpelKaart (kaartidSpelKaart, volgnummerD, volgnumerT, spelidSpelKaart) values (?,?,?,?)";
     private static final String DELETE_PLAYERS = "DELETE FROM ID222177_g35.Speler WHERE spelidSpel = ?";
-    private static final String DELETE_SPELERKAART = "DELETE ID222177_g35.SpelerKaart FROM ID222177_g35.SpelerKaart INNER JOIN ID222177_g35.Speler ON ID222177_g35.SpelerKaart.spelerid = ID222177_g35.Speler.spelerid where ID222177_g35.Speler.spelid = ?";
+    private static final String DELETE_SPELERKAART = "DELETE ID222177_g35.SpelerKaart FROM ID222177_g35.SpelerKaart INNER JOIN ID222177_g35.Speler ON ID222177_g35.SpelerKaart.spelerid = ID222177_g35.Speler.spelerid where ID222177_g35.Speler.spelidSpel = ?";
     private static final String DELETE_SPELKAART = "DELETE FROM ID222177_g35.SpelKaart WHERE spelidSpelKaart = ?";
     private static final String RESET_INCREMENT_SPEL = "ALTER TABLE ID222177_g35.`Spel` AUTO_INCREMENT = 1;";
 

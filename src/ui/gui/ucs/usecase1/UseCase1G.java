@@ -1,31 +1,37 @@
 package ui.gui.ucs.usecase1;
 
 import domein.DomeinController;
+import exceptions.SpelException;
 import exceptions.SpelerException;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Pos;
-import javafx.scene.control.*;
+import javafx.geometry.Insets;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import language.LanguageResource;
-import printer.ColorsOutput;
-import printer.Printer;
 import ui.gui.maingui.MainGui;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.Optional;
 
 
 public class UseCase1G extends MainGui {
     private DomeinController dc;
     private Locale locale = new Locale("en");
-    private VBox vBox;
-    private HBox hBox;
+    private HBox topHBox;
+    private VBox centerVBox;
+    private HBox bottomHBox;
+    private VBox leftVBox;
+    private VBox rightVBox;
     private ChoiceBox<String> choiceBoxTaal;
     private List<String> talen;
     private List<String> talenLoc;
@@ -37,6 +43,8 @@ public class UseCase1G extends MainGui {
     private ChoiceBox<String> choiceBoxGeslacht;
     private int nr;
     private Label labelSpeler;
+    private ImageView buttonRight;
+    private ImageView buttonLeft;
 
     public UseCase1G(DomeinController dc) {
         this.dc = dc;
@@ -60,45 +68,79 @@ public class UseCase1G extends MainGui {
     }
 
     private void layoutUC1() {
-        vBox = new VBox();
-        hBox = new HBox();
-        setCenter(vBox);
-        setBottom(hBox);
+        topHBox = new HBox();
+        centerVBox = new VBox();
+        centerVBox.setSpacing(20);
+        bottomHBox = new HBox();
+        leftVBox = new VBox();
+        rightVBox = new VBox();
+        rightVBox.setPadding(new Insets(10));
+        leftVBox.setPadding(new Insets(10));
+        getPane().setTop(topHBox);
+        getPane().setCenter(centerVBox);
+        getPane().setBottom(bottomHBox);
+        getPane().setLeft(leftVBox);
+        getPane().setRight(rightVBox);
+        initializeRightVBox();
+        initializeLeftVBox();
     }
 
+    private void initializeRightVBox(){
+        Image bR = new Image("ui/images/Arrow-right.png");
+        buttonRight = new ImageView();
+        buttonRight.setImage(bR);
+        buttonRight.setPreserveRatio(true);
+        buttonRight.setFitWidth(100);
+        rightVBox.getChildren().add(buttonRight);
+    }
+    private void initializeLeftVBox(){
+        Image bL = new Image("ui/images/Arrow-right.png");
+        buttonLeft = new ImageView();
+        buttonLeft.setImage(bL);
+        buttonLeft.setRotate(180);
+        buttonLeft.setPreserveRatio(true);
+        buttonLeft.setFitWidth(100);
+        leftVBox.getChildren().add(buttonLeft);
+        buttonLeft.setVisible(false);
+    }
+
+
     private void welcome() {
-        vBox.getChildren().clear();
+        centerVBox.getChildren().clear();
         StringBuilder welkom = new StringBuilder();
         for (String loc : talenLoc) {
             welkom.append(String.format("%s%n", LanguageResource.getStringLanguage("welcome", new Locale(loc))));
         }
+        Label welcomeTop = new Label("Munchkin - G35");
+        welcomeTop.setId("welcomeTop");
         Label welcome = new Label(welkom.toString());
-        welcome.setId("welcomeString");
+        welcome.setId("string");
         //button in Hbox die taal selecteert
-        Button button = new Button("→");
-        button.setOnAction(this::ButtonWelkomEventHandler);
-        button.setId("buttonWelkom");
+        //Button button = new Button("→");
+        buttonRight.setOnMouseClicked(this::ButtonWelkomEventHandler);
+        //button.setId("buttonWelkom");
 
-
-        vBox.getChildren().add(welcome);
+        topHBox.getChildren().add(welcomeTop);
+        centerVBox.getChildren().add(welcome);
 
         //button toevoegen aan Hbox
-        hBox.getChildren().addAll(button);
+        //bottomHBox.getChildren().addAll(button);
     }
 
-    private void ButtonWelkomEventHandler(ActionEvent event) {
+    private void ButtonWelkomEventHandler(MouseEvent event) {
         askTaal();
-
     }
 
     private void askTaal() {
-        vBox.getChildren().clear();
-        hBox.getChildren().clear();
+        centerVBox.getChildren().clear();
+        bottomHBox.getChildren().clear();
         Label label = new Label();
+        label.setId("string");
         StringBuilder labelText = new StringBuilder();
         for (String loc : talenLoc) {
             labelText.append(String.format("%s%n", LanguageResource.getStringLanguage("languageC", new Locale(loc))));
         }
+
         label.setText(labelText.toString());
 
         //keuze vak voor talen
@@ -109,17 +151,19 @@ public class UseCase1G extends MainGui {
         choiceBoxTaal.setValue(talen.get(0));
 
         //button in Hbox die taal selecteert
-        Button button = new Button("→");
+        //Button button = new Button("→");
 
-        button.setOnAction(this::buttonTaalEventHandler);
+        //button.setOnAction(this::buttonTaalEventHandler);
 
-        vBox.getChildren().add(label);
+        buttonRight.setOnMouseClicked(this::buttonTaalEventHandler);
+
+        centerVBox.getChildren().add(label);
 
         //button en choiceB toevoegen aan Hbox
-        hBox.getChildren().addAll(choiceBoxTaal, button);
+        bottomHBox.getChildren().addAll(choiceBoxTaal);
     }
 
-    private void buttonTaalEventHandler(ActionEvent event) {
+    private void buttonTaalEventHandler(MouseEvent event) {
         switch (choiceBoxTaal.getValue()) {
             case "Nederlands":
                 locale = new Locale("nl");
@@ -133,9 +177,10 @@ public class UseCase1G extends MainGui {
                 break;
         }
         LanguageResource.setLocale(locale);
-        vBox.getChildren().clear();
-        hBox.getChildren().clear();
+        centerVBox.getChildren().clear();
+        bottomHBox.getChildren().clear();
         Label label = new Label("→");
+        label.setId("string");
         label.setText(String.format("%s: %s", LanguageResource.getString("picked"), LanguageResource.getString("language")));
         getChildren().add(label);
         updateMenuLang();
@@ -147,29 +192,31 @@ public class UseCase1G extends MainGui {
         String yes = LanguageResource.getString("yes");
         String no = LanguageResource.getString("no");
 
-        hBox.getChildren().clear();
-        vBox.getChildren().clear();
+        bottomHBox.getChildren().clear();
+        centerVBox.getChildren().clear();
 
         Label label = new Label();
+        label.setId("string");
         label.setText(LanguageResource.getString("newGame"));
         choiceBoxNewGame = new ChoiceBox<>();
         choiceBoxNewGame.getItems().addAll(yes, no);
         choiceBoxNewGame.setValue(yes);
-        Button button = new Button("→");
-        button.setOnAction(this::buttonNewGameEventHandler);
-
-        vBox.getChildren().add(label);
-        hBox.getChildren().addAll(choiceBoxNewGame, button);
+        //Button button = new Button("→");
+        //button.setOnAction(this::buttonNewGameEventHandler);
+        buttonRight.setOnMouseClicked(this::buttonNewGameEventHandler);
+        centerVBox.getChildren().add(label);
+        bottomHBox.getChildren().addAll(choiceBoxNewGame);
     }
 
-    private void buttonNewGameEventHandler(ActionEvent event) {
+    private void buttonNewGameEventHandler(MouseEvent event) {
         newGame = choiceBoxNewGame.getValue().equals(LanguageResource.getString("yes"));
-        vBox.getChildren().clear();
-        hBox.getChildren().clear();
+        centerVBox.getChildren().clear();
+        bottomHBox.getChildren().clear();
         if (newGame) {
             askPlayers();
         } else {
             Label label = new Label(LanguageResource.getString("gamestop"));
+            label.setId("string");
             Button button = new Button(LanguageResource.getString("quit"));
             button.setOnAction(
                     new EventHandler<ActionEvent>() {
@@ -179,63 +226,80 @@ public class UseCase1G extends MainGui {
                         }
                     }
             );
-            hBox.getChildren().add(button);
-            vBox.getChildren().add(label);
+            bottomHBox.getChildren().add(button);
+            centerVBox.getChildren().add(label);
         }
     }
 
     private void askPlayers() {
-
-        vBox.getChildren().clear();
-        hBox.getChildren().clear();
+        centerVBox.getChildren().clear();
+        bottomHBox.getChildren().clear();
         Label label = new Label(LanguageResource.getString("amountOfPlayers"));
+        label.setId("string");
         as = new ChoiceBox<>();
         for (int i = 3; i <= 6; i++) {
             as.getItems().add(i);
         }
         as.setValue(3);
-        Button button = new Button(LanguageResource.getString("pick"));
-        button.setOnAction(this::buttonPlayersEventHandler);
-        vBox.getChildren().add(label);
-        hBox.getChildren().addAll(as, button);
+        //Button button = new Button(LanguageResource.getString("pick"));
+        //button.setOnAction(this::buttonPlayersEventHandler);
+        buttonRight.setOnMouseClicked(this::buttonPlayersEventHandler);
+        centerVBox.getChildren().add(label);
+        bottomHBox.getChildren().addAll(as);
     }
 
-    private void buttonPlayersEventHandler(ActionEvent event) {
-        hBox.getChildren().clear();
-        vBox.getChildren().clear();
-        vBox.getChildren().add(new Label(LanguageResource.getString("spel.made")));
-        Button button = new Button(LanguageResource.getString("next"));
-        button.setOnAction(this::buttonStartGame);
-        hBox.getChildren().add(button);
+    private void buttonPlayersEventHandler(MouseEvent event) {
+        bottomHBox.getChildren().clear();
+        centerVBox.getChildren().clear();
+        printConfirmation();
+        getErrors().setVisible(true);
+        getErrors().setText(LanguageResource.getString("spel.made"));
+        //Button button = new Button(LanguageResource.getString("next"));
+        //button.setOnAction(this::buttonStartGame);
+        buttonRight.setOnMouseClicked(this::buttonStartGame);
+        //bottomHBox.getChildren().add(button);
         aantalS = as.getValue();
         dc.startSpel(aantalS);
+    }
+
+    private void buttonStartGame(MouseEvent event) {
+        centerVBox.getChildren().clear();
+        bottomHBox.getChildren().clear();
+        getErrors().setText("");
         spelersToevoegen();
     }
 
-    private void buttonStartGame(ActionEvent event) {
-        vBox.getChildren().clear();
-        hBox.getChildren().clear();
-    }
-
     private void spelersToevoegen() {
+        HBox naamveld = new HBox();
+        naamveld.setSpacing(10);
+        HBox geslachtveld = new HBox();
+        geslachtveld.setSpacing(10);
         Label naam = new Label(LanguageResource.getString("player.name"));
         naamVeld = new TextField();
+        naamVeld.setMinWidth(200);
+        naamVeld.setMaxWidth(200);
         Label geslacht = new Label(LanguageResource.getString("player.sex"));
         choiceBoxGeslacht = new ChoiceBox<>();
+        choiceBoxGeslacht.setMinWidth(200);
+        choiceBoxGeslacht.setMaxWidth(200);
         choiceBoxGeslacht.getItems().addAll(LanguageResource.getString("man"), LanguageResource.getString("woman"));
         choiceBoxGeslacht.setValue(LanguageResource.getString("man"));
-        Button button = new Button(LanguageResource.getString("usecase1.make"));
-        button.setOnAction(this::spelerAanmaken);
-        vBox.getChildren().clear();
-        hBox.getChildren().clear();
+        //Button button = new Button(LanguageResource.getString("usecase1.make"));
+        //button.setOnAction(this::spelerAanmaken);
+        buttonRight.setOnMouseClicked(this::spelerAanmaken);
+        centerVBox.getChildren().clear();
+        bottomHBox.getChildren().clear();
         nr = 0;
         labelSpeler = new Label(String.format("%s %d", LanguageResource.getString("player"), nr + 1));
-        vBox.getChildren().addAll(labelSpeler, naam, naamVeld);
-        vBox.getChildren().addAll(geslacht, choiceBoxGeslacht);
-        hBox.getChildren().add(button);
+        labelSpeler.setId("string");
+        naamveld.getChildren().addAll(naam, this.naamVeld);
+        geslachtveld.getChildren().addAll(geslacht, choiceBoxGeslacht);
+        centerVBox.getChildren().addAll(labelSpeler, naamveld, geslachtveld);
+        //bottomHBox.getChildren().add(button);
     }
 
-    private void spelerAanmaken(ActionEvent event) {
+    private void spelerAanmaken(MouseEvent event) {
+
         try {
             dc.maakSpeler();
             String naam = naamVeld.getText();
@@ -248,22 +312,28 @@ public class UseCase1G extends MainGui {
                 labelSpeler.setText(String.format("%s %d", LanguageResource.getString("player"), nr + 1));
             }
             if (nr == dc.geefAantalSpelers()) {
-                vBox.getChildren().clear();
-                hBox.getChildren().clear();
+                centerVBox.getChildren().clear();
+                bottomHBox.getChildren().clear();
                 dc.geefStartKaarten();
-                toonSpelOverzicht();
+                buttonRight.setOnMouseClicked(this::toonSpelOverzicht);
             }
-        } catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle(LanguageResource.getString("warning"));
-            alert.setContentText(LanguageResource.getString("warningtextname"));
-            Optional<ButtonType> antwoord = alert.showAndWait();
+        } catch (SpelerException e) {
+            printErrors();
+            getErrors().setVisible(true);
+            getErrors().setText(LanguageResource.getString("exception.speler.name"));
+            visiblePause();
+            event.consume();
+        }catch (SpelException e) {
+            printErrors();
+            getErrors().setVisible(true);
+            getErrors().setText(LanguageResource.getString("exception.spel.namenotunique"));
+            visiblePause();
             event.consume();
         }
 
     }
 
-    private void toonSpelOverzicht() {
-        vBox.getChildren().add(new Label(dc.geefSpelsituatie().toString()));
+    private void toonSpelOverzicht(MouseEvent event) {
+        centerVBox.getChildren().add(new Label(dc.geefSpelsituatie().toString()));
     }
 }
