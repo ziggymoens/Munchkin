@@ -98,6 +98,7 @@ public class UseCase1G extends MainGui {
         buttonRight.setImage(bR);
         buttonRight.setPreserveRatio(true);
         buttonRight.setFitWidth(100);
+        buttonRight.setId("bR");
         rightVBox.getChildren().add(buttonRight);
     }
 
