@@ -444,13 +444,14 @@ public class UseCase1G extends MainGui {
     }
 
     private void spelerAanmaken(MouseEvent event) {
+        LanguageResource.setLocale(getLocale());
         try {
             String naam = naamVeld.getText();
             String geslacht;
-            if (maleClicked) {
-                geslacht = LanguageResource.getStringLanguage("man", getLocale());
-            } else {
-                geslacht = LanguageResource.getStringLanguage("woman", getLocale());
+            if(maleClicked)
+                 geslacht = LanguageResource.getString("man");
+            else {
+                geslacht = LanguageResource.getString("woman");
             }
             //String geslacht = choiceBoxGeslacht.getValue();
             if (!naam.equals("")) {
@@ -469,6 +470,9 @@ public class UseCase1G extends MainGui {
             if (nr == dc.geefAantalSpelers()) {
                 toonSpelOverzicht();
             }
+
+
+            System.out.println(dc.geefBeknopteSpelsituatie());
         } catch (SpelerException e) {
             naamError.setVisible(true);
             naamError.setText(LanguageResource.getStringLanguage("exception.speler.name", getLocale()));
@@ -476,7 +480,7 @@ public class UseCase1G extends MainGui {
         } catch (SpelException e) {
             naamError.setVisible(true);
             naamError.setText(LanguageResource.getStringLanguage("exception.spel.namenotunique", getLocale()));
-        }
+            event.consume();}
     }
 
     private void toonSpelOverzicht() {
