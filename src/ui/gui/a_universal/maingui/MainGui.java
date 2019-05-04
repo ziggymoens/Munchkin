@@ -4,7 +4,7 @@ import javafx.scene.layout.BorderPane;
 
 
 public class MainGui extends BorderPane {
-    private final BorderPane pane;
+    private BorderPane pane;
 
     public MainGui(){
         pane = new BorderPane();
@@ -17,4 +17,7 @@ public class MainGui extends BorderPane {
         return pane;
     }
 
+    public void setPane(BorderPane pane) {
+        this.pane = pane;
+    }
 }

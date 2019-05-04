@@ -27,6 +27,7 @@ import main.StartUpGuiV2;
 import ui.gui.a_universal.TabExtended;
 import ui.gui.a_universal.TabsMunchkin;
 import ui.gui.a_universal.maingui.MainGui;
+import ui.gui.game_interface.GameInterface;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -466,10 +467,7 @@ public class UseCase1G extends MainGui {
                 labelSpeler.setText(String.format("%s %d", LanguageResource.getStringLanguage("player", getLocale()), nr + 1));
             }
             if (nr == dc.geefAantalSpelers()) {
-                dc.geefStartKaarten();
                 toonSpelOverzicht();
-                centerVBox.getChildren().clear();
-                bottomHBox.getChildren().clear();
             }
         } catch (SpelerException e) {
             naamError.setVisible(true);
@@ -483,8 +481,8 @@ public class UseCase1G extends MainGui {
 
     private void toonSpelOverzicht() {
         centerVBox.getChildren().clear();
-        bottomHBox.getChildren().clear();
-        centerVBox.getChildren().add(new Label(dc.geefSpelsituatie().toString()));
+        dc.geefStartKaarten();
+        gaNaarSpel();
     }
 
     private void setLocale(Locale locale) {
@@ -508,6 +506,13 @@ public class UseCase1G extends MainGui {
         stage.setScene(scene);
         stage.show();
         stage.setResizable(false);
+    }
+
+    private void gaNaarSpel(){
+        GameInterface gi = new GameInterface(dc);
+        this.setPane(gi);
+        gi.zetSpelers();
+
     }
 
 }

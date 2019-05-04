@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class DomeinController {
 
-    private Spel spel;
+    public Spel spel;
     private SpelDbRepository sr;
 
     /**
