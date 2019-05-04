@@ -106,6 +106,7 @@ public class MenuBarGui extends MenuBar {
             stage.show();
             stage.setResizable(false);
         }catch (Exception ignored){
+
         }
     }
 

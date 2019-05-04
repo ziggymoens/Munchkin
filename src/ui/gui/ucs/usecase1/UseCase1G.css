@@ -32,7 +32,13 @@ HBox {
 Button{
     -fx-spacing: 10;
 }
+#bR:hover{
+    -fx-cursor: hand;
+}
 
+ImageView:hover{
+    -fx-cursor: hand;
+}
 #string{
     -fx-text-alignment: center;
     -fx-font: bold italic 20 "sans-serif";
