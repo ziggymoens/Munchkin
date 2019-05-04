@@ -1,5 +1,5 @@
 BorderPane, UseCase1G {
-    -fx-background-image: url("../../../images/munchkin-background.jpg");
+    -fx-background-image: url("../../../images/munchkin/munchkin-background.jpg");
     -fx-background-position: top center;
     -fx-padding: 0 0 10 0;
     -fx-pref-width: 1000;
@@ -40,4 +40,14 @@ Button{
 
 #welcomeTop{
     -fx-font: bold 30 "sans-serif";
+}
+
+#leftVBox>Label{
+    -fx-font-size: 25;
+    -fx-font-weight: bold;
+}
+
+#rightVBox>Label{
+    -fx-font-size: 25;
+    -fx-font-weight: bold;
 }

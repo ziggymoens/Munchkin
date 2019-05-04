@@ -4,15 +4,17 @@ import domein.DomeinController;
 import exceptions.SpelException;
 import exceptions.SpelerException;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import language.LanguageResource;
 import ui.gui.maingui.MainGui;
 
@@ -38,10 +40,13 @@ public class UseCase1G extends MainGui {
     private int aantalS;
     private TextField naamVeld;
     private ChoiceBox<String> choiceBoxGeslacht;
+    private boolean maleClicked = false;
+    private boolean femaleClicked = false;
     private int nr;
     private Label labelSpeler;
     private ImageView buttonRight;
     private ImageView buttonLeft;
+    private MediaPlayer player;
 
     public UseCase1G(DomeinController dc) {
         this.dc = dc;
@@ -53,6 +58,9 @@ public class UseCase1G extends MainGui {
         talenLoc.add("nl");
         talenLoc.add("en");
         talenLoc.add("fr");
+        Media backgroundMusic  = new Media(getClass().getResource("/ui/music/backgroundmusic.mp3").toExternalForm());
+        player = new MediaPlayer(backgroundMusic);
+        player.setVolume(0.8);
         layoutUC1();
         //taal laten kiezen
         welcome();
@@ -70,7 +78,9 @@ public class UseCase1G extends MainGui {
         centerVBox.setSpacing(20);
         bottomHBox = new HBox();
         leftVBox = new VBox();
+        leftVBox.setId("leftVBox");
         rightVBox = new VBox();
+        rightVBox.setId("rightVBox");
         rightVBox.setPadding(new Insets(10));
         leftVBox.setPadding(new Insets(10));
         getPane().setTop(topHBox);
@@ -83,7 +93,7 @@ public class UseCase1G extends MainGui {
     }
 
     private void initializeRightVBox() {
-        Image bR = new Image("ui/images/Arrow-right.png");
+        Image bR = new Image("ui/images/usecase1/Arrow-right-2.png");
         buttonRight = new ImageView();
         buttonRight.setImage(bR);
         buttonRight.setPreserveRatio(true);
@@ -92,7 +102,7 @@ public class UseCase1G extends MainGui {
     }
 
     private void initializeLeftVBox() {
-        Image bL = new Image("ui/images/Arrow-right.png");
+        Image bL = new Image("ui/images/usecase1/Arrow-right-2.png");
         buttonLeft = new ImageView();
         buttonLeft.setImage(bL);
         buttonLeft.setRotate(180);
@@ -132,6 +142,7 @@ public class UseCase1G extends MainGui {
     private void askTaal() {
         centerVBox.getChildren().clear();
         bottomHBox.getChildren().clear();
+        buttonRight.setVisible(false);
         Label label = new Label();
         label.setId("string");
         StringBuilder labelText = new StringBuilder();
@@ -143,21 +154,21 @@ public class UseCase1G extends MainGui {
 
         HBox hBox = new HBox();
 
-        ImageView nederlands = new ImageView(new Image("/ui/images/nederlands.png"));
+        ImageView nederlands = new ImageView(new Image("/ui/images/usecase1/nederlands.png"));
         nederlands.setPreserveRatio(true);
         nederlands.setFitWidth(125);
         nederlands.setOnMouseClicked(Event -> {
             LanguageResource.setLocale(new Locale("nl"));
             buttonTaalEventHandler();
         });
-        ImageView frans = new ImageView(new Image("/ui/images/frans.png"));
+        ImageView frans = new ImageView(new Image("/ui/images/usecase1/frans.png"));
         frans.setPreserveRatio(true);
         frans.setFitWidth(125);
         frans.setOnMouseClicked(Event -> {
             LanguageResource.setLocale(new Locale("fr"));
             buttonTaalEventHandler();
         });
-        ImageView engels = new ImageView(new Image("/ui/images/engels.png"));
+        ImageView engels = new ImageView(new Image("/ui/images/usecase1/engels.png"));
         engels.setPreserveRatio(true);
         engels.setFitWidth(125);
         engels.setOnMouseClicked(Event -> {
@@ -203,90 +214,105 @@ public class UseCase1G extends MainGui {
 //        LanguageResource.setLocale(locale);
         centerVBox.getChildren().clear();
         bottomHBox.getChildren().clear();
+        buttonRight.setVisible(true);
         Label label = new Label("→");
         label.setId("string");
         label.setText(String.format("%s: %s", LanguageResource.getString("picked"), LanguageResource.getString("language")));
-        getChildren().add(label);
+        centerVBox.getChildren().add(label);
         updateMenuLang();
         //vragen een nieuw spel te starten
-        newGame();
+        buttonRight.setOnMouseClicked(this::newGame);
     }
 
-    private void newGame() {
+    private void newGame(MouseEvent event) {
         String yes = LanguageResource.getString("yes");
         String no = LanguageResource.getString("no");
 
         bottomHBox.getChildren().clear();
         centerVBox.getChildren().clear();
-
+        buttonRight.setVisible(true);
+        rightVBox.getChildren().add(new Label(LanguageResource.getString("yes")));
+        rightVBox.setSpacing(15);
+        buttonLeft.setVisible(true);
+        leftVBox.getChildren().add(new Label(LanguageResource.getString("no")));
+        leftVBox.setSpacing(15);
         Label label = new Label();
         label.setId("string");
         label.setText(LanguageResource.getString("newGame"));
-        choiceBoxNewGame = new ChoiceBox<>();
-        choiceBoxNewGame.getItems().addAll(yes, no);
-        choiceBoxNewGame.setValue(yes);
+//        choiceBoxNewGame = new ChoiceBox<>();
+//        choiceBoxNewGame.getItems().addAll(yes, no);
+//        choiceBoxNewGame.setValue(yes);
         //Button button = new Button("→");
         //button.setOnAction(this::buttonNewGameEventHandler);
         buttonRight.setOnMouseClicked(this::buttonNewGameEventHandler);
+        buttonLeft.setOnMouseClicked(this::buttonQuitQame);
         centerVBox.getChildren().add(label);
-        bottomHBox.getChildren().addAll(choiceBoxNewGame);
+        //bottomHBox.getChildren().addAll(choiceBoxNewGame);
     }
 
     private void buttonNewGameEventHandler(MouseEvent event) {
-        newGame = choiceBoxNewGame.getValue().equals(LanguageResource.getString("yes"));
+        bottomHBox.getChildren().clear();
+        rightVBox.getChildren().remove(rightVBox.getChildren().get(1));
+        leftVBox.getChildren().remove(leftVBox.getChildren().get(1));
+        buttonLeft.setVisible(false);
+        buttonRight.setVisible(false);
+        askPlayers();
+    }
+
+    private void buttonQuitQame(MouseEvent event) {
         centerVBox.getChildren().clear();
         bottomHBox.getChildren().clear();
-        if (newGame) {
-            askPlayers();
-        } else {
-            Label label = new Label(LanguageResource.getString("gamestop"));
-            label.setId("string");
-            Button button = new Button(LanguageResource.getString("quit"));
-            button.setOnAction(
-                    new EventHandler<ActionEvent>() {
-                        @Override
-                        public void handle(ActionEvent event) {
-                            Platform.exit();
-                        }
-                    }
-            );
-            bottomHBox.getChildren().add(button);
-            centerVBox.getChildren().add(label);
-        }
+        rightVBox.getChildren().clear();
+        leftVBox.getChildren().clear();
+        buttonLeft.setVisible(false);
+        buttonRight.setVisible(false);
+        Label label = new Label(LanguageResource.getString("gamestop"));
+        label.setId("string");
+        Button button = new Button(LanguageResource.getString("quit"));
+        button.setOnAction(
+                event1 -> Platform.exit()
+        );
+        bottomHBox.getChildren().add(button);
+        centerVBox.getChildren().add(label);
     }
 
     private void askPlayers() {
         centerVBox.getChildren().clear();
         bottomHBox.getChildren().clear();
+        buttonRight.setVisible(false);
         Label label = new Label(LanguageResource.getString("amountOfPlayers"));
         label.setId("string");
-        ImageView nr3 = new ImageView(new Image("/ui/images/nr3.png"));
+        ImageView nr3 = new ImageView(new Image("/ui/images/usecase1/nr3.png"));
         nr3.setPreserveRatio(true);
-        nr3.setFitWidth(75);
+        nr3.setFitWidth(125);
         nr3.setOnMouseClicked(Event -> {
             aantalS = 3;
-            buttonPlayersEventHandler();
+            dc.startSpel(aantalS);
+            spelersToevoegen();
         });
-        ImageView nr4 = new ImageView(new Image("ui/images/nr4.png"));
+        ImageView nr4 = new ImageView(new Image("ui/images/usecase1/nr4.png"));
         nr4.setPreserveRatio(true);
-        nr4.setFitWidth(75);
+        nr4.setFitWidth(125);
         nr4.setOnMouseClicked(Event -> {
             aantalS = 4;
-            buttonPlayersEventHandler();
+            dc.startSpel(aantalS);
+            spelersToevoegen();
         });
-        ImageView nr5 = new ImageView(new Image("ui/images/nr5.png"));
+        ImageView nr5 = new ImageView(new Image("ui/images/usecase1/nr5.png"));
         nr5.setPreserveRatio(true);
-        nr5.setFitWidth(75);
+        nr5.setFitWidth(125);
         nr5.setOnMouseClicked(Event -> {
             aantalS = 5;
-            buttonPlayersEventHandler();
+            dc.startSpel(aantalS);
+            spelersToevoegen();
         });
-        ImageView nr6 = new ImageView(new Image("ui/images/nr6.png"));
+        ImageView nr6 = new ImageView(new Image("ui/images/usecase1/nr6.png"));
         nr6.setPreserveRatio(true);
-        nr6.setFitWidth(75);
+        nr6.setFitWidth(125);
         nr6.setOnMouseClicked(Event -> {
             aantalS = 6;
-            buttonPlayersEventHandler();
+            dc.startSpel(aantalS);
+            spelersToevoegen();
         });
 
         HBox hBox = new HBox();
@@ -305,43 +331,81 @@ public class UseCase1G extends MainGui {
         bottomHBox.getChildren().add(hBox);
     }
 
-    private void buttonPlayersEventHandler(/*MouseEvent event*/) {
+//    private void buttonPlayersEventHandler(/*MouseEvent event*/) {
+//        bottomHBox.getChildren().clear();
+//        centerVBox.getChildren().clear();
+//        buttonRight.setVisible(true);
+//        buttonRight.setOnMouseClicked(this::buttonStartGame);
+//        printConfirmation();
+//        getMessages().setVisible(true);
+//        getMessages().setText(LanguageResource.getString("spel.made"));
+//        visiblePause();
+//        //Button button = new Button(LanguageResource.getString("next"));
+//        //button.setOnAction(this::buttonStartGame);
+//
+//        //bottomHBox.getChildren().add(button);
+//        //aantalS = as.getValue();
+//
+//    }
+
+//    private void buttonStartGame(MouseEvent event) {
+//        centerVBox.getChildren().clear();
+//        bottomHBox.getChildren().clear();
+//        spelersToevoegen();
+//    }
+
+    private void spelersToevoegen() {
         bottomHBox.getChildren().clear();
         centerVBox.getChildren().clear();
+        buttonRight.setVisible(true);
+        //buttonRight.setOnMouseClicked(this::buttonStartGame);
         printConfirmation();
         getMessages().setVisible(true);
         getMessages().setText(LanguageResource.getString("spel.made"));
-        //Button button = new Button(LanguageResource.getString("next"));
-        //button.setOnAction(this::buttonStartGame);
-        buttonRight.setOnMouseClicked(this::buttonStartGame);
-        //bottomHBox.getChildren().add(button);
-        //aantalS = as.getValue();
-        dc.startSpel(aantalS);
-    }
-
-    private void buttonStartGame(MouseEvent event) {
-        centerVBox.getChildren().clear();
-        bottomHBox.getChildren().clear();
-        getMessages().setText("");
-        spelersToevoegen();
-    }
-
-    private void spelersToevoegen() {
+        visiblePause();
         HBox naamveld = new HBox();
         naamveld.setSpacing(10);
         HBox geslachtveld = new HBox();
         geslachtveld.setSpacing(10);
         Label naam = new Label(LanguageResource.getString("player.name"));
         naamVeld = new TextField();
+        naamVeld.setAlignment(Pos.CENTER);
         naamVeld.setTooltip(new Tooltip(LanguageResource.getString("exception.speler.name")));
         naamVeld.setMinWidth(200);
         naamVeld.setMaxWidth(200);
-        Label geslacht = new Label(LanguageResource.getString("player.sex"));
-        choiceBoxGeslacht = new ChoiceBox<>();
-        choiceBoxGeslacht.setMinWidth(200);
-        choiceBoxGeslacht.setMaxWidth(200);
-        choiceBoxGeslacht.getItems().addAll(LanguageResource.getString("man"), LanguageResource.getString("woman"));
-        choiceBoxGeslacht.setValue(LanguageResource.getString("man"));
+        ImageView male = new ImageView(new Image("/ui/images/usecase1/male-selected.png"));
+        maleClicked = true;
+        ImageView female = new ImageView(new Image("/ui/images/usecase1/female.png"));
+        male.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                maleClicked= true;
+                femaleClicked = false;
+                male.setImage(new Image("/ui/images/usecase1/male-selected.png"));
+                female.setImage(new Image("ui/images/usecase1/female.png")
+                );
+            }
+        });
+        female.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                maleClicked = false;
+                femaleClicked = true;
+                male.setImage(new Image("/ui/images/usecase1/male.png"));
+                female.setImage(new Image("ui/images/usecase1/female-selected.png")
+                );
+            }
+        });
+
+        geslachtveld.getChildren().addAll(male, female);
+
+
+//        Label geslacht = new Label(LanguageResource.getString("player.sex"));
+//        choiceBoxGeslacht = new ChoiceBox<>();
+//        choiceBoxGeslacht.setMinWidth(200);
+//        choiceBoxGeslacht.setMaxWidth(200);
+//        choiceBoxGeslacht.getItems().addAll(LanguageResource.getString("man"), LanguageResource.getString("woman"));
+//        choiceBoxGeslacht.setValue(LanguageResource.getString("man"));
         //Button button = new Button(LanguageResource.getString("usecase1.make"));
         //button.setOnAction(this::spelerAanmaken);
         buttonRight.setOnMouseClicked(this::spelerAanmaken);
@@ -351,7 +415,7 @@ public class UseCase1G extends MainGui {
         labelSpeler = new Label(String.format("%s %d", LanguageResource.getString("player"), nr + 1));
         labelSpeler.setId("string");
         naamveld.getChildren().addAll(naam, this.naamVeld);
-        geslachtveld.getChildren().addAll(geslacht, choiceBoxGeslacht);
+        //geslachtveld.getChildren().addAll(geslacht, choiceBoxGeslacht);
         centerVBox.getChildren().addAll(labelSpeler, naamveld, geslachtveld);
         //bottomHBox.getChildren().add(button);
     }
@@ -359,7 +423,13 @@ public class UseCase1G extends MainGui {
     private void spelerAanmaken(MouseEvent event) {
         try {
             String naam = naamVeld.getText();
-            String geslacht = choiceBoxGeslacht.getValue();
+            String geslacht;
+            if (maleClicked){
+                geslacht = LanguageResource.getString("man");
+            }else{
+                geslacht = LanguageResource.getString("woman");
+            }
+            //String geslacht = choiceBoxGeslacht.getValue();
             if (!naam.equals("")) {
                 dc.maakSpeler();
                 dc.geefSpelerNaam(nr, naam);
@@ -368,12 +438,14 @@ public class UseCase1G extends MainGui {
             dc.geefSpelerGeslacht(nr, geslacht);
             naamVeld.clear();
             nr++;
+            System.out.println(dc.geefAantalSpelers());
             if (nr < dc.geefAantalSpelers()) {
+                System.out.println(nr);
                 labelSpeler.setText(String.format("%s %d", LanguageResource.getString("player"), nr + 1));
             }
             if (nr == dc.geefAantalSpelers()) {
                 dc.geefStartKaarten();
-                buttonRight.setOnMouseClicked(this::toonSpelOverzicht);
+                toonSpelOverzicht();
                 centerVBox.getChildren().clear();
                 bottomHBox.getChildren().clear();
             }
@@ -393,7 +465,7 @@ public class UseCase1G extends MainGui {
 
     }
 
-    private void toonSpelOverzicht(MouseEvent event) {
+    private void toonSpelOverzicht() {
         centerVBox.getChildren().clear();
         bottomHBox.getChildren().clear();
         centerVBox.getChildren().add(new Label(dc.geefSpelsituatie().toString()));
