@@ -127,10 +127,10 @@ public class UseCase5 {
         int aantalWapens = 0;
         List<Kaart> items = dc.geefSpeler(spelerAanBeurt).getItems();
         Kaart kr = dc.geefSpeler(spelerAanBeurt).getKaarten().get(kaart - 1);
-        if(items instanceof  Race && kr instanceof Race){
-            return false;
-        }
         for(int i = 0; i < items.size();i++){
+            if(items.get(i) instanceof Race && kr instanceof Race){
+                return false;
+            }
             if(items.get(i) instanceof Equipment && kr instanceof Equipment){
                 Kaart kr2 = items.get(i);
                 if(((Equipment) kr2).getType().equals("Head") && ((Equipment) kr).getType().equals("Head")){
@@ -147,6 +147,7 @@ public class UseCase5 {
                 }
             }
         }
+
         if(aantalWapens == 2 && ((Equipment) kr).getType().equals("Weapon")){
             return false;
         }
@@ -212,10 +213,10 @@ public class UseCase5 {
     }
 
     private List<String> overzichthelpendespelers(){
+        int aantal = 1;
         List<String> output = new ArrayList<>();
         output.add(LanguageResource.getString("usecase5.summaryhelp"));
         for(int i = 0; i < helptmee.size();i++){
-            int aantal = 1;
             if(helptmee.get(i)){
                 output.add(String.format("%d) %s",aantal, dc.geefNaamSpeler(i)));
                 aantal++;
