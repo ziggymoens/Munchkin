@@ -4,9 +4,7 @@ import connection.Connection;
 import domein.DomeinController;
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -16,7 +14,7 @@ import printer.Printer;
 import ui.TabExtended;
 
 
-public class Settings extends BorderPane {
+public class Settings extends TabPane {
     private DomeinController dc;
     private VBox centerVBox;
     private CheckBox checkboxDevelopper;
@@ -28,11 +26,12 @@ public class Settings extends BorderPane {
     public Settings(TabExtended tab) {
         this.dc = tab.getDc();
         centerVBox = new VBox();
-        setLayOut();
+        setLayOutTab1();
     }
 
-    public void setLayOut() {
-        setCenter(centerVBox);
+    public void setLayOutTab1() {
+        BorderPane bp = new BorderPane();
+        bp.setCenter(centerVBox);
         VBox developper = new VBox();
         checkboxDevelopper = new CheckBox();
         checkboxDevelopper.setSelected(Printer.getDeveloperMode());
@@ -53,6 +52,8 @@ public class Settings extends BorderPane {
         messages.setTextFill(Color.web("#00FF00"));
         messages.setVisible(false);
         centerVBox.getChildren().addAll(developper, connection,stacktrace, button, messages);
+        Tab tab = new Tab("settings", bp);
+        this.getTabs().add(tab);
     }
 
     private void saveSettings(ActionEvent event){
