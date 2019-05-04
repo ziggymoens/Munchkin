@@ -16,7 +16,10 @@ import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import language.LanguageResource;
-import ui.gui.maingui.MainGui;
+import main.StartUpGuiV2;
+import ui.gui.a_universal.TabExtended;
+import ui.gui.a_universal.TabsMunchkin;
+import ui.gui.a_universal.maingui.MainGui;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -159,21 +162,24 @@ public class UseCase1G extends MainGui {
         nederlands.setPreserveRatio(true);
         nederlands.setFitWidth(125);
         nederlands.setOnMouseClicked(Event -> {
-            LanguageResource.setLocale(new Locale("nl"));
+            setLocale(new Locale("nl"));
+            ((TabExtended)TabsMunchkin.getPane().getSelectionModel().getSelectedItem()).setLocale(new Locale("nl"));
             buttonTaalEventHandler();
         });
         ImageView frans = new ImageView(new Image("/ui/images/usecase1/frans.png"));
         frans.setPreserveRatio(true);
         frans.setFitWidth(125);
         frans.setOnMouseClicked(Event -> {
-            LanguageResource.setLocale(new Locale("fr"));
+            setLocale(new Locale("fr"));
+            ((TabExtended)TabsMunchkin.getPane().getSelectionModel().getSelectedItem()).setLocale(new Locale("fr"));
             buttonTaalEventHandler();
         });
         ImageView engels = new ImageView(new Image("/ui/images/usecase1/engels.png"));
         engels.setPreserveRatio(true);
         engels.setFitWidth(125);
         engels.setOnMouseClicked(Event -> {
-            LanguageResource.setLocale(new Locale("en"));
+            setLocale(new Locale("en"));
+            ((TabExtended)TabsMunchkin.getPane().getSelectionModel().getSelectedItem()).setLocale(new Locale("en"));
             buttonTaalEventHandler();
         });
 
@@ -218,7 +224,7 @@ public class UseCase1G extends MainGui {
         buttonRight.setVisible(true);
         Label label = new Label("→");
         label.setId("string");
-        label.setText(String.format("%s: %s", LanguageResource.getString("picked"), LanguageResource.getString("language")));
+        label.setText(String.format("%s: %s", LanguageResource.getStringLanguage("picked", getLocale()), LanguageResource.getStringLanguage("language",getLocale())));
         centerVBox.getChildren().add(label);
         updateMenuLang();
         //vragen een nieuw spel te starten
@@ -226,20 +232,20 @@ public class UseCase1G extends MainGui {
     }
 
     private void newGame(MouseEvent event) {
-        String yes = LanguageResource.getString("yes");
-        String no = LanguageResource.getString("no");
+        String yes = LanguageResource.getStringLanguage("yes",getLocale());
+        String no = LanguageResource.getStringLanguage("no",getLocale());
 
         bottomHBox.getChildren().clear();
         centerVBox.getChildren().clear();
         buttonRight.setVisible(true);
-        rightVBox.getChildren().add(new Label(LanguageResource.getString("yes")));
+        rightVBox.getChildren().add(new Label(LanguageResource.getStringLanguage("yes",getLocale())));
         rightVBox.setSpacing(15);
         buttonLeft.setVisible(true);
-        leftVBox.getChildren().add(new Label(LanguageResource.getString("no")));
+        leftVBox.getChildren().add(new Label(LanguageResource.getStringLanguage("no",getLocale())));
         leftVBox.setSpacing(15);
         Label label = new Label();
         label.setId("string");
-        label.setText(LanguageResource.getString("newGame"));
+        label.setText(LanguageResource.getStringLanguage("newGame",getLocale()));
 //        choiceBoxNewGame = new ChoiceBox<>();
 //        choiceBoxNewGame.getItems().addAll(yes, no);
 //        choiceBoxNewGame.setValue(yes);
@@ -267,9 +273,9 @@ public class UseCase1G extends MainGui {
         leftVBox.getChildren().clear();
         buttonLeft.setVisible(false);
         buttonRight.setVisible(false);
-        Label label = new Label(LanguageResource.getString("gamestop"));
+        Label label = new Label(LanguageResource.getStringLanguage("gamestop",getLocale()));
         label.setId("string");
-        Button button = new Button(LanguageResource.getString("quit"));
+        Button button = new Button(LanguageResource.getStringLanguage("quit",getLocale()));
         button.setOnAction(
                 event1 -> Platform.exit()
         );
@@ -281,7 +287,7 @@ public class UseCase1G extends MainGui {
         centerVBox.getChildren().clear();
         bottomHBox.getChildren().clear();
         buttonRight.setVisible(false);
-        Label label = new Label(LanguageResource.getString("amountOfPlayers"));
+        Label label = new Label(LanguageResource.getStringLanguage("amountOfPlayers",getLocale()));
         label.setId("string");
         ImageView nr3 = new ImageView(new Image("/ui/images/usecase1/nr3.png"));
         nr3.setPreserveRatio(true);
@@ -325,7 +331,7 @@ public class UseCase1G extends MainGui {
         //    as.getItems().add(i);
         //}
         //as.setValue(3);
-        //Button button = new Button(LanguageResource.getString("pick"));
+        //Button button = new Button(LanguageResource.getStringLanguage("pick"));
         //button.setOnAction(this::buttonPlayersEventHandler);
         //buttonRight.setOnMouseClicked(this::buttonPlayersEventHandler);
         centerVBox.getChildren().add(label);
@@ -339,9 +345,9 @@ public class UseCase1G extends MainGui {
 //        buttonRight.setOnMouseClicked(this::buttonStartGame);
 //        printConfirmation();
 //        getMessages().setVisible(true);
-//        getMessages().setText(LanguageResource.getString("spel.made"));
+//        getMessages().setText(LanguageResource.getStringLanguage("spel.made"));
 //        visiblePause();
-//        //Button button = new Button(LanguageResource.getString("next"));
+//        //Button button = new Button(LanguageResource.getStringLanguage("next"));
 //        //button.setOnAction(this::buttonStartGame);
 //
 //        //bottomHBox.getChildren().add(button);
@@ -362,16 +368,16 @@ public class UseCase1G extends MainGui {
         //buttonRight.setOnMouseClicked(this::buttonStartGame);
         printConfirmation();
         getMessages().setVisible(true);
-        getMessages().setText(LanguageResource.getString("spel.made"));
+        getMessages().setText(LanguageResource.getStringLanguage("spel.made",getLocale()));
         visiblePause();
         HBox naamveld = new HBox();
         naamveld.setSpacing(10);
         HBox geslachtveld = new HBox();
         geslachtveld.setSpacing(10);
-        Label naam = new Label(LanguageResource.getString("player.name"));
+        Label naam = new Label(LanguageResource.getStringLanguage("player.name",getLocale()));
         naamVeld = new TextField();
         naamVeld.setAlignment(Pos.CENTER);
-        naamVeld.setTooltip(new Tooltip(LanguageResource.getString("exception.speler.name")));
+        naamVeld.setTooltip(new Tooltip(LanguageResource.getStringLanguage("exception.speler.name",getLocale())));
         naamVeld.setMinWidth(200);
         naamVeld.setMaxWidth(200);
         ImageView male = new ImageView(new Image("/ui/images/usecase1/male-selected.png"));
@@ -401,19 +407,19 @@ public class UseCase1G extends MainGui {
         geslachtveld.getChildren().addAll(male, female);
 
 
-//        Label geslacht = new Label(LanguageResource.getString("player.sex"));
+//        Label geslacht = new Label(LanguageResource.getStringLanguage("player.sex"));
 //        choiceBoxGeslacht = new ChoiceBox<>();
 //        choiceBoxGeslacht.setMinWidth(200);
 //        choiceBoxGeslacht.setMaxWidth(200);
-//        choiceBoxGeslacht.getItems().addAll(LanguageResource.getString("man"), LanguageResource.getString("woman"));
-//        choiceBoxGeslacht.setValue(LanguageResource.getString("man"));
-        //Button button = new Button(LanguageResource.getString("usecase1.make"));
+//        choiceBoxGeslacht.getItems().addAll(LanguageResource.getStringLanguage("man"), LanguageResource.getStringLanguage("woman"));
+//        choiceBoxGeslacht.setValue(LanguageResource.getStringLanguage("man"));
+        //Button button = new Button(LanguageResource.getStringLanguage("usecase1.make"));
         //button.setOnAction(this::spelerAanmaken);
         buttonRight.setOnMouseClicked(this::spelerAanmaken);
         centerVBox.getChildren().clear();
         bottomHBox.getChildren().clear();
         nr = 0;
-        labelSpeler = new Label(String.format("%s %d", LanguageResource.getString("player"), nr + 1));
+        labelSpeler = new Label(String.format("%s %d", LanguageResource.getStringLanguage("player",getLocale()), nr + 1));
         labelSpeler.setId("string");
         naamveld.getChildren().addAll(naam, this.naamVeld);
         //geslachtveld.getChildren().addAll(geslacht, choiceBoxGeslacht);
@@ -426,9 +432,9 @@ public class UseCase1G extends MainGui {
             String naam = naamVeld.getText();
             String geslacht;
             if (maleClicked){
-                geslacht = LanguageResource.getString("man");
+                geslacht = LanguageResource.getStringLanguage("man",getLocale());
             }else{
-                geslacht = LanguageResource.getString("woman");
+                geslacht = LanguageResource.getStringLanguage("woman",getLocale());
             }
             //String geslacht = choiceBoxGeslacht.getValue();
             if (!naam.equals("")) {
@@ -442,7 +448,7 @@ public class UseCase1G extends MainGui {
             System.out.println(dc.geefAantalSpelers());
             if (nr < dc.geefAantalSpelers()) {
                 System.out.println(nr);
-                labelSpeler.setText(String.format("%s %d", LanguageResource.getString("player"), nr + 1));
+                labelSpeler.setText(String.format("%s %d", LanguageResource.getStringLanguage("player",getLocale()), nr + 1));
             }
             if (nr == dc.geefAantalSpelers()) {
                 dc.geefStartKaarten();
@@ -453,22 +459,28 @@ public class UseCase1G extends MainGui {
         } catch (SpelerException e) {
             printErrors();
             getMessages().setVisible(true);
-            getMessages().setText(LanguageResource.getString("exception.speler.name"));
+            getMessages().setText(LanguageResource.getStringLanguage("exception.speler.name",getLocale()));
             visiblePause();
             event.consume();
         } catch (SpelException e) {
             printErrors();
             getMessages().setVisible(true);
-            getMessages().setText(LanguageResource.getString("exception.spel.namenotunique"));
+            getMessages().setText(LanguageResource.getStringLanguage("exception.spel.namenotunique", getLocale()));
             visiblePause();
             event.consume();
         }
-
     }
 
     private void toonSpelOverzicht() {
         centerVBox.getChildren().clear();
         bottomHBox.getChildren().clear();
         centerVBox.getChildren().add(new Label(dc.geefSpelsituatie().toString()));
+    }
+    private void setLocale(Locale locale) {
+        this.locale = locale;
+        StartUpGuiV2.menuBarGui.changeTextMenu(locale);
+    }
+    private Locale getLocale(){
+        return ((TabExtended)TabsMunchkin.getPane().getSelectionModel().getSelectedItem()).getLocale();
     }
 }

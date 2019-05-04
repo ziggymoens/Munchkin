@@ -75,6 +75,10 @@ public class DomeinController {
         return spel.getSpelers().get(i).getNaam();
     }
 
+    public String geefGeslachtSpeler(int i){
+        return spel.getSpelers().get(i).getGeslacht();
+    }
+
     /**
      * @param i
      * @return

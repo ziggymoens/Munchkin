@@ -1,4 +1,4 @@
-package ui.gui.maingui;
+package ui.gui.a_universal.maingui;
 
 import javafx.animation.PauseTransition;
 import javafx.geometry.Pos;
@@ -31,7 +31,7 @@ public class MainGui extends BorderPane {
         //this.setTop(mb);
         this.setCenter(pane);
         this.setBottom(messages);
-        getStylesheets().add("ui/gui/maingui/MainGui.css");
+        getStylesheets().add("ui/gui/a_universal/maingui/MainGui.css");
     }
 
     public MenuBar getMb() {

@@ -1,6 +1,6 @@
 package ui.gui.ucs.usecase6;
 
-import ui.gui.maingui.MainGui;
+import ui.gui.a_universal.maingui.MainGui;
 
 public class UseCase6G extends MainGui{
     public UseCase6G() {

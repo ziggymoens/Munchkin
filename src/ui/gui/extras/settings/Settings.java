@@ -1,4 +1,4 @@
-package ui.gui.settings;
+package ui.gui.extras.settings;
 
 import connection.Connection;
 import domein.DomeinController;
@@ -6,15 +6,20 @@ import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import language.LanguageResource;
 import printer.Printer;
-import ui.TabExtended;
+import ui.gui.a_universal.TabExtended;
+import ui.gui.a_universal.TabsMunchkin;
+
+import java.util.Locale;
 
 
 public class Settings extends TabPane {
+    private Locale locale = ((TabExtended) TabsMunchkin.getPane().getSelectionModel().getSelectedItem()).getLocale();
     private DomeinController dc;
     private VBox centerVBox;
     private CheckBox checkboxDevelopper;
@@ -26,24 +31,25 @@ public class Settings extends TabPane {
     public Settings(TabExtended tab) {
         this.dc = tab.getDc();
         centerVBox = new VBox();
-        setLayOutTab1();
+        setLayOutTabSettings();
+        setLayoutTabGame();
     }
 
-    public void setLayOutTab1() {
+    private void setLayOutTabSettings() {
         BorderPane bp = new BorderPane();
         bp.setCenter(centerVBox);
         VBox developper = new VBox();
         checkboxDevelopper = new CheckBox();
         checkboxDevelopper.setSelected(Printer.getDeveloperMode());
-        developper.getChildren().addAll(new Label(LanguageResource.getString("usecase1.developer")), checkboxDevelopper);
+        developper.getChildren().addAll(new Label(LanguageResource.getStringLanguage("usecase1.developer", locale)), checkboxDevelopper);
         VBox connection = new VBox();
         checkBoxConnection = new CheckBox();
         checkBoxConnection.setSelected(Connection.isConnected());
-        connection.getChildren().addAll(new Label(LanguageResource.getString("connected")), checkBoxConnection);
+        connection.getChildren().addAll(new Label(LanguageResource.getStringLanguage("connected", locale)), checkBoxConnection);
         VBox stacktrace = new VBox();
         checkBoxStacktrace = new CheckBox();
         checkBoxStacktrace.setSelected(Printer.getPrintStackTrace());
-        stacktrace.getChildren().addAll(new Label(LanguageResource.getString("usecase1.stacktrace"), checkBoxStacktrace));
+        stacktrace.getChildren().addAll(new Label(LanguageResource.getStringLanguage("usecase1.stacktrace", locale), checkBoxStacktrace));
         Button button = new Button(LanguageResource.getString("save"));
         button.setOnAction(this::saveSettings);
         messages = new Label("Saved");
@@ -54,6 +60,27 @@ public class Settings extends TabPane {
         centerVBox.getChildren().addAll(developper, connection,stacktrace, button, messages);
         Tab tab = new Tab("settings", bp);
         this.getTabs().add(tab);
+    }
+
+    public void setLayoutTabGame() {
+        try {
+            BorderPane borderPane = new BorderPane();
+            VBox center = new VBox();
+            for (int i = 1; i <= dc.geefAantalSpelers(); i++) {
+                Label speler = new Label(String.format("%s %d", LanguageResource.getStringLanguage("player", locale), i));
+                TextField naam = new TextField(dc.geefNaamSpeler(i - 1));
+                RadioButton man = new RadioButton(LanguageResource.getString("man"));
+                man.setSelected(dc.geefGeslachtSpeler(i - 1).equalsIgnoreCase(LanguageResource.getStringLanguage("man", locale)));
+                RadioButton woman = new RadioButton(LanguageResource.getString("woman"));
+                woman.setSelected(dc.geefGeslachtSpeler(i - 1).equalsIgnoreCase(LanguageResource.getStringLanguage("woman", locale)));
+                HBox spelerHBox = new HBox();
+                spelerHBox.getChildren().addAll(speler, naam, man, woman);
+                center.getChildren().add(spelerHBox);
+            }
+            borderPane.setCenter(center);
+            Tab tab = new Tab("game", borderPane);
+            this.getTabs().add(tab);
+        }catch (Exception ignore){}
     }
 
     private void saveSettings(ActionEvent event){
