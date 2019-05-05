@@ -9,7 +9,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TabPane;
 import language.LanguageResource;
-import main.StartUpGuiV2;
+import main.StartUpGui;
 import ui.gui.ucs.usecase1.UseCase1G;
 
 import java.util.Locale;
@@ -22,7 +22,7 @@ public class TabsMunchkin extends TabPane {
         pane.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                StartUpGuiV2.menuBarGui.changeTextMenu(((TabExtended)pane.getTabs().get((Integer) newValue)).getLocale());
+                StartUpGui.menuBarGui.changeTextMenu(((TabExtended)pane.getTabs().get((Integer) newValue)).getLocale());
             }
         });
     }
