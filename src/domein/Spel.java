@@ -2,6 +2,7 @@ package domein;
 
 import connection.Connection;
 import domein.kaarten.Kaart;
+import domein.kaarten.Kerkerkaart;
 import domein.kaarten.Schatkaart;
 import domein.kaarten.kerkerkaarten.ConsumablesKerker;
 import domein.kaarten.kerkerkaarten.Curse;
@@ -321,6 +322,11 @@ public class Spel {
                 kerkerkaarten.remove(0);
             }
         }
+    }
+
+    public void speelCurse(int speler, int kaart){
+        Kaart gespeeldeKaart = geefSpeler(spelerAanBeurt).getKaarten().get(kaart - 1);
+        geefSpeler(speler).setLevel(getSpelers().get(speler).getLevel() - ((Curse) gespeeldeKaart).getLevelLost());
     }
 
     public void speelCurse(String naam) {
@@ -751,6 +757,10 @@ public class Spel {
         gevecht.setHelptmee(helptmee);
     }
 
+    public void setSpelerAanBeurtGevecht(int spelerAanBeurt) {
+        gevecht.setSpelerAanBeurt(spelerAanBeurt);
+    }
+
         //Getters
     public String getHelp(){
         return gevecht.getHelp();
@@ -758,6 +768,10 @@ public class Spel {
 
     public List<Boolean> gethelptmee(){
         return gevecht.gethelptmee();
+    }
+
+    public int getSpelerAanBeurtGevecht() {
+        return gevecht.getSpelerAanBeurt();
     }
 
     public void voerBadStuffUit(int id){
@@ -792,6 +806,102 @@ public class Spel {
             }
         }
         return extraLevels;
+    }
+
+    public boolean validatieKaartSpeler(int kaart, boolean monster){
+        Kaart kr = geefSpeler(gevecht.getSpelerAanBeurt()).getKaarten().get(kaart - 1);
+        //Kaarten die de Speler mag spelen
+        if(getSpelerAanBeurt() == gevecht.getSpelerAanBeurt()){
+            if(kr instanceof ConsumablesSchat || kr instanceof ConsumablesKerker || kr instanceof Equipment || kr instanceof Race || kr instanceof Monster){
+                if(kr instanceof Monster){
+                    return monster;
+                }
+                return true;
+            }
+            return false;
+            //Kaarten die de Tegenspelers mogen spelen
+        }else{
+            if(kr instanceof ConsumablesSchat || kr instanceof ConsumablesKerker || kr instanceof Monster || kr instanceof Curse){
+                //Aanpassen dat als speler geen hulp wou, alleen negatieve ConsumablesKerker gespeeld mag worden
+                if(gevecht.getHelp().equals(LanguageResource.getString("yes"))){
+                    if(kr instanceof ConsumablesKerker){
+                        return ((ConsumablesKerker) kr).getBonus() >= 0;
+                    }
+                }else{
+                    if(kr instanceof Curse){
+                        if(gevecht.gethelptmee().get(gevecht.getSpelerAanBeurt())){
+                            return false;
+                        }
+                    }
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean validatieKaartItems(int kaart){
+        int aantalWapens = 0;
+        List<Kaart> items = geefSpeler(spelerAanBeurt).getItems();
+        Kaart kr = geefSpeler(spelerAanBeurt).getKaarten().get(kaart - 1);
+        for(int i = 0; i < items.size();i++){
+            if(items.get(i) instanceof Race && kr instanceof Race){
+                return false;
+            }
+            if(items.get(i) instanceof Equipment && kr instanceof Equipment){
+                Kaart kr2 = items.get(i);
+                if(((Equipment) kr2).getType().equals("Head") && ((Equipment) kr).getType().equals("Head")){
+                    return false;
+                }
+                if(((Equipment) kr2).getType().equals("Armor") && ((Equipment) kr).getType().equals("Armor")){
+                    return false;
+                }
+                if(((Equipment) kr2).getType().equals("Foot") && ((Equipment) kr).getType().equals("Foot")){
+                    return false;
+                }
+                if(((Equipment) kr2).getType().equals("Weapon")){
+                    aantalWapens += 1;
+                }
+            }
+        }
+
+        if(aantalWapens == 2 && ((Equipment) kr).getType().equals("Weapon")){
+            return false;
+        }
+        return true;
+    }
+
+    public void speelMonster(int kaart, boolean monster){
+        Kaart gespeeldeKaart = geefSpeler(gevecht.getSpelerAanBeurt()).getKaarten().get(kaart - 1);
+        if(!monster || gevecht.gethelptmee().get(gevecht.getSpelerAanBeurt())){
+            gevecht.setSpelerBattlePoints(gevecht.getSpelerBattlePoints() + ((Monster) gespeeldeKaart).getLevel());
+        }else{
+            gevecht.setMonsterBattlePoints(gevecht.getMonsterBattlePoints() + ((Monster) gespeeldeKaart).getLevel());
+        }
+    }
+
+    public void speelConsumable(int kaart){
+        Kaart gespeeldeKaart = geefSpeler(gevecht.getSpelerAanBeurt()).getKaarten().get(kaart - 1);
+        if(gevecht.gethelptmee().get(gevecht.getSpelerAanBeurt())){
+            if(gespeeldeKaart instanceof ConsumablesSchat){
+                gevecht.setSpelerBattlePoints(gevecht.getSpelerBattlePoints() + ((ConsumablesSchat) gespeeldeKaart).getBattleBonus());
+            }
+            if(gespeeldeKaart instanceof ConsumablesKerker){
+                gevecht.setSpelerBattlePoints(gevecht.getSpelerBattlePoints() + ((ConsumablesKerker) gespeeldeKaart).getBonus());
+            }
+        }else{
+            if(gespeeldeKaart instanceof ConsumablesSchat){
+                gevecht.setMonsterBattlePoints(gevecht.getMonsterBattlePoints() + ((ConsumablesSchat) gespeeldeKaart).getBattleBonus());
+            }
+            if(gespeeldeKaart instanceof ConsumablesKerker){
+                gevecht.setMonsterBattlePoints(gevecht.getMonsterBattlePoints() + ((ConsumablesKerker) gespeeldeKaart).getBonus());
+            }
+        }
+    }
+
+    public void itemsBijvoegen(int kaart){
+        Kaart gespeeldeKaart = geefSpeler(gevecht.getSpelerAanBeurt()).getKaarten().get(kaart - 1);
+        geefSpeler(gevecht.getSpelerAanBeurt()).getItems().add(gespeeldeKaart);
     }
 
 }
