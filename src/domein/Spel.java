@@ -842,8 +842,8 @@ public class Spel {
 
     public boolean validatieKaartItems(int kaart){
         int aantalWapens = 0;
-        List<Kaart> items = geefSpeler(spelerAanBeurt).getItems();
-        Kaart kr = geefSpeler(spelerAanBeurt).getKaarten().get(kaart - 1);
+        List<Kaart> items = geefSpeler(gevecht.getSpelerAanBeurt()).getItems();
+        Kaart kr = geefSpeler(gevecht.getSpelerAanBeurt()).getKaarten().get(kaart - 1);
         for(int i = 0; i < items.size();i++){
             if(items.get(i) instanceof Race && kr instanceof Race){
                 return false;

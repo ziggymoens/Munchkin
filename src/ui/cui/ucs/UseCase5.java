@@ -95,7 +95,8 @@ public class UseCase5 {
     }
 
     private void curseKaart(){
-        for(int i = 0; i < overzichthelpendespelers().size();i++) {
+        int end = overzichthelpendespelers().size();
+        for(int i = 0; i < end;i++) {
             System.out.println(overzichthelpendespelers().get(i));
         }
         int speler = 0;
@@ -104,8 +105,8 @@ public class UseCase5 {
             try {
                 System.out.println(LanguageResource.getString("usecase5.chooseplayer"));
                 speler = SCAN.nextInt();
-                int end = overzichthelpendespelers().size();
                 if (speler <= 0 || speler > end) {
+                    System.out.println("you made it");
                     throw new SpelerException("exception.wronginput");
                 }
                 tryAgain = false;
