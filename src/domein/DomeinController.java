@@ -2,6 +2,7 @@ package domein;
 
 import domein.kaarten.Kaart;
 import domein.kaarten.Schatkaart;
+import domein.kaarten.kerkerkaarten.Monster;
 import domein.kaarten.kerkerkaarten.monsterbadstuff.BadStuff;
 import domein.repositories.SpelDbRepository;
 import exceptions.SpelException;
@@ -433,6 +434,10 @@ public class DomeinController {
         spel.setHelptmee(helptmee);
     }
 
+    public void setSpelerAanBeurtGevecht(int spelerAanBeurt) {
+        spel.setSpelerAanBeurtGevecht(spelerAanBeurt);
+    }
+
         //Getters
     public String getHelp(){
         return spel.getHelp();
@@ -448,6 +453,35 @@ public class DomeinController {
 
     public void voerBadStuffUit(int id){
         spel.voerBadStuffUit(id);
+    }
+
+    public int getSpelerAanBeurtGevecht() {
+        return spel.getSpelerAanBeurtGevecht();
+    }
+
+
+    public boolean validatieKaartSpeler(int kaart, boolean monster){
+        return spel.validatieKaartSpeler(kaart, monster);
+    }
+
+    public boolean validatieKaartItems(int kaart){
+        return spel.validatieKaartItems(kaart);
+    }
+
+    public void speelCurse(int speler, int kaart){
+        spel.speelCurse(speler, kaart);
+    }
+
+    public void speelMonster(int kaart, boolean monster){
+        spel.speelMonster(kaart, monster);
+    }
+
+    public void speelConsumable(int kaart){
+        spel.speelConsumable(kaart);
+    }
+
+    public void itemsBijvoegen(int kaart){
+        spel.itemsBijvoegen(kaart);
     }
 
 }

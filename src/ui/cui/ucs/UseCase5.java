@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import domein.Spel;
-import domein.kaarten.Kaart;
 import domein.kaarten.kerkerkaarten.ConsumablesKerker;
 import domein.kaarten.kerkerkaarten.Curse;
 import domein.kaarten.kerkerkaarten.Monster;
@@ -21,23 +19,24 @@ import java.util.List;
 
 public class UseCase5 {
     private final DomeinController dc;
-    private int spelerAanBeurt;
     private final Scanner SCAN = new Scanner(System.in);
+    private int spelerAanBeurt;
     private boolean help;
     private boolean monster;
     private List<Boolean> helptmee;
     private int kaart;
 
 
-    public UseCase5(DomeinController dc, int i, boolean monster) {
+    public UseCase5(DomeinController dc, boolean monster) {
         this.dc = dc;
-        this.spelerAanBeurt = i;
         this.monster = monster;
     }
 
-    void speelKaart() {
+    void speelKaart(int spab) {
         this.help = dc.getHelp().equalsIgnoreCase(LanguageResource.getString("yes"));
         this.helptmee = dc.gethelptmee();
+        dc.setSpelerAanBeurtGevecht(spab);
+        this.spelerAanBeurt = dc.getSpelerAanBeurtGevecht();
         //System.out.println(dc.toonOverzichtKaartenInHand(spelerAanBeurt));
         System.out.println("");
         System.out.printf(ColorsOutput.decoration("bold") + ColorsOutput.kleur("purple") + "%s%n", dc.toonOverzichtKaartenInHand2(spelerAanBeurt).get(0) + ColorsOutput.reset());
@@ -45,7 +44,7 @@ public class UseCase5 {
             System.out.println(dc.toonOverzichtKaartenInHand2(spelerAanBeurt).get(i));
         }
         System.out.println("");
-        Boolean tryAgain = true;
+        boolean tryAgain = true;
         while(tryAgain) {
             try {
                 System.out.println(LanguageResource.getString("usecase5.choicecard"));
@@ -66,106 +65,48 @@ public class UseCase5 {
 
         System.out.println(dc.geefSpeler(spelerAanBeurt).getKaarten().get(kaart - 1));
         //De speler mag de kaart spelen
-        if(validatieKaartSpeler(kaart) && validatieKaartItems(kaart)){
-            Kaart gespeeldeKaart = dc.geefSpeler(spelerAanBeurt).getKaarten().remove(kaart - 1);
-            if(gespeeldeKaart instanceof Curse){
-                curseKaart(gespeeldeKaart);
+        if(dc.validatieKaartSpeler(kaart,monster) && dc.validatieKaartItems(kaart)){
+            if(dc.geefSpeler(spelerAanBeurt).getKaarten().get(kaart - 1) instanceof Curse){
+                curseKaart();
             }else{
-                if(gespeeldeKaart instanceof Monster){
-                    monsterKaart(gespeeldeKaart);
+                if(dc.geefSpeler(spelerAanBeurt).getKaarten().get(kaart - 1) instanceof Monster){
+                    //monsterKaart(gespeeldeKaart);
+                    dc.speelMonster(kaart, monster);
                 }
-                if(gespeeldeKaart instanceof ConsumablesKerker || gespeeldeKaart instanceof ConsumablesSchat){
-                    consumablesKaart(gespeeldeKaart);
+                if(dc.geefSpeler(spelerAanBeurt).getKaarten().get(kaart - 1) instanceof ConsumablesKerker || dc.geefSpeler(spelerAanBeurt).getKaarten().get(kaart - 1) instanceof ConsumablesSchat){
+                    //consumablesKaart(gespeeldeKaart);
+                    dc.speelConsumable(kaart);
                 }
-                if(gespeeldeKaart instanceof Equipment || gespeeldeKaart instanceof Race){
-                    itemsbijvoegen(gespeeldeKaart);
+                if(dc.geefSpeler(spelerAanBeurt).getKaarten().get(kaart - 1) instanceof Equipment || dc.geefSpeler(spelerAanBeurt).getKaarten().get(kaart - 1) instanceof Race){
+                    //itemsbijvoegen(gespeeldeKaart);
+                    dc.itemsBijvoegen(kaart);
                 }
             }
-            dc.voegkaartonderaanstapeltoe(gespeeldeKaart);
+            dc.voegkaartonderaanstapeltoe(dc.geefSpeler(spelerAanBeurt).getKaarten().get(kaart - 1));
+            dc.geefSpeler(spelerAanBeurt).getKaarten().remove(kaart - 1);
             //dc.geefBeknopteSpelsituatie();
+
         }//De speler mag de kaart niet spelen
         else{
             System.out.println("");
             System.err.println(LanguageResource.getString("usecase5.invalidcard"));
-            speelKaart();
+            speelKaart(spab);
         }
     }
 
-    private Boolean validatieKaartSpeler(int kaart){
-        Kaart kr = dc.geefSpeler(spelerAanBeurt).getKaarten().get(kaart - 1);
-        //Kaarten die de Speler mag spelen
-        if(dc.geefSpelerAanBeurt() == spelerAanBeurt){
-            if(kr instanceof ConsumablesSchat || kr instanceof ConsumablesKerker || kr instanceof Equipment || kr instanceof Race || kr instanceof Monster){
-                if(kr instanceof Monster){
-                    return monster;
-                }
-                return true;
-            }
-            return false;
-            //Kaarten die de Tegenspelers mogen spelen
-        }else{
-            if(kr instanceof ConsumablesSchat || kr instanceof ConsumablesKerker || kr instanceof Monster || kr instanceof Curse){
-                //Aanpassen dat als speler geen hulp wou, alleen negatieve ConsumablesKerker gespeeld mag worden
-                if(help){
-                    if(kr instanceof ConsumablesKerker){
-                        return ((ConsumablesKerker) kr).getBonus() >= 0;
-                    }
-                }else{
-                    if(kr instanceof Curse){
-                        if(helptmee.get(spelerAanBeurt)){
-                            return false;
-                        }
-                    }
-                }
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private Boolean validatieKaartItems(int kaart){
-        int aantalWapens = 0;
-        List<Kaart> items = dc.geefSpeler(spelerAanBeurt).getItems();
-        Kaart kr = dc.geefSpeler(spelerAanBeurt).getKaarten().get(kaart - 1);
-        for(int i = 0; i < items.size();i++){
-            if(items.get(i) instanceof Race && kr instanceof Race){
-                return false;
-            }
-            if(items.get(i) instanceof Equipment && kr instanceof Equipment){
-                Kaart kr2 = items.get(i);
-                if(((Equipment) kr2).getType().equals("Head") && ((Equipment) kr).getType().equals("Head")){
-                    return false;
-                }
-                if(((Equipment) kr2).getType().equals("Armor") && ((Equipment) kr).getType().equals("Armor")){
-                    return false;
-                }
-                if(((Equipment) kr2).getType().equals("Foot") && ((Equipment) kr).getType().equals("Foot")){
-                    return false;
-                }
-                if(((Equipment) kr2).getType().equals("Weapon")){
-                    aantalWapens += 1;
-                }
-            }
-        }
-
-        if(aantalWapens == 2 && ((Equipment) kr).getType().equals("Weapon")){
-            return false;
-        }
-        return true;
-    }
-
-    private void curseKaart(Kaart gespeeldeKaart){
-        for(int i = 0; i < overzichthelpendespelers().size();i++) {
+    private void curseKaart(){
+        int end = overzichthelpendespelers().size();
+        for(int i = 0; i < end;i++) {
             System.out.println(overzichthelpendespelers().get(i));
         }
         int speler = 0;
-        Boolean tryAgain = true;
+        boolean tryAgain = true;
         while(tryAgain) {
             try {
                 System.out.println(LanguageResource.getString("usecase5.chooseplayer"));
                 speler = SCAN.nextInt();
-                int end = overzichthelpendespelers().size();
                 if (speler <= 0 || speler > end) {
+                    System.out.println("you made it");
                     throw new SpelerException("exception.wronginput");
                 }
                 tryAgain = false;
@@ -177,39 +118,7 @@ public class UseCase5 {
                 SCAN.nextLine();
             }
         }
-        curseuitvoeren(speler, gespeeldeKaart);
-
-    }
-
-    private void monsterKaart(Kaart gespeeldeKaart){
-        if(!monster || helptmee.get(spelerAanBeurt)){
-            dc.setSpelerBattlePoints(dc.getSpelerBattlePoints() + ((Monster) gespeeldeKaart).getLevel());
-        }else{
-            System.out.println("Er wordt " + ((Monster) gespeeldeKaart).getLevel() + "bij het monster (" + dc.getMonsterBattlePoints() + ") geteld");
-            dc.setMonsterBattlePoints(dc.getMonsterBattlePoints() + ((Monster) gespeeldeKaart).getLevel());
-        }
-    }
-
-    private void consumablesKaart(Kaart gespeeldeKaart){
-        if(helptmee.get(spelerAanBeurt)){
-            if(gespeeldeKaart instanceof ConsumablesSchat){
-                dc.setSpelerBattlePoints(dc.getSpelerBattlePoints() + ((ConsumablesSchat) gespeeldeKaart).getBattleBonus());
-            }
-            if(gespeeldeKaart instanceof ConsumablesKerker){
-                dc.setSpelerBattlePoints(dc.getSpelerBattlePoints() + ((ConsumablesKerker) gespeeldeKaart).getBonus());
-            }
-        }else{
-            if(gespeeldeKaart instanceof ConsumablesSchat){
-                dc.setMonsterBattlePoints(dc.getMonsterBattlePoints() + ((ConsumablesSchat) gespeeldeKaart).getBattleBonus());
-            }
-            if(gespeeldeKaart instanceof ConsumablesKerker){
-                dc.setMonsterBattlePoints(dc.getMonsterBattlePoints() + ((ConsumablesKerker) gespeeldeKaart).getBonus());
-            }
-        }
-    }
-
-    private void itemsbijvoegen(Kaart gespeeldeKaart){
-        dc.geefSpeler(spelerAanBeurt).getItems().add(gespeeldeKaart);
+        dc.speelCurse(speler, kaart);
     }
 
     private List<String> overzichthelpendespelers(){
@@ -225,7 +134,37 @@ public class UseCase5 {
         return output;
     }
 
-    private void curseuitvoeren(int speler, Kaart gespeeldeKaart){
+    /*private void monsterKaart(Kaart gespeeldeKaart){
+        if(!monster || helptmee.get(spelerAanBeurt)){
+            dc.setSpelerBattlePoints(dc.getSpelerBattlePoints() + ((Monster) gespeeldeKaart).getLevel());
+        }else{
+            dc.setMonsterBattlePoints(dc.getMonsterBattlePoints() + ((Monster) gespeeldeKaart).getLevel());
+        }
+    }*/
+
+    /*private void consumablesKaart(Kaart gespeeldeKaart){
+        if(helptmee.get(spelerAanBeurt)){
+            if(gespeeldeKaart instanceof ConsumablesSchat){
+                dc.setSpelerBattlePoints(dc.getSpelerBattlePoints() + ((ConsumablesSchat) gespeeldeKaart).getBattleBonus());
+            }
+            if(gespeeldeKaart instanceof ConsumablesKerker){
+                dc.setSpelerBattlePoints(dc.getSpelerBattlePoints() + ((ConsumablesKerker) gespeeldeKaart).getBonus());
+            }
+        }else{
+            if(gespeeldeKaart instanceof ConsumablesSchat){
+                dc.setMonsterBattlePoints(dc.getMonsterBattlePoints() + ((ConsumablesSchat) gespeeldeKaart).getBattleBonus());
+            }
+            if(gespeeldeKaart instanceof ConsumablesKerker){
+                dc.setMonsterBattlePoints(dc.getMonsterBattlePoints() + ((ConsumablesKerker) gespeeldeKaart).getBonus());
+            }
+        }
+    }*/
+
+    /*private void itemsbijvoegen(Kaart gespeeldeKaart){
+        dc.geefSpeler(spelerAanBeurt).getItems().add(gespeeldeKaart);
+    }*/
+
+    /*private void curseuitvoeren(int speler, Kaart gespeeldeKaart){
         dc.geefSpeler(speler).setLevel(dc.geefLevel(speler) - ((Curse) gespeeldeKaart).getLevelLost());
-    }
+    }*/
 }

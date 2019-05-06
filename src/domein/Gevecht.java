@@ -12,6 +12,7 @@ public class Gevecht {
     private List<Boolean> helptmee;
     private int monsterBattlePoints;
     private int spelerBattlePoints;
+    private int spelerAanBeurt;
 
     public Gevecht(){
 
@@ -37,6 +38,10 @@ public class Gevecht {
         return spelerBattlePoints;
     }
 
+    public int getSpelerAanBeurt() {
+        return spelerAanBeurt;
+    }
+
     //Setters
     public void setHelp(String help) {
         this.help = help;
@@ -54,7 +59,8 @@ public class Gevecht {
         this.spelerBattlePoints = spelerBattlePoints;
     }
 
-
-
+    public void setSpelerAanBeurt(int spelerAanBeurt) {
+        this.spelerAanBeurt = spelerAanBeurt;
+    }
 
 }

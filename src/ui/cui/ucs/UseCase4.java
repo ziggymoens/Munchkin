@@ -8,7 +8,6 @@ package ui.cui.ucs;
 import domein.DomeinController;
 import language.LanguageResource;
 import printer.ColorsOutput;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -97,13 +96,13 @@ class UseCase4 {
                                         //aanpassen???
                                         helptmee.remove(aantal);
                                         helptmee.add(aantal, true);
-                                        speelKaart(aantal, help);
+                                        speelKaart(aantal);
                                     } else {
                                         System.err.println(LanguageResource.getString("exception.help"));
                                     }
                                     break;
                                 case 2:
-                                    speelKaart(aantal, help);
+                                    speelKaart(aantal);
                                     break;
                                 case 3:
                                     beurt.remove(i);
@@ -139,9 +138,9 @@ class UseCase4 {
         vechtMonster();
     }
 
-    private void speelKaart(int i, String help) {
-        UseCase5 uc5 = new UseCase5(this.dc, i, true);
-        uc5.speelKaart();
+    private void speelKaart(int i) {
+        UseCase5 uc5 = new UseCase5(this.dc, true);
+        uc5.speelKaart(i);
     }
 
     private void vechtMonster() {
@@ -160,8 +159,8 @@ class UseCase4 {
                 kaart = SCAN.next().toLowerCase();
             }
             if (kaart.equals(LanguageResource.getString("yes"))) {
-                UseCase5 uc5 = new UseCase5(this.dc, dc.geefSpelerAanBeurt(), monster);
-                uc5.speelKaart();
+                UseCase5 uc5 = new UseCase5(this.dc, monster);
+                uc5.speelKaart(dc.geefSpelerAanBeurt());
             }
         } while (kaart.equals(LanguageResource.getString("yes")));
     }
