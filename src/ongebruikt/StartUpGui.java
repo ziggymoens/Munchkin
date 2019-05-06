@@ -16,9 +16,9 @@ public class StartUpGui extends Application {
 
     public static DomeinController dc;
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+   // public static void main(String[] args) {
+    //    launch(args);
+   // }
 
     @Override
     public void start(Stage stage) {

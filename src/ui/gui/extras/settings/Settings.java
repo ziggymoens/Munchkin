@@ -4,11 +4,13 @@ import connection.Connection;
 import domein.DomeinController;
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import language.LanguageResource;
 import printer.Printer;
@@ -38,15 +40,15 @@ public class Settings extends TabPane {
     private void setLayOutTabSettings() {
         BorderPane bp = new BorderPane();
         bp.setCenter(centerVBox);
-        VBox developper = new VBox();
+        HBox developper = new HBox();
         checkboxDevelopper = new CheckBox();
         checkboxDevelopper.setSelected(Printer.getDeveloperMode());
         developper.getChildren().addAll(new Label(LanguageResource.getStringLanguage("usecase1.developer", locale)), checkboxDevelopper);
-        VBox connection = new VBox();
+        HBox connection = new HBox();
         checkBoxConnection = new CheckBox();
         checkBoxConnection.setSelected(Connection.isConnected());
         connection.getChildren().addAll(new Label(LanguageResource.getStringLanguage("connected", locale)), checkBoxConnection);
-        VBox stacktrace = new VBox();
+        HBox stacktrace = new HBox();
         checkBoxStacktrace = new CheckBox();
         checkBoxStacktrace.setSelected(Printer.getPrintStackTrace());
         stacktrace.getChildren().addAll(new Label(LanguageResource.getStringLanguage("usecase1.stacktrace", locale), checkBoxStacktrace));
@@ -60,6 +62,20 @@ public class Settings extends TabPane {
         centerVBox.getChildren().addAll(developper, connection,stacktrace, button, messages);
         Tab tab = new Tab("settings", bp);
         this.getTabs().add(tab);
+        if (Printer.getDeveloperMode()){
+            Button devbut = new Button("Dev");
+            devbut.setOnAction(this::openDevScherm);
+            centerVBox.getChildren().add(devbut);
+        }
+    }
+
+    private void openDevScherm(ActionEvent event) {
+        Stage stage = new Stage();
+        Scene scene = new Scene(new BorderPane(), 450, 300);
+        stage.setScene(scene);
+        stage.setTitle(String.format("Munchkin - G35 - %s", "Dev"));
+        stage.show();
+        stage.setResizable(false);
     }
 
     public void setLayoutTabGame() {

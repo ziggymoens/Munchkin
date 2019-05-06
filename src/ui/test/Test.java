@@ -8,10 +8,19 @@ package ui.test;
 import domein.DomeinController;
 import domein.kaarten.Kaart;
 import domein.repositories.KaartDbRepository;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 import language.LanguageResource;
+import persistentie.mappers.PersistentieController;
+import persistentie.mappers.SpelMapperDb;
+import printer.Printer;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * @author ziggy
@@ -23,7 +32,7 @@ public class Test {
     private final KaartDbRepository kr = new KaartDbRepository();
     private final List<Kaart> sk = kr.getSchatkaarten();
     private final List<Kaart> kk = kr.getKerkerkaarten();
-    private final DomeinController dc = new DomeinController();
+    private static final DomeinController dc = new DomeinController();
 
     public static void main(String[] args) {
 
@@ -88,9 +97,9 @@ public class Test {
 
 
 
-//        PersistentieController pc = new PersistentieController();
-//        SpelMapperDb spelMapperDb = new SpelMapperDb();
-//        LanguageResource.setLocale(new Locale("en"));
+        PersistentieController pc = new PersistentieController();
+        SpelMapperDb spelMapperDb = new SpelMapperDb();
+        LanguageResource.setLocale(new Locale("en"));
 //        Connection.setConnected(false);
 //        Spel spel = new Spel(3);
 //        spel.maakNieuweSpeler();
@@ -126,25 +135,26 @@ public class Test {
 //            System.out.println(speler.getKaarten().toString());
 //        }
 
-        List<Integer> test = new ArrayList<>();
-        test.add(1);
-        test.add(2);
-        test.add(3);
-        System.out.println(test.toString());
-        test.clear();
-        System.out.println(test.toString());
-
+//        List<Integer> test = new ArrayList<>();
+//        test.add(1);
+//        test.add(2);
+//        test.add(3);
+//        System.out.println(test.toString());
+//        test.clear();
+//        System.out.println(test.toString());
 
 
 
 ////        //pc.remove("test123");
 ////
-//        Spel spel1 = pc.laadSpel(23);
-//        System.out.println(spel1.geefSpelsituatie());
-//        for (Speler speler:spel1.getSpelers()){
-//            System.out.println(speler.toString());
-//            System.out.println(speler.kaartenNaarString(speler.getKaarten()));
-//        }
+        //System.out.println(pc.getOverzicht().toString());
+
+        //Spel spel1 = pc.laadSpel(3);
+        //System.out.println(spel1.geefSpelsituatie());
+        //for (Speler speler:spel1.getSpelers()){
+        //    System.out.println(speler.toString());
+        //    System.out.println(speler.kaartenNaarString(speler.getKaarten()));
+        //}
 ////
 ////        System.out.println(pc.getOverzicht());
 //        //SpelMapperDb sm = new SpelMapperDb();
@@ -184,5 +194,48 @@ public class Test {
 //        }
 //        System.err.printf("cs = %d, e = %d, ck = %d, c = %d, m = %d, r = %d, schat = %d, kerker = %d%n", cs, e, ck, c, m, r, s, k);
 //        return out.toString();
+        test2 t2 = new test2();
+
+    }
+    private static void start(){
+        th1.start();
+        printImage();
+    }
+
+
+
+    public static void printImage(){
+        App app = new App();
+        app.begin();
+    }
+
+    private static final Thread th1 = new Thread(() -> {
+        try {
+            printImage();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.print(Printer.exceptionCatch("Exception (UC1)", e, false));
+        }
+    });
+
+    public static class App extends Application {
+        public App() {
+            super();
+        }
+
+        @Override
+        public void start(Stage primaryStage) throws Exception {
+            BorderPane bp = new BorderPane();
+            bp.setCenter(new ImageView(new Image("/ui/images/kaarten/1.png")));
+            Scene scene = new Scene(bp);
+            primaryStage.setScene(scene);
+            primaryStage.setTitle(String.format("Munchkin - G35 - %s", "KS"));
+            primaryStage.show();
+            primaryStage.setResizable(false);
+        }
+
+        public void begin(){
+            Application.launch();
+        }
     }
 }

@@ -61,8 +61,8 @@ public class UseCase1G extends MainGui {
         this.dc = dc;
         talen = new ArrayList<>();
         talen.add("Nederlands");
-        talen.add("Français");
         talen.add("English");
+        talen.add("Français");
         talenLoc = new ArrayList<>();
         talenLoc.add("nl");
         talenLoc.add("en");
@@ -117,6 +117,7 @@ public class UseCase1G extends MainGui {
         buttonLeft.setRotate(180);
         buttonLeft.setPreserveRatio(true);
         buttonLeft.setFitWidth(100);
+        buttonLeft.setId("bL");
         leftVBox.getChildren().add(buttonLeft);
         buttonLeft.setVisible(false);
     }
@@ -157,41 +158,34 @@ public class UseCase1G extends MainGui {
         label.setText(labelText.toString());
 
         HBox hBox = new HBox();
+        String[] codes = {"nl", "en", "fr"};
+        ImageView[] imageViews = new ImageView[3];
+        for (int i = 0; i < 3; i++) {
+            imageViews[i] = initFlag(talenLoc.get(i));
+        }
 
-        ImageView nederlands = new ImageView(new Image("/ui/images/usecase1/nederlands.png"));
-        nederlands.setPreserveRatio(true);
-        nederlands.setFitWidth(125);
-        nederlands.setOnMouseClicked(Event -> {
-            setLocale(new Locale("nl"));
-            ((TabExtended) TabsMunchkin.getPane().getSelectionModel().getSelectedItem()).setLocale(new Locale("nl"));
-            buttonTaalEventHandler();
-        });
-        ImageView frans = new ImageView(new Image("/ui/images/usecase1/frans.png"));
-        frans.setPreserveRatio(true);
-        frans.setFitWidth(125);
-        frans.setOnMouseClicked(Event -> {
-            setLocale(new Locale("fr"));
-            ((TabExtended) TabsMunchkin.getPane().getSelectionModel().getSelectedItem()).setLocale(new Locale("fr"));
-            buttonTaalEventHandler();
-        });
-        ImageView engels = new ImageView(new Image("/ui/images/usecase1/engels.png"));
-        engels.setPreserveRatio(true);
-        engels.setFitWidth(125);
-        engels.setOnMouseClicked(Event -> {
-            setLocale(new Locale("en"));
-            ((TabExtended) TabsMunchkin.getPane().getSelectionModel().getSelectedItem()).setLocale(new Locale("en"));
-            buttonTaalEventHandler();
-        });
-
-        hBox.getChildren().addAll(nederlands, engels, frans);
+        hBox.getChildren().addAll(imageViews);
         hBox.setSpacing(25);
         centerVBox.getChildren().add(label);
-
         //button en choiceB toevoegen aan Hbox
         bottomHBox.getChildren().add(/*choiceBoxTaal*/hBox);
     }
 
-    private void buttonTaalEventHandler(/*MouseEvent event*/) {
+    private ImageView initFlag(String lang){
+        Image flag = new Image(String.format("/ui/images/usecase1/%s.png", LanguageResource.getStringLanguage(lang, new Locale("nl"))));
+        ImageView vlag = new ImageView(flag);
+        vlag.setPreserveRatio(true);
+        vlag.setFitWidth(125);
+        vlag.setOnMouseClicked(Event -> {
+            setLocale(new Locale("taal"));
+            ((TabExtended) TabsMunchkin.getPane().getSelectionModel().getSelectedItem()).setLocale(new Locale(lang));
+            buttonTaalEventHandler();
+            gaNaarSpel();
+        });
+        return vlag;
+    }
+
+    private void buttonTaalEventHandler() {
         centerVBox.getChildren().clear();
         bottomHBox.getChildren().clear();
         buttonRight.setVisible(true);
@@ -276,11 +270,6 @@ public class UseCase1G extends MainGui {
         });
         return nr;
     }
-
-
-
-
-
 
     private void spelersToevoegen() {
         bottomHBox.getChildren().clear();
@@ -409,9 +398,7 @@ public class UseCase1G extends MainGui {
     }
 
     private void gaNaarSpel() {
-        GameInterface gi = new GameInterface(dc);
-        this.setPane(gi);
-        gi.zetSpelers();
+        ((TabExtended) TabsMunchkin.getPane().getSelectionModel().getSelectedItem()).setNewContent(new GameInterface(dc));
     }
 
 }

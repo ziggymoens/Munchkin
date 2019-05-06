@@ -199,10 +199,8 @@ public class PersistentieController {
 
     private void voegKaartenToe(Speler speler) {
         for (Integer id : speler.getVolgordeKaarten()) {
-            System.out.println(speler.getVolgordeKaarten().toString());
             speler.voegKaartToe(kaartenBib.get(id));
         }
-        System.out.println(speler.getKaarten().toString());
     }
 
     private void voegItemsToe(Speler speler) {

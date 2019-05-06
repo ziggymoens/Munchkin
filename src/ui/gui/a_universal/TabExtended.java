@@ -1,6 +1,7 @@
 package ui.gui.a_universal;
 
 import domein.DomeinController;
+import javafx.scene.Node;
 import javafx.scene.control.Tab;
 
 import java.util.Locale;
@@ -26,5 +27,7 @@ public class TabExtended extends Tab {
         this.locale = locale;
     }
 
-
+    public void setNewContent(Node node){
+        contentProperty().set(node);
+    }
 }

@@ -35,7 +35,7 @@ public class SpelMapperDb {
     private static final String ALL_GAMES = "SELECT * FROM ID222177_g35.Spel";
     private static final String GAME_CARDSEQ = "SELECT * FROM ID222177_g35.SpelKaart WHERE spelidSpelKaart = ?";
     private static final String GAME_GETID = "SELECT spelid FROM ID222177_g35.Spel WHERE naam = ?";
-    private static final String PLAYER_GETCARDS = "SELECT * FROM ID222177_g35.SpelerKaart WHERE spelerid = ?";
+    private static final String PLAYER_GETCARDS = "SELECT * FROM ID222177_g35.SpelerKaart WHERE spelerid = ? AND spelidSpelerKaart = ?";
     private static final String GAME_GETPLAYERS = "SELECT * FROM ID222177_g35.Speler WHERE spelidSpel = ?";
     private static final String GAME_LOAD = "SELECT * FROM ID222177_g35.Spel WHERE spelid = ?";
     private static final String PLAYER_SAVECARD = "INSERT INTO ID222177_g35.SpelerKaart (spelerid, kaartidSpelerKaart, plaatsKaart, spelidSpelerKaart) VALUES (?, ?, ?, ?)";
@@ -112,8 +112,8 @@ public class SpelMapperDb {
                 String naam = rs1.getString("naam");
                 Boolean geslacht = rs1.getBoolean("geslacht");
                 int level = rs1.getInt("level");
-                List<Integer> kaarten = geefKaarten(spelerId, "k");
-                List<Integer> items = geefKaarten(spelerId, "i");
+                List<Integer> kaarten = geefKaarten(spelerId, 'k', spelId);
+                List<Integer> items = geefKaarten(spelerId, 'i', spelId);
                 Speler speler = new Speler(naam, geslacht, level, kaarten, items);
                 spelers.add(spelerId, speler);
             }
@@ -131,15 +131,16 @@ public class SpelMapperDb {
         return spelers;
     }
 
-    private List<Integer> geefKaarten(int spelerId, String type) {
+    private List<Integer> geefKaarten(int spelerId, char type, int spelId) {
         List<Integer> kaarten = new ArrayList<>();
         voegToe();
         try {
             query2 = conn.prepareStatement(PLAYER_GETCARDS);
             query2.setInt(1, spelerId);
+            query2.setInt(2, spelId);
             rs2 = query2.executeQuery();
             while (rs2.next()) {
-                if (type.equals("i")) {
+                if (type == 'i') {
                     if (rs2.getBoolean("plaatsKaart")) {
                         kaarten.add(rs2.getInt("kaartIdSpelerKaart"));
                     }
@@ -223,9 +224,7 @@ public class SpelMapperDb {
                 int spelId = rs5.getInt("spelid");
                 String naam = rs5.getString("naam");
                 int spelerAanbeurt = rs5.getInt("spelerAanBeurt");
-                //System.out.println(spelerAanbeurt);
                 String add = String.format("%d: %s --> %d", spelId, naam, spelerAanbeurt);
-                //System.out.println(add);
                 overzicht.add(add);
             }
             rs5.close();

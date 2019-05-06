@@ -6,6 +6,12 @@
 package ui.cui.ucs;
 
 import domein.DomeinController;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 import language.LanguageResource;
 import printer.ColorsOutput;
 import printer.Printer;
@@ -18,9 +24,11 @@ import java.util.Scanner;
 /**
  * @author ziggy
  */
-class UseCase3 {
+public class UseCase3 {
 
     private final DomeinController dc;
+    private static String locatieImg;
+    private static String typeImg;
     private final Scanner SCAN = new Scanner(System.in);
     private Map<String, Runnable> types;
     private int huidigeKaart;
@@ -28,7 +36,7 @@ class UseCase3 {
     private final int aantalSpelers;
     private List<String> huidigeSituatie;
 
-    UseCase3(DomeinController dc, int aantalSpelers) {
+    public UseCase3(DomeinController dc, int aantalSpelers) {
         //map die bepaalt hoe kaart afgehandeld wordt
         types = new HashMap<>();
         types.put("ConsumablesKerker", this::geenEffectKaart);
@@ -45,11 +53,14 @@ class UseCase3 {
     /**
      * @param naam
      */
-    void speelBeurt(String naam) {
+    public void speelBeurt(String naam) {
         this.naam = naam;
         try {
             UniversalMethods.toonSituatie();
             huidigeSituatie = dc.geefSpelsituatie();
+            locatieImg = dc.toonBovensteKk();
+            typeImg = dc.geefTypeKaart(dc.geefIdBovensteKaart());
+            th1.start();
             System.out.println(dc.toonBovensteKk() + " " + dc.geefTypeKaart(dc.geefIdBovensteKaart()));
             System.out.println(dc.bovensteKaartToString());
             huidigeKaart = dc.geefIdBovensteKaart();
@@ -81,6 +92,36 @@ class UseCase3 {
         }
     }
 
+    public void printImage(){
+        App app = new App();
+        app.begin();
+    }
+
+    private final Thread th1 = new Thread(() -> {
+        try {
+            printImage();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.print(Printer.exceptionCatch("Exception (UC1)", e, false));
+        }
+    });
+
+    public static class App extends Application {
+        @Override
+        public void start(Stage primaryStage) throws Exception {
+            BorderPane bp = new BorderPane();
+            bp.setCenter(new ImageView(new Image(locatieImg)));
+            Scene scene = new Scene(bp);
+            primaryStage.setScene(scene);
+            primaryStage.setTitle(String.format("Munchkin - G35 - %s", typeImg));
+            primaryStage.show();
+            primaryStage.setResizable(false);
+        }
+
+        public void begin(){
+            launch();
+        }
+    }
     /**
      *
      */

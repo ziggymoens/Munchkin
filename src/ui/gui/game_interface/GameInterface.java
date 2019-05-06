@@ -37,17 +37,18 @@ public class GameInterface extends MainGui {
     }
 
     private void setLayOut() {
-        HBox topHBox = new HBox();
-        HBox bottomHBox = new HBox();
+        //HBox topHBox = new HBox();
+        //HBox bottomHBox = new HBox();
         center = new BorderPane();
-        kaarten = new HBox();
+        //kaarten = new HBox();
         center.setBottom(kaarten);
-        bottomHBox.getChildren().add(player1);
-        setRight(player6);
-        setLeft(player1);
-        topHBox.getChildren().addAll(player3, player4, player5);
-        setTop(topHBox);
-        setBottom(bottomHBox);
+        //bottomHBox.getChildren().add(player1);
+        //setRight(player6);
+        //setLeft(player1);
+        //topHBox.getChildren().addAll(player3, player4, player5);
+        //setTop(topHBox);
+        //setBottom(bottomHBox);
+        center.setCenter(new Label("Game"));
         setCenter(center);
     }
 
