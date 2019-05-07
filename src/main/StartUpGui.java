@@ -48,7 +48,7 @@ public class StartUpGui extends Application {
         root.getChildren().addAll(borderPane);
         primaryStage.setScene(scene);
         primaryStage.show();
-        primaryStage.setResizable(false);
+        primaryStage.setResizable(true);
         primaryStage.setOnCloseRequest(this::closeRequest);
     }
 

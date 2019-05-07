@@ -6,12 +6,6 @@
 package ui.cui.ucs;
 
 import domein.DomeinController;
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
 import language.LanguageResource;
 import printer.ColorsOutput;
 import printer.Printer;
@@ -25,10 +19,10 @@ import java.util.Scanner;
  * @author ziggy
  */
 public class UseCase3 {
-
+    //private Thread th1;
     private final DomeinController dc;
-    private static String locatieImg;
-    private static String typeImg;
+    //private static String locatieImg = null;
+    //private static String typeImg = null;
     private final Scanner SCAN = new Scanner(System.in);
     private Map<String, Runnable> types;
     private int huidigeKaart;
@@ -58,10 +52,13 @@ public class UseCase3 {
         try {
             UniversalMethods.toonSituatie();
             huidigeSituatie = dc.geefSpelsituatie();
-            locatieImg = dc.toonBovensteKk();
-            typeImg = dc.geefTypeKaart(dc.geefIdBovensteKaart());
-            th1.start();
-            System.out.println(dc.toonBovensteKk() + " " + dc.geefTypeKaart(dc.geefIdBovensteKaart()));
+            System.out.println(dc.geefKaartenVanSpeler(naam) + "\n");
+            System.out.println(dc.geefItemsVanSpeler(naam));
+            //locatieImg = dc.toonBovensteKk();
+            //typeImg = dc.geefTypeKaart(dc.geefIdBovensteKaart());
+            //Thread th1 = new Thread(App::begin);
+            //th1.start();
+            //System.out.println(dc.toonBovensteKk() + " " + dc.geefTypeKaart(dc.geefIdBovensteKaart()));
             System.out.println(dc.bovensteKaartToString());
             huidigeKaart = dc.geefIdBovensteKaart();
             System.out.println(String.format("%s %s", Printer.printBlue(naam), LanguageResource.getString("usecase3.confirm")));
@@ -87,41 +84,45 @@ public class UseCase3 {
                 UniversalMethods.toonSituatie();
             }
             dc.nieuweBovensteKaartK();
+            //th1.interrupt();
         } catch (Exception e) {
             System.out.print(Printer.exceptionCatch("Exception (UC3)", e, false));
         }
     }
 
-    public void printImage(){
-        App app = new App();
-        app.begin();
-    }
+//    public static class App extends Application {
+//        private static App app;
+//        @Override
+//        public void start(Stage primaryStage) throws Exception {
+//            BorderPane bp = new BorderPane();
+//            bp.setCenter(new ImageView(new Image(locatieImg)));
+//            Scene scene = new Scene(bp);
+//            primaryStage.setScene(scene);
+//            primaryStage.setTitle(String.format("Munchkin - G35 - %s", typeImg));
+//            primaryStage.show();
+//            primaryStage.setResizable(false);
+//            primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+//                @Override
+//                public void handle(WindowEvent event) {
+//                    Platform.exit();
+//                    try {
+//                        app.finalize();
+//                    } catch (Throwable throwable) {
+//                        throwable.printStackTrace();
+//                    }
+//                }
+//            });
+//        }
+//
+//        public static void begin() {
+//            try {
+//                app = new App();
+//                app.launch();
+//            } catch (Exception e) {
+//            }
+//        }
+//    }
 
-    private final Thread th1 = new Thread(() -> {
-        try {
-            printImage();
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.print(Printer.exceptionCatch("Exception (UC1)", e, false));
-        }
-    });
-
-    public static class App extends Application {
-        @Override
-        public void start(Stage primaryStage) throws Exception {
-            BorderPane bp = new BorderPane();
-            bp.setCenter(new ImageView(new Image(locatieImg)));
-            Scene scene = new Scene(bp);
-            primaryStage.setScene(scene);
-            primaryStage.setTitle(String.format("Munchkin - G35 - %s", typeImg));
-            primaryStage.show();
-            primaryStage.setResizable(false);
-        }
-
-        public void begin(){
-            launch();
-        }
-    }
     /**
      *
      */
@@ -133,7 +134,6 @@ public class UseCase3 {
             System.out.print(Printer.exceptionCatch("Exception (UC3)", e, false));
         }
     }
-
 
 
     /**

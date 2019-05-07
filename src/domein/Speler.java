@@ -493,4 +493,40 @@ public class Speler {
         oke = aantalRace >= 1;
         return oke;
     }
+
+    public String geefKaarten(){
+        StringBuilder ret = new StringBuilder();
+        ret.append(String.format("%s%n", "Kaarten"));
+        return overzichtMaken(ret, kaarten);
+    }
+
+    public String geefItems(){
+        StringBuilder ret = new StringBuilder();
+        ret.append(String.format("%s%n", "Items"));
+        return overzichtMaken(ret, items);
+    }
+
+    private String overzichtMaken(StringBuilder sb, List<Kaart> lijst){
+        for (Kaart kaart : lijst) {
+            String idKaart = "ID = " + kaart.getId();
+            sb.append(String.format("%s - %s%n", kaart.getNaam(), idKaart));
+        }
+        return sb.toString();
+    }
+
+    public int[] geefKaartenInt() {
+        int[] k = new int[kaarten.size()];
+        for (int i = 0; i<kaarten.size(); i++){
+            k[i] = kaarten.get(i).getId();
+        }
+        return k;
+    }
+
+    public int[] geefItemsInt() {
+        int[] k = new int[items.size()];
+        for (int i = 0; i<items.size(); i++){
+            k[i] = items.get(i).getId();
+        }
+        return k;
+    }
 }

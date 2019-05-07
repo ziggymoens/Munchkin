@@ -2,7 +2,6 @@ package domein;
 
 import connection.Connection;
 import domein.kaarten.Kaart;
-import domein.kaarten.Kerkerkaart;
 import domein.kaarten.Schatkaart;
 import domein.kaarten.kerkerkaarten.ConsumablesKerker;
 import domein.kaarten.kerkerkaarten.Curse;
@@ -57,13 +56,13 @@ public class Spel {
     public Spel(int aantalSpelers) {
         setAantalSpelers(aantalSpelers);
         spelers = new ArrayList<>();
-        if(Connection.isConnected()){
+        if (Connection.isConnected()) {
             kr = new KaartDbKleinRepository();
             //pc = new PersistentieController();
             //kaarten = new HashMap<>();
             schatkaarten = kr.getSchatkaarten();
             kerkerkaarten = kr.getKerkerkaarten();
-        }else{
+        } else {
             krOffline = new KaartRepository();
             schatkaarten = krOffline.getSchatkaarten();
             kerkerkaarten = krOffline.getKerkerkaarten();
@@ -76,7 +75,7 @@ public class Spel {
     }
 
     public Spel(String naam, boolean klein, List<Speler> spelers, int ls, List<Integer> volgnummerD, List<Integer> volgnummerT) {
-        kr= new KaartDbKleinRepository();
+        kr = new KaartDbKleinRepository();
         krOffline = new KaartRepository();
         setAantalSpelers(spelers.size());
         setNaam(naam);
@@ -99,9 +98,9 @@ public class Spel {
     }
 
     private void maakKaartenBib() {
-        if (Connection.isConnected()){
+        if (Connection.isConnected()) {
             kaarten = kr.getKaartenBib();
-        }else {
+        } else {
             kaarten = krOffline.getKaartenBib();
         }
     }
@@ -201,7 +200,7 @@ public class Spel {
         for (Speler speler1 : spelers) {
             if (speler.getNaam().toLowerCase().length() > speler1.getNaam().toLowerCase().length()) {
                 speler = speler1;
-            }else if (speler.getNaam().toLowerCase().length() == speler1.getNaam().toLowerCase().length()){
+            } else if (speler.getNaam().toLowerCase().length() == speler1.getNaam().toLowerCase().length()) {
                 if (speler.getNaam().compareToIgnoreCase(speler1.getNaam()) <= 0) {
                     speler = speler1;
                 }
@@ -324,7 +323,7 @@ public class Spel {
         }
     }
 
-    public void speelCurse(int speler, int kaart){
+    public void speelCurse(int speler, int kaart) {
         Kaart gespeeldeKaart = geefSpeler(spelerAanBeurt).getKaarten().get(kaart - 1);
         geefSpeler(speler).setLevel(getSpelers().get(speler).getLevel() - ((Curse) gespeeldeKaart).getLevelLost());
     }
@@ -443,9 +442,9 @@ public class Spel {
     }
 
     public void setSpelerAanBeurt(int spelerAanBeurt) {
-        if (spelerAanBeurt == spelers.size()){
+        if (spelerAanBeurt == spelers.size()) {
             this.spelerAanBeurt = 0;
-        }else {
+        } else {
             this.spelerAanBeurt = spelerAanBeurt;
         }
     }
@@ -460,17 +459,17 @@ public class Spel {
         return spelers.get(i).geefVerkoopbareKaarten();
     }
 
-    public List<Integer> geefIdVerkoopbarekaarten(String naam){
+    public List<Integer> geefIdVerkoopbarekaarten(String naam) {
         int i = zoekSpeler(naam);
         return spelers.get(i).geefIdVerkoopbareKaarten();
     }
 
-    public List<Integer> geefIdKaartenNaarItems(String naam){
+    public List<Integer> geefIdKaartenNaarItems(String naam) {
         int i = zoekSpeler(naam);
         return spelers.get(i).geefIdKaartenNaarItems();
     }
 
-    public void verwijderKaart(int id){
+    public void verwijderKaart(int id) {
         int i = zoekSpeler(naam);
         Kaart kaart = kaarten.get(id);
         spelers.get(i).verwijderKaart(kaart);
@@ -516,11 +515,11 @@ public class Spel {
         return value;
     }
 
-    public BadStuff geefBadStuff(int id){
+    public BadStuff geefBadStuff(int id) {
         return ((Monster) getKaarten().get(id)).getBadStuff();
     }
 
-    public Schatkaart geefSchatkaart(){
+    public Schatkaart geefSchatkaart() {
         Schatkaart schatkaart = (Schatkaart) schatkaarten.get(0);
         schatkaarten.remove(0);
         return schatkaart;
@@ -562,17 +561,17 @@ public class Spel {
         }
     }
 
-    public List<Integer> getWaardeSchatkaart(){
+    public List<Integer> getWaardeSchatkaart() {
         int i = zoekSpeler(naam);
         return spelers.get(i).getWaardeSchatkaart();
     }
 
-    public int getWaardeSchatkaart(int id){
+    public int getWaardeSchatkaart(int id) {
         int waarde = 0;
-        if(kaarten.get(id) instanceof Equipment){
-            waarde =  ((Equipment)kaarten.get(id)).getWaarde();
-        }else if(kaarten.get(id) instanceof ConsumablesSchat){
-            waarde = ((ConsumablesSchat)kaarten.get(id)).getWaarde();
+        if (kaarten.get(id) instanceof Equipment) {
+            waarde = ((Equipment) kaarten.get(id)).getWaarde();
+        } else if (kaarten.get(id) instanceof ConsumablesSchat) {
+            waarde = ((ConsumablesSchat) kaarten.get(id)).getWaarde();
         }
         return waarde;
     }
@@ -625,40 +624,40 @@ public class Spel {
         return output;
     }*/
 
-    public List<String> toonOverzichtKaartenInHand2(int speler){
+    public List<String> toonOverzichtKaartenInHand2(int speler) {
         List<String> output = new ArrayList<>();
         output.add("Dit is een overzicht van je kaarten in je hand");
-        List<Kaart> kaartenInHand =  spelers.get(speler).getKaarten();
-        for(int i = 0; i < spelers.get(speler).getKaarten().size(); i++){
+        List<Kaart> kaartenInHand = spelers.get(speler).getKaarten();
+        for (int i = 0; i < spelers.get(speler).getKaarten().size(); i++) {
             String help = "";
-            if(kaartenInHand.get(i) instanceof ConsumablesKerker){
+            if (kaartenInHand.get(i) instanceof ConsumablesKerker) {
                 help = "Consumable";
             }
-            if(kaartenInHand.get(i) instanceof Curse){
+            if (kaartenInHand.get(i) instanceof Curse) {
                 help = "Curse";
             }
-            if(kaartenInHand.get(i) instanceof Monster){
+            if (kaartenInHand.get(i) instanceof Monster) {
                 help = "Monster";
             }
-            if(kaartenInHand.get(i) instanceof Race){
+            if (kaartenInHand.get(i) instanceof Race) {
                 help = "Race";
             }
-            if(kaartenInHand.get(i) instanceof ConsumablesSchat){
+            if (kaartenInHand.get(i) instanceof ConsumablesSchat) {
                 help = "Consumable";
             }
-            if(kaartenInHand.get(i) instanceof Equipment){
+            if (kaartenInHand.get(i) instanceof Equipment) {
                 help = "Equipment";
             }
-            output.add(String.format("%d)%s: %s",i+1, kaartenInHand.get(i).getNaam(), help));
+            output.add(String.format("%d)%s: %s", i + 1, kaartenInHand.get(i).getNaam(), help));
         }
         return output;
     }
 
-    public int gooiDobbelsteen(){
+    public int gooiDobbelsteen() {
         return new SecureRandom().nextInt(5) + 1;
     }
 
-    public Speler geefSpeler(int i){
+    public Speler geefSpeler(int i) {
         return spelers.get(i);
     }
 
@@ -682,12 +681,12 @@ public class Spel {
         return spelers.get(zoekSpeler(naam)).getIDKaartenInHand();
     }
 
-    public void voegkaartonderaanstapeltoe(Kaart kaart){
+    public void voegkaartonderaanstapeltoe(Kaart kaart) {
         //kaart is een kerkerkaart
-        if(kaart instanceof ConsumablesKerker || kaart instanceof Curse || kaart instanceof Monster || kaart instanceof Race){
+        if (kaart instanceof ConsumablesKerker || kaart instanceof Curse || kaart instanceof Monster || kaart instanceof Race) {
             kerkerkaarten.add(kaart);
         }//kaart is een schatkaart
-        else{
+        else {
             schatkaarten.add(kaart);
         }
 
@@ -696,13 +695,13 @@ public class Spel {
     public void gooiKaartenWeg(String naam, List<Integer> gekozenKaarten) {
         int speler = zoekSpeler(naam);
         List<Kaart> temp = spelers.get(speler).getItems();
-        for(Integer k: gekozenKaarten){
-            for (Kaart kaart: temp){
-                if (kaart.getId() == k){
+        for (Integer k : gekozenKaarten) {
+            for (Kaart kaart : temp) {
+                if (kaart.getId() == k) {
                     temp.remove(kaart);
-                    if (kaart instanceof Equipment || kaart instanceof ConsumablesSchat){
+                    if (kaart instanceof Equipment || kaart instanceof ConsumablesSchat) {
                         schatkaarten.add(kaart);
-                    }else{
+                    } else {
                         kerkerkaarten.add(kaart);
                     }
                 }
@@ -717,17 +716,17 @@ public class Spel {
         int waarde = 0;
         List<Kaart> temp = spelers.get(speler).getKaarten();
         List<Kaart> verwijderenKaart = new ArrayList<>();
-        for (Integer k:gekozenKaarten){
-            for (Kaart kaart:spelers.get(speler).getKaarten()){
-                if (kaart.getId() == k){
-                    waarde += ((Schatkaart)kaart).getWaarde();
+        for (Integer k : gekozenKaarten) {
+            for (Kaart kaart : spelers.get(speler).getKaarten()) {
+                if (kaart.getId() == k) {
+                    waarde += ((Schatkaart) kaart).getWaarde();
                     verwijderenKaart.add(kaart);
                 }
             }
         }
         temp.removeAll(verwijderenKaart);
         spelers.get(speler).setKaarten(temp);
-        spelers.get(speler).setLevel(spelers.get(speler).getLevel()+(waarde/1000));
+        spelers.get(speler).setLevel(spelers.get(speler).getLevel() + (waarde / 1000));
     }
 
     public void verplaatsNaarItems(String naam, List<Integer> gekozenKaarten) {
@@ -735,8 +734,8 @@ public class Spel {
         List<Kaart> tempK = spelers.get(speler).getKaarten();
         List<Kaart> tempI = spelers.get(speler).getItems();
         List<Kaart> verwijderKaarten = new ArrayList<>();
-        for (Kaart kaart : tempK){
-            if (gekozenKaarten.contains(kaart.getId())){
+        for (Kaart kaart : tempK) {
+            if (gekozenKaarten.contains(kaart.getId())) {
                 verwijderKaarten.add(kaart);
                 tempI.add(kaart);
             }
@@ -748,12 +747,12 @@ public class Spel {
 
     //Alles wat te maken heeft met gevecht hieronder
 
-        //Setters
-    public void setHelp(String help){
+    //Setters
+    public void setHelp(String help) {
         gevecht.setHelp(help);
     }
 
-    public void setHelptmee(List<Boolean> helptmee){
+    public void setHelptmee(List<Boolean> helptmee) {
         gevecht.setHelptmee(helptmee);
     }
 
@@ -761,12 +760,12 @@ public class Spel {
         gevecht.setSpelerAanBeurt(spelerAanBeurt);
     }
 
-        //Getters
-    public String getHelp(){
+    //Getters
+    public String getHelp() {
         return gevecht.getHelp();
     }
 
-    public List<Boolean> gethelptmee(){
+    public List<Boolean> gethelptmee() {
         return gevecht.gethelptmee();
     }
 
@@ -774,32 +773,33 @@ public class Spel {
         return gevecht.getSpelerAanBeurt();
     }
 
-    public void voerBadStuffUit(int id){
+    public void voerBadStuffUit(int id) {
         BadStuff bs = geefBadStuff(id);
         //Checkt of het level dat je verliest groter is dan 0 => de badstuff is een level verliezen
-        if(bs.getLevelsLost() > 0){
+        if (bs.getLevelsLost() > 0) {
             System.out.printf(LanguageResource.getString("usecase6.loselevels") + "%n", bs.getLevelsLost());
             verhoogLevel(getSpelers().get(getSpelerAanBeurt()).getNaam(), -bs.getLevelsLost());
 
         }//als je geen level verliest ontsnap je automatisch  (er is maar 1 kaart die geen level verliest in de kleine kaarten set)
-        else{
+        else {
             System.out.println(LanguageResource.getString("usecase6.escape1"));
         }
     }
 
-    public int spelerLevels(){
+    public int spelerLevels() {
         List<Boolean> helptmee = gethelptmee();
         int extraLevels = 0;
         int aantal = 0;
-        for(int i = 0; i < helptmee.size(); i++){
-            if(helptmee.get(i)){
-                List<Kaart>  items = geefSpeler(i).getItems();
+        for (int i = 0; i < helptmee.size(); i++) {
+            if (helptmee.get(i)) {
+                List<Kaart> items = geefSpeler(i).getItems();
 
-                for(int j = 0; j < items.size(); j++){
-                    if(items.get(j) instanceof Equipment){
-                        aantal +=((Equipment)items.get(j)).getBonus();
-                    }if(items.get(j) instanceof Race){
-                        aantal += ((Race)items.get(j)).getBonusCombat();
+                for (int j = 0; j < items.size(); j++) {
+                    if (items.get(j) instanceof Equipment) {
+                        aantal += ((Equipment) items.get(j)).getBonus();
+                    }
+                    if (items.get(j) instanceof Race) {
+                        aantal += ((Race) items.get(j)).getBonusCombat();
                     }
                 }
                 extraLevels += geefSpeler(i).getLevel() + aantal;
@@ -808,28 +808,28 @@ public class Spel {
         return extraLevels;
     }
 
-    public boolean validatieKaartSpeler(int kaart, boolean monster){
+    public boolean validatieKaartSpeler(int kaart, boolean monster) {
         Kaart kr = geefSpeler(gevecht.getSpelerAanBeurt()).getKaarten().get(kaart - 1);
         //Kaarten die de Speler mag spelen
-        if(getSpelerAanBeurt() == gevecht.getSpelerAanBeurt()){
-            if(kr instanceof ConsumablesSchat || kr instanceof ConsumablesKerker || kr instanceof Equipment || kr instanceof Race || kr instanceof Monster){
-                if(kr instanceof Monster){
+        if (getSpelerAanBeurt() == gevecht.getSpelerAanBeurt()) {
+            if (kr instanceof ConsumablesSchat || kr instanceof ConsumablesKerker || kr instanceof Equipment || kr instanceof Race || kr instanceof Monster) {
+                if (kr instanceof Monster) {
                     return monster;
                 }
                 return true;
             }
             return false;
             //Kaarten die de Tegenspelers mogen spelen
-        }else{
-            if(kr instanceof ConsumablesSchat || kr instanceof ConsumablesKerker || kr instanceof Monster || kr instanceof Curse){
+        } else {
+            if (kr instanceof ConsumablesSchat || kr instanceof ConsumablesKerker || kr instanceof Monster || kr instanceof Curse) {
                 //Aanpassen dat als speler geen hulp wou, alleen negatieve ConsumablesKerker gespeeld mag worden
-                if(gevecht.getHelp().equals(LanguageResource.getString("yes"))){
-                    if(kr instanceof ConsumablesKerker){
+                if (gevecht.getHelp().equals(LanguageResource.getString("yes"))) {
+                    if (kr instanceof ConsumablesKerker) {
                         return ((ConsumablesKerker) kr).getBonus() >= 0;
                     }
-                }else{
-                    if(kr instanceof Curse){
-                        if(gevecht.gethelptmee().get(gevecht.getSpelerAanBeurt())){
+                } else {
+                    if (kr instanceof Curse) {
+                        if (gevecht.gethelptmee().get(gevecht.getSpelerAanBeurt())) {
                             return false;
                         }
                     }
@@ -840,68 +840,87 @@ public class Spel {
         return false;
     }
 
-    public boolean validatieKaartItems(int kaart){
+    public boolean validatieKaartItems(int kaart) {
         int aantalWapens = 0;
         List<Kaart> items = geefSpeler(gevecht.getSpelerAanBeurt()).getItems();
         Kaart kr = geefSpeler(gevecht.getSpelerAanBeurt()).getKaarten().get(kaart - 1);
-        for(int i = 0; i < items.size();i++){
-            if(items.get(i) instanceof Race && kr instanceof Race){
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i) instanceof Race && kr instanceof Race) {
                 return false;
             }
-            if(items.get(i) instanceof Equipment && kr instanceof Equipment){
+            if (items.get(i) instanceof Equipment && kr instanceof Equipment) {
                 Kaart kr2 = items.get(i);
-                if(((Equipment) kr2).getType().equals("Head") && ((Equipment) kr).getType().equals("Head")){
+                if (((Equipment) kr2).getType().equals("Head") && ((Equipment) kr).getType().equals("Head")) {
                     return false;
                 }
-                if(((Equipment) kr2).getType().equals("Armor") && ((Equipment) kr).getType().equals("Armor")){
+                if (((Equipment) kr2).getType().equals("Armor") && ((Equipment) kr).getType().equals("Armor")) {
                     return false;
                 }
-                if(((Equipment) kr2).getType().equals("Foot") && ((Equipment) kr).getType().equals("Foot")){
+                if (((Equipment) kr2).getType().equals("Foot") && ((Equipment) kr).getType().equals("Foot")) {
                     return false;
                 }
-                if(((Equipment) kr2).getType().equals("Weapon")){
+                if (((Equipment) kr2).getType().equals("Weapon")) {
                     aantalWapens += 1;
                 }
             }
         }
 
-        if(aantalWapens == 2 && ((Equipment) kr).getType().equals("Weapon")){
+        if (aantalWapens == 2 && ((Equipment) kr).getType().equals("Weapon")) {
             return false;
         }
         return true;
     }
 
-    public void speelMonster(int kaart, boolean monster){
+    public void speelMonster(int kaart, boolean monster) {
         Kaart gespeeldeKaart = geefSpeler(gevecht.getSpelerAanBeurt()).getKaarten().get(kaart - 1);
-        if(!monster || gevecht.gethelptmee().get(gevecht.getSpelerAanBeurt())){
+        if (!monster || gevecht.gethelptmee().get(gevecht.getSpelerAanBeurt())) {
             gevecht.setSpelerBattlePoints(gevecht.getSpelerBattlePoints() + ((Monster) gespeeldeKaart).getLevel());
-        }else{
+        } else {
             gevecht.setMonsterBattlePoints(gevecht.getMonsterBattlePoints() + ((Monster) gespeeldeKaart).getLevel());
         }
     }
 
-    public void speelConsumable(int kaart){
+    public void speelConsumable(int kaart) {
         Kaart gespeeldeKaart = geefSpeler(gevecht.getSpelerAanBeurt()).getKaarten().get(kaart - 1);
-        if(gevecht.gethelptmee().get(gevecht.getSpelerAanBeurt())){
-            if(gespeeldeKaart instanceof ConsumablesSchat){
+        if (gevecht.gethelptmee().get(gevecht.getSpelerAanBeurt())) {
+            if (gespeeldeKaart instanceof ConsumablesSchat) {
                 gevecht.setSpelerBattlePoints(gevecht.getSpelerBattlePoints() + ((ConsumablesSchat) gespeeldeKaart).getBattleBonus());
             }
-            if(gespeeldeKaart instanceof ConsumablesKerker){
+            if (gespeeldeKaart instanceof ConsumablesKerker) {
                 gevecht.setSpelerBattlePoints(gevecht.getSpelerBattlePoints() + ((ConsumablesKerker) gespeeldeKaart).getBonus());
             }
-        }else{
-            if(gespeeldeKaart instanceof ConsumablesSchat){
+        } else {
+            if (gespeeldeKaart instanceof ConsumablesSchat) {
                 gevecht.setMonsterBattlePoints(gevecht.getMonsterBattlePoints() + ((ConsumablesSchat) gespeeldeKaart).getBattleBonus());
             }
-            if(gespeeldeKaart instanceof ConsumablesKerker){
+            if (gespeeldeKaart instanceof ConsumablesKerker) {
                 gevecht.setMonsterBattlePoints(gevecht.getMonsterBattlePoints() + ((ConsumablesKerker) gespeeldeKaart).getBonus());
             }
         }
     }
 
-    public void itemsBijvoegen(int kaart){
+    public void itemsBijvoegen(int kaart) {
         Kaart gespeeldeKaart = geefSpeler(gevecht.getSpelerAanBeurt()).getKaarten().get(kaart - 1);
         geefSpeler(gevecht.getSpelerAanBeurt()).getItems().add(gespeeldeKaart);
     }
 
+    public String geefKaartenVanSpeler(String naam) {
+        int i = zoekSpeler(naam);
+        return spelers.get(i).geefKaarten();
+    }
+
+    public String geefItemsVanSpeler(String naam) {
+        int i = zoekSpeler(naam);
+        return spelers.get(i).geefItems();
+    }
+
+    public int[] geefKaartenVanSpelerInt(String naam) {
+        int i = zoekSpeler(naam);
+        return spelers.get(i).geefKaartenInt();
+    }
+
+    public int[] geefItemsVanSpelerInt(String naam) {
+        int i = zoekSpeler(naam);
+        return spelers.get(i).geefItemsInt();
+    }
 }

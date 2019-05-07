@@ -19,7 +19,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -67,9 +66,24 @@ public class UseCase1G extends MainGui {
         talenLoc.add("nl");
         talenLoc.add("en");
         talenLoc.add("fr");
-        Media backgroundMusic = new Media(getClass().getResource("/ui/music/backgroundmusic.mp3").toExternalForm());
-        player = new MediaPlayer(backgroundMusic);
-        player.setVolume(0.8);
+
+//        try {
+//            Clip clip = AudioSystem.getClip();
+//            AudioInputStream inputStream = AudioSystem.getAudioInputStream(Main.class.getResourceAsStream("/ui/music/backgroundmusic.mp3"));
+//            clip.open(inputStream);
+//            clip.start();
+//        } catch (LineUnavailableException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } catch (UnsupportedAudioFileException e) {
+//            e.printStackTrace();
+//        }
+
+        //Media backgroundMusic = new Media(getClass().getResource("/ui/music/backgroundmusic.mp3").toExternalForm());
+        //AudioInputStream audioInputStream = new AudioInputStream(backgroundMusic);
+        //player = new MediaPlayer(backgroundMusic);
+        //player.setVolume(0.8);
         layoutUC1();
         //taal laten kiezen
         welcome();
@@ -127,7 +141,7 @@ public class UseCase1G extends MainGui {
         centerVBox.getChildren().clear();
         StringBuilder welkom = new StringBuilder();
         for (String loc : talenLoc) {
-            welkom.append(String.format("%s %s%n", LanguageResource.getStringLanguage("welcome", new Locale(loc)), String.format("%s%s", System.getProperty("user.name").substring(0,1).toUpperCase(), System.getProperty("user.name").substring(1))));
+            welkom.append(String.format("%s %s%n", LanguageResource.getStringLanguage("welcome", new Locale(loc)), String.format("%s%s", System.getProperty("user.name").substring(0, 1).toUpperCase(), System.getProperty("user.name").substring(1))));
         }
         Label welcomeTop = new Label("Munchkin - G35");
         welcomeTop.setId("welcomeTop");
@@ -171,7 +185,7 @@ public class UseCase1G extends MainGui {
         bottomHBox.getChildren().add(/*choiceBoxTaal*/hBox);
     }
 
-    private ImageView initFlag(String lang){
+    private ImageView initFlag(String lang) {
         Image flag = new Image(String.format("/ui/images/usecase1/%s.png", LanguageResource.getStringLanguage(lang, new Locale("nl"))));
         ImageView vlag = new ImageView(flag);
         vlag.setPreserveRatio(true);
@@ -180,7 +194,6 @@ public class UseCase1G extends MainGui {
             setLocale(new Locale("taal"));
             ((TabExtended) TabsMunchkin.getPane().getSelectionModel().getSelectedItem()).setLocale(new Locale(lang));
             buttonTaalEventHandler();
-            gaNaarSpel();
         });
         return vlag;
     }
@@ -249,8 +262,8 @@ public class UseCase1G extends MainGui {
         label.setId("string");
 
         ImageView[] imageViews = new ImageView[4];
-        for (int i = 0; i <4 ; i++) {
-            imageViews[i] = initNumbers(i+3);
+        for (int i = 0; i < 4; i++) {
+            imageViews[i] = initNumbers(i + 3);
         }
         HBox hBox = new HBox();
         hBox.getChildren().addAll(imageViews);
@@ -259,7 +272,7 @@ public class UseCase1G extends MainGui {
         bottomHBox.getChildren().add(hBox);
     }
 
-    private ImageView initNumbers(int i){
+    private ImageView initNumbers(int i) {
         ImageView nr = new ImageView(new Image(String.format("/ui/images/usecase1/nr%d.png", i)));
         nr.setPreserveRatio(true);
         nr.setFitWidth(125);
@@ -349,7 +362,6 @@ public class UseCase1G extends MainGui {
             dc.geefSpelerGeslacht(nr, geslacht);
             naamVeld.clear();
             nr++;
-            System.out.println(dc.geefAantalSpelers());
             if (nr < dc.geefAantalSpelers()) {
                 System.out.println(nr);
                 labelSpeler.setText(String.format("%s %d", LanguageResource.getStringLanguage("player", getLocale()), nr + 1));
@@ -357,7 +369,6 @@ public class UseCase1G extends MainGui {
             if (nr == dc.geefAantalSpelers()) {
                 toonSpelOverzicht();
             }
-            System.out.println(dc.geefBeknopteSpelsituatie());
         } catch (SpelerException e) {
             naamError.setVisible(true);
             naamError.setText(LanguageResource.getStringLanguage("exception.speler.name", getLocale()));

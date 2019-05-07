@@ -12,11 +12,17 @@ import language.LanguageResource;
 import main.StartUpGui;
 import ui.gui.ucs.usecase1.UseCase1G;
 
+import java.security.SecureRandom;
 import java.util.Locale;
 import java.util.Optional;
 
 public class TabsMunchkin extends TabPane {
+
     private static TabsMunchkin pane = new TabsMunchkin();
+
+    static {
+        pane.getStylesheets().add("/ui/gui/a_universal/TabsMunchkin.css");
+    }
 
     private static void setChangeListner() {
         pane.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
@@ -29,6 +35,7 @@ public class TabsMunchkin extends TabPane {
 
     //(ChangeListener<Tab>) (observable, oldValue, newValue) -> MenuBarGui.changeTextMenu(((TabExtended) pane.getSelectionModel().getSelectedItem()).getLocale())
     public static void addTab(TabExtended tab) {
+        tab.setId("tabExtended");
         pane.getTabs().add(tab);
     }
 
@@ -43,6 +50,8 @@ public class TabsMunchkin extends TabPane {
             String[] stukken = pane.getTabs().get(pane.getTabs().size() - 1).getText().split(" ");
             tab.setText(String.format("Game %d", Integer.parseInt(stukken[1]) + 1));
         }
+        SecureRandom rand = new SecureRandom();
+        tab.setStyle(String.format(" -fx-background-color: #%s;", Integer.toString(rand.nextInt(0X1000000), 16)));
         TabsMunchkin.addTab(tab);
         setChangeListner();
     }

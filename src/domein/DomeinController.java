@@ -2,7 +2,6 @@ package domein;
 
 import domein.kaarten.Kaart;
 import domein.kaarten.Schatkaart;
-import domein.kaarten.kerkerkaarten.Monster;
 import domein.kaarten.kerkerkaarten.monsterbadstuff.BadStuff;
 import domein.repositories.SpelDbRepository;
 import exceptions.SpelException;
@@ -484,4 +483,19 @@ public class DomeinController {
         spel.itemsBijvoegen(kaart);
     }
 
+    public String geefKaartenVanSpeler(String naam){
+        return spel.geefKaartenVanSpeler(naam);
+    }
+
+    public String geefItemsVanSpeler(String naam){
+        return spel.geefItemsVanSpeler(naam);
+    }
+
+    public int[] geefKaartenVanSpelerInt(String naam){
+        return spel.geefKaartenVanSpelerInt(naam);
+    }
+
+    public int[] geefItemsVanSpelerInt(String naam){
+        return spel.geefItemsVanSpelerInt(naam);
+    }
 }
