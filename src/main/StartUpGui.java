@@ -21,6 +21,8 @@ import java.util.Optional;
 
 public class StartUpGui extends Application {
 
+    private static Stage primaryStage;
+
     public static MenuBarGui menuBarGui;
 
     public static void main(String[] args) {
@@ -50,6 +52,7 @@ public class StartUpGui extends Application {
         primaryStage.show();
         primaryStage.setResizable(true);
         primaryStage.setOnCloseRequest(this::closeRequest);
+        this.primaryStage = primaryStage;
     }
 
     public void closeRequest(Event event){
@@ -65,4 +68,14 @@ public class StartUpGui extends Application {
             Platform.exit();
         }
     }
+
+    public static void changeWindow(int w, int h){
+        primaryStage.setMinWidth(w);
+        primaryStage.setMaxWidth(w);
+        primaryStage.setWidth(w);
+        primaryStage.setMinHeight(h);
+        primaryStage.setMaxHeight(h);
+        primaryStage.setHeight(h);
+    }
+
 }

@@ -24,6 +24,7 @@ import java.util.Locale;
 
 public class MenuBarGui extends MenuBar {
     private List<Menu> menus;
+    private Locale locale;
     private ToggleGroup toggleGroup;
     private List<RadioMenuItem> choiceItems;
 
@@ -183,7 +184,11 @@ public class MenuBarGui extends MenuBar {
             Stage stage = new Stage();
             Scene scene = new Scene(new UseCase8G(), 450, 300);
             stage.setScene(scene);
-            stage.setTitle(String.format("Munchkin - G35 - %s", LanguageResource.getString("save")));
+            if (locale != null) {
+                stage.setTitle(String.format("Munchkin - G35 - %s", LanguageResource.getStringLanguage("save", locale)));
+            } else {
+                stage.setTitle(String.format("Munchkin - G35 - %s", LanguageResource.getString("save")));
+            }
             stage.show();
             stage.setResizable(false);
         } catch (Exception ignored) {
@@ -215,6 +220,7 @@ public class MenuBarGui extends MenuBar {
     }
 
     public void changeTextMenu(Locale locale) {
+        this.locale = locale;
         menus.get(0).setText(LanguageResource.getStringLanguage("menu.options", locale));
         menus.get(1).setText(LanguageResource.getStringLanguage("menu.language", locale));
         menus.get(2).setText(LanguageResource.getStringLanguage("menu.help", locale));

@@ -383,6 +383,7 @@ public class UseCase1G extends MainGui {
     private void toonSpelOverzicht() {
         centerVBox.getChildren().clear();
         dc.geefStartKaarten();
+        dc.controleerVolgorde();
         gaNaarSpel();
     }
 
@@ -410,6 +411,7 @@ public class UseCase1G extends MainGui {
 
     private void gaNaarSpel() {
         ((TabExtended) TabsMunchkin.getPane().getSelectionModel().getSelectedItem()).setNewContent(new GameInterface(dc));
+        StartUpGui.changeWindow(1900, 1050);
     }
 
 }

@@ -1,7 +1,7 @@
 #tabExtended{
-    -fx-background-color: #ffd26d;
+    -fx-background-color: rgba(255, 211, 112, 0.62);
 }
 
 TabsMunchkin{
-    -fx-background-color: #ffd26d;
+    -fx-background-color: rgba(255, 211, 112, 0.62);
 }
