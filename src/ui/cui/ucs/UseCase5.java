@@ -15,6 +15,7 @@ import domein.kaarten.schatkaarten.Equipment;
 import exceptions.SpelerException;
 import language.LanguageResource;
 import printer.ColorsOutput;
+
 import java.util.List;
 
 public class UseCase5 {
@@ -40,12 +41,12 @@ public class UseCase5 {
         //System.out.println(dc.toonOverzichtKaartenInHand(spelerAanBeurt));
         System.out.println("");
         System.out.printf(ColorsOutput.decoration("bold") + ColorsOutput.kleur("purple") + "%s%n", dc.toonOverzichtKaartenInHand2(spelerAanBeurt).get(0) + ColorsOutput.reset());
-        for(int i = 1; i < dc.toonOverzichtKaartenInHand2(spelerAanBeurt).size(); i++){
+        for (int i = 1; i < dc.toonOverzichtKaartenInHand2(spelerAanBeurt).size(); i++) {
             System.out.println(dc.toonOverzichtKaartenInHand2(spelerAanBeurt).get(i));
         }
         System.out.println("");
         boolean tryAgain = true;
-        while(tryAgain) {
+        while (tryAgain) {
             try {
                 System.out.println(LanguageResource.getString("usecase5.choicecard"));
                 kaart = SCAN.nextInt();
@@ -65,19 +66,19 @@ public class UseCase5 {
 
         System.out.println(dc.geefSpeler(spelerAanBeurt).getKaarten().get(kaart - 1));
         //De speler mag de kaart spelen
-        if(dc.validatieKaartSpeler(kaart,monster) && dc.validatieKaartItems(kaart)){
-            if(dc.geefSpeler(spelerAanBeurt).getKaarten().get(kaart - 1) instanceof Curse){
+        if (dc.validatieKaartSpeler(kaart, monster) && dc.validatieKaartItems(kaart)) {
+            if (dc.geefSpeler(spelerAanBeurt).getKaarten().get(kaart - 1) instanceof Curse) {
                 curseKaart();
-            }else{
-                if(dc.geefSpeler(spelerAanBeurt).getKaarten().get(kaart - 1) instanceof Monster){
+            } else {
+                if (dc.geefSpeler(spelerAanBeurt).getKaarten().get(kaart - 1) instanceof Monster) {
                     //monsterKaart(gespeeldeKaart);
                     dc.speelMonster(kaart, monster);
                 }
-                if(dc.geefSpeler(spelerAanBeurt).getKaarten().get(kaart - 1) instanceof ConsumablesKerker || dc.geefSpeler(spelerAanBeurt).getKaarten().get(kaart - 1) instanceof ConsumablesSchat){
+                if (dc.geefSpeler(spelerAanBeurt).getKaarten().get(kaart - 1) instanceof ConsumablesKerker || dc.geefSpeler(spelerAanBeurt).getKaarten().get(kaart - 1) instanceof ConsumablesSchat) {
                     //consumablesKaart(gespeeldeKaart);
                     dc.speelConsumable(kaart);
                 }
-                if(dc.geefSpeler(spelerAanBeurt).getKaarten().get(kaart - 1) instanceof Equipment || dc.geefSpeler(spelerAanBeurt).getKaarten().get(kaart - 1) instanceof Race){
+                if (dc.geefSpeler(spelerAanBeurt).getKaarten().get(kaart - 1) instanceof Equipment || dc.geefSpeler(spelerAanBeurt).getKaarten().get(kaart - 1) instanceof Race) {
                     //itemsbijvoegen(gespeeldeKaart);
                     dc.itemsBijvoegen(kaart);
                 }
@@ -87,21 +88,21 @@ public class UseCase5 {
             //dc.geefBeknopteSpelsituatie();
 
         }//De speler mag de kaart niet spelen
-        else{
+        else {
             System.out.println("");
             System.err.println(LanguageResource.getString("usecase5.invalidcard"));
             speelKaart(spab);
         }
     }
 
-    private void curseKaart(){
+    private void curseKaart() {
         int end = overzichthelpendespelers().size();
-        for(int i = 0; i < end;i++) {
+        for (int i = 0; i < end; i++) {
             System.out.println(overzichthelpendespelers().get(i));
         }
         int speler = 0;
         boolean tryAgain = true;
-        while(tryAgain) {
+        while (tryAgain) {
             try {
                 System.out.println(LanguageResource.getString("usecase5.chooseplayer"));
                 speler = SCAN.nextInt();
@@ -121,13 +122,13 @@ public class UseCase5 {
         dc.speelCurse(speler, kaart);
     }
 
-    private List<String> overzichthelpendespelers(){
+    private List<String> overzichthelpendespelers() {
         int aantal = 1;
         List<String> output = new ArrayList<>();
         output.add(LanguageResource.getString("usecase5.summaryhelp"));
-        for(int i = 0; i < helptmee.size();i++){
-            if(helptmee.get(i)){
-                output.add(String.format("%d) %s",aantal, dc.geefNaamSpeler(i)));
+        for (int i = 0; i < helptmee.size(); i++) {
+            if (helptmee.get(i)) {
+                output.add(String.format("%d) %s", aantal, dc.geefNaamSpeler(i)));
                 aantal++;
             }
         }
