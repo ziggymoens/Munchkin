@@ -337,6 +337,7 @@ public class GameInterface extends BorderPane {
             @Override
             public void handle(ActionEvent event) {
                 new KaartAfhandeler(dc, center);
+
             }
         });
         bovensteKaart.getChildren().addAll(imageView, button);
