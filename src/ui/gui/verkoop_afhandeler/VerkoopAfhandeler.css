@@ -1,4 +1,11 @@
-.titel{
-    -fx-text-alignment: center;
-    -fx-font-style: bold;
+BorderPane, VerkoopAfhandelaar{
+    -fx-background-image: url("/ui/images/munchkin/munchkin-background.jpg");
+    -fx-background-position: top center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-radius: 20;
 }
+
+#image:hover{
+    -fx-cursor: hand;
+}
+

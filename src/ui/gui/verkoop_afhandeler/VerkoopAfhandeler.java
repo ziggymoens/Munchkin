@@ -1,11 +1,13 @@
 package ui.gui.verkoop_afhandeler;
 
 import domein.DomeinController;
-import domein.kaarten.Kaart;
+import javafx.animation.PauseTransition;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -13,10 +15,16 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.util.Duration;
 import language.LanguageResource;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
+import static language.LanguageResource.getLocale;
+import static language.LanguageResource.setLocale;
 
 public class VerkoopAfhandeler extends BorderPane {
     private DomeinController dc;
@@ -26,6 +34,7 @@ public class VerkoopAfhandeler extends BorderPane {
     private String naam;
     private List<Integer> items;
     private List<Integer> verkoop;
+    private Label Error;
 
 
     public VerkoopAfhandeler(DomeinController dc) {
@@ -40,7 +49,6 @@ public class VerkoopAfhandeler extends BorderPane {
     }
 
     private void verkoop() {
-        //this.getChildren().clear();
         BorderPane borderPane = new BorderPane();
         Stage stage = new Stage();
         stage.setTitle(LanguageResource.getString("usecase7.sellscreen"));
@@ -56,10 +64,11 @@ public class VerkoopAfhandeler extends BorderPane {
             ImageView img = new ImageView(image);
             img.setPreserveRatio(true);
             img.setFitWidth(150);
+            img.setStyle("-fx-opacity: 50%");
             verkoop = new ArrayList<>();
             img.setOnMouseClicked(event -> {
                 kaartInfoScherm(item);
-                img.setStyle("-fx-opacity: 50%");
+                img.setStyle("-fx-opacity: 100%");
                 verkoop.add(item);
             });
 
@@ -78,16 +87,26 @@ public class VerkoopAfhandeler extends BorderPane {
         buttons.getChildren().addAll(btnConfirm, btnCancel);
 
         borderPane.setBottom(buttons);
-
         btnConfirm.setOnMouseClicked(event -> {
             int totaleWaarde = 0;
-            for(Integer id : verkoop){
+            for (Integer id : verkoop) {
                 totaleWaarde += dc.getWaardeSchatkaart(id);
             }
-            if(totaleWaarde >= 0){
+
+            if (totaleWaarde >= 1000) {
+                int gedeeldeWaarde = totaleWaarde/1000;
                 dc.verkoopKaarten(naam, verkoop);
+                popUpscherm(gedeeldeWaarde);
+                stage.close();
+            } else {
+                ErrorAfhandeling();
             }
         });
+
+        btnCancel.setOnMouseClicked(event -> {
+            stage.close();
+        });
+
         buttons.setAlignment(Pos.TOP_CENTER);
         buttons.setSpacing(15);
         buttons.setPadding(new Insets(0, 0, 30, 0));
@@ -96,11 +115,21 @@ public class VerkoopAfhandeler extends BorderPane {
         kaarten.setAlignment(Pos.CENTER);
         borderPane.setTop(vraag);
         vraag.setAlignment(Pos.CENTER);
+        vraag.setPadding(new Insets(40, 40, 40, 40));
+        vraag.setStyle("-fx-font-style: 100px ");
         borderPane.setCenter(kaarten);
 
         stage.setScene(scene);
         stage.show();
 
+    }
+
+    private void ErrorAfhandeling(){
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(LanguageResource.getString("usecase7.errorWaardeTitel"));
+        alert.setHeaderText(LanguageResource.getString("usecase7.errorWaardeHeader"));
+        alert.setContentText(LanguageResource.getString("usecase7.errorWaardeContext"));
+        Optional<ButtonType> antwoord = alert.showAndWait();
     }
 
     private void kaartInfoScherm(int item) {
@@ -119,15 +148,37 @@ public class VerkoopAfhandeler extends BorderPane {
         info.getChildren().addAll(new Label("naam"), new Label("ID"), new Label("waarde"));
         info.setSpacing(30);
         info.setAlignment(Pos.CENTER);
-        center.getChildren().add(info);
+        Button ok = new Button("OK");
+        center.getChildren().addAll(info, ok);
         center.setAlignment(Pos.CENTER);
         pane.setCenter(center);
         Stage stage2 = new Stage();
         Scene scene2 = new Scene(pane, 450, 300);
         stage2.setTitle(String.format("Munchkin - G35 - Kaart - INFO", LanguageResource.getString("load")));
         stage2.setScene(scene2);
+        ok.setOnMouseClicked(event -> {
+            stage2.close();
+        });
         stage2.show();
         stage2.setResizable(true);
 
+    }
+
+    private void popUpscherm(int gedeeldeWaarde) {
+        Stage stage = new Stage();
+        BorderPane bp = new BorderPane();
+        Label text = new Label(LanguageResource.getString("usecase7.saleSucces"));
+        bp.setCenter(text);
+        Scene scene = new Scene(bp, 200, 50);
+        Button btnOk = new Button("OK");
+        btnOk.setDefaultButton(true);
+        btnOk.setAlignment(Pos.CENTER);
+        bp.setBottom(btnOk);
+        stage.setScene(scene);
+        stage.show();
+        stage.setResizable(false);
+        btnOk.setOnMouseClicked(event -> {
+            stage.close();
+        });
     }
 }
