@@ -377,7 +377,7 @@ public class GameInterface extends BorderPane {
 
     private void opslaan(ActionEvent event) {
         Stage stage = new Stage();
-        Scene scene = new Scene(new UseCase8G(), 450, 300);
+        Scene scene = new Scene(new UseCase8G(dc), 450, 300);
         stage.setScene(scene);
         stage.setTitle(String.format("Munchkin - G35 - %s", LanguageResource.getStringLanguage("save", getLocale())));
         stage.show();

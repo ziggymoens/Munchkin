@@ -39,5 +39,6 @@ public class test3 extends Application {
         Scene scene = new Scene(new GameInterface(dc));
         primaryStage.setScene(scene);
         primaryStage.show();
+
     }
 }

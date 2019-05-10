@@ -1,5 +1,6 @@
 package ui.gui.extras.menubar;
 
+import domein.DomeinController;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -23,6 +24,7 @@ import java.util.Locale;
 
 
 public class MenuBarGui extends MenuBar {
+
     private List<Menu> menus;
     private Locale locale;
     private ToggleGroup toggleGroup;
@@ -181,8 +183,9 @@ public class MenuBarGui extends MenuBar {
 
     private void buttonSaveEventHandler(ActionEvent event) {
         try {
+            DomeinController dc = ((TabExtended) TabsMunchkin.getPane().getSelectionModel().getSelectedItem()).getDc();
             Stage stage = new Stage();
-            Scene scene = new Scene(new UseCase8G(), 450, 300);
+            Scene scene = new Scene(new UseCase8G(dc), 450, 300);
             stage.setScene(scene);
             if (locale != null) {
                 stage.setTitle(String.format("Munchkin - G35 - %s", LanguageResource.getStringLanguage("save", locale)));
