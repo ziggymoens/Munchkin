@@ -265,7 +265,7 @@ class UseCase7 {
                 System.out.printf("%s: %n", print);
                 keuze = scan.nextInt();
                 if (mogelijkheden.contains(keuze) && keuze != 999) {
-                    if(dc.validatieKaartItems(keuze))
+                    //if(dc.validatieKaartItems(keuze))
                         gekozenKaarten.add(keuze);
                     teller++;
                 } else if (keuze == 999) {

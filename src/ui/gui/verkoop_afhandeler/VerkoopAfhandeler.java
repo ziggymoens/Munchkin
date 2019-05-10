@@ -1,0 +1,133 @@
+package ui.gui.verkoop_afhandeler;
+
+import domein.DomeinController;
+import domein.kaarten.Kaart;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import language.LanguageResource;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class VerkoopAfhandeler extends BorderPane {
+    private DomeinController dc;
+    private BorderPane center;
+    private int kaart;
+    private int spelerAanBeurt;
+    private String naam;
+    private List<Integer> items;
+    private List<Integer> verkoop;
+
+
+    public VerkoopAfhandeler(DomeinController dc) {
+        getStylesheets().add("ui/gui/verkoop_afhandeler/VerkoopAfhandeler.css");
+        this.dc = dc;
+        kaart = dc.geefIdBovensteKaart();
+        spelerAanBeurt = dc.geefSpelerAanBeurt();
+        naam = dc.geefNaamSpeler(spelerAanBeurt);
+        items = dc.geefIdVerkoopbareKaarten(naam);
+        verkoop = new ArrayList<>();
+        verkoop();
+    }
+
+    private void verkoop() {
+        //this.getChildren().clear();
+        BorderPane borderPane = new BorderPane();
+        Stage stage = new Stage();
+        stage.setTitle(LanguageResource.getString("usecase7.sellscreen"));
+        Scene scene = new Scene(borderPane, 500, 500);
+        Label vraag = new Label(LanguageResource.getString("usecase7.sell"));
+
+        HBox kaarten = new HBox();
+        kaarten.setId("notclicked");
+
+        for (int i = 0; i < items.size(); i++) {
+            int item = items.get(i);
+            Image image = new Image(String.format("/ui/images/kaarten/%d.png", item));
+            ImageView img = new ImageView(image);
+            img.setPreserveRatio(true);
+            img.setFitWidth(150);
+            verkoop = new ArrayList<>();
+            img.setOnMouseClicked(event -> {
+                kaartInfoScherm(item);
+                img.setStyle("-fx-opacity: 50%");
+                verkoop.add(item);
+            });
+
+            kaarten.getChildren().add(img);
+
+        }
+
+
+        HBox buttons = new HBox();
+
+        Button btnConfirm = new Button(LanguageResource.getString("usecase7.confirm"));
+        btnConfirm.setDefaultButton(true);
+        Button btnCancel = new Button(LanguageResource.getString("usecase7.cancel"));
+        btnCancel.setCancelButton(true);
+
+        buttons.getChildren().addAll(btnConfirm, btnCancel);
+
+        borderPane.setBottom(buttons);
+
+        btnConfirm.setOnMouseClicked(event -> {
+            int totaleWaarde = 0;
+            for(Integer id : verkoop){
+                totaleWaarde += dc.getWaardeSchatkaart(id);
+            }
+            if(totaleWaarde >= 0){
+                dc.verkoopKaarten(naam, verkoop);
+            }
+        });
+        buttons.setAlignment(Pos.TOP_CENTER);
+        buttons.setSpacing(15);
+        buttons.setPadding(new Insets(0, 0, 30, 0));
+        kaarten.setSpacing(10);
+        kaarten.setMinHeight(125);
+        kaarten.setAlignment(Pos.CENTER);
+        borderPane.setTop(vraag);
+        vraag.setAlignment(Pos.CENTER);
+        borderPane.setCenter(kaarten);
+
+        stage.setScene(scene);
+        stage.show();
+
+    }
+
+    private void kaartInfoScherm(int item) {
+        BorderPane pane = new BorderPane();
+        Label label = new Label(dc.geefTypeKaart(item));
+        label.setAlignment(Pos.CENTER);
+        label.setMinWidth(450);
+        pane.setTop(label);
+        pane.getTop().setStyle("-fx-text-alignment: center; -fx-min-height: 20px; -fx-font: bold 30 \"sans-serif\";");
+        HBox center = new HBox();
+        ImageView imageView1 = new ImageView(new Image(String.format("/ui/images/kaarten/%d.png", item)));
+        imageView1.setFitWidth(150);
+        imageView1.setPreserveRatio(true);
+        center.getChildren().add(imageView1);
+        VBox info = new VBox();
+        info.getChildren().addAll(new Label("naam"), new Label("ID"), new Label("waarde"));
+        info.setSpacing(30);
+        info.setAlignment(Pos.CENTER);
+        center.getChildren().add(info);
+        center.setAlignment(Pos.CENTER);
+        pane.setCenter(center);
+        Stage stage2 = new Stage();
+        Scene scene2 = new Scene(pane, 450, 300);
+        stage2.setTitle(String.format("Munchkin - G35 - Kaart - INFO", LanguageResource.getString("load")));
+        stage2.setScene(scene2);
+        stage2.show();
+        stage2.setResizable(true);
+
+    }
+}
