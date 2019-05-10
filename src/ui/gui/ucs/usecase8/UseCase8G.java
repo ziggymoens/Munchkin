@@ -1,20 +1,20 @@
 package ui.gui.ucs.usecase8;
 
 import domein.DomeinController;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import ui.gui.a_universal.maingui.MainGui;
 
 public class UseCase8G extends MainGui {
 
         private ComboBox cboTitels;
-        private Label lblSpelgegevens, lblNaam, lblBevestiging;
+        private Label lblSpelgegevens, lblNaam, lblBevestiging, lblNm;
         private TextArea txaSpelgegevens;
         private TextField txfNaam, txfBevestiging;
         private DomeinController dc;
+        private String naam;
 
         public UseCase8G(DomeinController dc) {
             getStylesheets().add("ui/gui/ucs/usecase8/UseCase8G.css");
@@ -24,11 +24,24 @@ public class UseCase8G extends MainGui {
 
         private void buildGui(){
             VBox box;
-
-            lblNaam = new Label("test");
             box = new VBox();
-            box.getChildren().addAll(lblNaam);
-            this.getPane().setCenter(box);
+            cboTitels = new ComboBox();
+            //mogelijkheden plaatsen voor spellen
+            //als standaardtekst in combobox, kies het spel dat u wilt opslaan
+            lblNaam = new Label("Geef het spel dat u wilt opslaan een naam: ");
+            txfNaam = new TextField();
+            txfNaam.setEditable(true);
+            Button bevestig = new Button("bevestig");
+            bevestig.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    naam = txfNaam.getText();
+                }
+            });
+            lblNm = new Label(naam);
+
+            box.getChildren().addAll(cboTitels,lblNaam, txfNaam,bevestig,lblNm);
+            this.getPane().setLeft(box);
         }
 
    /*     private void buildGui () {

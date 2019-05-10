@@ -498,4 +498,6 @@ public class DomeinController {
     public int[] geefItemsVanSpelerInt(String naam){
         return spel.geefItemsVanSpelerInt(naam);
     }
+
+
 }
