@@ -5,7 +5,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -27,7 +26,6 @@ import java.util.Map;
 
 public class KaartAfhandeler extends BorderPane {
     private DomeinController dc;
-    private BorderPane borderPane;
     private BorderPane center;
     private int kaart;
     private VBox centerVBox;
@@ -135,40 +133,24 @@ public class KaartAfhandeler extends BorderPane {
         textCenter.setVisible(false);
         List<String[]> spelersInVolgorde = dc.spelerOverzichtVolgorde();
         Stage stage = new Stage();
-        borderPane = new BorderPane();
+        BorderPane borderPane = new BorderPane();
         for (int i = 0; i < dc.geefAantalSpelers(); i++) {
             int speler = i;
             stage.setTitle(spelersInVolgorde.get(i)[0]);
-            List<VBox> checkBoxes = checkboxImages(dc.geefKaartenVanSpelerInt(dc.geefNaamSpeler(i)));
-            HBox centerHBox = new HBox();
-            centerHBox.getChildren().addAll(checkBoxes);
-            borderPane.setCenter(centerHBox);
             Button kaartSpelenTegenMonster = new Button("kaart tegen monster");
             Button kaartSpelenTegenSpeler = new Button("kaart tegen speler");
             Button niksDoen = new Button("weglopen");
+            final VBox[] kaarten = new VBox[1];
             kaartSpelenTegenMonster.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-                    List<Integer> gespeeldeKaarten = new ArrayList<>();
-                    for (Node vBox : centerHBox.getChildren()){
-                        int[]ids = dc.geefKaartenVanSpelerInt(dc.geefNaamSpeler(speler));
-                        for (int i = 0; i < ids.length;i++){
-                            if(((CheckBox)(((VBox)vBox).getChildren().get(0))).isSelected()){
-                                int kaart = ids[i];
-                                System.out.println(kaart);
-                                gespeeldeKaarten.add(kaart);
-                            }
-                        }
-                    }
-                    System.out.println(gespeeldeKaarten.toString());
-                    borderPane.setTop(new Label(gespeeldeKaarten.toString()));
+                    kaarten[0] = toonKaarten(speler);
                 }
-                //Node vBox : ((HBox)hBox).getChildren()
             });
             kaartSpelenTegenSpeler.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-
+                    kaarten[0] = toonKaarten(speler);
                 }
             });
             niksDoen.setOnAction(new EventHandler<ActionEvent>() {
@@ -185,6 +167,7 @@ public class KaartAfhandeler extends BorderPane {
 
                 }
             });
+            borderPane.setCenter(kaarten[0]);
             HBox buttons = new HBox();
             buttons.getChildren().addAll(kaartSpelenTegenMonster, speler==dc.geefSpelerAanBeurt()?kaartSpelenTegenSpeler:new Label() ,niksDoen);
             buttons.setSpacing(center.getMinWidth()*0.1);
@@ -255,16 +238,14 @@ public class KaartAfhandeler extends BorderPane {
         });
     }
 
-    private List<VBox> checkboxImages(int[] ids){
-        List<VBox> checkBoxes = new ArrayList<>();
-        HBox images = new HBox();
-        images.setMinWidth(borderPane.getWidth());
+    /*private void checkboxImages(int[] ids){
+        kaartenHS.getChildren().clear();
         for (int id : ids){
             VBox image = new VBox();
             CheckBox checkBox = new CheckBox();
             ImageView imageView = new ImageView(new Image(String.format("/ui/images/kaarten/%d.png", id)));
             imageView.setPreserveRatio(true);
-            imageView.setFitWidth(center.getMinHeight()*0.15);
+            imageView.setFitWidth(center.getMinHeight()*0.10);
             checkBox.setGraphic(imageView);
             checkBox.setId("chimg");
             Button info = new Button("info");
@@ -276,41 +257,14 @@ public class KaartAfhandeler extends BorderPane {
             });
             image.getChildren().addAll(checkBox, info);
             image.setSpacing(5);
-            image.setMinWidth(images.getMinWidth()*0.15);
+            image.setMinWidth(kaartenDeelHS.getMinWidth()*0.15);
             image.setAlignment(Pos.CENTER);
-            checkBoxes.add(image);
-        }
-        return checkBoxes;
-    }
+            kaartenHS.getChildren().add(image);
+            if(checkBox.isSelected()){
 
-    private void kaartSchermpje(int finalJ) {
-        BorderPane pane = new BorderPane();
-        Label label = new Label(dc.geefTypeKaart(finalJ));
-        label.setAlignment(Pos.CENTER);
-        label.setMinWidth(450);
-        pane.setTop(label);
-        pane.getTop().setStyle("-fx-text-alignment: center; -fx-min-height: 20px; -fx-font: bold 30 \"sans-serif\";");
-        HBox center = new HBox();
-        ImageView imageView1 = new ImageView(new Image(String.format("/ui/images/kaarten/%d" +
-                ".png", finalJ)));
-        imageView1.setFitWidth(150);
-        imageView1.setPreserveRatio(true);
-        center.getChildren().add(imageView1);
-        VBox info = new VBox();
-        info.getChildren().addAll(new Label("naam"), new Label("ID"), new Label("waarde"));
-        info.setSpacing(30);
-        info.setAlignment(Pos.CENTER);
-        center.getChildren().add(info);
-        center.setSpacing(30);
-        center.setAlignment(Pos.CENTER);
-        pane.setCenter(center);
-        Stage stage = new Stage();
-        Scene scene = new Scene(pane, 450, 300);
-        stage.setScene(scene);
-        stage.setTitle(String.format("Munchkin - G35 - Kaart - INFO", LanguageResource.getString("load")));
-        stage.show();
-        stage.setResizable(true);
-    }
+            }
+        }
+    }*/
 
     /*private void toonKaartenVanSpeler(BorderPane borderPane) {
         //borderPane.getChildren().clear();
