@@ -1,9 +1,9 @@
 package ui.gui.verkoop_afhandeler;
 
 import domein.DomeinController;
-import javafx.animation.PauseTransition;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -15,16 +15,11 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import javafx.util.Duration;
 import language.LanguageResource;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
-import static language.LanguageResource.getLocale;
-import static language.LanguageResource.setLocale;
 
 public class VerkoopAfhandeler extends BorderPane {
     private DomeinController dc;
@@ -38,7 +33,6 @@ public class VerkoopAfhandeler extends BorderPane {
 
 
     public VerkoopAfhandeler(DomeinController dc) {
-        getStylesheets().add("ui/gui/verkoop_afhandeler/VerkoopAfhandeler.css");
         this.dc = dc;
         kaart = dc.geefIdBovensteKaart();
         spelerAanBeurt = dc.geefSpelerAanBeurt();
@@ -56,12 +50,13 @@ public class VerkoopAfhandeler extends BorderPane {
         Label vraag = new Label(LanguageResource.getString("usecase7.sell"));
 
         HBox kaarten = new HBox();
-        kaarten.setId("notclicked");
+
 
         for (int i = 0; i < items.size(); i++) {
             int item = items.get(i);
             Image image = new Image(String.format("/ui/images/kaarten/%d.png", item));
             ImageView img = new ImageView(image);
+            img.setId("image");
             img.setPreserveRatio(true);
             img.setFitWidth(150);
             img.setStyle("-fx-opacity: 50%");
@@ -73,9 +68,7 @@ public class VerkoopAfhandeler extends BorderPane {
             });
 
             kaarten.getChildren().add(img);
-
         }
-
 
         HBox buttons = new HBox();
 
@@ -94,7 +87,7 @@ public class VerkoopAfhandeler extends BorderPane {
             }
 
             if (totaleWaarde >= 1000) {
-                int gedeeldeWaarde = totaleWaarde/1000;
+                int gedeeldeWaarde = totaleWaarde / 1000;
                 dc.verkoopKaarten(naam, verkoop);
                 popUpscherm(gedeeldeWaarde);
                 stage.close();
@@ -116,15 +109,13 @@ public class VerkoopAfhandeler extends BorderPane {
         borderPane.setTop(vraag);
         vraag.setAlignment(Pos.CENTER);
         vraag.setPadding(new Insets(40, 40, 40, 40));
-        vraag.setStyle("-fx-font-style: 100px ");
         borderPane.setCenter(kaarten);
-
         stage.setScene(scene);
         stage.show();
 
     }
 
-    private void ErrorAfhandeling(){
+    private void ErrorAfhandeling() {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle(LanguageResource.getString("usecase7.errorWaardeTitel"));
         alert.setHeaderText(LanguageResource.getString("usecase7.errorWaardeHeader"));
@@ -166,14 +157,15 @@ public class VerkoopAfhandeler extends BorderPane {
 
     private void popUpscherm(int gedeeldeWaarde) {
         Stage stage = new Stage();
-        BorderPane bp = new BorderPane();
+        VBox vb = new VBox();
         Label text = new Label(LanguageResource.getString("usecase7.saleSucces"));
-        bp.setCenter(text);
-        Scene scene = new Scene(bp, 200, 50);
+        text.setPadding(new Insets(10, 10, 10, 10));
+        Scene scene = new Scene(vb, 200, 100);
         Button btnOk = new Button("OK");
         btnOk.setDefaultButton(true);
-        btnOk.setAlignment(Pos.CENTER);
-        bp.setBottom(btnOk);
+
+        vb.getChildren().addAll(text, btnOk);
+        vb.setAlignment(Pos.CENTER);
         stage.setScene(scene);
         stage.show();
         stage.setResizable(false);
