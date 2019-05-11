@@ -4,7 +4,8 @@ import domein.DomeinController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -12,7 +13,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import language.LanguageResource;
-import ui.gui.verkoop_afhandeler.VerkoopAfhandeler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,14 +34,14 @@ public class WeggooiAfhandeler extends BorderPane {
         items = dc.geefIDKaartenInHand(naam);
         weg = new ArrayList<>();
         gooiweg();
-        getStylesheets().add("ui/gui/weggooi_afhandeler/weggooi.css");
+        getStylesheets().addAll("ui/gui/weggooi_afhandeler/weggooi.css");
     }
 
     private void gooiweg() {
         BorderPane borderPane = new BorderPane();
         Stage stage = new Stage();
         stage.setTitle(LanguageResource.getString("usecase7.throwscreen"));
-        Scene scene = new Scene(borderPane, 1000, 600);
+        Scene scene = new Scene(borderPane, 1000, 800);
         Label vraag = new Label(LanguageResource.getString("usecase7.throw"));
 
         HBox kaarten = new HBox();
@@ -72,14 +72,14 @@ public class WeggooiAfhandeler extends BorderPane {
 
         buttons.getChildren().addAll(btnThrow, btnCancel);
 
-        borderPane.setBottom(buttons);
+        setBottom(buttons);
         btnThrow.setOnMouseClicked(event -> {
             dc.gooiKaartenWeg(naam, weg);
             popUpScherm();
-            stage.close();
+            //stage.close();
         });
         btnCancel.setOnMouseClicked(event -> {
-            stage.close();
+            //close
         });
 
         buttons.setAlignment(Pos.TOP_CENTER);
@@ -88,12 +88,12 @@ public class WeggooiAfhandeler extends BorderPane {
         kaarten.setSpacing(10);
         kaarten.setMinHeight(125);
         kaarten.setAlignment(Pos.CENTER);
-        borderPane.setTop(vraag);
+        setTop(vraag);
         vraag.setAlignment(Pos.CENTER);
         vraag.setPadding(new Insets(40, 275, 40, 275));
-        borderPane.setCenter(kaarten);
-        stage.setScene(scene);
-        stage.show();
+        setCenter(kaarten);
+        //stage.setScene(scene);
+        //stage.show();
 
     }
 

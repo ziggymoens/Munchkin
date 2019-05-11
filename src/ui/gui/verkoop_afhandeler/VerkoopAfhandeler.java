@@ -4,7 +4,10 @@ import domein.DomeinController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -43,7 +46,7 @@ public class VerkoopAfhandeler extends BorderPane {
         BorderPane borderPane = new BorderPane();
         Stage stage = new Stage();
         stage.setTitle(LanguageResource.getString("usecase7.sellscreen"));
-        Scene scene = new Scene(borderPane, 500, 500);
+        Scene scene = new Scene(borderPane);
         Label vraag = new Label(LanguageResource.getString("usecase7.sell"));
 
         HBox kaarten = new HBox();
@@ -86,7 +89,6 @@ public class VerkoopAfhandeler extends BorderPane {
                 int gedeeldeWaarde = totaleWaarde / 1000;
                 dc.verkoopKaarten(naam, verkoop);
                 popUpscherm(gedeeldeWaarde);
-
             } else {
                 ErrorAfhandeling();
             }
@@ -95,6 +97,7 @@ public class VerkoopAfhandeler extends BorderPane {
         btnCancel.setOnMouseClicked(event -> {
 
         });
+
 
         buttons.setAlignment(Pos.TOP_CENTER);
         buttons.setSpacing(15);
@@ -106,6 +109,8 @@ public class VerkoopAfhandeler extends BorderPane {
         setCenter(kaarten);
         vraag.setAlignment(Pos.CENTER);
         vraag.setPadding(new Insets(40, 40, 40, 40));
+        setMinHeight(getMinHeight() * 0.5);
+        setMinWidth(getMinWidth() * 0.5);
         /*borderPane.setCenter(kaarten);
         stage.setScene(scene);
         stage.show();*/
