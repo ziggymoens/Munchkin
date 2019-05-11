@@ -9,10 +9,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -245,18 +242,19 @@ public class GameInterface extends BorderPane {
                 itemsHS.getChildren().add(imageView);
             }
         } else {
-            for (Integer i : lijst) {
-                ImageView imageView = new ImageView(new Image(String.format("/ui/images/kaarten/%d.png", i)));
-                imageView.setFitWidth(50);
-                imageView.setPreserveRatio(true);
-                imageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        kaartSchermpje(i);
-                    }
-                });
-                kaartenHS.getChildren().add(imageView);
-            }
+//            for (Integer i : lijst) {
+//                ImageView imageView = new ImageView(new Image(String.format("/ui/images/kaarten/%d.png", i)));
+//                imageView.setFitWidth(50);
+//                imageView.setPreserveRatio(true);
+//                imageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+//                    @Override
+//                    public void handle(MouseEvent event) {
+//                        kaartSchermpje(i);
+//                    }
+//                });
+//                kaartenHS.getChildren().add(imageView);
+//            }
+            checkboxImages(lijst);
         }
 
     }
@@ -388,7 +386,7 @@ public class GameInterface extends BorderPane {
         return new Locale("nl");//((TabExtended) TabsMunchkin.getPane().getSelectionModel().getSelectedItem()).getLocale();
     }
 
-    private void kaartSchermpje(int finalJ){
+    private void kaartSchermpje(int finalJ) {
         BorderPane pane = new BorderPane();
         Label label = new Label(dc.geefTypeKaart(finalJ));
         label.setAlignment(Pos.CENTER);
@@ -415,5 +413,30 @@ public class GameInterface extends BorderPane {
         stage.setTitle(String.format("Munchkin - G35 - Kaart - INFO", LanguageResource.getString("load")));
         stage.show();
         stage.setResizable(true);
+    }
+
+    private void checkboxImages(int[] ids){
+        kaartenHS.getChildren().clear();
+        for (int id : ids){
+            VBox image = new VBox();
+            CheckBox checkBox = new CheckBox();
+            ImageView imageView = new ImageView(new Image(String.format("/ui/images/kaarten/%d.png", id)));
+            imageView.setPreserveRatio(true);
+            imageView.setFitWidth(center.getMinHeight()*0.10);
+            checkBox.setGraphic(imageView);
+            checkBox.setId("chimg");
+            Button info = new Button("info");
+            info.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    kaartSchermpje(id);
+                }
+            });
+            image.getChildren().addAll(checkBox, info);
+            image.setSpacing(5);
+            image.setMinWidth(kaartenDeelHS.getMinWidth()*0.15);
+            image.setAlignment(Pos.CENTER);
+            kaartenHS.getChildren().add(image);
+        }
     }
 }

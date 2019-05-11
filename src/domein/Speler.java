@@ -529,4 +529,13 @@ public class Speler {
         }
         return k;
     }
+
+    public String getRace() {
+        for(Kaart kaart: items){
+            if(kaart instanceof Race){
+                return ((Race)kaart).getType();
+            }
+        }
+        return "Human";
+    }
 }

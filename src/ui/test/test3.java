@@ -21,7 +21,7 @@ public class test3 extends Application {
         LanguageResource.setLocale(new Locale("nl"));
         DomeinController dc = new DomeinController();
         dc.laadSpelRepo();
-        dc.startSpel(6);
+        dc.startSpel(5);
         for (int i = 0; i < 6; i++) {
             dc.maakSpeler();
             char c = (char) (i+65);

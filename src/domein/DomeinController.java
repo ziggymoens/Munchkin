@@ -499,5 +499,9 @@ public class DomeinController {
         return spel.geefItemsVanSpelerInt(naam);
     }
 
+    public List<String[]> spelerOverzichtVolgorde(){
+        return spel.geefspelerOverzichtVolgorde();
+    }
+
 
 }

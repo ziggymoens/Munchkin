@@ -923,4 +923,29 @@ public class Spel {
         int i = zoekSpeler(naam);
         return spelers.get(i).geefItemsInt();
     }
+
+    public List<String[]> geefspelerOverzichtVolgorde() {
+        List<String[]> retSpelers = new ArrayList<>();
+        int teller = 0;
+        for (int i = spelerAanBeurt; i < aantalSpelers; i++) {
+            if (teller < aantalSpelers) {
+                Speler speler = spelers.get(i);
+                String[] items = new String[6];
+                for(int j = 0; j<speler.geefItemsInt().length; j++){
+                    items[j] = String.valueOf(speler.geefItemsInt()[j]);
+                }
+                String[] kaarten = new String[5];
+                for(int j = 0; j<speler.geefItemsInt().length; j++){
+                    kaarten[j] = String.valueOf(speler.geefKaartenInt()[j]);
+                }
+                String[] info = {speler.getNaam(), String.valueOf(speler.getLevel()), speler.getGeslacht(), speler.getRace(), String.valueOf(kaarten), String.valueOf(items)};
+                if (i == aantalSpelers - 1) {
+                    i = 0;
+                }
+                retSpelers.add(info);
+                teller++;
+            }
+        }
+        return retSpelers;
+    }
 }

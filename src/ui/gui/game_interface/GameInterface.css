@@ -49,3 +49,11 @@ BorderPane{
 #itemsLabel{
     -fx-font-weight: bold;
 }
+
+#chimg{
+    -fx-opacity: 50%;
+}
+
+#chimg:selected{
+    -fx-opacity: 100%;
+}
