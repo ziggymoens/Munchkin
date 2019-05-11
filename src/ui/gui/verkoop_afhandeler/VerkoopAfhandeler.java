@@ -3,7 +3,6 @@ package ui.gui.verkoop_afhandeler;
 import domein.DomeinController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -72,9 +71,9 @@ public class VerkoopAfhandeler extends BorderPane {
 
         HBox buttons = new HBox();
 
-        Button btnConfirm = new Button(LanguageResource.getString("usecase7.confirm"));
+        Button btnConfirm = new Button(LanguageResource.getString("usecase7.confirmSale"));
         btnConfirm.setDefaultButton(true);
-        Button btnCancel = new Button(LanguageResource.getString("usecase7.cancel"));
+        Button btnCancel = new Button(LanguageResource.getString("usecase7.cancelSale"));
         btnCancel.setCancelButton(true);
 
         buttons.getChildren().addAll(btnConfirm, btnCancel);
@@ -123,7 +122,7 @@ public class VerkoopAfhandeler extends BorderPane {
         Optional<ButtonType> antwoord = alert.showAndWait();
     }
 
-    private void kaartInfoScherm(int item) {
+    public void kaartInfoScherm(int item) {
         BorderPane pane = new BorderPane();
         Label label = new Label(dc.geefTypeKaart(item));
         label.setAlignment(Pos.CENTER);

@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import language.LanguageResource;
 import ui.gui.game_interface.GameInterface;
 import ui.gui.verkoop_afhandeler.VerkoopAfhandeler;
+import ui.gui.weggooi_afhandeler.WeggooiAfhandeler;
 
 import java.util.Locale;
 
@@ -36,7 +37,7 @@ public class Test4 extends Application {
         }
         dc.spel.updateVolgorde();
         dc.zetSpelerAanBeurt(0);
-        Scene scene = new Scene(new VerkoopAfhandeler(dc));
+        Scene scene = new Scene(new WeggooiAfhandeler(dc));
         primaryStage.setScene(scene);
         primaryStage.show();
     }
