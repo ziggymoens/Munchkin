@@ -7,6 +7,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -14,6 +15,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import language.LanguageResource;
 
@@ -36,7 +38,9 @@ public class KaartAfhandeler extends BorderPane {
     private int spelerAanBeurt;
     private List<Integer> gespeeldeKaarten = new ArrayList<>();
 
+
     public KaartAfhandeler(DomeinController dc, BorderPane center) {
+
         this.dc = dc;
         this.center = center;
         this.kaart = dc.geefIdBovensteKaart();
@@ -122,12 +126,7 @@ public class KaartAfhandeler extends BorderPane {
 
     }
 
-    private void toonKaartenVanSpeler(BorderPane borderPane) {
-        //borderPane.getChildren().clear();
-        dc.geefIDKaartenInHand(dc.geefNaamSpeler(spelerAanBeurt));
-        //ImageView ivKaart = new ImageView(new )
 
-    }
 
     private void kaartSpeelScherm() {
         keuzesCenter.getChildren().clear();
@@ -157,7 +156,15 @@ public class KaartAfhandeler extends BorderPane {
             niksDoen.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-                    kaarten[0] = toonKaarten(speler);
+                    Label ontsnappen =  new Label(vluchten(borderPane));
+
+                    if(ontsnappen.getText().equals(LanguageResource.getString("usecase6.escape1"))){
+                        popUpscherm("usecase6.escape1");
+                        stage.close();
+                    }else{
+                        popUpscherm("usecase6.escape2");
+                    }
+
                 }
             });
             borderPane.setCenter(kaarten[0]);
@@ -195,6 +202,77 @@ public class KaartAfhandeler extends BorderPane {
         kaartenView.setSpacing(center.getMinWidth() * 0.1);
         return kaartenView;
     }
+
+    private String vluchten(BorderPane borderPane){
+        int worp = dc.gooiDobbelsteen();
+        int runAway = Integer.parseInt(dc.geefMonsterAttribuut(kaart,"RunAway").toString());
+        Map<Integer, ImageView> dobbelsteen = new HashMap<>();
+        for(int i = 1; i <= 6;i++){
+            dobbelsteen.put(i,new ImageView(new Image(String.format("/ui/images/dobbelsteen/%d.png", i))));
+        }
+        borderPane.setCenter(dobbelsteen.get(worp));
+        if(worp > 4 - runAway){
+            return LanguageResource.getString("usecase6.escape1");
+        }else{
+            return LanguageResource.getString("usecase6.escape2");
+        }
+    }
+
+    private void popUpscherm(String ontsnappen) {
+        Stage stage = new Stage();
+        VBox vb = new VBox();
+        Label text = new Label(LanguageResource.getString(ontsnappen));
+        text.setTextFill(Color.web("#08ff00"));
+        text.setPadding(new Insets(10, 10, 10, 10));
+        Scene scene = new Scene(vb, center.getMinWidth()*0.45, center.getMinWidth()*0.25);
+        Button btnOk = new Button("OK");
+        btnOk.setDefaultButton(true);
+
+        vb.getChildren().addAll(text, btnOk);
+        vb.setAlignment(Pos.CENTER);
+        stage.setScene(scene);
+        stage.show();
+        stage.setResizable(false);
+        btnOk.setOnMouseClicked(event -> {
+            stage.close();
+        });
+    }
+
+    /*private void checkboxImages(int[] ids){
+        kaartenHS.getChildren().clear();
+        for (int id : ids){
+            VBox image = new VBox();
+            CheckBox checkBox = new CheckBox();
+            ImageView imageView = new ImageView(new Image(String.format("/ui/images/kaarten/%d.png", id)));
+            imageView.setPreserveRatio(true);
+            imageView.setFitWidth(center.getMinHeight()*0.10);
+            checkBox.setGraphic(imageView);
+            checkBox.setId("chimg");
+            Button info = new Button("info");
+            info.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    kaartSchermpje(id);
+                }
+            });
+            image.getChildren().addAll(checkBox, info);
+            image.setSpacing(5);
+            image.setMinWidth(kaartenDeelHS.getMinWidth()*0.15);
+            image.setAlignment(Pos.CENTER);
+            kaartenHS.getChildren().add(image);
+
+            if(checkBox.isSelected()){
+
+            }
+        }
+    }*/
+
+    /*private void toonKaartenVanSpeler(BorderPane borderPane) {
+        //borderPane.getChildren().clear();
+        dc.geefIDKaartenInHand(dc.geefNaamSpeler(spelerAanBeurt));
+        //ImageView ivKaart = new ImageView(new )
+
+    }*/
 }
 
 
