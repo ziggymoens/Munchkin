@@ -1,15 +1,19 @@
-package ui.gui.verkoop_afhandeler;
+package ui.gui.kaart_afhandeler;
 
 import domein.DomeinController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import language.LanguageResource;
 
@@ -17,84 +21,72 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class VerkoopAfhandeler extends BorderPane {
+public class NaarItemsAfhandeler extends BorderPane {
     private DomeinController dc;
-    private BorderPane center;
     private int kaart;
     private int spelerAanBeurt;
     private String naam;
+    private List<Integer> mogelijkheden;
     private List<Integer> items;
-    private List<Integer> verkoop;
-    private Label Error;
 
-
-    public VerkoopAfhandeler(DomeinController dc) {
+    public NaarItemsAfhandeler(DomeinController dc) {
         this.dc = dc;
         kaart = dc.geefIdBovensteKaart();
         spelerAanBeurt = dc.geefSpelerAanBeurt();
         naam = dc.geefNaamSpeler(spelerAanBeurt);
-        items = dc.geefIdVerkoopbareKaarten(naam);
-        verkoop = new ArrayList<>();
-        verkoop();
+        mogelijkheden = dc.geefIdsKunnenNaarItems(naam);
+        items = new ArrayList<>();
+        naarItems();
+
     }
 
-    private void verkoop() {
+    private void naarItems(){
         BorderPane borderPane = new BorderPane();
         Stage stage = new Stage();
-        stage.setTitle(LanguageResource.getString("usecase7.sellscreen"));
-        Scene scene = new Scene(borderPane, 500, 500);
-        Label vraag = new Label(LanguageResource.getString("usecase7.sell"));
+        stage.setTitle(LanguageResource.getString("usecase7.itemsscreen"));
+        Scene scene = new Scene(borderPane, 1000, 500);
+        Label vraag = new Label(LanguageResource.getString("usecase7.items"));
 
         HBox kaarten = new HBox();
 
-
-        for (int i = 0; i < items.size(); i++) {
-            int item = items.get(i);
-            Image image = new Image(String.format("/ui/images/kaarten/%d.png", item));
+        for(int i = 0; i < dc.geefIdKaartenNaarItems(naam).size(); i++){
+            int mogelijk = dc.geefIdKaartenNaarItems(naam).get(i);
+            Image image = new Image(String.format("/ui/images/kaarten/%d.png", mogelijk));
             ImageView img = new ImageView(image);
             img.setId("image");
             img.setPreserveRatio(true);
             img.setFitWidth(150);
             img.setStyle("-fx-opacity: 50%");
-            verkoop = new ArrayList<>();
             img.setOnMouseClicked(event -> {
-                kaartInfoScherm(item);
+                kaartInfoScherm(mogelijk);
                 img.setStyle("-fx-opacity: 100%");
-                verkoop.add(item);
+                items.add(mogelijk);
             });
-            kaarten.getChildren().add(img);
+            kaarten.getChildren().addAll(img);
         }
 
         HBox buttons = new HBox();
 
-        Button btnConfirm = new Button(LanguageResource.getString("usecase7.confirmSale"));
+        Button btnConfirm = new Button(LanguageResource.getString("usecase7.confirmItems"));
         btnConfirm.setDefaultButton(true);
-        Button btnCancel = new Button(LanguageResource.getString("usecase7.cancelSale"));
+        Button btnCancel = new Button(LanguageResource.getString("usecase7.cancelItems"));
         btnCancel.setCancelButton(true);
 
         buttons.getChildren().addAll(btnConfirm, btnCancel);
 
         borderPane.setBottom(buttons);
         btnConfirm.setOnMouseClicked(event -> {
-            int totaleWaarde = 0;
-            for (Integer id : verkoop) {
-                totaleWaarde += dc.getWaardeSchatkaart(id);
-            }
-
-            if (totaleWaarde >= 1000) {
-                int gedeeldeWaarde = totaleWaarde / 1000;
-                dc.verkoopKaarten(naam, verkoop);
-                popUpscherm(gedeeldeWaarde);
-                stage.close();
-            } else {
+            if(!items.isEmpty()){
+                dc.verplaatsNaarItems(naam, items);
+                popUpscherm();
+                stage.close();}
+            else{
                 ErrorAfhandeling();
             }
         });
-
         btnCancel.setOnMouseClicked(event -> {
             stage.close();
         });
-
         buttons.setAlignment(Pos.TOP_CENTER);
         buttons.setSpacing(15);
         buttons.setPadding(new Insets(0, 0, 30, 0));
@@ -107,15 +99,6 @@ public class VerkoopAfhandeler extends BorderPane {
         borderPane.setCenter(kaarten);
         stage.setScene(scene);
         stage.show();
-
-    }
-
-    private void ErrorAfhandeling() {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle(LanguageResource.getString("usecase7.errorWaardeTitel"));
-        alert.setHeaderText(LanguageResource.getString("usecase7.errorWaardeHeader"));
-        alert.setContentText(LanguageResource.getString("usecase7.errorWaardeContext"));
-        Optional<ButtonType> antwoord = alert.showAndWait();
     }
 
     public void kaartInfoScherm(int item) {
@@ -147,15 +130,15 @@ public class VerkoopAfhandeler extends BorderPane {
         });
         stage2.show();
         stage2.setResizable(true);
-
     }
 
-    private void popUpscherm(int gedeeldeWaarde) {
+    private void popUpscherm() {
         Stage stage = new Stage();
         VBox vb = new VBox();
-        Label text = new Label(LanguageResource.getString("usecase7.saleSucces"));
+        Label text = new Label(LanguageResource.getString("usecase7.itemsSucces"));
+        text.setTextFill(Color.web("#08ff00"));
         text.setPadding(new Insets(10, 10, 10, 10));
-        Scene scene = new Scene(vb, 200, 100);
+        Scene scene = new Scene(vb, 225, 150);
         Button btnOk = new Button("OK");
         btnOk.setDefaultButton(true);
 
@@ -168,4 +151,13 @@ public class VerkoopAfhandeler extends BorderPane {
             stage.close();
         });
     }
+
+    private void ErrorAfhandeling() {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(LanguageResource.getString("usecase7.errorItemsTitel"));
+        alert.setHeaderText(LanguageResource.getString("usecase7.errorItemsHeader"));
+        alert.setContentText(LanguageResource.getString("usecase7.errorItemsContext"));
+        Optional<ButtonType> antwoord = alert.showAndWait();
+    }
+
 }
