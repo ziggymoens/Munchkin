@@ -36,6 +36,7 @@ public class VerkoopAfhandeler extends BorderPane {
         items = dc.geefIdVerkoopbareKaarten(naam);
         verkoop = new ArrayList<>();
         verkoop();
+        getStylesheets().addAll("ui/gui/verkoop_afhandeler/VerkoopCSS.css");
     }
 
     private void verkoop() {
@@ -74,7 +75,7 @@ public class VerkoopAfhandeler extends BorderPane {
 
         buttons.getChildren().addAll(btnConfirm, btnCancel);
 
-        borderPane.setBottom(buttons);
+        setBottom(buttons);
         btnConfirm.setOnMouseClicked(event -> {
             int totaleWaarde = 0;
             for (Integer id : verkoop) {
@@ -85,14 +86,14 @@ public class VerkoopAfhandeler extends BorderPane {
                 int gedeeldeWaarde = totaleWaarde / 1000;
                 dc.verkoopKaarten(naam, verkoop);
                 popUpscherm(gedeeldeWaarde);
-                stage.close();
+
             } else {
                 ErrorAfhandeling();
             }
         });
 
         btnCancel.setOnMouseClicked(event -> {
-            stage.close();
+
         });
 
         buttons.setAlignment(Pos.TOP_CENTER);
@@ -101,13 +102,13 @@ public class VerkoopAfhandeler extends BorderPane {
         kaarten.setSpacing(10);
         kaarten.setMinHeight(125);
         kaarten.setAlignment(Pos.CENTER);
-        borderPane.setTop(vraag);
+        setTop(vraag);
+        setCenter(kaarten);
         vraag.setAlignment(Pos.CENTER);
         vraag.setPadding(new Insets(40, 40, 40, 40));
-        borderPane.setCenter(kaarten);
+        /*borderPane.setCenter(kaarten);
         stage.setScene(scene);
-        stage.show();
-
+        stage.show();*/
     }
 
     private void ErrorAfhandeling() {

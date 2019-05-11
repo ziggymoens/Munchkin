@@ -354,7 +354,7 @@ public class UseCase1G extends MainGui {
             else {
                 geslacht = LanguageResource.getString("woman");
             }
-            if (!naam.equals("")) {
+            if (naam.length() >= 6 && naam.length() <= 12 && naam.matches("^[A-Za-z_-]+$")) {
                 dc.maakSpeler();
                 dc.geefSpelerNaam(nr, naam);
             } else
@@ -363,7 +363,6 @@ public class UseCase1G extends MainGui {
             naamVeld.clear();
             nr++;
             if (nr < dc.geefAantalSpelers()) {
-                System.out.println(nr);
                 labelSpeler.setText(String.format("%s %d", LanguageResource.getStringLanguage("player", getLocale()), nr + 1));
             }
             if (nr == dc.geefAantalSpelers()) {
