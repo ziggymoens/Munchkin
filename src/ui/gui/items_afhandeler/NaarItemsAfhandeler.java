@@ -1,4 +1,4 @@
-package ui.gui.kaart_afhandeler;
+package ui.gui.items_afhandeler;
 
 import domein.DomeinController;
 import javafx.geometry.Insets;
