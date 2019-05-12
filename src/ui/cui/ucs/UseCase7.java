@@ -17,6 +17,7 @@ class UseCase7 {
     private int totaleWaarde;
 
     /**
+     * Constructor voor use case 7
      * @param dc
      */
     UseCase7(DomeinController dc) {
@@ -31,7 +32,9 @@ class UseCase7 {
     }
 
     /**
-     *
+     * methode die kaarten beheert en gekozen kaarten cleart.
+     * vraagt de keuze via de methode maakKeuze en steekt deze keuze in een map.
+     * spelsituatie wordt getoond.
      */
     void beheerKaarten() {
         try {
@@ -46,7 +49,7 @@ class UseCase7 {
     }
 
     /**
-     *
+     * Methode die de mogelijkheden van de keuzes die in de map zitten overloopt
      */
     private void overzichtOpties() {
         try {
@@ -60,9 +63,8 @@ class UseCase7 {
     }
 
     /**
-     * @return
-     *
-     * WHILE EVENTUEEL EN RECURSIE WEGHALEN
+     * Methode die de speler zijn keuze laat maken, gooit exceptie wanneer keuze niet juist is
+     * @return keuze van de speler
      */
     private int maakKeuze() {
         int keuze = 0;
@@ -82,14 +84,14 @@ class UseCase7 {
     }
 
     /**
-     *
+     *  Methode waar letterlijk niks in gedaan wordt
      */
     private void niksDoen() {
 
     }
 
     /**
-     *
+     * Methode die het overzicht van verkopen & weggooien toon aanroept + methode kiesKaarten aanroept.
      */
     private void verkopenEnWeggooien() {
         try {
@@ -102,7 +104,7 @@ class UseCase7 {
     }
 
     /**
-     *
+     * Methode die overzichtItems aanroept + kiesKaarten aanroept.
      */
     private void naarItems() {
         try {
@@ -114,7 +116,8 @@ class UseCase7 {
     }
 
     /**
-     *
+     * Methode die een overzicht print van de mogelijk verkoopbare kaarten en de weg te gooien kaarten.
+     * Methode vraagt input van speler omtrent keuze verkopen/weggooien en kijkt of deze overeenkomt met verkopen of weggooien in de juiste taal.
      */
     private void overzichtVerkopenWeggooien() {
         try {
@@ -140,7 +143,8 @@ class UseCase7 {
     }
 
     /**
-     *
+     * Methode die kaarten inleest adhv kiesKaarten en vervolgens de waarden van deze kaarten controleert om deze vervolgens te verkopen indien waarde >= 1000 bedraagt.
+     * Methode doet dit adhv domeinControllermethode dc.verkoopkaarten(naam, gekozenKaarten).
      */
     private void verkopen() {
         try {
@@ -159,7 +163,7 @@ class UseCase7 {
     }
 
     /**
-     *
+     * Methode die kaarten inleest adhv kiesKaarten en vervolgens de kaarten weggooit adhv domeinControllermethode dc.gooiKaartenWeg(naam, gekozenKaarten).
      */
     private void weggooien() {
         try {
@@ -173,7 +177,7 @@ class UseCase7 {
     }
 
     /**
-     *
+     * Methode die overzicht van de kaarten die naar items kunnen, print.
      */
     private void overzichtItems() {
         try {
@@ -185,6 +189,7 @@ class UseCase7 {
     }
 
     /**
+     * Methode die adhv type de juiste value kiest van de map.
      * @param type
      */
     private void kiesKaarten(String type) {
@@ -197,7 +202,8 @@ class UseCase7 {
     }
 
     /**
-     *
+     * Methode die de mogelijke verkoop kaarten in een lijst steeks en dan vervolgens controle doet adhv doeControle.
+     * Indien oke -> dc.verkoopKaarten
      */
     private void kiesVerkoop() {
         try {
@@ -210,7 +216,7 @@ class UseCase7 {
     }
 
     /**
-     *
+     * Methode die de mogelijke kaarten die weggegooien kunnen worden in een lijst steekt, de controle doet en vervolgens dc.gooiKaartenWeg doet.
      */
     private void kiesWeggooien() {
         try {
@@ -223,7 +229,7 @@ class UseCase7 {
     }
 
     /**
-     *
+     * Methode di de mogelijke kaarten die naar items kunnen in een lijst steekt, de controle doet en vervolgens dc.verplaatsNaarItems doet.
      */
     private void kiesNaarItems() {
         try {
@@ -236,7 +242,7 @@ class UseCase7 {
     }
 
     /**
-     *
+     * Methode die gebruikt wordt om waarde te controleren van de kaarten die verkocht worden. Deze waarde wordt opgeteld en vervolgens gebruikt in de methode verkopen().
      */
     private void controleerWaarden() {
         try {
@@ -256,6 +262,12 @@ class UseCase7 {
     /**
      * @param print
      * @param mogelijkheden
+     *
+     * Methode die de print doet van de meegegeven parameter print en kijkt of de keuze van het id in de lijst van mogelijkheden zit.
+     * Indien ja -> gekozeenKaarten.add(keuze)
+     * Indien nee en keuze zit niet in mogelijkheden -> opnieuw vragen
+     * Indien keuze 999 vragen om te stoppen.
+     * Dit herhalen zolang de keuze ook niet 999 is.
      */
     private void doeControle(String print, List<Integer> mogelijkheden) {
         int teller = 0;
