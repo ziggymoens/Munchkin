@@ -12,7 +12,6 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -39,6 +38,7 @@ public class KaartAfhandeler extends BorderPane {
     private Label textCenter;
     private int spelerAanBeurt;
     private List<Integer> gespeeldeKaarten = new ArrayList<>();
+    private int vraagSpeler;
 
 
     public KaartAfhandeler(DomeinController dc, BorderPane center) {
@@ -92,14 +92,16 @@ public class KaartAfhandeler extends BorderPane {
         btnJa.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                help = true;
+                help = true;vraagSpeler  = 0;
                 kaartSpeelScherm();
+
             }
         });
         btnNee.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 help = false;
+                vraagSpeler = 0;
                 kaartSpeelScherm();
             }
         });
@@ -134,81 +136,93 @@ public class KaartAfhandeler extends BorderPane {
         keuzesCenter.getChildren().clear();
         textCenter.setVisible(false);
         List<String[]> spelersInVolgorde = dc.spelerOverzichtVolgorde();
+        toonSpelerHulpScherm(vraagSpeler, spelersInVolgorde);
+    }
+
+    private void toonSpelerHulpScherm(int speler, List<String[]> spelersInVolgorde){
         Stage stage = new Stage();
         borderPane = new BorderPane();
-        for (int i = 0; i < dc.geefAantalSpelers(); i++) {
-            //int aantal = dc.geefSpelerAanBeurt();
-            int speler = i;
-            System.out.println(speler);
-            stage.setTitle(spelersInVolgorde.get(i)[0]);
-            List<VBox> checkBoxes = checkboxImages(dc.geefKaartenVanSpelerInt(dc.geefNaamSpeler(i)));
-            HBox centerHBox = new HBox();
-            centerHBox.getChildren().addAll(checkBoxes);
-            borderPane.setCenter(centerHBox);
-            Button kaartSpelenTegenMonster = new Button("kaart tegen monster");
-            Button kaartSpelenTegenSpeler = new Button("kaart tegen speler");
-            Button niksDoen = new Button("weglopen");
-            kaartSpelenTegenMonster.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    if (help || dc.geefSpelerAanBeurt() == speler) {
-                        List<Integer> gespeeldeKaarten = new ArrayList<>();
-                        for (Node vBox : centerHBox.getChildren()) {
-                            int[] ids = dc.geefKaartenVanSpelerInt(dc.geefNaamSpeler(speler));
-                            for (int i = 0; i < ids.length; i++) {
-                                if (((CheckBox) (((VBox) vBox).getChildren().get(0))).isSelected()) {
-                                    int kaart = ids[i];
-                                    System.out.println(kaart);
-                                    gespeeldeKaarten.add(kaart);
-                                }
+        int aantal = dc.geefSpelerAanBeurt();
+        int i = speler;
+        System.out.println(speler);
+        stage.setTitle(spelersInVolgorde.get(i)[0]);
+        List<VBox> checkBoxes = checkboxImages(dc.geefKaartenVanSpelerInt(dc.geefNaamSpeler(i)));
+        HBox centerHBox = new HBox();
+        centerHBox.getChildren().addAll(checkBoxes);
+        borderPane.setCenter(centerHBox);
+        Button kaartSpelenTegenMonster = new Button("kaart tegen monster");
+        Button kaartSpelenTegenSpeler = new Button("kaart tegen speler");
+        Button niksDoen = new Button("weglopen");
+        kaartSpelenTegenMonster.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                if (help || dc.geefSpelerAanBeurt() == speler) {
+                    List<Integer> gespeeldeKaarten = new ArrayList<>();
+                    for (Node vBox : centerHBox.getChildren()) {
+                        int[] ids = dc.geefKaartenVanSpelerInt(dc.geefNaamSpeler(speler));
+                        for (int i = 0; i < ids.length; i++) {
+                            if (((CheckBox) (((VBox) vBox).getChildren().get(0))).isSelected()) {
+                                int kaart = ids[i];
+                                System.out.println(kaart);
+                                gespeeldeKaarten.add(kaart);
                             }
                         }
-                        for (int i = 0; i < gespeeldeKaarten.size(); i++) {
-                            if (!dc.validatieKaartSpeler(gespeeldeKaarten.get(i))) {
-                                //Label fouteKaart = new Label("usecase5.invalidcard");
-                                popUpscherm("usecase5.invalidcard", "#ff0000");
-                            } else {
+                    }
+                    for (int i = 0; i < gespeeldeKaarten.size(); i++) {
+                        if (!dc.validatieKaartSpeler(gespeeldeKaarten.get(i))) {
+                            //Label fouteKaart = new Label("usecase5.invalidcard");
+                            popUpscherm("usecase5.invalidcard", "#ff0000");
+                        } else {
 
-                            }
                         }
-                        System.out.println(gespeeldeKaarten.toString());
-                        borderPane.setTop(new Label(gespeeldeKaarten.toString()));
-                    }else{
-                        System.out.println(dc.geefSpelerAanBeurt());
-                        System.out.println(speler);
-                        //Label helpenNietMogelijk = new Label("usecase4.");
-                        popUpscherm("exception.help", "#ff0000");
                     }
+                    System.out.println(gespeeldeKaarten.toString());
+                    borderPane.setTop(new Label(gespeeldeKaarten.toString()));
+                    vraagSpeler++;
+                    toonSpelerHulpScherm(vraagSpeler, spelersInVolgorde);
+                }else{
+                    System.out.println(dc.geefSpelerAanBeurt());
+                    System.out.println(speler);
+                    //Label helpenNietMogelijk = new Label("usecase4.");
+                    popUpscherm("exception.help", "#ff0000");
                 }
-                //Node vBox : ((HBox)hBox).getChildren()
-            });
-            kaartSpelenTegenSpeler.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
+                stage.close();
+            }
+            //Node vBox : ((HBox)hBox).getChildren()
+        });
+        kaartSpelenTegenSpeler.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
 
+                stage.close();
+                vraagSpeler++;
+                toonSpelerHulpScherm(vraagSpeler, spelersInVolgorde);
+            }
+        });
+        niksDoen.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Label ontsnappen =  new Label(vluchten(borderPane));
+
+                if(ontsnappen.getText().equals(LanguageResource.getString("usecase6.escape1"))){
+                    popUpscherm("usecase6.escape1", "#08ff00");
+                    stage.close();
+                    vraagSpeler++;
+                    toonSpelerHulpScherm(vraagSpeler, spelersInVolgorde);
+                }else{
+                    popUpscherm("usecase6.escape2", "#08ff00");
+                    vraagSpeler++;
+                    toonSpelerHulpScherm(vraagSpeler, spelersInVolgorde);
                 }
-            });
-            niksDoen.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    Label ontsnappen =  new Label(vluchten(borderPane));
 
-                    if(ontsnappen.getText().equals(LanguageResource.getString("usecase6.escape1"))){
-                        popUpscherm("usecase6.escape1", "#08ff00");
-                        stage.close();
-                    }else{
-                        popUpscherm("usecase6.escape2", "#08ff00");
-                    }
-
-                }
-            });
-            HBox buttons = new HBox();
-            buttons.getChildren().addAll(kaartSpelenTegenMonster, speler==dc.geefSpelerAanBeurt()?kaartSpelenTegenSpeler:new Label() ,niksDoen);
-            buttons.setSpacing(center.getMinWidth()*0.1);
-            buttons.setAlignment(Pos.CENTER);
-            HBox.setMargin(buttons, new Insets(center.getMinWidth()*0.1,center.getMinWidth()*0.1,center.getMinWidth()*0.1,center.getMinWidth()*0.1));
-            borderPane.setBottom(buttons);
-        }
+            }
+        });
+        HBox buttons = new HBox();
+        buttons.getChildren().addAll(kaartSpelenTegenMonster, speler!=0?kaartSpelenTegenSpeler:new Label() ,niksDoen);
+        buttons.setSpacing(center.getMinWidth()*0.1);
+        buttons.setAlignment(Pos.CENTER);
+        HBox.setMargin(buttons, new Insets(center.getMinWidth()*0.1,center.getMinWidth()*0.1,center.getMinWidth()*0.1,center.getMinWidth()*0.1));
+        borderPane.setBottom(buttons);
         Scene scene = new Scene(borderPane);
         stage.setScene(scene);
         stage.setMinHeight(center.getMinHeight());
