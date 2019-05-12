@@ -808,6 +808,39 @@ public class Spel {
         return extraLevels;
     }
 
+    public boolean validatieKaartSpeler(int kaart){
+        Kaart kr = getKaarten().get(kaart);
+        //Kaarten die de Speler mag spelen
+        if (getSpelerAanBeurt() == gevecht.getSpelerAanBeurt()) {
+            if (kr instanceof ConsumablesSchat || kr instanceof ConsumablesKerker || kr instanceof Equipment || kr instanceof Race || kr instanceof Monster) {
+                if (kr instanceof Monster) {
+                    return true;
+                }
+                return true;
+            }
+            return false;
+            //Kaarten die de Tegenspelers mogen spelen
+        } else {
+            if (kr instanceof ConsumablesSchat || kr instanceof ConsumablesKerker || kr instanceof Monster || kr instanceof Curse) {
+                //Aanpassen dat als speler geen hulp wou, alleen negatieve ConsumablesKerker gespeeld mag worden
+                if (gevecht.getHelp().equals(LanguageResource.getString("yes"))) {
+                    if (kr instanceof ConsumablesKerker) {
+                        return ((ConsumablesKerker) kr).getBonus() >= 0;
+                    }
+                } else {
+                    if (kr instanceof Curse) {
+                        if (gevecht.gethelptmee().get(gevecht.getSpelerAanBeurt())) {
+                            return false;
+                        }
+                    }
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+
+
     public boolean validatieKaartSpeler(int kaart, boolean monster) {
         Kaart kr = geefSpeler(gevecht.getSpelerAanBeurt()).getKaarten().get(kaart - 1);
         //Kaarten die de Speler mag spelen

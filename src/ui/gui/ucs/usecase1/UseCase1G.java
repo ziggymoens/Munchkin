@@ -381,6 +381,7 @@ public class UseCase1G extends MainGui {
 
     private void toonSpelOverzicht() {
         centerVBox.getChildren().clear();
+        dc.haalKaartenUitDb();
         dc.geefStartKaarten();
         dc.controleerVolgorde();
         gaNaarSpel();

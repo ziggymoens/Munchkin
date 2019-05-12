@@ -458,6 +458,9 @@ public class DomeinController {
         return spel.getSpelerAanBeurtGevecht();
     }
 
+    public boolean validatieKaartSpeler(int kaart){
+        return spel.validatieKaartSpeler(kaart);
+    }
 
     public boolean validatieKaartSpeler(int kaart, boolean monster){
         return spel.validatieKaartSpeler(kaart, monster);
