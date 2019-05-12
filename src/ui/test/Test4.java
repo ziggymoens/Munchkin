@@ -4,14 +4,10 @@ import domein.DomeinController;
 import domein.Speler;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import language.LanguageResource;
 import ui.gui.items_afhandeler.NaarItemsAfhandeler;
-import ui.gui.kaart_afhandeler.KaartAfhandeler;
-import ui.gui.verkoop_afhandeler.VerkoopAfhandeler;
-import ui.gui.weggooi_afhandeler.WeggooiAfhandeler;
 
 import java.util.Locale;
 
@@ -41,7 +37,7 @@ public class Test4 extends Application {
         dc.spel.updateVolgorde();
         dc.zetSpelerAanBeurt(0);
         BorderPane bp = new BorderPane();
-        Scene scene = new Scene(new VerkoopAfhandeler(dc));
+        Scene scene = new Scene(new NaarItemsAfhandeler(dc));
         primaryStage.setScene(scene);
         primaryStage.show();
     }

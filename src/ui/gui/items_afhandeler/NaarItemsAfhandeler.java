@@ -23,6 +23,7 @@ import java.util.Optional;
 
 public class NaarItemsAfhandeler extends BorderPane {
     private DomeinController dc;
+    private BorderPane center;
     private int kaart;
     private int spelerAanBeurt;
     private String naam;
@@ -37,19 +38,19 @@ public class NaarItemsAfhandeler extends BorderPane {
         mogelijkheden = dc.geefIdsKunnenNaarItems(naam);
         items = new ArrayList<>();
         naarItems();
-
+        getStylesheets().addAll("ui/gui/items_afhandeler/NaarItems.css");
     }
 
-    private void naarItems(){
+    private void naarItems() {
         BorderPane borderPane = new BorderPane();
         Stage stage = new Stage();
         stage.setTitle(LanguageResource.getString("usecase7.itemsscreen"));
-        Scene scene = new Scene(borderPane, 1000, 500);
+        Scene scene = new Scene(borderPane);
         Label vraag = new Label(LanguageResource.getString("usecase7.items"));
 
         HBox kaarten = new HBox();
 
-        for(int i = 0; i < dc.geefIdKaartenNaarItems(naam).size(); i++){
+        for (int i = 0; i < dc.geefIdKaartenNaarItems(naam).size(); i++) {
             int mogelijk = dc.geefIdKaartenNaarItems(naam).get(i);
             Image image = new Image(String.format("/ui/images/kaarten/%d.png", mogelijk));
             ImageView img = new ImageView(image);
@@ -74,31 +75,29 @@ public class NaarItemsAfhandeler extends BorderPane {
 
         buttons.getChildren().addAll(btnConfirm, btnCancel);
 
-        borderPane.setBottom(buttons);
+        setBottom(buttons);
         btnConfirm.setOnMouseClicked(event -> {
-            if(!items.isEmpty()){
+            if (!items.isEmpty()) {
                 dc.verplaatsNaarItems(naam, items);
                 popUpscherm();
-                stage.close();}
-            else{
+                //stage.close();
+            } else {
                 ErrorAfhandeling();
             }
         });
         btnCancel.setOnMouseClicked(event -> {
-            stage.close();
+            //close
         });
         buttons.setAlignment(Pos.TOP_CENTER);
         buttons.setSpacing(15);
-        buttons.setPadding(new Insets(0, 0, 30, 0));
+        buttons.setPadding(new Insets(25, 0, 25, 0));
         kaarten.setSpacing(10);
         kaarten.setMinHeight(125);
         kaarten.setAlignment(Pos.CENTER);
-        borderPane.setTop(vraag);
+        setTop(vraag);
         vraag.setAlignment(Pos.CENTER);
         vraag.setPadding(new Insets(40, 40, 40, 40));
-        borderPane.setCenter(kaarten);
-        stage.setScene(scene);
-        stage.show();
+        setCenter(kaarten);
     }
 
     public void kaartInfoScherm(int item) {
