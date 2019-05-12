@@ -92,7 +92,8 @@ public class KaartAfhandeler extends BorderPane {
         btnJa.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                help = true;vraagSpeler  = 0;
+                help = true;
+                vraagSpeler  = 0;
                 kaartSpeelScherm();
 
             }
@@ -144,7 +145,6 @@ public class KaartAfhandeler extends BorderPane {
         borderPane = new BorderPane();
         int aantal = dc.geefSpelerAanBeurt();
         int i = speler;
-        System.out.println(speler);
         stage.setTitle(spelersInVolgorde.get(i)[0]);
         List<VBox> checkBoxes = checkboxImages(dc.geefKaartenVanSpelerInt(dc.geefNaamSpeler(i)));
         HBox centerHBox = new HBox();
@@ -170,7 +170,6 @@ public class KaartAfhandeler extends BorderPane {
                     }
                     for (int i = 0; i < gespeeldeKaarten.size(); i++) {
                         if (!dc.validatieKaartSpeler(gespeeldeKaarten.get(i))) {
-                            //Label fouteKaart = new Label("usecase5.invalidcard");
                             popUpscherm("usecase5.invalidcard", "#ff0000");
                         } else {
 
@@ -181,8 +180,6 @@ public class KaartAfhandeler extends BorderPane {
                     vraagSpeler++;
                     toonSpelerHulpScherm(vraagSpeler, spelersInVolgorde);
                 }else{
-                    System.out.println(dc.geefSpelerAanBeurt());
-                    System.out.println(speler);
                     //Label helpenNietMogelijk = new Label("usecase4.");
                     popUpscherm("exception.help", "#ff0000");
                 }

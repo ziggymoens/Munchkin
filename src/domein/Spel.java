@@ -809,7 +809,8 @@ public class Spel {
     }
 
     public boolean validatieKaartSpeler(int kaart){
-        Kaart kr = getKaarten().get(kaart);
+        Kaart kr = kaarten.get(kaart);
+        System.out.println(kr.getNaam());
         //Kaarten die de Speler mag spelen
         if (getSpelerAanBeurt() == gevecht.getSpelerAanBeurt()) {
             if (kr instanceof ConsumablesSchat || kr instanceof ConsumablesKerker || kr instanceof Equipment || kr instanceof Race || kr instanceof Monster) {
