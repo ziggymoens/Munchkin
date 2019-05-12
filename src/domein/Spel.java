@@ -14,6 +14,7 @@ import domein.repositories.KaartDbKleinRepository;
 import domein.repositories.KaartRepository;
 import exceptions.SpelException;
 import language.LanguageResource;
+import printer.Printer;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
@@ -247,7 +248,7 @@ public class Spel {
         List<String> ret = new ArrayList<>();
         for (Speler speler : spelers) {
             //items naar string weg
-            ret.add(String.format("%s: %s, %s: %s, %s: %d, %s: %s%n", LanguageResource.getString("player.name"), speler.getNaam(), LanguageResource.getString("player.sex"), speler.getGeslacht(), LanguageResource.getString("player.level"), speler.getLevel(), LanguageResource.getString("player.items"), speler.kaartenNaarString(speler.getItems())));
+            ret.add(String.format("%s: %s, %s: %s, %s: %d, %s: %s%n", LanguageResource.getString("player.name"), Printer.printBlue(speler.getNaam()), LanguageResource.getString("player.sex"), speler.getGeslacht(), LanguageResource.getString("player.level"), speler.getLevel(), LanguageResource.getString("player.items"), speler.kaartenNaarString(speler.getItems())));
         }
         return ret;
     }
@@ -255,7 +256,7 @@ public class Spel {
     public List<String> geefBeknopteSpelsituatie(/*boolean vecht*/) {
         List<String> ret = new ArrayList<>();
         for (Speler speler : spelers) {
-            ret.add(String.format("%s: %s, %s: %s, %s: %d", LanguageResource.getString("player.name"), speler.getNaam(), LanguageResource.getString("player.sex"), speler.getGeslacht(), LanguageResource.getString("player.level"), speler.getLevel() /*, vecht?"Vecht mee":"Vecht niet mee"*/));
+            ret.add(String.format("%s: %s, %s: %s, %s: %d", LanguageResource.getString("player.name"), Printer.printBlue(speler.getNaam()), LanguageResource.getString("player.sex"), speler.getGeslacht(), LanguageResource.getString("player.level"), speler.getLevel() /*, vecht?"Vecht mee":"Vecht niet mee"*/));
         }
         return ret;
     }

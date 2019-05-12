@@ -78,7 +78,7 @@ public class VerkoopAfhandeler extends BorderPane {
 
         buttons.getChildren().addAll(btnConfirm, btnCancel);
 
-        setBottom(buttons);
+        borderPane.setBottom(buttons);
         btnConfirm.setOnMouseClicked(event -> {
             int totaleWaarde = 0;
             for (Integer id : verkoop) {
@@ -101,19 +101,19 @@ public class VerkoopAfhandeler extends BorderPane {
 
         buttons.setAlignment(Pos.TOP_CENTER);
         buttons.setSpacing(15);
-        buttons.setPadding(new Insets(0, 0, 30, 0));
+        buttons.setPadding(new Insets(30, 0, 30, 0));
         kaarten.setSpacing(10);
         kaarten.setMinHeight(125);
         kaarten.setAlignment(Pos.CENTER);
-        setTop(vraag);
+        borderPane.setTop(vraag);
         setCenter(kaarten);
         vraag.setAlignment(Pos.CENTER);
         vraag.setPadding(new Insets(40, 40, 40, 40));
         setMinHeight(getMinHeight() * 0.5);
         setMinWidth(getMinWidth() * 0.5);
-        /*borderPane.setCenter(kaarten);
+        borderPane.setCenter(kaarten);
         stage.setScene(scene);
-        stage.show();*/
+        stage.show();
     }
 
     private void ErrorAfhandeling() {

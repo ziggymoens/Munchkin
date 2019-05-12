@@ -72,14 +72,14 @@ public class WeggooiAfhandeler extends BorderPane {
 
         buttons.getChildren().addAll(btnThrow, btnCancel);
 
-        setBottom(buttons);
+        borderPane.setBottom(buttons);
         btnThrow.setOnMouseClicked(event -> {
             dc.gooiKaartenWeg(naam, weg);
             popUpScherm();
-            //stage.close();
+            stage.close();
         });
         btnCancel.setOnMouseClicked(event -> {
-            //close
+            stage.close();
         });
 
         buttons.setAlignment(Pos.TOP_CENTER);
@@ -88,12 +88,12 @@ public class WeggooiAfhandeler extends BorderPane {
         kaarten.setSpacing(10);
         kaarten.setMinHeight(125);
         kaarten.setAlignment(Pos.CENTER);
-        setTop(vraag);
+        borderPane.setTop(vraag);
         vraag.setAlignment(Pos.CENTER);
         vraag.setPadding(new Insets(40, 275, 40, 275));
-        setCenter(kaarten);
-        //stage.setScene(scene);
-        //stage.show();
+        borderPane.setCenter(kaarten);
+        stage.setScene(scene);
+        stage.show();
 
     }
 

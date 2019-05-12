@@ -75,18 +75,18 @@ public class NaarItemsAfhandeler extends BorderPane {
 
         buttons.getChildren().addAll(btnConfirm, btnCancel);
 
-        setBottom(buttons);
+        borderPane.setBottom(buttons);
         btnConfirm.setOnMouseClicked(event -> {
             if (!items.isEmpty()) {
                 dc.verplaatsNaarItems(naam, items);
                 popUpscherm();
-                //stage.close();
+                stage.close();
             } else {
                 ErrorAfhandeling();
             }
         });
         btnCancel.setOnMouseClicked(event -> {
-            //close
+            stage.close();
         });
         buttons.setAlignment(Pos.TOP_CENTER);
         buttons.setSpacing(15);
@@ -94,10 +94,12 @@ public class NaarItemsAfhandeler extends BorderPane {
         kaarten.setSpacing(10);
         kaarten.setMinHeight(125);
         kaarten.setAlignment(Pos.CENTER);
-        setTop(vraag);
+        borderPane.setTop(vraag);
         vraag.setAlignment(Pos.CENTER);
         vraag.setPadding(new Insets(40, 40, 40, 40));
-        setCenter(kaarten);
+        borderPane.setCenter(kaarten);
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void kaartInfoScherm(int item) {
