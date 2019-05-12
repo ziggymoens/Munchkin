@@ -137,7 +137,9 @@ public class KaartAfhandeler extends BorderPane {
         Stage stage = new Stage();
         borderPane = new BorderPane();
         for (int i = 0; i < dc.geefAantalSpelers(); i++) {
+            //int aantal = dc.geefSpelerAanBeurt();
             int speler = i;
+            System.out.println(speler);
             stage.setTitle(spelersInVolgorde.get(i)[0]);
             List<VBox> checkBoxes = checkboxImages(dc.geefKaartenVanSpelerInt(dc.geefNaamSpeler(i)));
             HBox centerHBox = new HBox();
@@ -149,19 +151,34 @@ public class KaartAfhandeler extends BorderPane {
             kaartSpelenTegenMonster.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-                    List<Integer> gespeeldeKaarten = new ArrayList<>();
-                    for (Node vBox : centerHBox.getChildren()){
-                        int[]ids = dc.geefKaartenVanSpelerInt(dc.geefNaamSpeler(speler));
-                        for (int i = 0; i < ids.length;i++){
-                            if(((CheckBox)(((VBox)vBox).getChildren().get(0))).isSelected()){
-                                int kaart = ids[i];
-                                System.out.println(kaart);
-                                gespeeldeKaarten.add(kaart);
+                    if (help || dc.geefSpelerAanBeurt() == speler) {
+                        List<Integer> gespeeldeKaarten = new ArrayList<>();
+                        for (Node vBox : centerHBox.getChildren()) {
+                            int[] ids = dc.geefKaartenVanSpelerInt(dc.geefNaamSpeler(speler));
+                            for (int i = 0; i < ids.length; i++) {
+                                if (((CheckBox) (((VBox) vBox).getChildren().get(0))).isSelected()) {
+                                    int kaart = ids[i];
+                                    System.out.println(kaart);
+                                    gespeeldeKaarten.add(kaart);
+                                }
                             }
                         }
+                        for (int i = 0; i < gespeeldeKaarten.size(); i++) {
+                            if (!dc.validatieKaartSpeler(gespeeldeKaarten.get(i))) {
+                                //Label fouteKaart = new Label("usecase5.invalidcard");
+                                popUpscherm("usecase5.invalidcard", "#ff0000");
+                            } else {
+
+                            }
+                        }
+                        System.out.println(gespeeldeKaarten.toString());
+                        borderPane.setTop(new Label(gespeeldeKaarten.toString()));
+                    }else{
+                        System.out.println(dc.geefSpelerAanBeurt());
+                        System.out.println(speler);
+                        //Label helpenNietMogelijk = new Label("usecase4.");
+                        popUpscherm("exception.help", "#ff0000");
                     }
-                    System.out.println(gespeeldeKaarten.toString());
-                    borderPane.setTop(new Label(gespeeldeKaarten.toString()));
                 }
                 //Node vBox : ((HBox)hBox).getChildren()
             });
@@ -177,10 +194,10 @@ public class KaartAfhandeler extends BorderPane {
                     Label ontsnappen =  new Label(vluchten(borderPane));
 
                     if(ontsnappen.getText().equals(LanguageResource.getString("usecase6.escape1"))){
-                        popUpscherm("usecase6.escape1");
+                        popUpscherm("usecase6.escape1", "#08ff00");
                         stage.close();
                     }else{
-                        popUpscherm("usecase6.escape2");
+                        popUpscherm("usecase6.escape2", "#08ff00");
                     }
 
                 }
@@ -235,11 +252,11 @@ public class KaartAfhandeler extends BorderPane {
         }
     }
 
-    private void popUpscherm(String ontsnappen) {
+    private void popUpscherm(String string, String kleur) {
         Stage stage = new Stage();
         VBox vb = new VBox();
-        Label text = new Label(LanguageResource.getString(ontsnappen));
-        text.setTextFill(Color.web("#08ff00"));
+        Label text = new Label(LanguageResource.getString(string));
+        text.setTextFill(Color.web(kleur));
         text.setPadding(new Insets(10, 10, 10, 10));
         Scene scene = new Scene(vb, center.getMinWidth()*0.45, center.getMinWidth()*0.25);
         Button btnOk = new Button("OK");
