@@ -38,7 +38,9 @@ public class KaartMapper {
     private File monster;
     private File badstuff;
 
-
+    /**
+     * Constructor voor kaartmapper
+     */
     public KaartMapper() {
         this.kaarten = new ArrayList<>();
         this.kaartenBib = new HashMap<>();
@@ -68,6 +70,9 @@ public class KaartMapper {
         addMonster();
     }
 
+    /**
+     * cursekaart toevoegen
+     */
     private void addCurse() {
         try {
             br = new BufferedReader(new FileReader(curse));
@@ -82,6 +87,9 @@ public class KaartMapper {
         }
     }
 
+    /**
+     * monsterkaart toevoegen
+     */
     private void addMonster() {
         try {
             br = new BufferedReader(new FileReader(monster));
@@ -89,15 +97,21 @@ public class KaartMapper {
             while ((line = br.readLine()) != null) {
                 String[] object = line.split(";");
                 BadStuff bs = addBadstuff(Integer.parseInt(object[2]));
-                kaarten.add(new Monster(object[1], Integer.parseInt(object[0]),Integer.parseInt(object[4]), Integer.parseInt(object[7]), object[6], Integer.parseInt(object[5]), new Race(object[8]), Integer.parseInt(object[3]), bs));
+                kaarten.add(new Monster(object[1], Integer.parseInt(object[0]), Integer.parseInt(object[4]), Integer.parseInt(object[7]), object[6], Integer.parseInt(object[5]), new Race(object[8]), Integer.parseInt(object[3]), bs));
             }
             br.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    
-    private BadStuff addBadstuff(int id){
+
+    /**
+     * badstiff toevoegen
+     *
+     * @param id id van monster
+     * @return de badstuff
+     */
+    private BadStuff addBadstuff(int id) {
         BadStuff bs = null;
         try {
             BufferedReader bbs = new BufferedReader(new FileReader(badstuff));
@@ -115,6 +129,9 @@ public class KaartMapper {
         return bs;
     }
 
+    /**
+     * consumables kerker toevoegen
+     */
     private void addConsumablesK() {
         try {
             br = new BufferedReader(new FileReader(consumablesK));
@@ -129,6 +146,9 @@ public class KaartMapper {
         }
     }
 
+    /**
+     * racekaart toevoegen
+     */
     private void addRace() {
         try {
             br = new BufferedReader(new FileReader(race));
@@ -143,6 +163,9 @@ public class KaartMapper {
         }
     }
 
+    /**
+     * equipment toevoegen
+     */
     private void addEquipment() {
         try {
             br = new BufferedReader(new FileReader(equipment));
@@ -157,6 +180,9 @@ public class KaartMapper {
         }
     }
 
+    /**
+     * consumables schat toevoegen
+     */
     private void addConsumablesS() {
         try {
             br = new BufferedReader(new FileReader(consumablesS));
@@ -171,16 +197,27 @@ public class KaartMapper {
         }
     }
 
+    /**
+     * methode om kaartenbib aan te maken
+     */
     private void maakKaartenBib() {
         for (Kaart kaart : kaarten) {
             kaartenBib.put(kaart.getId(), kaart);
         }
     }
 
+    /**
+     * Getter voor kaartenbib
+     *
+     * @return map met kaarten als value en id als key
+     */
     public Map<Integer, Kaart> getKaartenBib() {
         return kaartenBib;
     }
 
+    /**
+     * methode sorteert de kaarten en zet ze bij de juiste soort
+     */
     private void sorteerKaarten() {
         for (Kaart kaart : kaarten) {
             if (kaart instanceof Equipment || kaart instanceof ConsumablesSchat) {
@@ -193,14 +230,29 @@ public class KaartMapper {
         Collections.shuffle(kerkerkaarten);
     }
 
+    /**
+     * getter voor alle kaarten
+     *
+     * @return list met kaarten
+     */
     public List<Kaart> getKaarten() {
         return kaarten;
     }
 
+    /**
+     * getter voor kerkerkaarten
+     *
+     * @return list met kerkerkaarten
+     */
     public List<Kaart> getKerkerkaarten() {
         return kerkerkaarten;
     }
 
+    /**
+     * getter voor schatkaarten
+     *
+     * @return list met schatkaarten
+     */
     public List<Kaart> getSchatkaarten() {
         return schatkaarten;
     }

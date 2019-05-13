@@ -35,7 +35,7 @@ class UseCase8 {
             askName();
             saveGame();
         } catch (Exception e) {
-            System.out.print(Printer.exceptionCatch("Exception", e, false));
+            System.out.print(Printer.exceptionCatch("Exception (UC8)", e, false));
         }
     }
 
@@ -51,9 +51,9 @@ class UseCase8 {
                 dc.geefSpelNaam(naamSpel);
                 tryAgain = false;
             } catch (SpelException e) {
-                System.out.print(Printer.exceptionCatch("SpelException", e));
+                System.out.print(Printer.exceptionCatch("SpelException (UC8)", e));
             } catch (Exception e) {
-                System.out.print(Printer.exceptionCatch("Exception", e, false));
+                System.out.print(Printer.exceptionCatch("Exception (UC8)", e, false));
             }
         }
     }
@@ -79,13 +79,13 @@ class UseCase8 {
             }
         } catch (SpelException e) {
             th1.suspend();
-            System.out.print(Printer.exceptionCatch("SpelException", e));
+            System.out.print(Printer.exceptionCatch("SpelException (UC8)", e));
         } catch (SpelDatabaseException e) {
             th1.suspend();
-            System.out.print(Printer.exceptionCatch("SpelDatabaseException", e));
+            System.out.print(Printer.exceptionCatch("SpelDatabaseException (UC8)", e));
         } catch (Exception e) {
             th1.suspend();
-            System.out.print(Printer.exceptionCatch("Exception", e, false));
+            System.out.print(Printer.exceptionCatch("Exception (UC8)", e, false));
         }
     }
 
@@ -99,7 +99,7 @@ class UseCase8 {
                 try {
                     Thread.sleep(200);
                 } catch (InterruptedException ex) {
-                    System.out.println(Printer.exceptionCatch("InterruptedException", ex, false));
+                    System.out.println(Printer.exceptionCatch("InterruptedException (UC8)", ex, false));
                 }
                 System.out.print(".");
             }
