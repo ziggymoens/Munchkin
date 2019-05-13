@@ -10,7 +10,9 @@ package exceptions.kaarten.schatkaarten;
  * @author kilian
  */
 public class EquipmentException extends RuntimeException{
-
+    /**
+     * Algemene Exception constructor
+     */
     public EquipmentException() {
         super("Equipment Exception, domein.kaarten.schatkaarten");
     }
