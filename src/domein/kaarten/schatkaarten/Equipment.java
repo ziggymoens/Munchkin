@@ -5,9 +5,9 @@ import domein.kaarten.kerkerkaarten.Race;
 import exceptions.kaarten.schatkaarten.EquipmentException;
 
 /**
- *
  * @author ziggy
  */
+@SuppressWarnings("unused")
 public class Equipment extends Schatkaart {
 
     private final int bonus;
@@ -17,23 +17,23 @@ public class Equipment extends Schatkaart {
     private final String type;
     private int specialBonus;
     private Race specialRace;
-    
-    private enum TYPES{
-        head, armor, foot, weapon //eventueel aanvullen
+
+    private enum TYPES {
+        head, armor, foot, weapon
     }
 
     /**
      * Constructor schatkaart equipment (die superklasse Schatkaart gebruikt)
      *
-     * @param naam = name, De naam van de kaart
-     * @param id = id,
-     * @param waarde = goldPieces, De waarde van de kaart in het spel
-     * @param type = type,
-     * @param bonus = bonus,
-     * @param race = usableBy,
-     * @param runAway = escapeBonus,
+     * @param naam         = name, De naam van de kaart
+     * @param id           = id,
+     * @param waarde       = goldPieces, De waarde van de kaart in het spel
+     * @param type         = type,
+     * @param bonus        = bonus,
+     * @param race         = usableBy,
+     * @param runAway      = escapeBonus,
      * @param specialBonus = bonusrace,
-     * @param specialRace = specialRace,
+     * @param specialRace  = specialRace,
      */
     public Equipment(String naam, int id, int waarde, String type, int bonus, Race race, int runAway, int specialBonus, Race specialRace) {
         super(naam, id, waarde);
@@ -48,64 +48,72 @@ public class Equipment extends Schatkaart {
     }
 
     /**
+     * getter
      *
-     * @return
+     * @return bonus van equipment
      */
     public int getBonus() {
         return bonus;
     }
 
     /**
+     * getter
      *
-     * @return
+     * @return race dat equipment kan gebruiken
      */
     public Race getUsableBy() {
         return usableBy;
     }
 
     /**
+     * getter
      *
-     * @return
+     * @return bijhorende tekst
      */
     public String getText() {
         return text;
     }
 
     /**
+     * getter
      *
-     * @return
+     * @return kan weglopen
      */
     public int isRunAway() {
         return runAway;
     }
 
     /**
+     * getter
      *
-     * @return
+     * @return het type van het equipment
      */
     public String getType() {
         return type;
     }
 
     /**
+     * getter
      *
-     * @return
+     * @return de special bonus voor special race
      */
     public int getSpecialBonus() {
         return specialBonus;
     }
 
     /**
+     * getter
      *
-     * @return
+     * @return de special race voor de special bonus
      */
     public Race getSpecialRace() {
         return specialRace;
     }
 
     /**
+     * setter usably by met controle niet null
      *
-     * @param usableBy
+     * @param usableBy race dat equipment kan gebruiken
      */
     private void setUsableBy(Race usableBy) {
         if (usableBy == null) {
@@ -116,19 +124,21 @@ public class Equipment extends Schatkaart {
 
 
     /**
+     * setter voor ranaway met controle groter dan 0
      *
-     * @param runAway
+     * @param runAway runaway waarde
      */
     private void setRunAway(int runAway) {
-        if (runAway<0) {
+        if (runAway < 0) {
             throw new EquipmentException("exception.equipment.runaway");
         }
         this.runAway = runAway;
     }
 
     /**
+     * setter special bonus met controle groter dan 0
      *
-     * @param specialBonus
+     * @param specialBonus de speciale bonus int
      */
     private void setSpecialBonus(int specialBonus) {
         if (specialBonus < 0) {
@@ -139,8 +149,9 @@ public class Equipment extends Schatkaart {
     }
 
     /**
+     * setter voor special race met conrole != null
      *
-     * @param specialRace
+     * @param specialRace special race voor special bonus
      */
     private void setSpecialRace(Race specialRace) {
         if (specialRace == null) {
@@ -150,8 +161,9 @@ public class Equipment extends Schatkaart {
     }
 
     /**
+     * contorle voor bonus groter dan 0
      *
-     * @param bonus
+     * @param bonus de bonus-waarde
      */
     private void controleerBonus(int bonus) {
         if (bonus < 0) {
@@ -160,16 +172,22 @@ public class Equipment extends Schatkaart {
     }
 
     /**
+     * controle van type
      *
-     * @param type
+     * @param type het type van de kaart
      */
+    @SuppressWarnings("ConstantConditions")
     private void controleerType(String type) {
-        if(TYPES.valueOf(type.toLowerCase()) == null){
+        if (TYPES.valueOf(type.toLowerCase()) == null) {
             throw new EquipmentException("exception.equipment.type");
         }
     }
 
-
+    /**
+     * tostring methode
+     *
+     * @return geformateerde string
+     */
     @Override
     public String toString() {
         return String.format("name = %s, id = %d, value = %d, type = %s, bonus = %d", getNaam(), getId(), getWaarde(), getType(), getBonus());
