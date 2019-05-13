@@ -135,7 +135,7 @@ public class KaartAfhandeler extends BorderPane {
     }
 
     private void wiltGeenHulp(ActionEvent event) {
-
+         
     }
 
     private String toonOverzichtGewonnenZijde(){

@@ -33,7 +33,7 @@ class UseCase4 {
     // Vragen aan speler of hij hulp wilt
 
     /**
-     *
+     * Methode die het Gevecht voorbereidt
      */
     void bereidSpelVoor() {
         int id = dc.geefIdBovensteKaart();
@@ -65,8 +65,8 @@ class UseCase4 {
     }
 
     /**
-     *
-     * @return
+     * Methode die vraagt of er hulp nodig is tegen het monster
+     * @return String met de vraag in juiste taal
      */
     private String hulpVragen(){
         System.out.println(LanguageResource.getString("usecase4.ask.help"));
@@ -80,8 +80,8 @@ class UseCase4 {
     }
 
     /**
-     *
-     * @param beurt
+     * Methode die een keuze geeft aan de tegenspelers wat hij of zij willen doen tijdens het gevecht
+     * @param beurt List die bijhoudt wie er deze ronde al een beslissing heeft genomen tegen het monster en wie niet
      */
     private void monsterKeuze(List<Boolean> beurt){
         List <Boolean> helptmee = dc.gethelptmee();
@@ -145,7 +145,7 @@ class UseCase4 {
     }
 
     /**
-     *
+     * Methode die een overzicht van het gevecht toont
      */
     private void geefOverzichtGevecht(){
         List<Boolean> helptmee = dc.gethelptmee();
@@ -161,16 +161,16 @@ class UseCase4 {
     }
 
     /**
-     *
+     * Methode die UC5 aanroept (een kaart spelen)
      * @param i
      */
     private void speelKaart(int i) {
-        UseCase5 uc5 = new UseCase5(this.dc, true);
-        uc5.speelKaart(i);
+        UseCase5 uc5 = new UseCase5(this.dc);
+        uc5.speelKaart(i, true);
     }
 
     /**
-     *
+     * Methode die UC6 aanroept (tegen een monster vehten)
      */
     private void vechtMonster() {
         UseCase6 uc6 = new UseCase6(this.dc);
@@ -178,8 +178,8 @@ class UseCase4 {
     }
 
     /**
-     *
-     * @param monster
+     *  Methode die vraagt om een kaart te spelen tegen (of met) het monster
+     * @param monster of er een monster gespeeld mag worden
      */
     private void vraagKaartSpelen(boolean monster){
         String kaart;
@@ -192,8 +192,8 @@ class UseCase4 {
                 kaart = SCAN.next().toLowerCase();
             }
             if (kaart.equals(LanguageResource.getString("yes"))) {
-                UseCase5 uc5 = new UseCase5(this.dc, monster);
-                uc5.speelKaart(dc.geefSpelerAanBeurt());
+                UseCase5 uc5 = new UseCase5(this.dc);
+                uc5.speelKaart(dc.geefSpelerAanBeurt(), monster);
             }
         } while (kaart.equals(LanguageResource.getString("yes")));
     }

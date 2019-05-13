@@ -74,7 +74,6 @@ class UseCase9 {
     private void overzicht() {
         System.out.println(ColorsOutput.decoration("bold") + LanguageResource.getString("usecase9.makechoice") + ColorsOutput.reset());
         for (String lijn : dc.geefOverzichtSpelen()) {
-
             System.out.println(lijn);
         }
     }
@@ -88,7 +87,7 @@ class UseCase9 {
         try {
             dc.laadSpel(id);
         } catch (Exception e) {
-            System.out.println(Printer.exceptionCatch("Exception", e, false));
+            System.out.println(Printer.exceptionCatch("Exception (UC9)", e, false));
         }
     }
 
@@ -109,7 +108,7 @@ class UseCase9 {
             try {
                 Thread.sleep(200);
             } catch (InterruptedException ex) {
-                System.out.println(Printer.exceptionCatch("InterruptedException", ex, false));
+                System.out.println(Printer.exceptionCatch("InterruptedException (UC9)", ex, false));
             }
             System.out.print(".");
         }

@@ -557,15 +557,15 @@ public class DomeinController {
     }
 
     /**
-     *
-     * @param help
+     *  Methode die set of de speler hulp wilt tegen een monster
+     * @param help Ja of nee (in de juiste taal)
      */
     public void setHelp(String help){
         spel.setHelp(help);
     }
 
     /**
-     * Setter die set wie er mee doet aan het gevegt
+     * Setter die set wie er mee doet aan het gevecht
      * @param helptmee
      */
 
@@ -573,85 +573,181 @@ public class DomeinController {
         spel.setHelptmee(helptmee);
     }
 
+    /**
+     * Setter die set wie er aan beurt is binnenin het gevecht (hangt los van spelerAanBeurt)
+     * @param spelerAanBeurt geeft de speler die de kaart trekt mee
+     */
+
     public void setSpelerAanBeurtGevecht(int spelerAanBeurt) {
         spel.setSpelerAanBeurtGevecht(spelerAanBeurt);
     }
+
+    /**
+     * Getter die teruggeeft of de speler hulp wilt bij het vechten
+     * @return
+     */
 
     public String getHelp(){
         return spel.getHelp();
     }
 
+    /**
+     * Getter die een Lijst teruggeeft met mensen die helpen en niet
+     * @return
+     */
+
     public List<Boolean> gethelptmee(){
         return spel.getHelptmee();
     }
+
+    /**
+     * Methode die bepaalt hoeveel levels er bij de spelerzijde moeten geteld worden als spelers meehelpen in het gevecht
+     * @return extralevels dat er bij moet geteld worden
+     */
 
     public int spelerLevels(){
         return spel.spelerLevels();
     }
 
+    /**
+     *  Methode die badstuff uitvoert
+     * @param id van speler
+     */
+
     public void voerBadStuffUit(int id){
         spel.voerBadStuffUit(id);
     }
 
+    /**
+     * Getter die teruggeeft wie er aan beurt is binninenin gevecht
+     * @return
+     */
     public int getSpelerAanBeurtGevecht() {
         return spel.getSpelerAanBeurtGevecht();
     }
+    /**
+     * Methode die valideert of de Speler de kaart mag leggen adhv zijn positie in het spel (hij een helper is/tegenspeler of degene die de kaart trekt)
+     * @param kaart int kaart die volgt uit de keuze van de speler
+     * @return
+     */
 
     public boolean validatieKaartSpeler(int kaart){
         return spel.validatieKaartSpeler(kaart);
     }
 
+    /**
+     * Methode die valideert of de speler de Kaart mag spelen adhv zijn positie in het spel (hij een helper is/tegenspeler of degene die de kaart trekt)
+     * @param kaart kaart die meegegevn wordt
+     * @param monster boolean die bepaalt of er een monster mag gespeeld worden of niet
+     * @return boolean die bepaalt of de kaart mag gespeeld worden
+     */
     public boolean validatieKaartSpeler(int kaart, boolean monster){
         return spel.validatieKaartSpeler(kaart, monster);
     }
 
+    /**
+     *  Methode die bepaalt of de speler de kaart mag spelen adhv de items die de persoon heeft
+     * @param kaart de kaart die meegegeven wordt
+     * @return boolean die bepaalt of de kaart gespeeld mag worden
+     */
     public boolean validatieKaartItems(int kaart){
         return spel.validatieKaartItems(kaart);
     }
 
+    /**
+     * Methode die cursekaart speelt
+     * @param speler id van speler
+     * @param kaart kaart die gespeeld moet worden
+     */
     public void speelCurse(int speler, int kaart){
         spel.speelCurse(speler, kaart);
     }
 
+    /**
+     * Methdode die een Monster speelt
+     * @param kaart kaart die gespeeld moet worden
+     * @param monster of er een monster gespeeld mag worden
+     */
     public void speelMonster(int kaart, boolean monster){
         spel.speelMonster(kaart, monster);
     }
 
+    /**
+     * Methode die een Consumable speelt
+     * @param kaart
+     */
     public void speelConsumable(int kaart){
         spel.speelConsumable(kaart);
     }
 
+    /**
+     * Methode die items bijvoegt als het een Ras of Weapon is bij items
+     * @param kaart
+     */
     public void itemsBijvoegen(int kaart){
         spel.itemsBijvoegen(kaart);
     }
 
+    /**
+     * Methode die de kaarten van een speler teruggeeft
+     * @param naam van de speler
+     * @return String van kaarten
+     */
     public String geefKaartenVanSpeler(String naam){
         return spel.geefKaartenVanSpeler(naam);
     }
 
+    /**
+     * Geeft items van speler terug
+     * @param naam van speler
+     * @return String van items van speler
+     */
     public String geefItemsVanSpeler(String naam){
         return spel.geefItemsVanSpeler(naam);
     }
 
+    /**
+     * Geeft een array van kaarten terug
+     * @param naam van speler
+     * @return kaarten in een array van ints
+     */
     public int[] geefKaartenVanSpelerInt(String naam){
         return spel.geefKaartenVanSpelerInt(naam);
     }
 
+    /**
+     * Geeft een array van items terug
+     * @param naam van speler
+     * @return items in een array van ints
+     */
     public int[] geefItemsVanSpelerInt(String naam){
         return spel.geefItemsVanSpelerInt(naam);
     }
 
+    /**
+     * Geeft een overzicht in de juiste volgorde van de spelers
+     * @return
+     */
     public List<String[]> spelerOverzichtVolgorde(){
         return spel.geefspelerOverzichtVolgorde();
     }
 
+    /**
+     * Methode die bepaalt wat voor soort kaart het is
+     * @param kaart kaart
+     * @param monster of er een monster gespeeld mag worden
+     * @return String van het soort kaart
+     */
     public String controleWelkeKaart(int kaart, boolean monster){
        return  spel.controleWelkeKaart(kaart, monster);
     }
 
+    /**
+     * Methode die een specifiek aantal schatkaarten uitdeelt aan de speler(s) die gewonnen hebben met het gevecht
+     * @param speler die de schatkaarten moet krijgen
+     * @param schatten aantal schatten dat de speler moet krijgen
+     */
     public void deelSchatkaartenUit(int speler, int schatten){
         spel.deelSchatkaartenUit(speler, schatten);
     }
-
-
 }

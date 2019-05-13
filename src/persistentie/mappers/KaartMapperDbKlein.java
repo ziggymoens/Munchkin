@@ -24,6 +24,9 @@ class KaartMapperDbKlein {
     private final Map<String, Runnable> soorten;
     private final List<Kaart> kaarten;
 
+    /**
+     * constructor voor kaartmapperdbklein
+     */
     KaartMapperDbKlein() {
         kaarten = new ArrayList<>();
         soorten = new HashMap<>();
@@ -35,6 +38,9 @@ class KaartMapperDbKlein {
         soorten.put("Equipment", this::equipmentKaart);
     }
 
+    /**
+     * voeg connectie toe
+     */
     private void voegToe() {
         try {
             this.conn = DriverManager.getConnection(Connectie.JDBC_URL);
@@ -44,11 +50,17 @@ class KaartMapperDbKlein {
         }
     }
 
+    /**
+     * methode haalt kaarten van gekozen type uit db
+     *
+     * @param types lijst met types
+     * @return list met kaarten van gekozen types
+     */
     List<Kaart> geefKaartenType(String[] types) {
         voegToe();
         kaarten.clear();
         try {
-            for(String type: types) {
+            for (String type : types) {
                 PreparedStatement query = conn.prepareStatement(String.format("SELECT * FROM ID222177_g35.K%s", type));
                 rs = query.executeQuery();
                 soorten.get(type).run();
@@ -58,15 +70,18 @@ class KaartMapperDbKlein {
         } catch (Exception ex) {
             throw new KaartDatabaseException(ex.getMessage());
         } finally {
-            try{
+            try {
                 conn.close();
-            }catch (SQLException ignored){
+            } catch (SQLException ignored) {
 
             }
         }
         return kaarten;
     }
 
+    /**
+     * haal race kaarten uit db
+     */
     private void raceKaart() {
         try {
             while (rs.next()) {
@@ -81,6 +96,9 @@ class KaartMapperDbKlein {
         }
     }
 
+    /**
+     * haal consumables kerker uit db
+     */
     private void consumablesDKaart() {
         try {
             while (rs.next()) {
@@ -94,6 +112,9 @@ class KaartMapperDbKlein {
         }
     }
 
+    /**
+     * haal curse uit db
+     */
     private void curseKaart() {
         try {
             while (rs.next()) {
@@ -108,6 +129,9 @@ class KaartMapperDbKlein {
         }
     }
 
+    /**
+     * haal monster kaart uit db
+     */
     private void monsterKaart() {
         try {
             while (rs.next()) {
@@ -127,6 +151,9 @@ class KaartMapperDbKlein {
         }
     }
 
+    /**
+     * haal consumables schat uit kerker
+     */
     private void consumablesTKaart() {
         try {
             while (rs.next()) {
@@ -142,6 +169,9 @@ class KaartMapperDbKlein {
         }
     }
 
+    /**
+     * haal equimpent uit db
+     */
     private void equipmentKaart() {
         try {
             while (rs.next()) {
@@ -161,6 +191,12 @@ class KaartMapperDbKlein {
         }
     }
 
+    /**
+     * haal badstuff uit db
+     *
+     * @param badStuffId id van de badstuff
+     * @return de gekozen badstuff
+     */
     private BadStuff badStuffKaart(int badStuffId) {
         BadStuff bs = null;
         try (

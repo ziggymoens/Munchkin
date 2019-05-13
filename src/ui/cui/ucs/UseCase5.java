@@ -16,28 +16,26 @@ import java.util.Scanner;
 class UseCase5 {
     private final DomeinController dc;
     private final Scanner SCAN = new Scanner(System.in);
-    private final boolean monster;
     private List<Boolean> helptmee;
     private int kaart;
 
     /**
      *
      * @param dc
-     * @param monster
      */
-    UseCase5(DomeinController dc, boolean monster) {
+    UseCase5(DomeinController dc) {
         this.dc = dc;
-        this.monster = monster;
+
     }
 
     //Methode herschrijven jonathan!!! geen domeinobjecten
     //geen kaarten, spelers en spel!!!
 
     /**
-     *
-     * @param spab
+     * Methode die een kaart speelt
+     * @param spab speleraanbeurt binnenin het gevecht, hangt los van algemene dc.geefspeleraanbeurt
      */
-    void speelKaart(int spab) {
+    void speelKaart(int spab, boolean monster) {
         boolean help = dc.getHelp().equalsIgnoreCase(LanguageResource.getString("yes"));
         this.helptmee = dc.gethelptmee();
         dc.setSpelerAanBeurtGevecht(spab);
@@ -88,12 +86,12 @@ class UseCase5 {
         else {
             //throw new Exception("usecase5.invalidcard");
             System.err.println("\n" + LanguageResource.getString("usecase5.invalidcard"));
-            speelKaart(spab);
+            speelKaart(spab, monster);
         }
     }
 
     /**
-     *
+     * Methdoe die een curseKaart speelt
      */
     private void curseKaart() {
         int end = overzichthelpendespelers().size();
@@ -122,8 +120,8 @@ class UseCase5 {
     }
 
     /**
-     *
-     * @return
+     * Methode die een overzicht van alle helpende spelers geeft
+     * @return een List van Strings met namen van helpende spelers
      */
     private List<String> overzichthelpendespelers() {
         int aantal = 1;
