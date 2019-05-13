@@ -1,6 +1,5 @@
 package domein;
 
-import domein.kaarten.Kaart;
 import domein.repositories.SpelDbRepository;
 import exceptions.SpelException;
 import exceptions.database.InternetException;
@@ -519,8 +518,8 @@ public class DomeinController {
      * @param kaart
      */
 
-    public void voegkaartonderaanstapeltoe(int kaart){
-        spel.voegkaartonderaanstapeltoe(kaart);
+    public void voegKaartOnderaanStapelToe(int kaart){
+        spel.voegKaartOnderaanStapelToe(kaart);
     }
 
     /**
@@ -566,7 +565,7 @@ public class DomeinController {
     }
 
     /**
-     * Setter die set wie er mee doet aan het gevegd
+     * Setter die set wie er mee doet aan het gevegt
      * @param helptmee
      */
 
@@ -583,7 +582,7 @@ public class DomeinController {
     }
 
     public List<Boolean> gethelptmee(){
-        return spel.gethelptmee();
+        return spel.getHelptmee();
     }
 
     public int spelerLevels(){

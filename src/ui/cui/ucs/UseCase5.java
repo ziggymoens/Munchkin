@@ -81,7 +81,7 @@ class UseCase5 {
             if(dc.controleWelkeKaart(kaart, monster).equals("Race/Weapon")){
                 dc.itemsBijvoegen(kaart);
             }
-            dc.voegkaartonderaanstapeltoe(kaart);
+            dc.voegKaartOnderaanStapelToe(kaart);
             dc.geefSpeler(spelerAanBeurt).getKaarten().remove(kaart - 1);
 
         }//De speler mag de kaart niet spelen
