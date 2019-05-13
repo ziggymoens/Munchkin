@@ -273,20 +273,29 @@ public class Speler {
         this.aantalKerkerkaarten = aantalKerkerkaarten;
     }
 
-    /**
-     * @param heeftMonsterVerslaan
-     */
-    public void setHeeftMonsterVerslaan(boolean heeftMonsterVerslaan) {
-        this.heeftMonsterVerslaan = heeftMonsterVerslaan;
-    }
 
     /**
-     * @return
+     *
+     * @param heeftMonsterVerslaan
+     */
+    /*
+    public void setHeeftMonsterVerslaan(boolean heeftMonsterVerslaan) {
+        this.heeftMonsterVerslaan = heeftMonsterVerslaan;
+    }*/
+
+    /**
+     * Methode die boolean retourneert of monster verslagen is.
+     * @return true = verslagen
      */
     public boolean heeftMonsterVerslaan() {
         return heeftMonsterVerslaan;
     }
 
+    /**
+     *
+     * @param typeLost
+     */
+    /*
     public void verwijderItems(String typeLost) {
         for (Kaart kaart : items) {
             if (kaart instanceof Equipment) {
@@ -310,20 +319,37 @@ public class Speler {
         }
         updateKaarten();
     }
+    */
 
+    /**
+     * Methode die aantalItems retourneert adhv grootte van de lijst van items
+     * @return int aantal
+     */
     public int getAantalItems() {
         return items.size();
     }
 
+    /**
+     * Methode die item verwijdert.
+     * @param keuze id van kaart
+     */
     public void verwijderItem(int keuze) {
         items.remove(keuze);
         updateKaarten();
     }
 
+    /**
+     * Methode die aantal kaarten retourneert
+     * @return aantal kaarten
+     */
     public int getAantalKaarten() {
         return aantalSchatkaarten + aantalKerkerkaarten;
     }
 
+    /**
+     * Methode die String retourneert van alle kaarten die naar items kunnen.
+     * @return String alle kaarten die naar items kunnen.
+     */
     public String geefKaartenKunnenNaarItems() {
         StringBuilder ret = new StringBuilder();
         int j = 0;
@@ -337,6 +363,10 @@ public class Speler {
         return ret.toString();
     }
 
+    /**
+     * Methode die String retourneert van alle kaarten die verkoopbaar zijn.
+     * @return String van verkoopbare kaarten
+     */
     public String geefVerkoopbareKaarten() {
         StringBuilder ret = new StringBuilder();
         int j = 1;
@@ -352,6 +382,10 @@ public class Speler {
         return ret.toString();
     }
 
+    /**
+     * Methode die lijst van Integers doorgeeft van de id's van de verkoopbare kaarten
+     * @return List van Integers met id's verkoopbare kaarten
+     */
     public List<Integer> geefIdVerkoopbareKaarten() {
         List<Integer> idKaart = new ArrayList<>();
         for (Kaart kaart : kaarten) {
@@ -362,6 +396,10 @@ public class Speler {
         return idKaart;
     }
 
+    /**
+     * Methode die lijst van Integers doorgeeft van de id's van de kaarten die naar items kunnen
+     * @return List van Integeres met id's verplaatsbare kaarten
+     */
     public List<Integer> geefIdKaartenNaarItems() {
         List<Integer> idKaart = new ArrayList<>();
         for (Kaart kaart : kaarten) {
@@ -372,13 +410,20 @@ public class Speler {
         return idKaart;
     }
 
+    /**
+     * Methode die kaart verwijdert. --> roept updateKaarten() aan.
+     * @param kaart kaart
+     */
     public void verwijderKaart(Kaart kaart) {
         kaarten.add(kaart);
 
         updateKaarten();
     }
 
-    //methode om waarde van schatkaart op te vragen
+    /**
+     * Methode om waarde van de schatkaart op te vragen
+     * @return List van Integers met waardes van schatkaarten
+     */
     public List<Integer> getWaardeSchatkaart() {
         List<Integer> waardes = new ArrayList<>();
         for (Kaart kaart : kaarten) {
@@ -389,7 +434,10 @@ public class Speler {
         return waardes;
     }
 
-
+    /**
+     * Methode die String van alles niet verkoopbare kaarten teruggeeft.
+     * @return String met alle niet verkoopbare kaarten.
+     */
     public String geefNietVerkoopbareKaarten() {
         StringBuilder ret = new StringBuilder();
         int j = 1;
@@ -401,9 +449,8 @@ public class Speler {
         return ret.toString();
     }
 
-    //fix
     /* Systeem toont naam en type van de kaarten in de hand*/
-    public String toonOverzichtKaartenInHand() {
+    /*public String toonOverzichtKaartenInHand() {
 
         String output = "";
         int i = 1;
@@ -414,11 +461,19 @@ public class Speler {
 
         return String.format("Kaarten in de hand: %n%s", output);
     }
+    */
 
+    /**
+     * Methode die volgorde van de kaarten teruggeeft.
+     * @return volgorde van de kaarten
+     */
     public List<Integer> getVolgordeKaarten() {
         return volgordeKaarten;
     }
 
+    /**
+     * Methode die volgorde van de kaarten instelt.
+     */
     private void setVolgordeKaarten() {
         volgordeKaarten.clear();
         for (Kaart kaart : kaarten) {
@@ -426,10 +481,17 @@ public class Speler {
         }
     }
 
+    /**
+     * Methode die volgorde van de items retourneert
+     * @return List van Integers met id's in volgorde
+     */
     public List<Integer> getVolgordeItems() {
         return volgordeItems;
     }
 
+    /**
+     * Methode die volgorde van de items instelt.
+     */
     private void setVolgordeItems() {
         volgordeItems.clear();
         for (Kaart kaart : items) {
@@ -437,30 +499,52 @@ public class Speler {
         }
     }
 
+    /**
+     * Methode die de kaarten update, zijnde in de juiste volgorde zet.
+     */
     public void updateKaarten() {
         setVolgordeKaarten();
         setVolgordeItems();
     }
 
+    /**
+     * Setter die de juiste id toekent aan de juiste speler
+     * @param spelerId
+     */
     public void setSpelerId(int spelerId) {
         this.spelerId = spelerId;
     }
 
+    /**
+     * Getter van de spelerId
+     * @return int spelerid
+     */
     public int getSpelerId() {
         return spelerId;
     }
 
+    /**
+     * Setter van de kaarten. --> roept updateKaarten() aan.
+     * @param kaarten Lijst van kaarten
+     */
     public void setKaarten(List<Kaart> kaarten) {
         this.kaarten = kaarten;
         updateKaarten();
     }
 
+    /**
+     * Setter van de items. --> roept updateKaarten() aan.
+     * @param items Lijst van items
+     */
     public void setItems(List<Kaart> items) {
         this.items = items;
         updateKaarten();
     }
 
-
+    /**
+     * Methode die ID's van kaarten in hand retourneert
+     * @return Lijst van Integers met id's kaarten in hand
+     */
     public List<Integer> getIDKaartenInHand() {
         List<Integer> ids = new ArrayList<>();
         for (Kaart kaart : kaarten) {
@@ -469,6 +553,9 @@ public class Speler {
         return ids;
     }
 
+    /**
+     * Methode die items update wanneer er een andere vorm van bescherming gekozen wordt.
+     */
     public void updateItems(){
         for (Kaart item: items) {
             if (item instanceof Equipment) {
@@ -478,6 +565,7 @@ public class Speler {
         }
     }
 
+    /*
     private boolean controleItems() {
         String[] types = {"head", "armor", "foot", "weapon"};
         boolean oke = true;
@@ -493,19 +581,34 @@ public class Speler {
         oke = aantalRace >= 1;
         return oke;
     }
+    */
 
+    /**
+     * Methode die de kaarten aan de speler geeft in Stringvorm. --> roept overzichtMaken(ret, items) aan.
+     * @return String met kaarten.
+     */
     public String geefKaarten(){
         StringBuilder ret = new StringBuilder();
         ret.append(String.format("%s%n", "Kaarten"));
         return overzichtMaken(ret, kaarten);
     }
 
+    /**
+     * Methode die de items aan de speler geeft in Strinvorm. --> roept overzichtMaken(ret, items) aan.
+     * @return String met items.
+     */
     public String geefItems(){
         StringBuilder ret = new StringBuilder();
         ret.append(String.format("%s%n", "Items"));
         return overzichtMaken(ret, items);
     }
 
+    /**
+     * Methode die overzicht maakt van de verschillende kaarten.
+     * @param sb Stringbuilder
+     * @param lijst van kaarten
+     * @return String met overzicht.
+     */
     private String overzichtMaken(StringBuilder sb, List<Kaart> lijst){
         for (Kaart kaart : lijst) {
             String idKaart = "ID = " + kaart.getId();
@@ -514,6 +617,10 @@ public class Speler {
         return sb.toString();
     }
 
+    /**
+     * Methode die int van kaarten teruggeeft in een array.
+     * @return array van ints
+     */
     public int[] geefKaartenInt() {
         int[] k = new int[kaarten.size()];
         for (int i = 0; i<kaarten.size(); i++){
@@ -522,6 +629,10 @@ public class Speler {
         return k;
     }
 
+    /**
+     * Methode die int van items teruggeeft in een array.
+     * @return array van ints
+     */
     public int[] geefItemsInt() {
         int[] k = new int[items.size()];
         for (int i = 0; i<items.size(); i++){
@@ -530,6 +641,10 @@ public class Speler {
         return k;
     }
 
+    /**
+     * Getter voor race, is standaard human.
+     * @return String race
+     */
     public String getRace() {
         for(Kaart kaart: items){
             if(kaart instanceof Race){
