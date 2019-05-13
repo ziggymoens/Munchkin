@@ -1,8 +1,6 @@
 package domein;
 
 import domein.kaarten.Kaart;
-import domein.kaarten.Schatkaart;
-import domein.kaarten.kerkerkaarten.monsterbadstuff.BadStuff;
 import domein.repositories.SpelDbRepository;
 import exceptions.SpelException;
 import exceptions.database.InternetException;
@@ -380,45 +378,55 @@ public class DomeinController {
      */
     public int getWaardeSchatkaart(int id){
         return spel.getWaardeSchatkaart(id);
-
     }
 
-
+    /**
+     * Methode die overzicht van de spelen teruggeeft. --> roept sr.geefOverzicht() aan.
+     * @return List van Strings met overzicht spelen
+     */
     public List<String> geefOverzichtSpelen() {
         return sr.geefOverzicht();
     }
 
+    /**
+     * Setter voor het spel te setten op het huidige spel via this.spel = spel.
+     * @param spel
+     */
     public void setSpel(Spel spel) {
         this.spel = spel;
     }
 
+    /**
+     * Methode die spel laadt. --> roept sr.laadSpel(id, this (constructor van domeincontroller)) aan.
+     * @param id van het spel
+     */
     public void laadSpel(int id) {
         sr.laadSpel(id, this);
     }
 
-    public void verwijderOpgeslagenSpel(int id) {
+    /*public void verwijderOpgeslagenSpel(int id) {
         sr.verwijderOpgeslagenSpel(id);
-    }
+    }*/
 
+    /**
+     * Methode die boolean teruggeeft of het spel reeds bestaat. --> roept sr.bestaatSpel(id) aan.
+     * @param id van het spel
+     * @return true = ja het bestaat reeds
+     */
     public boolean bestaatSpel(int id) {
         return sr.bestaatSpel(id);
     }
 
-    public BadStuff geefBadStuff(int id){
-        return spel.geefBadStuff(id);
-    }
-
-    public Schatkaart geefSchatkaart(){ return spel.geefSchatkaart(); }
-    
-    /*public String toonOverzichtKaartenInHand(int speler) {
-        return spel.toonOverzichtKaartenInHand(speler);
-    }*/
-
+    /**
+     * Methode die overzicht van de kaarten in hand van de speler teruggeeft. --> roept spel.toonOverzichtKaartenInHand2(speler) aan.
+     * @param speler
+     * @return List van Strings met overzicht van de kaarten in hand.
+     */
     public List<String> toonOverzichtKaartenInHand2(int speler){
         return spel.toonOverzichtKaartenInHand2(speler);
     }
-        //fix
-    
+
+
     public List<String> geefTegenspelers(){
         List<Speler> spelers = spel.getSpelers();
         List<String> tegenspelers = new ArrayList<>();
@@ -429,18 +437,31 @@ public class DomeinController {
         }
         return tegenspelers;
     }
+
+    /**
+     * Methode die een dobbelsteen gooit (random waarde 1-6). --> roept spel.gooiDobbelsteen() aan.
+     * @return int met waarde van worp
+     */
     public int gooiDobbelsteen(){
         return spel.gooiDobbelsteen();
     }
 
+    //weg
     public Speler geefSpeler(int i){
         return spel.geefSpeler(i);
     }
 
+    /**
+     * Methode die aantal spelers teruggeeft. --> roept spel.getAantalSpelers() aan.
+     * @return int met aantal spelers
+     */
     public int geefAantalSpelers() {
         return spel.getAantalSpelers();
     }
 
+    /**
+     * Methode die controleert of speler geconnecteerd is met het internet
+     */
     public void checkConnection() {
         try {
             String host="redhat.com";
@@ -453,50 +474,93 @@ public class DomeinController {
         }
     }
 
+    /**
+     * Methode die een lijst van ids teruggeeft van de kaarten die zich in de hand van de speler bevinden. --> roept spel.geefIDKaartenInHand(naam) aan.
+     * @param naam van de speler
+     * @return List van Integers die het id van de kaart teruggeven.
+     */
     public List<Integer> geefIDKaartenInHand(String naam) {
         return spel.geefIDKaartenInHand(naam);
     }
 
-
-
+    /**
+     * Methode die battlepoints van het monster instelt. --> roept spel.setMonsterBattlepoints(monsterBattlePoints) aan.
+     * @param monsterBattlePoints int battlepoints
+     */
     public void setMonsterBattlePoints(int monsterBattlePoints) {
         spel.setMonsterBattlePoints(monsterBattlePoints);
     }
 
+    /**
+     * Methode die battlepoints van de speler instelt. --> roept spel.setSpelerBattlepoints(spelerBattlePoints) aan.
+     * @param spelerBattlePoints
+     */
     public void setSpelerBattlePoints(int spelerBattlePoints) {
         spel.setSpelerBattlePoints(spelerBattlePoints);
     }
 
+    /**
+     * Methode die het aantal battlepoints van het monster teruggeeft. --> roept spel.getMonsterBattlePoints() aan.
+     * @return int met aantal battlepoints van het monster
+     */
     public int getMonsterBattlePoints() {
         return spel.getMonsterBattlePoints();
     }
 
+    /**
+     * Methode die het aantal battlepoints van de speler teruggeeft. --> roept spel.getSpelerBattlePoints() aan.
+     * @return int met aantal battlepoints van de speler
+     */
     public int getSpelerBattlePoints() {
         return spel.getSpelerBattlePoints();
     }
 
+    /**
+     * Methode die kaart onderaan de stapel toevoegt.
+     * @param kaart
+     */
     public void voegkaartonderaanstapeltoe(Kaart kaart){
         spel.voegkaartonderaanstapeltoe(kaart);
     }
 
+    /**
+     * Methode die kaarten weggooit. --> roept spel.gooiKaartenWeg(naam, gekozenKaarten) aan.
+     * @param naam van de speler
+     * @param gekozenKaarten die weggegooid moeten worden
+     */
     public void gooiKaartenWeg(String naam, List<Integer> gekozenKaarten) {
         spel.gooiKaartenWeg(naam, gekozenKaarten);
     }
 
+    /**
+     * Methode die kaarten verkoopt. --> roept spel.verkoopKaarten(naam, gekozenKaarten) aan.
+     * @param naam van de speler
+     * @param gekozenKaarten die verkocht moeten worden
+     */
     public void verkoopKaarten(String naam, List<Integer> gekozenKaarten) {
         spel.verkoopKaarten(naam, gekozenKaarten);
     }
 
+    /**
+     * Methode die kaarten naar items verplaatst. --> roept spel.verplaatsNaarItems(naam, gekozenKaarten) aan.
+     * @param naam van de speler
+     * @param gekozenKaarten die naar items moeten
+     */
     public void verplaatsNaarItems(String naam, List<Integer> gekozenKaarten) {
         spel.verplaatsNaarItems(naam, gekozenKaarten);
     }
 
+    /**
+     * Methode die de kaarten uit de databank haalt. --> roept sr.haalKaartenUitDb() aan.
+     */
     public void haalKaartenUitDb() {
         sr.haalKaartenUitDb();
     }
 
-    //Alles wat te maken heeft met gevecht
-        //Setters
+    /**
+     *
+     * @param help
+     */
     public void setHelp(String help){
         spel.setHelp(help);
     }
@@ -509,7 +573,6 @@ public class DomeinController {
         spel.setSpelerAanBeurtGevecht(spelerAanBeurt);
     }
 
-        //Getters
     public String getHelp(){
         return spel.getHelp();
     }
