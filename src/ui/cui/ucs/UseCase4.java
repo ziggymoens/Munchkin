@@ -6,6 +6,7 @@
 package ui.cui.ucs;
 
 import domein.DomeinController;
+import exceptions.SpelerException;
 import language.LanguageResource;
 import printer.ColorsOutput;
 import java.util.ArrayList;
@@ -92,17 +93,25 @@ class UseCase4 {
                             switch (keuze) {
                                 case 1:
                                     //Mag alleen gebeuren als de speler die vecht akkoord is gegaan dat hij hulp wilt
-                                    if (help.equals(LanguageResource.getString("yes"))) {
-                                        //aanpassen???
-                                        helptmee.remove(aantal);
-                                        helptmee.add(aantal, true);
-                                        speelKaart(aantal);
-                                    } else {
-                                        System.err.println(LanguageResource.getString("exception.help"));
+                                    if(dc.geefIDKaartenInHand(dc.geefNaamSpeler(aantal)).size() == 0){
+                                        System.err.println(LanguageResource.getString("usecase4.nocards"));
+                                    }else {
+                                        if (help.equals(LanguageResource.getString("yes"))) {
+                                            //aanpassen???
+                                            helptmee.remove(aantal);
+                                            helptmee.add(aantal, true);
+                                            speelKaart(aantal);
+                                        } else {
+                                            System.err.println(LanguageResource.getString("exception.help"));
+                                        }
                                     }
                                     break;
                                 case 2:
-                                    speelKaart(aantal);
+                                    if(dc.geefIDKaartenInHand(dc.geefNaamSpeler(aantal)).size() == 0){
+                                        System.err.println(LanguageResource.getString("usecase4.nocards"));
+                                    }else{
+                                        speelKaart(aantal);
+                                    }
                                     break;
                                 case 3:
                                     beurt.remove(i);
