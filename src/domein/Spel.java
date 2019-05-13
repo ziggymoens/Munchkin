@@ -1025,8 +1025,8 @@ public class Spel {
     }
 
     /**
-     *
-     * @return
+     * Methode die bepaalt hoeveel levels er bij de spelerzijde moeten geteld worden als spelers meehelpen in het gevecht
+     * @return extralevels dat er bij moet geteld worden
      */
     public int spelerLevels() {
         List<Boolean> helptmee = getHelptmee();
@@ -1051,8 +1051,8 @@ public class Spel {
     }
 
     /**
-     *
-     * @param kaart
+     * Methode die valideert of de Speler de kaart mag leggen adhv zijn positie in het spel (hij een helper is/tegenspeler of degene die de kaart trekt)
+     * @param kaart int kaart die volgt uit de keuze van de speler
      * @return
      */
     public boolean validatieKaartSpeler(int kaart) {
@@ -1089,10 +1089,10 @@ public class Spel {
     }
 
     /**
-     *
-     * @param kaart
-     * @param monster
-     * @return
+     * Methode die valideert of de speler de Kaart mag spelen adhv zijn positie in het spel (hij een helper is/tegenspeler of degene die de kaart trekt)
+     * @param kaart kaart die meegegevn wordt
+     * @param monster boolean die bepaalt of er een monster mag gespeeld worden of niet
+     * @return boolean die bepaalt of de kaart mag gespeeld worden
      */
     public boolean validatieKaartSpeler(int kaart, boolean monster) {
         Kaart kr = geefSpeler(gevecht.getSpelerAanBeurt()).getKaarten().get(kaart - 1);
@@ -1127,9 +1127,9 @@ public class Spel {
     }
 
     /**
-     *
-     * @param kaart
-     * @return
+     *  Methode die bepaalt of de speler de kaart mag spelen adhv de items die de persoon heeft
+     * @param kaart de kaart die meegegeven wordt
+     * @return boolean die bepaalt of de kaart gespeeld mag worden
      */
     public boolean validatieKaartItems(int kaart) {
         int aantalWapens = 0;

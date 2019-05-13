@@ -23,8 +23,8 @@ class UseCase6 {
     }
 
     /**
-     *
-     * @param aantalSpelers
+     * Methode die de uitkomst van het gevecht bepaalt
+     * @param aantalSpelers het aantalspelers in het gehele spel
      */
     void vechtMetMonster(int aantalSpelers) {
         List<Boolean> helptmee = dc.gethelptmee();
@@ -45,9 +45,9 @@ class UseCase6 {
     }
 
     /**
-     *
-     * @param id
-     * @param helptmee
+     * Methode die het aantal levels van de spelers die meehielpen tegen het monster verhoogt
+     * @param id van de kaart
+     * @param helptmee List met booleans van elke speler of ze meegeholpen hebben in het gevecht of niet
      */
     private void verhoogLevelsGewonnen(int id, List<Boolean> helptmee){
         int levelsUp = Integer.parseInt(dc.geefMonsterAttribuut(id, "levelsUp").toString());
@@ -59,10 +59,10 @@ class UseCase6 {
     }
 
     /**
-     *
-     * @param id
-     * @param aantalSpelers
-     * @param helptmee
+     * Methode die Schatkaarten uitdeelt aan elke speler die meegevochten heeft
+     * @param id van de kaart
+     * @param aantalSpelers het totaal aantal spelers in het gehele spel
+     * @param helptmee List van spelers of ze meehelpen in het gevecht of niet
      */
     private void geefSchatkaarten(int id, int aantalSpelers, List<Boolean> helptmee){
         int aantal = dc.geefSpelerAanBeurt();
@@ -80,8 +80,8 @@ class UseCase6 {
     }
 
     /**
-     *
-     * @param id
+     * Methode die bepaalt of je mag ontsnappen of niet (zie gooiDobbelsteen)
+     * @param id van het monster waarvan de speler weg moet lopen
      */
     private void ontsnappen(int id){
         int runAway = Integer.parseInt(dc.geefMonsterAttribuut(id,"RunAway").toString());
