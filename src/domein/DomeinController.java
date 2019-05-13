@@ -566,7 +566,7 @@ public class DomeinController {
     }
 
     /**
-     * Setter die set wie er mee doet aan het gevegd
+     * Setter die set wie er mee doet aan het gevecht
      * @param helptmee
      */
 
