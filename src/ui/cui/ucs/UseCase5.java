@@ -4,6 +4,7 @@ import domein.DomeinController;
 import exceptions.SpelerException;
 import language.LanguageResource;
 import printer.ColorsOutput;
+import printer.Printer;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -11,7 +12,11 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
+ * KLAAR--
+ * CONTROLE KILI 13/05/2019
+ * CONTROLE JONA--
  *
+ * @author Jonathan
  */
 class UseCase5 {
     private final DomeinController dc;
@@ -20,7 +25,7 @@ class UseCase5 {
     private int kaart;
 
     /**
-     *
+     * Constructor voor uc5
      * @param dc
      */
     UseCase5(DomeinController dc) {
@@ -28,12 +33,9 @@ class UseCase5 {
 
     }
 
-    //Methode herschrijven jonathan!!! geen domeinobjecten
-    //geen kaarten, spelers en spel!!!
-
     /**
      * Methode die een kaart speelt
-     * @param spab speleraanbeurt binnenin het gevecht, hangt los van algemene dc.geefspeleraanbeurt
+     * @param spab spelerAanBeurt binnenin het gevecht, hangt los van algemene dc.geefSpelerAanBeurt
      */
     void speelKaart(int spab, boolean monster) {
         try {
@@ -56,11 +58,11 @@ class UseCase5 {
                         throw new SpelerException("exception.wronginput");
                     }
                     tryAgain = false;
-                } catch (InputMismatchException e) {
-                    System.err.println(LanguageResource.getString("exception.inputmismatch"));
+                } catch (InputMismatchException | SpelerException e) {
+                    System.out.println(Printer.exceptionCatch(LanguageResource.getString("wronginput"), e, true));
                     SCAN.nextLine();
-                } catch (SpelerException e) {
-                    System.out.println(LanguageResource.getString("exception.wronginput"));
+                } catch (Exception e){
+                    System.out.println(Printer.exceptionCatch("Exception (UC5)", e, false));
                     SCAN.nextLine();
                 }
             }
@@ -86,11 +88,12 @@ class UseCase5 {
             }//De speler mag de kaart niet spelen
             else {
                 //throw new Exception("usecase5.invalidcard");
-                System.err.println("\n" + LanguageResource.getString("usecase5.invalidcard"));
+                System.out.println(Printer.printRed(LanguageResource.getString("usecase5.invalidcard")));
                 speelKaart(spab, monster);
             }
         }catch(Exception e){
-            System.out.println(ColorsOutput.kleur("red") + ColorsOutput.decoration("bold") + LanguageResource.getString("somethingWrong") + ColorsOutput.reset());
+            System.out.println(Printer.exceptionCatch(LanguageResource.getString("somethinWwrong"), e, true));
+            SCAN.nextLine();
         }
     }
 
@@ -114,16 +117,17 @@ class UseCase5 {
                     }
                     tryAgain = false;
                 } catch (InputMismatchException e) {
-                    System.err.println(LanguageResource.getString("exception.inputmismatch"));
+                    System.out.println(Printer.exceptionCatch(LanguageResource.getString("inputmismatch"), e, true));
                     SCAN.nextLine();
                 } catch (SpelerException e) {
-                    System.out.println(LanguageResource.getString("exception.wronginput"));
+                    System.out.println(Printer.exceptionCatch(LanguageResource.getString("wronginput"), e, true));
                     SCAN.nextLine();
                 }
             }
             dc.speelCurse(speler, kaart);
         }catch(Exception e){
-            System.out.println(ColorsOutput.kleur("red") + ColorsOutput.decoration("bold") + LanguageResource.getString("somethingWrong") + ColorsOutput.reset());
+            System.out.println(Printer.exceptionCatch(LanguageResource.getString("somethingWrong"), e, true));
+            SCAN.nextLine();
         }
     }
 

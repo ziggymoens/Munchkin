@@ -12,7 +12,7 @@ import java.util.*;
 
 /**
  * KLAAR -- 30/4/2019
- * CONTROLE KILI --
+ * CONTROLE KILI 13/05/2019
  * CONTROLE JONA --
  *
  * @author ziggy
@@ -42,7 +42,6 @@ class UseCase2 {
 
     /**
      * Methode die het spel start en de beurten afloopt
-     *
      */
     void speelSpel() {
         int aantalSpelers = dc.geefAantalSpelers();

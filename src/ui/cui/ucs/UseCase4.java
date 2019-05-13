@@ -9,6 +9,10 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
+ *
+ * KLAAR --
+ * CONTROLE KILI 13/05/2019
+ * CONTROLE JONA --
  * @author ziggy
  */
 class UseCase4 {
@@ -21,7 +25,7 @@ class UseCase4 {
     //speler aan de beurt ==> dc.geefSpelerAanBeurt(), int van 0 tot aantalSpelers-1
 
     /**
-     *
+     * Constructor van uc4
      * @param dc
      */
     UseCase4(DomeinController dc) {
@@ -178,7 +182,7 @@ class UseCase4 {
     }
 
     /**
-     * Methode die UC6 aanroept (tegen een monster vehten)
+     * Methode die UC6 aanroept (tegen een monster vechten)
      */
     private void vechtMonster() {
         UseCase6 uc6 = new UseCase6(this.dc);
