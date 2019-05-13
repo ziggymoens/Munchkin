@@ -4,7 +4,6 @@ import domein.DomeinController;
 import ui.cui.ucs.UseCase1;
 
 /**
- *
  * @author g35
  */
 public class StartUp {

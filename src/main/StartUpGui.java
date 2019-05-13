@@ -26,10 +26,20 @@ public class StartUpGui extends Application {
 
     public static MenuBarGui menuBarGui;
 
+    /**
+     * Main methode voor GUI
+     *
+     * @param args startUp args
+     */
     public static void main(String[] args) {
         Application.launch(args);
     }
 
+    /**
+     * Startmethode voor de GUI
+     *
+     * @param primaryStage standaard meegegeven primaryStage
+     */
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Munchkin - G35");
@@ -54,11 +64,16 @@ public class StartUpGui extends Application {
         primaryStage.show();
         primaryStage.setResizable(true);
         primaryStage.setOnCloseRequest(this::closeRequest);
-        this.primaryStage = primaryStage;
+        StartUpGui.primaryStage = primaryStage;
     }
 
-    public void closeRequest(Event event){
-        Locale locale = ((TabExtended)TabsMunchkin.getPane().getSelectionModel().getSelectedItem()).getLocale();
+    /**
+     * methode voor sluiten van venster
+     *
+     * @param event event van de sluitknop
+     */
+    private void closeRequest(Event event) {
+        Locale locale = ((TabExtended) TabsMunchkin.getPane().getSelectionModel().getSelectedItem()).getLocale();
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle(LanguageResource.getStringLanguage("close", locale));
         alert.setHeaderText(LanguageResource.getStringLanguage("closeconfirm", locale));
@@ -71,7 +86,13 @@ public class StartUpGui extends Application {
         }
     }
 
-    public static void changeWindow(int w, int h){
+    /**
+     * methode om grootte van scherm aan te passen
+     *
+     * @param w width
+     * @param h heigth
+     */
+    public static void changeWindow(int w, int h) {
         primaryStage.setMinWidth(w);
         primaryStage.setMaxWidth(w);
         primaryStage.setWidth(w);

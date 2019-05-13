@@ -5,10 +5,10 @@ import exceptions.kaarten.KaartException;
 import java.util.Objects;
 
 /**
- *
  * @author ziggy
  */
 //SUPERKLASSE
+@SuppressWarnings("unused")
 public abstract class Kaart {
 
     //Declaratie attributen
@@ -19,14 +19,19 @@ public abstract class Kaart {
     /**
      * Constructor kaart (superklasse van Schatkaart en Kerkerkaart)
      *
-     * @param naam
-     * @param id
+     * @param naam naam van de kaart
+     * @param id   id van de kaart
      */
     public Kaart(String naam, int id) {
         setNaam(naam);
         setId(id);
     }
 
+    /**
+     * toString methode
+     *
+     * @return geformateerde string
+     */
     @Override
     public abstract String toString();
 
@@ -64,7 +69,7 @@ public abstract class Kaart {
      * Setter die gebruikt wordt om kaartInGebruik op true of false te setten
      *
      * @param kaartInGebruik true = kaart in gebruik, false = kaart is
-     * beschikbaar
+     *                       beschikbaar
      */
     public final void setKaartInGebruik(boolean kaartInGebruik) {
         this.kaartInGebruik = kaartInGebruik;
@@ -72,7 +77,7 @@ public abstract class Kaart {
 
     /**
      * Geeft het id van de kaart terug
-     * 
+     *
      * @return het id van de kaart
      */
     public int getId() {
@@ -81,11 +86,11 @@ public abstract class Kaart {
 
     /**
      * Setter die gebruikt wordt om het id van een kaart toe te wijzen via de db
-     * 
-     * @param id
+     *
+     * @param id id van de kaart
      */
     private void setId(int id) {
-        if ((id < 1 || id > 110 )&& id != 999) {
+        if ((id < 1 || id > 110) && id != 999) {
             throw new KaartException("exception.kaart.id");
         }
         this.id = id;
@@ -93,8 +98,9 @@ public abstract class Kaart {
 
     /**
      * equalsmethode om kaart te vergelijken - niet meer nodig om ids te vergelijken
-     * @param o
-     * @return
+     *
+     * @param o Object hier kaartObject
+     * @return true = gelijk
      */
     @Override
     public boolean equals(Object o) {
@@ -104,6 +110,11 @@ public abstract class Kaart {
         return id == kaart.id;
     }
 
+    /**
+     * hashcode voor kaarten
+     *
+     * @return int = de hashcode
+     */
     @Override
     public int hashCode() {
         return Objects.hash(id);

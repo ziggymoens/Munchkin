@@ -4,7 +4,6 @@ package domein.kaarten;
 import exceptions.kaarten.SchatkaartException;
 
 /**
- *
  * @author ziggy
  */
 public abstract class Schatkaart extends Kaart {
@@ -14,8 +13,8 @@ public abstract class Schatkaart extends Kaart {
     /**
      * Constructor voor klasse schatkaart (die superklasse kaart gebruikt)
      *
-     * @param naam de naam van de kaart
-     * @param id id van de kaart, uniek nummer
+     * @param naam   de naam van de kaart
+     * @param id     id van de kaart, uniek nummer
      * @param waarde de waarde van de kaart
      */
     public Schatkaart(String naam, int id, int waarde) {
@@ -35,13 +34,12 @@ public abstract class Schatkaart extends Kaart {
 
     /**
      * Controle op de waarde van de schatkaart indien onder nul dan exception
-     * 
-     * @param waarde
+     *
+     * @param waarde waarde van de schatkaart
      */
     private void controleerWaarde(int waarde) {
         if (waarde < 0) {
             throw new SchatkaartException("exception.schatkaart.value");
         }
     }
-
 }

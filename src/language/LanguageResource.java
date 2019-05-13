@@ -5,10 +5,10 @@
  */
 package language;
 
-import java.util.*;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 /**
- *
  * @author ziggy
  */
 public class LanguageResource {
@@ -21,6 +21,7 @@ public class LanguageResource {
         setLocale(new Locale("en"));
         setBundle();
     }
+
     /**
      * Contructor voor LanguageResource zonder parameters, Engels wordt
      * ingesteld als taal
