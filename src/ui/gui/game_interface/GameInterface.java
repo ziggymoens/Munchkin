@@ -25,7 +25,6 @@ import ui.gui.ucs.usecase8.UseCase8G;
 import ui.gui.verkoop_afhandeler.VerkoopAfhandeler;
 import ui.gui.weggooi_afhandeler.WeggooiAfhandeler;
 
-import java.security.SecureRandom;
 import java.util.*;
 
 public class GameInterface extends BorderPane {
@@ -281,10 +280,10 @@ public class GameInterface extends BorderPane {
         HBox kaartenSpeler = new HBox();
         kaartenSpeler.setId("kaartenSpeler");
 
+        int[] items = dc.geefItemsVanSpelerInt(dc.geefNaamSpeler(i));
         //kaarten laden van de speler nog opvragen via DC
-        for (int j = 1; j < 6; j++) {
-            SecureRandom random = new SecureRandom();
-            int finalJ = random.nextInt(110)+1;
+        for (int j = 0; j < items.length; j++) {
+            int finalJ = items[j];
             ImageView imageView = new ImageView(new Image(String.format("/ui/images/kaarten/%d.png", finalJ)));
             imageView.setFitWidth(spelerKaart.getMinWidth() * 0.17);
             imageView.setPreserveRatio(true);
