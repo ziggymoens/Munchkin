@@ -12,6 +12,7 @@ import exceptions.kaarten.kerkerkaarten.monsterbadstuff.BadStuffException;
  *
  * @author ziggy
  */
+@SuppressWarnings("unused")
 public class BadStuff {
 
     private String naam;
@@ -29,12 +30,12 @@ public class BadStuff {
 
     /**
      * Constructor voor badStuff
-     * 
-     * @param id
-     * @param itemsLost
-     * @param levelsLost
-     * @param gearLost
-     * @param text
+     *
+     * @param id         id van het bijhorende monster
+     * @param itemsLost  hoeveel items verloren gaan
+     * @param levelsLost hoeveel levels verloren gaan
+     * @param gearLost   welk type gear verloren gaat
+     * @param text       bijhorende text van de kaart
      */
     public BadStuff(int id, int itemsLost, int levelsLost, String gearLost, String text) {
         //setNaam(naam);
@@ -47,12 +48,12 @@ public class BadStuff {
 
     /**
      * Constructor voor badstuff
-     *
+     * <p>
      * KLEINE DB
      *
-     * @param id
-     * @param loseLevels
-     * @param badStuffDescription
+     * @param id                  id van het bijhorende monster
+     * @param loseLevels          hoeveel levels verloren gaan
+     * @param badStuffDescription bijhorende text
      */
     public BadStuff(int id, int loseLevels, String badStuffDescription) {
         setId(id);
@@ -62,13 +63,13 @@ public class BadStuff {
 
     @Override
     public String toString() {
-        return String.format("Badstuff: %s ,%s",text, levelsLost==0?"escape is automatic":String.format("levels lost:%d", levelsLost));
+        return String.format("Badstuff: %s ,%s", text, levelsLost == 0 ? "escape is automatic" : String.format("levels lost:%d", levelsLost));
     }
 
     /**
      * Setter voor de naam die gebruik maakt van een switch om de juiste naam kaart te selecteren
-     * 
-     * @param naam
+     *
+     * @param naam de naam van de kaart
      */
     private void setNaam(String naam) {
         String check = naam.toLowerCase();
@@ -96,8 +97,8 @@ public class BadStuff {
 
     /**
      * Setter die id initialiseert als deze positief is
-     * 
-     * @param id
+     *
+     * @param id de id van het bijhorende monster
      */
     private void setId(int id) {
         if (id < 0) {
@@ -108,8 +109,8 @@ public class BadStuff {
 
     /**
      * Setter die tekst initialiseert als deze niet null is
-     * 
-     * @param text
+     *
+     * @param text de text bij de kaart
      */
     private void setText(String text) {
         if (text == null) {
@@ -120,8 +121,8 @@ public class BadStuff {
 
     /**
      * Setter die aantal levelLost zet als deze positief is
-     * 
-     * @param levelsLost
+     *
+     * @param levelsLost hoeveel levels verloren worden
      */
     private void setLevelsLost(int levelsLost) {
         if (levelsLost < 0) {
@@ -132,8 +133,8 @@ public class BadStuff {
 
     /**
      * Setter die gearLost initialiseert wanneer deze niet null is
-     * 
-     * @param gearLost
+     *
+     * @param gearLost welk type gear verloren gaat
      */
     private void setGearLost(String gearLost) {
         if (gearLost == null) {
@@ -144,8 +145,8 @@ public class BadStuff {
 
     /**
      * Setter die aantal itemsTaken initialiseert wanneer deze positief is
-     * 
-     * @param itemsTaken
+     *
+     * @param itemsTaken hoeveel items de baddstuff afneemt
      */
     private void setItemsTaken(int itemsTaken) {
         if (itemsTaken < 0) {
@@ -156,7 +157,7 @@ public class BadStuff {
 
     /**
      * Getter die de naam teruggeeft
-     * 
+     *
      * @return String van naam
      */
     public String getNaam() {
@@ -165,7 +166,7 @@ public class BadStuff {
 
     /**
      * Getter die id teruggeeft
-     * 
+     *
      * @return int van id
      */
     public int getId() {
@@ -174,7 +175,7 @@ public class BadStuff {
 
     /**
      * Getter die text teruggeeft
-     * 
+     *
      * @return String text
      */
     public String getText() {
@@ -183,7 +184,7 @@ public class BadStuff {
 
     /**
      * Getter die aantal levelsLost teruggeeft
-     * 
+     *
      * @return int aantal levelsLost
      */
     public int getLevelsLost() {
@@ -192,7 +193,7 @@ public class BadStuff {
 
     /**
      * Getter die String van welke gear verloren wordt, teruggeeft
-     * 
+     *
      * @return String gearLost
      */
     public String getGearLost() {
@@ -201,7 +202,7 @@ public class BadStuff {
 
     /**
      * Getter die het aantal itemsTaken teruggeeft
-     * 
+     *
      * @return int van itemsTaken
      */
     public int getItemsTaken() {
@@ -210,7 +211,7 @@ public class BadStuff {
 
     /**
      * Boolean die zegt of de kaart een LawyersCard is of niet
-     * 
+     *
      * @return true = isLawyersCard, false = geen LawyersCard
      */
     public boolean isLawyersCard() {
@@ -219,7 +220,7 @@ public class BadStuff {
 
     /**
      * Boolean die zegt of de kaart een OrgsCard is of niet
-     * 
+     *
      * @return true = OrgsCard, false = geen OrgsCard
      */
     public boolean isOrgsCard() {
@@ -228,7 +229,7 @@ public class BadStuff {
 
     /**
      * Boolean die zegt of de kaart een Ghoulfriends is of niet
-     * 
+     *
      * @return true = Ghoulfriends, false = geen Ghoulfriends
      */
     public boolean isGhoulfriends() {
@@ -237,7 +238,7 @@ public class BadStuff {
 
     /**
      * Boolean die zegt of de kaart een isSnailsOnSpeed is of niet
-     * 
+     *
      * @return true = isSnailsOnSpeed, false = geen isSnailsOnSpeed
      */
     public boolean isSnailsOnSpeed() {
@@ -246,7 +247,7 @@ public class BadStuff {
 
     /**
      * Boolean die zegt of de kaart een WrightBrothers is of niet
-     * 
+     *
      * @return true = isWrightBrothers, false = geen WrightBrothers
      */
     public boolean isWrightBrothers() {

@@ -4,13 +4,12 @@ import domein.kaarten.Kerkerkaart;
 import exceptions.kaarten.kerkerkaarten.CurseException;
 
 /**
- *
  * @author ziggy
  */
+@SuppressWarnings("ConstantConditions")
 public class Curse extends Kerkerkaart {
 
-
-
+    @SuppressWarnings("unused")
     private enum LOSTTYPES {
         head, foot, item, all, sex, race, none, armor
     }
@@ -23,13 +22,13 @@ public class Curse extends Kerkerkaart {
 
     /**
      * constructor voor curse
-     *
+     * <p>
      * KLEINE DB
      *
-     * @param name
-     * @param id
-     * @param loseLevel
-     * @param description
+     * @param name        naam van de kaart
+     * @param id          id van de kaart
+     * @param loseLevel   hoeveel levels verloren gaan
+     * @param description bijhorende tekst van de kaart
      */
     public Curse(String name, int id, int loseLevel, String description) {
         super(name, id);
@@ -40,14 +39,14 @@ public class Curse extends Kerkerkaart {
 
     /**
      * Constructor van cursekaart (die superklasse kerkerkaart gebruikt)
-     *
+     * <p>
      * GROTE DB
-     * 
-     * @param name
-     * @param id
-     * @param loseLevel
-     * @param typeLost
-     * @param description 
+     *
+     * @param name        naam van de kaart
+     * @param id          id van de kaart
+     * @param loseLevel   hoeveel levels verloren gaan
+     * @param typeLost    welk type gear verloren gaat
+     * @param description bijhorende text
      */
     public Curse(String name, int id, int loseLevel, String typeLost, String description) {
         super(name, id);
@@ -58,7 +57,7 @@ public class Curse extends Kerkerkaart {
 
     /**
      * Getter die verloren type teruggeeft
-     * 
+     *
      * @return typeLost
      */
     public String getTypeLost() {
@@ -67,7 +66,7 @@ public class Curse extends Kerkerkaart {
 
     /**
      * Getter die aantal levels verloren geeft
-     * 
+     *
      * @return levelLost
      */
     public int getLevelLost() {
@@ -92,8 +91,8 @@ public class Curse extends Kerkerkaart {
 
     /**
      * Setter die controleert of typeLost geldig is
-     * 
-     * @param typeLost
+     *
+     * @param typeLost welk type gear verloren gaat
      */
     private void setTypeLost(String typeLost) {
         if (LOSTTYPES.valueOf(typeLost.toLowerCase()) == null) {
@@ -104,11 +103,11 @@ public class Curse extends Kerkerkaart {
 
     /**
      * Setter die controleert of LevelLost geldig is
-     * 
-     * @param levelLost
+     *
+     * @param levelLost hoeveel levels verloren gaan
      */
     private void setLevelLost(int levelLost) {
-        if (levelLost < 0){
+        if (levelLost < 0) {
             throw new CurseException("exception.curse.levelLost");
         }
         this.levelLost = levelLost;
@@ -132,17 +131,18 @@ public class Curse extends Kerkerkaart {
 
     /**
      * Getter die tekst terugkrijgt
-     * 
+     *
      * @return text
      */
+    @SuppressWarnings("WeakerAccess")
     public String getText() {
         return text;
     }
 
     /**
      * Setter die tekst controleert
-     * 
-     * @param text
+     *
+     * @param text bijhorende tekst
      */
     private void setText(String text) {
         if (text == null /*|| text.isBlank()*/) {
@@ -151,9 +151,13 @@ public class Curse extends Kerkerkaart {
         this.text = text;
     }
 
-
+    /**
+     * toString methode
+     *
+     * @return geformateerde string
+     */
     @Override
     public String toString() {
-        return String.format("name: %s, %s%s",getNaam(), levelLost==1?"Lose a level":"lose 2 levels", text.isEmpty()?"":" "+getText());
+        return String.format("name: %s, %s%s", getNaam(), levelLost == 1 ? "Lose a level" : "lose 2 levels", text.isEmpty() ? "" : " " + getText());
     }
 }

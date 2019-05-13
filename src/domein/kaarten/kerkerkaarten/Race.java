@@ -6,6 +6,7 @@ import exceptions.kaarten.kerkerkaarten.RaceException;
 /**
  * @author ziggy
  */
+@SuppressWarnings({"ConstantConditions", "unused"})
 public class Race extends Kerkerkaart {
 
     private boolean extraWapen = false;
@@ -31,10 +32,10 @@ public class Race extends Kerkerkaart {
      * <p>
      * KLEINE DB
      *
-     * @param type
-     * @param id
-     * @param combatBonus
-     * @param runaway
+     * @param type        type van race
+     * @param id          id van de kaart
+     * @param combatBonus extra bonus voor bepaalde types
+     * @param runaway     extra bonus voor bepaalde types
      */
     public Race(String type, int id, int combatBonus, int runaway) {
         super(type, id);
@@ -57,9 +58,9 @@ public class Race extends Kerkerkaart {
      * <p>
      * GROTE DB
      *
-     * @param type
-     * @param id
-     * @param text
+     * @param type type van race
+     * @param id   id van de kaart
+     * @param text bijhorende tekst
      */
     public Race(String type, int id, String text) {
         super(type, id);
@@ -137,7 +138,7 @@ public class Race extends Kerkerkaart {
     /**
      * Setter die text initialiseert wanneer deze niet null of leeg is
      *
-     * @param text
+     * @param text bijhorende tekst op kaart
      */
     private void setText(String text) {
         if (text == null || text.trim().isEmpty()) {
@@ -149,7 +150,7 @@ public class Race extends Kerkerkaart {
     /**
      * Controle ofdat het type niet null is
      *
-     * @param type
+     * @param type type van race
      */
     private void controleerType(String type) {
         if (TYPES.valueOf(type.toLowerCase()) == null) {
@@ -157,33 +158,58 @@ public class Race extends Kerkerkaart {
         }
     }
 
-    public void setBonusCombat(int bonusCombat) {
+    /**
+     * setter voor combat bonus en kijkt of deze groter is dan 0
+     *
+     * @param bonusCombat de bonus van een bepaald type
+     */
+    private void setBonusCombat(int bonusCombat) {
         if (bonusCombat < 0) {
             throw new RaceException("exception.race.bonuscombat");
         }
         this.bonusCombat = bonusCombat;
     }
 
-    public void setMonsterCombat(int monsterCombat) {
+    /**
+     * setter voor monsterCombat met controle groter dan O
+     *
+     * @param monsterCombat de bonus voor een bepaald type
+     */
+    private void setMonsterCombat(int monsterCombat) {
         if (monsterCombat < 0) {
             throw new RaceException("exception.race.monstercombat");
         }
         this.monsterCombat = monsterCombat;
     }
 
-    public void setRunAway(int runAway) {
+    /**
+     * setter voor runAway en controle groter dan 0
+     *
+     * @param runAway de bonus voor een bepaald type
+     */
+    private void setRunAway(int runAway) {
         if (runAway < 0) {
             throw new RaceException("exception.race.runaway");
         }
         this.runAway = runAway;
     }
 
-    public int getBonusCombat(){
+    /**
+     * geef bonusCombat terug
+     *
+     * @return bonusCombat
+     */
+    public int getBonusCombat() {
         return bonusCombat;
     }
 
+    /**
+     * geeft tekst van kaart terug
+     *
+     * @return type
+     */
     private String getTekstToString() {
-        String ret = "";
+        String ret;
         switch (type.toLowerCase()) {
             case "dwarf":
                 ret = String.format("+%d bonus during combat", bonusCombat);
@@ -200,6 +226,11 @@ public class Race extends Kerkerkaart {
         return ret;
     }
 
+    /**
+     * toString methode
+     *
+     * @return "naam, tekst"
+     */
     @Override
     public String toString() {
         return String.format("%s, %s", getNaam(), getTekstToString());
