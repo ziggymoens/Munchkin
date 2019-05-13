@@ -464,7 +464,7 @@ public class GameInterface extends BorderPane {
                     @Override
                     public void handle(ActionEvent event) {
                         Stage stage = new Stage();
-                        Scene scene = new Scene(new VerkoopAfhandeler(dc, gameInterface));
+                        Scene scene = new Scene(new VerkoopAfhandeler(dc, gameInterface, stage));
                         stage.setScene(scene);
                         stage.show();
                     }
@@ -473,7 +473,7 @@ public class GameInterface extends BorderPane {
                     @Override
                     public void handle(ActionEvent event) {
                         Stage stage = new Stage();
-                        Scene scene = new Scene(new WeggooiAfhandeler(dc, gameInterface));
+                        Scene scene = new Scene(new WeggooiAfhandeler(dc, gameInterface, stage));
                         stage.setScene(scene);
                         stage.show();
                     }
@@ -487,7 +487,7 @@ public class GameInterface extends BorderPane {
             @Override
             public void handle(ActionEvent event) {
                 Stage stage = new Stage();
-                Scene scene = new Scene(new NaarItemsAfhandeler(dc, gameInterface));
+                Scene scene = new Scene(new NaarItemsAfhandeler(dc, gameInterface, stage));
                 stage.setScene(scene);
                 stage.show();
             }

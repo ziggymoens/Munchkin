@@ -27,10 +27,12 @@ public class WeggooiAfhandeler extends BorderPane {
     private List<Integer> weg;
     private Label Error;
     private GameInterface gameInterface;
+    private Stage currentStage;
 
-    public WeggooiAfhandeler(DomeinController dc, GameInterface gameInterface) {
+    public WeggooiAfhandeler(DomeinController dc, GameInterface gameInterface, Stage currentStage) {
         this.dc = dc;
         this.gameInterface = gameInterface;
+        this.currentStage = currentStage;
         kaart = dc.geefIdBovensteKaart();
         spelerAanBeurt = dc.geefSpelerAanBeurt();
         naam = dc.geefNaamSpeler(spelerAanBeurt);
@@ -79,9 +81,11 @@ public class WeggooiAfhandeler extends BorderPane {
         btnThrow.setOnMouseClicked(event -> {
             dc.gooiKaartenWeg(naam, weg);
             popUpScherm();
+            currentStage.close();
             //stage.close();
         });
         btnCancel.setOnMouseClicked(event -> {
+            currentStage.close();
             //stage.close();
         });
 

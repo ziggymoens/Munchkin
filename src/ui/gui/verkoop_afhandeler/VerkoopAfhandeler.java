@@ -31,10 +31,12 @@ public class VerkoopAfhandeler extends BorderPane {
     private List<Integer> verkoop;
     private Label Error;
     private GameInterface gameInterface;
+    private Stage stage;
 
 
-    public VerkoopAfhandeler(DomeinController dc, GameInterface gameInterface) {
+    public VerkoopAfhandeler(DomeinController dc, GameInterface gameInterface, Stage stage) {
         this.dc = dc;
+        this.stage = stage;
         this.gameInterface = gameInterface;
         kaart = dc.geefIdBovensteKaart();
         spelerAanBeurt = dc.geefSpelerAanBeurt();
@@ -46,10 +48,10 @@ public class VerkoopAfhandeler extends BorderPane {
     }
 
     private void verkoop() {
-        BorderPane borderPane = new BorderPane();
-        Stage stage = new Stage();
+        //BorderPane borderPane = new BorderPane();
+        //Stage stage = new Stage();
         stage.setTitle(LanguageResource.getString("usecase7.sellscreen"));
-        Scene scene = new Scene(borderPane);
+        //Scene scene = new Scene(borderPane);
         Label vraag = new Label(LanguageResource.getString("usecase7.sell"));
 
         HBox kaarten = new HBox();
@@ -81,7 +83,7 @@ public class VerkoopAfhandeler extends BorderPane {
 
         buttons.getChildren().addAll(btnConfirm, btnCancel);
 
-        borderPane.setBottom(buttons);
+        /*borderPane.*/setBottom(buttons);
         btnConfirm.setOnMouseClicked(event -> {
             int totaleWaarde = 0;
             for (Integer id : verkoop) {
@@ -108,15 +110,15 @@ public class VerkoopAfhandeler extends BorderPane {
         kaarten.setSpacing(10);
         kaarten.setMinHeight(125);
         kaarten.setAlignment(Pos.CENTER);
-        borderPane.setTop(vraag);
+        /*borderPane.*/setTop(vraag);
         setCenter(kaarten);
         vraag.setAlignment(Pos.CENTER);
         vraag.setPadding(new Insets(40, 40, 40, 40));
         setMinHeight(getMinHeight() * 0.5);
         setMinWidth(getMinWidth() * 0.5);
-        borderPane.setCenter(kaarten);
-        stage.setScene(scene);
-        stage.show();
+        /*borderPane.*/setCenter(kaarten);
+        //stage.setScene(scene);
+        //stage.show();
     }
 
     private void ErrorAfhandeling() {

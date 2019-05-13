@@ -31,9 +31,11 @@ public class NaarItemsAfhandeler extends BorderPane {
     private List<Integer> mogelijkheden;
     private List<Integer> items;
     private GameInterface gameInterface;
+    private Stage stage;
 
-    public NaarItemsAfhandeler(DomeinController dc, GameInterface gameInterface) {
+    public NaarItemsAfhandeler(DomeinController dc, GameInterface gameInterface, Stage stage) {
         this.dc = dc;
+        this.stage = stage;
         this.gameInterface = gameInterface;
         kaart = dc.geefIdBovensteKaart();
         spelerAanBeurt = dc.geefSpelerAanBeurt();
@@ -45,10 +47,10 @@ public class NaarItemsAfhandeler extends BorderPane {
     }
 
     private void naarItems() {
-        BorderPane borderPane = new BorderPane();
-        Stage stage = new Stage();
+        //BorderPane borderPane = new BorderPane();
+        //Stage stage = new Stage();
         stage.setTitle(LanguageResource.getString("usecase7.itemsscreen"));
-        Scene scene = new Scene(borderPane);
+        //Scene scene = new Scene(borderPane);
         Label vraag = new Label(LanguageResource.getString("usecase7.items"));
 
         HBox kaarten = new HBox();
@@ -78,7 +80,7 @@ public class NaarItemsAfhandeler extends BorderPane {
 
         buttons.getChildren().addAll(btnConfirm, btnCancel);
 
-        borderPane.setBottom(buttons);
+        /*borderPane.*/setBottom(buttons);
         btnConfirm.setOnMouseClicked(event -> {
             if (!items.isEmpty()) {
                 dc.verplaatsNaarItems(naam, items);
@@ -97,12 +99,12 @@ public class NaarItemsAfhandeler extends BorderPane {
         kaarten.setSpacing(10);
         kaarten.setMinHeight(125);
         kaarten.setAlignment(Pos.CENTER);
-        borderPane.setTop(vraag);
+        /*borderPane.*/setTop(vraag);
         vraag.setAlignment(Pos.CENTER);
         vraag.setPadding(new Insets(40, 40, 40, 40));
-        borderPane.setCenter(kaarten);
-        stage.setScene(scene);
-        stage.show();
+        /*borderPane.*/setCenter(kaarten);
+        //stage.setScene(scene);
+        //stage.show();
     }
 
     public void kaartInfoScherm(int item) {
