@@ -497,20 +497,20 @@ public class Spel {
         return monster.getWinstLevels();
     }
 
-    public Object geefMonsterAttribuut(int id, String soort) {
-        Object value = null;
+    public String geefMonsterAttribuut(int id, String soort) {
+        String value = null;
         switch (soort) {
             case "level":
-                value = ((Monster) (getKaarten().get(id))).getLevel();
+                value = String.valueOf(((Monster) (getKaarten().get(id))).getLevel());
                 break;
             case "schatkaarten":
-                value = ((Monster) getKaarten().get(id)).getWinstTeasures();
+                value = String.valueOf(((Monster) getKaarten().get(id)).getWinstTeasures());
                 break;
             case "levelsUp":
-                value = ((Monster) getKaarten().get(id)).getWinstLevels();
+                value = String.valueOf(((Monster) getKaarten().get(id)).getWinstLevels());
                 break;
             case "RunAway":
-                value = ((Monster) getKaarten().get(id)).getRunAway();
+                value = String.valueOf(((Monster) getKaarten().get(id)).getRunAway());
                 break;
         }
         return value;
@@ -809,7 +809,7 @@ public class Spel {
         return extraLevels;
     }
 
-    public boolean validatieKaartSpeler(int kaart){
+    public boolean validatieKaartSpeler(int kaart) {
         Kaart kr = kaarten.get(kaart);
         System.out.println(kr.getNaam());
         //Kaarten die de Speler mag spelen
@@ -966,11 +966,11 @@ public class Spel {
             if (teller < aantalSpelers) {
                 Speler speler = spelers.get(i);
                 String[] items = new String[6];
-                for(int j = 0; j<speler.geefItemsInt().length; j++){
+                for (int j = 0; j < speler.geefItemsInt().length; j++) {
                     items[j] = String.valueOf(speler.geefItemsInt()[j]);
                 }
                 String[] kaarten = new String[5];
-                for(int j = 0; j<speler.geefItemsInt().length; j++){
+                for (int j = 0; j < speler.geefItemsInt().length; j++) {
                     kaarten[j] = String.valueOf(speler.geefKaartenInt()[j]);
                 }
                 String[] info = {speler.getNaam(), String.valueOf(speler.getLevel()), speler.getGeslacht(), speler.getRace(), String.valueOf(kaarten), String.valueOf(items)};

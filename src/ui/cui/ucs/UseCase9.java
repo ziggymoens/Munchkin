@@ -5,22 +5,29 @@ import language.LanguageResource;
 import printer.ColorsOutput;
 import printer.Printer;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
- * Laden van games
- * al ergens in code !!!!!
+ * @author ziggy
  */
 
+@SuppressWarnings("deprecation")
 class UseCase9 {
-    private DomeinController dc;
-    private Scanner SCAN = new Scanner(System.in);
+    private final DomeinController dc;
+    private final Scanner SCAN = new Scanner(System.in);
 
+    /**
+     * Constructor voor UC9
+     *
+     * @param dc de gebruikte dc van het huidige spel
+     */
     UseCase9(DomeinController dc) {
         this.dc = dc;
     }
 
+    /**
+     * algemene methode die de andere methodes aanroept
+     */
     void spelLaden() {
         int keuze = maakKeuze();
         th1.start();
@@ -36,6 +43,11 @@ class UseCase9 {
         speelSpel();
     }
 
+    /**
+     * Methode die de gebruiker een spel laat kiezen om te laden
+     *
+     * @return het gekozen spel op te laden
+     */
     private int maakKeuze() {
         int keuze = -1;
         boolean tryAgain = true;
@@ -48,26 +60,30 @@ class UseCase9 {
                     throw new Exception();
                 }
                 tryAgain = false;
-            } catch (InputMismatchException e) {
-                e.printStackTrace();
-                System.out.println(LanguageResource.getString("usecase2.choiceinput"));
-                SCAN.nextLine();
             } catch (Exception e) {
-                e.printStackTrace();
-                System.out.println(LanguageResource.getString("usecase2.choiceinput"));
+                System.out.println(Printer.printRed(LanguageResource.getString("usecase2.choiceinput")));
                 SCAN.nextLine();
             }
         }
         return keuze;
     }
 
+    /**
+     * Methode geeft een overzicht van de spellen in de databank
+     */
     private void overzicht() {
         System.out.println(ColorsOutput.decoration("bold") + LanguageResource.getString("usecase9.makechoice") + ColorsOutput.reset());
         for (String lijn : dc.geefOverzichtSpelen()) {
+
             System.out.println(lijn);
         }
     }
 
+    /**
+     * methode die het spel gaat laden
+     *
+     * @param id id van het spel
+     */
     private void laadSpel(int id) {
         try {
             dc.laadSpel(id);
@@ -76,11 +92,17 @@ class UseCase9 {
         }
     }
 
+    /**
+     * methode die na het laden det spel terug verder laat spelen
+     */
     private void speelSpel() {
         UseCase2 uc2 = new UseCase2(dc);
-        uc2.speelSpel(dc.geefAantalSpelers());
+        uc2.speelSpel();
     }
 
+    /**
+     * de loading thread
+     */
     private final Thread th1 = new Thread(() -> {
         System.out.print("\nLoading ");
         for (int i = 0; i < 100; i++) {
@@ -93,14 +115,3 @@ class UseCase9 {
         }
     });
 }
-
-//    private void toonOverzicht(){
-//        String ret = "";
-//        List<String> overzicht = dc.geefOverzichtSpelen();
-//        int i = 1;
-//        for (String lijn : overzicht){
-//            ret += String.format("%d: %s", i, lijn);
-//        }
-//        aantalSpelen = overzicht.size();
-//        System.out.println(ret);
-//    }

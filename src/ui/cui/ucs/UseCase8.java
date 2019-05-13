@@ -20,10 +20,16 @@ class UseCase8 {
     private final Scanner SCAN = new Scanner(System.in);
     private final DomeinController dc;
 
+    /**
+     * @param dc
+     */
     UseCase8(DomeinController dc) {
         this.dc = dc;
     }
 
+    /**
+     *Algemene methode die andere methoden aanroept
+     */
     void spelOpslaan() {
         try {
             askName();
@@ -33,6 +39,9 @@ class UseCase8 {
         }
     }
 
+    /**
+     * methode die de naam vraagt voor het spel
+     */
     private void askName() {
         boolean tryAgain = true;
         while (tryAgain) {
@@ -49,6 +58,9 @@ class UseCase8 {
         }
     }
 
+    /**
+     * Methode die het spel opslaat en ondertussen een thread laat runnen
+     */
     private void saveGame() {
         th1.start();
         th1.suspend();
@@ -77,6 +89,9 @@ class UseCase8 {
         }
     }
 
+    /**
+     * De loading thread
+     */
     private final Thread th1 = new Thread(() -> {
         try {
             System.out.print("\nLoading ");
