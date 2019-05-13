@@ -11,11 +11,12 @@ import java.util.ResourceBundle;
 /**
  * @author ziggy
  */
+@SuppressWarnings("unused")
 public class LanguageResource {
 
     private static Locale locale;
     private static ResourceBundle bundle;
-    private static String location = "language/resourcebundle/i18n";
+    private static final String location = "language/resourcebundle/i18n";
 
     static {
         setLocale(new Locale("en"));
@@ -67,6 +68,7 @@ public class LanguageResource {
      *
      * @return Locale van de huidige taal
      */
+    @SuppressWarnings("WeakerAccess")
     public static Locale getLocale() {
         return LanguageResource.locale;
     }

@@ -1,6 +1,5 @@
 package main;
 
-import domein.DomeinController;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.Event;
@@ -51,7 +50,6 @@ public class StartUpGui extends Application {
         BorderPane borderPane = new BorderPane();
         tabPane.setTabDragPolicy(TabPane.TabDragPolicy.REORDER);
         tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.SELECTED_TAB);
-        DomeinController dc = new DomeinController();
         TabsMunchkin.addNewGame();
         // bind to take available space
         borderPane.prefHeightProperty().bind(scene.heightProperty());
@@ -72,6 +70,7 @@ public class StartUpGui extends Application {
      *
      * @param event event van de sluitknop
      */
+    @SuppressWarnings("OptionalGetWithoutIsPresent")
     private void closeRequest(Event event) {
         Locale locale = ((TabExtended) TabsMunchkin.getPane().getSelectionModel().getSelectedItem()).getLocale();
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
