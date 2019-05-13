@@ -13,6 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import language.LanguageResource;
+import ui.gui.game_interface.GameInterface;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,9 +26,11 @@ public class WeggooiAfhandeler extends BorderPane {
     private List<Integer> items;
     private List<Integer> weg;
     private Label Error;
+    private GameInterface gameInterface;
 
-    public WeggooiAfhandeler(DomeinController dc) {
+    public WeggooiAfhandeler(DomeinController dc, GameInterface gameInterface) {
         this.dc = dc;
+        this.gameInterface = gameInterface;
         kaart = dc.geefIdBovensteKaart();
         spelerAanBeurt = dc.geefSpelerAanBeurt();
         naam = dc.geefNaamSpeler(spelerAanBeurt);

@@ -17,8 +17,13 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import language.LanguageResource;
+import ui.gui.a_universal.TabExtended;
+import ui.gui.a_universal.TabsMunchkin;
+import ui.gui.items_afhandeler.NaarItemsAfhandeler;
 import ui.gui.kaart_afhandeler.KaartAfhandeler;
 import ui.gui.ucs.usecase8.UseCase8G;
+import ui.gui.verkoop_afhandeler.VerkoopAfhandeler;
+import ui.gui.weggooi_afhandeler.WeggooiAfhandeler;
 
 import java.security.SecureRandom;
 import java.util.*;
@@ -242,19 +247,19 @@ public class GameInterface extends BorderPane {
                 itemsHS.getChildren().add(imageView);
             }
         } else {
-//            for (Integer i : lijst) {
-//                ImageView imageView = new ImageView(new Image(String.format("/ui/images/kaarten/%d.png", i)));
-//                imageView.setFitWidth(50);
-//                imageView.setPreserveRatio(true);
-//                imageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-//                    @Override
-//                    public void handle(MouseEvent event) {
-//                        kaartSchermpje(i);
-//                    }
-//                });
-//                kaartenHS.getChildren().add(imageView);
-//            }
-            checkboxImages(lijst);
+            for (Integer i : lijst) {
+                ImageView imageView = new ImageView(new Image(String.format("/ui/images/kaarten/%d.png", i)));
+                imageView.setFitWidth(50);
+                imageView.setPreserveRatio(true);
+                imageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        kaartSchermpje(i);
+                    }
+                });
+                kaartenHS.getChildren().add(imageView);
+            }
+            //checkboxImages(lijst);
         }
 
     }
@@ -331,10 +336,11 @@ public class GameInterface extends BorderPane {
         imageView.setFitWidth(150);
         imageView.setPreserveRatio(true);
         Button button = new Button(LanguageResource.getStringLanguage("usecase3.confirm", getLocale()));
+        GameInterface gameInterface = this;
         button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                new KaartAfhandeler(dc, center);
+                new KaartAfhandeler(dc, center, gameInterface);
 
             }
         });
@@ -383,7 +389,7 @@ public class GameInterface extends BorderPane {
     }
 
     private Locale getLocale() {
-        return new Locale("nl");//((TabExtended) TabsMunchkin.getPane().getSelectionModel().getSelectedItem()).getLocale();
+        return ((TabExtended) TabsMunchkin.getPane().getSelectionModel().getSelectedItem()).getLocale();
     }
 
     private void kaartSchermpje(int finalJ) {
@@ -438,5 +444,72 @@ public class GameInterface extends BorderPane {
             image.setAlignment(Pos.CENTER);
             kaartenHS.getChildren().add(image);
         }
+    }
+
+    public void kaartGespeeld(){
+        VBox buttons = new VBox();
+        buttons.setMinWidth(center.getMinWidth()*0.6);
+        buttons.setSpacing(20);
+        buttons.setAlignment(Pos.CENTER);
+        Button verkopen = new Button(LanguageResource.getStringLanguage("usecase7.action2", getLocale()));
+        Button naarItems = new Button(LanguageResource.getStringLanguage("usecase7.action1", getLocale()));
+        Button niks = new Button(LanguageResource.getStringLanguage("usecase7.action3", getLocale()));
+        Locale locale = getLocale();
+        GameInterface gameInterface = this;
+        verkopen.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Button verkopen2 = new Button(LanguageResource.getStringLanguage("usecase7.translationsell", locale));
+                Button weggooien = new Button(LanguageResource.getStringLanguage("usecase7.translationthrow", locale));
+                verkopen2.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        Stage stage = new Stage();
+                        Scene scene = new Scene(new VerkoopAfhandeler(dc, gameInterface));
+                        stage.setScene(scene);
+                        stage.show();
+                    }
+                });
+                weggooien.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        Stage stage = new Stage();
+                        Scene scene = new Scene(new WeggooiAfhandeler(dc, gameInterface));
+                        stage.setScene(scene);
+                        stage.show();
+                    }
+                });
+                buttons.getChildren().clear();
+                buttons.getChildren().addAll(verkopen2, weggooien);
+                center.setCenter(buttons);
+            }
+        });
+        naarItems.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Stage stage = new Stage();
+                Scene scene = new Scene(new NaarItemsAfhandeler(dc, gameInterface));
+                stage.setScene(scene);
+                stage.show();
+            }
+        });
+        niks.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                nieuweInterface();
+            }
+        });
+        buttons.getChildren().addAll(verkopen, naarItems, niks);
+        center.setCenter(buttons);
+    }
+
+    public void nieuweInterface(){
+        if (dc.geefSpelerAanBeurt()+1<dc.geefAantalSpelers()-1){
+            dc.zetSpelerAanBeurt(dc.geefSpelerAanBeurt()+1);
+        }else {
+            dc.zetSpelerAanBeurt(0);
+        }
+        dc.nieuweBovensteKaartK();
+        ((TabExtended) TabsMunchkin.getPane().getSelectionModel().getSelectedItem()).setNewContent(new GameInterface(dc));
     }
 }

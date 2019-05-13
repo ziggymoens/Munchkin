@@ -1,5 +1,6 @@
 package ui.gui.ucs.usecase1;
 
+import connection.Connection;
 import domein.DomeinController;
 import exceptions.SpelException;
 import exceptions.SpelerException;
@@ -381,6 +382,8 @@ public class UseCase1G extends MainGui {
 
     private void toonSpelOverzicht() {
         centerVBox.getChildren().clear();
+        Connection.setConnected(true);
+        dc.laadSpelRepo();
         dc.haalKaartenUitDb();
         dc.geefStartKaarten();
         dc.controleerVolgorde();

@@ -16,6 +16,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import language.LanguageResource;
+import ui.gui.game_interface.GameInterface;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,9 +30,11 @@ public class NaarItemsAfhandeler extends BorderPane {
     private String naam;
     private List<Integer> mogelijkheden;
     private List<Integer> items;
+    private GameInterface gameInterface;
 
-    public NaarItemsAfhandeler(DomeinController dc) {
+    public NaarItemsAfhandeler(DomeinController dc, GameInterface gameInterface) {
         this.dc = dc;
+        this.gameInterface = gameInterface;
         kaart = dc.geefIdBovensteKaart();
         spelerAanBeurt = dc.geefSpelerAanBeurt();
         naam = dc.geefNaamSpeler(spelerAanBeurt);

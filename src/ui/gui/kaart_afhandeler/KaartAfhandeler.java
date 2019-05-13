@@ -18,6 +18,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import language.LanguageResource;
+import ui.gui.game_interface.GameInterface;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,6 +27,7 @@ import java.util.Map;
 
 public class KaartAfhandeler extends BorderPane {
     private DomeinController dc;
+    private GameInterface gameInterface;
     private BorderPane borderPane;
     private BorderPane center;
     private int kaart;
@@ -41,8 +43,8 @@ public class KaartAfhandeler extends BorderPane {
     private int vraagSpeler;
 
 
-    public KaartAfhandeler(DomeinController dc, BorderPane center) {
-
+    public KaartAfhandeler(DomeinController dc, BorderPane center, GameInterface gi) {
+        this.gameInterface = gi;
         this.dc = dc;
         this.center = center;
         this.kaart = dc.geefIdBovensteKaart();
@@ -120,10 +122,12 @@ public class KaartAfhandeler extends BorderPane {
 
     private void geenEffectKaart() {
         dc.geefKerkerkaartAanSpeler(dc.geefNaamSpeler(dc.geefSpelerAanBeurt()));
+        gameInterface.kaartGespeeld();
     }
 
     private void curse() {
         dc.curseKaart(dc.geefNaamSpeler(dc.geefSpelerAanBeurt()));
+        gameInterface.kaartGespeeld();
     }
 
     private void wiltHulp(ActionEvent event) {
@@ -383,4 +387,8 @@ public class KaartAfhandeler extends BorderPane {
         dc.geefIDKaartenInHand(dc.geefNaamSpeler(spelerAanBeurt));
         //ImageView ivKaart = new ImageView(new )
     }*/
+
+    private void kaartGespeeld(){
+        gameInterface.kaartGespeeld();
+    }
 }
