@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ui.test;
 
 import domein.DomeinController;
@@ -34,6 +29,10 @@ public class Test {
     private final List<Kaart> kk = kr.getKerkerkaarten();
     private static final DomeinController dc = new DomeinController();
 
+    /**
+     * methode om test 1 te runnen
+     * @param args startup args
+     */
     public static void main(String[] args) {
 
 //        KaartMapper km = new KaartMapper();
@@ -197,18 +196,27 @@ public class Test {
         test2 t2 = new test2();
 
     }
+
+    /**
+     *thread test
+     */
     private static void start(){
         th1.start();
         printImage();
     }
 
 
-
-    public static void printImage(){
+    /**
+     *image om te printen
+     */
+    private static void printImage(){
         App app = new App();
         app.begin();
     }
 
+    /**
+     *thread die img laat printen
+     */
     private static final Thread th1 = new Thread(() -> {
         try {
             printImage();
@@ -218,11 +226,22 @@ public class Test {
         }
     });
 
+    /**
+     * inner klasse app
+     */
     public static class App extends Application {
-        public App() {
+        /**
+         * constructor voor app
+         */
+        App() {
             super();
         }
 
+        /**
+         *start methode
+         * @param primaryStage primaire stage
+         * @throws Exception exception bij opstartfout
+         */
         @Override
         public void start(Stage primaryStage) throws Exception {
             BorderPane bp = new BorderPane();
@@ -234,7 +253,10 @@ public class Test {
             primaryStage.setResizable(false);
         }
 
-        public void begin(){
+        /**
+         * op app op te starten
+         */
+        void begin(){
             Application.launch();
         }
     }
