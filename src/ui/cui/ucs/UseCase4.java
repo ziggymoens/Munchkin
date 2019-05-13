@@ -1,21 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ui.cui.ucs;
 
 import domein.DomeinController;
-import exceptions.SpelerException;
 import language.LanguageResource;
 import printer.ColorsOutput;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 /**
  * @author ziggy
- * GEEEEEN STATICS
  */
 class UseCase4 {
     private final DomeinController dc;
@@ -26,13 +20,21 @@ class UseCase4 {
 
     //speler aan de beurt ==> dc.geefSpelerAanBeurt(), int van 0 tot aantalSpelers-1
 
-    UseCase4(DomeinController dc, int aantalSpelers, String naam) {
+    /**
+     *
+     * @param dc
+     */
+    UseCase4(DomeinController dc) {
         this.dc = dc;
-        this.aantalSpelers = aantalSpelers;
-        this.naam = naam;
+        this.aantalSpelers = dc.geefAantalSpelers();
+        this.naam = dc.geefNaamSpeler(dc.geefSpelerAanBeurt());
     }
 
     // Vragen aan speler of hij hulp wilt
+
+    /**
+     *
+     */
     void bereidSpelVoor() {
         int id = dc.geefIdBovensteKaart();
         dc.setMonsterBattlePoints(Integer.parseInt(dc.geefMonsterAttribuut(id,"level").toString()));
@@ -53,15 +55,19 @@ class UseCase4 {
         }
         dc.setHelptmee(helptmee);
         // Vragen aan speler of hij een bonuskaart wilt spelen.
-        vraagKaartSpelen("usecase4.ask.bonuscard", true);
+        vraagKaartSpelen(true);
         monsterKeuze(beurt);
         //vragen of de speler nog een extra kaart wilt spelen, zoja, speel een kaart
-        vraagKaartSpelen("usecase4.ask.bonuscard", false);
+        vraagKaartSpelen(false);
         System.out.println("\n" + dc.bovensteKaartToString());
         //Het overzicht tonen voor het gevecht
         geefOverzichtGevecht();
     }
 
+    /**
+     *
+     * @return
+     */
     private String hulpVragen(){
         System.out.println(LanguageResource.getString("usecase4.ask.help"));
         String help = SCAN.next().toLowerCase();
@@ -73,6 +79,10 @@ class UseCase4 {
         return help;
     }
 
+    /**
+     *
+     * @param beurt
+     */
     private void monsterKeuze(List<Boolean> beurt){
         List <Boolean> helptmee = dc.gethelptmee();
         String help = dc.getHelp();
@@ -134,6 +144,9 @@ class UseCase4 {
         dc.setHelptmee(helptmee);
     }
 
+    /**
+     *
+     */
     private void geefOverzichtGevecht(){
         List<Boolean> helptmee = dc.gethelptmee();
         System.out.printf(LanguageResource.getString("usecase4.battle") + "%n%n", dc.getMonsterBattlePoints(), dc.getSpelerBattlePoints());
@@ -147,24 +160,35 @@ class UseCase4 {
         vechtMonster();
     }
 
+    /**
+     *
+     * @param i
+     */
     private void speelKaart(int i) {
         UseCase5 uc5 = new UseCase5(this.dc, true);
         uc5.speelKaart(i);
     }
 
+    /**
+     *
+     */
     private void vechtMonster() {
         UseCase6 uc6 = new UseCase6(this.dc);
         uc6.vechtMetMonster(aantalSpelers);
     }
 
-    private void vraagKaartSpelen(String output, boolean monster){
+    /**
+     *
+     * @param monster
+     */
+    private void vraagKaartSpelen(boolean monster){
         String kaart;
         do {
-            System.out.printf("%s, %s%n", String.format("%s", ColorsOutput.kleur("blue") + naam + ColorsOutput.reset()), LanguageResource.getString(output));
+            System.out.printf("%s, %s%n", String.format("%s", ColorsOutput.kleur("blue") + naam + ColorsOutput.reset()), LanguageResource.getString("usecase4.ask.bonuscard"));
             kaart = SCAN.next().toLowerCase();
             while (!kaart.equals(LanguageResource.getString("yes")) && !kaart.equals(LanguageResource.getString("no"))) {
                 System.out.printf(ColorsOutput.decoration("bold") + ColorsOutput.kleur("red") + "%s%n%n", LanguageResource.getString("start.yesno") + ColorsOutput.reset());
-                System.out.println(LanguageResource.getString(output));
+                System.out.println(LanguageResource.getString("usecase4.ask.bonuscard"));
                 kaart = SCAN.next().toLowerCase();
             }
             if (kaart.equals(LanguageResource.getString("yes"))) {
@@ -173,6 +197,4 @@ class UseCase4 {
             }
         } while (kaart.equals(LanguageResource.getString("yes")));
     }
-
-
 }

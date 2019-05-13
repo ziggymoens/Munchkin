@@ -1,5 +1,4 @@
 package ui.cui.ucs;
-
 import connection.Connection;
 import domein.DomeinController;
 import exceptions.SpelException;
@@ -17,8 +16,11 @@ import java.util.*;
  * KLAAR -- ZIGGY -- 26/4/2019
  * CONTROLE JONA --
  * CONTROLE KILI -- 27/04/2019
- * CONTROLE MICHIEL --
  */
+
+//voor analyze code
+@SuppressWarnings("deprecation")
+
 public class UseCase1 {
 
     //declaraties voor gehele usecase
@@ -91,6 +93,9 @@ public class UseCase1 {
         }
     }
 
+    /**
+     * Methode die controleert of de gebruiker verbinding heeft met internet
+     */
     private void checkInternet() {
         try {
             this.dc.checkConnection();
@@ -149,7 +154,7 @@ public class UseCase1 {
             System.out.println(Printer.printGreen("spel.playersadded"));
             //verdergaan naar UC2
             UseCase2 uc2 = new UseCase2(this.dc);
-            uc2.speelSpel(aantalSpelers);
+            uc2.speelSpel();
         } catch (Exception e) {
             System.out.print(Printer.exceptionCatch("Exception (UC1)", e, false));
         }
@@ -213,6 +218,7 @@ public class UseCase1 {
             //thread initieel starten
             th1.start();
             //thread pauzeren
+            //noinspection deprecation
             th1.suspend();
         } catch (Exception e) {
             System.out.print(Printer.exceptionCatch("Exception (UC1)", e, false));
@@ -381,6 +387,8 @@ public class UseCase1 {
 
 //    /**
 //     * methode om te kiezen welke databank wil gebruikt worden
+//     *
+//     * DE GROTE DB WORDT NIET MEER GEBRUIKT
 //     *
 //     * @return true = kleine databank
 //     */

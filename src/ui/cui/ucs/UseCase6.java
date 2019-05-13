@@ -11,14 +11,22 @@ import java.util.List;
  * UC6
  */
 
-public class UseCase6 {
+class UseCase6 {
     private final DomeinController dc;
 
-    public UseCase6(DomeinController dc) {
+    /**
+     *
+     * @param dc
+     */
+    UseCase6(DomeinController dc) {
         this.dc = dc;
     }
 
-    public void vechtMetMonster(int aantalSpelers) {
+    /**
+     *
+     * @param aantalSpelers
+     */
+    void vechtMetMonster(int aantalSpelers) {
         List<Boolean> helptmee = dc.gethelptmee();
         boolean gevecht = dc.gevechtResultaat(dc.getMonsterBattlePoints(), dc.getSpelerBattlePoints());
         int id = dc.geefIdBovensteKaart();
@@ -36,6 +44,11 @@ public class UseCase6 {
         UniversalMethods.toonSituatie();
     }
 
+    /**
+     *
+     * @param id
+     * @param helptmee
+     */
     private void verhoogLevelsGewonnen(int id, List<Boolean> helptmee){
         int levelsUp = Integer.parseInt(dc.geefMonsterAttribuut(id, "levelsUp").toString());
         for(int i = 0; i < helptmee.size(); i++){
@@ -45,6 +58,12 @@ public class UseCase6 {
         }
     }
 
+    /**
+     *
+     * @param id
+     * @param aantalSpelers
+     * @param helptmee
+     */
     private void geefSchatkaarten(int id, int aantalSpelers, List<Boolean> helptmee){
         int aantal = dc.geefSpelerAanBeurt();
         int aantalSchatkaarten = Integer.parseInt(dc.geefMonsterAttribuut(id, "schatkaarten").toString());
@@ -60,6 +79,10 @@ public class UseCase6 {
         }
     }
 
+    /**
+     *
+     * @param id
+     */
     private void ontsnappen(int id){
         int runAway = Integer.parseInt(dc.geefMonsterAttribuut(id,"RunAway").toString());
         int worp = dc.gooiDobbelsteen();

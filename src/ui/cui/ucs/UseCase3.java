@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ui.cui.ucs;
 
 import domein.DomeinController;
@@ -18,19 +13,15 @@ import java.util.Scanner;
 /**
  * @author ziggy
  */
-public class UseCase3 {
-    //private Thread th1;
+class UseCase3 {
     private final DomeinController dc;
-    //private static String locatieImg = null;
-    //private static String typeImg = null;
     private final Scanner SCAN = new Scanner(System.in);
-    private Map<String, Runnable> types;
+    private final Map<String, Runnable> types;
     private int huidigeKaart;
     private String naam;
     private final int aantalSpelers;
-    private List<String> huidigeSituatie;
 
-    public UseCase3(DomeinController dc, int aantalSpelers) {
+    UseCase3(DomeinController dc) {
         //map die bepaalt hoe kaart afgehandeld wordt
         types = new HashMap<>();
         types.put("ConsumablesKerker", this::geenEffectKaart);
@@ -40,25 +31,29 @@ public class UseCase3 {
         types.put("ConsumablesSchat", this::geenEffectKaart);
         types.put("Equipment", this::geenEffectKaart);
         this.dc = dc;
-        this.aantalSpelers = aantalSpelers;
+        this.aantalSpelers = dc.geefAantalSpelers();
 
     }
 
     /**
-     * @param naam
+     * Methode die de beurt van de speler regelt
+     *
+     * @param naam naam van de speler die de beurt speelt
      */
-    public void speelBeurt(String naam) {
+    void speelBeurt(String naam) {
         this.naam = naam;
         try {
             UniversalMethods.toonSituatie();
-            huidigeSituatie = dc.geefSpelsituatie();
+            List<String> huidigeSituatie = dc.geefSpelsituatie();
             System.out.println(dc.geefKaartenVanSpeler(naam) + "\n");
             System.out.println(dc.geefItemsVanSpeler(naam));
+
             //locatieImg = dc.toonBovensteKk();
             //typeImg = dc.geefTypeKaart(dc.geefIdBovensteKaart());
             //Thread th1 = new Thread(App::begin);
             //th1.start();
             //System.out.println(dc.toonBovensteKk() + " " + dc.geefTypeKaart(dc.geefIdBovensteKaart()));
+
             System.out.println(dc.bovensteKaartToString());
             huidigeKaart = dc.geefIdBovensteKaart();
             System.out.println(String.format("%s %s", Printer.printBlue(naam), LanguageResource.getString("usecase3.confirm")));
@@ -70,7 +65,9 @@ public class UseCase3 {
                 bev = SCAN.next().toLowerCase();
                 SCAN.nextLine();
             }
+
             //System.out.println(dc.geefTypeKaart(huidigeKaart));
+
             speelKaart();
             beheerKaarten();
             boolean verschil = true;
@@ -84,12 +81,87 @@ public class UseCase3 {
                 UniversalMethods.toonSituatie();
             }
             dc.nieuweBovensteKaartK();
+
             //th1.interrupt();
+
         } catch (Exception e) {
             System.out.print(Printer.exceptionCatch("Exception (UC3)", e, false));
         }
     }
 
+    /**
+     * Methode die bepaalt afh van het type van de kaart, welke methode er wordt uitgevoerd
+     */
+    private void speelKaart() {
+        try {
+            String type = dc.geefTypeKaart(huidigeKaart);
+            types.get(type).run();
+        } catch (Exception e) {
+            System.out.print(Printer.exceptionCatch("Exception (UC3)", e, false));
+        }
+    }
+
+
+    /**
+     * Kaarten beheren en doorverwijzen naar UC7
+     */
+    private void beheerKaarten() {
+        try {
+            UseCase7 uc7 = new UseCase7(this.dc);
+            uc7.beheerKaarten();
+            while (dc.getAantalKaarten(naam) > 5) {
+                uc7.beheerKaarten();
+            }
+        } catch (Exception e) {
+            System.out.print(Printer.exceptionCatch("Exception (UC3)", e, false));
+        }
+
+    }
+
+    /**
+     * Deze methode is voor kaarten die geen direct effect hebben op de speler
+     */
+    private void geenEffectKaart() {
+        try {
+            dc.geefKerkerkaartAanSpeler(naam);
+            System.out.print(Printer.printGreen(String.format("usecase3.play.%s", dc.geefTypeKaart(huidigeKaart).toLowerCase())));
+        } catch (Exception e) {
+            System.out.print(Printer.exceptionCatch("Exception (UC3)", e, false));
+        }
+
+    }
+
+    /**
+     * methode die gebruikt wordt om een monsterkaart uit te voeren
+     */
+    private void monsterKaart() {
+        try {
+            UseCase4 uc4 = new UseCase4(this.dc);
+            uc4.bereidSpelVoor();
+        } catch (Exception e) {
+            System.out.print(Printer.exceptionCatch("Exception (UC3)", e, false));
+        }
+        System.out.print(Printer.printGreen("usecase3.play.monster"));
+    }
+
+    /**
+     * methode die gebruikt wordt om een cursekaart uit te voeren
+     */
+    private void curseKaart() {
+        try {
+            dc.curseKaart(naam);
+            System.out.println(Printer.printGreen("usecase3.play.curse"));
+        } catch (Exception e) {
+            System.out.print(Printer.exceptionCatch("Exception (UC3)", e, false));
+        }
+    }
+}
+
+
+//  private Thread th1;
+//  private static String locatieImg = null;
+//  private static String typeImg = null;
+//
 //    public static class App extends Application {
 //        private static App app;
 //        @Override
@@ -122,72 +194,3 @@ public class UseCase3 {
 //            }
 //        }
 //    }
-
-    /**
-     *
-     */
-    private void speelKaart() {
-        try {
-            String type = dc.geefTypeKaart(huidigeKaart);
-            types.get(type).run();
-        } catch (Exception e) {
-            System.out.print(Printer.exceptionCatch("Exception (UC3)", e, false));
-        }
-    }
-
-
-    /**
-     * Kaarten beheren en doorverwijzen naar UC7
-     */
-    private void beheerKaarten() {
-        try {
-            UseCase7 uc7 = new UseCase7(this.dc);
-            uc7.beheerKaarten();
-            while (dc.getAantalKaarten(naam) > 5) {
-                uc7.beheerKaarten();
-            }
-        } catch (Exception e) {
-            System.out.print(Printer.exceptionCatch("Exception (UC3)", e, false));
-        }
-
-    }
-
-    /**
-     *
-     */
-    private void geenEffectKaart() {
-        try {
-            dc.geefKerkerkaartAanSpeler(naam);
-            System.out.print(Printer.printGreen(String.format("usecase3.play.%s", dc.geefTypeKaart(huidigeKaart).toLowerCase())));
-        } catch (Exception e) {
-            System.out.print(Printer.exceptionCatch("Exception (UC3)", e, false));
-        }
-
-    }
-
-    /**
-     *
-     */
-    private void monsterKaart() {
-        try {
-            UseCase4 uc4 = new UseCase4(this.dc, aantalSpelers, naam);
-            uc4.bereidSpelVoor();
-        } catch (Exception e) {
-            System.out.print(Printer.exceptionCatch("Exception (UC3)", e, false));
-        }
-        System.out.print(Printer.printGreen("usecase3.play.monster"));
-    }
-
-    /**
-     *
-     */
-    private void curseKaart() {
-        try {
-            dc.curseKaart(naam);
-            System.out.println(Printer.printGreen("usecase3.play.curse"));
-        } catch (Exception e) {
-            System.out.print(Printer.exceptionCatch("Exception (UC3)", e, false));
-        }
-    }
-}
-

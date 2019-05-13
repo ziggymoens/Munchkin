@@ -18,7 +18,8 @@ class UseCase7 {
 
     /**
      * Constructor voor use case 7
-     * @param dc
+     *
+     * @param dc de gebruikte domeincontroller
      */
     UseCase7(DomeinController dc) {
         this.dc = dc;
@@ -64,6 +65,7 @@ class UseCase7 {
 
     /**
      * Methode die de speler zijn keuze laat maken, gooit exceptie wanneer keuze niet juist is
+     *
      * @return keuze van de speler
      */
     private int maakKeuze() {
@@ -84,10 +86,11 @@ class UseCase7 {
     }
 
     /**
-     *  Methode waar letterlijk niks in gedaan wordt
+     * Methode waar letterlijk niks in gedaan wordt
      */
+    @SuppressWarnings("EmptyMethod")
     private void niksDoen() {
-
+        //empty
     }
 
     /**
@@ -190,7 +193,8 @@ class UseCase7 {
 
     /**
      * Methode die adhv type de juiste value kiest van de map.
-     * @param type
+     *
+     * @param type V, W, I afh van welke actie de speler wil uitvoeren
      */
     private void kiesKaarten(String type) {
         try {
@@ -260,14 +264,14 @@ class UseCase7 {
     }
 
     /**
-     * @param print
-     * @param mogelijkheden
-     *
      * Methode die de print doet van de meegegeven parameter print en kijkt of de keuze van het id in de lijst van mogelijkheden zit.
      * Indien ja -> gekozeenKaarten.add(keuze)
      * Indien nee en keuze zit niet in mogelijkheden -> opnieuw vragen
      * Indien keuze 999 vragen om te stoppen.
      * Dit herhalen zolang de keuze ook niet 999 is.
+     *
+     * @param print         de string die geprint moet worden
+     * @param mogelijkheden de sting met de mogelijke kaarten
      */
     private void doeControle(String print, List<Integer> mogelijkheden) {
         int teller = 0;
@@ -278,7 +282,7 @@ class UseCase7 {
                 keuze = scan.nextInt();
                 if (mogelijkheden.contains(keuze) && keuze != 999) {
                     //if(dc.validatieKaartItems(keuze))
-                        gekozenKaarten.add(keuze);
+                    gekozenKaarten.add(keuze);
                     teller++;
                 } else if (keuze == 999) {
                     String stop;
@@ -288,6 +292,7 @@ class UseCase7 {
                         if (stop.equalsIgnoreCase(LanguageResource.getString("yes"))) {
                             break;
                         } else if (stop.equalsIgnoreCase(LanguageResource.getString("no"))) {
+                            niksDoen();
                         } else {
                             System.out.println(LanguageResource.getString("usecase2.choiceerror"));
                         }

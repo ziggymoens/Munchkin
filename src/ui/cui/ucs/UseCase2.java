@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ui.cui.ucs;
 
 import connection.Connection;
@@ -19,7 +14,6 @@ import java.util.*;
  * KLAAR -- 30/4/2019
  * CONTROLE KILI --
  * CONTROLE JONA --
- * CONTROLE MICHIEL --
  *
  * @author ziggy
  */
@@ -29,8 +23,6 @@ class UseCase2 {
     private final DomeinController dc;
     private final Scanner scan;
     private final Map<Integer, Runnable> beurtOpties;
-    private final Runnable[] opties = {this::spelen, this::opslaan, this::stoppen};
-    private int aantalSpelers;
     private String naam;
 
     /**
@@ -42,6 +34,7 @@ class UseCase2 {
         this.dc = dc;
         scan = new Scanner(System.in);
         beurtOpties = new HashMap<>();
+        Runnable[] opties = {this::spelen, this::opslaan, this::stoppen};
         for (int i = 0; i < opties.length; i++) {
             beurtOpties.put(i + 1, opties[i]);
         }
@@ -50,10 +43,9 @@ class UseCase2 {
     /**
      * Methode die het spel start en de beurten afloopt
      *
-     * @param aantalSpelers Het aantal spelers die meespelen
      */
-    void speelSpel(int aantalSpelers) {
-        this.aantalSpelers = aantalSpelers;
+    void speelSpel() {
+        int aantalSpelers = dc.geefAantalSpelers();
         try {
             //zet spelers in de volgorde zoals opgegeven in DR
             dc.controleerVolgorde();
@@ -133,11 +125,11 @@ class UseCase2 {
     }
 
     /**
-     *
+     * methode die de keuze speel beurt opstart
      */
     private void spelen() {
         try {
-            UseCase3 uc3 = new UseCase3(this.dc, aantalSpelers);
+            UseCase3 uc3 = new UseCase3(this.dc);
             uc3.speelBeurt(naam);
         } catch (Exception e) {
             System.out.print(Printer.exceptionCatch("Exception", e, false));
@@ -145,7 +137,7 @@ class UseCase2 {
     }
 
     /**
-     *
+     * methode die de keuze opslaan opstart
      */
     private void opslaan() {
         try {
@@ -157,7 +149,7 @@ class UseCase2 {
     }
 
     /**
-     *
+     * methode die het stoppen van het spel regelt
      */
     private void stoppen() {
         boolean tryAgain2 = true;
@@ -199,7 +191,7 @@ class UseCase2 {
     }
 
     /**
-     *
+     * methode die de keuzes van de gebruiker print
      */
     private void printKeuze() {
         System.out.printf("%s%n"
@@ -207,5 +199,4 @@ class UseCase2 {
                 + "2) %s%s%n"
                 + "3) %s%n", LanguageResource.getString("usecase2.turn.choice"), LanguageResource.getString("usecase2.turn.play"), LanguageResource.getString("usecase2.turn.save"), Connection.isConnected() ? "" : String.format(" ==> %s", LanguageResource.getString("notavailable")), LanguageResource.getString("usecase2.turn.stop"));
     }
-
 }

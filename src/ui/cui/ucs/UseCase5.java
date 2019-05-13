@@ -1,54 +1,56 @@
 package ui.cui.ucs;
 
 import domein.DomeinController;
-
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
-import domein.kaarten.kerkerkaarten.ConsumablesKerker;
-import domein.kaarten.kerkerkaarten.Curse;
-import domein.kaarten.kerkerkaarten.Monster;
-import domein.kaarten.kerkerkaarten.Race;
-import domein.kaarten.schatkaarten.ConsumablesSchat;
-import domein.kaarten.schatkaarten.Equipment;
 import exceptions.SpelerException;
 import language.LanguageResource;
 import printer.ColorsOutput;
 
+import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Scanner;
 
-public class UseCase5 {
+/**
+ *
+ */
+class UseCase5 {
     private final DomeinController dc;
     private final Scanner SCAN = new Scanner(System.in);
-    private int spelerAanBeurt;
-    private boolean help;
-    private boolean monster;
+    private final boolean monster;
     private List<Boolean> helptmee;
     private int kaart;
 
-
-    public UseCase5(DomeinController dc, boolean monster) {
+    /**
+     *
+     * @param dc
+     * @param monster
+     */
+    UseCase5(DomeinController dc, boolean monster) {
         this.dc = dc;
         this.monster = monster;
     }
 
+    //Methode herschrijven jonathan!!! geen domeinobjecten
+    //geen kaarten, spelers en spel!!!
+
+    /**
+     *
+     * @param spab
+     */
     void speelKaart(int spab) {
-        this.help = dc.getHelp().equalsIgnoreCase(LanguageResource.getString("yes"));
+        boolean help = dc.getHelp().equalsIgnoreCase(LanguageResource.getString("yes"));
         this.helptmee = dc.gethelptmee();
         dc.setSpelerAanBeurtGevecht(spab);
-        this.spelerAanBeurt = dc.getSpelerAanBeurtGevecht();
+        int spelerAanBeurt = dc.getSpelerAanBeurtGevecht();
         //System.out.println(dc.toonOverzichtKaartenInHand(spelerAanBeurt));
-        System.out.println("");
-        System.out.printf(ColorsOutput.decoration("bold") + ColorsOutput.kleur("purple") + "%s%n", dc.toonOverzichtKaartenInHand2(spelerAanBeurt).get(0) + ColorsOutput.reset());
+        System.out.printf(ColorsOutput.decoration("bold") + ColorsOutput.kleur("purple") + "%n%s%n", dc.toonOverzichtKaartenInHand2(spelerAanBeurt).get(0) + ColorsOutput.reset());
         for (int i = 1; i < dc.toonOverzichtKaartenInHand2(spelerAanBeurt).size(); i++) {
             System.out.println(dc.toonOverzichtKaartenInHand2(spelerAanBeurt).get(i));
         }
-        System.out.println("");
         boolean tryAgain = true;
         while (tryAgain) {
             try {
-                System.out.println(LanguageResource.getString("usecase5.choicecard"));
+                System.out.println("\n" + LanguageResource.getString("usecase5.choicecard"));
                 kaart = SCAN.nextInt();
                 int end = dc.toonOverzichtKaartenInHand2(spelerAanBeurt).size();
                 if (kaart <= 0 || kaart > end) {
@@ -89,12 +91,15 @@ public class UseCase5 {
 
         }//De speler mag de kaart niet spelen
         else {
-            System.out.println("");
-            System.err.println(LanguageResource.getString("usecase5.invalidcard"));
+            //throw new Exception("usecase5.invalidcard");
+            System.err.println("\n" + LanguageResource.getString("usecase5.invalidcard"));
             speelKaart(spab);
         }
     }
 
+    /**
+     *
+     */
     private void curseKaart() {
         int end = overzichthelpendespelers().size();
         for (int i = 0; i < end; i++) {
@@ -122,6 +127,10 @@ public class UseCase5 {
         dc.speelCurse(speler, kaart);
     }
 
+    /**
+     *
+     * @return
+     */
     private List<String> overzichthelpendespelers() {
         int aantal = 1;
         List<String> output = new ArrayList<>();

@@ -14,10 +14,16 @@ class UniversalMethods {
 
     private static final Scanner SCAN = new Scanner(System.in);
 
+    /**
+     * methode die controleert of je gebruiker ja of nee antwoord in de juiste taal
+     *
+     * @param text De te vertalen vraag
+     * @return boolean ja = true, nee = false
+     */
     static Boolean controleJaNee(String text) {
         boolean tryAgain = true;
         String antw = "";
-        while(tryAgain) {
+        while (tryAgain) {
             try {
                 System.out.println(LanguageResource.getString(text));
                 antw = SCAN.next().toLowerCase();
@@ -34,7 +40,7 @@ class UniversalMethods {
     }
 
     /**
-     *
+     * Toont de huidige spelsituatie van het spel
      */
     static void toonSituatie() {
         try {
@@ -53,6 +59,11 @@ class UniversalMethods {
         }
     }
 
+    /**
+     * Setter voor de Domeincontroller van de klasse
+     *
+     * @param dc de gebruikte domeincontroller van het spel
+     */
     static void setDc(DomeinController dc) {
         UniversalMethods.dc = dc;
     }
