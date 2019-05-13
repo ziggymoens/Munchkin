@@ -117,16 +117,16 @@ class UseCase5 {
                     }
                     tryAgain = false;
                 } catch (InputMismatchException e) {
-                    System.out.println(Printer.exceptionCatch(LanguageResource.getString("inputmismatch"), e, true));
+                    System.out.println(Printer.exceptionCatch(LanguageResource.getString("inputmismatch"), e));
                     SCAN.nextLine();
                 } catch (SpelerException e) {
-                    System.out.println(Printer.exceptionCatch(LanguageResource.getString("wronginput"), e, true));
+                    System.out.println(Printer.exceptionCatch(LanguageResource.getString("wronginput"), e));
                     SCAN.nextLine();
                 }
             }
             dc.speelCurse(speler, kaart);
         }catch(Exception e){
-            System.out.println(Printer.exceptionCatch(LanguageResource.getString("somethingWrong"), e, true));
+            System.out.println(Printer.exceptionCatch(LanguageResource.getString("somethingWrong"), e));
             SCAN.nextLine();
         }
     }

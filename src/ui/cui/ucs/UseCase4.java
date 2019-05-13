@@ -3,6 +3,7 @@ package ui.cui.ucs;
 import domein.DomeinController;
 import language.LanguageResource;
 import printer.ColorsOutput;
+import printer.Printer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -148,7 +149,7 @@ class UseCase4 {
         }
         dc.setHelptmee(helptmee);
     }catch(Exception e){
-            System.out.println(ColorsOutput.kleur("red") + ColorsOutput.decoration("bold") + LanguageResource.getString("somethingWrong") + ColorsOutput.reset());
+            System.out.print(Printer.exceptionCatch("somethingWrong", e));
         }
     }
 
@@ -168,7 +169,7 @@ class UseCase4 {
             dc.setSpelerBattlePoints(dc.getSpelerBattlePoints() + dc.spelerLevels());
             vechtMonster();
         }catch(Exception e){
-            System.out.println(ColorsOutput.kleur("red") + ColorsOutput.decoration("bold") + LanguageResource.getString("somethingWrong") + ColorsOutput.reset());
+            System.out.print(Printer.exceptionCatch("somethingWrong", e));
         }
     }
 

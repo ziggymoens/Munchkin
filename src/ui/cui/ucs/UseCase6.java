@@ -3,6 +3,7 @@ package ui.cui.ucs;
 import domein.DomeinController;
 import language.LanguageResource;
 import printer.ColorsOutput;
+import printer.Printer;
 
 import java.util.List;
 
@@ -59,7 +60,7 @@ class UseCase6 {
                 }
             }
         }catch(Exception e){
-            System.out.println(ColorsOutput.kleur("red") + ColorsOutput.decoration("bold") + LanguageResource.getString("somethingWrong") + ColorsOutput.reset());
+            System.out.print(Printer.exceptionCatch("somethingWrong", e));
         }
     }
 
@@ -84,7 +85,7 @@ class UseCase6 {
                 aantal++;
             }
         }catch(Exception e){
-            System.out.println(ColorsOutput.kleur("red") + ColorsOutput.decoration("bold") + LanguageResource.getString("somethingWrong") + ColorsOutput.reset());
+            System.out.print(Printer.exceptionCatch("somethingWrong", e));
         }
     }
 
