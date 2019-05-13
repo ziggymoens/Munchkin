@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import language.LanguageResource;
+import ui.gui.game_interface.GameInterface;
 import ui.gui.items_afhandeler.NaarItemsAfhandeler;
 
 import java.util.Locale;
@@ -45,7 +46,7 @@ public class Test4 extends Application {
         dc.spel.updateVolgorde();
         dc.zetSpelerAanBeurt(0);
         BorderPane bp = new BorderPane();
-        Scene scene = new Scene(new NaarItemsAfhandeler(dc));
+        Scene scene = new Scene(new NaarItemsAfhandeler(dc, new GameInterface(dc)));
         primaryStage.setScene(scene);
         primaryStage.show();
     }

@@ -41,10 +41,10 @@ public class WeggooiAfhandeler extends BorderPane {
     }
 
     private void gooiweg() {
-        BorderPane borderPane = new BorderPane();
-        Stage stage = new Stage();
-        stage.setTitle(LanguageResource.getString("usecase7.throwscreen"));
-        Scene scene = new Scene(borderPane, 1000, 800);
+        //BorderPane borderPane = new BorderPane();
+        //Stage stage = new Stage();
+        //stage.setTitle(LanguageResource.getString("usecase7.throwscreen"));
+        //Scene scene = new Scene(borderPane, 1000, 800);
         Label vraag = new Label(LanguageResource.getString("usecase7.throw"));
 
         HBox kaarten = new HBox();
@@ -75,14 +75,14 @@ public class WeggooiAfhandeler extends BorderPane {
 
         buttons.getChildren().addAll(btnThrow, btnCancel);
 
-        borderPane.setBottom(buttons);
+        /*borderPane.*/setBottom(buttons);
         btnThrow.setOnMouseClicked(event -> {
             dc.gooiKaartenWeg(naam, weg);
             popUpScherm();
-            stage.close();
+            //stage.close();
         });
         btnCancel.setOnMouseClicked(event -> {
-            stage.close();
+            //stage.close();
         });
 
         buttons.setAlignment(Pos.TOP_CENTER);
@@ -91,12 +91,12 @@ public class WeggooiAfhandeler extends BorderPane {
         kaarten.setSpacing(10);
         kaarten.setMinHeight(125);
         kaarten.setAlignment(Pos.CENTER);
-        borderPane.setTop(vraag);
+        /*borderPane.*/setTop(vraag);
         vraag.setAlignment(Pos.CENTER);
         vraag.setPadding(new Insets(40, 275, 40, 275));
-        borderPane.setCenter(kaarten);
-        stage.setScene(scene);
-        stage.show();
+        /*borderPane.*/setCenter(kaarten);
+        //stage.setScene(scene);
+        //stage.show();
 
     }
 
