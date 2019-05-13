@@ -36,57 +36,61 @@ class UseCase5 {
      * @param spab speleraanbeurt binnenin het gevecht, hangt los van algemene dc.geefspeleraanbeurt
      */
     void speelKaart(int spab, boolean monster) {
-        boolean help = dc.getHelp().equalsIgnoreCase(LanguageResource.getString("yes"));
-        this.helptmee = dc.gethelptmee();
-        dc.setSpelerAanBeurtGevecht(spab);
-        int spelerAanBeurt = dc.getSpelerAanBeurtGevecht();
-        //System.out.println(dc.toonOverzichtKaartenInHand(spelerAanBeurt));
-        System.out.printf(ColorsOutput.decoration("bold") + ColorsOutput.kleur("purple") + "%n%s%n", dc.toonOverzichtKaartenInHand2(spelerAanBeurt).get(0) + ColorsOutput.reset());
-        for (int i = 1; i < dc.toonOverzichtKaartenInHand2(spelerAanBeurt).size(); i++) {
-            System.out.println(dc.toonOverzichtKaartenInHand2(spelerAanBeurt).get(i));
-        }
-        boolean tryAgain = true;
-        while (tryAgain) {
-            try {
-                System.out.println("\n" + LanguageResource.getString("usecase5.choicecard"));
-                kaart = SCAN.nextInt();
-                int end = dc.toonOverzichtKaartenInHand2(spelerAanBeurt).size();
-                if (kaart <= 0 || kaart > end) {
-                    throw new SpelerException("exception.wronginput");
+        try {
+            boolean help = dc.getHelp().equalsIgnoreCase(LanguageResource.getString("yes"));
+            this.helptmee = dc.gethelptmee();
+            dc.setSpelerAanBeurtGevecht(spab);
+            int spelerAanBeurt = dc.getSpelerAanBeurtGevecht();
+            //System.out.println(dc.toonOverzichtKaartenInHand(spelerAanBeurt));
+            System.out.printf(ColorsOutput.decoration("bold") + ColorsOutput.kleur("purple") + "%n%s%n", dc.toonOverzichtKaartenInHand2(spelerAanBeurt).get(0) + ColorsOutput.reset());
+            for (int i = 1; i < dc.toonOverzichtKaartenInHand2(spelerAanBeurt).size(); i++) {
+                System.out.println(dc.toonOverzichtKaartenInHand2(spelerAanBeurt).get(i));
+            }
+            boolean tryAgain = true;
+            while (tryAgain) {
+                try {
+                    System.out.println("\n" + LanguageResource.getString("usecase5.choicecard"));
+                    kaart = SCAN.nextInt();
+                    int end = dc.toonOverzichtKaartenInHand2(spelerAanBeurt).size();
+                    if (kaart <= 0 || kaart > end) {
+                        throw new SpelerException("exception.wronginput");
+                    }
+                    tryAgain = false;
+                } catch (InputMismatchException e) {
+                    System.err.println(LanguageResource.getString("exception.inputmismatch"));
+                    SCAN.nextLine();
+                } catch (SpelerException e) {
+                    System.out.println(LanguageResource.getString("exception.wronginput"));
+                    SCAN.nextLine();
                 }
-                tryAgain = false;
-            } catch (InputMismatchException e) {
-                System.err.println(LanguageResource.getString("exception.inputmismatch"));
-                SCAN.nextLine();
-            } catch (SpelerException e) {
-                System.out.println(LanguageResource.getString("exception.wronginput"));
-                SCAN.nextLine();
             }
-        }
 
-        System.out.println(dc.geefSpeler(spelerAanBeurt).getKaarten().get(kaart - 1));
-        //De speler mag de kaart spelen
-        if (dc.validatieKaartSpeler(kaart, monster) && dc.validatieKaartItems(kaart)) {
-            if(dc.controleWelkeKaart(kaart, monster).equals("Curse")){
-                curseKaart();
-            }
-            if(dc.controleWelkeKaart(kaart, monster).equals("Monster")){
-                dc.speelMonster(kaart, monster);
-            }
-            if(dc.controleWelkeKaart(kaart, monster).equals("Consumable")){
-                dc.speelConsumable(kaart);
-            }
-            if(dc.controleWelkeKaart(kaart, monster).equals("Race/Weapon")){
-                dc.itemsBijvoegen(kaart);
-            }
-            dc.voegKaartOnderaanStapelToe(kaart);
-            dc.geefSpeler(spelerAanBeurt).getKaarten().remove(kaart - 1);
+            System.out.println(dc.geefSpeler(spelerAanBeurt).getKaarten().get(kaart - 1));
+            //De speler mag de kaart spelen
+            if (dc.validatieKaartSpeler(kaart, monster) && dc.validatieKaartItems(kaart)) {
+                if (dc.controleWelkeKaart(kaart, monster).equals("Curse")) {
+                    curseKaart();
+                }
+                if (dc.controleWelkeKaart(kaart, monster).equals("Monster")) {
+                    dc.speelMonster(kaart, monster);
+                }
+                if (dc.controleWelkeKaart(kaart, monster).equals("Consumable")) {
+                    dc.speelConsumable(kaart);
+                }
+                if (dc.controleWelkeKaart(kaart, monster).equals("Race/Weapon")) {
+                    dc.itemsBijvoegen(kaart);
+                }
+                dc.voegKaartOnderaanStapelToe(kaart);
+                dc.geefSpeler(spelerAanBeurt).getKaarten().remove(kaart - 1);
 
-        }//De speler mag de kaart niet spelen
-        else {
-            //throw new Exception("usecase5.invalidcard");
-            System.err.println("\n" + LanguageResource.getString("usecase5.invalidcard"));
-            speelKaart(spab, monster);
+            }//De speler mag de kaart niet spelen
+            else {
+                //throw new Exception("usecase5.invalidcard");
+                System.err.println("\n" + LanguageResource.getString("usecase5.invalidcard"));
+                speelKaart(spab, monster);
+            }
+        }catch(Exception e){
+            System.out.println(ColorsOutput.kleur("red") + ColorsOutput.decoration("bold") + LanguageResource.getString("somethingWrong") + ColorsOutput.reset());
         }
     }
 
@@ -94,29 +98,33 @@ class UseCase5 {
      * Methdoe die een curseKaart speelt
      */
     private void curseKaart() {
-        int end = overzichthelpendespelers().size();
-        for (int i = 0; i < end; i++) {
-            System.out.println(overzichthelpendespelers().get(i));
-        }
-        int speler = 0;
-        boolean tryAgain = true;
-        while (tryAgain) {
-            try {
-                System.out.println(LanguageResource.getString("usecase5.chooseplayer"));
-                speler = SCAN.nextInt();
-                if (speler <= 0 || speler > end) {
-                    throw new SpelerException("exception.wronginput");
-                }
-                tryAgain = false;
-            } catch (InputMismatchException e) {
-                System.err.println(LanguageResource.getString("exception.inputmismatch"));
-                SCAN.nextLine();
-            } catch (SpelerException e) {
-                System.out.println(LanguageResource.getString("exception.wronginput"));
-                SCAN.nextLine();
+        try {
+            int end = overzichthelpendespelers().size();
+            for (int i = 0; i < end; i++) {
+                System.out.println(overzichthelpendespelers().get(i));
             }
+            int speler = 0;
+            boolean tryAgain = true;
+            while (tryAgain) {
+                try {
+                    System.out.println(LanguageResource.getString("usecase5.chooseplayer"));
+                    speler = SCAN.nextInt();
+                    if (speler <= 0 || speler > end) {
+                        throw new SpelerException("exception.wronginput");
+                    }
+                    tryAgain = false;
+                } catch (InputMismatchException e) {
+                    System.err.println(LanguageResource.getString("exception.inputmismatch"));
+                    SCAN.nextLine();
+                } catch (SpelerException e) {
+                    System.out.println(LanguageResource.getString("exception.wronginput"));
+                    SCAN.nextLine();
+                }
+            }
+            dc.speelCurse(speler, kaart);
+        }catch(Exception e){
+            System.out.println(ColorsOutput.kleur("red") + ColorsOutput.decoration("bold") + LanguageResource.getString("somethingWrong") + ColorsOutput.reset());
         }
-        dc.speelCurse(speler, kaart);
     }
 
     /**

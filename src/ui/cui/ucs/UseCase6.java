@@ -2,6 +2,7 @@ package ui.cui.ucs;
 
 import domein.DomeinController;
 import language.LanguageResource;
+import printer.ColorsOutput;
 
 import java.util.List;
 
@@ -50,11 +51,15 @@ class UseCase6 {
      * @param helptmee List met booleans van elke speler of ze meegeholpen hebben in het gevecht of niet
      */
     private void verhoogLevelsGewonnen(int id, List<Boolean> helptmee){
-        int levelsUp = Integer.parseInt(dc.geefMonsterAttribuut(id, "levelsUp").toString());
-        for(int i = 0; i < helptmee.size(); i++){
-            if(helptmee.get(i)){
-                dc.verhoogLevel(dc.geefNaamSpeler(i), levelsUp);
+        try {
+            int levelsUp = Integer.parseInt(dc.geefMonsterAttribuut(id, "levelsUp").toString());
+            for (int i = 0; i < helptmee.size(); i++) {
+                if (helptmee.get(i)) {
+                    dc.verhoogLevel(dc.geefNaamSpeler(i), levelsUp);
+                }
             }
+        }catch(Exception e){
+            System.out.println(ColorsOutput.kleur("red") + ColorsOutput.decoration("bold") + LanguageResource.getString("somethingWrong") + ColorsOutput.reset());
         }
     }
 
@@ -65,17 +70,21 @@ class UseCase6 {
      * @param helptmee List van spelers of ze meehelpen in het gevecht of niet
      */
     private void geefSchatkaarten(int id, int aantalSpelers, List<Boolean> helptmee){
-        int aantal = dc.geefSpelerAanBeurt();
-        int aantalSchatkaarten = Integer.parseInt(dc.geefMonsterAttribuut(id, "schatkaarten").toString());
-        for(int i = 0; i < aantalSchatkaarten;i++){
-            if(aantal < aantalSpelers){
-                if(helptmee.get(aantal)){
-                    dc.deelSchatkaartenUit(aantal, aantalSchatkaarten);
+        try {
+            int aantal = dc.geefSpelerAanBeurt();
+            int aantalSchatkaarten = Integer.parseInt(dc.geefMonsterAttribuut(id, "schatkaarten").toString());
+            for (int i = 0; i < aantalSchatkaarten; i++) {
+                if (aantal < aantalSpelers) {
+                    if (helptmee.get(aantal)) {
+                        dc.deelSchatkaartenUit(aantal, aantalSchatkaarten);
+                    }
+                } else {
+                    aantal = -1;
                 }
-            }else{
-                aantal = -1;
+                aantal++;
             }
-            aantal++;
+        }catch(Exception e){
+            System.out.println(ColorsOutput.kleur("red") + ColorsOutput.decoration("bold") + LanguageResource.getString("somethingWrong") + ColorsOutput.reset());
         }
     }
 
@@ -83,17 +92,21 @@ class UseCase6 {
      * Methode die bepaalt of je mag ontsnappen of niet (zie gooiDobbelsteen)
      * @param id van het monster waarvan de speler weg moet lopen
      */
-    private void ontsnappen(int id){
-        int runAway = Integer.parseInt(dc.geefMonsterAttribuut(id,"RunAway").toString());
-        int worp = dc.gooiDobbelsteen();
-        System.out.printf(LanguageResource.getString("usecase6.diceroll") + "%n", worp);
-        //Speler ontsnapt
-        if(worp > 4 - runAway){
-            System.out.println(LanguageResource.getString("usecase6.escape1"));
-        }// Speler ontsnapt niet
-        else{
-            System.out.println(LanguageResource.getString("usecase6.escape2"));
-            dc.voerBadStuffUit(id);
+    private void ontsnappen(int id) {
+        try {
+            int runAway = Integer.parseInt(dc.geefMonsterAttribuut(id, "RunAway").toString());
+            int worp = dc.gooiDobbelsteen();
+            System.out.printf(LanguageResource.getString("usecase6.diceroll") + "%n", worp);
+            //Speler ontsnapt
+            if (worp > 4 - runAway) {
+                System.out.println(LanguageResource.getString("usecase6.escape1"));
+            }// Speler ontsnapt niet
+            else {
+                System.out.println(LanguageResource.getString("usecase6.escape2"));
+                dc.voerBadStuffUit(id);
+            }
+        }catch(Exception e){
+            System.out.println(ColorsOutput.kleur("red") + ColorsOutput.decoration("bold") + LanguageResource.getString("somethingWrong") + ColorsOutput.reset());
         }
     }
 }

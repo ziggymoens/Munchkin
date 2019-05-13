@@ -83,15 +83,16 @@ class UseCase4 {
      * Methode die een keuze geeft aan de tegenspelers wat hij of zij willen doen tijdens het gevecht
      * @param beurt List die bijhoudt wie er deze ronde al een beslissing heeft genomen tegen het monster en wie niet
      */
-    private void monsterKeuze(List<Boolean> beurt){
-        List <Boolean> helptmee = dc.gethelptmee();
+    private void monsterKeuze(List<Boolean> beurt) {
+        List<Boolean> helptmee = dc.gethelptmee();
+        try{
         String help = dc.getHelp();
-        int aantal = dc.geefSpelerAanBeurt() + 1 ;
+        int aantal = dc.geefSpelerAanBeurt() + 1;
         for (int i = 0; i < aantalSpelers; i++) {
             if (aantal < aantalSpelers) {
                 //De spelers blijven vragen welke optie hij of zij wilt nemen, tot de speler optie 3 neemt
                 boolean tryAgain = true;
-                while (tryAgain){
+                while (tryAgain) {
                     try {
                         while (!beurt.get(i)) {
                             System.out.printf("%s%s%n", String.format("%s", ColorsOutput.kleur("blue") + dc.geefNaamSpeler(aantal) + ColorsOutput.reset()), LanguageResource.getString("usecase4.Monsterhelp"));
@@ -103,9 +104,9 @@ class UseCase4 {
                             switch (keuze) {
                                 case 1:
                                     //Mag alleen gebeuren als de speler die vecht akkoord is gegaan dat hij hulp wilt
-                                    if(dc.geefIDKaartenInHand(dc.geefNaamSpeler(aantal)).size() == 0){
+                                    if (dc.geefIDKaartenInHand(dc.geefNaamSpeler(aantal)).size() == 0) {
                                         System.err.println(LanguageResource.getString("usecase4.nocards"));
-                                    }else {
+                                    } else {
                                         if (help.equals(LanguageResource.getString("yes"))) {
                                             //aanpassen???
                                             helptmee.remove(aantal);
@@ -117,9 +118,9 @@ class UseCase4 {
                                     }
                                     break;
                                 case 2:
-                                    if(dc.geefIDKaartenInHand(dc.geefNaamSpeler(aantal)).size() == 0){
+                                    if (dc.geefIDKaartenInHand(dc.geefNaamSpeler(aantal)).size() == 0) {
                                         System.err.println(LanguageResource.getString("usecase4.nocards"));
-                                    }else{
+                                    } else {
                                         speelKaart(aantal);
                                     }
                                     break;
@@ -142,22 +143,29 @@ class UseCase4 {
             aantal++;
         }
         dc.setHelptmee(helptmee);
+    }catch(Exception e){
+            System.out.println(ColorsOutput.kleur("red") + ColorsOutput.decoration("bold") + LanguageResource.getString("somethingWrong") + ColorsOutput.reset());
+        }
     }
 
     /**
      * Methode die een overzicht van het gevecht toont
      */
     private void geefOverzichtGevecht(){
-        List<Boolean> helptmee = dc.gethelptmee();
-        System.out.printf(LanguageResource.getString("usecase4.battle") + "%n%n", dc.getMonsterBattlePoints(), dc.getSpelerBattlePoints());
-        int waar = 0;
-        List<String> ret = dc.geefBeknopteSpelsituatie();
-        for (String str : ret) {
-            System.out.println(String.format("%s, %s",str, helptmee.get(waar) ? LanguageResource.getString("usecase4.fight") : LanguageResource.getString("usecase4.notfight")));
-            waar++;
+        try {
+            List<Boolean> helptmee = dc.gethelptmee();
+            System.out.printf(LanguageResource.getString("usecase4.battle") + "%n%n", dc.getMonsterBattlePoints(), dc.getSpelerBattlePoints());
+            int waar = 0;
+            List<String> ret = dc.geefBeknopteSpelsituatie();
+            for (String str : ret) {
+                System.out.println(String.format("%s, %s", str, helptmee.get(waar) ? LanguageResource.getString("usecase4.fight") : LanguageResource.getString("usecase4.notfight")));
+                waar++;
+            }
+            dc.setSpelerBattlePoints(dc.getSpelerBattlePoints() + dc.spelerLevels());
+            vechtMonster();
+        }catch(Exception e){
+            System.out.println(ColorsOutput.kleur("red") + ColorsOutput.decoration("bold") + LanguageResource.getString("somethingWrong") + ColorsOutput.reset());
         }
-        dc.setSpelerBattlePoints(dc.getSpelerBattlePoints() + dc.spelerLevels());
-        vechtMonster();
     }
 
     /**
