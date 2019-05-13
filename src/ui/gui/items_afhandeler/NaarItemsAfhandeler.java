@@ -50,8 +50,8 @@ public class NaarItemsAfhandeler extends BorderPane {
 
         HBox kaarten = new HBox();
 
-        for (int i = 0; i < dc.geefIdKaartenNaarItems(naam).size(); i++) {
-            int mogelijk = dc.geefIdKaartenNaarItems(naam).get(i);
+        for (int i = 0; i < dc.geefIdsKunnenNaarItems(naam).size(); i++) {
+            int mogelijk = dc.geefIdsKunnenNaarItems(naam).get(i);
             Image image = new Image(String.format("/ui/images/kaarten/%d.png", mogelijk));
             ImageView img = new ImageView(image);
             img.setId("image");

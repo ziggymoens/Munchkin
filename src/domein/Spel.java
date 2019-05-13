@@ -305,7 +305,7 @@ public class Spel {
         return kaarten.get(id).getClass().getSimpleName();
     }
 
-    public void nieuwBovensteKaartK() {
+    public void nieuweBovensteKaartK() {
         Kaart kaart = kerkerkaarten.get(0);
         kerkerkaarten.remove(0);
         kerkerkaarten.add(kaart);

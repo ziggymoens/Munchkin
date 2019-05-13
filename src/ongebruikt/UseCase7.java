@@ -1,18 +1,10 @@
 package ongebruikt;
 
-import domein.DomeinController;
-import language.LanguageResource;
-import printer.ColorsOutput;
-import printer.Printer;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
 /**
  * Beheer kaarten in hand
  * UC7
  */
+/*
 public class UseCase7 {
     private final DomeinController dc;
     private final Scanner SCAN = new Scanner(System.in);
@@ -178,3 +170,4 @@ public class UseCase7 {
         }
     }
 }
+*/
