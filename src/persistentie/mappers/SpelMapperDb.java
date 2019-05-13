@@ -34,6 +34,9 @@ public class SpelMapperDb {
     private static final String DELETE_SPELKAART = "DELETE FROM ID222177_g35.SpelKaart WHERE spelidSpelKaart = ?";
     private static final String RESET_INCREMENT_SPEL = "ALTER TABLE ID222177_g35.`Spel` AUTO_INCREMENT = 1;";
 
+    /**
+     * voeg connectie toe
+     */
     private void voegToe() {
         try {
             this.conn = DriverManager.getConnection("jdbc:mysql://ID222177_g35.db.webhosting.be?serverTimezone=UTC&useLegacyDatetimeCode=false&user=ID222177_g35&password=Te6VibUp");
@@ -43,6 +46,12 @@ public class SpelMapperDb {
         }
     }
 
+    /**
+     * methode die spel oplaad
+     *
+     * @param spelId spelid van gekozen spel
+     * @return het gekozen spel
+     */
     Spel laadSpel(int spelId) {
         spellen.clear();
         Spel spel = null;
@@ -77,6 +86,9 @@ public class SpelMapperDb {
         return spel;
     }
 
+    /**
+     * methode reset het increment van de spellen in de db
+     */
     public void resetIncrement() {
         voegToe();
         try {
@@ -87,6 +99,12 @@ public class SpelMapperDb {
         }
     }
 
+    /**
+     * voegt spelers toe aan het spel uit db
+     *
+     * @param spelId het opgeladen spel
+     * @return list met spelers
+     */
     private List<Speler> voegSpelersToe(int spelId) {
         List<Speler> spelers = new ArrayList<>();
         voegToe();
@@ -118,6 +136,14 @@ public class SpelMapperDb {
         return spelers;
     }
 
+    /**
+     * geeft de kaarten van het gekozen spel per speler
+     *
+     * @param spelerId de speler van het spel
+     * @param type     i = items, k = kaarten
+     * @param spelId   id van het spel
+     * @return list met kaarten
+     */
     private List<Integer> geefKaarten(int spelerId, char type, int spelId) {
         List<Integer> kaarten = new ArrayList<>();
         voegToe();
@@ -146,6 +172,13 @@ public class SpelMapperDb {
         return kaarten;
     }
 
+    /**
+     * geeft de volgorde van de kaarten van het spel
+     *
+     * @param type   t = treasure, d = dungeon
+     * @param spelId het huidige spel
+     * @return list met ids
+     */
     private List<Integer> geefVolgorde(String type, int spelId) {
         List<Integer> volgorde;
         voegToe();
@@ -166,8 +199,8 @@ public class SpelMapperDb {
                 }
             }
             int teller = 0;
-            for (Integer i: volgorde){
-                if (i == 0){
+            for (Integer i : volgorde) {
+                if (i == 0) {
                     teller++;
                 }
             }
@@ -183,7 +216,14 @@ public class SpelMapperDb {
         return volgorde;
     }
 
-
+    /**
+     * voeg spel toe aan db
+     *
+     * @param naam          naam van spel
+     * @param i             id van spel
+     * @param klein         true is kleine db
+     * @param laatsteSpeler de laatste speler aan beurt
+     */
     void addSpel(String naam, int i, boolean klein, int laatsteSpeler) {
         voegToe();
         try {
@@ -201,6 +241,11 @@ public class SpelMapperDb {
 
     }
 
+    /**
+     * methode geeft overzicht van spelen in de db
+     *
+     * @return list met strings met info
+     */
     List<String> getOverzicht() {
         List<String> overzicht = new ArrayList<>();
         voegToe();
@@ -223,6 +268,11 @@ public class SpelMapperDb {
         return overzicht;
     }
 
+    /**
+     * methode verwijdert een spel uit de db
+     *
+     * @param index id van gekozen spel
+     */
     void remove(int index) {
         voegToe();
         try {
@@ -249,6 +299,9 @@ public class SpelMapperDb {
         }
     }
 
+    /**
+     * methode geeft de id van het spel adhv de naam
+     */
     int getSpelId(String naam) {
         int id;
         voegToe();
@@ -268,7 +321,14 @@ public class SpelMapperDb {
         return id;
     }
 
-    //LUSSEN
+    /**
+     * methode slaat kaarten op per speler
+     *
+     * @param spelerId id van de speler
+     * @param ids      ids van de kaarten
+     * @param items    true = items, false = kaarten
+     * @param spelid   id van het huidige spel
+     */
     void kaartSpelerOpslaan(int spelerId, List<Integer> ids, boolean items, int spelid) {
         voegToe();
         try {
@@ -287,6 +347,15 @@ public class SpelMapperDb {
         }
     }
 
+    /**
+     * speler opslmaan in db
+     *
+     * @param spelerId id van de speler
+     * @param naam     naal van de speler
+     * @param level    level van de speler
+     * @param geslacht geslacht van de speler
+     * @param spelId   id van huidige spel
+     */
     void spelerOpslaan(int spelerId, String naam, int level, String geslacht, int spelId) {
         voegToe();
         try {
@@ -304,6 +373,14 @@ public class SpelMapperDb {
         }
     }
 
+    /**
+     * kaarten van spel opslaan
+     *
+     * @param spelId      huidige spel id
+     * @param kaart       lijst met ids van kaarten
+     * @param volgnummerD lijst met volgnummers kerker
+     * @param volgnummerT lijst met volgnummers schat
+     */
     void kaartSpelOpslaan(int spelId, List<Integer> kaart, List<Integer> volgnummerD, List<Integer> volgnummerT) {
         voegToe();
         try {
@@ -322,6 +399,11 @@ public class SpelMapperDb {
         }
     }
 
+    /**
+     * methode geeft alle beschikbare spelids
+     *
+     * @return list met ids
+     */
     List<Integer> geefSpelIds() {
         List<Integer> ids = new ArrayList<>();
         voegToe();

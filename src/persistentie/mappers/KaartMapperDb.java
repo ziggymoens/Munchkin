@@ -6,11 +6,11 @@
 package persistentie.mappers;
 
 import domein.kaarten.Kaart;
-import domein.kaarten.kerkerkaarten.monsterbadstuff.BadStuff;
 import domein.kaarten.kerkerkaarten.ConsumablesKerker;
 import domein.kaarten.kerkerkaarten.Curse;
 import domein.kaarten.kerkerkaarten.Monster;
 import domein.kaarten.kerkerkaarten.Race;
+import domein.kaarten.kerkerkaarten.monsterbadstuff.BadStuff;
 import domein.kaarten.schatkaarten.ConsumablesSchat;
 import domein.kaarten.schatkaarten.Equipment;
 import exceptions.database.KaartDatabaseException;
@@ -20,7 +20,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author ziggy
@@ -32,6 +35,9 @@ public class KaartMapperDb {
     private final Map<String, Runnable> soorten;
     private final List<Kaart> kaarten;
 
+    /**
+     * constructor kaartmapperdb
+     */
     public KaartMapperDb() {
         kaarten = new ArrayList<>();
         soorten = new HashMap<>();
@@ -43,6 +49,9 @@ public class KaartMapperDb {
         soorten.put("Equipment", this::equipmentKaart);
     }
 
+    /**
+     * voeg connectie toe
+     */
     private void voegToe() {
         try {
             this.conn = DriverManager.getConnection(Connectie.JDBC_URL);
@@ -51,6 +60,12 @@ public class KaartMapperDb {
         }
     }
 
+    /**
+     * methode die kaarten geeft per type uit de db
+     *
+     * @param type type van de kaarten
+     * @return list met kaarten van gekozen type
+     */
     public List<Kaart> geefKaartenType(String type) {
         voegToe();
         kaarten.clear();
@@ -66,6 +81,9 @@ public class KaartMapperDb {
         return kaarten;
     }
 
+    /**
+     * haal race kaart uit db
+     */
     private void raceKaart() {
         try {
             while (rs.next()) {
@@ -82,6 +100,9 @@ public class KaartMapperDb {
         }
     }
 
+    /**
+     * haal consumables schat uit db
+     */
     private void consumablesDKaart() {
         try {
             while (rs.next()) {
@@ -98,6 +119,9 @@ public class KaartMapperDb {
         }
     }
 
+    /**
+     * haal curse kaart uit db
+     */
     private void curseKaart() {
         try {
             while (rs.next()) {
@@ -116,6 +140,9 @@ public class KaartMapperDb {
         }
     }
 
+    /**
+     * haal monster kaart uit db
+     */
     private void monsterKaart() {
         try {
             while (rs.next()) {
@@ -141,6 +168,9 @@ public class KaartMapperDb {
         }
     }
 
+    /**
+     * haal consumables kerker uit db
+     */
     private void consumablesTKaart() {
         try {
             while (rs.next()) {
@@ -160,6 +190,9 @@ public class KaartMapperDb {
         }
     }
 
+    /**
+     * haal equipment uit db
+     */
     private void equipmentKaart() {
         try {
             while (rs.next()) {
@@ -172,7 +205,7 @@ public class KaartMapperDb {
                 String usableBy = rs.getString("usableBy");
                 String specialRace = rs.getString("specialRace");
                 boolean inGame = rs.getBoolean("inGame");
-                if (inGame){
+                if (inGame) {
                     kaarten.add(new Equipment(name, id, goldPieces, type, bonus, new Race(usableBy), bonus, specialBonus, new Race(specialRace)));
                 }
             }
@@ -181,6 +214,12 @@ public class KaartMapperDb {
         }
     }
 
+    /**
+     * haal badstuff uit db
+     *
+     * @param badStuffId id van de badstuff
+     * @return de opgehaalde badstuff
+     */
     private BadStuff badStuffKaart(int badStuffId) {
         BadStuff bs = null;
         try (
