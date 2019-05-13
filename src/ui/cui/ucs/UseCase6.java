@@ -70,7 +70,7 @@ class UseCase6 {
         for(int i = 0; i < aantalSchatkaarten;i++){
             if(aantal < aantalSpelers){
                 if(helptmee.get(aantal)){
-                    dc.geefSchatkaart();
+                    dc.deelSchatkaartenUit(aantal, aantalSchatkaarten);
                 }
             }else{
                 aantal = -1;

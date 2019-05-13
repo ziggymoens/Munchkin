@@ -153,7 +153,7 @@ class UseCase4 {
         int waar = 0;
         List<String> ret = dc.geefBeknopteSpelsituatie();
         for (String str : ret) {
-            System.out.println(String.format("%s, %s",str, helptmee.get(waar) ? "vecht mee" : "vecht niet mee"));
+            System.out.println(String.format("%s, %s",str, helptmee.get(waar) ? LanguageResource.getString("usecase4.fight") : LanguageResource.getString("usecase4.notfight")));
             waar++;
         }
         dc.setSpelerBattlePoints(dc.getSpelerBattlePoints() + dc.spelerLevels());

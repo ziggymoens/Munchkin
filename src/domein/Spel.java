@@ -682,7 +682,8 @@ public class Spel {
         return spelers.get(zoekSpeler(naam)).getIDKaartenInHand();
     }
 
-    public void voegkaartonderaanstapeltoe(Kaart kaart) {
+    public void voegkaartonderaanstapeltoe(int kr) {
+        Kaart kaart = geefSpeler(spelerAanBeurt).getKaarten().get(kr - 1);
         //kaart is een kerkerkaart
         if (kaart instanceof ConsumablesKerker || kaart instanceof Curse || kaart instanceof Monster || kaart instanceof Race) {
             kerkerkaarten.add(kaart);
@@ -982,5 +983,35 @@ public class Spel {
             }
         }
         return retSpelers;
+    }
+
+    public String controleWelkeKaart(int kaart, boolean monster){
+        if (geefSpeler(spelerAanBeurt).getKaarten().get(kaart - 1) instanceof Curse) {
+            //curseKaart();
+            return "Curse";
+        } else {
+            if (geefSpeler(spelerAanBeurt).getKaarten().get(kaart - 1) instanceof Monster) {
+                //monsterKaart(gespeeldeKaart);
+                //speelMonster(kaart, monster);
+                return "Monster";
+            }
+            if (geefSpeler(spelerAanBeurt).getKaarten().get(kaart - 1) instanceof ConsumablesKerker || geefSpeler(spelerAanBeurt).getKaarten().get(kaart - 1) instanceof ConsumablesSchat) {
+                //consumablesKaart(gespeeldeKaart);
+                //speelConsumable(kaart);
+                return "Consumable";
+            }
+            if (geefSpeler(spelerAanBeurt).getKaarten().get(kaart - 1) instanceof Equipment || geefSpeler(spelerAanBeurt).getKaarten().get(kaart - 1) instanceof Race) {
+                //itemsbijvoegen(gespeeldeKaart);
+                return "Race/Weapon";
+                //itemsBijvoegen(kaart);
+            }
+        }
+        return "error";
+    }
+
+    public void deelSchatkaartenUit(int speler, int schatten){
+        for(int i = 0; i < schatten; i++){
+            geefSpeler(speler).getKaarten().add(schatkaarten.remove(0));
+        }
     }
 }

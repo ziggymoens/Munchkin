@@ -514,12 +514,12 @@ public class DomeinController {
     public int getSpelerBattlePoints() {
         return spel.getSpelerBattlePoints();
     }
-
     /**
      * Methode die kaart onderaan de stapel toevoegt.
      * @param kaart
      */
-    public void voegkaartonderaanstapeltoe(Kaart kaart){
+
+    public void voegkaartonderaanstapeltoe(int kaart){
         spel.voegkaartonderaanstapeltoe(kaart);
     }
 
@@ -564,6 +564,11 @@ public class DomeinController {
     public void setHelp(String help){
         spel.setHelp(help);
     }
+
+    /**
+     * Setter die set wie er mee doet aan het gevegd
+     * @param helptmee
+     */
 
     public void setHelptmee(List<Boolean> helptmee){
         spel.setHelptmee(helptmee);
@@ -639,6 +644,14 @@ public class DomeinController {
 
     public List<String[]> spelerOverzichtVolgorde(){
         return spel.geefspelerOverzichtVolgorde();
+    }
+
+    public String controleWelkeKaart(int kaart, boolean monster){
+       return  spel.controleWelkeKaart(kaart, monster);
+    }
+
+    public void deelSchatkaartenUit(int speler, int schatten){
+        spel.deelSchatkaartenUit(speler, schatten);
     }
 
 

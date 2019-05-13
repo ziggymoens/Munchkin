@@ -69,25 +69,20 @@ class UseCase5 {
         System.out.println(dc.geefSpeler(spelerAanBeurt).getKaarten().get(kaart - 1));
         //De speler mag de kaart spelen
         if (dc.validatieKaartSpeler(kaart, monster) && dc.validatieKaartItems(kaart)) {
-            if (dc.geefSpeler(spelerAanBeurt).getKaarten().get(kaart - 1) instanceof Curse) {
+            if(dc.controleWelkeKaart(kaart, monster).equals("Curse")){
                 curseKaart();
-            } else {
-                if (dc.geefSpeler(spelerAanBeurt).getKaarten().get(kaart - 1) instanceof Monster) {
-                    //monsterKaart(gespeeldeKaart);
-                    dc.speelMonster(kaart, monster);
-                }
-                if (dc.geefSpeler(spelerAanBeurt).getKaarten().get(kaart - 1) instanceof ConsumablesKerker || dc.geefSpeler(spelerAanBeurt).getKaarten().get(kaart - 1) instanceof ConsumablesSchat) {
-                    //consumablesKaart(gespeeldeKaart);
-                    dc.speelConsumable(kaart);
-                }
-                if (dc.geefSpeler(spelerAanBeurt).getKaarten().get(kaart - 1) instanceof Equipment || dc.geefSpeler(spelerAanBeurt).getKaarten().get(kaart - 1) instanceof Race) {
-                    //itemsbijvoegen(gespeeldeKaart);
-                    dc.itemsBijvoegen(kaart);
-                }
             }
-            dc.voegkaartonderaanstapeltoe(dc.geefSpeler(spelerAanBeurt).getKaarten().get(kaart - 1));
+            if(dc.controleWelkeKaart(kaart, monster).equals("Monster")){
+                dc.speelMonster(kaart, monster);
+            }
+            if(dc.controleWelkeKaart(kaart, monster).equals("Consumable")){
+                dc.speelConsumable(kaart);
+            }
+            if(dc.controleWelkeKaart(kaart, monster).equals("Race/Weapon")){
+                dc.itemsBijvoegen(kaart);
+            }
+            dc.voegkaartonderaanstapeltoe(kaart);
             dc.geefSpeler(spelerAanBeurt).getKaarten().remove(kaart - 1);
-            //dc.geefBeknopteSpelsituatie();
 
         }//De speler mag de kaart niet spelen
         else {
@@ -112,7 +107,6 @@ class UseCase5 {
                 System.out.println(LanguageResource.getString("usecase5.chooseplayer"));
                 speler = SCAN.nextInt();
                 if (speler <= 0 || speler > end) {
-                    System.out.println("you made it");
                     throw new SpelerException("exception.wronginput");
                 }
                 tryAgain = false;
