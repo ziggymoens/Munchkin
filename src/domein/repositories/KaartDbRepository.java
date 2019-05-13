@@ -1,53 +1,69 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package domein.repositories;
 
 import domein.kaarten.Kaart;
 import persistentie.mappers.PersistentieController;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 /**
- *
  * @author ziggy
  */
+@SuppressWarnings("unused")
+
 public class KaartDbRepository {
 
     private final PersistentieController pc;
-    private final List<Kaart> schatkaarten;
-    private final List<Kaart> kerkerkaarten;
+    private List<Kaart> schatkaarten;
+    private List<Kaart> kerkerkaarten;
 
+    /**
+     * Costructor voor KaartDbRepository
+     */
     public KaartDbRepository() {
         pc = new PersistentieController(false);
-        schatkaarten = new ArrayList<>();
-        kerkerkaarten = new ArrayList<>();
         setKerkerKaart();
         setSchatKaarten();
     }
 
-
-    public List<Kaart> setSchatKaarten() {
-        return pc.getSchatkaarten();
+    /**
+     * setter voor schatkaarten
+     */
+    private void setSchatKaarten() {
+        schatkaarten = pc.getSchatkaarten();
     }
 
-    public List<Kaart> setKerkerKaart(){
-        return pc.getKerkerkaarten();
+    /**
+     * setter voor kerkerkaarten
+     */
+    private void setKerkerKaart() {
+        kerkerkaarten = pc.getKerkerkaarten();
     }
 
+    /**
+     * getter voor schatkaarten
+     *
+     * @return list met schatkaarten
+     */
     public List<Kaart> getSchatkaarten() {
         return schatkaarten;
     }
 
+    /**
+     * getter voor kerkerkaarten
+     *
+     * @return list met kerkerkaarten
+     */
     public List<Kaart> getKerkerkaarten() {
         return kerkerkaarten;
     }
 
-    public Map<Integer, Kaart> getKaartenBib(){
+    /**
+     * getter voor de kaartenbib
+     *
+     * @return map met kaarten als value en id als key
+     */
+    public Map<Integer, Kaart> getKaartenBib() {
         return pc.getKaartenBib();
     }
 }

@@ -10,7 +10,9 @@ package exceptions.kaarten.schatkaarten;
  * @author kilian
  */
 public class ConsumablesSchatException extends RuntimeException {
-
+    /**
+     * Algemene Exception constructor
+     */
     public ConsumablesSchatException() {
         super("Consumables Schat Exception, domein.kaarten.schatkaarten");
     }

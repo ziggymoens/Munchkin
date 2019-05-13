@@ -11,11 +11,18 @@ import ui.gui.game_interface.GameInterface;
 import java.util.Locale;
 
 public class test3 extends Application {
-
+    /**
+     *startup methode test3
+     * @param args startup args
+     */
     public static void main(String[] args) {
         launch(args);
     }
 
+    /**
+     *  start methode
+     * @param primaryStage de primaire stage
+     */
     @Override
     public void start(Stage primaryStage) {
         LanguageResource.setLocale(new Locale("nl"));

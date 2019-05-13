@@ -10,25 +10,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+@SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
 public class SpelMapperDb {
     private Connection conn;
     private ResultSet rs;
     private ResultSet rs1;
-    private ResultSet rs2;
-    private ResultSet rs3;
-    private ResultSet rs7;
-    private ResultSet rs11;
     private PreparedStatement query;
     private PreparedStatement query1;
-    private PreparedStatement query2;
-    private PreparedStatement query3;
-    private PreparedStatement query4;
-    private PreparedStatement query6;
-    private PreparedStatement query7;
-    private PreparedStatement query8;
-    private PreparedStatement query9;
-    private PreparedStatement query10;
-    private PreparedStatement query11;
     private List<Spel> spellen = new ArrayList<>();
     private static final String INSERT_GAME = "INSERT INTO ID222177_g35.Spel (spelid, naam, kleingroot, spelerAanBeurt) VALUES (?, ?, ?, ?)";
     private static final String DELETE_GAME = "DELETE FROM ID222177_g35.Spel WHERE spelid = ?";
@@ -64,7 +52,6 @@ public class SpelMapperDb {
             query.setInt(1, spelId);
             rs = query.executeQuery();
             while (rs.next()) {
-                int Id = rs.getInt("spelid");
                 String naam = rs.getString("naam");
                 boolean klein = rs.getBoolean("kleingroot");
                 int ls = rs.getInt("spelerAanBeurt");
@@ -135,10 +122,10 @@ public class SpelMapperDb {
         List<Integer> kaarten = new ArrayList<>();
         voegToe();
         try {
-            query2 = conn.prepareStatement(PLAYER_GETCARDS);
+            PreparedStatement query2 = conn.prepareStatement(PLAYER_GETCARDS);
             query2.setInt(1, spelerId);
             query2.setInt(2, spelId);
-            rs2 = query2.executeQuery();
+            ResultSet rs2 = query2.executeQuery();
             while (rs2.next()) {
                 if (type == 'i') {
                     if (rs2.getBoolean("plaatsKaart")) {
@@ -164,9 +151,9 @@ public class SpelMapperDb {
         voegToe();
         try {
             volgorde = new ArrayList<Integer>(Collections.nCopies(200, 0));
-            query3 = conn.prepareStatement(GAME_CARDSEQ);
+            PreparedStatement query3 = conn.prepareStatement(GAME_CARDSEQ);
             query3.setInt(1, spelId);
-            rs3 = query3.executeQuery();
+            ResultSet rs3 = query3.executeQuery();
             while (rs3.next()) {
                 if (type.equals("t")) {
                     if (rs3.getInt("volgnumerT") != -1) {
@@ -200,7 +187,7 @@ public class SpelMapperDb {
     void addSpel(String naam, int i, boolean klein, int laatsteSpeler) {
         voegToe();
         try {
-            query4 = conn.prepareStatement(INSERT_GAME);
+            PreparedStatement query4 = conn.prepareStatement(INSERT_GAME);
             query4.setInt(1, 0);
             query4.setString(2, naam);
             query4.setBoolean(3, klein);
@@ -239,7 +226,7 @@ public class SpelMapperDb {
     void remove(int index) {
         voegToe();
         try {
-            query6 = conn.prepareStatement(DELETE_SPELERKAART);
+            PreparedStatement query6 = conn.prepareStatement(DELETE_SPELERKAART);
             query6.setInt(1, index);
             query6.executeUpdate();
             query6.close();
@@ -266,10 +253,10 @@ public class SpelMapperDb {
         int id;
         voegToe();
         try {
-            query7 = conn.prepareStatement(GAME_GETID);
+            PreparedStatement query7 = conn.prepareStatement(GAME_GETID);
             query7.setString(1, naam);
             query7.executeQuery();
-            rs7 = query7.executeQuery();
+            ResultSet rs7 = query7.executeQuery();
             rs7.next();
             id = rs7.getInt("spelid");
             query7.close();
@@ -286,7 +273,7 @@ public class SpelMapperDb {
         voegToe();
         try {
             for (Integer id : ids) {
-                query8 = conn.prepareStatement(PLAYER_SAVECARD);
+                PreparedStatement query8 = conn.prepareStatement(PLAYER_SAVECARD);
                 query8.setInt(1, spelerId);
                 query8.setInt(2, id);
                 query8.setBoolean(3, items);
@@ -303,7 +290,7 @@ public class SpelMapperDb {
     void spelerOpslaan(int spelerId, String naam, int level, String geslacht, int spelId) {
         voegToe();
         try {
-            query9 = conn.prepareStatement(PLAYER_SAVE);
+            PreparedStatement query9 = conn.prepareStatement(PLAYER_SAVE);
             query9.setInt(1, spelerId);
             query9.setString(2, naam);
             query9.setInt(3, level);
@@ -321,7 +308,7 @@ public class SpelMapperDb {
         voegToe();
         try {
             for (int id : kaart) {
-                query10 = conn.prepareStatement(GAME_CARDSAVE);
+                PreparedStatement query10 = conn.prepareStatement(GAME_CARDSAVE);
                 query10.setInt(1, id);
                 query10.setObject(2, volgnummerD.indexOf(id));
                 query10.setObject(3, volgnummerT.indexOf(id));
@@ -335,12 +322,12 @@ public class SpelMapperDb {
         }
     }
 
-    public List<Integer> geefSpelIds() {
+    List<Integer> geefSpelIds() {
         List<Integer> ids = new ArrayList<>();
         voegToe();
         try {
-            query11 = conn.prepareStatement(ALL_GAMES);
-            rs11 = query11.executeQuery();
+            PreparedStatement query11 = conn.prepareStatement(ALL_GAMES);
+            ResultSet rs11 = query11.executeQuery();
             while (rs11.next()) {
                 int spelId = rs11.getInt("spelid");
                 ids.add(spelId);

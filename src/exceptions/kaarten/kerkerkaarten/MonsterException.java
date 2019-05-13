@@ -6,27 +6,54 @@
 package exceptions.kaarten.kerkerkaarten;
 
 /**
- *
  * @author ziggy
  */
-public class MonsterException extends RuntimeException{
+@SuppressWarnings("unused")
 
+public class MonsterException extends RuntimeException {
+    /**
+     * Algemene Exception constructor
+     */
     public MonsterException() {
         super("Monster Exception, domein.kaarten.kerkerkaarten");
     }
 
+    /**
+     * Constructor voor exception met extra boodschap
+     *
+     * @param message de te vertalen boodschap van de error
+     */
     public MonsterException(String message) {
         super(message);
     }
 
+    /**
+     * Constructor voor Exception met boodschap en cause
+     *
+     * @param message de te vertalen boodschap
+     * @param cause   de oorzaak van de exception
+     */
     public MonsterException(String message, Throwable cause) {
         super(message, cause);
     }
 
+    /**
+     * Constructor voor Exception met cause
+     *
+     * @param cause de oorzaak van de speler
+     */
     public MonsterException(Throwable cause) {
         super(cause);
     }
 
+    /**
+     * Constructor voor Exception met message, cause, enableSuppression & writable stacktrace
+     *
+     * @param message            boodschap van de message
+     * @param cause              de oorzaak van de exception
+     * @param enableSuppression  true of false
+     * @param writableStackTrace true or false
+     */
     public MonsterException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }

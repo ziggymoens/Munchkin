@@ -9,25 +9,38 @@ import javafx.stage.Stage;
 import printer.Printer;
 
 public class test2 {
-    public test2() {
+    /**
+     *constructor voor test2
+     */
+    test2() {
+        Thread th1 = new Thread(() -> {
+            try {
+                printImage();
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.print(Printer.exceptionCatch("Exception (UC1)", e, false));
+            }
+        });
         th1.start();
     }
 
-    public  void printImage(){
+    /**
+     * image printer
+     */
+    private void printImage(){
         App app = new App();
         app.begin();
     }
 
-    private Thread th1 = new Thread(() -> {
-        try {
-            printImage();
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.print(Printer.exceptionCatch("Exception (UC1)", e, false));
-        }
-    });
-
+    /**
+     *innerklasse app
+     */
     public static class App extends Application {
+        /**
+         *satrtup methode voor app
+         * @param primaryStage primaire stage
+         * @throws Exception exception bij opstart
+         */
         @Override
         public void start(Stage primaryStage) throws Exception {
             BorderPane bp = new BorderPane();
@@ -39,7 +52,10 @@ public class test2 {
             primaryStage.setResizable(false);
         }
 
-        public void begin(){
+        /**
+         * lauch methode
+         */
+        void begin(){
             Application.launch();
         }
     }

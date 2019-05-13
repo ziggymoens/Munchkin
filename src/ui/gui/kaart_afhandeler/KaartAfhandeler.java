@@ -37,7 +37,7 @@ public class KaartAfhandeler extends BorderPane {
     private boolean help;
     private Label textCenter;
     private int spelerAanBeurt;
-    private List<Integer> gespeeldeKaarten = new ArrayList<>();
+    private List<Integer> gespeeldeKaartenSpeler = new ArrayList<>();
     private int vraagSpeler;
 
 
@@ -95,7 +95,7 @@ public class KaartAfhandeler extends BorderPane {
                 help = true;
                 vraagSpeler  = 0;
                 kaartSpeelScherm();
-
+                //textCenter.setText(toonOverzichtGewonnenZijde());
             }
         });
         btnNee.setOnAction(new EventHandler<ActionEvent>() {
@@ -104,6 +104,7 @@ public class KaartAfhandeler extends BorderPane {
                 help = false;
                 vraagSpeler = 0;
                 kaartSpeelScherm();
+                //textCenter.setText(toonOverzichtGewonnenZijde());
             }
         });
         //borderPane.setTop(vraag);
@@ -113,6 +114,8 @@ public class KaartAfhandeler extends BorderPane {
         //stage.show();
         //toonKaartenVanSpeler(borderPane);
         keuzesCenter.getChildren().addAll(btnJa, btnNee);
+        //Label eindegevecht = new Label();
+
     }
 
     private void geenEffectKaart() {
@@ -131,6 +134,37 @@ public class KaartAfhandeler extends BorderPane {
 
     }
 
+    private String toonOverzichtGewonnenZijde(){
+        for(int i = 0; i < gespeeldeKaartenSpeler.size(); i++){
+            int kaart = gespeeldeKaartenSpeler.get(i);
+            boolean monster = true;
+            if(dc.controleWelkeKaart(kaart, monster).equals("Monster")){
+                dc.speelMonster(kaart,monster);
+            }
+            if(dc.controleWelkeKaart(kaart, monster).equals("Curse")){
+                curseUitvoeren();
+            }
+            if(dc.controleWelkeKaart(kaart, monster).equals("Consumable")){
+                dc.speelConsumable(kaart);
+            }
+            if(dc.controleWelkeKaart(kaart, monster).equals("Race/Weapon")){
+                dc.itemsBijvoegen(kaart);
+            }
+        }
+        Label eindeGevecht = new Label();
+        if(dc.getSpelerBattlePoints() > dc.getMonsterBattlePoints()){
+            //eindeGevecht.setText("usecase6.playerwon");
+            return LanguageResource.getString("usecase6.playerwon");
+        }else{
+            //eindeGevecht.setText("usecase6.monsterwon");
+            return LanguageResource.getString("usecase6.monsterwon");
+        }
+    }
+
+    private void curseUitvoeren(){
+
+    }
+
 
 
     private void kaartSpeelScherm() {
@@ -139,6 +173,10 @@ public class KaartAfhandeler extends BorderPane {
         List<String[]> spelersInVolgorde = dc.spelerOverzichtVolgorde();
         toonSpelerHulpScherm(vraagSpeler, spelersInVolgorde);
     }
+
+    /*private void toonSpelerHulpScherm(){
+
+    }*/
 
     private void toonSpelerHulpScherm(int speler, List<String[]> spelersInVolgorde){
         Stage stage = new Stage();

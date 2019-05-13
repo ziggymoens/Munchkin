@@ -12,10 +12,18 @@ import ui.gui.items_afhandeler.NaarItemsAfhandeler;
 import java.util.Locale;
 
 public class Test4 extends Application {
+    /**
+     *Strartup methode test4
+     * @param args startup args
+     */
     public static void main(String[] args) {
         launch(args);
     }
 
+    /**
+     *start methode
+     * @param primaryStage de primaire stage
+     */
     @Override
     public void start(Stage primaryStage) {
         LanguageResource.setLocale(new Locale("nl"));
