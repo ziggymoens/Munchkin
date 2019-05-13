@@ -750,4 +750,8 @@ public class DomeinController {
     public void deelSchatkaartenUit(int speler, int schatten){
         spel.deelSchatkaartenUit(speler, schatten);
     }
+
+    public DomeinController geefDomeinController() {
+        return this;
+    }
 }

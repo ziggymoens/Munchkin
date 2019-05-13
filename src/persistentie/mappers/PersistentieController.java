@@ -105,7 +105,7 @@ public class PersistentieController {
      * @param klein
      */
     private void haalKaartenOp(Boolean klein) {
-        String[] kaartTypes = {/*"ConsumablesD",*/ "ConsumablesT", /*"Curse",*/ "Equipment"/*, "Monster", "Race"*/};
+        String[] kaartTypes = {"ConsumablesD", "ConsumablesT", "Curse", "Equipment", "Monster", "Race"};
         if (klein) {
             //for (String type : kaartTypes) {
             kaarten.addAll(kkm.geefKaartenType(kaartTypes));

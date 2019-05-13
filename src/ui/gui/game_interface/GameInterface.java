@@ -503,9 +503,8 @@ public class GameInterface extends BorderPane {
     }
 
     public void nieuweInterface(){
-        if (dc.geefSpelerAanBeurt()+1<dc.geefAantalSpelers()-1){
-            dc.zetSpelerAanBeurt(dc.geefSpelerAanBeurt()+1);
-        }else {
+        dc.zetSpelerAanBeurt(dc.geefSpelerAanBeurt()+1);
+        if(dc.geefSpelerAanBeurt() == dc.geefAantalSpelers()){
             dc.zetSpelerAanBeurt(0);
         }
         dc.nieuweBovensteKaartK();
