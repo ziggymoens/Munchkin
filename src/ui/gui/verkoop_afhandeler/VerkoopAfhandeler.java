@@ -31,12 +31,12 @@ public class VerkoopAfhandeler extends BorderPane {
     private List<Integer> verkoop;
     private Label Error;
     private GameInterface gameInterface;
-    private Stage stage;
+    private Stage currentStage;
 
 
     public VerkoopAfhandeler(DomeinController dc, GameInterface gameInterface, Stage stage) {
         this.dc = dc;
-        this.stage = stage;
+        this.currentStage = stage;
         this.gameInterface = gameInterface;
         kaart = dc.geefIdBovensteKaart();
         spelerAanBeurt = dc.geefSpelerAanBeurt();
@@ -50,7 +50,7 @@ public class VerkoopAfhandeler extends BorderPane {
     private void verkoop() {
         //BorderPane borderPane = new BorderPane();
         //Stage stage = new Stage();
-        stage.setTitle(LanguageResource.getString("usecase7.sellscreen"));
+        currentStage.setTitle(LanguageResource.getString("usecase7.sellscreen"));
         //Scene scene = new Scene(borderPane);
         Label vraag = new Label(LanguageResource.getString("usecase7.sell"));
 
@@ -94,13 +94,15 @@ public class VerkoopAfhandeler extends BorderPane {
                 int gedeeldeWaarde = totaleWaarde / 1000;
                 dc.verkoopKaarten(naam, verkoop);
                 popUpscherm(gedeeldeWaarde);
+                currentStage.close();
+                gameInterface.nieuweInterface();
             } else {
                 ErrorAfhandeling();
             }
         });
 
         btnCancel.setOnMouseClicked(event -> {
-
+            currentStage.close();
         });
 
 

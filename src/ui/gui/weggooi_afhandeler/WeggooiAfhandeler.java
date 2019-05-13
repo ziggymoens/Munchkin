@@ -82,11 +82,10 @@ public class WeggooiAfhandeler extends BorderPane {
             dc.gooiKaartenWeg(naam, weg);
             popUpScherm();
             currentStage.close();
-            //stage.close();
+            gameInterface.nieuweInterface();
         });
         btnCancel.setOnMouseClicked(event -> {
             currentStage.close();
-            //stage.close();
         });
 
         buttons.setAlignment(Pos.TOP_CENTER);

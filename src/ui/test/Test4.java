@@ -46,7 +46,9 @@ public class Test4 extends Application {
         dc.spel.updateVolgorde();
         dc.zetSpelerAanBeurt(0);
         BorderPane bp = new BorderPane();
-        Scene scene = new Scene(new NaarItemsAfhandeler(dc, new GameInterface(dc)));
+        GameInterface gm = new GameInterface(dc);
+        Stage stage = new Stage();
+        Scene scene = new Scene(new NaarItemsAfhandeler(dc, gm, stage));
         primaryStage.setScene(scene);
         primaryStage.show();
     }

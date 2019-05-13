@@ -31,11 +31,12 @@ public class NaarItemsAfhandeler extends BorderPane {
     private List<Integer> mogelijkheden;
     private List<Integer> items;
     private GameInterface gameInterface;
-    private Stage stage;
+    private Stage currentStage;
+    private GameInterface gm;
 
     public NaarItemsAfhandeler(DomeinController dc, GameInterface gameInterface, Stage stage) {
         this.dc = dc;
-        this.stage = stage;
+        this.currentStage = stage;
         this.gameInterface = gameInterface;
         kaart = dc.geefIdBovensteKaart();
         spelerAanBeurt = dc.geefSpelerAanBeurt();
@@ -49,7 +50,7 @@ public class NaarItemsAfhandeler extends BorderPane {
     private void naarItems() {
         //BorderPane borderPane = new BorderPane();
         //Stage stage = new Stage();
-        stage.setTitle(LanguageResource.getString("usecase7.itemsscreen"));
+        currentStage.setTitle(LanguageResource.getString("usecase7.itemsscreen"));
         //Scene scene = new Scene(borderPane);
         Label vraag = new Label(LanguageResource.getString("usecase7.items"));
 
@@ -66,7 +67,8 @@ public class NaarItemsAfhandeler extends BorderPane {
             img.setOnMouseClicked(event -> {
                 kaartInfoScherm(mogelijk);
                 img.setStyle("-fx-opacity: 100%");
-                items.add(mogelijk);
+                if(!items.contains(mogelijk))
+                    items.add(mogelijk);
             });
             kaarten.getChildren().addAll(img);
         }
@@ -85,13 +87,14 @@ public class NaarItemsAfhandeler extends BorderPane {
             if (!items.isEmpty()) {
                 dc.verplaatsNaarItems(naam, items);
                 popUpscherm();
-                stage.close();
+                currentStage.close();
+                gameInterface.nieuweInterface();
             } else {
                 ErrorAfhandeling();
             }
         });
         btnCancel.setOnMouseClicked(event -> {
-            stage.close();
+            currentStage.close();
         });
         buttons.setAlignment(Pos.TOP_CENTER);
         buttons.setSpacing(15);
