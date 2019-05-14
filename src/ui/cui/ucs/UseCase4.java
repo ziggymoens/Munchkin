@@ -113,9 +113,9 @@ class UseCase4 {
                                         System.out.println(Printer.printRed(LanguageResource.getString("usecase4.nocards")));
                                     }
 
-                                    /*if(kanGeenKaartenSpelen(aantal)){
+                                    if(kanGeenKaartenSpelen(aantal)){
                                         System.out.println(Printer.printRed(LanguageResource.getString("usecase4.cantPlayCards")));
-                                    }*/else {
+                                    }else {
                                         if (help.equals(LanguageResource.getString("yes"))) {
                                             //aanpassen???
                                             helptmee.remove(aantal);
@@ -130,9 +130,9 @@ class UseCase4 {
                                     if (dc.geefIDKaartenInHand(dc.geefNaamSpeler(aantal)).size() == 0) {
                                         System.out.println(Printer.printRed("usecase4.nocards"));
                                     }
-                                    /*if(kanGeenKaartenSpelen(aantal)){
+                                    if(kanGeenKaartenSpelen(aantal)){
                                         System.out.println(Printer.printRed(LanguageResource.getString("usecase4.cantPlayCards")));
-                                    }*/else {
+                                    }else {
                                         speelKaart(aantal);
                                     }
                                     break;
@@ -224,16 +224,14 @@ class UseCase4 {
      * @return true or false
      */
 
-    /*private boolean kanGeenKaartenSpelen(int aantal){
+    private boolean kanGeenKaartenSpelen(int aantal){
         List<Integer> lijst = dc.geefIDKaartenInHand(dc.geefNaamSpeler(aantal));
         int getal = 0;
         for(int i = 0; i < dc.geefIDKaartenInHand(dc.geefNaamSpeler(aantal)).size(); i++){
-            System.out.println("testB");
             if(!dc.validatieKaartSpeler(lijst.get(i)) || !dc.validatieKaartItems2(lijst.get(i))){
-                System.out.println("testC");
                 getal++;
             }
         }
         return getal >= dc.geefIDKaartenInHand(dc.geefNaamSpeler(aantal)).size();
-    }*/
+    }
 }
