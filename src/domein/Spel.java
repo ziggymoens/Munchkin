@@ -1001,14 +1001,14 @@ public class Spel {
 
     /**
      * Getter voor spelerAanBeurtGevecht. --> roept gevecht.getSpelerAanBeurt() aan.
-     * @return
+     * @return speler aan beurt
      */
     public int getSpelerAanBeurtGevecht() {
         return gevecht.getSpelerAanBeurt();
     }
 
     /**
-     * Methode die badStuff uitvoert. --> Gebruikt geefBadStuff(id) & verhoogLevel.
+     * Methode die badStuff uitvoert. --> Gebruikt geefBadStuff(id) , verhoogLevel.
      * @param id van de kaart
      */
     public void voerBadStuffUit(int id) {
@@ -1053,7 +1053,7 @@ public class Spel {
     /**
      * Methode die valideert of de Speler de kaart mag leggen adhv zijn positie in het spel (hij een helper is/tegenspeler of degene die de kaart trekt)
      * @param kaart int kaart die volgt uit de keuze van de speler
-     * @return
+     * @return true is correct
      */
     public boolean validatieKaartSpeler(int kaart) {
         Kaart kr = kaarten.get(kaart);
@@ -1230,8 +1230,8 @@ public class Spel {
     }
 
     /**
-     *
-     * @param kaart
+     *items toveoegen
+     * @param kaart kaart toe te voegen
      */
     public void itemsBijvoegen(int kaart) {
         Kaart gespeeldeKaart = geefSpeler(gevecht.getSpelerAanBeurt()).getKaarten().get(kaart - 1);
@@ -1270,8 +1270,8 @@ public class Spel {
 
     /**
      * Methode die de Integers van de items van de speler in een array steekt. --> roept spelers.get(i).geefItemsInt() aan. Gebruikt zoekSpeler().
-     * @param naam
-     * @return
+     * @param naam naam speler
+     * @return list met ids
      */
     public int[] geefItemsVanSpelerInt(String naam) {
         int i = zoekSpeler(naam);
