@@ -1,14 +1,18 @@
 package ui.gui.ucs.usecase8;
 
 import domein.DomeinController;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import ui.gui.a_universal.maingui.MainGui;
+
 import java.util.List;
 
 public class UseCase8G extends MainGui {
@@ -29,7 +33,7 @@ public class UseCase8G extends MainGui {
         box = new VBox();
         cboTitels = new ComboBox();
         cboTitels.setPromptText("Kies hier het spel dat u wilt opslaan");
-        //mogelijkheden plaatsen voor spellen²²²
+        //mogelijkheden plaatsen voor spellen
         List<String> spelen = dc.geefOverzichtSpelen();
         ObservableList lijst = FXCollections.observableArrayList(spelen);  //FXCollections omdat je niet zomaar new ObservableList() kunt doen
         cboTitels.setItems(lijst);
@@ -45,7 +49,7 @@ public class UseCase8G extends MainGui {
             }
         });
         box.getChildren().addAll(cboTitels, lblNaam, txfNaam, bevestig, lblBevestiging);
-        this.getPane().setLeft(box);
+        this.getPane().setCenter(box);
         this.setPadding(new Insets(25));   //ruimte aan zijkanten
         //this.setSpacing(10); //tussenruimte tussen 2 componenten
     }
