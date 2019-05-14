@@ -229,7 +229,7 @@ public class UseCase1 {
                 int as = kiesSpelers();
                 //thread opnieuw opstarten
                 th1.resume();
-                dc.haalKaartenUitDb();
+                //dc.haalKaartenUitDb();
                 dc.startSpel(as);
                 //thread stoppen
                 th1.stop();

@@ -82,7 +82,7 @@ class UseCase8 {
             System.out.print(Printer.exceptionCatch("SpelException (UC8)", e));
         } catch (SpelDatabaseException e) {
             th1.suspend();
-            System.out.print(Printer.exceptionCatch("SpelDatabaseException (UC8)", e));
+            System.out.print(Printer.exceptionCatch("SpelDatabaseException (UC8)", e, false));
         } catch (Exception e) {
             th1.suspend();
             System.out.print(Printer.exceptionCatch("Exception (UC8)", e, false));
