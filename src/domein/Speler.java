@@ -411,7 +411,7 @@ public class Speler {
     }
 
     /**
-     * Methode die kaart verwijdert. --> roept updateKaarten() aan.
+     * Methode die kaart verwijdert. --  roept updateKaarten() aan.
      * @param kaart kaart
      */
     public void verwijderKaart(Kaart kaart) {
@@ -524,7 +524,7 @@ public class Speler {
     }
 
     /**
-     * Setter van de kaarten. --> roept updateKaarten() aan.
+     * Setter van de kaarten. --  roept updateKaarten() aan.
      * @param kaarten Lijst van kaarten
      */
     public void setKaarten(List<Kaart> kaarten) {
@@ -533,7 +533,7 @@ public class Speler {
     }
 
     /**
-     * Setter van de items. --> roept updateKaarten() aan.
+     * Setter van de items. --  roept updateKaarten() aan.
      * @param items Lijst van items
      */
     public void setItems(List<Kaart> items) {
@@ -584,7 +584,7 @@ public class Speler {
     */
 
     /**
-     * Methode die de kaarten aan de speler geeft in Stringvorm. --> roept overzichtMaken(ret, items) aan.
+     * Methode die de kaarten aan de speler geeft in Stringvorm. --  roept overzichtMaken(ret, items) aan.
      * @return String met kaarten.
      */
     public String geefKaarten(){
@@ -594,7 +594,7 @@ public class Speler {
     }
 
     /**
-     * Methode die de items aan de speler geeft in Strinvorm. --> roept overzichtMaken(ret, items) aan.
+     * Methode die de items aan de speler geeft in Strinvorm. --  roept overzichtMaken(ret, items) aan.
      * @return String met items.
      */
     public String geefItems(){

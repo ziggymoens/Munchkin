@@ -65,7 +65,7 @@ public class DomeinController {
     }
 
     /**
-     * Methode die de naam van de speler retourneert adhv de index waarop deze in de spelerslijst staat --> roept spel.getSpelers() aan + getNaam().
+     * Methode die de naam van de speler retourneert adhv de index waarop deze in de spelerslijst staat -- roept spel.getSpelers() aan + getNaam().
      * @param i index van de speler
      * @return naam van de speler
      */
@@ -78,7 +78,7 @@ public class DomeinController {
     }
 
     /**
-     * Methode die het level van de speler retourneert adhv de index waarop deze in de spelerslijst staat --> roept spel.getSpelers aan + getLevel().
+     * Methode die het level van de speler retourneert adhv de index waarop deze in de spelerslijst staat -- roept spel.getSpelers aan + getLevel().
      * @param i index
      * @return level van de speler op die index
      */
@@ -87,7 +87,7 @@ public class DomeinController {
     }
 
     /**
-     * Methode die de naam van de winnaar teruggeeft als deze level 10 bereikt. --> roept spel.geefWinnaar() aan.
+     * Methode die de naam van de winnaar teruggeeft als deze level 10 bereikt. -- roept spel.geefWinnaar() aan.
      * @return naam van de winnaar
      */
     public String geefNaamWinnaar() {
@@ -96,7 +96,7 @@ public class DomeinController {
 
 
     /**
-     * Methode die spel opslaat. --> roept de spelerDBRepository op om daar de methode spelOpslaan aan te roepen
+     * Methode die spel opslaat. -- roept de spelerDBRepository op om daar de methode spelOpslaan aan te roepen
      */
     public void spelOpslaan() {
         sr.spelOpslaan(this.spel);
@@ -125,7 +125,7 @@ public class DomeinController {
 //    }
 
     /**
-     * Methode die de spelsituatie weergeeft. --> roept hiervoor spel.geefSpelsituatie op.
+     * Methode die de spelsituatie weergeeft. -- roept hiervoor spel.geefSpelsituatie op.
      * @return de spelsituatie
      */
     public List<String> geefSpelsituatie() {
@@ -133,7 +133,7 @@ public class DomeinController {
     }
 
     /**
-     * Methode die de beknopte spelsituatie weergeeft. --> roept hiervoor spel.geefBeknopteSpelsituatie aan.
+     * Methode die de beknopte spelsituatie weergeeft. -- roept hiervoor spel.geefBeknopteSpelsituatie aan.
      * @return de beknopte spelsituatie
      */
     public List<String> geefBeknopteSpelsituatie(/*boolean vecht*/){
@@ -141,7 +141,7 @@ public class DomeinController {
     }   
 
     /**
-     * Methode die een boolean retourneert wanneer niemand gewonnen is. --> roept hiervoor spel.niemandGewonnen aan.
+     * Methode die een boolean retourneert wanneer niemand gewonnen is. -- roept hiervoor spel.niemandGewonnen aan.
      * @return wanneer niemand gewonnen is
      */
     public boolean niemandGewonnen() {
@@ -149,7 +149,7 @@ public class DomeinController {
     }
 
     /**
-     * Methode die speler een naam geeft. --> roept spel.geefSpelerNaam aan.
+     * Methode die speler een naam geeft. -- roept spel.geefSpelerNaam aan.
      * @param i index van de speler in de spelerlijst
      * @param naam van de speler
      */
@@ -158,14 +158,14 @@ public class DomeinController {
     }
 
     /**
-     * Methode die een nieuwe speler aanmaakt. --> roept spel.maakNieuweSpeler aan.
+     * Methode die een nieuwe speler aanmaakt. -- roept spel.maakNieuweSpeler aan.
      */
     public void maakSpeler() {
         spel.maakNieuweSpeler();
     }
 
     /**
-     * Methode die speler op bepaalde index in de spelerlijst een geslacht toekent. --> roept spel.geefSpelerGeslacht aan.
+     * Methode die speler op bepaalde index in de spelerlijst een geslacht toekent. -- roept spel.geefSpelerGeslacht aan.
      * @param i index
      * @param geslacht
      */
@@ -174,14 +174,14 @@ public class DomeinController {
     }
 
     /**
-     * Methode die startkaarten aan de spelers geeft. --> roept spel.geefStartKaarten aan.
+     * Methode die startkaarten aan de spelers geeft. -- roept spel.geefStartKaarten aan.
      */
     public void geefStartKaarten() {
         spel.geefStartKaarten();
     }
 
     /**
-     * Methode die de bovenste Kerkerkaart teruggeeft als string.format + de afbeelding. --> roept spel.toonBovensteKk() aan.
+     * Methode die de bovenste Kerkerkaart teruggeeft als string.format + de afbeelding. -- roept spel.toonBovensteKk() aan.
      * @return bovenste kerkerkaart als string
      */
     public String toonBovensteKk() {
@@ -189,7 +189,7 @@ public class DomeinController {
     }
 
     /**
-     * Methode die adhv het id het type van de kaart teruggeeft als string. --> roept spel.geefTypekaart(id) op.
+     * Methode die adhv het id het type van de kaart teruggeeft als string. -- roept spel.geefTypekaart(id) op.
      * @param id van de kaart
      * @return String typekaart
      */
@@ -198,7 +198,7 @@ public class DomeinController {
     }
 
     /**
-     * Methode die de curse kaart speelt. --> roept spel.speelCurse(naam) aan.
+     * Methode die de curse kaart speelt. -- roept spel.speelCurse(naam) aan.
      * @param naam van de speler
      */
     public void curseKaart(String naam) {
@@ -206,7 +206,7 @@ public class DomeinController {
     }
 
     /**
-     * Methode die het id van de bovenste kerkerkaart op de stapel teruggeeft. --> roept spel.toonBovensteKk() aan.
+     * Methode die het id van de bovenste kerkerkaart op de stapel teruggeeft. -- roept spel.toonBovensteKk() aan.
      * @return id van de bovenste kaart
      */
     public int geefIdBovensteKaart() {
@@ -221,7 +221,7 @@ public class DomeinController {
     }
 
     /**
-     * Methode die kerkerkaart aan de speler geeft adhv van de naam vd speler. --> roept spel.geefKerkerKaartAanSpeler(naam) op.
+     * Methode die kerkerkaart aan de speler geeft adhv van de naam vd speler. -- roept spel.geefKerkerKaartAanSpeler(naam) op.
      * @param naam van de speler
      */
     public void geefKerkerkaartAanSpeler(String naam) {
@@ -256,7 +256,7 @@ public class DomeinController {
      */
 
     /**
-     * Methode die een naam aan het spel geeft. --> roept spel.setNaam(naam) op.
+     * Methode die een naam aan het spel geeft. -- roept spel.setNaam(naam) op.
      * @param naam van het spel
      */
     public void geefSpelNaam(String naam) {
@@ -264,13 +264,13 @@ public class DomeinController {
     }
 
     /**
-     * Methode die bovenste kaart to string returnt. --> roept spel.bovensteKaartToString() aan.
+     * Methode die bovenste kaart to string returnt. -- roept spel.bovensteKaartToString() aan.
      * @return String van bovenste kaart.
      */
     public String bovensteKaartToString() { return spel.bovensteKaartToString(); }
 
     /**
-     * Methode die volgende speler aan beurt zet. --> roept spel.setSpelerAanBeurt(i) aan.
+     * Methode die volgende speler aan beurt zet. -- roept spel.setSpelerAanBeurt(i) aan.
      * @param i index van de speler
      */
     public void zetSpelerAanBeurt(int i) {
@@ -278,7 +278,7 @@ public class DomeinController {
     }
 
     /**
-     * Methode die de volgende speler aan beurt teruggeeft als integer. --> roept spel.getSpelerAanBeurt() op.
+     * Methode die de volgende speler aan beurt teruggeeft als integer. -- roept spel.getSpelerAanBeurt() op.
      * @return int van de volgende speler aan beurt.
      */
     public int geefSpelerAanBeurt(){
@@ -286,7 +286,7 @@ public class DomeinController {
     }
 
     /**
-     * Methode die string retour van de kaarten die naar items kunnen. --> roept spel.geefKaartenKunnenNaarItems(naam) aan.
+     * Methode die string retour van de kaarten die naar items kunnen. -- roept spel.geefKaartenKunnenNaarItems(naam) aan.
      * @param naam van de speler
      * @return String van kaarten die naar items kunnen
      */
@@ -295,7 +295,7 @@ public class DomeinController {
     }
 
     /**
-     * Methode die lijst van ids teruggeeft van de kaarten die naar items kunnen. --> roept spel.geefIdKaartenNaarItems(naam) aan.
+     * Methode die lijst van ids teruggeeft van de kaarten die naar items kunnen. -- roept spel.geefIdKaartenNaarItems(naam) aan.
      * @param naam van de speler
      * @return List van Integers van ids vd kaarten die naar items kunnen.
      */
@@ -304,7 +304,7 @@ public class DomeinController {
     }
 
     /**
-     * Methode die String teruggeeft van verkoopbare kaarten adhv de naam vd speler. --> spel.geefVerkoopbareKaarten(naam) aan.
+     * Methode die String teruggeeft van verkoopbare kaarten adhv de naam vd speler. -- spel.geefVerkoopbareKaarten(naam) aan.
      * @param naam van de speler
      * @return String van de verkoopbare kaarten
      */
@@ -313,7 +313,7 @@ public class DomeinController {
     }
 
     /**
-     * Methode die lijst van ids teruggeeft van de kaarten die verkoopbaar zijn. --> roept spel.geefIdVerkoopbarekaarten(naam) aan.
+     * Methode die lijst van ids teruggeeft van de kaarten die verkoopbaar zijn. -- roept spel.geefIdVerkoopbarekaarten(naam) aan.
      * @param naam van de speler
      * @return List van Integers met de ids van de kaarten die verkocht kunnen worden.
      */
@@ -322,7 +322,7 @@ public class DomeinController {
     }
 
     /**
-     * Methode die string teruggeeft van de kaarten die niet verkoopbaar zijn. --> roept spel.geefNietVerkoopbareKaarten(naam) aan.
+     * Methode die string teruggeeft van de kaarten die niet verkoopbaar zijn. -- roept spel.geefNietVerkoopbareKaarten(naam) aan.
      * @param naam van de speler
      * @return String van de niet verkoopbare kaarten
      */
@@ -331,7 +331,7 @@ public class DomeinController {
     }
 
     /**
-     * Methode die level verhoogt wanneer kaart verkocht wordt. --> roept spel.verhoogLevel(naam, levelUp) op.
+     * Methode die level verhoogt wanneer kaart verkocht wordt. -- roept spel.verhoogLevel(naam, levelUp) op.
      * @param naam van de speler
      * @param levelUp hoeveel levels gewonnen
      */
@@ -350,7 +350,7 @@ public class DomeinController {
     }
 
     /**
-     * Methode die aantal kaarten van een bepaalde speler retourt als integer. --> roept spel.getAantalKaarten(naam) aan.
+     * Methode die aantal kaarten van een bepaalde speler retourt als integer. -- roept spel.getAantalKaarten(naam) aan.
      * @param naam van de speler
      * @return int aantal kaarten
      */
@@ -371,7 +371,7 @@ public class DomeinController {
     }
 
     /**
-     * Methode die de waarde van een schatkaart met een bepaalt id teruggeeft. --> roept spel.getWaardeSchatkaart(id) aan.
+     * Methode die de waarde van een schatkaart met een bepaalt id teruggeeft. -- roept spel.getWaardeSchatkaart(id) aan.
      * @param id van de kaart
      * @return int waarde van de kaart met id
      */
@@ -380,7 +380,7 @@ public class DomeinController {
     }
 
     /**
-     * Methode die overzicht van de spelen teruggeeft. --> roept sr.geefOverzicht() aan.
+     * Methode die overzicht van de spelen teruggeeft. -- roept sr.geefOverzicht() aan.
      * @return List van Strings met overzicht spelen
      */
     public List<String> geefOverzichtSpelen() {
@@ -396,7 +396,7 @@ public class DomeinController {
     }
 
     /**
-     * Methode die spel laadt. --> roept sr.laadSpel(id, this (constructor van domeincontroller)) aan.
+     * Methode die spel laadt. -- roept sr.laadSpel(id, this (constructor van domeincontroller)) aan.
      * @param id van het spel
      */
     public void laadSpel(int id) {
@@ -408,7 +408,7 @@ public class DomeinController {
     }*/
 
     /**
-     * Methode die boolean teruggeeft of het spel reeds bestaat. --> roept sr.bestaatSpel(id) aan.
+     * Methode die boolean teruggeeft of het spel reeds bestaat. -- roept sr.bestaatSpel(id) aan.
      * @param id van het spel
      * @return true = ja het bestaat reeds
      */
@@ -417,7 +417,7 @@ public class DomeinController {
     }
 
     /**
-     * Methode die overzicht van de kaarten in hand van de speler teruggeeft. --> roept spel.toonOverzichtKaartenInHand2(speler) aan.
+     * Methode die overzicht van de kaarten in hand van de speler teruggeeft. -- roept spel.toonOverzichtKaartenInHand2(speler) aan.
      * @param speler
      * @return List van Strings met overzicht van de kaarten in hand.
      */
@@ -438,7 +438,7 @@ public class DomeinController {
     }
 
     /**
-     * Methode die een dobbelsteen gooit (random waarde 1-6). --> roept spel.gooiDobbelsteen() aan.
+     * Methode die een dobbelsteen gooit (random waarde 1-6). -- roept spel.gooiDobbelsteen() aan.
      * @return int met waarde van worp
      */
     public int gooiDobbelsteen(){
@@ -451,7 +451,7 @@ public class DomeinController {
     }
 
     /**
-     * Methode die aantal spelers teruggeeft. --> roept spel.getAantalSpelers() aan.
+     * Methode die aantal spelers teruggeeft. -- roept spel.getAantalSpelers() aan.
      * @return int met aantal spelers
      */
     public int geefAantalSpelers() {
@@ -474,7 +474,7 @@ public class DomeinController {
     }
 
     /**
-     * Methode die een lijst van ids teruggeeft van de kaarten die zich in de hand van de speler bevinden. --> roept spel.geefIDKaartenInHand(naam) aan.
+     * Methode die een lijst van ids teruggeeft van de kaarten die zich in de hand van de speler bevinden. -- roept spel.geefIDKaartenInHand(naam) aan.
      * @param naam van de speler
      * @return List van Integers die het id van de kaart teruggeven.
      */
@@ -483,7 +483,7 @@ public class DomeinController {
     }
 
     /**
-     * Methode die battlepoints van het monster instelt. --> roept spel.setMonsterBattlepoints(monsterBattlePoints) aan.
+     * Methode die battlepoints van het monster instelt. -- roept spel.setMonsterBattlepoints(monsterBattlePoints) aan.
      * @param monsterBattlePoints int battlepoints
      */
     public void setMonsterBattlePoints(int monsterBattlePoints) {
@@ -491,7 +491,7 @@ public class DomeinController {
     }
 
     /**
-     * Methode die battlepoints van de speler instelt. --> roept spel.setSpelerBattlepoints(spelerBattlePoints) aan.
+     * Methode die battlepoints van de speler instelt. -- roept spel.setSpelerBattlepoints(spelerBattlePoints) aan.
      * @param spelerBattlePoints
      */
     public void setSpelerBattlePoints(int spelerBattlePoints) {
@@ -499,7 +499,7 @@ public class DomeinController {
     }
 
     /**
-     * Methode die het aantal battlepoints van het monster teruggeeft. --> roept spel.getMonsterBattlePoints() aan.
+     * Methode die het aantal battlepoints van het monster teruggeeft. -- roept spel.getMonsterBattlePoints() aan.
      * @return int met aantal battlepoints van het monster
      */
     public int getMonsterBattlePoints() {
@@ -507,7 +507,7 @@ public class DomeinController {
     }
 
     /**
-     * Methode die het aantal battlepoints van de speler teruggeeft. --> roept spel.getSpelerBattlePoints() aan.
+     * Methode die het aantal battlepoints van de speler teruggeeft. -- roept spel.getSpelerBattlePoints() aan.
      * @return int met aantal battlepoints van de speler
      */
     public int getSpelerBattlePoints() {
@@ -523,7 +523,7 @@ public class DomeinController {
     }
 
     /**
-     * Methode die kaarten weggooit. --> roept spel.gooiKaartenWeg(naam, gekozenKaarten) aan.
+     * Methode die kaarten weggooit. -- roept spel.gooiKaartenWeg(naam, gekozenKaarten) aan.
      * @param naam van de speler
      * @param gekozenKaarten die weggegooid moeten worden
      */
@@ -532,7 +532,7 @@ public class DomeinController {
     }
 
     /**
-     * Methode die kaarten verkoopt. --> roept spel.verkoopKaarten(naam, gekozenKaarten) aan.
+     * Methode die kaarten verkoopt. -- roept spel.verkoopKaarten(naam, gekozenKaarten) aan.
      * @param naam van de speler
      * @param gekozenKaarten die verkocht moeten worden
      */
@@ -541,7 +541,7 @@ public class DomeinController {
     }
 
     /**
-     * Methode die kaarten naar items verplaatst. --> roept spel.verplaatsNaarItems(naam, gekozenKaarten) aan.
+     * Methode die kaarten naar items verplaatst. -- roept spel.verplaatsNaarItems(naam, gekozenKaarten) aan.
      * @param naam van de speler
      * @param gekozenKaarten die naar items moeten
      */
@@ -550,7 +550,7 @@ public class DomeinController {
     }
 
     /**
-     * Methode die de kaarten uit de databank haalt. --> roept sr.haalKaartenUitDb() aan.
+     * Methode die de kaarten uit de databank haalt. -- roept sr.haalKaartenUitDb() aan.
      */
     public void haalKaartenUitDb() {
         sr.haalKaartenUitDb();

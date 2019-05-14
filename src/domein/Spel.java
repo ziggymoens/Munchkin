@@ -154,7 +154,7 @@ public class Spel {
     }
 
     /**
-     * Voeg een kaart toe aan de hand van een speler. --> roept spelers.get(spelernr).voegKaartToe(kaart) aan.
+     * Voeg een kaart toe aan de hand van een speler. --  roept spelers.get(spelernr).voegKaartToe(kaart) aan.
      *
      * @param kaart    De kaart voor de speler
      * @param spelernr De nummer van de speler in het spel, volgens volgorde van ingeven
@@ -305,7 +305,7 @@ public class Spel {
     }
 
     /**
-     * Methode die speler een naam toekent na het controleren van die naam. --> roept spelers.get(i).setNaam(naam) aan.
+     * Methode die speler een naam toekent na het controleren van die naam. --  roept spelers.get(i).setNaam(naam) aan.
      * @param i index
      * @param naam van de speler
      */
@@ -315,7 +315,7 @@ public class Spel {
     }
 
     /**
-     * Methode die de speler een geslacht toekent. --> roept spelers.get(i).setGeslacht(geslacht) aan.
+     * Methode die de speler een geslacht toekent. --  roept spelers.get(i).setGeslacht(geslacht) aan.
      * @param i huide speler
      * @param geslacht gekozen geslacht
      */
@@ -324,7 +324,7 @@ public class Spel {
     }
 
     /**
-     * Methode die speler zijn startkaarten toekent, overloopt alle spelers met een enhanced for. --> roept geefStartKaarten(speler) aan.
+     * Methode die speler zijn startkaarten toekent, overloopt alle spelers met een enhanced for. --  roept geefStartKaarten(speler) aan.
      */
     public void geefStartKaarten() {
         for (Speler speler : spelers) {
@@ -333,7 +333,7 @@ public class Spel {
     }
 
     /**
-     * Methode die het id van de bovenste Kerkerkaart teruggeeft. --> roept kerkerkaarten.get(0).getId() aan.
+     * Methode die het id van de bovenste Kerkerkaart teruggeeft. --  roept kerkerkaarten.get(0).getId() aan.
      * @return int id van bovenste kaart.
      */
     public int toonBovensteKk() {
@@ -341,7 +341,7 @@ public class Spel {
     }
 
     /**
-     * Methode die het typekaart teruggeeft adhv id van de kaart. --> roept kaarten.get(id).getClass().getSimpleName() aan.
+     * Methode die het typekaart teruggeeft adhv id van de kaart. --  roept kaarten.get(id).getClass().getSimpleName() aan.
      * @param id van de kaart
      * @return String type.
      */
@@ -516,7 +516,7 @@ public class Spel {
     }
 
     /**
-     * Methode die kaarten die naar items kunnen als string teruggeeft. --> roept spelers.get(i).geefKaartenKunnenNaarItems() aan.
+     * Methode die kaarten die naar items kunnen als string teruggeeft. --  roept spelers.get(i).geefKaartenKunnenNaarItems() aan.
      * @param naam van de speler
      * @return String kaarten naar items
      */
@@ -526,7 +526,7 @@ public class Spel {
     }
 
     /**
-     * Methode die kaarten die verkocht kunnen worden als String teruggeeft. --> roept spelers.get(i).geefVerkoopbareKaarten() aan.
+     * Methode die kaarten die verkocht kunnen worden als String teruggeeft. --  roept spelers.get(i).geefVerkoopbareKaarten() aan.
      * @param naam van de speler
      * @return String verkoopbare kaarten
      */
@@ -536,7 +536,7 @@ public class Spel {
     }
 
     /**
-     * Methode die de ids van de verkoopbare kaarten teruggeeft. --> roept spelers.get(i).geefIdVerkoopbareKaarten() aan. Gebruikt zoekSpeler()
+     * Methode die de ids van de verkoopbare kaarten teruggeeft. --  roept spelers.get(i).geefIdVerkoopbareKaarten() aan. Gebruikt zoekSpeler()
      * @param naam van de speler
      * @return List van Integers met ids verkoopbare kaarten
      */
@@ -564,7 +564,7 @@ public class Spel {
     */
 
     /**
-     * Methode die alle niet verkoopbare kaarten teruggeeft als String. --> roept spelers.get(i).geefNietVerkoopbareKaarten() aan. Gebruikt zoekSpeler().
+     * Methode die alle niet verkoopbare kaarten teruggeeft als String. --  roept spelers.get(i).geefNietVerkoopbareKaarten() aan. Gebruikt zoekSpeler().
      * @param naam van de speler
      * @return String met niet verkoopbare kaarten
      */
@@ -574,7 +574,7 @@ public class Spel {
     }
 
     /**
-     * Methode die level verhoogt. --> roept spelers.get(i).setLevel(spelers.get(i).getLevel() + levelUp) aan. Gebruikt zoekSpeler().
+     * Methode die level verhoogt. --  roept spelers.get(i).setLevel(spelers.get(i).getLevel() + levelUp) aan. Gebruikt zoekSpeler().
      * @param naam van speler
      * @param levelUp aantal levels up
      */
@@ -835,7 +835,7 @@ public class Spel {
     }
 
     /**
-     * Setter voor monsterBattlePoints. --> roept gevecht.setMonsterBattlePoints(monsterBattlePoints) aan.
+     * Setter voor monsterBattlePoints. --  roept gevecht.setMonsterBattlePoints(monsterBattlePoints) aan.
      * @param monsterBattlePoints battle points van monster
      */
     public void setMonsterBattlePoints(int monsterBattlePoints) {
@@ -843,7 +843,7 @@ public class Spel {
     }
 
     /**
-     * Setter voor spelerBattlePoints. --> roept gevecht.setSpelerBattlePoints(spelerBattlePoints) aan.
+     * Setter voor spelerBattlePoints. --  roept gevecht.setSpelerBattlePoints(spelerBattlePoints) aan.
      * @param spelerBattlePoints battle points van speler
      */
     public void setSpelerBattlePoints(int spelerBattlePoints) {
@@ -851,7 +851,7 @@ public class Spel {
     }
 
     /**
-     * Getter voor monsterBattlePoints. --> roept gevecht.getMonsterBattlePoints() aan.
+     * Getter voor monsterBattlePoints. --  roept gevecht.getMonsterBattlePoints() aan.
      * @return int points
      */
     public int getMonsterBattlePoints() {
@@ -859,7 +859,7 @@ public class Spel {
     }
 
     /**
-     * Getter voor spelerBattlePoints. --> roept gevecht.getSpelerBattlePoints() aan.
+     * Getter voor spelerBattlePoints. --  roept gevecht.getSpelerBattlePoints() aan.
      * @return int points
      */
     public int getSpelerBattlePoints() {
@@ -867,7 +867,7 @@ public class Spel {
     }
 
     /**
-     * Methode die Ids van kaarten in hand teruggeeft. --> roept spelers.get(zoekSpeler(naam)).getIDKaartenInHand() aan.
+     * Methode die Ids van kaarten in hand teruggeeft. --  roept spelers.get(zoekSpeler(naam)).getIDKaartenInHand() aan.
      * @param naam van speler
      * @return List met Integers die ids van kaarten in hand zijn.
      */
@@ -892,7 +892,7 @@ public class Spel {
     }
 
     /**
-     * Methode die kaarten weggooit. --> roept spelers.get(speler).getItems() aan. Gebruikt zoekSpeler()
+     * Methode die kaarten weggooit. --  roept spelers.get(speler).getItems() aan. Gebruikt zoekSpeler()
      * @param naam speler
      * @param gekozenKaarten Lijst met kaarten
      */
@@ -916,7 +916,7 @@ public class Spel {
     }
 
     /**
-     * Methode die kaarten verkoopt. --> roept spelers.get(speler).getKaarten() aan. Gebruikt zoekSpeler().
+     * Methode die kaarten verkoopt. --  roept spelers.get(speler).getKaarten() aan. Gebruikt zoekSpeler().
      * @param naam speler
      * @param gekozenKaarten Lijst met kaarten
      */
@@ -939,7 +939,7 @@ public class Spel {
     }
 
     /**
-     * Methode die kaarten naar items verplaatst. --> roep spelers.get(speler).getKaarten(), spelers.get(speler).getItems() aan.
+     * Methode die kaarten naar items verplaatst. --  roep spelers.get(speler).getKaarten(), spelers.get(speler).getItems() aan.
      * @param naam van de speler
      * @param gekozenKaarten Lijst met kaarten
      */
@@ -960,7 +960,7 @@ public class Spel {
     }
 
     /**
-     * Setter voor help. --> roept gevecht.setHelp(help) aan.
+     * Setter voor help. --  roept gevecht.setHelp(help) aan.
      * @param help sting voor hulp
      */
     public void setHelp(String help) {
@@ -968,7 +968,7 @@ public class Spel {
     }
 
     /**
-     * Setter voor helpt mee. --> roept gevecht.setHelptmee(helptmee)
+     * Setter voor helpt mee. --  roept gevecht.setHelptmee(helptmee)
      * @param helptmee List met booleans
      */
     public void setHelptmee(List<Boolean> helptmee) {
@@ -976,7 +976,7 @@ public class Spel {
     }
 
     /**
-     * Setter voor speler aan beurt. --> roept gevecht.setSpelerAanBeurt(spelerAanBeurt) aan.
+     * Setter voor speler aan beurt. --  roept gevecht.setSpelerAanBeurt(spelerAanBeurt) aan.
      * @param spelerAanBeurt huidige speler
      */
     public void setSpelerAanBeurtGevecht(int spelerAanBeurt) {
@@ -992,7 +992,7 @@ public class Spel {
     }
 
     /**
-     * Methode die teruggeeft of mensen meehelpen. --> roept gevecht.getHelptmee() aan.
+     * Methode die teruggeeft of mensen meehelpen. --  roept gevecht.getHelptmee() aan.
      * @return Lijst met booleans
      */
     public List<Boolean> getHelptmee() {
@@ -1000,7 +1000,7 @@ public class Spel {
     }
 
     /**
-     * Getter voor spelerAanBeurtGevecht. --> roept gevecht.getSpelerAanBeurt() aan.
+     * Getter voor spelerAanBeurtGevecht. --  roept gevecht.getSpelerAanBeurt() aan.
      * @return speler aan beurt
      */
     public int getSpelerAanBeurtGevecht() {
@@ -1008,7 +1008,7 @@ public class Spel {
     }
 
     /**
-     * Methode die badStuff uitvoert. --> Gebruikt geefBadStuff(id) , verhoogLevel.
+     * Methode die badStuff uitvoert. --  Gebruikt geefBadStuff(id) , verhoogLevel.
      * @param id van de kaart
      */
     public void voerBadStuffUit(int id) {
@@ -1193,7 +1193,7 @@ public class Spel {
     }
 
     /**
-     * Methode die monsterkaart speelt tegen speler. --> roept geefSpeler(gevecht.getSpelerAanBeurt()).getKaarten().get(kaart - 1) aan.
+     * Methode die monsterkaart speelt tegen speler. --  roept geefSpeler(gevecht.getSpelerAanBeurt()).getKaarten().get(kaart - 1) aan.
      * @param kaart id van de kaart
      * @param monster true = monster
      */
@@ -1259,7 +1259,7 @@ public class Spel {
     }
 
     /**
-     * Methode die Integers van de kaarten van de speler in een array steekt. --> roept spelers.get(i).geefKaartenInt() aan. Gebruikt zoekSpeler().
+     * Methode die Integers van de kaarten van de speler in een array steekt. --  roept spelers.get(i).geefKaartenInt() aan. Gebruikt zoekSpeler().
      * @param naam van de speler
      * @return array van ints
      */
@@ -1269,7 +1269,7 @@ public class Spel {
     }
 
     /**
-     * Methode die de Integers van de items van de speler in een array steekt. --> roept spelers.get(i).geefItemsInt() aan. Gebruikt zoekSpeler().
+     * Methode die de Integers van de items van de speler in een array steekt. --  roept spelers.get(i).geefItemsInt() aan. Gebruikt zoekSpeler().
      * @param naam naam speler
      * @return list met ids
      */
@@ -1338,7 +1338,7 @@ public class Spel {
     }
 
     /**
-     * Methode die de schatkaarten uitdeelt aan de spelers. --> Gebruikt geefSpeler()
+     * Methode die de schatkaarten uitdeelt aan de spelers. --  Gebruikt geefSpeler()
      * @param speler id van de speler
      * @param schatten aantal schatten
      */
