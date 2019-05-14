@@ -170,8 +170,9 @@ public class MenuBarGui extends MenuBar {
 
     private void buttonOpenEventHandler(ActionEvent event) {
         try {
+            DomeinController dc = ((TabExtended) TabsMunchkin.getPane().getSelectionModel().getSelectedItem()).getDc();
             Stage stage = new Stage();
-            Scene scene = new Scene(new UseCase9G(), 450, 300);
+            Scene scene = new Scene(new UseCase9G(dc), 450, 300);
             stage.setScene(scene);
             stage.setTitle(String.format("Munchkin - G35 - %s", LanguageResource.getString("load")));
             stage.show();
