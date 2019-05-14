@@ -207,10 +207,7 @@ class UseCase7 {
     private void kiesKaarten(String type) {
         try {
             kiezenType.get(type).run();
-        } catch (Exception e) {
-            e = new Exception(LanguageResource.getString("usecase7.exception"));
-            System.out.println(Printer.exceptionCatch("Exception (UC7)", e, false));
-            scan.nextLine();
+        } catch (NullPointerException e) {
         }
     }
 
