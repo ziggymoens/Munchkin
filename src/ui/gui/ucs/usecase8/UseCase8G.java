@@ -35,8 +35,8 @@ public class UseCase8G extends MainGui {
         bevestig.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                lblBevestiging.setText("Het spel is succesvol opgeslaan.");
                 dc.spelOpslaan();
+                lblBevestiging.setText("Het spel is succesvol opgeslaan.");
             }
         });
         box.getChildren().addAll(lblNaam, txfNaam, bevestig, lblBevestiging);
