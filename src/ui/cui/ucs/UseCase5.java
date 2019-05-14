@@ -26,6 +26,7 @@ class UseCase5 {
 
     /**
      * Constructor voor uc5
+     *
      * @param dc
      */
     UseCase5(DomeinController dc) {
@@ -35,11 +36,12 @@ class UseCase5 {
 
     /**
      * Methode die een kaart speelt
+     *
      * @param spab spelerAanBeurt binnenin het gevecht, hangt los van algemene dc.geefSpelerAanBeurt
      */
     void speelKaart(int spab, boolean monster) {
-        try{
-            boolean help = dc.getHelp().equalsIgnoreCase(LanguageResource.getString("yes"));
+        try {
+            //boolean help = dc.getHelp().equalsIgnoreCase(LanguageResource.getString("yes"));
             this.helptmee = dc.gethelptmee();
             dc.setSpelerAanBeurtGevecht(spab);
             int spelerAanBeurt = dc.getSpelerAanBeurtGevecht();
@@ -56,20 +58,21 @@ class UseCase5 {
                     }
                     tryAgain = false;
                 } catch (InputMismatchException e) {
-                    System.out.println(Printer.exceptionCatch(LanguageResource.getString("exception.wronginput"), e));
+                    e = new InputMismatchException(LanguageResource.getString("exception.wronginput"));
+                    System.out.println(Printer.exceptionCatch("InputMismatchException (UC5)", e));
                     SCAN.nextLine();
                     kaartenInhandToString(spelerAanBeurt);
-                } catch(SpelerException e){
-                    System.out.println(Printer.exceptionCatch(LanguageResource.getString("exception.wronginput"), e));
+                } catch (SpelerException e) {
+                    e = new SpelerException(LanguageResource.getString("exception.wronginput"));
+                    System.out.println(Printer.exceptionCatch("InputMismatchException (UC5)", e));
                     SCAN.nextLine();
                     kaartenInhandToString(spelerAanBeurt);
-                } catch (Exception e){
-                    System.out.println(Printer.exceptionCatch("Exception (UC5)", e));
+                } catch (Exception e) {
+                    System.out.println(Printer.exceptionCatch("Exception (UC5)", e, false));
                     SCAN.nextLine();
                     kaartenInhandToString(spelerAanBeurt);
                 }
             }
-
             System.out.println(dc.geefSpeler(spelerAanBeurt).getKaarten().get(kaart - 1));
             //De speler mag de kaart spelen
             if (dc.validatieKaartSpeler(kaart, monster) && dc.validatieKaartItems(kaart)) {
@@ -88,14 +91,14 @@ class UseCase5 {
                 dc.voegKaartOnderaanStapelToe(kaart);
                 dc.geefSpeler(spelerAanBeurt).getKaarten().remove(kaart - 1);
 
-            }//De speler mag de kaart niet spelen
-            else {
-                //throw new Exception("usecase5.invalidcard");
-                System.out.println(Printer.printRed(LanguageResource.getString("usecase5.invalidcard")));
+            } else {
+                //System.out.println(Printer.printRed(LanguageResource.getString("usecase5.invalidcard")));
                 speelKaart(spab, monster);
+                throw new Exception("usecase5.invalidcard");
             }
-        }catch(Exception e){
-            System.out.println(Printer.exceptionCatch(LanguageResource.getString("somethingWrong"), e));
+        } catch (Exception e) {
+            e = new Exception(LanguageResource.getString("somethingWrong"));
+            System.out.println(Printer.exceptionCatch("Exception (UC5)", e));
             SCAN.nextLine();
         }
     }
@@ -104,10 +107,14 @@ class UseCase5 {
      * Methode die de kaarten in hand toont
      */
 
-    private void kaartenInhandToString(int spelerAanBeurt){
-        System.out.printf(ColorsOutput.decoration("bold") + ColorsOutput.kleur("purple") + "%n%s%n", dc.toonOverzichtKaartenInHand2(spelerAanBeurt).get(0) + ColorsOutput.reset());
-        for (int i = 1; i < dc.toonOverzichtKaartenInHand2(spelerAanBeurt).size(); i++) {
-            System.out.println(dc.toonOverzichtKaartenInHand2(spelerAanBeurt).get(i));
+    private void kaartenInhandToString(int spelerAanBeurt) {
+        try {
+            System.out.printf(ColorsOutput.decoration("bold") + ColorsOutput.kleur("purple") + "%n%s%n", dc.toonOverzichtKaartenInHand2(spelerAanBeurt).get(0) + ColorsOutput.reset());
+            for (int i = 1; i < dc.toonOverzichtKaartenInHand2(spelerAanBeurt).size(); i++) {
+                System.out.println(dc.toonOverzichtKaartenInHand2(spelerAanBeurt).get(i));
+            }
+        } catch (Exception e) {
+            System.out.println(Printer.exceptionCatch("Exception (UC5)", e, false));
         }
     }
 
@@ -131,7 +138,8 @@ class UseCase5 {
                     }
                     tryAgain = false;
                 } catch (InputMismatchException e) {
-                    System.out.println(Printer.exceptionCatch(LanguageResource.getString("inputmismatch"), e));
+                    e = new InputMismatchException(LanguageResource.getString("inputmismatch"));
+                    System.out.println(Printer.exceptionCatch("InputMismatchException (UC5)", e));
                     SCAN.nextLine();
                 } catch (SpelerException e) {
                     System.out.println(Printer.exceptionCatch(LanguageResource.getString("wronginput"), e));
@@ -139,7 +147,7 @@ class UseCase5 {
                 }
             }
             dc.speelCurse(speler, kaart);
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println(Printer.exceptionCatch(LanguageResource.getString("somethingWrong"), e));
             SCAN.nextLine();
         }
@@ -147,22 +155,29 @@ class UseCase5 {
 
     /**
      * Methode die een overzicht van alle helpende spelers geeft
+     *
      * @return een List van Strings met namen van helpende spelers
      */
     private List<String> overzichthelpendespelers() {
         int aantal = 1;
         List<String> output = new ArrayList<>();
-        output.add(LanguageResource.getString("usecase5.summaryhelp"));
-        for (int i = 0; i < helptmee.size(); i++) {
-            if (helptmee.get(i)) {
-                output.add(String.format("%d) %s", aantal, dc.geefNaamSpeler(i)));
-                aantal++;
+        try {
+            output.add(LanguageResource.getString("usecase5.summaryhelp"));
+            for (int i = 0; i < helptmee.size(); i++) {
+                if (helptmee.get(i)) {
+                    output.add(String.format("%d) %s", aantal, dc.geefNaamSpeler(i)));
+                    aantal++;
+                }
             }
+            return output;
+        } catch (Exception e) {
+            System.out.println(Printer.exceptionCatch("Exception (UC5)", e, false));
         }
         return output;
     }
+}
 
-    /*private void monsterKaart(Kaart gespeeldeKaart){
+/*private void monsterKaart(Kaart gespeeldeKaart){
         if(!monster || helptmee.get(spelerAanBeurt)){
             dc.setSpelerBattlePoints(dc.getSpelerBattlePoints() + ((Monster) gespeeldeKaart).getLevel());
         }else{
@@ -195,4 +210,3 @@ class UseCase5 {
     /*private void curseuitvoeren(int speler, Kaart gespeeldeKaart){
         dc.geefSpeler(speler).setLevel(dc.geefLevel(speler) - ((Curse) gespeeldeKaart).getLevelLost());
     }*/
-}
