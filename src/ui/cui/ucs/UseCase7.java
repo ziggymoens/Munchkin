@@ -282,8 +282,10 @@ class UseCase7 {
                 keuze = scan.nextInt();
                 if (mogelijkheden.contains(keuze) && keuze != 999) {
                     //if(dc.validatieKaartItems(keuze))
-                    gekozenKaarten.add(keuze);
-                    teller++;
+                    if(dc.validatieKaartItems2(keuze)){
+                        gekozenKaarten.add(keuze);
+                        teller++;
+                    }
                 } else if (keuze == 999) {
                     String stop;
                     do {
