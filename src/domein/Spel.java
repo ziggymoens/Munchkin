@@ -80,7 +80,7 @@ public class Spel {
      * @param naam van de speler
      * @param klein grootte databank
      * @param spelers Lijst van de spelers
-     * @param ls
+     * @param ls laatste speler
      * @param volgnummerD Lijst van dungeon kaarten
      * @param volgnummerT Lijst van treasure kaarten
      */
@@ -316,8 +316,8 @@ public class Spel {
 
     /**
      * Methode die de speler een geslacht toekent. --> roept spelers.get(i).setGeslacht(geslacht) aan.
-     * @param i
-     * @param geslacht
+     * @param i huide speler
+     * @param geslacht gekozen geslacht
      */
     public void geefSpelerGeslacht(int i, String geslacht) {
         spelers.get(i).setGeslacht(geslacht);
@@ -505,7 +505,7 @@ public class Spel {
 
     /**
      * Setter voor speler aan beurt
-     * @param spelerAanBeurt
+     * @param spelerAanBeurt de speler aan beurt
      */
     public void setSpelerAanBeurt(int spelerAanBeurt) {
         if (spelerAanBeurt == spelers.size()) {
@@ -547,8 +547,8 @@ public class Spel {
 
     /**
      * Methode die de ids van de kaarten die naar items
-     * @param naam
-     * @return
+     * @param naam naam van de speler
+     * @return lijst met ids
      */
     public List<Integer> geefIdKaartenNaarItems(String naam) {
         int i = zoekSpeler(naam);
@@ -585,7 +585,7 @@ public class Spel {
 
     /**
      * Methode die boolean teruggeeft wie gewonnen is
-     * @param monster
+     * @param monster id van monster
      * @param speler index
      * @return true = monster wint, false = speler wint
      */
@@ -602,8 +602,8 @@ public class Spel {
 
     /**
      * Methode die monster attributen toekent
-     * @param id
-     * @param soort
+     * @param id id . van monster
+     * @param soort soort van monster
      * @return String met monster value
      */
     public String geefMonsterAttribuut(int id, String soort) {
@@ -717,7 +717,7 @@ public class Spel {
 
     /**
      * Methode die de kaarten in een map steekt samen met hun ids
-     * @param kaarten
+     * @param kaarten map met kaarten
      */
     public void setKaarten(Map<Integer, Kaart> kaarten) {
         this.kaarten = kaarten;
@@ -725,7 +725,7 @@ public class Spel {
 
     /**
      * Setter voor schatkaarten die deze in een List steekt
-     * @param schatkaarten
+     * @param schatkaarten list met schatkaarten
      */
     public void setSchatkaarten(List<Kaart> schatkaarten) {
         this.schatkaarten = schatkaarten;
@@ -733,7 +733,7 @@ public class Spel {
 
     /**
      * Setter voor kerkerkaarten die deze in een List steekt
-     * @param kerkerkaarten
+     * @param kerkerkaarten list met kerkerkaarten
      */
     public void setKerkerkaarten(List<Kaart> kerkerkaarten) {
         this.kerkerkaarten = kerkerkaarten;
@@ -836,7 +836,7 @@ public class Spel {
 
     /**
      * Setter voor monsterBattlePoints. --> roept gevecht.setMonsterBattlePoints(monsterBattlePoints) aan.
-     * @param monsterBattlePoints
+     * @param monsterBattlePoints battle points van monster
      */
     public void setMonsterBattlePoints(int monsterBattlePoints) {
         gevecht.setMonsterBattlePoints(monsterBattlePoints);
@@ -844,7 +844,7 @@ public class Spel {
 
     /**
      * Setter voor spelerBattlePoints. --> roept gevecht.setSpelerBattlePoints(spelerBattlePoints) aan.
-     * @param spelerBattlePoints
+     * @param spelerBattlePoints battle points van speler
      */
     public void setSpelerBattlePoints(int spelerBattlePoints) {
         gevecht.setSpelerBattlePoints(spelerBattlePoints);
@@ -852,7 +852,7 @@ public class Spel {
 
     /**
      * Getter voor monsterBattlePoints. --> roept gevecht.getMonsterBattlePoints() aan.
-     * @return
+     * @return int points
      */
     public int getMonsterBattlePoints() {
         return gevecht.getMonsterBattlePoints();
@@ -860,7 +860,7 @@ public class Spel {
 
     /**
      * Getter voor spelerBattlePoints. --> roept gevecht.getSpelerBattlePoints() aan.
-     * @return
+     * @return int points
      */
     public int getSpelerBattlePoints() {
         return gevecht.getSpelerBattlePoints();
@@ -939,7 +939,7 @@ public class Spel {
     }
 
     /**
-     * Methode die kaarten naar items verplaatst. --> roep spelers.get(speler).getKaarten() & spelers.get(speler).getItems() aan.
+     * Methode die kaarten naar items verplaatst. --> roep spelers.get(speler).getKaarten(), spelers.get(speler).getItems() aan.
      * @param naam van de speler
      * @param gekozenKaarten Lijst met kaarten
      */
@@ -961,7 +961,7 @@ public class Spel {
 
     /**
      * Setter voor help. --> roept gevecht.setHelp(help) aan.
-     * @param help
+     * @param help sting voor hulp
      */
     public void setHelp(String help) {
         gevecht.setHelp(help);
@@ -977,7 +977,7 @@ public class Spel {
 
     /**
      * Setter voor speler aan beurt. --> roept gevecht.setSpelerAanBeurt(spelerAanBeurt) aan.
-     * @param spelerAanBeurt
+     * @param spelerAanBeurt huidige speler
      */
     public void setSpelerAanBeurtGevecht(int spelerAanBeurt) {
         gevecht.setSpelerAanBeurt(spelerAanBeurt);
@@ -985,7 +985,7 @@ public class Spel {
 
     /**
      * Getter voor help
-     * @return
+     * @return hulp nodig
      */
     public String getHelp() {
         return gevecht.getHelp();
