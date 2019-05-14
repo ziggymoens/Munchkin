@@ -87,6 +87,8 @@ public class KaartAfhandeler extends BorderPane {
         //stage.setTitle("Monster");
         textCenter.setText(LanguageResource.getString("usecase4.ask.help"));
         //Label vraag = new Label(LanguageResource.getString("usecase4.ask.help"));
+        dc.setSpelerBattlePoints(dc.geefLevel(spelerAanBeurt));
+        dc.setMonsterBattlePoints( Integer.parseInt(dc.geefMonsterAttribuut(kaart, "level").toString()));
         Button btnJa = new Button(LanguageResource.getString("yes"));
         btnJa.setMinWidth(center.getMinWidth() * 0.2);
         Button btnNee = new Button(LanguageResource.getString("no"));
@@ -155,9 +157,11 @@ public class KaartAfhandeler extends BorderPane {
                 dc.itemsBijvoegen(kaart);
             }
         }
+        dc.spelerLevels();
         Label eindeGevecht = new Label();
         if(dc.getSpelerBattlePoints() > dc.getMonsterBattlePoints()){
             //eindeGevecht.setText("usecase6.playerwon");
+
             return LanguageResource.getString("usecase6.playerwon");
         }else{
             //eindeGevecht.setText("usecase6.monsterwon");
@@ -169,7 +173,14 @@ public class KaartAfhandeler extends BorderPane {
 
     }
 
+    private void schatkaartenUitdelen(){
+        int aantalSchatkaarten = Integer.parseInt( dc.geefMonsterAttribuut(kaart, "schatkaarten").toString());
+        for(int i = 0; i < aantalSchatkaarten; i++){
+            if(dc.gethelptmee().get(i)){
 
+            }
+        }
+    }
 
     private void kaartSpeelScherm() {
         keuzesCenter.getChildren().clear();

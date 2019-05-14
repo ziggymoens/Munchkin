@@ -3,91 +3,52 @@ package ui.gui.ucs.usecase8;
 import domein.DomeinController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import ui.gui.a_universal.maingui.MainGui;
+import java.util.List;
 
 public class UseCase8G extends MainGui {
 
-        private ComboBox cboTitels;
-        private Label lblSpelgegevens, lblNaam, lblBevestiging, lblNm;
-        private TextArea txaSpelgegevens;
-        private TextField txfNaam, txfBevestiging;
-        private DomeinController dc;
-        private String naam;
+    private ComboBox cboTitels;
+    private Label lblNaam, lblBevestiging;
+    private TextField txfNaam;
+    private DomeinController dc;
 
-        public UseCase8G(DomeinController dc) {
-            getStylesheets().add("ui/gui/ucs/usecase8/UseCase8G.css");
-            this.dc = dc;
-            buildGui();
-        }
+    public UseCase8G(DomeinController dc) {
+        getStylesheets().add("ui/gui/ucs/usecase8/UseCase8G.css");
+        this.dc = dc;
+        buildGui();
+    }
 
-        private void buildGui(){
-            VBox box;
-            box = new VBox();
-            cboTitels = new ComboBox();
-            //mogelijkheden plaatsen voor spellen
-            //als standaardtekst in combobox, kies het spel dat u wilt opslaan
-            lblNaam = new Label("Geef het spel dat u wilt opslaan een naam: ");
-            txfNaam = new TextField();
-            txfNaam.setEditable(true);
-            Button bevestig = new Button("bevestig");
-            bevestig.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    naam = txfNaam.getText();
-                }
-            });
-            lblNm = new Label(naam);
-
-            box.getChildren().addAll(cboTitels,lblNaam, txfNaam,bevestig,lblNm);
-            this.getPane().setLeft(box);
-        }
-
-   /*     private void buildGui () {
-
-            cboTitels = new ComboBox();
-            lblSpelgegevens = new Label("Spelgegevens: ");
-            lblNaam = new Label("Geef het spel dat u wilt opslaan een naam: ");
-            lblBevestiging = new Label("");
-            txaSpelgegevens = new TextArea();
-            txfNaam = new TextField();
-            txfBevestiging = new TextField();
-
-            this.getChildren().addAll(cboTitels, lblSpelgegevens, txaSpelgegevens, lblNaam, txfNaam, lblBevestiging, txfBevestiging);
-
-            this.setPadding(new Insets(25));   //ruimte aan zijkanten
-//        this.setSpacing(10); //tussenruimte tussen 2 componenten
-
-            // combobox opvullen: korte omschrijving spel
-            List<String> spellen = new ArrayList<>();
-//        spellen.add(dc.geefSpelNaam(naam));
-            ObservableList lijst = FXCollections.observableArrayList(spellen);  //FXCollections omdat je niet zomaar new ObservableList() kunt doen
-            cboTitels.setItems(lijst);
-            cboTitels.setPromptText("Kies hier welk spel je wilt opslaan ");
-
-
-            //tekst in TextArea en TextField (niet) wijzigbaar maken
-            txaSpelgegevens.setEditable(false);
-            txfNaam.setEditable(true);
-            txfBevestiging.setEditable(false);
-
-            // eventhandeler voor combobox
-            cboTitels.setOnAction(new KlasseDieOpComboBoxReageert(cboTitels, this));         //this meegeven voor klasse
-
-        }*/
-
-        public void update ( int index){
-//        String spelgegevens = dc.;
-//        //String kost = String.format("De kost bedraagt €%.2f", dc.geefBeheerskostWaarde(index));
-//        String txaSpelgegevens.setText(spelgegevens);
-//        //txfKost.setText(kost);
-//        String bevestiging = String.format("U heeft het spel %s onder de naam %s succesvol opgeslaan.");
-//
-//    }
-
-        }
-
+    private void buildGui() {
+        VBox box;
+        box = new VBox();
+        cboTitels = new ComboBox();
+        cboTitels.setPromptText("Kies hier het spel dat u wilt opslaan");
+        //mogelijkheden plaatsen voor spellen²²²
+        List<String> spelen = dc.geefOverzichtSpelen();
+        ObservableList lijst = FXCollections.observableArrayList(spelen);  //FXCollections omdat je niet zomaar new ObservableList() kunt doen
+        cboTitels.setItems(lijst);
+        lblNaam = new Label("Geef het gekozen spel een naam: ");
+        lblBevestiging = new Label();
+        txfNaam = new TextField();
+        txfNaam.setEditable(true);
+        Button bevestig = new Button("bevestig");
+        bevestig.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                lblBevestiging.setText("Het spel is succesvol opgeslaan.");
+            }
+        });
+        box.getChildren().addAll(cboTitels, lblNaam, txfNaam, bevestig, lblBevestiging);
+        this.getPane().setLeft(box);
+        this.setPadding(new Insets(25));   //ruimte aan zijkanten
+        //this.setSpacing(10); //tussenruimte tussen 2 componenten
+    }
 
 }
 

@@ -60,7 +60,8 @@ class UseCase6 {
                 }
             }
         }catch(Exception e){
-            System.out.print(Printer.exceptionCatch("somethingWrong", e));
+            e = new Exception(LanguageResource.getString("somethingWrong"));
+            System.out.print(Printer.exceptionCatch("Exception (UC6)", e));
         }
     }
 
@@ -85,7 +86,8 @@ class UseCase6 {
                 aantal++;
             }
         }catch(Exception e){
-            System.out.print(Printer.exceptionCatch("somethingWrong", e));
+            e = new Exception(LanguageResource.getString("somethingWrong"));
+            System.out.print(Printer.exceptionCatch("Exception (UC6)", e));
         }
     }
 
@@ -93,6 +95,7 @@ class UseCase6 {
      * Methode die bepaalt of je mag ontsnappen of niet (zie gooiDobbelsteen)
      * @param id van het monster waarvan de speler weg moet lopen
      */
+
     private void ontsnappen(int id) {
         try {
             int runAway = Integer.parseInt(dc.geefMonsterAttribuut(id, "RunAway").toString());
@@ -107,7 +110,8 @@ class UseCase6 {
                 dc.voerBadStuffUit(id);
             }
         }catch(Exception e){
-            System.out.println(ColorsOutput.kleur("red") + ColorsOutput.decoration("bold") + LanguageResource.getString("somethingWrong") + ColorsOutput.reset());
+            e = new Exception(LanguageResource.getString("somethingWrong"));
+            System.out.print(Printer.exceptionCatch("Exception (UC6)", e));
         }
     }
 }
