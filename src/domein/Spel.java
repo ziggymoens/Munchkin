@@ -1126,6 +1126,37 @@ public class Spel {
         return false;
     }
 
+    public boolean validatieKaartItems2(int kaart){
+        int aantalWapens = 0;
+        List<Kaart> items = geefSpeler(gevecht.getSpelerAanBeurt()).getItems();
+        Kaart kr = kaarten.get(kaart);
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i) instanceof Race && kr instanceof Race) {
+                return false;
+            }
+            if (items.get(i) instanceof Equipment && kr instanceof Equipment) {
+                Kaart kr2 = items.get(i);
+                if (((Equipment) kr2).getType().equals("Head") && ((Equipment) kr).getType().equals("Head")) {
+                    return false;
+                }
+                if (((Equipment) kr2).getType().equals("Armor") && ((Equipment) kr).getType().equals("Armor")) {
+                    return false;
+                }
+                if (((Equipment) kr2).getType().equals("Foot") && ((Equipment) kr).getType().equals("Foot")) {
+                    return false;
+                }
+                if (((Equipment) kr2).getType().equals("Weapon")) {
+                    aantalWapens += 1;
+                }
+            }
+        }
+
+        if (aantalWapens == 2 && ((Equipment) kr).getType().equals("Weapon")) {
+            return false;
+        }
+        return true;
+    }
+
     /**
      *  Methode die bepaalt of de speler de kaart mag spelen adhv de items die de persoon heeft
      * @param kaart de kaart die meegegeven wordt

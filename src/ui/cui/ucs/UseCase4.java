@@ -110,22 +110,29 @@ class UseCase4 {
                                 case 1:
                                     //Mag alleen gebeuren als de speler die vecht akkoord is gegaan dat hij hulp wilt
                                     if (dc.geefIDKaartenInHand(dc.geefNaamSpeler(aantal)).size() == 0) {
-                                        System.err.println(LanguageResource.getString("usecase4.nocards"));
-                                    } else {
+                                        System.out.println(Printer.printRed(LanguageResource.getString("usecase4.nocards")));
+                                    }
+
+                                    /*if(kanGeenKaartenSpelen(aantal)){
+                                        System.out.println(Printer.printRed(LanguageResource.getString("usecase4.cantPlayCards")));
+                                    }*/else {
                                         if (help.equals(LanguageResource.getString("yes"))) {
                                             //aanpassen???
                                             helptmee.remove(aantal);
                                             helptmee.add(aantal, true);
                                             speelKaart(aantal);
                                         } else {
-                                            System.err.println(LanguageResource.getString("exception.help"));
+                                            System.out.println(Printer.printRed(LanguageResource.getString("usecase4.nocards")));
                                         }
                                     }
                                     break;
                                 case 2:
                                     if (dc.geefIDKaartenInHand(dc.geefNaamSpeler(aantal)).size() == 0) {
-                                        System.err.println(LanguageResource.getString("usecase4.nocards"));
-                                    } else {
+                                        System.out.println(Printer.printRed("usecase4.nocards"));
+                                    }
+                                    /*if(kanGeenKaartenSpelen(aantal)){
+                                        System.out.println(Printer.printRed(LanguageResource.getString("usecase4.cantPlayCards")));
+                                    }*/else {
                                         speelKaart(aantal);
                                     }
                                     break;
@@ -210,4 +217,23 @@ class UseCase4 {
             }
         } while (kaart.equals(LanguageResource.getString("yes")));
     }
+
+    /**
+     * Methode dat checkt of je geen van alle kaarten mag spelen
+     * @param aantal de speler aan beurt
+     * @return true or false
+     */
+
+    /*private boolean kanGeenKaartenSpelen(int aantal){
+        List<Integer> lijst = dc.geefIDKaartenInHand(dc.geefNaamSpeler(aantal));
+        int getal = 0;
+        for(int i = 0; i < dc.geefIDKaartenInHand(dc.geefNaamSpeler(aantal)).size(); i++){
+            System.out.println("testB");
+            if(!dc.validatieKaartSpeler(lijst.get(i)) || !dc.validatieKaartItems2(lijst.get(i))){
+                System.out.println("testC");
+                getal++;
+            }
+        }
+        return getal >= dc.geefIDKaartenInHand(dc.geefNaamSpeler(aantal)).size();
+    }*/
 }

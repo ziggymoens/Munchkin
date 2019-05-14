@@ -38,16 +38,13 @@ class UseCase5 {
      * @param spab spelerAanBeurt binnenin het gevecht, hangt los van algemene dc.geefSpelerAanBeurt
      */
     void speelKaart(int spab, boolean monster) {
-        try {
+        try{
             boolean help = dc.getHelp().equalsIgnoreCase(LanguageResource.getString("yes"));
             this.helptmee = dc.gethelptmee();
             dc.setSpelerAanBeurtGevecht(spab);
             int spelerAanBeurt = dc.getSpelerAanBeurtGevecht();
             //System.out.println(dc.toonOverzichtKaartenInHand(spelerAanBeurt));
-            System.out.printf(ColorsOutput.decoration("bold") + ColorsOutput.kleur("purple") + "%n%s%n", dc.toonOverzichtKaartenInHand2(spelerAanBeurt).get(0) + ColorsOutput.reset());
-            for (int i = 1; i < dc.toonOverzichtKaartenInHand2(spelerAanBeurt).size(); i++) {
-                System.out.println(dc.toonOverzichtKaartenInHand2(spelerAanBeurt).get(i));
-            }
+            kaartenInhandToString(spelerAanBeurt);
             boolean tryAgain = true;
             while (tryAgain) {
                 try {
@@ -55,15 +52,21 @@ class UseCase5 {
                     kaart = SCAN.nextInt();
                     int end = dc.toonOverzichtKaartenInHand2(spelerAanBeurt).size();
                     if (kaart <= 0 || kaart > end) {
-                        throw new SpelerException("exception.wronginput");
+                        throw new InputMismatchException();
                     }
                     tryAgain = false;
-                } catch (InputMismatchException | SpelerException e) {
-                    System.out.println(Printer.exceptionCatch(LanguageResource.getString("wronginput"), e, true));
+                } catch (InputMismatchException e) {
+                    System.out.println(Printer.exceptionCatch(LanguageResource.getString("exception.wronginput"), e));
                     SCAN.nextLine();
+                    kaartenInhandToString(spelerAanBeurt);
+                } catch(SpelerException e){
+                    System.out.println(Printer.exceptionCatch(LanguageResource.getString("exception.wronginput"), e));
+                    SCAN.nextLine();
+                    kaartenInhandToString(spelerAanBeurt);
                 } catch (Exception e){
-                    System.out.println(Printer.exceptionCatch("Exception (UC5)", e, false));
+                    System.out.println(Printer.exceptionCatch("Exception (UC5)", e));
                     SCAN.nextLine();
+                    kaartenInhandToString(spelerAanBeurt);
                 }
             }
 
@@ -92,8 +95,19 @@ class UseCase5 {
                 speelKaart(spab, monster);
             }
         }catch(Exception e){
-            System.out.println(Printer.exceptionCatch(LanguageResource.getString("somethinWwrong"), e, true));
+            System.out.println(Printer.exceptionCatch(LanguageResource.getString("somethingWrong"), e));
             SCAN.nextLine();
+        }
+    }
+
+    /**
+     * Methode die de kaarten in hand toont
+     */
+
+    private void kaartenInhandToString(int spelerAanBeurt){
+        System.out.printf(ColorsOutput.decoration("bold") + ColorsOutput.kleur("purple") + "%n%s%n", dc.toonOverzichtKaartenInHand2(spelerAanBeurt).get(0) + ColorsOutput.reset());
+        for (int i = 1; i < dc.toonOverzichtKaartenInHand2(spelerAanBeurt).size(); i++) {
+            System.out.println(dc.toonOverzichtKaartenInHand2(spelerAanBeurt).get(i));
         }
     }
 

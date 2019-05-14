@@ -655,6 +655,15 @@ public class DomeinController {
     }
 
     /**
+     * Methode die bepaalt of de speler de kaart mag spelen adhv de items die de persoon heeft
+     * @param kaart ID van de kaart
+     * @return true or false
+     */
+    public boolean validatieKaartItems2(int kaart){
+        return spel.validatieKaartItems2(kaart);
+    }
+
+    /**
      * Methode die cursekaart speelt
      * @param speler id van speler
      * @param kaart kaart die gespeeld moet worden
