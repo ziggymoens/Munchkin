@@ -25,7 +25,7 @@ public class UseCase9G extends MainGui{
         VBox box;
         box = new VBox();
         cboSpelen = new ComboBox();
-        cboSpelen.setPromptText("Kies hier het spel dat u wilt opslaan");
+        cboSpelen.setPromptText("Kies hier het spel dat u wilt laden");
         //mogelijkheden plaatsen voor spellen
         List<String> spelen = dc.geefOverzichtSpelen();
         ObservableList lijst = FXCollections.observableArrayList(spelen);  //FXCollections omdat je niet zomaar new ObservableList() kunt doen
