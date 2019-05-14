@@ -114,7 +114,8 @@ class UseCase5 {
                 System.out.println(dc.toonOverzichtKaartenInHand2(spelerAanBeurt).get(i));
             }
         } catch (Exception e) {
-            System.out.println(Printer.exceptionCatch("Exception (UC5)", e, false));
+            e = new Exception(LanguageResource.getString("somethingWrong"));
+            System.out.print(Printer.exceptionCatch("Exception (UC5)", e));
         }
     }
 
@@ -148,7 +149,8 @@ class UseCase5 {
             }
             dc.speelCurse(speler, kaart);
         } catch (Exception e) {
-            System.out.println(Printer.exceptionCatch(LanguageResource.getString("somethingWrong"), e));
+            e = new Exception(LanguageResource.getString("somethingWrong"));
+            System.out.print(Printer.exceptionCatch("Exception (UC5)", e));
             SCAN.nextLine();
         }
     }
@@ -171,7 +173,8 @@ class UseCase5 {
             }
             return output;
         } catch (Exception e) {
-            System.out.println(Printer.exceptionCatch("Exception (UC5)", e, false));
+            e = new Exception(LanguageResource.getString("somethingWrong"));
+            System.out.print(Printer.exceptionCatch("Exception (UC5)", e));
         }
         return output;
     }

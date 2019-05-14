@@ -156,7 +156,8 @@ class UseCase4 {
         }
         dc.setHelptmee(helptmee);
     }catch(Exception e){
-            System.out.print(Printer.exceptionCatch("somethingWrong", e));
+            e = new Exception(LanguageResource.getString("somethingWrong"));
+            System.out.print(Printer.exceptionCatch("Exception (UC4)", e));
         }
     }
 
@@ -176,7 +177,8 @@ class UseCase4 {
             dc.setSpelerBattlePoints(dc.getSpelerBattlePoints() + dc.spelerLevels());
             vechtMonster();
         }catch(Exception e){
-            System.out.print(Printer.exceptionCatch("somethingWrong", e));
+            e = new Exception(LanguageResource.getString("somethingWrong"));
+            System.out.print(Printer.exceptionCatch("Exception (UC4)", e));
         }
     }
 
@@ -227,10 +229,15 @@ class UseCase4 {
     private boolean kanGeenKaartenSpelen(int aantal){
         List<Integer> lijst = dc.geefIDKaartenInHand(dc.geefNaamSpeler(aantal));
         int getal = 0;
-        for(int i = 0; i < dc.geefIDKaartenInHand(dc.geefNaamSpeler(aantal)).size(); i++){
-            if(!dc.validatieKaartSpeler(lijst.get(i)) || !dc.validatieKaartItems2(lijst.get(i))){
-                getal++;
+        try {
+            for (int i = 0; i < dc.geefIDKaartenInHand(dc.geefNaamSpeler(aantal)).size(); i++) {
+                if (!dc.validatieKaartSpeler(lijst.get(i)) || !dc.validatieKaartItems2(lijst.get(i))) {
+                    getal++;
+                }
             }
+        }catch(Exception e){
+            e = new Exception(LanguageResource.getString("somethingWrong"));
+            System.out.print(Printer.exceptionCatch("Exception (UC4)", e));
         }
         return getal >= dc.geefIDKaartenInHand(dc.geefNaamSpeler(aantal)).size();
     }
