@@ -16,7 +16,7 @@ public class Gevecht {
 
     /**
      * Getter die teruggeeft of de speler hulp wilt tegen een monster
-     * @return
+     * @return String ja of nee in juiste taal
      */
     public String getHelp() {
         return help;
@@ -30,7 +30,7 @@ public class Gevecht {
 
     /**
      * Getter die teruggeeft hoeveel de monsterzijde in totaal aan levels heeft op het einde van het gevecht
-     * @return
+     * @return List van spelers die meehelpen in het gevecht
      */
     public int getMonsterBattlePoints() {
         return monsterBattlePoints;
@@ -38,7 +38,7 @@ public class Gevecht {
 
     /**
      * Getter die teruggeeft hoeveel de Spelerzijde in totaal aan levels heeft op het einde van het gevecht
-     * @return
+     * @return getal hoeveel dat de Monserzijde aan totale levels heeft
      */
     public int getSpelerBattlePoints() {
         return spelerBattlePoints;
@@ -46,7 +46,7 @@ public class Gevecht {
 
     /**
      * Getter die de speler aan beurt binnenin het gevecht teruggeeft (hang lost van de algemene spelerAanBeurt die in Spel staat)
-     * @return
+     * @return getal hoeveel dat de Spelerzijde aan totale levels heeft
      */
     public int getSpelerAanBeurt() {
         return spelerAanBeurt;
@@ -56,7 +56,7 @@ public class Gevecht {
 
     /**
      * Setter die set of de speler hulp wilt tijdens het gevecht
-     * @param help
+     * @param help Aan wat het attribuut help gelijk moet staan
      */
     public void setHelp(String help) {
         this.help = help;

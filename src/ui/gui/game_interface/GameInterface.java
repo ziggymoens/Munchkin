@@ -503,10 +503,12 @@ public class GameInterface extends BorderPane {
     }
 
     public void nieuweInterface(){
+
         dc.zetSpelerAanBeurt(dc.geefSpelerAanBeurt()+1);
         if(dc.geefSpelerAanBeurt() == dc.geefAantalSpelers()){
             dc.zetSpelerAanBeurt(0);
         }
+
         dc.nieuweBovensteKaartK();
         ((TabExtended) TabsMunchkin.getPane().getSelectionModel().getSelectedItem()).setNewContent(new GameInterface(dc));
     }
