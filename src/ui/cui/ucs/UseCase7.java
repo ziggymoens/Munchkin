@@ -45,6 +45,7 @@ class UseCase7 {
             keuzes.get(keuze).run();
             UniversalMethods.toonSituatie();
         } catch (Exception e) {
+            e = new Exception(LanguageResource.getString("usecase7.exception"));
             System.out.println(Printer.exceptionCatch("Exception (UC7)", e, false));
         }
     }
@@ -59,6 +60,7 @@ class UseCase7 {
                 System.out.println(String.format("%d) %s", i, LanguageResource.getString(String.format("usecase7.action%d", i))));
             }
         } catch (Exception e) {
+            e = new Exception(LanguageResource.getString("usecase7.exception"));
             System.out.println(Printer.exceptionCatch("Exception (UC7)", e, false));
         }
     }
@@ -101,6 +103,7 @@ class UseCase7 {
             overzichtVerkopenWeggooien();
             kiesKaarten("WI");
         } catch (Exception e) {
+            e = new Exception(LanguageResource.getString("usecase7.exception"));
             System.out.println(Printer.exceptionCatch("Exception (UC7)", e, false));
         }
 
@@ -114,6 +117,7 @@ class UseCase7 {
             overzichtItems();
             kiesKaarten("I");
         } catch (Exception e) {
+            e = new Exception(LanguageResource.getString("usecase7.exception"));
             System.out.println(Printer.exceptionCatch("Exception (UC7)", e, false));
         }
     }
@@ -140,6 +144,7 @@ class UseCase7 {
                 }
             }
         } catch (Exception e) {
+            e = new Exception(LanguageResource.getString("usecase7.exception"));
             System.out.println(Printer.exceptionCatch("Exception (UC7)", e, false));
             scan.nextLine();
         }
@@ -161,6 +166,7 @@ class UseCase7 {
                 System.out.println(ColorsOutput.kleur("yellow") + ColorsOutput.decoration("bold") + LanguageResource.getString("usecase7.kleinewaarde") + ColorsOutput.reset());
             }
         } catch (Exception e) {
+            e = new Exception(LanguageResource.getString("usecase7.exception"));
             System.out.println(Printer.exceptionCatch("Exception (UC7)", e, false));
         }
     }
@@ -175,6 +181,7 @@ class UseCase7 {
             dc.gooiKaartenWeg(naam, gekozenKaarten);
             System.out.print(Printer.printGreen("usecase7.succesdelete"));
         } catch (Exception e) {
+            e = new Exception(LanguageResource.getString("usecase7.exception"));
             System.out.println(Printer.exceptionCatch("Exception (UC7)", e, false));
         }
     }
@@ -186,6 +193,7 @@ class UseCase7 {
         try {
             System.out.printf("%s%n%s", ColorsOutput.decoration("bold") + String.format("%s:", LanguageResource.getString("usecase7.toitems")) + ColorsOutput.reset(), dc.geefKaartenKunnenNaarItems(naam));
         } catch (Exception e) {
+            e = new Exception(LanguageResource.getString("usecase7.exception"));
             System.out.println(Printer.exceptionCatch("Exception (UC7)", e, false));
             scan.nextLine();
         }
@@ -200,6 +208,7 @@ class UseCase7 {
         try {
             kiezenType.get(type).run();
         } catch (Exception e) {
+            e = new Exception(LanguageResource.getString("usecase7.exception"));
             System.out.println(Printer.exceptionCatch("Exception (UC7)", e, false));
             scan.nextLine();
         }
@@ -215,6 +224,7 @@ class UseCase7 {
             doeControle(LanguageResource.getString("usecase7.whattosell"), mogelijkheden);
             dc.verkoopKaarten(naam, gekozenKaarten);
         } catch (Exception e) {
+            e = new Exception(LanguageResource.getString("usecase7.exception"));
             System.out.println(Printer.exceptionCatch("Exception (UC7)", e, false));
         }
     }
@@ -228,6 +238,7 @@ class UseCase7 {
             doeControle(LanguageResource.getString("usecase7.whattothrow"), mogelijkheden);
             dc.gooiKaartenWeg(naam, gekozenKaarten);
         } catch (Exception e) {
+            e = new Exception(LanguageResource.getString("usecase7.exception"));
             System.out.println(Printer.exceptionCatch("Exception (UC7)", e, false));
         }
     }
@@ -241,6 +252,7 @@ class UseCase7 {
             doeControle(LanguageResource.getString("usecase7.whattoitems"), mogelijkheden);
             dc.verplaatsNaarItems(naam, gekozenKaarten);
         } catch (Exception e) {
+            e = new Exception(LanguageResource.getString("usecase7.exception"));
             System.out.println(Printer.exceptionCatch("Exception (UC7)", e, false));
         }
     }
@@ -258,6 +270,7 @@ class UseCase7 {
                 totaleWaarde += dc.getWaardeSchatkaart(id);
             }
         } catch (Exception e) {
+            e = new Exception(LanguageResource.getString("usecase7.exception"));
             System.out.println(Printer.exceptionCatch("Exception (UC7)", e, false));
             scan.nextLine();
         }
@@ -303,7 +316,10 @@ class UseCase7 {
                     System.out.println(LanguageResource.getString("usecase7.foutid"));
                 }
             } while (keuze != 999 && teller < mogelijkheden.size());
-        } catch (Exception e) {
+        } catch(NullPointerException ignored){
+        }
+        catch (Exception e) {
+            e = new Exception(LanguageResource.getString("usecase7.exception"));
             System.out.println(Printer.exceptionCatch("Exception (UC7)", e, false));
         }
     }
