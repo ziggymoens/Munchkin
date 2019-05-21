@@ -26,9 +26,9 @@ public class Speler {
     private int level, aantalSchatkaarten, aantalKerkerkaarten;
     private String geslacht;
     private String naam;
-    private List<Kaart> kaarten;
+    public List<Kaart> kaarten;
     private final List<Integer> volgordeKaarten;
-    private List<Kaart> items;
+    public List<Kaart> items;
     private final List<Integer> volgordeItems;
     private boolean heeftMonsterVerslaan;
     private Map<String, Integer> protection;
@@ -39,7 +39,7 @@ public class Speler {
      * "man", leeftijd = 99, level = 1, taal = "en"
      */
     public Speler() {
-        setLevel(4);
+        setLevel(1);
         kaarten = new ArrayList<>();
         volgordeKaarten = new ArrayList<>();
         items = new ArrayList<>();

@@ -33,7 +33,7 @@ public class Spel {
     private int spelerAanBeurt;
     private int aantalSpelers;
     private final List<Speler> spelers;
-    private Map<Integer, Kaart> kaarten;
+    public Map<Integer, Kaart> kaarten;
     private List<Kaart> schatkaarten;
     private List<Integer> volgordeT;
     private List<Kaart> kerkerkaarten;
@@ -1346,5 +1346,9 @@ public class Spel {
         for(int i = 0; i < schatten; i++){
             geefSpeler(speler).getKaarten().add(schatkaarten.remove(0));
         }
+    }
+
+    public String geefRaceSpeler(int i){
+        return spelers.get(i).getRace();
     }
 }

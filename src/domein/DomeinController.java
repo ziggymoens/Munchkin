@@ -763,4 +763,10 @@ public class DomeinController {
     public DomeinController geefDomeinController() {
         return this;
     }
+
+    public String geefRaceSpeler(int i){
+        return spel.geefRaceSpeler(i);
+    }
 }
+
+

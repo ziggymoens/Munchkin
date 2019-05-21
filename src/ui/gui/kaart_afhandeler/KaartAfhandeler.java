@@ -1,6 +1,7 @@
 package ui.gui.kaart_afhandeler;
 
 import domein.DomeinController;
+import domein.kaarten.Schatkaart;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -378,7 +379,7 @@ public class KaartAfhandeler extends BorderPane {
         imageView1.setPreserveRatio(true);
         center.getChildren().add(imageView1);
         VBox info = new VBox();
-        info.getChildren().addAll(new Label("naam"), new Label("ID"), new Label("waarde"));
+        info.getChildren().addAll(new Label(dc.spel.kaarten.get(finalJ).getNaam()), new Label(String.format("%d", finalJ)), dc.spel.kaarten.get(finalJ) instanceof Schatkaart ? new Label(String.format("%d",((Schatkaart)dc.spel.kaarten.get(finalJ)).getWaarde())):new Label());
         info.setSpacing(30);
         info.setAlignment(Pos.CENTER);
         center.getChildren().add(info);

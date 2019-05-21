@@ -2,6 +2,7 @@ package ui.gui.game_interface;
 
 
 import domein.DomeinController;
+import domein.kaarten.Schatkaart;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -175,8 +176,8 @@ public class GameInterface extends BorderPane {
 
         center.setTop(centerTopHBox);
         center.setBottom(centerBottomHBox);
-        center.setLeft(centerVBoxLeft);
-        center.setRight(centerVBoxRight);
+        //center.setLeft(centerVBoxLeft);
+        //center.setRight(centerVBoxRight);
         center.setMinWidth(1000);
         center.setMaxWidth(1000);
         center.setMinHeight(550);
@@ -315,7 +316,8 @@ public class GameInterface extends BorderPane {
         //opvragen via DC
         sexSpeler.setText(dc.geefGeslachtSpeler(i));
         //opvragen via DC
-        raceSpeler.setText("human");
+        raceSpeler.setText(dc.geefRaceSpeler(i));
+
         bottomSpelerHBox.getChildren().addAll(niveauSpeler, sexSpeler, raceSpeler);
         bottomSpelerHBox.setAlignment(Pos.BOTTOM_CENTER);
         bottomSpelerHBox.setBorder(new Border(new BorderStroke(Paint.valueOf("BLACK"), BorderStrokeStyle.DASHED, new CornerRadii(10), BorderWidths.DEFAULT)));
@@ -405,7 +407,7 @@ public class GameInterface extends BorderPane {
         imageView1.setPreserveRatio(true);
         center.getChildren().add(imageView1);
         VBox info = new VBox();
-        info.getChildren().addAll(new Label("naam"), new Label("ID"), new Label("waarde"));
+        info.getChildren().addAll(new Label(dc.spel.kaarten.get(finalJ).getNaam()), new Label(String.format("%d", finalJ)), dc.spel.kaarten.get(finalJ) instanceof Schatkaart? new Label(String.format("%d",((Schatkaart)dc.spel.kaarten.get(finalJ)).getWaarde())):new Label());
         info.setSpacing(30);
         info.setAlignment(Pos.CENTER);
         center.getChildren().add(info);

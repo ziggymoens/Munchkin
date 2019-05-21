@@ -8,6 +8,8 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCombination;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import language.LanguageResource;
 import ui.gui.a_universal.TabExtended;
@@ -16,6 +18,7 @@ import ui.gui.extras.help.Help;
 import ui.gui.extras.settings.Settings;
 import ui.gui.ucs.usecase8.UseCase8G;
 import ui.gui.ucs.usecase9.UseCase9G;
+import ui.test.MaakGI;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -29,6 +32,10 @@ public class MenuBarGui extends MenuBar {
     private Locale locale;
     private ToggleGroup toggleGroup;
     private List<RadioMenuItem> choiceItems;
+    private ChoiceBox<Integer> opties;
+    private ChoiceBox<Locale> optiesTaal;
+    private RadioButton itemsInit;
+    private RadioButton initLevels;
 
     public MenuBarGui() {
         Locale locale = new Locale("en");
@@ -36,6 +43,7 @@ public class MenuBarGui extends MenuBar {
         menus.add(new Menu(LanguageResource.getStringLanguage("menu.options", locale)));
         menus.add(new Menu(LanguageResource.getStringLanguage("menu.language", locale)));
         menus.add(new Menu(LanguageResource.getStringLanguage("menu.help", locale)));
+        menus.add(new Menu("DEMO"));
 
         List<MenuItem> menuItemsOptions = new ArrayList<>();
         menuItemsOptions.add(new MenuItem(LanguageResource.getStringLanguage("menu.options.settings", locale)));
@@ -96,8 +104,39 @@ public class MenuBarGui extends MenuBar {
         //aangepast
         menus.get(2).getItems().add(menuItemHelp);
 
+        MenuItem demo = new MenuItem("demoscherm");
+        demo.setOnAction(this::demoScherm);
+        menus.get(3).getItems().add(demo);
+
         getMenus().addAll(menus);
 
+    }
+
+    private void demoScherm(ActionEvent event) {
+        Stage stage = new Stage ();
+        BorderPane bp = new BorderPane();
+        Button ok = new Button("maken");
+        opties = new ChoiceBox<>();
+        opties.getItems().addAll(3,4,5,6);
+        optiesTaal = new ChoiceBox<>();
+        optiesTaal.getItems().addAll(new Locale("nl"), new Locale("en"), new Locale("fr"));
+        itemsInit = new RadioButton("items");
+        initLevels = new RadioButton("levels");
+        bp.setTop(new Label("maak demoscherm"));
+        bp.setLeft(opties);
+        HBox center = new HBox();
+        center.getChildren().addAll(itemsInit, initLevels);
+        bp.setCenter(center);
+        bp.setRight(optiesTaal);
+        bp.setBottom(ok);
+        ok.setOnAction(this::maakDemoTab);
+        Scene scene = new Scene(bp);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    private void maakDemoTab(ActionEvent event) {
+        new MaakGI(opties.getValue(), optiesTaal.getValue(), itemsInit.isSelected(), initLevels.isSelected());
     }
 
     private void updateHelpLang() {

@@ -1,6 +1,7 @@
 package ui.gui.weggooi_afhandeler;
 
 import domein.DomeinController;
+import domein.kaarten.Schatkaart;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -116,7 +117,7 @@ public class WeggooiAfhandeler extends BorderPane {
         imageView1.setPreserveRatio(true);
         center.getChildren().add(imageView1);
         VBox info = new VBox();
-        info.getChildren().addAll(new Label("naam"), new Label("ID"), new Label("waarde"));
+        info.getChildren().addAll(new Label(dc.spel.kaarten.get(item).getNaam()), new Label(String.format("%d", item)), dc.spel.kaarten.get(item) instanceof Schatkaart ? new Label(String.format("%d",((Schatkaart)dc.spel.kaarten.get(item)).getWaarde())):new Label());
         info.setSpacing(30);
         info.setAlignment(Pos.CENTER);
         Button ok = new Button("OK");
