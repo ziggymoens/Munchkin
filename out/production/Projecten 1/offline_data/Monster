@@ -1,0 +1,11 @@
+51;"Wannabe Vampire";1;0;12;0;;3;none
+54;"Maul Rat";4;0;1;0;"A creature from Hell";1;none
+55;"Mr. Bones";5;0;2;0;"A creature from Hell";1;none
+56;"Flying Frogs";6;0;2;-1;"-1 to Run Away";1;none
+59;"Potted Plant";9;0;1;6;;1;none
+60;Gazebo;10;0;8;0;;2;none
+61;"Pit Bull";11;0;2;0;;1;none
+63;"Lame Goblin";13;0;1;1;;1;none
+67;"Large Angry Chicken";17;0;2;0;;1;none
+69;Harpies;19;0;4;0;;2;none
+72;"Undead Horse";22;5;4;0;"+5 against Dwarves";2;dwarf

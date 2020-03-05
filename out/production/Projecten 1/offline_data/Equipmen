@@ -1,0 +1,30 @@
+1;200;"Helm of Courage";0;1;0;none;everyone;Head
+2;400;"Pointy Hat of Power";0;3;0;none;everyone;Head
+3;400;"Bad-Ass Bandana";0;3;0;none;human;Head
+4;600;"Horny Helmet";3;1;0;Elf;everyone;Head
+5;400;"Flaming Armor";0;2;0;none;everyone;Armor
+6;200;"Leather Armor";0;1;0;none;everyone;Armor
+7;200;"Slimey Armor";0;1;0;none;everyone;Armor
+8;600;"Mithril Armor";0;3;0;none;everyone;Armor
+9;400;"Flaming Armor";0;2;0;none;everyone;Armor
+10;400;"Boots of Butt-Kicking";0;2;0;none;everyone;Foot
+11;400;"Boots of Running Really Fast";0;0;2;none;everyone;Foot
+12;600;"Shield Of Ubiquity";0;4;0;none;everyone;Weapon
+13;400;"Buckler of Swashing";0;2;0;none;everyone;Weapon
+14;400;"Singing & Dancing Sword";0;2;0;none;everyone;Weapon
+15;600;"Swiss Army Polearm";0;4;0;none;human;Weapon
+16;200;"Eleven-Foot Pole";0;1;0;none;everyone;Weapon
+17;400;"Dagger of Treachery";0;3;0;none;everyone;Weapon
+18;600;"Chainsaw of Bloody Dismemberment";0;3;0;none;everyone;Weapon
+19;600;"Rapier of Unfairness";0;3;0;none;elf;Weapon
+20;400;"Cheese Grater of Peace";0;3;0;none;everyone;Weapon
+21;800;"Staff of Napalm";0;5;0;none;everyone;Weapon
+22;400;"Broad Sword";0;3;0;none;female;Weapon
+23;0;"Rat on A Stick";0;1;0;none;everyone;Weapon
+24;300;"Tuba of Charm";0;0;3;none;everyone;Weapon
+25;800;"Bow With Ribbons";0;4;0;none;elf;Weapon
+26;0;"Huge Rock";0;3;0;none;everyone;Weapon
+27;600;"Hammer of Kneecapping";0;4;0;none;dwarf;Weapon
+28;400;"Gentlemen's Club";0;3;0;none;male;Weapon
+29;600;"Mace of Sharpness";0;4;0;none;everyone;Weapon
+30;400;"Sneaky Bastard Sword";0;2;0;none;everyone;Weapon

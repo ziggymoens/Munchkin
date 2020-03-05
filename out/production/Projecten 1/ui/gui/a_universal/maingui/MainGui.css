@@ -1,0 +1,34 @@
+BorderPane, UseCase1G {
+    -fx-background-image: url("/ui/images/munchkin/munchkin-background.jpg");
+    -fx-background-position: top center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-radius: 20;
+    -fx-padding: 10;
+    -fx-pref-width: 1000;
+    -fx-pref-height: 750;
+}
+
+#titel{
+    -fx-font: bold 30 "sans-serif";
+    -fx-alignment: center;
+    -fx-pref-width: 32000; /* groot genoeg */
+}
+VBox {
+    -fx-alignment: center;
+}
+
+VBox Label {
+    -fx-font: bold 15 "system";
+}
+
+HBox {
+    -fx-alignment: center;
+}
+#mb Menu{
+    -fx-alignment: center left;
+}
+
+#messages{
+    -fx-font: bold 16 "sans-serif";
+    -fx-background-color: white;
+}

@@ -1,0 +1,59 @@
+BorderPane, UseCase1G {
+    -fx-background-image: url("../../../images/munchkin/munchkin-background.jpg");
+    -fx-background-position: top center;
+    -fx-padding: 0 0 10 0;
+    -fx-pref-width: 1000;
+    -fx-pref-height: 750;
+}
+
+#menubar{
+    -fx-font: bold 15 "sans-serif";
+    -fx-alignment: center-left;
+    -fx-pref-width: 32000; /* groot genoeg */
+}
+#buttonWelkom{
+    -fx-font: bold 20px sans-serif;
+    -fx-font-weight: bold;
+    -fx-text-alignment: center;
+}
+VBox {
+    -fx-alignment: center;
+}
+
+VBox Label {
+    -fx-font: bold 15 "system";
+}
+
+HBox {
+    -fx-alignment: center;
+    -fx-spacing: 20px;
+}
+
+Button{
+    -fx-spacing: 10;
+}
+#bR:hover{
+    -fx-cursor: hand;
+}
+
+ImageView:hover{
+    -fx-cursor: hand;
+}
+#string{
+    -fx-text-alignment: center;
+    -fx-font: bold italic 20 "sans-serif";
+}
+
+#welcomeTop{
+    -fx-font: bold 30 "sans-serif";
+}
+
+#leftVBox>Label{
+    -fx-font-size: 25;
+    -fx-font-weight: bold;
+}
+
+#rightVBox>Label{
+    -fx-font-size: 25;
+    -fx-font-weight: bold;
+}

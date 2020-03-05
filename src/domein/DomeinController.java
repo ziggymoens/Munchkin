@@ -1,5 +1,6 @@
 package domein;
 
+import domein.kaarten.kerkerkaarten.Monster;
 import domein.repositories.SpelDbRepository;
 import exceptions.SpelException;
 import exceptions.database.InternetException;
@@ -185,6 +186,9 @@ public class DomeinController {
      * @return bovenste kerkerkaart als string
      */
     public String toonBovensteKk() {
+        while(! (spel.getKerkerkaarten().get(0) instanceof Monster)){
+            spel.nieuweBovensteKaartK();
+        }
         return String.format("/ui/images/kaarten/%d.png", spel.toonBovensteKk());
     }
 

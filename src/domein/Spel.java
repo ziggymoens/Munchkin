@@ -1289,11 +1289,11 @@ public class Spel {
             if (teller < aantalSpelers) {
                 Speler speler = spelers.get(i);
                 String[] items = new String[6];
-                for (int j = 0; j < speler.geefItemsInt().length; j++) {
+                for (int j = 0; j < speler.geefItemsInt().length-1; j++) {
                     items[j] = String.valueOf(speler.geefItemsInt()[j]);
                 }
                 String[] kaarten = new String[5];
-                for (int j = 0; j < speler.geefItemsInt().length; j++) {
+                for (int j = 0; j < speler.geefItemsInt().length-1; j++) {
                     kaarten[j] = String.valueOf(speler.geefKaartenInt()[j]);
                 }
                 String[] info = {speler.getNaam(), String.valueOf(speler.getLevel()), speler.getGeslacht(), speler.getRace(), String.valueOf(kaarten), String.valueOf(items)};

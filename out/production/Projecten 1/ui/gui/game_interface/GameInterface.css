@@ -1,0 +1,59 @@
+BorderPane{
+    -fx-background-color: rgba(255, 211, 112, 0.62);
+}
+
+#spelerKaart{
+    -fx-background-color: rgba(255, 211, 112, 0.62);
+    -fx-background-radius: 10;
+}
+
+#center{
+    -fx-background-color: rgba(200, 115, 52, 0.83);
+    -fx-background-radius: 90;
+}
+
+
+#niveauSpeler{
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+}
+
+#sexSpeler{
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+}
+
+#raceSpeler{
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+}
+
+#naamSpeler{
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+    -fx-font: bold 20 "sans-serif";
+}
+#leftVBox{
+}
+
+#rightVBox{
+}
+#bottomHBox{
+}
+#topHBox{
+}
+
+#kaartenLabel{
+    -fx-font-weight: bold;
+}
+#itemsLabel{
+    -fx-font-weight: bold;
+}
+
+#chimg{
+    -fx-opacity: 50%;
+}
+
+#chimg:selected{
+    -fx-opacity: 100%;
+}

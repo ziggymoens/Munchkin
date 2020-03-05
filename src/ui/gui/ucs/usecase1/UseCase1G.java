@@ -20,7 +20,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -54,7 +53,6 @@ public class UseCase1G extends MainGui {
     private Label labelSpeler;
     private ImageView buttonRight;
     private ImageView buttonLeft;
-    private MediaPlayer player;
     private Label naamError;
 
     public UseCase1G(DomeinController dc) {
