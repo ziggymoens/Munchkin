@@ -4,6 +4,8 @@
 
 ### Presentatie: 21/5/2019 - 15u10
 
+#### Quotering: 16/20
+
 Java applicatie starten via Main-package:
 > [StartUp.java](/src/main/StartUp.java) -> CUI
 
